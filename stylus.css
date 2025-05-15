@@ -298,7 +298,7 @@ form {
   top: 0;
   bottom: 0;
   left: 1px;
-  width: 36px;
+  width: 22px;
   opacity: 1;
 }
 div#p-lang-btn.vector-menu.mw-portlet-empty.vector-menu-dropdown div.vector-menu-content {
@@ -871,7 +871,7 @@ div.archwiki-template-meta-related-articles-start {
   border-radius: 4px;
   padding: 0.15em 0.4em;
   margin: 0 0.2em;
-  border: 1px solid rgba(70, 142, 220, 0.2);
+  border: 1px solid var(--darker);
   color: #4bfe9b;
 }
 
