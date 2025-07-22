@@ -1,5 +1,3 @@
-/* Enhanced Arch Wiki Dark Theme - Improved Version */
-
 :root {
 	--darker: #1a1a1a;
 	--dark: #252525;
@@ -15,7 +13,6 @@
 	--orange: #fd7cff;
 	--cell-delim: #252525;
 
-	/* New variables for enhanced styling */
 	--border-radius-sm: 6px;
 	--border-radius-md: 9px;
 	--border-radius-lg: 12px;
@@ -26,20 +23,17 @@
 	--transition-medium: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced selection */
 ::selection {
 	background-color: rgba(167, 18, 170, 0.4) !important;
 	color: var(--lighter) !important;
 }
 
-/* Improved focus states */
 :focus {
 	outline: 2px solid var(--arch-blue);
 	outline-offset: 2px;
 	border-radius: var(--border-radius-sm);
 }
 
-/* Better scrollbar styling */
 * {
 	scrollbar-width: thin;
 	scrollbar-color: var(--secondary-blue) transparent;
@@ -65,11 +59,9 @@
 	background-color: var(--arch-blue);
 }
 
-/* Body and main containers */
 body {
 	background-color: var(--base);
 	color: var(--light);
-	font-smoothing: antialiased;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -90,7 +82,6 @@ body.skin-vector div.mw-page-container {
 	box-shadow: var(--shadow-elevated);
 }
 
-/* Enhanced link styling */
 a,
 a:visited {
 	text-decoration: none !important;
@@ -103,7 +94,6 @@ a:hover {
 	color: var(--orange) !important;
 }
 
-/* Better headings with gradient underlines */
 h1,
 h2 {
 	position: relative;
@@ -133,7 +123,6 @@ h2::after {
 	border-radius: 1px;
 }
 
-/* ENHANCED CODE BLOCKS */
 #content pre:not([class*="codemirror"]),
 #content code,
 #content tt {
@@ -146,7 +135,6 @@ h2::after {
 	tab-size: 4;
 }
 
-/* Inline code */
 #content code,
 #content tt {
 	background: linear-gradient(
@@ -174,7 +162,6 @@ h2::after {
 	transform: translateY(-1px);
 }
 
-/* Enhanced code blocks */
 #content pre:not([class*="codemirror"]) {
 	position: relative;
 	margin: 1.5em 0 !important;
@@ -202,7 +189,6 @@ h2::after {
 	transform: translateY(-2px);
 }
 
-/* Code block header bar */
 #content pre:not([class*="codemirror"])::before {
 	content: "Code";
 	position: absolute;
@@ -223,12 +209,10 @@ h2::after {
 	border-top-right-radius: var(--border-radius-lg);
 }
 
-/* Language indicator (when available) */
 #content pre[data-lang]::before {
 	content: attr(data-lang);
 }
 
-/* Copy indicator (visual only - actual copy requires JS) */
 #content pre:not([class*="codemirror"])::after {
 	content: "📋";
 	position: absolute;
@@ -248,7 +232,6 @@ h2::after {
 	opacity: 1;
 }
 
-/* Line numbers (pseudo implementation) */
 #content pre:not([class*="codemirror"]) code {
 	background-color: transparent;
 	border: none;
@@ -260,7 +243,6 @@ h2::after {
 	counter-reset: line;
 }
 
-/* Enhanced syntax highlighting */
 #content pre .keyword,
 #content pre .statement {
 	color: #ff1a67;
@@ -299,7 +281,6 @@ h2::after {
 	color: #feca57;
 }
 
-/* Command prompt styling */
 #content pre:not([class*="codemirror"]) .prompt::before {
 	content: "$ ";
 	color: var(--secondary-blue);
@@ -313,7 +294,6 @@ h2::after {
 	font-style: italic;
 }
 
-/* Enhanced Arch Wiki boxes */
 div.archwiki-template-box {
 	position: relative;
 	overflow: hidden;
@@ -382,7 +362,6 @@ div.archwiki-template-box.archwiki-template-box-warning::before {
 	font-size: 1.2em;
 }
 
-/* Enhanced tables */
 .wikitable {
 	background-color: var(--base);
 	color: var(--light);
@@ -417,7 +396,6 @@ div.archwiki-template-box.archwiki-template-box-warning::before {
 	background-color: rgba(137, 80, 199, 0.05);
 }
 
-/* Enhanced TOC */
 #toc,
 .toc {
 	background: linear-gradient(135deg, var(--base), rgba(137, 80, 199, 0.05));
@@ -440,7 +418,6 @@ div.archwiki-template-box.archwiki-template-box-warning::before {
 	margin-right: 0.5em;
 }
 
-/* Enhanced sidebar */
 .mw-sidebar {
 	background: linear-gradient(180deg, var(--dark), var(--darker));
 	border-radius: var(--border-radius-md);
@@ -459,7 +436,6 @@ div.archwiki-template-box.archwiki-template-box-warning::before {
 	margin-bottom: 0.5em;
 }
 
-/* Enhanced buttons */
 .mw-ui-button,
 .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button {
 	background: linear-gradient(135deg, var(--arch-blue), var(--secondary-blue));
@@ -489,7 +465,6 @@ div.archwiki-template-box.archwiki-template-box-warning::before {
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Ripple effect for buttons */
 .mw-ui-button::after {
 	content: "";
 	position: absolute;
@@ -510,7 +485,6 @@ div.archwiki-template-box.archwiki-template-box-warning::before {
 	height: 300px;
 }
 
-/* Enhanced input fields */
 input[type="text"],
 input[type="search"],
 input[type="email"],
@@ -539,7 +513,6 @@ textarea:focus,
 	outline: none;
 }
 
-/* Enhanced dropdowns */
 .oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle {
 	background: linear-gradient(135deg, var(--dark), var(--darker));
 	color: var(--lighter);
@@ -553,7 +526,6 @@ textarea:focus,
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Smooth transitions for all interactive elements */
 a,
 button,
 input,
@@ -563,7 +535,6 @@ select,
 	transition: all var(--transition-fast);
 }
 
-/* Mobile optimizations */
 @media (max-width: 768px) {
 	#content pre:not([class*="codemirror"]) {
 		font-size: 0.85em;
