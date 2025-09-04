@@ -160,7 +160,12 @@
 		background: linear-gradient(90deg, var(--arch-blue), transparent);
 		border-radius: 1px;
 	}
-
+	#archnavbar {
+		height: 40px !important;
+		padding: 10px 15px !important;
+		background: #181818 !important;
+		border-bottom: 5px var(--arch-blue) solid !important;
+	}
 	/* code font + basic code styling */
 	#content pre:not([class*="codemirror"]),
 	#content code,
