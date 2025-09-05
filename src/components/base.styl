@@ -1,0 +1,87 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// Base styles and CSS custom properties
+:root
+  // Color variables
+  --darker $darker
+  --dark $dark
+  --base $base
+  --light $light
+  --lighter $lighter
+  --arch-blue $arch-blue
+  --secondary-blue $secondary-blue
+  --red $red
+  --secondary-red $secondary-red
+  --green $green
+  --secondary-green $secondary-green
+  --orange $orange
+  --cell-delim $cell-delim
+
+  // Layout variables
+  --border-radius-sm $border-radius-sm
+  --border-radius-md $border-radius-md
+  --border-radius-lg $border-radius-lg
+  --border-subtle $border-subtle
+  --shadow-subtle $shadow-subtle
+  --shadow-elevated $shadow-elevated
+  --transition-fast $transition-fast
+  --transition-medium $transition-medium
+
+  // Terminal palette
+  --term-black $term-black
+  --term-red $term-red
+  --term-green $term-green
+  --term-yellow $term-yellow
+  --term-blue $term-blue
+  --term-magenta $term-magenta
+  --term-cyan $term-cyan
+  --term-white $term-white
+  --term-bright-black $term-bright-black
+  --term-bright-red $term-bright-red
+  --term-bright-green $term-bright-green
+  --term-bright-yellow $term-bright-yellow
+  --term-bright-blue $term-bright-blue
+  --term-bright-magenta $term-bright-magenta
+  --term-bright-cyan $term-bright-cyan
+  --term-bright-white $term-bright-white
+
+// Selection and focus
+::selection
+  background-color rgba(167, 18, 170, 0.36) !important
+  color $lighter !important
+
+// Apply focus ring mixin
+*
+  focus-ring()
+
+// Scrollbar theming
+*
+  scrollbar-width thin
+  scrollbar-color $secondary-blue transparent
+
+*::-webkit-scrollbar
+  width 8px
+  height 8px
+
+*::-webkit-scrollbar-track
+  background-color rgba(0, 0, 0, 0.08)
+  border-radius 4px
+
+*::-webkit-scrollbar-thumb
+  background-color $secondary-blue
+  border-radius 4px
+  transition background-color $transition-fast
+
+  &:hover
+    background-color $arch-blue
+
+// Page shell
+body
+  background-color $base
+  color $light
+  -webkit-font-smoothing antialiased
+
+body.skin-vector div.mw-page-container
+  background-color $base

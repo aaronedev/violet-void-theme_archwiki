@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         violet-void-theme_archwiki
-@version      20250828.09.20
+@version      20250905.16.55
 @namespace    github.com/aaronedev/violet-void-theme
 @description  Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.
 @author       aaronedev
@@ -8,668 +8,529 @@
 @homepageURL  https://github.com/aaronedev/violet-void-theme_archwiki
 @license      MIT
 ==/UserStyle== */
-
 @-moz-document domain("wiki.archlinux.org") {
-	:root {
-		--darker: #0f0f0f;
-		--dark: #202020;
-		--base: #181818;
-		--light: #bfbfbf;
-		--lighter: #e7e7e7;
-
-		--arch-blue: #8950c7;
-		--secondary-blue: #c7b8ff;
-		--red: #a80065;
-		--secondary-red: #ff1a67;
-		--green: #4bfe9b;
-		--secondary-green: #4bfe9b;
-		--orange: #fd7cff;
-		--cell-delim: #252525;
-
-		--border-radius-sm: 6px;
-		--border-radius-md: 9px;
-		--border-radius-lg: 12px;
-		--border-subtle: rgba(200, 184, 255, 0.08);
-		--shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.28);
-		--shadow-elevated: 0 6px 24px rgba(0, 0, 0, 0.45);
-		--transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-		--transition-medium: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-		/* terminal palette */
-		--term-black: #0f0f0f;
-		--term-red: #ff1a67;
-		--term-green: #42ff97;
-		--term-yellow: #7c60d1;
-		--term-blue: #29adff;
-		--term-magenta: #fd007f;
-		--term-cyan: #00a8a4;
-		--term-white: #505050;
-
-		--term-bright-black: #252525;
-		--term-bright-red: #ff004b;
-		--term-bright-green: #42ffad;
-		--term-bright-yellow: #fd7cff;
-		--term-bright-blue: #c7b8ff;
-		--term-bright-magenta: #fd0098;
-		--term-bright-cyan: #00fff9;
-		--term-bright-white: #e7e7e7;
-	}
-
-	/* selection + focus */
-	::selection {
-		background-color: rgba(167, 18, 170, 0.36) !important;
-		color: var(--lighter) !important;
-	}
-
-	:focus {
-		outline: 2px solid var(--arch-blue);
-		outline-offset: 2px;
-		border-radius: var(--border-radius-sm);
-	}
-
-	/* scrollbars */
-	* {
-		scrollbar-width: thin;
-		scrollbar-color: var(--secondary-blue) transparent;
-	}
-
-	*::-webkit-scrollbar {
-		width: 8px;
-		height: 8px;
-	}
-
-	*::-webkit-scrollbar-track {
-		background-color: rgba(0, 0, 0, 0.08);
-		border-radius: 4px;
-	}
-
-	*::-webkit-scrollbar-thumb {
-		background-color: var(--secondary-blue);
-		border-radius: 4px;
-		transition: background-color var(--transition-fast);
-	}
-
-	*::-webkit-scrollbar-thumb:hover {
-		background-color: var(--arch-blue);
-	}
-
-	/* page shell */
-	body {
-		background-color: var(--base);
-		color: var(--light);
-		-webkit-font-smoothing: antialiased;
-	}
-
-	/* keep main container consistent */
-	body.skin-vector div.mw-page-container {
-		background-color: var(--base);
-	}
-
-	#content {
-		background-color: var(--dark);
-		border: 1px solid var(--border-subtle);
-		color: var(--light);
-		border-radius: var(--border-radius-md);
-		box-shadow: var(--shadow-subtle);
-		transition: box-shadow var(--transition-medium);
-	}
-
-	#content:hover {
-		box-shadow: var(--shadow-elevated);
-	}
-
-	/* links */
-	a,
-	a:visited {
-		text-decoration: none !important;
-		color: var(--secondary-blue);
-		transition: color var(--transition-fast);
-		position: relative;
-	}
-
-	a:hover {
-		color: var(--orange) !important;
-	}
-
-	/* headings */
-	h1,
-	h2 {
-		position: relative;
-		padding-bottom: 0.5em;
-		margin-bottom: 1em;
-	}
-
-	h1::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 3px;
-		background: linear-gradient(90deg, var(--arch-blue), var(--secondary-blue));
-		border-radius: 2px;
-	}
-
-	h2::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 2px;
-		background: linear-gradient(90deg, var(--arch-blue), transparent);
-		border-radius: 1px;
-	}
-	#archnavbar {
-		height: 40px !important;
-		padding: 10px 15px !important;
-		background: #181818 !important;
-		border-bottom: 5px var(--arch-blue) solid !important;
-	}
-	/* code font + basic code styling */
-	#content pre:not([class*="codemirror"]),
-	#content code,
-	#content tt {
-		font-family:
-			"JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, Monaco,
-			monospace;
-		font-size: 0.95em;
-		font-variant-ligatures: contextual;
-		line-height: 1.6;
-		tab-size: 4;
-	}
-
-	/* inline code chip */
-	#content code,
-	#content tt {
-		background: linear-gradient(
-			135deg,
-			rgba(137, 80, 199, 0.06),
-			rgba(199, 184, 255, 0.02)
-		);
-		border: 1px solid rgba(137, 80, 199, 0.12);
-		border-radius: var(--border-radius-sm);
-		padding: 0.18em 0.5em;
-		margin: 0 0.2em;
-		color: var(--term-bright-green);
-		font-size: 0.9em;
-		transition: all var(--transition-fast);
-	}
-
-	/* hover micro-lift for inline code */
-	#content code:hover,
-	#content tt:hover {
-		background: linear-gradient(
-			135deg,
-			rgba(137, 80, 199, 0.1),
-			rgba(199, 184, 255, 0.04)
-		);
-		border-color: rgba(137, 80, 199, 0.18);
-		transform: translateY(-1px);
-	}
-
-	/* large code blocks */
-	#content pre:not([class*="codemirror"]) {
-		position: relative;
-		margin: 1.5em 0 !important;
-		padding: 1.5em !important;
-		padding-top: 3em !important;
-		border: none !important;
-		background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%) !important;
-		overflow: auto;
-		word-break: normal;
-		word-wrap: normal;
-		white-space: pre !important;
-		border-radius: var(--border-radius-lg);
-		box-shadow:
-			0 0 0 1px rgba(137, 80, 199, 0.12),
-			0 6px 18px rgba(0, 0, 0, 0.45),
-			inset 0 1px 0 rgba(255, 255, 255, 0.02);
-		transition: all var(--transition-medium);
-	}
-
-	/* hover lift for big code blocks */
-	#content pre:not([class*="codemirror"]):hover {
-		box-shadow:
-			0 0 0 1px rgba(137, 80, 199, 0.2),
-			0 10px 30px rgba(0, 0, 0, 0.6),
-			inset 0 1px 0 rgba(255, 255, 255, 0.02);
-		transform: translateY(-2px);
-	}
-
-	/* header bar on code blocks - language if present, else "Code" */
-	#content pre[data-lang]::before {
-		content: attr(data-lang);
-	}
-	#content pre:not([data-lang])::before {
-		content: "Code";
-	}
-	#content pre:not([class*="codemirror"])::before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		height: 2.5em;
-		background: linear-gradient(90deg, var(--arch-blue), var(--secondary-blue));
-		display: flex;
-		align-items: center;
-		padding: 0 1em;
-		font-size: 0.85em;
-		font-weight: 600;
-		color: white;
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-		border-top-left-radius: var(--border-radius-lg);
-		border-top-right-radius: var(--border-radius-lg);
-	}
-
-	/* hide pseudo-icon-based copy button */
-	#content pre:not([class*="codemirror"])::after {
-		display: none !important;
-	}
-
-	/* common class name patterns */
-	#content pre:not([class*="codemirror"]) .copy-to-clipboard,
-	#content pre:not([class*="codemirror"]) .copy-to-clipboard-button,
-	#content pre:not([class*="codemirror"]) .copy-button,
-	#content pre:not([class*="codemirror"]) .copyBtn,
-	#content pre:not([class*="codemirror"]) .copy-btn,
-	#content pre:not([class*="codemirror"]) .btn-copy,
-	#content pre:not([class*="codemirror"]) .btn-clipboard,
-	#content pre:not([class*="codemirror"]) .copy,
-	#content pre:not([class*="codemirror"]) .clipboard,
-	#content pre:not([class*="codemirror"]) .clipboard-button,
-	#content pre:not([class*="codemirror"]) .clipboard-copy,
-	#content pre:not([class*="codemirror"]) .clipboard-btn,
-	#content pre:not([class*="codemirror"]) .copybtn,
-	#content pre:not([class*="codemirror"]) .copywrap,
-	#content pre:not([class*="codemirror"]) .code-toolbar .toolbar,
-	#content pre:not([class*="codemirror"]) .prism .toolbar,
-	#content pre:not([class*="codemirror"]) .highlight .copybtn,
-	#content pre:not([class*="codemirror"]) .highlight .toolbar,
-	#content pre:not([class*="codemirror"]) .gatsby-highlight .copy-button,
-	#content pre:not([class*="codemirror"]) button[data-clipboard-text],
-	#content pre:not([class*="codemirror"]) [data-clipboard-text],
-	#content pre:not([class*="codemirror"]) [data-clipboard-target],
-	#content pre:not([class*="codemirror"]) [data-action="copy"],
-	#content pre:not([class*="codemirror"]) [data-copy],
-	#content pre:not([class*="codemirror"]) [data-copy-text],
-	#content pre:not([class*="codemirror"]) [aria-label="Copy"],
-	#content pre:not([class*="codemirror"]) [aria-label="copy"],
-	#content pre:not([class*="codemirror"]) [title*="copy" i],
-	#content pre:not([class*="codemirror"]) [title*="Copy" i],
-	#content pre:not([class*="codemirror"]) [role="button"][title*="copy" i] {
-		display: none !important;
-		visibility: hidden !important;
-		pointer-events: none !important;
-		width: 0 !important;
-		height: 0 !important;
-		opacity: 0 !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		border: none !important;
-	}
-
-	/* additional broad selectors to cover wrappers and toolbars */
-	#content .code-toolbar,
-	#content .highlight .toolbar,
-	#content .prism .toolbar,
-	#content .highlight .copy,
-	#content .code-actions,
-	#content .code-actions *[class*="copy"],
-	#content .code-actions button,
-	#content .code-actions a {
-		display: none !important;
-		visibility: hidden !important;
-		pointer-events: none !important;
-	}
-
-	/* safety: make sure no leftover absolute items remain visible on code blocks */
-	#content pre:not([class*="codemirror"]) [class*="copy"],
-	#content pre:not([class*="codemirror"]) [id*="copy"],
-	#content pre:not([class*="codemirror"]) [data-action="copy"],
-	#content pre:not([class*="codemirror"]) [data-clipboard-text] {
-		display: none !important;
-	}
-
-	/* make sure clickable area inside pre does not show pointer where removed */
-	#content pre:not([class*="codemirror"]) {
-		cursor: text;
-	}
-
-	/* clear inline background for code elements inside pre */
-	#content pre:not([class*="codemirror"]) code {
-		background-color: transparent;
-		border: none;
-		padding: 0;
-		margin: 0;
-		color: var(--lighter);
-		overflow-x: auto;
-		display: block;
-		counter-reset: line;
-	}
-
-	/* syntax token mappings using your terminal palette */
-	#content pre .keyword,
-	#content pre .statement {
-		color: var(--term-red);
-		font-weight: 600;
-	}
-
-	#content pre .string,
-	#content pre .value {
-		color: var(--term-magenta);
-	}
-
-	#content pre .comment {
-		color: #6f6f6f;
-		font-style: italic;
-	}
-
-	#content pre .function {
-		color: var(--term-blue);
-		font-weight: 500;
-	}
-
-	#content pre .number {
-		color: var(--term-bright-cyan);
-	}
-
-	#content pre .variable {
-		color: var(--term-bright-white);
-	}
-
-	#content pre .operator {
-		color: var(--term-bright-yellow);
-	}
-
-	#content pre .class,
-	#content pre .type {
-		color: var(--term-bright-yellow);
-	}
-
-	/* prompt style inside code blocks */
-	#content pre:not([class*="codemirror"]) .prompt::before {
-		content: "$ ";
-		color: var(--secondary-blue);
-		font-weight: bold;
-		user-select: none;
-	}
-
-	/* bash comments and line comments */
-	#content pre:not([class*="codemirror"]) .bash-comment,
-	#content pre:not([class*="codemirror"]) .line-comment {
-		color: #7a7a7a;
-		font-style: italic;
-	}
-
-	/* archwiki boxes */
-	div.archwiki-template-box {
-		position: relative;
-		overflow: hidden;
-		transition: all var(--transition-medium);
-		box-shadow: var(--shadow-subtle);
-	}
-
-	div.archwiki-template-box:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-elevated);
-	}
-
-	div.archwiki-template-box.archwiki-template-box-note {
-		background: linear-gradient(135deg, var(--base), rgba(137, 80, 199, 0.06));
-		border: 1px solid rgba(137, 80, 199, 0.12);
-		border-radius: var(--border-radius-md);
-		padding: 1em;
-	}
-
-	div.archwiki-template-box.archwiki-template-box-note::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 4px;
-		height: 100%;
-		background: linear-gradient(180deg, var(--arch-blue), var(--secondary-blue));
-	}
-
-	div.archwiki-template-box.archwiki-template-box-tip {
-		background: linear-gradient(
-			135deg,
-			rgba(75, 254, 155, 0.1),
-			rgba(75, 254, 155, 0.03)
-		);
-		border: 1px solid rgba(75, 254, 155, 0.14);
-		border-radius: var(--border-radius-md);
-		padding: 1em;
-	}
-
-	div.archwiki-template-box.archwiki-template-box-tip::before {
-		content: "💡";
-		position: absolute;
-		top: 0.5em;
-		right: 0.5em;
-		font-size: 1.2em;
-		opacity: 0.5;
-	}
-
-	div.archwiki-template-box.archwiki-template-box-warning {
-		background: linear-gradient(
-			135deg,
-			rgba(168, 0, 101, 0.1),
-			rgba(255, 26, 103, 0.03)
-		);
-		border: 1px solid rgba(255, 26, 103, 0.12);
-		border-radius: var(--border-radius-md);
-		padding: 1em;
-	}
-
-	div.archwiki-template-box.archwiki-template-box-warning::before {
-		content: "!";
-		position: absolute;
-		top: 0.5em;
-		right: 0.5em;
-		font-size: 1.2em;
-	}
-
-	/* tables */
-	.wikitable {
-		background-color: var(--base);
-		color: var(--light);
-		margin: 1em 0;
-		border: none;
-		border-radius: var(--border-radius-md);
-		overflow: hidden;
-		box-shadow: var(--shadow-subtle);
-		border-collapse: separate;
-		border-spacing: 0;
-	}
-
-	.wikitable > tr > th,
-	.wikitable > * > tr > th {
-		background: linear-gradient(135deg, var(--darker), rgba(137, 80, 199, 0.04));
-		text-align: center;
-		font-weight: 600;
-		letter-spacing: 0.02em;
-		color: var(--lighter);
-	}
-
-	.wikitable > tr > th,
-	.wikitable > tr > td,
-	.wikitable > * > tr > th,
-	.wikitable > * > tr > td {
-		border: 1px solid var(--border-subtle);
-		padding: 0.75em 1em;
-		transition: background-color var(--transition-fast);
-	}
-
-	.wikitable tr:hover td {
-		background-color: rgba(137, 80, 199, 0.02);
-	}
-
-	/* toc */
-	#toc,
-	.toc {
-		background: linear-gradient(135deg, var(--base), rgba(137, 80, 199, 0.02));
-		border: 1px solid var(--border-subtle);
-		border-radius: var(--border-radius-md);
-		padding: 1em;
-		box-shadow: var(--shadow-subtle);
-		transition: all var(--transition-medium);
-	}
-
-	#toc:hover,
-	.toc:hover {
-		box-shadow: var(--shadow-elevated);
-		border-color: rgba(137, 80, 199, 0.08);
-	}
-
-	.tocnumber {
-		color: var(--secondary-blue);
-		font-weight: 600;
-		margin-right: 0.5em;
-	}
-
-	/* sidebar */
-	.mw-sidebar {
-		background: linear-gradient(180deg, var(--dark), var(--darker));
-		border-radius: var(--border-radius-md);
-		box-shadow: var(--shadow-subtle);
-		padding: 1em;
-	}
-
-	/* buttons */
-	.vector-menu-portal .vector-menu-heading {
-		color: var(--lighter);
-		font-size: 0.85em;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		border-bottom: 2px solid var(--secondary-blue);
-		padding-bottom: 0.5em;
-		margin-bottom: 0.5em;
-	}
-
-	.mw-ui-button,
-	.oo-ui-buttonelement-framed.oo-ui-widget-enabled
-		> .oo-ui-buttonelement-button {
-		background: linear-gradient(135deg, var(--arch-blue), var(--secondary-blue));
-		color: white;
-		border: none;
-		border-radius: var(--border-radius-md);
-		padding: 0.5em 1.5em;
-		font-weight: 600;
-		letter-spacing: 0.02em;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-		transition: all var(--transition-fast);
-		position: relative;
-		overflow: hidden;
-	}
-
-	.mw-ui-button:hover,
-	.oo-ui-buttonelement-framed.oo-ui-widget-enabled
-		> .oo-ui-buttonelement-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.32);
-	}
-
-	.mw-ui-button:active,
-	.oo-ui-buttonelement-framed.oo-ui-widget-enabled
-		> .oo-ui-buttonelement-button:active {
-		transform: translateY(0);
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
-	}
-
-	/* subtle ripple disabled for accessible performance */
-	.mw-ui-button::after {
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 0;
-		height: 0;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.06);
-		transform: translate(-50%, -50%);
-		transition:
-			width 0.4s,
-			height 0.4s;
-	}
-
-	.mw-ui-button:active::after {
-		width: 160px;
-		height: 160px;
-	}
-
-	/* inputs */
-	input[type="text"],
-	input[type="search"],
-	input[type="email"],
-	input[type="password"],
-	textarea,
-	.oo-ui-textinputwidget .oo-ui-inputwidget-input {
-		background-color: var(--darker);
-		color: var(--lighter);
-		border: 1px solid var(--border-subtle);
-		border-radius: var(--border-radius-md);
-		padding: 0.75em 1em;
-		transition: all var(--transition-fast);
-		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
-	}
-
-	input[type="text"]:focus,
-	input[type="search"]:focus,
-	input[type="email"]:focus,
-	input[type="password"]:focus,
-	textarea:focus,
-	.oo-ui-textinputwidget .oo-ui-inputwidget-input:focus {
-		border-color: var(--arch-blue);
-		box-shadow:
-			inset 0 1px 3px rgba(0, 0, 0, 0.06),
-			0 0 0 3px rgba(137, 80, 199, 0.04);
-		outline: none;
-	}
-
-	/* dropdowns */
-	.oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle {
-		background: linear-gradient(135deg, var(--dark), var(--darker));
-		color: var(--lighter);
-		border: 1px solid var(--border-subtle);
-		border-radius: var(--border-radius-md);
-		transition: all var(--transition-fast);
-	}
-
-	.oo-ui-dropdownwidget.oo-ui-widget-enabled
-		.oo-ui-dropdownwidget-handle:hover {
-		border-color: var(--arch-blue);
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-	}
-
-	a,
-	button,
-	input,
-	textarea,
-	select,
-	.oo-ui-widget {
-		transition: all var(--transition-fast);
-	}
-
-	/* responsive tweaks */
-	@media (max-width: 768px) {
-		#content pre:not([class*="codemirror"]) {
-			font-size: 0.85em;
-			padding: 1em !important;
-			padding-top: 2.5em !important;
-			border-radius: var(--border-radius-md);
-		}
-
-		.wikitable {
-			font-size: 0.9em;
-		}
-
-		.mw-ui-button {
-			padding: 0.4em 1em;
-			font-size: 0.95em;
-		}
-	}
+  :root {
+    --darker: #0f0f0f;
+    --dark: #202020;
+    --base: #181818;
+    --light: #bfbfbf;
+    --lighter: #e7e7e7;
+    --arch-blue: #8950c7;
+    --secondary-blue: #c7b8ff;
+    --red: #a80065;
+    --secondary-red: #ff1a67;
+    --green: #4bfe9b;
+    --secondary-green: #4bfe9b;
+    --orange: #fd7cff;
+    --cell-delim: #252525;
+    --border-radius-sm: 6px;
+    --border-radius-md: 9px;
+    --border-radius-lg: 12px;
+    --border-subtle: rgba(200,184,255,0.08);
+    --shadow-subtle: 0 2px 8px rgba(0,0,0,0.28);
+    --shadow-elevated: 0 6px 24px rgba(0,0,0,0.45);
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --term-black: #0f0f0f;
+    --term-red: #ff1a67;
+    --term-green: #42ff97;
+    --term-yellow: #7c60d1;
+    --term-blue: #29adff;
+    --term-magenta: #fd007f;
+    --term-cyan: #00a8a4;
+    --term-white: #505050;
+    --term-bright-black: #252525;
+    --term-bright-red: #ff004b;
+    --term-bright-green: #42ffad;
+    --term-bright-yellow: #fd7cff;
+    --term-bright-blue: #c7b8ff;
+    --term-bright-magenta: #fd0098;
+    --term-bright-cyan: #00fff9;
+    --term-bright-white: #e7e7e7;
+  }
+  ::selection {
+    background-color: rgba(167,18,170,0.36) !important;
+    color: #e7e7e7 !important;
+  }
+  *:focus {
+    outline: 2px solid #8950c7;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #c7b8ff transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.08);
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #c7b8ff;
+    border-radius: 4px;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #8950c7;
+  }
+  body {
+    background-color: #181818;
+    color: #bfbfbf;
+    -webkit-font-smoothing: antialiased;
+  }
+  body.skin-vector div.mw-page-container {
+    background-color: #181818;
+  }
+  #content {
+    background-color: #202020;
+    border: 1px solid rgba(200,184,255,0.08);
+    color: #bfbfbf;
+    border-radius: 9px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #content:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  }
+  a,
+  a:visited {
+    text-decoration: none !important;
+    color: #c7b8ff;
+    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  a:hover,
+  a:visited:hover {
+    color: #fd7cff !important;
+  }
+  h1,
+  h2 {
+    position: relative;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+  }
+  h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8950c7, #c7b8ff);
+    border-radius: 2px;
+  }
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8950c7, transparent);
+    border-radius: 1px;
+  }
+  #archnavbar {
+    height: 40px !important;
+    padding: 10px 15px !important;
+    background: #181818 !important;
+    border-bottom: 5px #8950c7 solid !important;
+  }
+  .mw-sidebar {
+    background: linear-gradient(180deg, #202020, #0f0f0f);
+    border-radius: 9px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+    padding: 1em;
+  }
+  .vector-menu-portal .vector-menu-heading {
+    color: #e7e7e7;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #c7b8ff;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  #toc,
+  .toc {
+    background: linear-gradient(135deg, #181818, rgba(137,80,199,0.02));
+    border: 1px solid rgba(200,184,255,0.08);
+    border-radius: 9px;
+    padding: 1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #toc:hover,
+  .toc:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    border-color: rgba(137,80,199,0.08);
+  }
+  .tocnumber {
+    color: #c7b8ff;
+    font-weight: 600;
+    margin-right: 0.5em;
+  }
+  #content pre:not([class*="codemirror"]),
+  #content code,
+  #content tt {
+    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, Monaco, monospace;
+    font-size: 0.95em;
+    font-variant-ligatures: contextual;
+    line-height: 1.6;
+    tab-size: 4;
+  }
+  #content code,
+  #content tt {
+    background: linear-gradient(135deg, rgba(137,80,199,0.06), rgba(199,184,255,0.02));
+    border: 1px solid rgba(137,80,199,0.12);
+    border-radius: 6px;
+    padding: 0.18em 0.5em;
+    margin: 0 0.2em;
+    color: #42ffad;
+    font-size: 0.9em;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #content code:hover,
+  #content tt:hover {
+    background: linear-gradient(135deg, rgba(137,80,199,0.1), rgba(199,184,255,0.04));
+    border-color: rgba(137,80,199,0.18);
+  }
+  #content code:hover:hover,
+  #content tt:hover:hover {
+    transform: translateY(-1px);
+  }
+  #content pre:not([class*="codemirror"]) {
+    position: relative;
+    margin: 1.5em 0 !important;
+    padding: 1.5em !important;
+    padding-top: 3em !important;
+    border: none !important;
+    background: linear-gradient(135deg, #0f0f0f 0%, #202020 100%);
+    overflow: auto;
+    word-break: normal;
+    word-wrap: normal;
+    white-space: pre !important;
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px rgba(137,80,199,0.12), 0 6px 18px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: text;
+  }
+  #content pre:not([class*="codemirror"]):hover {
+    box-shadow: 0 0 0 1px rgba(137,80,199,0.2), 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    transform: translateY(-2px);
+  }
+  #content pre[data-lang]::before {
+    content: attr(data-lang);
+  }
+  #content pre:not([data-lang])::before {
+    content: "Code";
+  }
+  #content pre:not([class*="codemirror"])::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2.5em;
+    background: linear-gradient(90deg, #8950c7, #c7b8ff);
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  #content pre:not([class*="codemirror"]) code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #e7e7e7;
+    overflow-x: auto;
+    display: block;
+    counter-reset: line;
+  }
+  #content pre .keyword,
+  #content pre .statement {
+    color: #ff1a67;
+    font-weight: 600;
+  }
+  #content pre .string,
+  #content pre .value {
+    color: #fd007f;
+  }
+  #content pre .comment {
+    color: #6f6f6f;
+    font-style: italic;
+  }
+  #content pre .function {
+    color: #29adff;
+    font-weight: 500;
+  }
+  #content pre .number {
+    color: #00fff9;
+  }
+  #content pre .variable {
+    color: #e7e7e7;
+  }
+  #content pre .operator {
+    color: #fd7cff;
+  }
+  #content pre .class,
+  #content pre .type {
+    color: #fd7cff;
+  }
+  #content pre:not([class*="codemirror"]) .prompt::before {
+    content: "$ ";
+    color: #c7b8ff;
+    font-weight: bold;
+    user-select: none;
+  }
+  #content pre:not([class*="codemirror"]) .bash-comment,
+  #content pre:not([class*="codemirror"]) .line-comment {
+    color: #7a7a7a;
+    font-style: italic;
+  }
+  #content pre:not([class*="codemirror"]) .copy-to-clipboard,
+  .copy-to-clipboard-button,
+  .copy-button,
+  .copyBtn,
+  .copy-btn,
+  .btn-copy,
+  .btn-clipboard,
+  .copy,
+  .clipboard,
+  .clipboard-button,
+  .clipboard-copy,
+  .clipboard-btn,
+  .copybtn,
+  .copywrap,
+  .code-toolbar .toolbar,
+  .prism .toolbar,
+  .highlight .copybtn,
+  .highlight .toolbar,
+  .gatsby-highlight .copy-button,
+  button[data-clipboard-text],
+  [data-clipboard-text],
+  [data-clipboard-target],
+  [data-action="copy"],
+  [data-copy],
+  [data-copy-text],
+  [aria-label="Copy"],
+  [aria-label="copy"],
+  [title*="copy" i],
+  [title*="Copy" i],
+  [role="button"][title*="copy" i] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  #content .code-toolbar,
+  #content .highlight .toolbar,
+  #content .prism .toolbar,
+  #content .highlight .copy,
+  #content .code-actions,
+  #content .code-actions *[class*="copy"],
+  #content .code-actions button,
+  #content .code-actions a {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .mw-ui-button,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button {
+    background: linear-gradient(135deg, #8950c7, #c7b8ff);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    padding: 0.5em 1.5em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .mw-ui-button::after,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+  }
+  .mw-ui-button:active::after,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button:active::after {
+    width: 160px;
+    height: 160px;
+  }
+  .mw-ui-button:hover,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.32);
+  }
+  .mw-ui-button:active,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  }
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  .oo-ui-textinputwidget .oo-ui-inputwidget-input {
+    background-color: #0f0f0f;
+    color: #e7e7e7;
+    border: 1px solid rgba(200,184,255,0.08);
+    border-radius: 9px;
+    padding: 0.75em 1em;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+  }
+  input[type="text"]:focus,
+  input[type="search"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  .oo-ui-textinputwidget .oo-ui-inputwidget-input:focus {
+    border-color: #8950c7;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06), 0 0 0 3px rgba(137,80,199,0.04);
+    outline: none;
+  }
+  .oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle {
+    background: linear-gradient(135deg, #202020, #0f0f0f);
+    color: #e7e7e7;
+    border: 1px solid rgba(200,184,255,0.08);
+    border-radius: 9px;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle:hover {
+    border-color: #8950c7;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  }
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  .oo-ui-widget {
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .wikitable {
+    background-color: #181818;
+    color: #bfbfbf;
+    margin: 1em 0;
+    border: none;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .wikitable > tr > th,
+  .wikitable > * > tr > th {
+    background: linear-gradient(135deg, #0f0f0f, rgba(137,80,199,0.04));
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #e7e7e7;
+  }
+  .wikitable > tr > th,
+  .wikitable > tr > td,
+  .wikitable > * > tr > th,
+  .wikitable > * > tr > td {
+    border: 1px solid rgba(200,184,255,0.08);
+    padding: 0.75em 1em;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .wikitable tr:hover td {
+    background-color: rgba(137,80,199,0.02);
+  }
+  div.archwiki-template-box {
+    position: relative;
+    overflow: hidden;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+  }
+  div.archwiki-template-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  }
+  div.archwiki-template-box.archwiki-template-box-note {
+    background: linear-gradient(135deg, #181818, rgba(137,80,199,0.06));
+    border: 1px solid rgba(137,80,199,0.12);
+    border-radius: 9px;
+    padding: 1em;
+  }
+  div.archwiki-template-box.archwiki-template-box-note::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #8950c7, #c7b8ff);
+  }
+  div.archwiki-template-box.archwiki-template-box-tip {
+    background: linear-gradient(135deg, rgba(75,254,155,0.1), rgba(75,254,155,0.03));
+    border: 1px solid rgba(75,254,155,0.14);
+    border-radius: 9px;
+    padding: 1em;
+  }
+  div.archwiki-template-box.archwiki-template-box-tip::before {
+    content: "💡";
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 1.2em;
+    opacity: 0.5;
+  }
+  div.archwiki-template-box.archwiki-template-box-warning {
+    background: linear-gradient(135deg, rgba(168,0,101,0.1), rgba(255,26,103,0.03));
+    border: 1px solid rgba(255,26,103,0.12);
+    border-radius: 9px;
+    padding: 1em;
+  }
+  div.archwiki-template-box.archwiki-template-box-warning::before {
+    content: "!";
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 1.2em;
+  }
+@media (max-width: 768px) {
+    #content pre:not([class*="codemirror"]) {
+      font-size: 0.85em;
+      padding: 1em !important;
+      padding-top: 2.5em !important;
+      border-radius: 9px;
+    }
+    .wikitable {
+      font-size: 0.9em;
+    }
+    .mw-ui-button {
+      padding: 0.4em 1em;
+      font-size: 0.95em;
+    }
+}
 }

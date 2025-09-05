@@ -1,0 +1,56 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// ArchWiki template boxes
+div.archwiki-template-box
+  position relative
+  overflow hidden
+  transition all $transition-medium
+  box-shadow $shadow-subtle
+  hover-lift()
+
+// Note boxes
+div.archwiki-template-box.archwiki-template-box-note
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.12)
+  border-radius $border-radius-md
+  padding 1em
+
+  &::before
+    content ""
+    position absolute
+    top 0
+    left 0
+    width 4px
+    height 100%
+    background linear-gradient(180deg, $arch-blue, $secondary-blue)
+
+// Tip boxes
+div.archwiki-template-box.archwiki-template-box-tip
+  background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.03))
+  border 1px solid rgba($green, 0.14)
+  border-radius $border-radius-md
+  padding 1em
+
+  &::before
+    content "💡"
+    position absolute
+    top 0.5em
+    right 0.5em
+    font-size 1.2em
+    opacity 0.5
+
+// Warning boxes
+div.archwiki-template-box.archwiki-template-box-warning
+  background linear-gradient(135deg, rgba($red, 0.1), rgba($secondary-red, 0.03))
+  border 1px solid rgba($secondary-red, 0.12)
+  border-radius $border-radius-md
+  padding 1em
+
+  &::before
+    content "!"
+    position absolute
+    top 0.5em
+    right 0.5em
+    font-size 1.2em

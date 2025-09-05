@@ -1,0 +1,62 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// Buttons
+.mw-ui-button,
+.oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button
+  gradient-button()
+  color white
+  border none
+  border-radius $border-radius-md
+  padding 0.5em 1.5em
+  font-weight 600
+  letter-spacing 0.02em
+  box-shadow 0 2px 4px rgba(0, 0, 0, 0.18)
+  transition all $transition-fast
+  button-ripple()
+  
+  &:hover
+    transform translateY(-2px)
+    box-shadow 0 6px 14px rgba(0, 0, 0, 0.32)
+  
+  &:active
+    transform translateY(0)
+    box-shadow 0 1px 2px rgba(0, 0, 0, 0.12)
+
+// Text inputs
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea,
+.oo-ui-textinputwidget .oo-ui-inputwidget-input
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  transition all $transition-fast
+  box-shadow inset 0 1px 3px rgba(0, 0, 0, 0.08)
+  
+  &:focus
+    border-color $arch-blue
+    box-shadow inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba($arch-blue, 0.04)
+    outline none
+
+// Dropdowns
+.oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle
+  background linear-gradient(135deg, $dark, $darker)
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all $transition-fast
+  
+  &:hover
+    border-color $arch-blue
+    box-shadow 0 2px 4px rgba(0, 0, 0, 0.06)
+
+// Universal smooth transitions
+a, button, input, textarea, select, .oo-ui-widget
+  transition all $transition-fast

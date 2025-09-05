@@ -1,0 +1,161 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// Code font family
+code-font-family = "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, Monaco, monospace
+
+// Common code styling
+#content pre:not([class*="codemirror"]),
+#content code,
+#content tt
+  font-family code-font-family
+  font-size 0.95em
+  font-variant-ligatures contextual
+  line-height 1.6
+  tab-size 4
+
+// Inline code chips
+#content code,
+#content tt
+  gradient-inline-code()
+  border 1px solid rgba($arch-blue, 0.12)
+  border-radius $border-radius-sm
+  padding 0.18em 0.5em
+  margin 0 0.2em
+  color $term-bright-green
+  font-size 0.9em
+  transition all $transition-fast
+
+  &:hover
+    gradient-inline-code-hover()
+    border-color rgba($arch-blue, 0.18)
+    micro-lift()
+
+// Large code blocks
+#content pre:not([class*="codemirror"])
+  position relative
+  margin 1.5em 0 !important
+  padding 1.5em !important
+  padding-top 3em !important
+  border none !important
+  gradient-elevated() !important
+  overflow auto
+  word-break normal
+  word-wrap normal
+  white-space pre !important
+  border-radius $border-radius-lg
+  box-shadow 0 0 0 1px rgba($arch-blue, 0.12), 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.02)
+  transition all $transition-medium
+  cursor text
+
+  &:hover
+    box-shadow 0 0 0 1px rgba($arch-blue, 0.2), 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02)
+    transform translateY(-2px)
+
+// Code block headers
+#content pre[data-lang]::before
+  content attr(data-lang)
+
+#content pre:not([data-lang])::before
+  content "Code"
+
+#content pre:not([class*="codemirror"])::before
+  position absolute
+  top 0
+  left 0
+  right 0
+  height 2.5em
+  gradient-code-header()
+  display flex
+  align-items center
+  padding 0 1em
+  font-size 0.85em
+  font-weight 600
+  color white
+  letter-spacing 0.05em
+  text-transform uppercase
+  border-top-left-radius $border-radius-lg
+  border-top-right-radius $border-radius-lg
+
+// Clear inline styles for code inside pre
+#content pre:not([class*="codemirror"]) code
+  background-color transparent
+  border none
+  padding 0
+  margin 0
+  color $lighter
+  overflow-x auto
+  display block
+  counter-reset line
+
+// Syntax highlighting
+#content pre
+  .keyword, .statement
+    color $term-red
+    font-weight 600
+
+  .string, .value
+    color $term-magenta
+
+  .comment
+    color #6f6f6f
+    font-style italic
+
+  .function
+    color $term-blue
+    font-weight 500
+
+  .number
+    color $term-bright-cyan
+
+  .variable
+    color $term-bright-white
+
+  .operator
+    color $term-bright-yellow
+
+  .class, .type
+    color $term-bright-yellow
+
+// Prompt styling
+#content pre:not([class*="codemirror"]) .prompt::before
+  content "$ "
+  color $secondary-blue
+  font-weight bold
+  user-select none
+
+// Comments in code blocks
+#content pre:not([class*="codemirror"]) .bash-comment,
+#content pre:not([class*="codemirror"]) .line-comment
+  color #7a7a7a
+  font-style italic
+
+// Hide copy buttons (comprehensive list)
+copy-button-selectors = '.copy-to-clipboard, .copy-to-clipboard-button, .copy-button, .copyBtn, .copy-btn, .btn-copy, .btn-clipboard, .copy, .clipboard, .clipboard-button, .clipboard-copy, .clipboard-btn, .copybtn, .copywrap, .code-toolbar .toolbar, .prism .toolbar, .highlight .copybtn, .highlight .toolbar, .gatsby-highlight .copy-button, button[data-clipboard-text], [data-clipboard-text], [data-clipboard-target], [data-action="copy"], [data-copy], [data-copy-text], [aria-label="Copy"], [aria-label="copy"], [title*="copy" i], [title*="Copy" i], [role="button"][title*="copy" i]'
+
+for selector in copy-button-selectors
+  #content pre:not([class*="codemirror"]) {selector}
+    display none !important
+    visibility hidden !important
+    pointer-events none !important
+    width 0 !important
+    height 0 !important
+    opacity 0 !important
+    margin 0 !important
+    padding 0 !important
+    border none !important
+
+// Hide toolbars and action containers
+#content .code-toolbar,
+#content .highlight .toolbar,
+#content .prism .toolbar,
+#content .highlight .copy,
+#content .code-actions,
+#content .code-actions *[class*="copy"],
+#content .code-actions button,
+#content .code-actions a
+  display none !important
+  visibility hidden !important
+  pointer-events none !important

@@ -1,0 +1,24 @@
+// Gradient mixins for consistent theming
+gradient-primary()
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+
+gradient-primary-vertical()
+  background linear-gradient(180deg, $arch-blue, $secondary-blue)
+
+gradient-surface()
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+
+gradient-elevated()
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+
+gradient-button()
+  background linear-gradient(135deg, $arch-blue, $secondary-blue)
+
+gradient-code-header()
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+
+gradient-inline-code()
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.02))
+
+gradient-inline-code-hover()
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($secondary-blue, 0.04))

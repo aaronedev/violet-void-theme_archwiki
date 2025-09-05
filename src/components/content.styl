@@ -1,0 +1,50 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// Main content area
+#content
+  background-color $dark
+  border 1px solid $border-subtle
+  color $light
+  border-radius $border-radius-md
+  box-shadow $shadow-subtle
+  transition box-shadow $transition-medium
+  
+  hover-lift()
+
+// Links
+a, a:visited
+  text-decoration none !important
+  color $secondary-blue
+  transition color $transition-fast
+  position relative
+  
+  &:hover
+    color $orange !important
+
+// Headings with gradient underlines
+h1, h2
+  position relative
+  padding-bottom 0.5em
+  margin-bottom 1em
+
+h1::after
+  content ""
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 3px
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+  border-radius 2px
+
+h2::after
+  content ""
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 2px
+  background linear-gradient(90deg, $arch-blue, transparent)
+  border-radius 1px

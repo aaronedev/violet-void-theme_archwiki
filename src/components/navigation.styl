@@ -1,0 +1,45 @@
+@import '../variables/colors'
+@import '../variables/layout'
+
+// Arch navigation bar
+#archnavbar
+  height 40px !important
+  padding 10px 15px !important
+  background $base !important
+  border-bottom 5px $arch-blue solid !important
+
+// Sidebar
+.mw-sidebar
+  background linear-gradient(180deg, $dark, $darker)
+  border-radius $border-radius-md
+  box-shadow $shadow-subtle
+  padding 1em
+
+// Portal headings
+.vector-menu-portal .vector-menu-heading
+  color $lighter
+  font-size 0.85em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  border-bottom 2px solid $secondary-blue
+  padding-bottom 0.5em
+  margin-bottom 0.5em
+
+// Table of contents
+#toc, .toc
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-subtle
+  transition all $transition-medium
+  
+  &:hover
+    box-shadow $shadow-elevated
+    border-color rgba($arch-blue, 0.08)
+
+.tocnumber
+  color $secondary-blue
+  font-weight 600
+  margin-right 0.5em
