@@ -49,10 +49,10 @@
     --term-bright-white: #e7e7e7;
   }
   ::selection {
-    background-color: rgba(167,18,170,0.36) !important;
-    color: #e7e7e7 !important;
+    background-color: rgba(137,80,199,0.4) !important;
+    color: #fff !important;
   }
-  *:focus {
+  *:focus-visible {
     outline: 2px solid #8950c7;
     outline-offset: 2px;
     border-radius: 6px;
@@ -73,6 +73,8 @@
     background-color: #c7b8ff;
     border-radius: 4px;
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    background-clip: content-box;
   }
   *::-webkit-scrollbar-thumb:hover {
     background-color: #8950c7;
@@ -80,7 +82,9 @@
   body {
     background-color: #181818;
     color: #bfbfbf;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
   }
   body.skin-vector div.mw-page-container {
     background-color: #181818;
@@ -92,21 +96,31 @@
     border-radius: 9px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.28);
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  #content:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    padding: 1.5em 2em;
   }
   a,
   a:visited {
     text-decoration: none !important;
     color: #c7b8ff;
-    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), text-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
   }
   a:hover,
   a:visited:hover {
     color: #fd7cff !important;
+    text-shadow: 0 0 8px rgba(253,124,255,0.4);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #e7e7e7;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
   }
   h1,
   h2 {
@@ -139,12 +153,15 @@
     padding: 10px 15px !important;
     background: #181818 !important;
     border-bottom: 5px #8950c7 solid !important;
+    display: flex;
+    align-items: center;
   }
   .mw-sidebar {
     background: linear-gradient(180deg, #202020, #0f0f0f);
     border-radius: 9px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.28);
     padding: 1em;
+    border: 1px solid rgba(200,184,255,0.08);
   }
   .vector-menu-portal .vector-menu-heading {
     color: #e7e7e7;
@@ -155,10 +172,15 @@
     border-bottom: 2px solid #c7b8ff;
     padding-bottom: 0.5em;
     margin-bottom: 0.5em;
+    display: block;
+  }
+  .vector-menu-portal .vector-menu-content li {
+    margin: 0.5em 0;
+    font-size: 0.95em;
   }
   #toc,
   .toc {
-    background: linear-gradient(135deg, #181818, rgba(137,80,199,0.02));
+    background: linear-gradient(135deg, #181818, rgba(137,80,199,0.04));
     border: 1px solid rgba(200,184,255,0.08);
     border-radius: 9px;
     padding: 1em;
@@ -168,12 +190,20 @@
   #toc:hover,
   .toc:hover {
     box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-    border-color: rgba(137,80,199,0.08);
+    border-color: rgba(137,80,199,0.2);
   }
   .tocnumber {
     color: #c7b8ff;
     font-weight: 600;
     margin-right: 0.5em;
+  }
+  .toctogglelabel {
+    color: #c7b8ff;
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+  .toctogglelabel:hover {
+    color: #fd7cff;
   }
   #content pre:not([class*="codemirror"]),
   #content code,
@@ -247,6 +277,7 @@
     text-transform: uppercase;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    z-index: 1;
   }
   #content pre:not([class*="codemirror"]) code {
     background-color: transparent;
@@ -325,31 +356,60 @@
   [data-copy],
   [data-copy-text],
   [aria-label="Copy"],
-  [aria-label="copy"],
-  [title*="copy" i],
-  [title*="Copy" i],
-  [role="button"][title*="copy" i] {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    opacity: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
+  [aria-label="copy"] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-to-clipboard:hover,
+  .copy-to-clipboard-button:hover,
+  .copy-button:hover,
+  .copyBtn:hover,
+  .copy-btn:hover,
+  .btn-copy:hover,
+  .btn-clipboard:hover,
+  .copy:hover,
+  .clipboard:hover,
+  .clipboard-button:hover,
+  .clipboard-copy:hover,
+  .clipboard-btn:hover,
+  .copybtn:hover,
+  .copywrap:hover,
+  .code-toolbar .toolbar:hover,
+  .prism .toolbar:hover,
+  .highlight .copybtn:hover,
+  .highlight .toolbar:hover,
+  .gatsby-highlight .copy-button:hover,
+  button[data-clipboard-text]:hover,
+  [data-clipboard-text]:hover,
+  [data-clipboard-target]:hover,
+  [data-action="copy"]:hover,
+  [data-copy]:hover,
+  [data-copy-text]:hover,
+  [aria-label="Copy"]:hover,
+  [aria-label="copy"]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
   }
   #content .code-toolbar,
-  #content .highlight .toolbar,
-  #content .prism .toolbar,
-  #content .highlight .copy,
-  #content .code-actions,
-  #content .code-actions *[class*="copy"],
-  #content .code-actions button,
-  #content .code-actions a {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+  #content .highlight .toolbar {
+    display: block !important;
+    visibility: visible !important;
   }
   .mw-ui-button,
   .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button {
@@ -364,6 +424,7 @@
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
   }
   .mw-ui-button::after,
   .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button::after {
@@ -406,6 +467,7 @@
     padding: 0.75em 1em;
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   input[type="text"]:focus,
   input[type="search"]:focus,
@@ -414,7 +476,7 @@
   textarea:focus,
   .oo-ui-textinputwidget .oo-ui-inputwidget-input:focus {
     border-color: #8950c7;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06), 0 0 0 3px rgba(137,80,199,0.04);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06), 0 0 0 3px rgba(137,80,199,0.25);
     outline: none;
   }
   .oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle {
@@ -446,14 +508,16 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.28);
     border-collapse: separate;
     border-spacing: 0;
+    width: 100%;
   }
   .wikitable > tr > th,
   .wikitable > * > tr > th {
     background: linear-gradient(135deg, #0f0f0f, rgba(137,80,199,0.04));
-    text-align: center;
+    text-align: left;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: #e7e7e7;
+    padding: 1em;
   }
   .wikitable > tr > th,
   .wikitable > tr > td,
@@ -463,24 +527,24 @@
     padding: 0.75em 1em;
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+  .wikitable tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.01);
+  }
   .wikitable tr:hover td {
-    background-color: rgba(137,80,199,0.02);
+    background-color: rgba(137,80,199,0.05);
   }
   div.archwiki-template-box {
     position: relative;
     overflow: hidden;
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(0,0,0,0.28);
-  }
-  div.archwiki-template-box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    margin: 1em 0;
   }
   div.archwiki-template-box.archwiki-template-box-note {
     background: linear-gradient(135deg, #181818, rgba(137,80,199,0.06));
     border: 1px solid rgba(137,80,199,0.12);
     border-radius: 9px;
-    padding: 1em;
+    padding: 1em 1em 1em 2em;
   }
   div.archwiki-template-box.archwiki-template-box-note::before {
     content: "";
@@ -495,7 +559,7 @@
     background: linear-gradient(135deg, rgba(75,254,155,0.1), rgba(75,254,155,0.03));
     border: 1px solid rgba(75,254,155,0.14);
     border-radius: 9px;
-    padding: 1em;
+    padding: 1em 2.5em 1em 1em;
   }
   div.archwiki-template-box.archwiki-template-box-tip::before {
     content: "💡";
@@ -503,13 +567,14 @@
     top: 0.5em;
     right: 0.5em;
     font-size: 1.2em;
-    opacity: 0.5;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 5px rgba(75,254,155,0.4));
   }
   div.archwiki-template-box.archwiki-template-box-warning {
     background: linear-gradient(135deg, rgba(168,0,101,0.1), rgba(255,26,103,0.03));
     border: 1px solid rgba(255,26,103,0.12);
     border-radius: 9px;
-    padding: 1em;
+    padding: 1em 2.5em 1em 1em;
   }
   div.archwiki-template-box.archwiki-template-box-warning::before {
     content: "!";
@@ -517,6 +582,8 @@
     top: 0.5em;
     right: 0.5em;
     font-size: 1.2em;
+    font-weight: bold;
+    color: #ff1a67;
   }
 @media (max-width: 768px) {
     #content pre:not([class*="codemirror"]) {
