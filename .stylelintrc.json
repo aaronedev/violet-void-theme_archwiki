@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-plugin-stylus/standard"
+  ],
+  "rules": {
+    "color-hex-length": "long",
+    "no-missing-end-of-source-newline": true,
+    "declaration-property-value-no-unknown": null,
+    "stylus/selector-list-comma": null,
+    "color-function-notation": null,
+    "alpha-value-notation": null,
+    "color-function-alias-notation": null,
+    "import-notation": "string",
+    "media-feature-range-notation": null,
+    "stylus/declaration-colon": "never",
+    "stylus/single-line-comment": "always",
+    "property-no-vendor-prefix": null
+  }
+}

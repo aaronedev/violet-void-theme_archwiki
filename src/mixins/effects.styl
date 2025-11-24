@@ -11,7 +11,7 @@ micro-lift($offset = -1px)
 button-ripple()
   position relative
   overflow hidden
-  
+
   &::after
     content ""
     position absolute
@@ -23,7 +23,7 @@ button-ripple()
     background rgba(255, 255, 255, 0.06)
     transform translate(-50%, -50%)
     transition width 0.4s, height 0.4s
-  
+
   &:active::after
     width 160px
     height 160px

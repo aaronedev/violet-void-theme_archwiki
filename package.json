@@ -1,9 +1,16 @@
 {
-   "scripts": {
-    "build": "stylus src/main.styl -o dist/main.css",
-    "watch": "stylus src/main.styl -o dist/main.css --watch"
+  "scripts": {
+    "build": "stylus -u autoprefixer-stylus src/main.styl -o dist/main.css",
+    "watch": "stylus -u autoprefixer-stylus src/main.styl -o dist/main.css --watch",
+    "lint": "stylelint \"src/**/*.styl\"",
+    "format": "prettier --write \"src/**/*.{styl,js,json}\" && stylelint --fix \"src/**/*.styl\""
   },
   "devDependencies": {
+    "autoprefixer-stylus": "^1.0.0",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.26.0",
+    "stylelint-config-standard": "^39.0.1",
+    "stylelint-plugin-stylus": "^1.0.0",
     "stylus": "^0.64.0",
     "stylus-loader": "^8.1.2"
   }
