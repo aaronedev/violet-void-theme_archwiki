@@ -49,8 +49,8 @@
 
 // Selection and focus
 ::selection
-  background-color rgba(167, 18, 170, 0.36) !important
-  color $lighter !important
+  background-color rgba($arch-blue, 0.4) !important
+  color white !important
 
 // Apply focus ring mixin
 *
@@ -73,6 +73,8 @@
   background-color $secondary-blue
   border-radius 4px
   transition background-color $transition-fast
+  border 2px solid transparent
+  background-clip content-box
 
   &:hover
     background-color $arch-blue
@@ -81,7 +83,9 @@
 body
   background-color $base
   color $light
+  font-family $font-sans
   -webkit-font-smoothing antialiased
+  line-height 1.6
 
 body.skin-vector div.mw-page-container
   background-color $base

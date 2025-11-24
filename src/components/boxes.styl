@@ -8,14 +8,17 @@ div.archwiki-template-box
   overflow hidden
   transition all $transition-medium
   box-shadow $shadow-subtle
-  hover-lift()
+  margin 1em 0
+
+  // Note: hover-lift removed to avoid layout shifting on informational content
+  // hover-lift()
 
 // Note boxes
 div.archwiki-template-box.archwiki-template-box-note
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
   border 1px solid rgba($arch-blue, 0.12)
   border-radius $border-radius-md
-  padding 1em
+  padding 1em 1em 1em 2em
 
   &::before
     content ""
@@ -31,7 +34,7 @@ div.archwiki-template-box.archwiki-template-box-tip
   background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.03))
   border 1px solid rgba($green, 0.14)
   border-radius $border-radius-md
-  padding 1em
+  padding 1em 2.5em 1em 1em
 
   &::before
     content "💡"
@@ -39,14 +42,15 @@ div.archwiki-template-box.archwiki-template-box-tip
     top 0.5em
     right 0.5em
     font-size 1.2em
-    opacity 0.5
+    opacity 0.8
+    filter drop-shadow(0 0 5px rgba($green, 0.4))
 
 // Warning boxes
 div.archwiki-template-box.archwiki-template-box-warning
   background linear-gradient(135deg, rgba($red, 0.1), rgba($secondary-red, 0.03))
   border 1px solid rgba($secondary-red, 0.12)
   border-radius $border-radius-md
-  padding 1em
+  padding 1em 2.5em 1em 1em
 
   &::before
     content "!"
@@ -54,3 +58,5 @@ div.archwiki-template-box.archwiki-template-box-warning
     top 0.5em
     right 0.5em
     font-size 1.2em
+    font-weight bold
+    color $secondary-red

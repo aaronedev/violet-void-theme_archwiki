@@ -29,7 +29,13 @@ button-ripple()
     height 160px
 
 focus-ring($color = $arch-blue)
-  &:focus
+  &:focus-visible
     outline 2px solid $color
     outline-offset 2px
     border-radius $border-radius-sm
+
+// Add subtle glass effect
+glass-effect($bg-color = rgba($base, 0.8), $blur = 10px)
+  background $bg-color
+  backdrop-filter blur($blur)
+  -webkit-backdrop-filter blur($blur)

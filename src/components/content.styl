@@ -10,20 +10,30 @@
   border-radius $border-radius-md
   box-shadow $shadow-subtle
   transition box-shadow $transition-medium
+  padding 1.5em 2em
   
-  hover-lift()
+  // Subtle lift effect on content area isn't usually great for UX as it moves text
+  // Removed hover-lift() for better stability, kept transition just in case
 
 // Links
 a, a:visited
   text-decoration none !important
   color $secondary-blue
-  transition color $transition-fast
+  transition color $transition-fast, text-shadow $transition-fast
   position relative
   
   &:hover
     color $orange !important
+    text-shadow 0 0 8px rgba($orange, 0.4)
 
 // Headings with gradient underlines
+h1, h2, h3, h4, h5, h6
+  color $lighter
+  font-weight 600
+  line-height 1.3
+  margin-top 1.5em
+  margin-bottom 0.75em
+
 h1, h2
   position relative
   padding-bottom 0.5em

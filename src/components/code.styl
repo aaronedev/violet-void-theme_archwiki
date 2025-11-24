@@ -3,14 +3,11 @@
 @import '../mixins/gradients'
 @import '../mixins/effects'
 
-// Code font family
-code-font-family = "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, Monaco, monospace
-
 // Common code styling
 #content pre:not([class*="codemirror"]),
 #content code,
 #content tt
-  font-family code-font-family
+  font-family $font-mono
   font-size 0.95em
   font-variant-ligatures contextual
   line-height 1.6
@@ -78,6 +75,7 @@ code-font-family = "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, M
   text-transform uppercase
   border-top-left-radius $border-radius-lg
   border-top-right-radius $border-radius-lg
+  z-index 1
 
 // Clear inline styles for code inside pre
 #content pre:not([class*="codemirror"]) code
@@ -132,30 +130,37 @@ code-font-family = "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, M
   color #7a7a7a
   font-style italic
 
-// Hide copy buttons (comprehensive list)
-copy-button-selectors = '.copy-to-clipboard, .copy-to-clipboard-button, .copy-button, .copyBtn, .copy-btn, .btn-copy, .btn-clipboard, .copy, .clipboard, .clipboard-button, .clipboard-copy, .clipboard-btn, .copybtn, .copywrap, .code-toolbar .toolbar, .prism .toolbar, .highlight .copybtn, .highlight .toolbar, .gatsby-highlight .copy-button, button[data-clipboard-text], [data-clipboard-text], [data-clipboard-target], [data-action="copy"], [data-copy], [data-copy-text], [aria-label="Copy"], [aria-label="copy"], [title*="copy" i], [title*="Copy" i], [role="button"][title*="copy" i]'
+// Copy buttons - RESTORED and STYLED
+copy-button-selectors = '.copy-to-clipboard, .copy-to-clipboard-button, .copy-button, .copyBtn, .copy-btn, .btn-copy, .btn-clipboard, .copy, .clipboard, .clipboard-button, .clipboard-copy, .clipboard-btn, .copybtn, .copywrap, .code-toolbar .toolbar, .prism .toolbar, .highlight .copybtn, .highlight .toolbar, .gatsby-highlight .copy-button, button[data-clipboard-text], [data-clipboard-text], [data-clipboard-target], [data-action="copy"], [data-copy], [data-copy-text], [aria-label="Copy"], [aria-label="copy"]'
 
 for selector in copy-button-selectors
-  #content pre:not([class*="codemirror"]) {selector}
-    display none !important
-    visibility hidden !important
-    pointer-events none !important
-    width 0 !important
-    height 0 !important
-    opacity 0 !important
-    margin 0 !important
-    padding 0 !important
-    border none !important
+  #content pre:not([class*="codemirror"]) {selector},
+  #content {selector}
+    display block !important
+    visibility visible !important
+    pointer-events auto !important
+    opacity 1 !important
+    width auto !important
+    height auto !important
+    position absolute !important
+    top 0.5em !important
+    right 0.5em !important
+    z-index 10 !important
+    background rgba(0,0,0,0.3) !important
+    border 1px solid rgba(255,255,255,0.2) !important
+    color white !important
+    padding 0.2em 0.6em !important
+    border-radius $border-radius-sm !important
+    font-size 0.8em !important
+    cursor pointer !important
+    transition all $transition-fast !important
 
-// Hide toolbars and action containers
+    &:hover
+      background $arch-blue !important
+      border-color $secondary-blue !important
+
+// Ensure toolbars are visible if they wrap the button
 #content .code-toolbar,
-#content .highlight .toolbar,
-#content .prism .toolbar,
-#content .highlight .copy,
-#content .code-actions,
-#content .code-actions *[class*="copy"],
-#content .code-actions button,
-#content .code-actions a
-  display none !important
-  visibility hidden !important
-  pointer-events none !important
+#content .highlight .toolbar
+    display block !important
+    visibility visible !important
