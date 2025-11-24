@@ -1,5 +1,10 @@
 {
-  "dependencies": {
-    "stylus": "^0.64.0"
+   "scripts": {
+    "build": "stylus src/main.styl -o dist/main.css",
+    "watch": "stylus src/main.styl -o dist/main.css --watch"
+  },
+  "devDependencies": {
+    "stylus": "^0.64.0",
+    "stylus-loader": "^8.1.2"
   }
 }
