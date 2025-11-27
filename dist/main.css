@@ -90,6 +90,7 @@
     background-color: #181818;
   }
   #content {
+    position: relative;
     background-color: #202020;
     border: 1px solid rgba(200,184,255,0.08);
     color: #bfbfbf;
@@ -331,32 +332,7 @@
     font-style: italic;
   }
   #content pre:not([class*="codemirror"]) .copy-to-clipboard,
-  .copy-to-clipboard-button,
-  .copy-button,
-  .copyBtn,
-  .copy-btn,
-  .btn-copy,
-  .btn-clipboard,
-  .copy,
-  .clipboard,
-  .clipboard-button,
-  .clipboard-copy,
-  .clipboard-btn,
-  .copybtn,
-  .copywrap,
-  .code-toolbar .toolbar,
-  .prism .toolbar,
-  .highlight .copybtn,
-  .highlight .toolbar,
-  .gatsby-highlight .copy-button,
-  button[data-clipboard-text],
-  [data-clipboard-text],
-  [data-clipboard-target],
-  [data-action="copy"],
-  [data-copy],
-  [data-copy-text],
-  [aria-label="Copy"],
-  [aria-label="copy"] {
+  #content .copy-to-clipboard {
     display: block !important;
     visibility: visible !important;
     pointer-events: auto !important;
@@ -377,32 +353,631 @@
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
   #content pre:not([class*="codemirror"]) .copy-to-clipboard:hover,
-  .copy-to-clipboard-button:hover,
-  .copy-button:hover,
-  .copyBtn:hover,
-  .copy-btn:hover,
-  .btn-copy:hover,
-  .btn-clipboard:hover,
-  .copy:hover,
-  .clipboard:hover,
-  .clipboard-button:hover,
-  .clipboard-copy:hover,
-  .clipboard-btn:hover,
-  .copybtn:hover,
-  .copywrap:hover,
-  .code-toolbar .toolbar:hover,
-  .prism .toolbar:hover,
-  .highlight .copybtn:hover,
-  .highlight .toolbar:hover,
-  .gatsby-highlight .copy-button:hover,
-  button[data-clipboard-text]:hover,
-  [data-clipboard-text]:hover,
-  [data-clipboard-target]:hover,
-  [data-action="copy"]:hover,
-  [data-copy]:hover,
-  [data-copy-text]:hover,
-  [aria-label="Copy"]:hover,
-  [aria-label="copy"]:hover {
+  #content .copy-to-clipboard:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-to-clipboard-button,
+  #content .copy-to-clipboard-button {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-to-clipboard-button:hover,
+  #content .copy-to-clipboard-button:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-button,
+  #content .copy-button {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-button:hover,
+  #content .copy-button:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .copyBtn,
+  #content .copyBtn {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copyBtn:hover,
+  #content .copyBtn:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-btn,
+  #content .copy-btn {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copy-btn:hover,
+  #content .copy-btn:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .btn-copy,
+  #content .btn-copy {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .btn-copy:hover,
+  #content .btn-copy:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .btn-clipboard,
+  #content .btn-clipboard {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .btn-clipboard:hover,
+  #content .btn-clipboard:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .clipboard-button,
+  #content .clipboard-button {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .clipboard-button:hover,
+  #content .clipboard-button:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .clipboard-copy,
+  #content .clipboard-copy {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .clipboard-copy:hover,
+  #content .clipboard-copy:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .clipboard-btn,
+  #content .clipboard-btn {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .clipboard-btn:hover,
+  #content .clipboard-btn:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .copybtn,
+  #content .copybtn {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copybtn:hover,
+  #content .copybtn:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .copywrap,
+  #content .copywrap {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .copywrap:hover,
+  #content .copywrap:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .code-toolbar .toolbar,
+  #content .code-toolbar .toolbar {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .code-toolbar .toolbar:hover,
+  #content .code-toolbar .toolbar:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .prism .toolbar,
+  #content .prism .toolbar {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .prism .toolbar:hover,
+  #content .prism .toolbar:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .highlight .copybtn,
+  #content .highlight .copybtn {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .highlight .copybtn:hover,
+  #content .highlight .copybtn:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .highlight .toolbar,
+  #content .highlight .toolbar {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .highlight .toolbar:hover,
+  #content .highlight .toolbar:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) .gatsby-highlight .copy-button,
+  #content .gatsby-highlight .copy-button {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) .gatsby-highlight .copy-button:hover,
+  #content .gatsby-highlight .copy-button:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) button[data-clipboard-text],
+  #content button[data-clipboard-text] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) button[data-clipboard-text]:hover,
+  #content button[data-clipboard-text]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-clipboard-text],
+  #content [data-clipboard-text] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-clipboard-text]:hover,
+  #content [data-clipboard-text]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-clipboard-target],
+  #content [data-clipboard-target] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-clipboard-target]:hover,
+  #content [data-clipboard-target]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-action="copy"],
+  #content [data-action="copy"] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-action="copy"]:hover,
+  #content [data-action="copy"]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-copy],
+  #content [data-copy] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-copy]:hover,
+  #content [data-copy]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-copy-text],
+  #content [data-copy-text] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [data-copy-text]:hover,
+  #content [data-copy-text]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [aria-label="Copy"],
+  #content [aria-label="Copy"] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [aria-label="Copy"]:hover,
+  #content [aria-label="Copy"]:hover {
+    background: #8950c7 !important;
+    border-color: #c7b8ff !important;
+  }
+  #content pre:not([class*="codemirror"]) [aria-label="copy"],
+  #content [aria-label="copy"] {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+    position: absolute !important;
+    top: 0.5em !important;
+    right: 0.5em !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.8em !important;
+    cursor: pointer !important;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  #content pre:not([class*="codemirror"]) [aria-label="copy"]:hover,
+  #content [aria-label="copy"]:hover {
     background: #8950c7 !important;
     border-color: #c7b8ff !important;
   }
@@ -426,8 +1001,8 @@
     overflow: hidden;
     cursor: pointer;
   }
-  .mw-ui-button::after,
-  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button::after {
+  .mw-ui-button:not(input)::after,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button:not(input)::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -439,8 +1014,8 @@
     transform: translate(-50%, -50%);
     transition: width 0.4s, height 0.4s;
   }
-  .mw-ui-button:active::after,
-  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button:active::after {
+  .mw-ui-button:not(input):active::after,
+  .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button:not(input):active::after {
     width: 160px;
     height: 160px;
   }
@@ -508,7 +1083,8 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.28);
     border-collapse: separate;
     border-spacing: 0;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
   }
   .wikitable > tr > th,
   .wikitable > * > tr > th {

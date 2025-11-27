@@ -131,7 +131,8 @@
   font-style italic
 
 // Copy buttons - RESTORED and STYLED
-copy-button-selectors = '.copy-to-clipboard, .copy-to-clipboard-button, .copy-button, .copyBtn, .copy-btn, .btn-copy, .btn-clipboard, .copy, .clipboard, .clipboard-button, .clipboard-copy, .clipboard-btn, .copybtn, .copywrap, .code-toolbar .toolbar, .prism .toolbar, .highlight .copybtn, .highlight .toolbar, .gatsby-highlight .copy-button, button[data-clipboard-text], [data-clipboard-text], [data-clipboard-target], [data-action="copy"], [data-copy], [data-copy-text], [aria-label="Copy"], [aria-label="copy"]'
+// Using a list instead of a string to ensure proper scoping and iteration
+copy-button-selectors = '.copy-to-clipboard', '.copy-to-clipboard-button', '.copy-button', '.copyBtn', '.copy-btn', '.btn-copy', '.btn-clipboard', '.clipboard-button', '.clipboard-copy', '.clipboard-btn', '.copybtn', '.copywrap', '.code-toolbar .toolbar', '.prism .toolbar', '.highlight .copybtn', '.highlight .toolbar', '.gatsby-highlight .copy-button', 'button[data-clipboard-text]', '[data-clipboard-text]', '[data-clipboard-target]', '[data-action="copy"]', '[data-copy]', '[data-copy-text]', '[aria-label="Copy"]', '[aria-label="copy"]'
 
 for selector in copy-button-selectors
   #content pre:not([class*="codemirror"]) {selector},

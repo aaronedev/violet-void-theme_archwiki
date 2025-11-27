@@ -12,7 +12,7 @@ button-ripple()
   position relative
   overflow hidden
   
-  &::after
+  &:not(input)::after
     content ""
     position absolute
     top 50%
@@ -24,7 +24,7 @@ button-ripple()
     transform translate(-50%, -50%)
     transition width 0.4s, height 0.4s
   
-  &:active::after
+  &:not(input):active::after
     width 160px
     height 160px
 
