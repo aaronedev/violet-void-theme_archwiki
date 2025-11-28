@@ -17,6 +17,7 @@
 #content code,
 #content tt
   gradient-inline-code()
+
   border 1px solid rgba($arch-blue, 0.12)
   border-radius $border-radius-sm
   padding 0.18em 0.5em
@@ -27,6 +28,7 @@
 
   &:hover
     gradient-inline-code-hover()
+
     border-color rgba($arch-blue, 0.18)
     micro-lift()
 
@@ -37,10 +39,12 @@
   padding 1.5em !important
   padding-top 3em !important
   border none !important
+
   gradient-elevated() !important
+
   overflow auto
   word-break normal
-  word-wrap normal
+  overflow-wrap normal
   white-space pre !important
   border-radius $border-radius-lg
   box-shadow 0 0 0 1px rgba($arch-blue, 0.12), 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.02)
@@ -65,6 +69,7 @@
   right 0
   height 2.5em
   gradient-code-header()
+
   display flex
   align-items center
   padding 0 1em
@@ -90,11 +95,13 @@
 
 // Syntax highlighting
 #content pre
-  .keyword, .statement
+  .keyword,
+  .statement
     color $term-red
     font-weight 600
 
-  .string, .value
+  .string,
+  .value
     color $term-magenta
 
   .comment
@@ -114,7 +121,8 @@
   .operator
     color $term-bright-yellow
 
-  .class, .type
+  .class,
+  .type
     color $term-bright-yellow
 
 // Prompt styling
@@ -162,5 +170,5 @@ for selector in copy-button-selectors
 // Ensure toolbars are visible if they wrap the button
 #content .code-toolbar,
 #content .highlight .toolbar
-    display block !important
-    visibility visible !important
+  display block !important
+  visibility visible !important
