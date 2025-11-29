@@ -1,5 +1,6 @@
 @import '../variables/colors'
 @import '../variables/layout'
+@import '../mixins/gradients'
 @import '../mixins/effects'
 
 // Main content area
@@ -56,7 +57,7 @@ h1::after
   left 0
   right 0
   height 3px
-  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+  gradient-primary()
   border-radius 2px
 
 h2::after
