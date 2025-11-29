@@ -1,5 +1,6 @@
 @import '../variables/colors'
 @import '../variables/layout'
+@import '../mixins/gradients'
 @import '../mixins/effects'
 
 // ArchWiki template boxes
@@ -27,7 +28,7 @@ div.archwiki-template-box.archwiki-template-box-note
     left 0
     width 4px
     height 100%
-    background linear-gradient(180deg, $arch-blue, $secondary-blue)
+    gradient-primary-vertical()
 
 // Tip boxes
 div.archwiki-template-box.archwiki-template-box-tip
