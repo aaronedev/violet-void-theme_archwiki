@@ -1,11 +1,7 @@
 {
-  "extends": [
-    "stylelint-config-standard",
-    "stylelint-plugin-stylus/standard"
-  ],
+  "extends": ["stylelint-config-standard", "stylelint-plugin-stylus/standard"],
   "rules": {
     "color-hex-length": "long",
-    "no-missing-end-of-source-newline": true,
     "declaration-property-value-no-unknown": null,
     "stylus/selector-list-comma": null,
     "color-function-notation": null,
@@ -15,6 +11,11 @@
     "media-feature-range-notation": null,
     "stylus/declaration-colon": "never",
     "stylus/single-line-comment": "always",
-    "property-no-vendor-prefix": null
+    "property-no-vendor-prefix": null,
+    "at-rule-no-deprecated": null,
+    "no-invalid-position-at-import-rule": null,
+    "no-descending-specificity": null,
+    "nesting-selector-no-missing-scoping-root": null,
+    "no-invalid-position-declaration": null
   }
 }

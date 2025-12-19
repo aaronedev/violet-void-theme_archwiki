@@ -31,6 +31,14 @@ a:visited
     color $orange
     background-size 100% 1px
 
+// Man page links and other specific template links
+.archwiki-template-man a,
+.archwiki-template-pkg a
+  color $term-green !important
+  background-image linear-gradient(to right, $term-bright-green, $term-bright-green) !important
+
+  &:hover
+    color $term-bright-green !important
 // Headings with gradient underlines
 h1,
 h2,
