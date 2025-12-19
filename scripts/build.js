@@ -7,6 +7,16 @@ const pkg = require('../package.json');
 const inputFile = path.join(__dirname, '../src/main.styl');
 const outputFile = path.join(__dirname, '../dist/main.css');
 const distDir = path.dirname(outputFile);
+const pkgFile = path.join(__dirname, '../package.json');
+
+// Bump version
+const now = new Date();
+const pad = (n) => n.toString().padStart(2, '0');
+const version = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}.${pad(now.getHours())}.${pad(now.getMinutes())}`;
+
+pkg.userStyle.version = version;
+fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2) + '\n');
+console.log(`Bumped version to ${version}`);
 
 // Create dist dir if not exists
 if (!fs.existsSync(distDir)) {
@@ -16,7 +26,7 @@ if (!fs.existsSync(distDir)) {
 // Generate UserStyle header
 const header = `/* ==UserStyle==
 @name         ${pkg.name}
-@version      ${pkg.userStyle.version}
+@version      ${version}
 @namespace    ${pkg.userStyle.namespace}
 @description  ${pkg.description}
 @author       ${pkg.author}
