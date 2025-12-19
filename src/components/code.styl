@@ -143,6 +143,7 @@ copy-button-selectors = '.copy-to-clipboard', '.copy-to-clipboard-button', '.cop
 
 // Build a single selector string to avoid CSS bloat
 $final-selector = ''
+
 for selector, index in copy-button-selectors
   if index > 0
     $final-selector = $final-selector + ', '
