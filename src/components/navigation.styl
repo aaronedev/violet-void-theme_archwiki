@@ -11,13 +11,47 @@
   display flex
   align-items center
 
-// Sidebar
+// Sidebar (article table of contents and misc side panels)
 .mw-sidebar
   background linear-gradient(180deg, $dark, $darker)
   border-radius $border-radius-md
   box-shadow $shadow-subtle
   padding 1em
   border 1px solid $border-subtle
+
+// Global main menu (Vector menu shown when the hamburger button is opened)
+// This styles the left-hand site navigation so it fits the dark, violet-toned header.
+#vector-main-menu,
+.vector-main-menu
+  // Subtle gradient from the base colour towards a hint of Arch blue
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-subtle
+
+  // Section headings within the main menu
+  .vector-menu-heading
+    color $lighter
+    font-size 0.85em
+    font-weight 600
+    text-transform uppercase
+    letter-spacing 0.05em
+    border-bottom 2px solid $secondary-blue
+    padding-bottom 0.5em
+    margin-bottom 0.5em
+
+  // Individual menu items
+  .vector-menu-content li
+    margin 0.5em 0
+    font-size 0.95em
+
+    a
+      color $light
+      text-decoration none
+
+      &:hover
+        color $secondary-blue
 
 // Portal headings
 .vector-menu-portal .vector-menu-heading
