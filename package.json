@@ -11,12 +11,13 @@
   },
   "userStyle": {
     "namespace": "github.com/aaronedev/violet-void-theme",
-    "version": "20251219.18.23"
+    "version": "20251227.07.53"
   },
   "scripts": {
     "build": "node scripts/build.js",
     "watch": "stylus -u autoprefixer-stylus src/main.styl -o dist/main.css --watch",
     "lint": "stylelint \"src/**/*.styl\"",
+    "lint:fix": "stylelint \"src/**/*.styl\" --fix",
     "format": "prettier --write \"**/*.{js,json}\" && stylelint --fix \"src/**/*.styl\""
   },
   "devDependencies": {

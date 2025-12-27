@@ -36,3 +36,61 @@
 
   tr:hover td
     background-color rgba($arch-blue, 0.05)
+
+// Generic tables used by the Arch Linux security tracker
+.styled-table
+  background-color $base
+  color $light
+  margin 1em 0
+  border none
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100%
+
+  // Header styling
+  th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+    text-align left
+    font-weight 600
+    letter-spacing 0.02em
+    color $lighter
+    padding 1em
+
+  // Cell styling
+  th,
+  td
+    border 1px solid $border-subtle
+    padding 0.75em 1em
+    transition background-color $transition-fast
+
+  // Zebra striping
+  tbody tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01)
+
+  // Row hover effect
+  tbody tr:hover td
+    background-color rgba($arch-blue, 0.05)
+
+  // Center alignment helper
+  .center
+    text-align center
+
+// Colour-coded statuses used on the security tracker
+span.purple
+  color $arch-blue
+
+span.orange
+  color $orange
+
+// stylelint-disable-next-line selector-class-pattern
+span.light_orange
+  color lighten($orange, 20%)
+
+span.green
+  color $green
+
+span.red
+  color $secondary-red
