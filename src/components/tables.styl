@@ -252,3 +252,32 @@ table.results,
   // but we align it with the theme’s secondary red accent.
   .flagged
     color $secondary-red !important
+
+// -----------------------------------------------------------------------------
+// Package search form elements (Arch package database)
+//
+// The default ArchWeb styles leave the multi-select lists for architecture,
+// repository and other criteria with a white background.  When applying our
+// dark theme those lists inherit the browser’s dark styling which makes the
+// options hard to distinguish.  The rules below explicitly style these
+// `<select>` elements and their `<option>` children so they integrate with
+// the Violet‑Void palette while maintaining contrast.  A subtle blue tint
+// indicates selected options.  Use high specificity selectors tied to
+// `#pkglist-search` to avoid affecting other select boxes across the wiki.
+
+#pkglist-search select,
+#pkglist-search select[multiple]
+  background-color $darker !important
+  color $lighter !important
+  border 1px solid $border-subtle !important
+  border-radius $border-radius-md
+  padding 0.4em
+
+#pkglist-search select option
+  background-color $darker !important
+  color $lighter !important
+
+#pkglist-search select option:hover,
+#pkglist-search select option:checked
+  background-color rgba($arch-blue, 0.2) !important
+  color $lighter !important
