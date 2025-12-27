@@ -75,6 +75,24 @@ table.styled-table
   tbody tr:hover td
     background-color rgba($arch-blue, 0.05)
 
+  // Override upstream row backgrounds and hover effects.  The default
+  // Arch security stylesheet sets `table tr:hover` to a pale gray and
+  // applies alternating row backgrounds via `.styled-table` defaults.
+  // These rules apply to all rows, including headers, so use the `tr`
+  // element directly and include `!important` to ensure our theme
+  // colours prevail.  Header rows will still pick up our gradient via
+  // the `th` definition above, but on hover they’ll get a subtle
+  // violet tint instead of a white flash.
+  tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01) !important
+
+  tr:nth-child(odd)
+    background-color transparent !important
+
+  tr:hover,
+  tr:hover td
+    background-color rgba($arch-blue, 0.06) !important
+
   // Center alignment helper
   .center
     text-align center
