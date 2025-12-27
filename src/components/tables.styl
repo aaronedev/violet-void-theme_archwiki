@@ -38,11 +38,12 @@
     background-color rgba($arch-blue, 0.05)
 
 // Generic tables used by the Arch Linux security tracker
-.styled-table
-  background-color $base
-  color $light
+// Use table.styled-table to increase specificity over site defaults
+table.styled-table
+  background-color $base !important
+  color $light !important
   margin 1em 0
-  border none
+  border none !important
   border-radius $border-radius-md
   overflow hidden
   box-shadow $shadow-subtle
@@ -52,17 +53,17 @@
 
   // Header styling
   th
-    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04)) !important
     text-align left
     font-weight 600
     letter-spacing 0.02em
-    color $lighter
+    color $lighter !important
     padding 1em
 
   // Cell styling
   th,
   td
-    border 1px solid $border-subtle
+    border 1px solid $border-subtle !important
     padding 0.75em 1em
     transition background-color $transition-fast
 
@@ -80,17 +81,174 @@
 
 // Colour-coded statuses used on the security tracker
 span.purple
-  color $arch-blue
+  color $arch-blue !important
 
 span.orange
-  color $orange
+  color $orange !important
 
-// stylelint-disable-next-line selector-class-pattern
 span.light_orange
-  color lighten($orange, 20%)
+  color lighten($orange, 20%) !important
 
 span.green
-  color $green
+  color $green !important
 
 span.red
-  color $secondary-red
+  color $secondary-red !important
+
+// -----------------------------------------------------------------------------
+// AUR (archlinux.org) custom styling
+//
+// The Arch User Repository (AUR) web interface uses generic `.box` and `.widget`
+// containers for content blocks and sidebars. These default to light
+// backgrounds in the upstream CSS, which clashes badly with the dark violet
+// palette of the Violet‑Void theme. The rules below re‑theme those boxes,
+// headlines and tables to match the rest of the dark ArchWiki skin. A high
+// specificity selector (`#content-left-wrapper .box`, etc.) is used alongside
+// the base class selectors to ensure our styles override the site defaults. The
+// `!important` flags are applied sparingly where the upstream CSS declares
+// strong colours.
+
+// General box and widget styling
+#content-left-wrapper .box,
+#content-left .box,
+#content-right .widget,
+#content-right .box,
+.box,
+.widget
+  background-color $base !important
+  border 1px solid $border-subtle !important
+  border-radius $border-radius-md
+  color $light
+  box-shadow $shadow-subtle
+  padding 1em
+
+// Headings within the AUR news sections
+#news h3,
+#news h4
+  color $lighter
+  font-weight 600
+
+// Article content blocks in the news area
+#news .article-content
+  margin 0.5em 0
+  padding 0.5em 1em
+  background-color rgba($arch-blue, 0.02)
+  border-left 3px solid $secondary-blue
+  border-radius $border-radius-md
+
+// Package search label and input styling
+#pkgsearch label
+  color $lighter
+
+#pkgsearch input[type="text"]
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.5em
+
+// Recent updates table styling in the sidebar
+#pkg-updates table
+  width 100%
+  border-collapse collapse
+
+#pkg-updates table tr
+  border-bottom 1px solid $border-subtle
+
+#pkg-updates table tr:hover
+  background-color rgba($arch-blue, 0.05)
+
+#pkg-updates table td
+  padding 0.25em 0.5em
+  color $light
+
+#pkg-updates table td.pkg-date
+  color $secondary-blue
+  text-align right
+  white-space nowrap
+
+// Ensure that cells with the `.wrap` class (used on Archweb for long
+// descriptions) inherit the row’s background and text colour. Without this,
+// these cells default to a light background and dark text.
+table.results td.wrap,
+#pkglist-results table td.wrap
+  background-color inherit !important
+  color $light !important
+
+// -----------------------------------------------------------------------------
+// Arch Packages search page styling (archlinux.org/packages)
+//
+// The official Arch package database uses a `table.results` inside the search
+// results listing. Without overrides, these tables have a light background and
+// borders that clash with our dark violet aesthetic. The rules below re-theme
+// the results table and its header/cells to match the Violet‑Void palette. The
+// selectors include both `.results` and `#pkglist-results table` to capture
+// variations across templates. If additional specificity is needed, feel free
+// to duplicate the selector with the page’s parent container.
+
+table.results,
+#pkglist-results table
+  background-color $base !important
+  color $light !important
+  border none !important
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100%
+
+  // Header cells (both <th> and <td> in case the template uses <td> in the header)
+  thead th,
+  thead td
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04)) !important
+    color $lighter !important
+    font-weight 600
+    border 1px solid $border-subtle !important
+    padding 0.75em 1em
+
+  tbody td
+    border 1px solid $border-subtle !important
+    padding 0.5em 1em
+
+  tbody tr:nth-child(even)
+    // Apply a subtle zebra striping. Use !important on the cell to override
+    // upstream .wrap backgrounds defined in Archweb.
+    background-color rgba(255, 255, 255, 0.01)
+
+  // Override row striping at the cell level to ensure `.wrap` cells inherit
+  // the same background instead of the upstream light colour. Without this,
+  // the description column remains light due to its `.wrap` class.
+  tbody tr:nth-child(even) td
+    background-color rgba(255, 255, 255, 0.01) !important
+
+  tbody tr:nth-child(odd) td
+    background-color transparent !important
+
+  tbody tr:hover td
+    background-color rgba($arch-blue, 0.05)
+
+  // Override ArchWeb’s row striping and hover rules.  The upstream stylesheet
+  // uses `nth-child(even of :not([hidden]))` on `<tr>` elements to apply
+  // light backgrounds (#e4eeff/#fff) and `#pkglist-results tr:hover` to
+  // highlight rows in yellow.  These rules leak through to our dark theme
+  // because they operate at the row level rather than individual cells.  To
+  // neutralize them, explicitly set the row background colours here with
+  // `!important`, including a fallback without the `of` syntax for older
+  // browsers.  Then override the hover background to our subtle blue tint.
+  tr:nth-child(even of :not([hidden])),
+  tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01) !important
+
+  tr:nth-child(odd of :not([hidden])),
+  tr:nth-child(odd)
+    background-color transparent !important
+
+  tr:hover,
+  tr:hover td
+    background-color rgba($arch-blue, 0.05) !important
+
+  // Colour for flagged versions in the package list.  Upstream uses plain red,
+  // but we align it with the theme’s secondary red accent.
+  .flagged
+    color $secondary-red !important
