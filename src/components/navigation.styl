@@ -527,6 +527,9 @@ header.vector-header
 // Text input with leading icon
 // Do not alter the display of the text input container; only adjust colours.
 .cdx-text-input
+  // Use flex to align the magnifier icon vertically with the input text
+  display flex
+  align-items center
   background-color transparent
   border none
   color $lighter
@@ -551,8 +554,10 @@ header.vector-header
   color $darker
   border 1px solid $arch-blue
   border-radius $border-radius-md
-  padding 0.4em 0.8em
-  font-size 0.9em
+  // Smaller button to fit the height of the search input
+  padding 0.3em 0.6em
+  font-size 0.85em
+  margin-left 0.3em
 
   &:hover
     background-color lighten($arch-blue, 10%)
@@ -560,62 +565,63 @@ header.vector-header
 
 // Autocomplete dropdown menu
 .cdx-menu.cdx-typeahead-search__menu
-  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
-  box-shadow $shadow-subtle
-  // Preserve default positioning and sizing of the autocomplete menu.  Only
-  // set colours and borders; do not adjust margin or scrolling, as doing
-  // so can cause the menu to render in the wrong place.
+  // Darker background for readability of search results.  Increase the
+// violet overlay to improve contrast.
+border 1px solid $border-subtle
+border-radius $border-radius-md
+box-shadow $shadow-subtle
+// Preserve default positioning and sizing of the autocomplete menu.  Only
+// set colours and borders; do not adjust margin or scrolling, as doing
+// so can cause the menu to render in the wrong place.
+padding 0
+
+.cdx-menu__listbox
+  list-style none
+  margin 0
   padding 0
 
-  .cdx-menu__listbox
-    list-style none
+  li.cdx-menu-item
     margin 0
     padding 0
 
-    li.cdx-menu-item
-      margin 0
-      padding 0
+    // The anchor that forms each result entry
+    .cdx-menu-item__content
+      display flex
+      flex-direction row
+      align-items center
+      color $light
+      padding 0.5em 0.75em
+      border-radius $border-radius-sm
+      text-decoration none
 
-      // The anchor that forms each result entry
-      .cdx-menu-item__content
-        display flex
-        flex-direction row
-        align-items center
-        color $light
-        padding 0.5em 0.75em
-        border-radius $border-radius-sm
-        text-decoration none
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $secondary-blue
 
-        &:hover
-          background-color rgba($arch-blue, 0.1)
-          color $secondary-blue
+      // Thumbnail (placeholder icon) for search result
+      .cdx-thumbnail,
+      .cdx-menu-item__thumbnail
+        margin-right 0.5em
 
-        // Thumbnail (placeholder icon) for search result
-        .cdx-thumbnail,
-        .cdx-menu-item__thumbnail
-          margin-right 0.5em
-
-          .cdx-icon svg
-            fill $secondary-blue
-
-        // Label text
-        .cdx-menu-item__text__label
-          color $lighter
-
-      // Footer item (search for full text)
-      &.cdx-typeahead-search__search-footer
-        border-top 1px solid $border-subtle
-        margin-top 0
-        padding-top 0.5em
-
-        .cdx-typeahead-search__search-footer__icon .cdx-icon svg
+        .cdx-icon svg
           fill $secondary-blue
 
-        .cdx-typeahead-search__search-footer__text
-          color $lighter
+      // Label text
+      .cdx-menu-item__text__label
+        color $lighter
 
-          strong.cdx-typeahead-search__search-footer__query
-            color $secondary-blue
+    // Footer item (search for full text)
+    &.cdx-typeahead-search__search-footer
+      border-top 1px solid $border-subtle
+      margin-top 0
+      padding-top 0.5em
+
+      .cdx-typeahead-search__search-footer__icon .cdx-icon svg
+        fill $secondary-blue
+
+      .cdx-typeahead-search__search-footer__text
+        color $lighter
+
+        strong.cdx-typeahead-search__search-footer__query
+          color $secondary-blue
 
