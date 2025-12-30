@@ -97,3 +97,525 @@
 
   &:hover
     color $orange
+
+// -----------------------------------------------------------------------------
+// Dropdown menu styling (Vector main menu)
+//
+// The Vector skin on ArchWiki uses a white dropdown container for the main
+// navigation menu and applies its own backgrounds to nested elements like
+// `.vector-menu-content` and `.mw-portlet`.  To ensure the Violet‑Void theme
+// colours flow seamlessly through the entire panel, we override these
+// backgrounds and apply our dark gradient, violet accents and consistent
+// typography.  High specificity selectors are used to win against upstream
+// styles without resorting to excessive `!important` flags.
+
+// Outer wrapper for dropdown menus (e.g. the main menu opened via the
+// hamburger button).  Apply the theme’s gradient, rounded corners and shadow.
+.vector-dropdown-content
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-subtle
+
+  // Ensure nested blocks don’t introduce their own light backgrounds.  The
+  // `>` selector combined with class names targets immediate children as well
+  // as deeper nested containers used by Vector’s layout (like
+  // `.vector-main-menu`, `.vector-unpinned-container`, `.mw-portlet` and the
+  // pinnable header bar).
+  > *,
+  .vector-main-menu,
+  .vector-unpinned-container,
+  .mw-portlet,
+  .vector-pinnable-header,
+  .vector-menu-content
+    background-color transparent
+
+  // Style the pinnable header bar (“Main menu” label and pin/unpin buttons)
+  .vector-pinnable-header
+    display flex
+    align-items center
+    justify-content space-between
+    color $lighter
+    font-weight 600
+    font-size 0.9em
+    padding-bottom 0.5em
+    margin-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+    .vector-pinnable-header-label
+      color inherit
+
+    .vector-pinnable-header-toggle-button
+      background-color transparent
+      border 1px solid $secondary-blue
+      color $secondary-blue
+      padding 0.25em 0.5em
+      border-radius $border-radius-sm
+      font-size 0.8em
+      margin-left 0.5em
+      cursor pointer
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $orange
+        border-color $orange
+
+  // Section headings within dropdowns
+  .vector-menu-heading
+    color $lighter
+    font-size 0.85em
+    font-weight 600
+    text-transform uppercase
+    letter-spacing 0.05em
+    border-bottom 2px solid $secondary-blue
+    padding-bottom 0.5em
+    margin-bottom 0.5em
+
+  // List items in dropdown menus
+  .vector-menu-content li
+    margin 0.5em 0
+    font-size 0.95em
+
+    a
+      color $light
+      display block
+      padding 0.25em 0.5em
+      border-radius $border-radius-sm
+      text-decoration none
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $secondary-blue
+
+// -----------------------------------------------------------------------------
+// Pinned sidebar menu styling
+//
+// When the main menu is pinned to the sidebar, Vector inserts it into a
+// `.vector-pinned-container` within a sticky wrapper.  The default styles
+// assign a white background and fade-out overlay to this container.  These
+// overrides apply our Violet‑Void gradient and remove the unwanted white
+// backdrop, ensuring the pinned menu matches the dropdown styling.
+
+// Apply dark gradient, border and shadow to pinned containers
+.vector-pinned-container,
+.vector-sticky-pinned-container
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-subtle
+
+// Remove the white fade overlay at the bottom of sticky pinned containers
+.vector-sticky-pinned-container::after
+  display none
+
+// Remove default backgrounds from nested elements inside pinned menus
+.vector-pinnable-element,
+.vector-pinnable-element .vector-menu-content,
+.vector-pinnable-element .mw-portlet,
+.vector-pinnable-header
+  background-color transparent
+
+// Style the pinnable header (appears in both pinned and dropdown menus)
+.vector-pinnable-header
+  display flex
+  align-items center
+  justify-content space-between
+  color $lighter
+  font-weight 600
+  font-size 0.9em
+  padding-bottom 0.5em
+  margin-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+
+  .vector-pinnable-header-label
+    color inherit
+
+  .vector-pinnable-header-toggle-button
+    background-color transparent
+    border 1px solid $secondary-blue
+    color $secondary-blue
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.8em
+    margin-left 0.5em
+    cursor pointer
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $orange
+      border-color $orange
+
+// Headings within pinned menus
+.vector-pinnable-element .vector-menu-heading
+  color $lighter
+  font-size 0.85em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  border-bottom 2px solid $secondary-blue
+  padding-bottom 0.5em
+  margin-bottom 0.5em
+
+// Menu items within pinned menus
+.vector-pinnable-element .vector-menu-content li
+  margin 0.5em 0
+  font-size 0.95em
+
+  a
+    color $light
+    display block
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    text-decoration none
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $secondary-blue
+
+// -----------------------------------------------------------------------------
+// Vector header styling
+//
+// The page header in the Vector skin uses a very dark hue (#050A10) that
+// clashes with the Violet‑Void palette.  These rules set the header and its
+// container to our theme’s dark gradient and ensure the border aligns with
+// other components.  Only key structural elements are targeted to avoid
+// unintended overrides.
+
+.vector-header-container,
+.vector-header,
+.vector-header-start,
+.vector-header-end,
+header.vector-header
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border-bottom 1px solid $border-subtle
+
+// -----------------------------------------------------------------------------
+// Sticky header styling (appears when scrolling)
+//
+// The sticky header inherits default Vector styles which include plain blue
+// buttons and light backgrounds.  These rules re-theme the sticky header to
+// match the Violet‑Void palette.  They apply a dark gradient to the header
+// container, style the search bar and its toggle, and refine icons and the
+// sticky table‑of‑contents dropdown.
+
+// Header container and inner wrapper
+.vector-sticky-header-container,
+.vector-sticky-header
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border-bottom 1px solid $border-subtle
+  box-shadow $shadow-subtle
+
+// Buttons and icons within the sticky header (search toggle, discussion/history
+// icons, user menu, etc.)
+.vector-sticky-header .cdx-button
+  background-color $darker
+  border 1px solid $border-subtle
+  color $light
+  border-radius $border-radius-sm
+  padding 0.25em 0.5em
+  font-size 0.85em
+  line-height 1
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+
+// Search input inside the sticky header
+#vector-sticky-search-form .cdx-search-input__input-wrapper input,
+#vector-sticky-search-form .cdx-text-input__input
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.4em 0.6em
+
+// Search submit button inside the sticky header
+#vector-sticky-search-form .cdx-button.cdx-search-input__end-button
+  background-color $arch-blue
+  color $darker
+  border 1px solid $arch-blue
+  border-radius $border-radius-md
+  padding 0.4em 0.8em
+  font-size 0.85em
+
+  &:hover
+    background-color lighten($arch-blue, 10%)
+    color $darker
+
+// Sticky header table of contents dropdown styling
+.vector-sticky-header-toc .vector-dropdown-content
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-subtle
+  width max-content
+
+  // Transparent backgrounds for nested elements
+  > *,
+  .vector-pinnable-element,
+  .vector-unpinned-container,
+  .mw-portlet,
+  .vector-pinnable-header,
+  .vector-menu-content
+    background-color transparent
+
+  // Pinned header inside sticky TOC
+  .vector-pinnable-header
+    display flex
+    align-items center
+    justify-content space-between
+    color $lighter
+    font-weight 600
+    font-size 0.9em
+    padding-bottom 0.5em
+    margin-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+    .vector-pinnable-header-label
+      color inherit
+
+    .vector-pinnable-header-toggle-button
+      background-color transparent
+      border 1px solid $secondary-blue
+      color $secondary-blue
+      padding 0.25em 0.5em
+      border-radius $border-radius-sm
+      font-size 0.8em
+      margin-left 0.5em
+      cursor pointer
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $orange
+        border-color $orange
+
+  // Headings within the sticky TOC dropdown
+  .vector-menu-heading
+    color $lighter
+    font-size 0.85em
+    font-weight 600
+    text-transform uppercase
+    letter-spacing 0.05em
+    border-bottom 2px solid $secondary-blue
+    padding-bottom 0.5em
+    margin-bottom 0.5em
+
+  // Menu items within the sticky TOC dropdown
+  .vector-menu-content li
+    margin 0.5em 0
+    font-size 0.95em
+
+    a
+      color $light
+      display block
+      padding 0.25em 0.5em
+      border-radius $border-radius-sm
+      text-decoration none
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $secondary-blue
+
+// -----------------------------------------------------------------------------
+// Sticky table of contents and context bar enhancements
+//
+// The Vector sticky header includes a context bar that displays the page title
+// and a dropdown table of contents.  By default, these elements use plain
+// colours that clash with the Violet‑Void palette (e.g. bright blue links and
+// dark backdrops).  These overrides apply our dark gradient, lighten text and
+// accent colours for active entries and hover states.  They also refine the
+// toggle buttons used to expand/collapse TOC sections.
+
+// Style the page title in the sticky context bar
+.vector-sticky-header-context-bar-primary
+  color $light
+  font-weight 600
+  font-size 1em
+  padding 0.25em 0.5em
+
+// General styling for table of contents lists (applies to sticky TOC and
+// pinned/inline TOC).  Provide a dark background and consistent padding.
+.vector-toc,
+.vector-sticky-header-toc .vector-toc
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.5em 1em
+  box-shadow $shadow-subtle
+
+// Links inside the TOC
+.vector-toc .vector-toc-link
+  color $light
+  display block
+  padding 0.25em 0.5em
+  border-radius $border-radius-sm
+  text-decoration none
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+
+// Highlight active section links in the TOC
+.vector-toc .vector-toc-list-item-active > .vector-toc-link,
+.vector-toc .vector-toc-level-1-active:not(.vector-toc-list-item-expanded) > .vector-toc-link,
+.vector-toc .vector-toc-list-item-active.vector-toc-level-1-active > .vector-toc-link
+  color $secondary-blue !important
+  font-weight bold
+
+// Text within TOC entries
+.vector-toc .vector-toc-text
+  color $lighter
+  padding 0.25em 0
+
+// TOC toggle buttons (expand/collapse arrows)
+.vector-toc .vector-toc-toggle
+  background-color $darker
+  border 1px solid $border-subtle
+  color $light
+  border-radius $border-radius-sm
+  min-width 20px
+  min-height 20px
+  display flex
+  align-items center
+  justify-content center
+  cursor pointer
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+
+// Icon within toggle buttons
+.vector-toc .vector-toc-toggle .vector-icon
+  fill $light
+
+// -----------------------------------------------------------------------------
+// Site-wide search box and autocomplete results styling
+//
+// The ArchWiki search component uses Codex classes (`cdx-*`) to build its
+// typeahead search boxes and result lists.  By default, these controls use
+// generic light themes that contrast poorly with the Violet‑Void palette.
+// These overrides restyle the search input, button and autocomplete menu to
+// blend seamlessly into the dark interface and adopt neon violet accents.
+
+// Wrapper around the search form
+// Do not override structural layout (flex positioning) to avoid breaking
+// the built-in positioning logic of the autocomplete menu.  Only apply
+// colours and subtle borders.
+#searchform,
+.cdx-typeahead-search__form
+  background-color transparent
+  border none
+  border-radius 0
+  box-shadow none
+
+// Search input container
+.cdx-search-input,
+.cdx-search-input--has-end-button
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// Wrapper around the text input and menu
+// Wrapper around the input and menu should remain a block element.  Do not
+// set display:flex or the menu will be mis-positioned relative to the input.
+.cdx-search-input__input-wrapper
+  position relative
+
+// Text input with leading icon
+// Do not alter the display of the text input container; only adjust colours.
+.cdx-text-input
+  background-color transparent
+  border none
+  color $lighter
+  padding 0.4em 0.6em
+
+.cdx-text-input__input
+  flex 1 1 auto
+  background-color transparent
+  border none
+  color $lighter
+  font-size 0.95em
+  outline none
+
+// Start icon inside the search input (magnifying glass)
+.cdx-text-input__icon-vue.cdx-text-input__start-icon svg
+  fill $secondary-blue
+  margin-right 0.5em
+
+// Search button at the end of the input
+.cdx-search-input__end-button.cdx-button
+  background-color $arch-blue
+  color $darker
+  border 1px solid $arch-blue
+  border-radius $border-radius-md
+  padding 0.4em 0.8em
+  font-size 0.9em
+
+  &:hover
+    background-color lighten($arch-blue, 10%)
+    color $darker
+
+// Autocomplete dropdown menu
+.cdx-menu.cdx-typeahead-search__menu
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-subtle
+  // Preserve default positioning and sizing of the autocomplete menu.  Only
+  // set colours and borders; do not adjust margin or scrolling, as doing
+  // so can cause the menu to render in the wrong place.
+  padding 0
+
+  .cdx-menu__listbox
+    list-style none
+    margin 0
+    padding 0
+
+    li.cdx-menu-item
+      margin 0
+      padding 0
+
+      // The anchor that forms each result entry
+      .cdx-menu-item__content
+        display flex
+        flex-direction row
+        align-items center
+        color $light
+        padding 0.5em 0.75em
+        border-radius $border-radius-sm
+        text-decoration none
+
+        &:hover
+          background-color rgba($arch-blue, 0.1)
+          color $secondary-blue
+
+        // Thumbnail (placeholder icon) for search result
+        .cdx-thumbnail,
+        .cdx-menu-item__thumbnail
+          margin-right 0.5em
+
+          .cdx-icon svg
+            fill $secondary-blue
+
+        // Label text
+        .cdx-menu-item__text__label
+          color $lighter
+
+      // Footer item (search for full text)
+      &.cdx-typeahead-search__search-footer
+        border-top 1px solid $border-subtle
+        margin-top 0
+        padding-top 0.5em
+
+        .cdx-typeahead-search__search-footer__icon .cdx-icon svg
+          fill $secondary-blue
+
+        .cdx-typeahead-search__search-footer__text
+          color $lighter
+
+          strong.cdx-typeahead-search__search-footer__query
+            color $secondary-blue
+
