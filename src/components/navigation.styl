@@ -1,6 +1,7 @@
 @import '../variables/colors'
 @import '../variables/layout'
 @import '../mixins/effects'
+@import '../mixins/menus'
 
 // Arch navigation bar
 #archnavbar
@@ -24,51 +25,24 @@
 #vector-main-menu,
 .vector-main-menu
   // Subtle gradient from the base colour towards a hint of Arch blue
-  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
-  padding 1em
-  box-shadow $shadow-subtle
+  menu-panel()
 
   // Section headings within the main menu
   .vector-menu-heading
-    color $lighter
-    font-size 0.85em
-    font-weight 600
-    text-transform uppercase
-    letter-spacing 0.05em
-    border-bottom 2px solid $secondary-blue
-    padding-bottom 0.5em
-    margin-bottom 0.5em
+    menu-heading()
 
   // Individual menu items
   .vector-menu-content li
-    margin 0.5em 0
-    font-size 0.95em
-
-    a
-      color $light
-      text-decoration none
-
-      &:hover
-        color $secondary-blue
+    menu-list-item()
 
 // Portal headings
 .vector-menu-portal .vector-menu-heading
-  color $lighter
-  font-size 0.85em
-  font-weight 600
-  text-transform uppercase
-  letter-spacing 0.05em
-  border-bottom 2px solid $secondary-blue
-  padding-bottom 0.5em
-  margin-bottom 0.5em
+  menu-heading()
   display block
 
 // Portal content
 .vector-menu-portal .vector-menu-content li
-  margin 0.5em 0
-  font-size 0.95em
+  menu-list-item()
 
 // Table of contents
 #toc,
@@ -112,11 +86,7 @@
 // Outer wrapper for dropdown menus (e.g. the main menu opened via the
 // hamburger button).  Apply the theme’s gradient, rounded corners and shadow.
 .vector-dropdown-content
-  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
-  padding 1em
-  box-shadow $shadow-subtle
+  menu-panel()
 
   // Ensure nested blocks don’t introduce their own light backgrounds.  The
   // `>` selector combined with class names targets immediate children as well
@@ -133,60 +103,15 @@
 
   // Style the pinnable header bar (“Main menu” label and pin/unpin buttons)
   .vector-pinnable-header
-    display flex
-    align-items center
-    justify-content space-between
-    color $lighter
-    font-weight 600
-    font-size 0.9em
-    padding-bottom 0.5em
-    margin-bottom 0.5em
-    border-bottom 1px solid $border-subtle
-
-    .vector-pinnable-header-label
-      color inherit
-
-    .vector-pinnable-header-toggle-button
-      background-color transparent
-      border 1px solid $secondary-blue
-      color $secondary-blue
-      padding 0.25em 0.5em
-      border-radius $border-radius-sm
-      font-size 0.8em
-      margin-left 0.5em
-      cursor pointer
-
-      &:hover
-        background-color rgba($arch-blue, 0.1)
-        color $orange
-        border-color $orange
+    pinnable-header()
 
   // Section headings within dropdowns
   .vector-menu-heading
-    color $lighter
-    font-size 0.85em
-    font-weight 600
-    text-transform uppercase
-    letter-spacing 0.05em
-    border-bottom 2px solid $secondary-blue
-    padding-bottom 0.5em
-    margin-bottom 0.5em
+    menu-heading()
 
   // List items in dropdown menus
   .vector-menu-content li
-    margin 0.5em 0
-    font-size 0.95em
-
-    a
-      color $light
-      display block
-      padding 0.25em 0.5em
-      border-radius $border-radius-sm
-      text-decoration none
-
-      &:hover
-        background-color rgba($arch-blue, 0.1)
-        color $secondary-blue
+    menu-list-item(true)
 
 // -----------------------------------------------------------------------------
 // Pinned sidebar menu styling
@@ -200,11 +125,7 @@
 // Apply dark gradient, border and shadow to pinned containers
 .vector-pinned-container,
 .vector-sticky-pinned-container
-  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
-  padding 1em
-  box-shadow $shadow-subtle
+  menu-panel()
 
 // Remove the white fade overlay at the bottom of sticky pinned containers
 .vector-sticky-pinned-container::after
@@ -219,60 +140,15 @@
 
 // Style the pinnable header (appears in both pinned and dropdown menus)
 .vector-pinnable-header
-  display flex
-  align-items center
-  justify-content space-between
-  color $lighter
-  font-weight 600
-  font-size 0.9em
-  padding-bottom 0.5em
-  margin-bottom 0.5em
-  border-bottom 1px solid $border-subtle
-
-  .vector-pinnable-header-label
-    color inherit
-
-  .vector-pinnable-header-toggle-button
-    background-color transparent
-    border 1px solid $secondary-blue
-    color $secondary-blue
-    padding 0.25em 0.5em
-    border-radius $border-radius-sm
-    font-size 0.8em
-    margin-left 0.5em
-    cursor pointer
-
-    &:hover
-      background-color rgba($arch-blue, 0.1)
-      color $orange
-      border-color $orange
+  pinnable-header()
 
 // Headings within pinned menus
 .vector-pinnable-element .vector-menu-heading
-  color $lighter
-  font-size 0.85em
-  font-weight 600
-  text-transform uppercase
-  letter-spacing 0.05em
-  border-bottom 2px solid $secondary-blue
-  padding-bottom 0.5em
-  margin-bottom 0.5em
+  menu-heading()
 
 // Menu items within pinned menus
 .vector-pinnable-element .vector-menu-content li
-  margin 0.5em 0
-  font-size 0.95em
-
-  a
-    color $light
-    display block
-    padding 0.25em 0.5em
-    border-radius $border-radius-sm
-    text-decoration none
-
-    &:hover
-      background-color rgba($arch-blue, 0.1)
-      color $secondary-blue
+  menu-list-item(true)
 
 // -----------------------------------------------------------------------------
 // Vector header styling
@@ -346,11 +222,7 @@ header.vector-header
 
 // Sticky header table of contents dropdown styling
 .vector-sticky-header-toc .vector-dropdown-content
-  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
-  padding 1em
-  box-shadow $shadow-subtle
+  menu-panel()
   width max-content
 
   // Transparent backgrounds for nested elements
@@ -364,60 +236,15 @@ header.vector-header
 
   // Pinned header inside sticky TOC
   .vector-pinnable-header
-    display flex
-    align-items center
-    justify-content space-between
-    color $lighter
-    font-weight 600
-    font-size 0.9em
-    padding-bottom 0.5em
-    margin-bottom 0.5em
-    border-bottom 1px solid $border-subtle
-
-    .vector-pinnable-header-label
-      color inherit
-
-    .vector-pinnable-header-toggle-button
-      background-color transparent
-      border 1px solid $secondary-blue
-      color $secondary-blue
-      padding 0.25em 0.5em
-      border-radius $border-radius-sm
-      font-size 0.8em
-      margin-left 0.5em
-      cursor pointer
-
-      &:hover
-        background-color rgba($arch-blue, 0.1)
-        color $orange
-        border-color $orange
+    pinnable-header()
 
   // Headings within the sticky TOC dropdown
   .vector-menu-heading
-    color $lighter
-    font-size 0.85em
-    font-weight 600
-    text-transform uppercase
-    letter-spacing 0.05em
-    border-bottom 2px solid $secondary-blue
-    padding-bottom 0.5em
-    margin-bottom 0.5em
+    menu-heading()
 
   // Menu items within the sticky TOC dropdown
   .vector-menu-content li
-    margin 0.5em 0
-    font-size 0.95em
-
-    a
-      color $light
-      display block
-      padding 0.25em 0.5em
-      border-radius $border-radius-sm
-      text-decoration none
-
-      &:hover
-        background-color rgba($arch-blue, 0.1)
-        color $secondary-blue
+    menu-list-item(true)
 
 // -----------------------------------------------------------------------------
 // Sticky table of contents and context bar enhancements
@@ -566,14 +393,14 @@ header.vector-header
 // Autocomplete dropdown menu
 .cdx-menu.cdx-typeahead-search__menu
   // Darker background for readability of search results.  Increase the
-// violet overlay to improve contrast.
-border 1px solid $border-subtle
-border-radius $border-radius-md
-box-shadow $shadow-subtle
-// Preserve default positioning and sizing of the autocomplete menu.  Only
-// set colours and borders; do not adjust margin or scrolling, as doing
-// so can cause the menu to render in the wrong place.
-padding 0
+  // violet overlay to improve contrast.
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-subtle
+  // Preserve default positioning and sizing of the autocomplete menu.  Only
+  // set colours and borders; do not adjust margin or scrolling, as doing
+  // so can cause the menu to render in the wrong place.
+  padding 0
 
 .cdx-menu__listbox
   list-style none
@@ -624,4 +451,3 @@ padding 0
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue
-
