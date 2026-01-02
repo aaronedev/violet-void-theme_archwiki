@@ -61,3 +61,77 @@ div.archwiki-template-box.archwiki-template-box-warning
     font-size 1.2em
     font-weight bold
     color $secondary-red
+
+// ArchWiki message boxes
+.mw-message-box,
+.messagebox,
+.warningbox,
+.errorbox,
+.successbox,
+.noticebox
+  position relative
+  overflow hidden
+  transition all $transition-medium
+  box-shadow $shadow-subtle
+  margin 1em 0
+  border-radius $border-radius-md
+
+.mw-message-box,
+.messagebox,
+.noticebox
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.12)
+  padding 1em 1em 1em 2em
+
+  &::before
+    content ""
+    position absolute
+    top 0
+    left 0
+    width 4px
+    height 100%
+    gradient-primary-vertical()
+
+.successbox
+  background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.03))
+  border 1px solid rgba($green, 0.14)
+  padding 1em 2.5em 1em 1em
+
+  &::before
+    content "✓"
+    position absolute
+    top 0.5em
+    right 0.5em
+    font-size 1.2em
+    font-weight bold
+    color $green
+    opacity 0.85
+    filter drop-shadow(0 0 5px rgba($green, 0.4))
+
+.warningbox
+  background linear-gradient(135deg, rgba($red, 0.1), rgba($secondary-red, 0.03))
+  border 1px solid rgba($secondary-red, 0.12)
+  padding 1em 2.5em 1em 1em
+
+  &::before
+    content "!"
+    position absolute
+    top 0.5em
+    right 0.5em
+    font-size 1.2em
+    font-weight bold
+    color $secondary-red
+
+.errorbox
+  background linear-gradient(135deg, rgba($secondary-red, 0.14), rgba($secondary-red, 0.04))
+  border 1px solid rgba($secondary-red, 0.2)
+  padding 1em 2.5em 1em 1em
+
+  &::before
+    content "✖"
+    position absolute
+    top 0.5em
+    right 0.5em
+    font-size 1.2em
+    font-weight bold
+    color $secondary-red
