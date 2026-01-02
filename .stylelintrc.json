@@ -11,6 +11,7 @@
     "media-feature-range-notation": null,
     "stylus/declaration-colon": "never",
     "stylus/single-line-comment": "always",
+    "selector-class-pattern": null,
     "property-no-vendor-prefix": null,
     "at-rule-no-deprecated": null,
     "no-invalid-position-at-import-rule": null,
