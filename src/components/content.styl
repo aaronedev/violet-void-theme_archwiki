@@ -78,3 +78,40 @@ h2::after
   height 2px
   background linear-gradient(90deg, $arch-blue, transparent)
   border-radius 1px
+
+// Collapsible content blocks
+.mw-collapsible
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  transition background-color $transition-fast, border-color $transition-fast, box-shadow $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, $dark, rgba($arch-blue, 0.08))
+    border-color rgba($arch-blue, 0.25)
+    box-shadow $shadow-subtle
+
+.mw-collapsible-toggle
+  display inline-flex
+  align-items center
+  gap 0.35em
+  color $secondary-blue
+  background-color $darker
+  border 1px solid rgba($arch-blue, 0.35)
+  border-radius $border-radius-sm
+  padding 0.25em 0.6em
+  font-size 0.9em
+  cursor pointer
+  transition background-color $transition-fast, border-color $transition-fast, color $transition-fast
+  focus-ring($arch-blue)
+
+  &:hover
+    background-color rgba($arch-blue, 0.12)
+    border-color rgba($arch-blue, 0.6)
+    color $arch-blue
+
+.mw-collapsible-content
+  margin-top 0.6em
+  padding-top 0.6em
+  border-top 1px solid $border-subtle
