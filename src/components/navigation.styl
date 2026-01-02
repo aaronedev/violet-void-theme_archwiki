@@ -122,9 +122,15 @@
 // backdrop, ensuring the pinned menu matches the dropdown styling.
 
 // Apply dark gradient, border and shadow to pinned containers
-.vector-pinned-container,
-.vector-sticky-pinned-container
+.vector-pinned-container
   menu-panel()
+
+// Keep the sticky wrapper neutral so empty containers do not render a panel
+.vector-sticky-pinned-container
+  background-color transparent
+  border 0
+  box-shadow none
+  padding 0
 
 // Remove the white fade overlay at the bottom of sticky pinned containers
 .vector-sticky-pinned-container::after
@@ -497,4 +503,3 @@ header.vector-header
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue
-
