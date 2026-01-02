@@ -166,6 +166,32 @@ header.vector-header
   border-bottom 1px solid $border-subtle
 
 // -----------------------------------------------------------------------------
+// FIX: Header icon links get a fake underline (background gradient) from global
+// link styling (content.styl) and it visually cuts through icons (bell, etc.).
+// Kill that underline ONLY in the header area (keep it everywhere else).
+
+.vector-header a,
+.vector-header a:visited
+  // Disable gradient-underline background used by the global link styling
+  background-image none !important
+  background-size auto !important
+  background-repeat initial !important
+  background-position initial !important
+  text-decoration none !important
+
+  &:hover
+    background-image none !important
+    text-decoration none !important
+
+// Make header icons immune to text-decoration metrics and center them properly
+.vector-header .vector-icon,
+.vector-header .mw-ui-icon
+  display inline-flex
+  align-items center
+  justify-content center
+  vertical-align middle
+
+// -----------------------------------------------------------------------------
 // Sticky header styling (appears when scrolling)
 // The sticky header inherits default Vector styles which include plain blue
 // buttons and light backgrounds.  These rules re-theme the sticky header to
@@ -341,22 +367,34 @@ header.vector-header
   border 1px solid $border-subtle
   border-radius $border-radius-md
 
+  // FIX: keep the default Codex layout (input + end button) intact
+  // but make alignment predictable.
+  display flex
+  align-items center
+  gap 0.5em
+
 // Wrapper around the text input and menu
-// Wrapper around the input and menu should remain a block element.  Do not
-// set display:flex or the menu will be mis-positioned relative to the input.
+// IMPORTANT: keep `position: relative` (Codex uses it to anchor the menu).
+// Do NOT turn this into a flex/grid container; that can mess with menu placement.
 .cdx-search-input__input-wrapper
   position relative
+  flex 1 1 auto
+  min-width 0
 
 // Text input with leading icon
 // Do not alter the display of the text input container; only adjust colours.
 .cdx-text-input
-  // Use flex to align the magnifier icon vertically with the input text
+  // Keep it flexible so the input expands and the button stays close
   display flex
   align-items center
+  flex 1 1 auto
+  min-width 0
   background-color transparent
   border none
   color $lighter
-  padding 0.4em 0.6em
+
+  // FIX: tighten vertical rhythm without breaking Codex sizing
+  padding 0.35em 0.6em
 
 .cdx-text-input__input
   flex 1 1 auto
@@ -364,12 +402,18 @@ header.vector-header
   border none
   color $lighter
   font-size 0.95em
+  line-height 1.2
   outline none
 
 // Start icon inside the search input (magnifying glass)
 .cdx-text-input__icon-vue.cdx-text-input__start-icon svg
   fill $secondary-blue
+
+  // FIX: readable size + consistent alignment
+  width 16px
+  height 16px
   margin-right 0.5em
+  flex 0 0 auto
 
 // Search button at the end of the input
 .cdx-search-input__end-button.cdx-button
@@ -377,10 +421,16 @@ header.vector-header
   color $darker
   border 1px solid $arch-blue
   border-radius $border-radius-md
-  // Smaller button to fit the height of the search input
-  padding 0.3em 0.6em
+
+  // FIX: stop giant button; keep it snug next to the input
+  margin-left 0
+  padding 0.35em 0.8em
   font-size 0.85em
-  margin-left 0.3em
+  line-height 1
+  white-space nowrap
+
+  // Ensure it doesn't float away in flex layouts
+  flex 0 0 auto
 
   &:hover
     background-color lighten($arch-blue, 10%)
@@ -447,3 +497,4 @@ header.vector-header
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue
+

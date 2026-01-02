@@ -37,6 +37,45 @@
   tr:hover td
     background-color rgba($arch-blue, 0.05)
 
+// Infobox tables
+.infobox
+  background-color $base
+  color $light
+  margin 1em 0
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100%
+  max-width 100%
+
+  th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+    text-align left
+    font-weight 600
+    letter-spacing 0.02em
+    color $lighter
+    padding 1em
+
+  th,
+  td
+    border 1px solid $border-subtle
+    padding 0.75em 1em
+    vertical-align top
+
+  caption
+    padding 0.75em 1em
+    color $lighter
+    text-align left
+
+  img
+    max-width 100%
+    height auto
+    display block
+    border-radius $border-radius-sm
+
 // Generic tables used by the Arch Linux security tracker
 // Use table.styled-table to increase specificity over site defaults
 table.styled-table
