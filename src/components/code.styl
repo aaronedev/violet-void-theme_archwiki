@@ -32,6 +32,19 @@
     border-color rgba($arch-blue, 0.18)
     micro-lift()
 
+// Inline code inside tables/headings should not shift layout
+#content th code,
+#content td code,
+#content h1 code,
+#content h2 code,
+#content h3 code,
+#content h4 code,
+#content h5 code,
+#content h6 code
+  padding 0.1em 0.35em
+  margin 0 0.1em
+  line-height inherit
+
 // Large code blocks
 #content pre:not([class*="codemirror"])
   position relative
