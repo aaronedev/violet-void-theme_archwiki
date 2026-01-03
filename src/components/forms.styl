@@ -49,6 +49,18 @@ textarea,
     box-shadow inset 0 1px 3px rgba(0, 0, 0, 0.06), $shadow-focus
     outline none
 
+input:disabled,
+input:read-only,
+textarea:disabled,
+textarea:read-only,
+select:disabled,
+button:disabled
+  background-color $dark
+  color $light
+  border-color $cell-delim
+  box-shadow none
+  cursor not-allowed
+
 // Dropdowns
 .oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle
   background linear-gradient(135deg, $dark, $darker)
