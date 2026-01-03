@@ -25,12 +25,22 @@
   color $term-bright-green
   font-size 0.9em
   transition all $transition-fast
+  vertical-align baseline
 
   &:hover
     gradient-inline-code-hover()
 
     border-color rgba($arch-blue, 0.18)
     micro-lift()
+
+// Inline code inside dense contexts (headings, tables, lists)
+#content h1 code,
+#content h2 code,
+#content th code,
+#content li code
+  padding 0.06em 0.35em
+  margin 0 0.08em
+  vertical-align 0.05em
 
 // Large code blocks
 #content pre:not([class*="codemirror"])
