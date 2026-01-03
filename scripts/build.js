@@ -12,6 +12,36 @@ const pkgFile = path.join(__dirname, '../package.json')
 
 const isTruthy = (value) => ['1', 'true', 'yes'].includes(String(value).toLowerCase())
 const autoCommitEnabled = !isTruthy(process.env.SKIP_GIT_COMMIT) && !isTruthy(process.env.CI)
+const runGitHooks = isTruthy(process.env.RUN_GIT_HOOKS)
+
+const tryAddFile = (filePath, { forceIfIgnored = false } = {}) => {
+  const absolutePath = path.join(__dirname, '..', filePath)
+  if (!fs.existsSync(absolutePath)) {
+    console.log(`Skipping auto-commit: missing ${filePath}`)
+    return false
+  }
+
+  try {
+    execSync(`git add ${filePath}`, { stdio: 'inherit' })
+    return true
+  } catch (error) {
+    if (forceIfIgnored) {
+      try {
+        execSync(`git add -f ${filePath}`, { stdio: 'inherit' })
+        console.log(`Added ignored file: ${filePath}`)
+        return true
+      } catch (forceError) {
+        const message = forceError && forceError.message ? forceError.message : String(forceError)
+        console.log(`Skipping auto-commit: unable to add ${filePath} (${message})`)
+        return false
+      }
+    }
+
+    const message = error && error.message ? error.message : String(error)
+    console.log(`Skipping auto-commit: unable to add ${filePath} (${message})`)
+    return false
+  }
+}
 
 const tryAutoCommit = (newVersion) => {
   if (!autoCommitEnabled) {
@@ -37,8 +67,25 @@ const tryAutoCommit = (newVersion) => {
     return
   }
 
-  const filesToCommit = ['package.json', 'dist/main.css']
-  execSync(`git add ${filesToCommit.join(' ')}`, { stdio: 'inherit' })
+  const allowedChangedFiles = new Set(['package.json', 'dist/main.css'])
+  const otherChanges = status
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.slice(2).trim())
+    .map((filePath) => {
+      const renameMatch = filePath.match(/.+ -> (.+)$/)
+      return renameMatch ? renameMatch[1] : filePath
+    })
+    .filter((filePath) => !allowedChangedFiles.has(filePath))
+
+  if (otherChanges.length) {
+    console.log('Skipping auto-commit: other working tree changes present')
+    return
+  }
+
+  tryAddFile('package.json')
+  tryAddFile('dist/main.css', { forceIfIgnored: true })
 
   const stagedAfterAdd = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim()
   if (!stagedAfterAdd) {
@@ -47,7 +94,13 @@ const tryAutoCommit = (newVersion) => {
   }
 
   const message = `chore: verbump ${newVersion}`
-  execSync(`git commit -m "${message}"`, { stdio: 'inherit' })
+  const noVerifyFlag = runGitHooks ? '' : ' --no-verify'
+  try {
+    execSync(`git commit -m "${message}"${noVerifyFlag}`, { stdio: 'inherit' })
+  } catch (error) {
+    const errorMessage = error && error.message ? error.message : String(error)
+    console.log(`Skipping auto-commit: git commit failed (${errorMessage})`)
+  }
 }
 
 // Bump version
