@@ -13,6 +13,7 @@
   border-collapse separate
   border-spacing 0
   width 100% // Ensure full width responsiveness
+  table-layout auto
 
   > tr > th,
   > * > tr > th
@@ -30,6 +31,9 @@
     border 1px solid $border-subtle
     padding 0.75em 1em
     transition background-color $transition-fast
+    word-break normal
+    overflow-wrap normal
+    white-space normal
 
   tr:nth-child(even)
     background-color rgba(255, 255, 255, 0.01) // Zebra striping
