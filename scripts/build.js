@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { execSync } = require('child_process')
 const stylus = require('stylus')
 const autoprefixer = require('autoprefixer-stylus')
 const pkg = require('../package.json')
@@ -8,6 +9,46 @@ const inputFile = path.join(__dirname, '../src/main.styl')
 const outputFile = path.join(__dirname, '../dist/main.css')
 const distDir = path.dirname(outputFile)
 const pkgFile = path.join(__dirname, '../package.json')
+
+const isTruthy = (value) => ['1', 'true', 'yes'].includes(String(value).toLowerCase())
+const autoCommitEnabled = !isTruthy(process.env.SKIP_GIT_COMMIT) && !isTruthy(process.env.CI)
+
+const tryAutoCommit = (newVersion) => {
+  if (!autoCommitEnabled) {
+    return
+  }
+
+  try {
+    execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore' })
+  } catch {
+    console.log('Skipping auto-commit: not a git repo')
+    return
+  }
+
+  const staged = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim()
+  if (staged) {
+    console.log('Skipping auto-commit: staged changes present')
+    return
+  }
+
+  const status = execSync('git status --porcelain', { encoding: 'utf8' }).trim()
+  if (!status) {
+    console.log('Skipping auto-commit: working tree clean')
+    return
+  }
+
+  const filesToCommit = ['package.json', 'dist/main.css']
+  execSync(`git add ${filesToCommit.join(' ')}`, { stdio: 'inherit' })
+
+  const stagedAfterAdd = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim()
+  if (!stagedAfterAdd) {
+    console.log('Skipping auto-commit: nothing staged after add')
+    return
+  }
+
+  const message = `chore: verbump ${newVersion}`
+  execSync(`git commit -m "${message}"`, { stdio: 'inherit' })
+}
 
 // Bump version
 const now = new Date()
@@ -57,4 +98,5 @@ stylus(stylContent)
     const finalCss = header + css
     fs.writeFileSync(outputFile, finalCss)
     console.log(`Build complete: ${outputFile}`)
+    tryAutoCommit(version)
   })
