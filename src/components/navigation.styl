@@ -525,3 +525,32 @@ header.vector-header
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue
+
+// Skip to content accessibility link
+.mw-jump-link
+  // Ensure it's hidden but available to screen readers when not focused
+  &:not(:focus)
+    // stylelint-disable-next-line property-no-deprecated
+    clip rect(1px, 1px, 1px, 1px)
+    clip-path inset(50%)
+    height 1px
+    width 1px
+    margin -1px
+    overflow hidden
+    padding 0
+    position absolute
+
+  // When focused, make it prominent
+  &:focus
+    position fixed
+    top 10px
+    left 10px
+    z-index 100
+    background-color $arch-blue
+    color $darker
+    padding 1em
+    font-weight bold
+    border-radius $border-radius-md
+    box-shadow $shadow-elevated
+    outline 2px solid $secondary-blue
+    text-decoration none
