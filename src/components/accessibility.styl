@@ -1,0 +1,54 @@
+@import '../variables/colors'
+@import '../variables/layout'
+
+// -----------------------------------------------------------------------------
+// Accessibility Enhancements
+// -----------------------------------------------------------------------------
+
+// "Skip to content" link
+// Hidden by default, becomes highly visible when focused.
+// This allows keyboard users to bypass navigation and jump straight to the main content.
+.mw-jump-link
+  // Ensure it's hidden initially but accessible to screen readers
+  &:not(:focus)
+    // stylelint-disable-next-line property-no-deprecated
+    clip rect(1px, 1px, 1px, 1px)
+    clip-path inset(50%)
+    height 1px
+    width 1px
+    margin -1px
+    overflow hidden
+    padding 0
+    position absolute
+    white-space nowrap
+    border 0
+
+  // High visibility focus state
+  &:focus
+    position fixed
+    top 1.5rem
+    left 50%
+    transform translateX(-50%)
+    z-index 2000 // Higher than navigation
+    display flex
+    align-items center
+    justify-content center
+    background-color $darker
+    color $arch-blue
+    font-weight 600
+    font-size 1.1em
+    text-decoration none
+    white-space nowrap
+    padding 0.75em 1.5em
+    border 2px solid $arch-blue
+    border-radius $border-radius-md
+    box-shadow $shadow-elevated
+
+    // Override global link styles
+    background-image none
+    outline none // We provide our own border style
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $secondary-blue
+      text-decoration none
