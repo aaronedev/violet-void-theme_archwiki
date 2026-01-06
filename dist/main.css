@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         violet-void-theme_archwiki
-@version      20260103.13.44
+@version      20260106.18.23
 @namespace    github.com/aaronedev/violet-void-theme
 @description  Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.
 @author       aaronedev
@@ -1634,4 +1634,32 @@
       font-size: 0.95em;
     }
 }
+  .mw-jump-link {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    margin: -1px;
+  }
+  .mw-jump-link:focus {
+    clip: auto;
+    height: auto;
+    width: auto;
+    overflow: visible;
+    margin: 0;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    background-color: #8950c7;
+    color: #e7e7e7;
+    padding: 0.75em 1.25em;
+    border-radius: 9px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    border: 2px solid #e7e7e7;
+  }
 }

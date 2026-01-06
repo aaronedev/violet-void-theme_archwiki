@@ -1,0 +1,35 @@
+@import '../variables/colors'
+@import '../variables/layout'
+
+// Skip to content link
+// Hidden by default, visible on focus for keyboard users
+.mw-jump-link
+  // stylelint-disable-next-line property-no-deprecated
+  clip rect(1px, 1px, 1px, 1px)
+  height 1px
+  width 1px
+  overflow hidden
+  position absolute
+  white-space nowrap
+  margin -1px
+
+  &:focus
+    // stylelint-disable-next-line property-no-deprecated
+    clip auto
+    height auto
+    width auto
+    overflow visible
+    margin 0
+    position fixed
+    top 15px
+    left 15px
+    z-index 1000
+    background-color $arch-blue
+    color $lighter
+    padding 0.75em 1.25em
+    border-radius $border-radius-md
+    font-weight 600
+    text-decoration none
+    box-shadow $shadow-elevated
+    // Ensure high visibility in all modes
+    border 2px solid $lighter
