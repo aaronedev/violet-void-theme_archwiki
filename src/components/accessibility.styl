@@ -1,0 +1,68 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// Skip to content link
+// Hidden by default, visible on focus for keyboard users
+// Standard MediaWiki class is .mw-jump-link
+
+// Container handles positioning and hiding
+.mw-jump-link,
+.skip-link
+  position absolute
+  z-index 9999
+
+  // Visually hidden state (default)
+  width 1px
+  height 1px
+  margin -1px
+  border 0
+  padding 0
+  // stylelint-disable-next-line property-no-deprecated
+  clip rect(1px, 1px, 1px, 1px)
+  clip-path inset(50%)
+  overflow hidden
+  white-space nowrap
+
+  // Visible state (when focused or contains focus)
+  &:focus-within
+    // Reset visual hiding
+    width auto
+    height auto
+    margin 0
+    // stylelint-disable-next-line property-no-deprecated
+    clip auto
+    clip-path none
+    overflow visible
+    white-space normal
+
+    // Position the container
+    top 10px
+    left 10px
+    z-index 10000
+
+// Link inside handles the visual button styling
+.mw-jump-link a,
+.skip-link a
+  display inline-block
+  background-color $arch-blue
+  color $lighter
+  padding 0.75em 1.25em
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  border 1px solid $secondary-blue
+  font-weight 600
+  font-size 1em
+  text-decoration none
+  transition all $transition-fast
+
+  // Ensure focus ring works nicely
+  &:focus
+    outline none
+    focus-ring()
+
+  // Hover state
+  &:hover
+    background-color lighten($arch-blue, 10%)
+    color white
+    text-decoration none
