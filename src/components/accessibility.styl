@@ -1,0 +1,48 @@
+@import '../variables/colors'
+
+// Skip to content link
+// Accessibility improvement for keyboard users
+.mw-jump-link
+  position absolute
+  top 0
+  left 50%
+  transform translateX(-50%)
+  z-index 1000
+  width 1px
+  height 1px
+  overflow hidden
+  // Deprecated but needed for older support
+  // stylelint-disable-next-line property-no-deprecated
+  clip rect(0, 0, 0, 0)
+  clip-path inset(50%)
+  white-space nowrap
+
+  // Show when focused (either the container or the link inside)
+  &:focus-within
+  &:focus
+    width auto
+    height auto
+    // stylelint-disable-next-line property-no-deprecated
+    clip auto
+    clip-path none
+    overflow visible
+    top 10px
+
+  a
+    display inline-block
+    padding 0.5rem 1rem
+    background $arch-blue
+    color $lighter
+    font-weight bold
+    text-decoration none
+    border-radius 4px
+    box-shadow 0 4px 6px rgba(0, 0, 0, 0.3)
+    transition background 0.2s ease, transform 0.2s ease
+
+    &:hover
+    &:focus
+      background $secondary-blue
+      color $darker
+      transform translateY(2px)
+      outline 2px solid $orange
+      outline-offset 2px
