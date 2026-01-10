@@ -1,0 +1,56 @@
+@import '../variables/colors'
+@import '../variables/layout'
+
+// Skip to content link
+// Accessible method for hiding/showing the "Skip to content" link
+// It is hidden by default but becomes visible when focused (e.g. by Tab key)
+.mw-jump-link
+  // Default state: visually hidden but accessible to screen readers
+  &:not(:focus-within)
+    width 1px
+    height 1px
+    margin -1px
+    padding 0
+    overflow hidden
+    // stylelint-disable-next-line property-no-deprecated
+    clip rect(0, 0, 0, 0)
+    border 0
+    position absolute
+    white-space nowrap
+
+  // Visible state (when focused)
+  // Positioned fixed to ensure it's always seen regardless of scroll
+  position fixed
+  top 10px
+  left 10px
+  z-index 9999
+
+  // Reset defaults that might interfere
+  width auto
+  height auto
+  margin 0
+  // stylelint-disable-next-line property-no-deprecated
+  clip auto
+  overflow visible
+
+  // Style the link itself
+  a
+    display inline-block
+    background-color $darker
+    color $arch-blue
+    border 2px solid $arch-blue
+    border-radius $border-radius-md
+    padding 0.75em 1.5em
+    font-weight 600
+    font-family $font-sans
+    text-decoration none
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.5)
+    transition all $transition-fast
+
+    &:hover,
+    &:focus
+      background-color $arch-blue
+      color $darker
+      outline none
+      transform translateY(-2px)
+      box-shadow 0 6px 16px rgba(0, 0, 0, 0.6)
