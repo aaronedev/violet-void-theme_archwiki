@@ -1,0 +1,60 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// Accessibility enhancements
+// -------------------------
+
+// "Skip to content" links
+// These links are present in MediaWiki markup but often hidden or unstyled.
+// We ensure they are accessibly hidden (screen readers can see them) and
+// become visible when focused by keyboard users.
+.mw-jump-link
+  // Accessible hiding pattern
+  position absolute
+  width 1px
+  height 1px
+  margin -1px
+  border 0
+  padding 0
+  // stylelint-disable-next-line property-no-deprecated
+  clip rect(0 0 0 0)
+  clip-path inset(50%)
+  overflow hidden
+  white-space nowrap
+
+  // Show on focus
+  &:focus-within
+    // Reset hiding
+    width auto
+    height auto
+    margin 0
+    // stylelint-disable-next-line property-no-deprecated
+    clip auto
+    clip-path none
+    overflow visible
+    white-space normal
+
+    // Visual styles for the container
+    top 10px
+    left 50%
+    transform translateX(-50%)
+    z-index 9999
+    background-color $arch-blue
+    border-radius $border-radius-md
+    box-shadow $shadow-elevated
+    padding 0.5em 1em
+
+  // Style the links inside
+  a
+    color $darker !important
+    font-weight 600
+    text-decoration none
+    margin 0 0.5em
+    display inline-block
+
+    // Custom focus ring for these links since they are on a specific background
+    &:focus-visible
+      outline 2px solid $darker
+      outline-offset 2px
+      border-radius $border-radius-sm
