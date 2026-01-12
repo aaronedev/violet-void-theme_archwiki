@@ -1,0 +1,47 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// Accessibility enhancements
+
+// Skip to content link
+// Hidden by default, visible when focused (keyboard navigation)
+.mw-jump-link
+  position absolute
+  top 10px
+  left 10px
+  z-index 1000
+  // Accessible hiding pattern
+  width 1px
+  height 1px
+  overflow hidden
+  // stylelint-disable-next-line property-no-deprecated
+  clip rect(1px, 1px, 1px, 1px)
+  white-space nowrap
+  transition opacity $transition-fast
+
+  // Show on focus
+  &:focus-within
+    width auto
+    height auto
+    clip auto
+    overflow visible
+
+  // Style the actual link button
+  & a
+    display inline-block
+    padding 0.75em 1.5em
+    background-color $darker
+    color $arch-blue
+    border 2px solid $arch-blue
+    border-radius $border-radius-md
+    font-weight 600
+    text-decoration none
+    box-shadow $shadow-elevated
+    transition all $transition-fast
+
+    // Add focus ring
+    &:focus
+      outline none
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.4)
+      transform translateY(-2px)
