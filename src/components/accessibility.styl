@@ -1,0 +1,55 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+@import '../mixins/gradients'
+
+// Skip to content link
+// Only visible when focused via keyboard navigation.
+.mw-jump-link
+  // Visually hidden but accessible to screen readers
+  position absolute
+  width 1px
+  height 1px
+  overflow hidden
+  clip-path inset(50%)
+  white-space nowrap
+  z-index 1000
+  top 15px
+  left 15px
+  border-radius $border-radius-md
+
+  // Show when focused (focus-within catches the focus on the child anchor)
+  &:focus-within
+    width auto
+    height auto
+    overflow visible
+    clip-path none
+
+  // Style the link button
+  a
+    display inline-flex
+    align-items center
+    justify-content center
+    padding 12px 24px
+    color $darker
+    font-weight 700
+    text-decoration none
+    border-radius $border-radius-md
+    box-shadow $shadow-elevated
+    gradient-button()
+
+    transition transform $transition-fast
+    font-family $font-sans
+    font-size 1rem
+
+    // Add a slight lift effect
+    hover-lift()
+
+    // Ensure the focus ring is visible and clean
+    &:focus-visible
+      outline 2px solid $secondary-blue
+      outline-offset 2px
+
+    &:hover
+      color $darker
+      text-decoration none
