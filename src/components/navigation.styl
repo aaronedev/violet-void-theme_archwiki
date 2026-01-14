@@ -324,11 +324,16 @@ header.vector-header
   padding 0.5em 1em
   box-shadow $shadow-subtle
 
+// List items within the TOC
+.vector-toc .vector-toc-list-item
+  position relative
+
 // Links inside the TOC
 .vector-toc .vector-toc-link
   color $light
   display block
-  padding 0.25em 0.5em
+  // FIX: Ensure space for the absolute toggle button on the left
+  padding 0.25em 0.5em 0.25em 2.25em
   border-radius $border-radius-sm
   text-decoration none
 
@@ -350,6 +355,10 @@ header.vector-header
 
 // TOC toggle buttons (expand/collapse arrows)
 .vector-toc .vector-toc-toggle
+  // FIX: Position the toggle absolutely to align with text and prevent layout shifts
+  position absolute
+  left 0.25em
+  top 0.35em
   background-color $darker
   border 1px solid $border-subtle
   color $light
