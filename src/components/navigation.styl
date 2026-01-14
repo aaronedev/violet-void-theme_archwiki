@@ -391,9 +391,9 @@ header.vector-header
 // Search input container
 .cdx-search-input,
 .cdx-search-input--has-end-button
-  background-color $darker
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
+  background-color transparent
+  border none
+  border-radius 0
 
   // FIX: keep the default Codex layout (input + end button) intact
   // but make alignment predictable.
@@ -417,17 +417,19 @@ header.vector-header
   align-items center
   flex 1 1 auto
   min-width 0
-  background-color transparent
-  border none
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
   color $lighter
 
   // FIX: tighten vertical rhythm without breaking Codex sizing
   padding 0.35em 0.6em
 
-.cdx-text-input__input
+.cdx-text-input .cdx-text-input__input
   flex 1 1 auto
   background-color transparent
   border none
+  box-shadow none
   color $lighter
   font-size 0.95em
   line-height 1.2
@@ -452,7 +454,7 @@ header.vector-header
 
   // FIX: stop giant button; keep it snug next to the input
   margin-left 0
-  padding 0.35em 0.8em
+  padding 0.5em 0.8em
   font-size 0.85em
   line-height 1
   white-space nowrap
