@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         violet-void-theme_archwiki
-@version      20260114.07.56
+@version      20260114.08.08
 @namespace    github.com/aaronedev/violet-void-theme
 @description  Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.
 @author       aaronedev
@@ -704,9 +704,9 @@
   }
   .cdx-search-input,
   .cdx-search-input--has-end-button {
-    background-color: #0f0f0f;
-    border: 1px solid rgba(200,184,255,0.08);
-    border-radius: 9px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -721,15 +721,17 @@
     align-items: center;
     flex: 1 1 auto;
     min-width: 0;
-    background-color: transparent;
-    border: none;
+    background-color: #0f0f0f;
+    border: 1px solid rgba(200,184,255,0.08);
+    border-radius: 9px;
     color: #e7e7e7;
     padding: 0.35em 0.6em;
   }
-  .cdx-text-input__input {
+  .cdx-text-input .cdx-text-input__input {
     flex: 1 1 auto;
     background-color: transparent;
     border: none;
+    box-shadow: none;
     color: #e7e7e7;
     font-size: 0.95em;
     line-height: 1.2;
@@ -748,7 +750,7 @@
     border: 1px solid #8950c7;
     border-radius: 9px;
     margin-left: 0;
-    padding: 0.35em 0.8em;
+    padding: 0.5em 0.8em;
     font-size: 0.85em;
     line-height: 1;
     white-space: nowrap;
