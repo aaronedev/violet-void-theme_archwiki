@@ -137,6 +137,7 @@ console.log('Building CSS...')
 
 stylus(stylContent)
   .set('filename', inputFile)
+  .set('compress', true)
   .use(autoprefixer())
   .render((err, css) => {
     if (err) {
