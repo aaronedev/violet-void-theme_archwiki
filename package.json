@@ -1,6 +1,7 @@
 {
   "name": "violet-void-theme_archwiki",
   "version": "1.0.0",
+  "private": true,
   "description": "Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.",
   "author": "aaronedev",
   "license": "MIT",
