@@ -58,8 +58,14 @@ a:has(.mw-ui-icon),
 a:has(.oo-ui-iconElement-icon)
   background-image none !important
 
-// Apply focus ring mixin
-*
+// Focus ring for interactive elements only
+a,
+button,
+input,
+select,
+textarea,
+[role="button"],
+[tabindex]
   focus-ring()
 
 // Scrollbar theming
@@ -74,16 +80,16 @@ body,
   scrollbar-color $secondary-blue transparent
 
   &::-webkit-scrollbar
-    width 8px
-    height 8px
+    width $scrollbar-width
+    height $scrollbar-width
 
   &::-webkit-scrollbar-track
     background-color rgba(0, 0, 0, 0.08)
-    border-radius 4px
+    border-radius ($scrollbar-width / 2)
 
   &::-webkit-scrollbar-thumb
     background-color $secondary-blue
-    border-radius 4px
+    border-radius ($scrollbar-width / 2)
     transition background-color $transition-fast
     border 2px solid transparent
     background-clip content-box
