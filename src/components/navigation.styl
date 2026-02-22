@@ -14,11 +14,7 @@
 
 // Sidebar (article table of contents and misc side panels)
 .mw-sidebar
-  background linear-gradient(180deg, $dark, $darker)
-  border-radius $border-radius-md
-  box-shadow $shadow-subtle
-  padding 1em
-  border 1px solid $border-subtle
+  menu-panel()
 
 // Global main menu (Vector menu shown when the hamburger button is opened)
 // This styles the left-hand site navigation so it fits the dark, violet-toned header.
@@ -51,7 +47,7 @@
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border 1px solid $border-subtle
   border-radius $border-radius-md
-  padding 1em
+  padding 0.4em 0.75em
   box-shadow $shadow-subtle
   transition all $transition-medium
 
@@ -260,13 +256,13 @@ header.vector-header
 #vector-sticky-search-form .cdx-button.cdx-search-input__end-button
   background-color $arch-blue
   color $darker
-  border 1px solid $arch-blue
-  border-radius $border-radius-md
-  padding 0.4em 0.8em
-  font-size 0.85em
+  border none
+  border-radius $border-radius-sm
+  padding 0.3em 0.6em
+  font-size 0.8em
 
   &:hover
-    background-color lighten($arch-blue, 10%)
+    background-color lighten($arch-blue, 12%)
     color $darker
 
 // Sticky header table of contents dropdown styling
@@ -380,10 +376,7 @@ header.vector-header
   .vector-icon
     width 12px
     height 12px
-
-// Icon within toggle buttons
-.vector-toc .vector-toc-toggle .vector-icon
-  fill $light
+    fill $light
 
 // -----------------------------------------------------------------------------
 // Site-wide search box and autocomplete results styling

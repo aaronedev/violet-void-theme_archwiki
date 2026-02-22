@@ -45,9 +45,9 @@
 // Large code blocks
 #content pre:not([class*="codemirror"])
   position relative
-  margin 1.5em 0 !important
-  padding 1.5em !important
-  padding-top 3em !important
+  margin 1em 0 !important
+  padding 1em !important
+  padding-top 2.5em !important
   border none !important
 
   gradient-elevated() !important
@@ -56,14 +56,13 @@
   word-break normal
   overflow-wrap normal
   white-space pre !important
-  border-radius $border-radius-lg
-  box-shadow 0 0 0 1px rgba($arch-blue, 0.12), 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.02)
-  transition all $transition-medium
+  border-radius $border-radius-md
+  box-shadow 0 0 0 1px rgba($arch-blue, 0.12), 0 4px 12px rgba(0, 0, 0, 0.4)
+  transition box-shadow $transition-fast
   cursor text
 
   &:hover
-    box-shadow 0 0 0 1px rgba($arch-blue, 0.2), 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02)
-    transform translateY(-2px)
+    box-shadow 0 0 0 1px rgba($arch-blue, 0.18), 0 6px 16px rgba(0, 0, 0, 0.5)
 
 // Code block headers
 #content pre[data-lang]::before
@@ -77,22 +76,22 @@
   top 0
   left 0
   right 0
-  height 2.5em
+  height 2em
   gradient-code-header()
 
   display flex
   align-items center
-  padding 0 3em 0 1em
-  font-size 0.85em
+  padding 0 2.5em 0 0.75em
+  font-size 0.8em
   font-weight 600
   color white
-  letter-spacing 0.05em
+  letter-spacing 0.04em
   text-transform uppercase
   white-space nowrap
   overflow hidden
   text-overflow ellipsis
-  border-top-left-radius $border-radius-lg
-  border-top-right-radius $border-radius-lg
+  border-top-left-radius $border-radius-md
+  border-top-right-radius $border-radius-md
   z-index 1
 
 // Clear inline styles for code inside pre
