@@ -415,7 +415,7 @@ header.vector-header
   // but make alignment predictable.
   display flex
   align-items center
-  gap 0.5em
+  gap 0.25em
 
 // Wrapper around the text input and menu
 // IMPORTANT: keep `position: relative` (Codex uses it to anchor the menu).
@@ -439,7 +439,7 @@ header.vector-header
   color $lighter
 
   // FIX: tighten vertical rhythm without breaking Codex sizing
-  padding 0.35em 0.6em
+  padding 0.25em 0.5em
 
 .cdx-text-input .cdx-text-input__input
   flex 1 1 auto
@@ -465,13 +465,13 @@ header.vector-header
 .cdx-search-input__end-button.cdx-button
   background-color $arch-blue
   color $darker
-  border 1px solid $arch-blue
-  border-radius $border-radius-md
+  border none
+  border-radius $border-radius-sm
 
-  // FIX: stop giant button; keep it snug next to the input
+  // FIX: compact button, snug next to input
   margin-left 0
-  padding 0.5em 0.8em
-  font-size 0.85em
+  padding 0.3em 0.6em
+  font-size 0.8em
   line-height 1
   white-space nowrap
 
@@ -479,7 +479,7 @@ header.vector-header
   flex 0 0 auto
 
   &:hover
-    background-color lighten($arch-blue, 10%)
+    background-color lighten($arch-blue, 12%)
     color $darker
 
 // Autocomplete dropdown menu
@@ -509,7 +509,7 @@ header.vector-header
       flex-direction row
       align-items center
       color $light
-      padding 0.5em 0.75em
+      padding 0.3em 0.5em
       border-radius $border-radius-sm
       text-decoration none
 
@@ -520,26 +520,32 @@ header.vector-header
       // Thumbnail (placeholder icon) for search result
       .cdx-thumbnail,
       .cdx-menu-item__thumbnail
-        margin-right 0.5em
+        margin-right 0.4em
 
         .cdx-icon svg
           fill $secondary-blue
+          width 14px
+          height 14px
 
       // Label text
       .cdx-menu-item__text__label
         color $lighter
+        font-size 0.9em
 
     // Footer item (search for full text)
     &.cdx-typeahead-search__search-footer
       border-top 1px solid $border-subtle
       margin-top 0
-      padding-top 0.5em
+      padding-top 0.3em
 
       .cdx-typeahead-search__search-footer__icon .cdx-icon svg
         fill $secondary-blue
+        width 12px
+        height 12px
 
       .cdx-typeahead-search__search-footer__text
         color $lighter
+        font-size 0.85em
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue

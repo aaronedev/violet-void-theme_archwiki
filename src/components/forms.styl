@@ -10,23 +10,24 @@
 
   color white
   border none
-  border-radius $border-radius-md
-  padding 0.5em 1.5em
+  border-radius $border-radius-sm
+  padding 0.4em 1em
   font-weight 600
+  font-size 0.9em
   letter-spacing 0.02em
-  box-shadow 0 2px 4px rgba(0, 0, 0, 0.18)
+  box-shadow 0 1px 3px rgba(0, 0, 0, 0.15)
   transition all $transition-fast
   button-ripple()
 
   cursor pointer
 
   &:hover
-    transform translateY(-2px)
-    box-shadow 0 6px 14px rgba(0, 0, 0, 0.32)
+    transform translateY(-1px)
+    box-shadow 0 4px 10px rgba(0, 0, 0, 0.25)
 
   &:active
     transform translateY(0)
-    box-shadow 0 1px 2px rgba(0, 0, 0, 0.12)
+    box-shadow 0 1px 2px rgba(0, 0, 0, 0.1)
 
 // Text inputs
 input[type="text"],
@@ -38,15 +39,16 @@ textarea,
   background-color $darker
   color $lighter
   border 1px solid $border-subtle
-  border-radius $border-radius-md
-  padding 0.75em 1em
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  font-size 0.9em
   transition all $transition-fast
-  box-shadow inset 0 1px 3px rgba(0, 0, 0, 0.08)
+  box-shadow inset 0 1px 2px rgba(0, 0, 0, 0.06)
   font-family $font-sans
 
   &:focus
     border-color $arch-blue
-    box-shadow inset 0 1px 3px rgba(0, 0, 0, 0.06), $shadow-focus
+    box-shadow inset 0 1px 2px rgba(0, 0, 0, 0.04), $shadow-focus
     outline none
 
 input:disabled,
