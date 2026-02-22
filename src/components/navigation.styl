@@ -321,7 +321,7 @@ header.vector-header
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border 1px solid $border-subtle
   border-radius $border-radius-md
-  padding 0.5em 1em
+  padding 0.4em 0.75em
   box-shadow $shadow-subtle
 
 // List items within the TOC
@@ -333,7 +333,7 @@ header.vector-header
   color $light
   display block
   // FIX: Ensure space for the absolute toggle button on the left
-  padding 0.25em 0.5em 0.25em 2.25em
+  padding 0.1em 0.5em 0.1em 2em
   border-radius $border-radius-sm
   text-decoration none
 
@@ -351,28 +351,35 @@ header.vector-header
 // Text within TOC entries
 .vector-toc .vector-toc-text
   color $lighter
-  padding 0.25em 0
+  padding 0.1em 0
 
 // TOC toggle buttons (expand/collapse arrows)
 .vector-toc .vector-toc-toggle
   // FIX: Position the toggle absolutely to align with text and prevent layout shifts
   position absolute
   left 0.25em
-  top 0.35em
-  background-color $darker
-  border 1px solid $border-subtle
+  top 0.2em
+  background-color transparent
+  border none
   color $light
   border-radius $border-radius-sm
-  min-width 20px
-  min-height 20px
+  min-width 16px
+  min-height 16px
+  width 16px
+  height 16px
   display flex
   align-items center
   justify-content center
   cursor pointer
+  padding 0
 
   &:hover
-    background-color rgba($arch-blue, 0.1)
+    background-color rgba($arch-blue, 0.15)
     color $secondary-blue
+
+  .vector-icon
+    width 12px
+    height 12px
 
 // Icon within toggle buttons
 .vector-toc .vector-toc-toggle .vector-icon
