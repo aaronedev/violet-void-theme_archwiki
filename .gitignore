@@ -3,3 +3,17 @@ dist/
 .DS_Store
 dist
 /dist/main.css
+/.zshrc
+/.bash_profile
+/.bashrc
+/.claude
+/.env
+/.env.\*
+/.gitconfig
+/.gitmodules
+/.idea
+/.mcp.json
+/.profile
+/.ripgreprc
+/.vscode
+/.zprofile
