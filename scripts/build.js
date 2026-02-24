@@ -10,8 +10,10 @@ const outputFile = path.join(__dirname, '../dist/main.css')
 const distDir = path.dirname(outputFile)
 const pkgFile = path.join(__dirname, '../package.json')
 
-const isTruthy = (value) => ['1', 'true', 'yes'].includes(String(value).toLowerCase())
-const autoCommitEnabled = !isTruthy(process.env.SKIP_GIT_COMMIT) && !isTruthy(process.env.CI)
+const isTruthy = (value) =>
+  ['1', 'true', 'yes'].includes(String(value).toLowerCase())
+const autoCommitEnabled =
+  !isTruthy(process.env.SKIP_GIT_COMMIT) && !isTruthy(process.env.CI)
 const runGitHooks = isTruthy(process.env.RUN_GIT_HOOKS)
 
 const tryAddFile = (filePath, { forceIfIgnored = false } = {}) => {
@@ -31,8 +33,13 @@ const tryAddFile = (filePath, { forceIfIgnored = false } = {}) => {
         console.log(`Added ignored file: ${filePath}`)
         return true
       } catch (forceError) {
-        const message = forceError && forceError.message ? forceError.message : String(forceError)
-        console.log(`Skipping auto-commit: unable to add ${filePath} (${message})`)
+        const message =
+          forceError && forceError.message
+            ? forceError.message
+            : String(forceError)
+        console.log(
+          `Skipping auto-commit: unable to add ${filePath} (${message})`
+        )
         return false
       }
     }
@@ -55,7 +62,9 @@ const tryAutoCommit = (newVersion) => {
     return
   }
 
-  const staged = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim()
+  const staged = execSync('git diff --cached --name-only', {
+    encoding: 'utf8',
+  }).trim()
   if (staged) {
     console.log('Skipping auto-commit: staged changes present')
     return
@@ -87,7 +96,9 @@ const tryAutoCommit = (newVersion) => {
   tryAddFile('package.json')
   tryAddFile('dist/main.css', { forceIfIgnored: true })
 
-  const stagedAfterAdd = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim()
+  const stagedAfterAdd = execSync('git diff --cached --name-only', {
+    encoding: 'utf8',
+  }).trim()
   if (!stagedAfterAdd) {
     console.log('Skipping auto-commit: nothing staged after add')
     return
