@@ -10,7 +10,8 @@
     "url": "https://github.com/aaronedev/violet-void-theme.git"
   },
   "userStyle": {
-    "namespace": "github.com/aaronedev/violet-void-theme"
+    "namespace": "github.com/aaronedev/violet-void-theme",
+    "version": "20260224.02.31"
   },
   "scripts": {
     "build": "node scripts/build.js",
