@@ -24,6 +24,18 @@
     letter-spacing 0.02em
     color $lighter
     padding 0.6em 0.75em
+    vertical-align middle // Better for multi-row headers
+
+    // Nested headers with colspan/rowspan (like WireGuard tables)
+    &[colspan],
+    &[rowspan]
+      text-align center
+      background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+      font-size 0.85em
+
+    // Top-left corner cell with both rowspan and colspan
+    &[rowspan][colspan]
+      background $darker
 
   > tr > th,
   > tr > td,
@@ -36,6 +48,24 @@
     word-break normal
     overflow-wrap normal
     white-space normal
+    vertical-align middle // Better alignment for complex tables
+
+  // Empty cells - prevent collapse
+  td:empty
+    min-width 2em
+
+  // Italic hint text (like "dynamic" in WireGuard tables)
+  td i,
+  td em
+    color $light
+    opacity 0.7
+    font-style italic
+
+  // Code/monospace in table cells (IP addresses, ports, etc.)
+  td code,
+  th code
+    font-size 0.85em
+    padding 0.15em 0.4em
 
   tr:nth-child(even)
     background-color rgba(255, 255, 255, 0.01) // Zebra striping
