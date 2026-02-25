@@ -104,20 +104,21 @@ h2::after
   display inline-flex
   align-items center
   gap 0.35em
-  color $secondary-blue
-  background-color $darker
-  border 1px solid rgba($arch-blue, 0.35)
+  // Match menu panel styling
+  gradient-surface()
+  border 1px solid $border-subtle
+  color $lighter
   border-radius $border-radius-sm
   padding 0.25em 0.6em
   font-size 0.9em
   cursor pointer
-  transition background-color $transition-fast, border-color $transition-fast, color $transition-fast
+  transition all $transition-fast
   focus-ring($arch-blue)
 
   &:hover
-    background-color rgba($arch-blue, 0.12)
-    border-color rgba($arch-blue, 0.6)
-    color $arch-blue
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
 
 .mw-collapsible-content
   margin-top 0.6em

@@ -41,6 +41,10 @@
 .vector-menu-portal .vector-menu-content li
   menu-list-item()
 
+  a
+    line-height 1.5
+    padding 0.2em 0
+
 // Table of contents
 #toc,
 .toc
@@ -70,6 +74,11 @@
     align-items center
     justify-content center
     line-height 1
+    padding 0.3em
+    
+    .vector-icon
+      margin 0
+      vertical-align middle
 
 .tocnumber
   color $secondary-blue
@@ -127,6 +136,10 @@
   .vector-menu-content li
     menu-list-item(true)
 
+    a
+      padding 0.25em 0.5em
+      line-height 1.4
+
 // -----------------------------------------------------------------------------
 // Pinned sidebar menu styling
 // When the main menu is pinned to the sidebar, Vector inserts it into a
@@ -171,6 +184,10 @@
 .vector-pinnable-element .vector-menu-content li
   menu-list-item(true)
 
+  a
+    padding 0.25em 0.5em
+    line-height 1.4
+
 // -----------------------------------------------------------------------------
 // Vector header styling
 // The page header in the Vector skin uses a very dark hue (#050A10) that
@@ -212,6 +229,38 @@ header.vector-header
   align-items center
   justify-content center
   vertical-align middle
+  width 16px
+  height 16px
+  margin 0
+
+// Fix hamburger menu icon alignment
+.vector-header-start .vector-dropdown-label,
+.vector-header .vector-dropdown-label
+  display inline-flex
+  align-items center
+  justify-content center
+  padding 0.25em
+  line-height 1
+  
+  .vector-icon
+    margin 0
+    vertical-align middle
+
+// Fix all icon alignment in buttons and links
+.vector-sticky-header .cdx-button,
+.vector-header a,
+.vector-header button
+  display inline-flex
+  align-items center
+  justify-content center
+  gap 0.3em
+  
+  .vector-icon,
+  .mw-ui-icon,
+  .cdx-icon
+    margin 0
+    vertical-align middle
+    flex-shrink 0
 
 // -----------------------------------------------------------------------------
 // Sticky header styling (appears when scrolling)
@@ -231,16 +280,18 @@ header.vector-header
 // Buttons and icons within the sticky header (search toggle, discussion/history
 // icons, user menu, etc.)
 .vector-sticky-header .cdx-button
-  background-color $darker
+  // Match menu panel styling
+  gradient-surface()
   border 1px solid $border-subtle
-  color $light
+  color $lighter
   border-radius $border-radius-sm
   padding 0.25em 0.5em
   font-size 0.85em
   line-height 1
 
   &:hover
-    background-color rgba($arch-blue, 0.1)
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
     color $secondary-blue
 
 // Search input inside the sticky header
@@ -254,16 +305,18 @@ header.vector-header
 
 // Search submit button inside the sticky header
 #vector-sticky-search-form .cdx-button.cdx-search-input__end-button
-  background-color $arch-blue
-  color $darker
-  border none
+  // Match menu panel styling
+  gradient-surface()
+  color $lighter
+  border 1px solid $border-subtle
   border-radius $border-radius-sm
   padding 0.3em 0.6em
   font-size 0.8em
 
   &:hover
-    background-color lighten($arch-blue, 12%)
-    color $darker
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
 
 // Sticky header table of contents dropdown styling
 .vector-sticky-header-toc .vector-dropdown-content
@@ -293,6 +346,10 @@ header.vector-header
   // Menu items within the sticky TOC dropdown
   .vector-menu-content li
     menu-list-item(true)
+
+    a
+      padding 0.25em 0.5em
+      line-height 1.4
 
 // -----------------------------------------------------------------------------
 // Sticky table of contents and context bar enhancements
@@ -326,16 +383,18 @@ header.vector-header
 
 // Links inside the TOC
 .vector-toc .vector-toc-link
-  color $light
+  color $lighter
   display block
   // FIX: Ensure space for the absolute toggle button on the left
-  padding 0.1em 0.5em 0.1em 2em
+  padding 0.15em 0.5em 0.15em 2em
   border-radius $border-radius-sm
   text-decoration none
+  line-height 1.4
 
   &:hover
-    background-color rgba($arch-blue, 0.1)
-    color $secondary-blue
+    background-color rgba($arch-blue, 0.15)
+    color white
+    font-weight 500
 
 // Highlight active section links in the TOC
 .vector-toc .vector-toc-list-item-active > .vector-toc-link,
@@ -354,33 +413,38 @@ header.vector-header
 // negative translation to achieve perfect centering regardless of line height.
 .vector-toc .vector-toc-toggle
   position absolute
-  // leave a little more horizontal space so the toggle sits flush with the
-  // numbered bullets; increasing the left offset centres the icon better
   left 0.5em
   top 50%
   transform translateY(-50%)
-  background-color $darker
+  // Match menu panel styling
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
   border 1px solid $border-subtle
-  color $light
+  color $lighter
   border-radius $border-radius-sm
-  min-width 16px
-  min-height 16px
-  width 16px
-  height 16px
+  min-width 18px
+  min-height 18px
+  width 18px
+  height 18px
   display flex
   align-items center
   justify-content center
   cursor pointer
   padding 0
+  margin 0
+  flex-shrink 0
 
   &:hover
-    background-color rgba($arch-blue, 0.15)
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
     color $secondary-blue
 
   .vector-icon
     width 12px
     height 12px
-    fill $light
+    fill $lighter
+    margin 0
+    vertical-align middle
+    flex-shrink 0
 
 // -----------------------------------------------------------------------------
 // Site-wide search box and autocomplete results styling
@@ -449,20 +513,29 @@ header.vector-header
   outline none
 
 // Start icon inside the search input (magnifying glass)
-.cdx-text-input__icon-vue.cdx-text-input__start-icon svg
-  fill $secondary-blue
+.cdx-text-input__icon-vue.cdx-text-input__start-icon
+  display flex
+  align-items center
+  justify-content center
+  flex-shrink 0
+  margin 0
+  padding 0
+  
+  svg
+    fill $secondary-blue
+    // FIX: readable size + consistent alignment
+    width 16px
+    height 16px
+    margin 0
+    vertical-align middle
+    display block
 
-  // FIX: readable size + consistent alignment
-  width 16px
-  height 16px
-  margin-right 0.5em
-  flex 0 0 auto
-
-// Search button at the end of the input
+// Search submit button at the end of the input
 .cdx-search-input__end-button.cdx-button
-  background-color $arch-blue
-  color $darker
-  border none
+  // Match menu panel styling
+  gradient-surface()
+  color $lighter
+  border 1px solid $border-subtle
   border-radius $border-radius-sm
 
   // FIX: compact button, snug next to input
@@ -476,8 +549,9 @@ header.vector-header
   flex 0 0 auto
 
   &:hover
-    background-color lighten($arch-blue, 12%)
-    color $darker
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
 
 // Autocomplete dropdown menu
 .cdx-menu.cdx-typeahead-search__menu
@@ -546,3 +620,50 @@ header.vector-header
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue
+
+// -----------------------------------------------------------------------------
+// Global Icon Alignment Fixes
+// Ensure all icons throughout the theme are properly aligned and sized
+
+// Universal icon alignment
+.vector-icon,
+.mw-ui-icon,
+.oo-ui-iconElement-icon,
+.cdx-icon
+  display inline-flex
+  align-items center
+  justify-content center
+  vertical-align middle
+  flex-shrink 0
+  margin 0
+
+// Fix icons in dropdown menus
+.vector-dropdown-label
+  display inline-flex
+  align-items center
+  justify-content center
+  gap 0.3em
+  
+  .vector-icon,
+  .mw-ui-icon
+    margin 0
+
+// Fix icons in menu items
+.vector-menu-content li a,
+.vector-toc-link
+  display flex
+  align-items center
+  gap 0.3em
+  
+  .vector-icon
+    margin 0
+    flex-shrink 0
+
+// Ensure consistent icon sizing
+.vector-icon svg,
+.mw-ui-icon svg,
+.oo-ui-iconElement-icon svg,
+.cdx-icon svg
+  display block
+  margin 0
+  vertical-align middle

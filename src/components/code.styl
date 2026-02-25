@@ -172,9 +172,10 @@ for selector, index in copy-button-selectors
   top 0.5em !important
   right 0.5em !important
   z-index 10 !important
-  background rgba(0,0,0,0.3) !important
-  border 1px solid rgba(255,255,255,0.2) !important
-  color white !important
+  // Match menu panel styling
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06)) !important
+  border 1px solid $border-subtle !important
+  color $lighter !important
   padding 0.2em 0.6em !important
   border-radius $border-radius-sm !important
   font-size 0.8em !important
@@ -182,8 +183,9 @@ for selector, index in copy-button-selectors
   transition all $transition-fast !important
 
   &:hover
-    background $arch-blue !important
-    border-color $secondary-blue !important
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12)) !important
+    border-color rgba($arch-blue, 0.3) !important
+    color $secondary-blue !important
 
 // Ensure toolbars are visible if they wrap the button
 #content .code-toolbar,

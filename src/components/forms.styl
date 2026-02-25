@@ -3,31 +3,32 @@
 @import '../mixins/gradients'
 @import '../mixins/effects'
 
-// Buttons
+// Buttons - match menu panel styling
 .mw-ui-button,
 .oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button
-  gradient-button()
-
-  color white
-  border none
-  border-radius $border-radius-sm
+  gradient-surface()
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
   padding 0.4em 1em
   font-weight 600
   font-size 0.9em
   letter-spacing 0.02em
-  box-shadow 0 1px 3px rgba(0, 0, 0, 0.15)
+  box-shadow $shadow-subtle
   transition all $transition-fast
-  button-ripple()
-
   cursor pointer
 
   &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
     transform translateY(-1px)
-    box-shadow 0 4px 10px rgba(0, 0, 0, 0.25)
+    box-shadow $shadow-elevated
 
   &:active
     transform translateY(0)
-    box-shadow 0 1px 2px rgba(0, 0, 0, 0.1)
+    box-shadow $shadow-subtle
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
 
 // Text inputs
 input[type="text"],
