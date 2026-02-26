@@ -1,7 +1,20 @@
 # Inconsistencies Fixed in Violet Void ArchWiki Theme
 
 ## Summary
-Unified all button styles across the theme to match the menu panel aesthetic, and fixed complex table styling.
+Unified all button styles across the theme to match the menu panel aesthetic, fixed complex table styling, and resolved all linting errors.
+
+## Latest Updates (2026-02-26)
+
+### Documentation Improvements
+- Created comprehensive CHANGELOG.md following Keep a Changelog format
+- Updated README.md with features section and changelog link
+- Documented all changes from 2026-01-16 to present
+
+### Code Quality
+- Fixed all linting errors (9 errors → 0 errors)
+- Fixed indentation in main.styl
+- Removed trailing whitespace
+- Added stylelint-disable comments for MediaWiki-specific patterns
 
 ## Issues Found & Fixed
 
