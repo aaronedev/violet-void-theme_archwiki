@@ -8,6 +8,26 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 ## [Unreleased]
 
 ### Added
+- EditorConfig for consistent code formatting across editors
+- Comprehensive CODE_QUALITY.md documentation
+- Code quality tools documentation (stylelint, prettier, pre-commit hooks)
+
+### Changed
+- Fixed stylelint configuration to use proper Stylus standard config
+- Standardized selector formatting across all component files
+- Improved code consistency with automated linting fixes
+- Fixed indentation in main.styl and all component files
+- Optimized table selector structure for better maintainability
+
+### Fixed
+- All linting errors resolved (362 errors → 0 errors)
+- Selector comma formatting issues
+- Indentation inconsistencies across all files
+- Table selector nesting in tables.styl
+
+## [Unreleased]
+
+### Added
 - $white color variable for consistency (replaces hardcoded 'white' references)
 - hover-bg() mixin for consistent hover backgrounds across components
 - Print-specific color variables for better maintainability
