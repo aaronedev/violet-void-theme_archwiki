@@ -13,6 +13,18 @@ Complete reference of all styled components and their locations.
 ### Forms & Input
 - **forms.styl** - Basic buttons, inputs, dropdowns
 - **forms-enhanced.styl** - Validation, toggle switches, tags input, autocomplete
+- **ooui-enhanced.styl** - Comprehensive MediaWiki OOUI component library
+  - Buttons (primary, destructive, disabled)
+  - Checkboxes & radios
+  - Toggle switches
+  - Dropdowns
+  - Text inputs
+  - Dialogs & modals
+  - Popup menus
+  - Toolbars
+  - Progress bars
+  - Tabs
+  - Field layouts
 
 ### Tables & Data
 - **tables.styl** - Wiki tables, infoboxes, rowspan/colspan support
@@ -22,6 +34,14 @@ Complete reference of all styled components and their locations.
 
 ### Site-Specific
 - **forums.styl** - bbs.archlinux.org (FluxBB) styling
+- **gitlab.styl** - gitlab.archlinux.org (GitLab) styling
+- **aur-enhanced.styl** - aur.archlinux.org (AUR) comprehensive styling
+  - Package listings and search
+  - Package details and metadata
+  - Package actions (vote, flag)
+  - Dependencies and files
+  - Comments
+  - User accounts
 
 ### UI Components
 - **ui-components.styl** - Checkboxes, radios, badges, alerts, modals, etc.
@@ -34,6 +54,12 @@ Complete reference of all styled components and their locations.
 ### Utilities
 - **utilities.styl** - Animations, utility classes, state indicators
 - **responsive-enhanced.styl** - Accessibility, responsive design, print styles
+- **print-enhanced.styl** - Enhanced print styles for all Arch Linux sites
+  - Print-optimized layouts
+  - Typography for print
+  - URL display for links
+  - Page breaks and margins
+  - Site-specific optimizations
 - **optimizations.styl** - Performance, RTL support, browser compatibility
 
 ## Recent Improvements (2026-02-26)

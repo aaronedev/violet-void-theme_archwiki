@@ -8,6 +8,43 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 ## [Unreleased]
 
 ### Added
+- **Enhanced OOUI Component Styling** (ooui-enhanced.styl)
+  - Comprehensive styling for all MediaWiki OOUI widgets
+  - Enhanced button styles (primary, destructive, disabled states)
+  - Custom checkboxes and radio buttons with proper focus states
+  - Toggle switches with smooth animations
+  - Enhanced dropdowns with hover effects and selected states
+  - Text inputs with icons and validation states
+  - Dialogs and modals with proper styling
+  - Popup menus and toolbars
+  - Progress bars (determinate and indeterminate)
+  - Tab select widgets (framed and unframed)
+  - Field layouts with error/success messages
+  - Draggable elements for drag-and-drop interfaces
+  
+- **Enhanced AUR Styling** (aur-enhanced.styl)
+  - Complete package listing styling
+  - Package details page with metadata tables
+  - Package actions (vote, unvote, flag)
+  - Dependencies and file lists
+  - Comments section styling
+  - Search form enhancements
+  - User account pages
+  - Statistics and notifications
+  
+- **Enhanced Print Styles** (print-enhanced.styl)
+  - Optimized printing for all Arch Linux sites
+  - White background with black text for readability
+  - Hides unnecessary navigation elements
+  - Shows URLs for external links
+  - Proper page breaks and margins
+  - Optimized typography for print
+  - Code blocks with proper formatting
+  - Tables with borders
+  - Table of contents for print
+  - Forum and AUR print optimizations
+  - Accessibility improvements for print
+
 - GitLab (gitlab.archlinux.org) styling support
   - Navigation sidebar and top bar styling
   - Project/group headers and lists

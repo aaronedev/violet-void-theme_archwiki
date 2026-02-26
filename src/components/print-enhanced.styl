@@ -1,0 +1,347 @@
+// Enhanced Print Styles
+// Optimized printing for all Arch Linux sites
+
+@media print
+  // =============================================================================
+  // RESET FOR PRINT
+  // =============================================================================
+
+  // White background
+  *
+    background white !important
+    color black !important
+    box-shadow none !important
+    text-shadow none !important
+
+  // Hide unnecessary elements
+  #archnavbar
+  .mw-sidebar
+  #vector-main-menu
+  .vector-sticky-header
+  .mw-editsection
+  .toctoggle
+  .catlinks
+  #footer
+  .navbox
+  .navigation-box
+  #mw-page-info
+  .mw-indicators
+  .vector-user-links
+  .vector-search-box
+  .oo-ui-toolbar
+  .mw-notification
+  .aur-enhanced
+  .pkgactions
+  .vote-btn
+  .unvote-btn
+  .flag-btn
+    display none !important
+
+  // Show links
+  a
+    color black !important
+    text-decoration underline
+
+    // Show URLs for external links
+    &[href^="http"]:not([href*="archlinux.org"])::after
+      content " (" attr(href) ")"
+      font-size 0.85em
+      color #666 !important
+
+  // =============================================================================
+  // TYPOGRAPHY FOR PRINT
+  // =============================================================================
+
+  body
+    font-family "Georgia", "Times New Roman", serif
+    font-size 12pt
+    line-height 1.6
+    max-width 100%
+
+  h1
+    font-size 24pt
+    page-break-after avoid
+    margin-top 0.5in
+
+  h2
+    font-size 18pt
+    page-break-after avoid
+    margin-top 0.4in
+
+  h3
+    font-size 14pt
+    page-break-after avoid
+
+  h4
+  h5
+  h6
+    font-size 12pt
+    page-break-after avoid
+
+  p
+    orphans 3
+    widows 3
+
+  // =============================================================================
+  // CODE BLOCKS FOR PRINT
+  // =============================================================================
+
+  pre
+  code
+    font-family "Courier New", Courier, monospace
+    font-size 10pt
+    background #f5f5f5 !important
+    border 1px solid #ddd !important
+    page-break-inside avoid
+    overflow-wrap break-word
+    white-space pre-wrap
+
+  // =============================================================================
+  // TABLES FOR PRINT
+  // =============================================================================
+
+  table
+    border-collapse collapse
+    page-break-inside avoid
+
+  th
+    background #f0f0f0 !important
+    font-weight bold
+    border 1px solid #ccc !important
+
+  td
+    border 1px solid #ccc !important
+
+  // Complex table headers
+  th[colspan]
+  th[rowspan]
+    background #e0e0e0 !important
+    text-align center
+
+  // =============================================================================
+  // IMAGES FOR PRINT
+  // =============================================================================
+
+  img
+    max-width 100%
+    page-break-inside avoid
+
+  figure
+    page-break-inside avoid
+
+  // =============================================================================
+  // LINKS FOR PRINT
+  // =============================================================================
+
+  // Show link destinations
+  a[href]::after
+    content " (" attr(href) ")"
+    font-size 0.8em
+    color #666 !important
+
+  // Don't show for anchor links
+  a[href^="#"]::after
+    content none
+
+  // Don't show for repeated links
+  a[href][title]::after
+    content none
+
+  // =============================================================================
+  // TABLE OF CONTENTS FOR PRINT
+  // =============================================================================
+
+  #toc
+  .toc
+    display block !important
+    background white !important
+    border 1px solid #ccc !important
+    padding 0.5em
+    margin 0.5em 0
+
+    .toctitle
+      font-weight bold
+      font-size 14pt
+
+    ul
+      list-style none
+      padding-left 1em
+
+    li
+      margin 0.25em 0
+
+  // =============================================================================
+  // SPECIFIC ARCH WIKI IMPROVEMENTS
+  // =============================================================================
+
+  // Warning/Note/Tip boxes
+  .mw-warning
+  .mw-notice
+  .warningbox
+  .notebox
+    border 1px solid #ccc !important
+    border-left 4px solid #666 !important
+    padding 0.5em
+    margin 0.5em 0
+    page-break-inside avoid
+
+  // Infoboxes
+  .infobox
+    border 1px solid #ccc !important
+    float right
+    width 250px
+    margin 0 0 0.5em 0.5em
+    page-break-inside avoid
+
+  // Message boxes
+  .ambox
+    border 1px solid #ccc !important
+    margin 0.5em 0
+
+  // =============================================================================
+  // FORUM PRINT OPTIMIZATIONS
+  // =============================================================================
+
+  .blockpost
+    border 1px solid #ccc !important
+    margin 1em 0
+    page-break-inside avoid
+
+    .box-head
+      border-bottom 1px solid #ccc !important
+      font-weight bold
+
+  // =============================================================================
+  // AUR PRINT OPTIMIZATIONS
+  // =============================================================================
+
+  #pkgdetails
+    border 1px solid #ccc !important
+    page-break-inside avoid
+
+  .pkgsearch-results
+  table.results
+    border 1px solid #ccc !important
+
+  // =============================================================================
+  // PAGE BREAKS
+  // =============================================================================
+
+  // Avoid page breaks inside these elements
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+  img
+  figure
+  table
+  pre
+    page-break-inside avoid
+
+  // Page break before new sections
+  h2
+    page-break-before auto
+
+  // =============================================================================
+  // MARGINS FOR PRINT
+  // =============================================================================
+
+  @page
+    margin 1in
+    size letter
+
+  // First page
+  @page :first
+    margin-top 1.5in
+
+  // =============================================================================
+  // ACCESSIBILITY FOR PRINT
+  // =============================================================================
+
+  // Increase contrast
+  *
+    -webkit-print-color-adjust exact
+    print-color-adjust exact
+
+  // Ensure text is readable
+  body
+    font-size 12pt
+
+  // Ensure links are distinguishable
+  a
+    text-decoration underline
+
+  // =============================================================================
+  // MINIMAL STYLING FOR PRINT
+  // =============================================================================
+
+  // Remove shadows
+  *
+    box-shadow none !important
+
+  // Remove gradients
+  *
+    background-image none !important
+
+  // Remove animations
+  *
+    animation none !important
+    transition none !important
+
+  // Remove borders except for tables and boxes
+  *
+    border none !important
+
+  table
+  .infobox
+  .mw-warning
+  .mw-notice
+  .warningbox
+  .notebox
+  .ambox
+  pre
+  code
+    border 1px solid #ccc !important
+
+  // =============================================================================
+  // SPECIAL PAGES PRINT OPTIMIZATION
+  // =============================================================================
+
+  // History pages
+  #pagehistory
+    list-style none
+    padding 0
+
+    li
+      border-bottom 1px solid #ccc !important
+      padding 0.5em
+
+  // Diff view
+  table.diff
+    border 1px solid #ccc !important
+
+    td
+      border 1px solid #ccc !important
+      padding 0.5em
+
+    td.diff-deletedline
+      background #ffe0e0 !important
+
+    td.diff-addedline
+      background #e0ffe0 !important
+
+  // =============================================================================
+  // CATEGORIES PRINT
+  // =============================================================================
+
+  .catlinks
+    display block !important
+    border-top 1px solid #ccc !important
+    padding-top 0.5em
+    margin-top 1em
+
+    a
+      display inline-block
+      margin-right 0.5em

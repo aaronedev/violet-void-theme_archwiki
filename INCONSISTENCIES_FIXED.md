@@ -5,6 +5,51 @@ Unified all button styles across the theme to match the menu panel aesthetic, fi
 
 ## Latest Updates (2026-02-26)
 
+### New Component Files Added
+Three new comprehensive component files for enhanced coverage:
+- **ooui-enhanced.styl** (15,737 bytes) - Complete MediaWiki OOUI library styling
+- **aur-enhanced.styl** (11,802 bytes) - Full AUR site styling
+- **print-enhanced.styl** (7,919 bytes) - Enhanced print styles
+
+### OOUI Component Library
+Added comprehensive styling for all MediaWiki OOUI widgets:
+- **Buttons**: Primary, destructive, and disabled states with proper gradients
+- **Form Controls**: Checkboxes, radios, toggle switches with custom styling
+- **Inputs**: Text inputs with icons, validation states, and proper focus rings
+- **Dropdowns**: Enhanced with hover effects and selected state indicators
+- **Dialogs**: Modals with proper header/body/footer structure
+- **Menus**: Popup menus with hover and selection states
+- **Toolbars**: Action toolbars with grouped tools
+- **Progress Bars**: Determinate and indeterminate with animations
+- **Tabs**: Framed and unframed tab widgets
+- **Field Layouts**: Form fields with error/success messages
+- **Drag & Drop**: Draggable elements with visual feedback
+
+### AUR Site Improvements
+Complete styling overhaul for aur.archlinux.org:
+- **Package Listings**: Enhanced search results with hover effects
+- **Package Details**: Metadata tables with proper styling
+- **Package Actions**: Vote/unvote/flag buttons with clear visual states
+- **Dependencies**: Styled dependency lists with type labels
+- **File Lists**: Monospace font with scrolling for long lists
+- **Comments**: Thread styling with author and date metadata
+- **Search Forms**: Enhanced with proper focus states
+- **User Accounts**: Profile and account page styling
+- **Statistics**: Stats boxes with table formatting
+- **Notifications**: Success/error message styling
+
+### Print Optimization
+Enhanced print styles for better hardcopy output:
+- **Layout**: White background, black text, proper margins
+- **Hidden Elements**: Navigation, sidebars, actions hidden
+- **Link URLs**: External links show URLs after text
+- **Typography**: Optimized fonts and sizes for print
+- **Code Blocks**: Proper formatting with borders
+- **Tables**: Borders and headers for clarity
+- **Page Breaks**: Intelligent break avoidance
+- **Site-Specific**: Optimizations for forums and AUR
+- **Accessibility**: High contrast and readable fonts
+
 ### Accessibility Improvements
 - Replaced `:focus` with `:focus-visible` across all form controls
   - Checkboxes, radios, and selects now use `:focus-visible`

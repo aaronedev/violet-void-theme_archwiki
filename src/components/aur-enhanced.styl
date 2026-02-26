@@ -1,0 +1,532 @@
+// AUR (Arch User Repository) Enhanced Styling
+// Complete styling for aur.archlinux.org
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// AUR LAYOUT
+// =============================================================================
+
+// Main container
+#archdev-navbar
+#content
+  background-color $base
+  color $light
+
+// =============================================================================
+// PACKAGE LISTINGS
+// =============================================================================
+
+// Package search results table
+.pkgsearch-results
+table.results
+  background-color $base
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+  width 100%
+
+  thead
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+
+    th
+      color $lighter
+      font-weight 600
+      padding 0.75em 1em
+      text-align left
+      border-bottom 1px solid $border-subtle
+
+  tbody tr
+    border-bottom 1px solid $border-subtle
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.05)
+
+    &:last-child
+      border-bottom none
+
+    td
+      padding 0.75em 1em
+      color $light
+
+      a
+        color $secondary-blue
+        text-decoration none
+
+        &:hover
+          color $white
+
+// Package name column
+.pkg-name
+  font-weight 600
+  font-size 1em
+
+// Package votes
+.pkg-votes
+  color $arch-blue
+  font-weight 600
+
+// Package popularity
+.pkg-popularity
+  color $light
+  font-size 0.9em
+
+// Out of date flag
+.flagged
+  color $secondary-red
+  font-weight 600
+
+// =============================================================================
+// PACKAGE DETAILS PAGE
+// =============================================================================
+
+// Package info box
+.pkginfo
+#pkgdetails
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  h2
+    color $lighter
+    border-bottom 2px solid $secondary-blue
+    padding-bottom 0.5em
+    margin-bottom 1em
+
+// Package metadata table
+.pkginfo-details
+table
+  width 100%
+
+  tr
+    border-bottom 1px solid $border-subtle
+
+    &:last-child
+      border-bottom none
+
+  th
+    color $lighter
+    font-weight 600
+    text-align right
+    padding 0.5em 1em 0.5em 0
+    width 30%
+
+  td
+    color $light
+    padding 0.5em 0 0.5em 1em
+
+    a
+      color $secondary-blue
+
+      &:hover
+        color $white
+
+// Package description
+.pkgdescription
+  color $light
+  font-size 1em
+  line-height 1.6
+  margin 1em 0
+
+// =============================================================================
+// PACKAGE ACTIONS
+// =============================================================================
+
+// Action buttons box
+.pkgactions
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  h3
+    color $lighter
+    font-size 0.95em
+    margin-bottom 0.75em
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      margin 0.4em 0
+
+      a
+        display block
+        padding 0.5em 0.75em
+        color $light
+        text-decoration none
+        border-radius $border-radius-sm
+        transition all $transition-fast
+
+        &:hover
+          background-color rgba($arch-blue, 0.15)
+          color $secondary-blue
+          padding-left 1em
+
+// Vote button
+.vote-btn
+  gradient-surface()
+
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.5em 1em
+  font-weight 600
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+// Unvote button
+.unvote-btn
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+  color $secondary-red
+  border 1px solid rgba($secondary-red, 0.3)
+
+  &:hover
+    background linear-gradient(135deg, rgba($secondary-red, 0.25), rgba($secondary-red, 0.15))
+
+// Flag package button
+.flag-btn
+  gradient-surface()
+
+  color $lighter
+  border 1px solid $border-subtle
+
+  &:hover
+    color $orange
+
+// =============================================================================
+// PACKAGE DEPENDENCIES
+// =============================================================================
+
+// Dependencies list
+.deplist
+#pkgdeps
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  h3
+    color $lighter
+    margin-bottom 0.75em
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      display inline-block
+      margin 0.3em 0.6em 0.3em 0
+
+      a
+        color $secondary-blue
+        padding 0.2em 0.5em
+        border-radius $border-radius-sm
+        transition all $transition-fast
+
+        &:hover
+          background-color rgba($arch-blue, 0.15)
+          color $white
+
+// Dependency type labels
+.deptype
+  font-size 0.85em
+  color $light
+  opacity 0.7
+  margin-left 0.3em
+
+// =============================================================================
+// PACKAGE FILES
+// =============================================================================
+
+// File list
+.filelist
+#pkgfilelist
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-family $font-mono
+  font-size 0.9em
+  max-height 400px
+  overflow-y auto
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      color $light
+      padding 0.3em 0
+      border-bottom 1px solid rgba($border-subtle, 0.5)
+
+      &:last-child
+        border-bottom none
+
+// =============================================================================
+// COMMENTS
+// =============================================================================
+
+// Package comments
+#comments
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+
+  h3
+    color $lighter
+    margin-bottom 1em
+
+// Individual comment
+.comment
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 1em
+  margin 1em 0
+
+  .comment-header
+    display flex
+    justify-content space-between
+    align-items center
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+    .comment-author
+      color $secondary-blue
+      font-weight 600
+
+    .comment-date
+      color $light
+      font-size 0.85em
+
+  .comment-body
+    color $light
+    line-height 1.6
+
+  .comment-actions
+    margin-top 0.75em
+    padding-top 0.5em
+    border-top 1px solid $border-subtle
+
+    a
+      color $light
+      font-size 0.9em
+      margin-right 1em
+
+      &:hover
+        color $secondary-blue
+
+// =============================================================================
+// PAGINATION
+// =============================================================================
+
+// AUR pagination
+.pagination
+  display flex
+  gap 0.25em
+  margin 1em 0
+
+  a
+  span
+    padding 0.5em 0.75em
+    color $lighter
+    text-decoration none
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover:not(.current)
+      background-color rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.3)
+      color $white
+
+    &.current
+      background linear-gradient(135deg, $arch-blue, $secondary-blue)
+      color $darker
+      border-color $arch-blue
+      font-weight 600
+
+    &.disabled
+      opacity 0.5
+      cursor not-allowed
+
+// =============================================================================
+// SEARCH FORM
+// =============================================================================
+
+// AUR search form
+#pkg-search
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+
+  input[type="text"]
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+    font-size 1em
+    width 100%
+
+    &:focus-visible
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  select
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 2em 0.5em 0.75em
+    font-size 0.9em
+
+  button[type="submit"]
+    gradient-surface()
+
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em 1.5em
+    font-weight 600
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+// =============================================================================
+// SUBMIT PACKAGE
+// =============================================================================
+
+// Package submission form
+#submit-pkg
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+
+  input
+  textarea
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+    width 100%
+
+    &:focus-visible
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  label
+    display block
+    color $lighter
+    font-weight 600
+    margin-bottom 0.4em
+    margin-top 1em
+
+    &:first-child
+      margin-top 0
+
+// =============================================================================
+// USER ACCOUNT
+// =============================================================================
+
+// User profile
+#my-account
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+
+  h2
+    color $lighter
+    border-bottom 2px solid $secondary-blue
+    padding-bottom 0.5em
+    margin-bottom 1em
+
+// =============================================================================
+// STATISTICS
+// =============================================================================
+
+// Stats box
+#stats
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+
+  h3
+    color $lighter
+    margin-bottom 1em
+
+  table
+    width 100%
+
+    tr
+      border-bottom 1px solid $border-subtle
+
+      &:last-child
+        border-bottom none
+
+    th
+    td
+      padding 0.5em
+      color $light
+
+    th
+      font-weight 600
+      color $lighter
+
+// =============================================================================
+// NOTIFICATIONS
+// =============================================================================
+
+// AUR notifications/messages
+.pkgmsg
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  color $lighter
+
+  &.error
+    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+  &.success
+    background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+    border-color rgba($green, 0.3)
+    color $green
