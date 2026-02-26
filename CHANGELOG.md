@@ -29,6 +29,7 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
   - Updated in ui-components.styl, forms-enhanced.styl, forums.styl, mediawiki-edit.styl, optimizations.styl, and gitlab.styl
   - Toggle switches now use `:focus-visible` for focus ring on slider
   - GitLab form inputs and textareas use `:focus-visible` for better UX
+  - Removed redundant :focus rule in forms.styl, keeping only :focus-visible
 - Removed deprecated `gradient-button()` mixin (use `gradient-surface()` instead)
 - Fixed stylelint configuration to use proper Stylus standard config
 - Standardized selector formatting across all component files
