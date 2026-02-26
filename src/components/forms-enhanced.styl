@@ -218,8 +218,9 @@ select.warning
       transform translateX(24px)
       background-color $darker
 
-  input:focus + .slider
-    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+  input
+    &:focus-visible + .slider
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
 
 // =============================================================================
 // MULTI-SELECT & TAGS

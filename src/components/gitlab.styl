@@ -210,7 +210,7 @@
     padding 0.5em 0.75em
     transition all $transition-fast
 
-    &:focus
+    &:focus-visible
       border-color $arch-blue
       box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
 
@@ -400,7 +400,13 @@ code
   display flex
   gap 0.25em
 
-  li a
+  li
+    a
+      padding 0.5em 0.75em
+      color $lighter
+      text-decoration none
+      border 1px solid $border-subtle
+
   .page-link
     padding 0.5em 0.75em
     color $lighter
@@ -457,7 +463,7 @@ code
     border-radius $border-radius-md
     padding 0.5em 1em
 
-    &:focus
+    &:focus-visible
       border-color $arch-blue
       box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
 
@@ -467,7 +473,12 @@ code
 .wiki
   color $light
 
-  h1, h2, h3, h4, h5, h6
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
     color $lighter
     border-bottom 1px solid $border-subtle
 
