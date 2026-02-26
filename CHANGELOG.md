@@ -8,7 +8,12 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 ## [Unreleased]
 
 ### Added
-- Placeholder for future improvements
+- $white color variable for consistency (replaces hardcoded 'white' references)
+- hover-bg() mixin for consistent hover backgrounds across components
+
+### Changed
+- Refactored all 'color white' references to use $white variable (13 files)
+- Improved code maintainability and consistency
 
 ## [2026.02.26] - 2026-02-26
 
