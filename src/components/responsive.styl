@@ -73,7 +73,7 @@
     background white
     color black
     box-shadow none
-    border 1px solid #cccccc
+    border 1px solid $print-border
 
   a
     color black
@@ -82,12 +82,12 @@
     &[href]::after
       content " (" attr(href) ")"
       font-size 0.8em
-      color #666666
+      color $print-text
 
   pre,
   code
-    border 1px solid #cccccc
-    background #f5f5f5
+    border 1px solid $print-border
+    background $print-bg
 
   .mw-sidebar,
   .vector-header,

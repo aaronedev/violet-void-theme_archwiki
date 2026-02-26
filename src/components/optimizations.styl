@@ -46,14 +46,14 @@
     &[href^="http"]::after
       content " (" attr(href) ")"
       font-size 0.8em
-      color #666666 !important
+      color $print-text !important
 
   // Code blocks
   pre,
   code
-    background #f5f5f5 !important
+    background $print-bg !important
     color black !important
-    border 1px solid #dddddd !important
+    border 1px solid $print-border-light !important
     break-inside avoid
 
   // Tables
@@ -62,7 +62,7 @@
 
   th,
   td
-    border 1px solid #000000 !important
+    border 1px solid $print-black !important
 
   // Prevent orphans and widows
   p,
@@ -148,11 +148,11 @@
   // Use different shades of gray
   .mw-ui-button,
   button
-    background-color #333333 !important
-    color #ffffff !important
+    background-color $print-button-bg !important
+    color $print-white !important
 
   a
-    color #666666 !important
+    color $print-text !important
     text-decoration underline !important
 
 // =============================================================================
