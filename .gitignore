@@ -3,6 +3,11 @@ dist/
 .DS_Store
 dist
 /dist/main.css
+
+# Test artifacts
+screenshots/
+test-results/
+playwright-report/
 /.zshrc
 /.bash_profile
 /.bashrc
