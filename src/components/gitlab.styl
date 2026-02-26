@@ -1,0 +1,528 @@
+// GitLab (gitlab.archlinux.org) styling
+// Since bugs.archlinux.org now redirects to GitLab, we need GitLab support
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// GitLab application layout
+.gl-root
+.layout-wrapper
+.application
+  background-color $base
+  color $light
+
+// Main content area
+.content-wrapper
+.main-content
+  background-color $base
+
+// Navigation sidebar
+.sidebar-wrapper
+.nav-sidebar
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border-right 1px solid $border-subtle
+
+  .sidebar-top-level-items
+    li a
+      color $light
+      border-radius $border-radius-sm
+      transition all $transition-fast
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $lighter
+
+      &.active
+        background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.08))
+        color $secondary-blue
+        border-left 3px solid $secondary-blue
+
+// Top navigation bar
+.header-wrapper
+.navbar
+.top-bar
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border-bottom 1px solid $border-subtle
+
+  .header-logo
+    color $lighter
+
+  .nav-links
+    li a
+      color $light
+
+      &:hover
+        color $secondary-blue
+
+// Breadcrumbs
+.breadcrumbs
+.breadcrumb
+  color $light
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+  .breadcrumb-item-separator
+    color $light
+
+// Project/Group headers
+.project-header
+.group-header
+.detail-page-header
+  background linear-gradient(135deg, $dark, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+
+  .project-title
+  .group-title
+  .title
+    color $lighter
+
+  .description
+    color $light
+
+// Issue/Merge Request lists
+.issues-list
+.merge-requests-list
+.content-list
+  li
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    margin 0.5em 0
+    padding 0.75em
+    transition all $transition-fast
+
+    &:hover
+      background linear-gradient(135deg, $dark, rgba($arch-blue, 0.06))
+      border-color rgba($arch-blue, 0.2)
+
+    .issue-title
+    .merge-request-title
+    .title
+      a
+        color $lighter
+        font-weight 600
+
+        &:hover
+          color $secondary-blue
+
+    .issue-info
+    .merge-request-info
+    .description
+      color $light
+      font-size 0.9em
+
+// Labels
+.gl-label
+.label-link
+  padding 0.2em 0.6em
+  border-radius $border-radius-sm
+  font-size 0.85em
+  font-weight 600
+
+  &.gl-label-scoped
+    background-color rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+// Badges
+.badge
+.gl-badge
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.8em
+  font-weight 600
+
+  &.badge-success
+    background-color rgba($green, 0.2)
+    color $green
+
+  &.badge-warning
+    background-color rgba($orange, 0.2)
+    color $orange
+
+  &.badge-danger
+    background-color rgba($secondary-red, 0.2)
+    color $secondary-red
+
+  &.badge-info
+    background-color rgba($arch-blue, 0.2)
+    color $secondary-blue
+
+// Buttons
+.gl-button
+.btn
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.4em 1em
+  font-weight 600
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+  &.btn-confirm
+  &.btn-primary
+  &.btn-success
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    color $darker
+    border none
+
+    &:hover
+      background linear-gradient(135deg, lighten($arch-blue, 12%), $secondary-blue)
+      color $darker
+
+  &.btn-danger
+  &.btn-remove
+    background linear-gradient(135deg, rgba($secondary-red, 0.2), rgba($secondary-red, 0.1))
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.3)
+
+    &:hover
+      background linear-gradient(135deg, rgba($secondary-red, 0.3), rgba($secondary-red, 0.15))
+
+// Forms
+.gl-form-group
+.form-group
+  label
+    color $lighter
+    font-weight 600
+
+  .form-control
+  input[type="text"]
+  input[type="search"]
+  input[type="email"]
+  input[type="password"]
+  textarea
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+    transition all $transition-fast
+
+    &:focus
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+    &::placeholder
+      color rgba($light, 0.5)
+
+// Dropdowns
+.gl-dropdown
+.dropdown-menu
+  background linear-gradient(135deg, $dark, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+
+  li a
+    color $light
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $secondary-blue
+
+// Tables
+.table
+.gl-table
+  background-color $base
+  border-radius $border-radius-md
+  overflow hidden
+
+  th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+    color $lighter
+    font-weight 600
+    padding 0.75em 1em
+    border-bottom 1px solid $border-subtle
+
+  td
+    padding 0.5em 1em
+    border-bottom 1px solid $border-subtle
+    color $light
+
+  tr:hover td
+    background-color rgba($arch-blue, 0.05)
+
+// Code blocks
+.code
+pre
+.gl-code
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  font-family $font-mono
+  color $lighter
+  overflow-x auto
+
+code
+  background rgba($arch-blue, 0.1)
+  color $secondary-blue
+  padding 0.1em 0.3em
+  border-radius $border-radius-sm
+  font-family $font-mono
+  font-size 0.9em
+
+// File browser
+.file-finder
+.tree-holder
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  .file-row
+    padding 0.5em 1em
+    border-bottom 1px solid $border-subtle
+    transition background-color $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.05)
+
+    .file-name
+      color $lighter
+
+    .commit-message
+      color $light
+      font-size 0.9em
+
+// Commit info
+.commit-header
+.commit-info
+  background linear-gradient(135deg, $dark, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+
+  .commit-title
+    color $lighter
+    font-weight 600
+
+  .commit-description
+    color $light
+    margin-top 0.5em
+
+  .commit-meta
+    color $light
+    font-size 0.9em
+
+// Diff view
+.diff-files
+.diff-content
+  background-color $base
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  .diff-line
+    font-family $font-mono
+    font-size 0.9em
+
+    &.diff-added
+      background-color rgba($green, 0.1)
+
+    &.diff-removed
+      background-color rgba($secondary-red, 0.1)
+
+    .line-numbers
+      color $light
+      background-color $darker
+      padding 0 0.5em
+
+// Issue/MR discussion
+.discussion
+.notes
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 0.5em 0
+
+  .note-header
+    color $lighter
+    font-weight 600
+
+  .note-body
+    color $light
+    margin-top 0.5em
+
+  .note-author
+    color $secondary-blue
+
+// Activity feed
+.activity-feed
+  li
+    padding 0.75em
+    border-bottom 1px solid $border-subtle
+
+    &:hover
+      background-color rgba($arch-blue, 0.03)
+
+    .activity-title
+      color $lighter
+
+    .activity-time
+      color $light
+      font-size 0.85em
+
+// User profile
+.user-profile
+.profile-header
+  background linear-gradient(135deg, $dark, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+
+  .user-name
+    color $lighter
+    font-size 1.3em
+    font-weight 600
+
+  .user-username
+    color $secondary-blue
+
+  .user-bio
+    color $light
+    margin-top 0.5em
+
+// Pagination
+.gl-pagination
+.pagination
+  display flex
+  gap 0.25em
+
+  li a
+  .page-link
+    padding 0.5em 0.75em
+    color $lighter
+    text-decoration none
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.3)
+      color $white
+
+  .active a
+  .active .page-link
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    color $darker
+    border-color $arch-blue
+
+  .disabled a
+    opacity 0.5
+    cursor not-allowed
+
+// Flash messages
+.flash-notice
+.flash-alert
+.flash-success
+  padding 1em 1.5em
+  border-radius $border-radius-md
+  margin 1em 0
+
+  &.flash-notice
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
+    border-left 4px solid $secondary-blue
+    color $lighter
+
+  &.flash-alert
+    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    border-left 4px solid $secondary-red
+    color $lighter
+
+  &.flash-success
+    background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+    border-left 4px solid $green
+    color $lighter
+
+// Search
+.search
+.search-form
+  input[type="search"]
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em 1em
+
+    &:focus
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+// Markdown rendered content
+.md
+.markdown-body
+.wiki
+  color $light
+
+  h1, h2, h3, h4, h5, h6
+    color $lighter
+    border-bottom 1px solid $border-subtle
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+  code
+    background rgba($arch-blue, 0.1)
+    color $secondary-blue
+    padding 0.1em 0.3em
+    border-radius $border-radius-sm
+
+  pre
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+
+  blockquote
+    border-left 4px solid $secondary-blue
+    background rgba($arch-blue, 0.05)
+    padding 0.75em 1em
+    color $light
+
+  table
+    th
+      background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+      color $lighter
+
+    td
+      border 1px solid $border-subtle
+
+  img
+    border-radius $border-radius-sm
+    max-width 100%
+
+// Tabs
+.gl-tabs
+.nav-links
+  border-bottom 2px solid $border-subtle
+
+  li a
+    color $light
+    padding 0.5em 1em
+    border-bottom 2px solid transparent
+    margin-bottom -2px
+    transition all $transition-fast
+
+    &:hover
+      color $secondary-blue
+      background-color rgba($arch-blue, 0.05)
+
+    &.active
+      color $secondary-blue
+      border-bottom-color $secondary-blue
