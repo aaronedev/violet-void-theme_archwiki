@@ -1,0 +1,175 @@
+# Changelog
+
+All notable changes to violet-void-theme_archwiki will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to date-based versioning (YYYY.MM.DD).
+
+## [Unreleased]
+
+### Added
+- Placeholder for future improvements
+
+## [2026.02.26] - 2026-02-26
+
+### Added
+- MediaWiki edit interface styling (complete coverage)
+  - Edit forms and toolbars
+  - Preview and diff views
+  - Login/create account forms
+  - User preferences
+  - Upload interface
+  - Page history
+  - Protection/delete interfaces
+  - Move/rename page
+  - Contributions and watchlist
+  - Recent changes
+  - Admin tools (userrights, block)
+  - Notifications and success messages
+- Performance optimizations component
+  - Print optimizations
+  - High contrast mode support
+  - Dark mode system preference handling
+  - Monochrome display support
+  - Reduced data mode
+  - Animation performance improvements
+  - CSS containment
+  - Scrolling performance
+  - Text rendering optimization
+  - Grid/flexbox fallbacks
+  - Legacy browser support
+  - Screen reader improvements
+  - RTL support
+  - Loading states
+  - Error states
+  - Custom scrollbar styling
+- Comprehensive UI components library
+  - Checkboxes, radios, selects
+  - File inputs
+  - Color inputs
+  - Range sliders
+  - Progress bars
+  - Badges and tags
+  - Alerts
+  - Modals and dialogs
+  - Tooltips
+  - Tabs
+  - Pagination
+  - Breadcrumbs
+  - Spinners and loading states
+- Forum styling for bbs.archlinux.org (FluxBB)
+  - Posts and threads
+  - Code blocks and quotes
+  - User profiles
+  - Navigation
+- Enhanced accessibility features
+  - `:focus-visible` support for all buttons and inputs
+  - Improved keyboard navigation
+  - Screen reader optimizations
+  - Reduced motion support
+
+### Changed
+- Refactored code for improved quality and consistency
+- Unified all button styles with menu panel aesthetic
+  - Changed from bright purple gradient to subtle dark gradient
+  - Updated hover states to use consistent blue tint
+  - Matched border styling across all button types
+- Improved menu readability
+  - Increased text brightness (#bfbfbf → #e7e7e7)
+  - Lightened background colors
+  - Increased font sizes (0.9em → 0.95em)
+  - Better spacing and line height
+  - Enhanced hover feedback
+- Fixed icon alignment throughout theme
+  - Global icon alignment rules using flexbox
+  - Header icons (hamburger menu, search)
+  - TOC toggle arrows
+  - Page title icons
+  - Dropdown and menu icons
+- Code formatting and linting improvements
+
+### Fixed
+- Complex table header styling (rowspan/colspan support)
+- Button consistency issues across components
+- Menu text contrast problems
+- Icon alignment bugs
+- Search button styling
+- Collapsible toggle styling
+- Copy button styling in code blocks
+- Build process issues
+
+## [2026.02.25] - 2026-02-25
+
+### Added
+- Responsive enhancements
+  - Accessibility improvements
+  - Better mobile support
+  - Print styles
+- Additional UI components
+
+### Changed
+- Code formatting improvements
+- Linting fixes
+
+### Fixed
+- Table styling issues
+- Navigation alignment
+- Button styling inconsistencies
+
+## [2026.02.24] - 2026-02-24
+
+### Added
+- Complex table support
+  - Rowspan and colspan header styling
+  - Empty cell styling
+  - Italic hint text styling
+  - Vertical alignment improvements
+
+### Changed
+- Unified button styles to match menu panels
+- Improved menu readability
+- Enhanced icon alignment
+
+### Fixed
+- Table header styling
+- Menu contrast issues
+- Icon positioning
+
+## [2026.02.22] - 2026-02-22
+
+### Added
+- Accessibility features
+  - Reduced motion support
+  - High contrast mode
+  - Screen reader optimizations
+- Print styles
+- Responsive design improvements
+
+### Changed
+- Code cleanup and refactoring
+- Improved color consistency
+- Better component organization
+
+### Fixed
+- Alignment issues across components
+- Density improvements
+- Navigation spacing
+
+## [2026.01.16] - 2026-01-16
+
+### Fixed
+- Navigation alignment issues
+
+## Initial Release
+
+### Added
+- Base violet-void color palette
+- Core component styles
+- ArchWiki-specific styling
+- AUR support
+- Basic responsive design
+- Syntax highlighting for code blocks
+- Table styling
+- Form elements
+- Navigation components
+- Message boxes and alerts

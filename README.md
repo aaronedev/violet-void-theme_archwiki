@@ -11,6 +11,21 @@ This theme replaces the default ArchWiki appearance with a dark, violet-themed i
 - Customized syntax highlighting for code blocks.
 - Modernized UI elements (buttons, inputs, tables).
 - Responsive design adjustments.
+- Accessibility features (focus indicators, reduced motion support).
+- Comprehensive coverage across all Arch Linux sites.
+
+## Features
+
+- **Full Arch Linux Ecosystem Support**: Works on wiki.archlinux.org, bbs.archlinux.org, aur.archlinux.org, and more
+- **Accessibility First**: Proper focus indicators, reduced motion support, screen reader optimizations
+- **Responsive Design**: Adapts to all screen sizes from desktop to mobile
+- **Print-Friendly**: Optimized print styles for paper and PDF exports
+- **Performance Optimized**: Minimal CSS footprint with efficient selectors
+- **Regular Updates**: Actively maintained with continuous improvements
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for a complete history of changes.
 
 ## Installation
 
