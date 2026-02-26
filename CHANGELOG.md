@@ -10,10 +10,22 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 ### Added
 - $white color variable for consistency (replaces hardcoded 'white' references)
 - hover-bg() mixin for consistent hover backgrounds across components
+- Print-specific color variables for better maintainability
+  - $print-border (#cccccc)
+  - $print-border-light (#dddddd)
+  - $print-bg (#f5f5f5)
+  - $print-text (#666666)
+  - $print-black (#000000)
+  - $print-button-bg (#333333)
+  - $print-white (#ffffff)
 
 ### Changed
 - Refactored all 'color white' references to use $white variable (13 files)
 - Improved code maintainability and consistency
+- Replaced hardcoded hex colors in print styles with variables
+  - responsive-enhanced.styl
+  - responsive.styl
+  - optimizations.styl
 
 ## [2026.02.26] - 2026-02-26
 
