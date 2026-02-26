@@ -4,8 +4,8 @@
 @import '../mixins/effects'
 
 // Buttons - match menu panel styling
-.mw-ui-button,
-.oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button,
+.mw-ui-button
+.oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button
 .cdx-button
   gradient-surface()
 
@@ -36,14 +36,14 @@
     focus-ring()
 
 // Text inputs
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="password"],
-input[type="url"],
-input[type="number"],
-input[type="tel"],
-textarea,
+input[type="text"]
+input[type="search"]
+input[type="email"]
+input[type="password"]
+input[type="url"]
+input[type="number"]
+input[type="tel"]
+textarea
 .oo-ui-textinputwidget .oo-ui-inputwidget-input
   background-color $darker
   color $lighter
@@ -66,11 +66,11 @@ textarea,
   &::placeholder
     color rgba($light, 0.5)
 
-input:disabled,
-input:read-only,
-textarea:disabled,
-textarea:read-only,
-select:disabled,
+input:disabled
+input:read-only
+textarea:disabled
+textarea:read-only
+select:disabled
 button:disabled
   background-color $dark
   color $light
@@ -92,10 +92,10 @@ button:disabled
     box-shadow 0 2px 4px rgba(0, 0, 0, 0.06)
 
 // Universal smooth transitions
-a,
-button,
-input,
-textarea,
-select,
+a
+button
+input
+textarea
+select
 .oo-ui-widget
   transition all $transition-fast

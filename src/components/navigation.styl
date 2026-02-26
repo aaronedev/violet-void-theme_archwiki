@@ -18,7 +18,7 @@
 
 // Global main menu (Vector menu shown when the hamburger button is opened)
 // This styles the left-hand site navigation so it fits the dark, violet-toned header.
-#vector-main-menu,
+#vector-main-menu
 .vector-main-menu
   // Subtle gradient from the base colour towards a hint of Arch blue
   menu-panel()
@@ -46,7 +46,7 @@
     padding 0.2em 0
 
 // Table of contents
-#toc,
+#toc
 .toc
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border 1px solid $border-subtle
@@ -114,11 +114,11 @@
   // as deeper nested containers used by Vector’s layout (like
   // `.vector-main-menu`, `.vector-unpinned-container`, `.mw-portlet` and the
   // pinnable header bar).
-  > *,
-  .vector-main-menu,
-  .vector-unpinned-container,
-  .mw-portlet,
-  .vector-pinnable-header,
+  > *
+  .vector-main-menu
+  .vector-unpinned-container
+  .mw-portlet
+  .vector-pinnable-header
   .vector-menu-content
     background-color transparent
     border 0
@@ -164,9 +164,9 @@
   display none
 
 // Remove default backgrounds from nested elements inside pinned menus
-.vector-pinnable-element,
-.vector-pinnable-element .vector-menu-content,
-.vector-pinnable-element .mw-portlet,
+.vector-pinnable-element
+.vector-pinnable-element .vector-menu-content
+.vector-pinnable-element .mw-portlet
 .vector-pinnable-header
   background-color transparent
   border 0
@@ -196,10 +196,10 @@
 // other components.  Only key structural elements are targeted to avoid
 // unintended overrides.
 
-.vector-header-container,
-.vector-header,
-.vector-header-start,
-.vector-header-end,
+.vector-header-container
+.vector-header
+.vector-header-start
+.vector-header-end
 header.vector-header
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border-bottom 1px solid $border-subtle
@@ -209,7 +209,7 @@ header.vector-header
 // link styling (content.styl) and it visually cuts through icons (bell, etc.).
 // Kill that underline ONLY in the header area (keep it everywhere else).
 
-.vector-header a,
+.vector-header a
 .vector-header a:visited
   // Disable gradient-underline background used by the global link styling
   background-image none !important
@@ -223,7 +223,7 @@ header.vector-header
     text-decoration none !important
 
 // Make header icons immune to text-decoration metrics and center them properly
-.vector-header .vector-icon,
+.vector-header .vector-icon
 .vector-header .mw-ui-icon
   display inline-flex
   align-items center
@@ -234,7 +234,7 @@ header.vector-header
   margin 0
 
 // Fix hamburger menu icon alignment
-.vector-header-start .vector-dropdown-label,
+.vector-header-start .vector-dropdown-label
 .vector-header .vector-dropdown-label
   display inline-flex
   align-items center
@@ -247,16 +247,16 @@ header.vector-header
     vertical-align middle
 
 // Fix all icon alignment in buttons and links
-.vector-sticky-header .cdx-button,
-.vector-header a,
+.vector-sticky-header .cdx-button
+.vector-header a
 .vector-header button
   display inline-flex
   align-items center
   justify-content center
   gap 0.3em
 
-  .vector-icon,
-  .mw-ui-icon,
+  .vector-icon
+  .mw-ui-icon
   .cdx-icon
     margin 0
     vertical-align middle
@@ -271,7 +271,7 @@ header.vector-header
 // sticky table‑of‑contents dropdown.
 
 // Header container and inner wrapper
-.vector-sticky-header-container,
+.vector-sticky-header-container
 .vector-sticky-header
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border-bottom 1px solid $border-subtle
@@ -296,7 +296,7 @@ header.vector-header
     color $secondary-blue
 
 // Search input inside the sticky header
-#vector-sticky-search-form .cdx-search-input__input-wrapper input,
+#vector-sticky-search-form .cdx-search-input__input-wrapper input
 #vector-sticky-search-form .cdx-text-input__input
   background-color $darker
   color $lighter
@@ -327,11 +327,11 @@ header.vector-header
   width max-content
 
   // Transparent backgrounds for nested elements
-  > *,
-  .vector-pinnable-element,
-  .vector-unpinned-container,
-  .mw-portlet,
-  .vector-pinnable-header,
+  > *
+  .vector-pinnable-element
+  .vector-unpinned-container
+  .mw-portlet
+  .vector-pinnable-header
   .vector-menu-content
     background-color transparent
     border 0
@@ -371,7 +371,7 @@ header.vector-header
 
 // General styling for table of contents lists (applies to sticky TOC and
 // pinned/inline TOC).  Provide a dark background and consistent padding.
-.vector-toc,
+.vector-toc
 .vector-sticky-header-toc .vector-toc
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border 1px solid $border-subtle
@@ -399,8 +399,8 @@ header.vector-header
     font-weight 500
 
 // Highlight active section links in the TOC
-.vector-toc .vector-toc-list-item-active > .vector-toc-link,
-.vector-toc .vector-toc-level-1-active:not(.vector-toc-list-item-expanded) > .vector-toc-link,
+.vector-toc .vector-toc-list-item-active > .vector-toc-link
+.vector-toc .vector-toc-level-1-active:not(.vector-toc-list-item-expanded) > .vector-toc-link
 .vector-toc .vector-toc-list-item-active.vector-toc-level-1-active > .vector-toc-link
   color $secondary-blue !important
   font-weight bold
@@ -460,7 +460,7 @@ header.vector-header
 // Do not override structural layout (flex positioning) to avoid breaking
 // the built-in positioning logic of the autocomplete menu.  Only apply
 // colours and subtle borders.
-#searchform,
+#searchform
 .cdx-typeahead-search__form
   background-color transparent
   border none
@@ -468,7 +468,7 @@ header.vector-header
   box-shadow none
 
 // Search input container
-.cdx-search-input,
+.cdx-search-input
 .cdx-search-input--has-end-button
   background-color transparent
   border none
@@ -592,7 +592,7 @@ header.vector-header
         color $secondary-blue
 
       // Thumbnail (placeholder icon) for search result
-      .cdx-thumbnail,
+      .cdx-thumbnail
       .cdx-menu-item__thumbnail
         margin-right 0.4em
 
@@ -629,9 +629,9 @@ header.vector-header
 // Ensure all icons throughout the theme are properly aligned and sized
 
 // Universal icon alignment
-.vector-icon,
-.mw-ui-icon,
-.oo-ui-iconElement-icon,
+.vector-icon
+.mw-ui-icon
+.oo-ui-iconElement-icon
 .cdx-icon
   display inline-flex
   align-items center
@@ -647,12 +647,12 @@ header.vector-header
   justify-content center
   gap 0.3em
 
-  .vector-icon,
+  .vector-icon
   .mw-ui-icon
     margin 0
 
 // Fix icons in menu items
-.vector-menu-content li a,
+.vector-menu-content li a
 .vector-toc-link
   display flex
   align-items center
@@ -663,9 +663,9 @@ header.vector-header
     flex-shrink 0
 
 // Ensure consistent icon sizing
-.vector-icon svg,
-.mw-ui-icon svg,
-.oo-ui-iconElement-icon svg,
+.vector-icon svg
+.mw-ui-icon svg
+.oo-ui-iconElement-icon svg
 .cdx-icon svg
   display block
   margin 0

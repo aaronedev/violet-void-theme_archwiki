@@ -9,11 +9,11 @@
 // =============================================================================
 
 // Success state
-input.valid,
-input:valid,
-textarea.valid,
-textarea:valid,
-select.valid,
+input.valid
+input:valid
+textarea.valid
+textarea:valid
+select.valid
 select:valid
   border-color $green
   box-shadow 0 0 0 3px rgba($green, 0.2)
@@ -22,11 +22,11 @@ select:valid
     box-shadow 0 0 0 3px rgba($green, 0.3)
 
 // Error state
-input.invalid,
-input:invalid,
-textarea.invalid,
-textarea:invalid,
-select.invalid,
+input.invalid
+input:invalid
+textarea.invalid
+textarea:invalid
+select.invalid
 select:invalid
   border-color $secondary-red
   box-shadow 0 0 0 3px rgba($secondary-red, 0.2)
@@ -35,16 +35,16 @@ select:invalid
     box-shadow 0 0 0 3px rgba($secondary-red, 0.3)
 
 // Warning state
-input.warning,
-textarea.warning,
+input.warning
+textarea.warning
 select.warning
   border-color $orange
   box-shadow 0 0 0 3px rgba($orange, 0.2)
 
 // Field with error message
 .form-field.has-error
-  input,
-  textarea,
+  input
+  textarea
   select
     border-color $secondary-red
 
@@ -55,8 +55,8 @@ select.warning
     margin-top 0.3em
 
 .form-field.has-success
-  input,
-  textarea,
+  input
+  textarea
   select
     border-color $green
 
@@ -70,7 +70,7 @@ select.warning
 // FORM FIELD GROUPS
 // =============================================================================
 
-.form-group,
+.form-group
 .field-group
   margin 1em 0
 
@@ -81,19 +81,19 @@ select.warning
     margin-bottom 0.4em
     font-size 0.95em
 
-  .help-text,
+  .help-text
   .field-description
     color $light
     font-size 0.85em
     margin-top 0.3em
 
-  input,
-  textarea,
+  input
+  textarea
   select
     width 100%
 
 // Inline form
-.form-inline,
+.form-inline
 .form-row
   display flex
   gap 1em
@@ -115,7 +115,7 @@ select.warning
     flex 1
     border-radius $border-radius-sm 0 0 $border-radius-sm
 
-  .input-addon,
+  .input-addon
   .input-group-addon
     background linear-gradient(135deg, $dark, $darker)
     border 1px solid $border-subtle
@@ -138,7 +138,7 @@ select.warning
     margin-left -1px
 
 // Prefix/suffix
-.input-prefix,
+.input-prefix
 .input-suffix
   background-color $darker
   border 1px solid $border-subtle
@@ -152,7 +152,7 @@ select.warning
 // =============================================================================
 
 // Checkbox group
-.checkbox-group,
+.checkbox-group
 .radio-group
   display flex
   flex-direction column
@@ -173,7 +173,7 @@ select.warning
       margin 0
 
 // Inline checkbox/radio group
-.checkbox-group-inline,
+.checkbox-group-inline
 .radio-group-inline
   flex-flow row wrap
   gap 1.5em
@@ -296,7 +296,7 @@ select.warning
       cursor pointer
       transition background-color $transition-fast
 
-      &:hover,
+      &:hover
       &.active
         background-color rgba($arch-blue, 0.15)
         color $secondary-blue
@@ -309,8 +309,8 @@ select.warning
 // DATE & TIME INPUTS
 // =============================================================================
 
-input[type="date"],
-input[type="time"],
+input[type="date"]
+input[type="time"]
 input[type="datetime-local"]
   &::-webkit-calendar-picker-indicator
     filter invert(0.8)
@@ -473,7 +473,7 @@ label.required
   display flex
   gap 0.5em
 
-  button,
+  button
   .button
     border-radius 0
 
@@ -490,7 +490,7 @@ label.required
 .button-group-vertical
   flex-direction column
 
-  button,
+  button
   .button
     border-radius 0
 
@@ -525,7 +525,7 @@ label.required
 // DISABLED FORM
 // =============================================================================
 
-.form-disabled,
+.form-disabled
 fieldset[disabled]
   opacity 0.6
   pointer-events none
@@ -534,8 +534,8 @@ fieldset[disabled]
 // READ-ONLY FORM
 // =============================================================================
 
-input[readonly],
-textarea[readonly],
+input[readonly]
+textarea[readonly]
 select[readonly]
   background-color rgba($arch-blue, 0.05)
   border-color rgba($arch-blue, 0.2)

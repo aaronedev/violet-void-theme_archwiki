@@ -5,7 +5,7 @@
 @import '../variables/layout'
 
 // Checkboxes and Radio buttons
-input[type="checkbox"],
+input[type="checkbox"]
 input[type="radio"]
   appearance none
   -webkit-appearance none
@@ -141,8 +141,8 @@ input[type="range"]
     border none
 
 // Badges and Tags
-.badge,
-.tag,
+.badge
+.tag
 .label
   display inline-block
   padding 0.2em 0.6em
@@ -153,33 +153,33 @@ input[type="range"]
   color $secondary-blue
   border 1px solid rgba($arch-blue, 0.25)
 
-  &.badge-primary,
+  &.badge-primary
   &.tag-primary
     background linear-gradient(135deg, $arch-blue, $secondary-blue)
     color $darker
     border none
 
-  &.badge-success,
+  &.badge-success
   &.tag-success
     background-color rgba($green, 0.15)
     color $green
     border-color rgba($green, 0.25)
 
-  &.badge-warning,
+  &.badge-warning
   &.tag-warning
     background-color rgba($orange, 0.15)
     color $orange
     border-color rgba($orange, 0.25)
 
-  &.badge-danger,
+  &.badge-danger
   &.tag-danger
     background-color rgba($secondary-red, 0.15)
     color $secondary-red
     border-color rgba($secondary-red, 0.25)
 
 // Alerts and Notifications
-.alert,
-.notification,
+.alert
+.notification
 .flash-message
   padding 1em 1.5em
   border-radius $border-radius-md
@@ -187,32 +187,32 @@ input[type="range"]
   box-shadow $shadow-subtle
   border-left 4px solid
 
-  &.alert-info,
+  &.alert-info
   &.notification-info
     background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
     border-color $secondary-blue
     color $lighter
 
-  &.alert-success,
+  &.alert-success
   &.notification-success
     background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.05))
     border-color $green
     color $lighter
 
-  &.alert-warning,
+  &.alert-warning
   &.notification-warning
     background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
     border-color $orange
     color $lighter
 
-  &.alert-error,
+  &.alert-error
   &.notification-error
     background linear-gradient(135deg, rgba($secondary-red, 0.1), rgba($secondary-red, 0.05))
     border-color $secondary-red
     color $lighter
 
 // Progress bars
-.progress,
+.progress
 .progress-bar
   width 100%
   height 8px
@@ -221,7 +221,7 @@ input[type="range"]
   overflow hidden
   box-shadow inset 0 1px 2px rgba(0, 0, 0, 0.1)
 
-  .progress-fill,
+  .progress-fill
   .progress-inner
     height 100%
     background linear-gradient(90deg, $arch-blue, $secondary-blue)
@@ -229,14 +229,14 @@ input[type="range"]
     transition width $transition-medium
 
 // Tabs
-.tabs,
+.tabs
 .tab-list
   display flex
   gap 0.5em
   border-bottom 2px solid $border-subtle
   margin-bottom 1em
 
-  .tab,
+  .tab
   .tab-item
     padding 0.5em 1em
     color $light
@@ -250,14 +250,14 @@ input[type="range"]
       color $secondary-blue
       background-color rgba($arch-blue, 0.05)
 
-    &.active,
+    &.active
     &[aria-selected="true"]
       color $secondary-blue
       border-bottom-color $secondary-blue
       font-weight 600
 
 // Breadcrumbs (general)
-.breadcrumbs,
+.breadcrumbs
 .breadcrumb
   color $light
   font-size 0.9em
@@ -275,7 +275,7 @@ input[type="range"]
     color $light
 
 // Tooltips
-.tooltip,
+.tooltip
 [data-tooltip]
   position relative
 
@@ -301,7 +301,7 @@ input[type="range"]
     opacity 1
 
 // Modals and Overlays
-.modal,
+.modal
 .overlay
   position fixed
   inset 0
@@ -311,7 +311,7 @@ input[type="range"]
   justify-content center
   z-index 9999
 
-  .modal-content,
+  .modal-content
   .modal-body
     background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
     border 1px solid $border-subtle
@@ -344,7 +344,7 @@ input[type="range"]
   gap 0.25em
   margin 1em 0
 
-  a,
+  a
   span
     padding 0.5em 0.75em
     color $lighter
@@ -369,7 +369,7 @@ input[type="range"]
       cursor not-allowed
 
 // Loading spinners
-.spinner,
+.spinner
 .loading
   display inline-block
   width 20px
@@ -384,7 +384,7 @@ input[type="range"]
     transform rotate(360deg)
 
 // Empty states
-.empty-state,
+.empty-state
 .no-results
   text-align center
   padding 3em 2em
@@ -397,7 +397,7 @@ input[type="range"]
     margin-bottom 0.5em
 
 // Dividers and separators
-.divider,
+.divider
 hr
   border none
   height 1px

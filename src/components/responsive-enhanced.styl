@@ -7,8 +7,8 @@
 
 // Respect user's motion preferences
 @media (prefers-reduced-motion reduce)
-  *,
-  *::before,
+  *
+  *::before
   *::after
     animation-duration 0.01ms !important
     animation-iteration-count 1 !important
@@ -23,18 +23,18 @@
   a
     text-decoration underline !important
 
-  .mw-ui-button,
+  .mw-ui-button
   button
     border 2px solid currentcolor !important
 
 // Forced colors mode (Windows High Contrast)
 @media (forced-colors active)
-  .mw-ui-button,
-  button,
+  .mw-ui-button
+  button
   a
     border 1px solid currentcolor
 
-  .vector-icon svg,
+  .vector-icon svg
   .mw-ui-icon svg
     fill currentcolor !important
 
@@ -65,12 +65,12 @@
     border-radius $border-radius-md
 
   // Tables
-  .wikitable,
+  .wikitable
   .infobox
     font-size 0.85em
 
-  .mw-parser-output .wikitable,
-  .mw-parser-output .infobox,
+  .mw-parser-output .wikitable
+  .mw-parser-output .infobox
   .mw-parser-output table.results
     display block
     overflow-x auto
@@ -96,11 +96,11 @@
     padding 0.5em
 
   // Forums
-  .postleft,
+  .postleft
   .postfootleft
     display none
 
-  .postright,
+  .postright
   .postfootright
     margin-left 0
 
@@ -120,7 +120,7 @@
     padding-top 1.8em !important
 
   // Tables
-  .wikitable,
+  .wikitable
   .infobox
     font-size 0.75em
 
@@ -155,17 +155,17 @@
 
 @media (hover none) and (pointer coarse)
   // Larger touch targets
-  a,
-  button,
-  input,
-  select,
+  a
+  button
+  input
+  select
   textarea
     min-height 44px
     min-width 44px
 
   // Remove hover effects (no hover on touch)
-  a:hover,
-  button:hover,
+  a:hover
+  button:hover
   .mw-ui-button:hover
     transform none
     box-shadow $shadow-subtle
@@ -205,9 +205,9 @@
 
 @media print
   // Reset to light theme for printing
-  body,
-  #content,
-  .mw-body,
+  body
+  #content
+  .mw-body
   .mw-sidebar
     background white !important
     color black !important
@@ -225,7 +225,7 @@
       color $print-text !important
 
   // Code blocks
-  pre,
+  pre
   code
     border 1px solid $print-border !important
     background $print-bg !important
@@ -236,27 +236,27 @@
   table
     border-collapse collapse !important
 
-  th,
+  th
   td
     border 1px solid $print-border !important
 
   // Hide non-essential elements
-  .mw-sidebar,
-  .vector-header,
-  .vector-sticky-header,
-  #archnavbar,
-  .mw-collapsible-toggle,
-  .copy-to-clipboard,
-  .copy-button,
-  nav,
-  footer,
-  .postfootright,
+  .mw-sidebar
+  .vector-header
+  .vector-sticky-header
+  #archnavbar
+  .mw-collapsible-toggle
+  .copy-to-clipboard
+  .copy-button
+  nav
+  footer
+  .postfootright
   .postfootleft
     display none !important
 
   // Page breaks
-  h1,
-  h2,
+  h1
+  h2
   h3
     break-after avoid
 
@@ -274,7 +274,7 @@
 // SCREEN READER ONLY
 // =============================================================================
 
-.sr-only,
+.sr-only
 .visually-hidden
   position absolute
   width 1px
@@ -369,11 +369,11 @@ img[loading="lazy"]
 
 // Better form sizing on mobile
 @media (max-width 768px)
-  input[type="text"],
-  input[type="search"],
-  input[type="email"],
-  input[type="password"],
-  textarea,
+  input[type="text"]
+  input[type="search"]
+  input[type="email"]
+  input[type="password"]
+  textarea
   select
     font-size 16px // Prevents iOS zoom
 
@@ -385,7 +385,7 @@ img[loading="lazy"]
 // =============================================================================
 
 // Skeleton loading effect
-.skeleton,
+.skeleton
 [aria-busy="true"]
   background linear-gradient(
     90deg,

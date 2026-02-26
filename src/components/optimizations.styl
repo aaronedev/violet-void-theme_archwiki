@@ -15,26 +15,26 @@
     print-color-adjust exact !important
 
   // Reduce ink usage
-  body,
-  #content,
+  body
+  #content
   .mw-body
     background white !important
     color black !important
 
   // Hide unnecessary elements
-  .mw-indicators,
-  .mw-portlet,
-  .mw-editTools,
-  .editCheckboxes,
-  .mw-notification,
-  nav,
-  .mw-sidebar,
-  .vector-header,
-  footer,
-  .mw-footer,
-  .patrollink,
-  .mw-history-undo,
-  .mw-watchlink,
+  .mw-indicators
+  .mw-portlet
+  .mw-editTools
+  .editCheckboxes
+  .mw-notification
+  nav
+  .mw-sidebar
+  .vector-header
+  footer
+  .mw-footer
+  .patrollink
+  .mw-history-undo
+  .mw-watchlink
   .mw-rollback-link
     display none !important
 
@@ -49,7 +49,7 @@
       color $print-text !important
 
   // Code blocks
-  pre,
+  pre
   code
     background $print-bg !important
     color black !important
@@ -60,28 +60,28 @@
   table
     border-collapse collapse !important
 
-  th,
+  th
   td
     border 1px solid $print-black !important
 
   // Prevent orphans and widows
-  p,
-  h2,
+  p
+  h2
   h3
     orphans 3
     widows 3
 
   // Page breaks
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  h1
+  h2
+  h3
+  h4
+  h5
   h6
     break-after avoid
 
-  img,
-  table,
+  img
+  table
   figure
     break-inside avoid
 
@@ -108,10 +108,10 @@
     --border-subtle rgba(255, 255, 255, 0.5)
 
   // Increase border visibility
-  button,
-  input,
-  select,
-  textarea,
+  button
+  input
+  select
+  textarea
   a
     border-width 2px !important
 
@@ -132,7 +132,7 @@
 // ensure it still works
 @media (prefers-color-scheme light)
   // Theme is designed for dark, but ensure it stays dark
-  body,
+  body
   html
     color-scheme dark
 
@@ -146,7 +146,7 @@
     background-image none !important
 
   // Use different shades of gray
-  .mw-ui-button,
+  .mw-ui-button
   button
     background-color $print-button-bg !important
     color $print-white !important
@@ -173,8 +173,8 @@
 // =============================================================================
 
 // Use GPU acceleration for animations
-.animate-fade-in,
-.animate-fade-in-up,
+.animate-fade-in
+.animate-fade-in-up
 .animate-scale-in
   will-change opacity, transform
 
@@ -190,12 +190,12 @@
 // =============================================================================
 
 // Improve rendering performance with containment
-.mw-body-content,
-.mw-parser-output,
+.mw-body-content
+.mw-parser-output
 #content
   contain layout style
 
-.mw-indicators,
+.mw-indicators
 .mw-portlet
   contain layout
 
@@ -209,7 +209,7 @@
     scroll-behavior smooth
 
   // Use overflow-scrolling for touch devices
-  .mw-body,
+  .mw-body
   .mw-parser-output
     -webkit-overflow-scrolling touch
 
@@ -224,8 +224,8 @@ body
   text-rendering optimizelegibility
 
 // Optimize for different languages
-html[lang="ja"],
-html[lang="zh"],
+html[lang="ja"]
+html[lang="zh"]
 html[lang="ko"]
   body
     font-feature-settings "pkna"
@@ -261,15 +261,15 @@ html[lang="ko"]
 // =============================================================================
 
 // Ensure screen readers can navigate properly
-[role="navigation"],
-[role="main"],
-[role="complementary"],
-[role="banner"],
+[role="navigation"]
+[role="main"]
+[role="complementary"]
+[role="banner"]
 [role="contentinfo"]
   contain none
 
 // Skip links
-.mw-jump-link,
+.mw-jump-link
 #mw-navigation
   position absolute
   top -9999px
@@ -318,8 +318,8 @@ html
   padding 1.5em
   margin 1em 0
 
-  h1,
-  h2,
+  h1
+  h2
   h3
     color $secondary-red
     margin-top 0
@@ -371,20 +371,20 @@ img[loading="lazy"]
   color $white
 
 // Fix tap highlight on mobile
-a,
-button,
-input,
-select,
+a
+button
+input
+select
 textarea
   -webkit-tap-highlight-color rgba($arch-blue, 0.3)
 
 // Fix iOS input zoom
 @media screen and (max-width 768px)
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="search"],
-  textarea,
+  input[type="text"]
+  input[type="email"]
+  input[type="password"]
+  input[type="search"]
+  textarea
   select
     font-size 16px
 
@@ -405,7 +405,7 @@ textarea
     text-align right
 
   // Mirror list bullets
-  ul,
+  ul
   ol
     margin-left 0
     margin-right 1.5em

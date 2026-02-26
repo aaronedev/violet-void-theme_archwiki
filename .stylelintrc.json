@@ -1,23 +1,15 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-plugin-stylus/standard"],
+  "extends": [
+    "stylelint-plugin-stylus/standard"
+  ],
   "rules": {
-    "color-hex-length": "long",
-    "declaration-property-value-no-unknown": null,
-    "stylus/selector-list-comma": null,
-    "color-function-notation": null,
-    "alpha-value-notation": null,
-    "color-function-alias-notation": null,
-    "import-notation": "string",
-    "media-feature-range-notation": null,
     "stylus/declaration-colon": "never",
-    "stylus/single-line-comment": "always",
-    "selector-class-pattern": null,
-    "at-rule-no-vendor-prefix": null,
-    "property-no-vendor-prefix": null,
-    "at-rule-no-deprecated": null,
-    "no-invalid-position-at-import-rule": null,
-    "no-descending-specificity": null,
-    "nesting-selector-no-missing-scoping-root": null,
-    "no-invalid-position-declaration": null
-  }
+    "stylus/semicolon": "never",
+    "stylus/indentation": 2
+  },
+  "ignoreFiles": [
+    "dist/**",
+    "node_modules/**",
+    "**/*.css"
+  ]
 }

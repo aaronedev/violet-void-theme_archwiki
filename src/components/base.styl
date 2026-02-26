@@ -53,28 +53,28 @@
   color $white !important
 
 // Remove gradient underline from icon-only links while keeping text links intact.
-a:has(.vector-icon),
-a:has(.mw-ui-icon),
+a:has(.vector-icon)
+a:has(.mw-ui-icon)
 a:has(.oo-ui-iconElement-icon)
   background-image none !important
 
 // Focus ring for interactive elements only
-a,
-button,
-input,
-select,
-textarea,
-[role="button"],
+a
+button
+input
+select
+textarea
+[role="button"]
 [tabindex]
   focus-ring()
 
 // Scrollbar theming
-html,
-body,
-#content,
-.mw-body,
-.mw-sidebar,
-.mw-page-container,
+html
+body
+#content
+.mw-body
+.mw-sidebar
+.mw-page-container
 .vector-body
   scrollbar-width thin
   scrollbar-color $secondary-blue transparent

@@ -15,7 +15,7 @@
   width 100% // Ensure full width responsiveness
   table-layout auto
 
-  > tr > th,
+  > tr > th
   > * > tr > th
     background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
     text-align left // Better readability
@@ -25,9 +25,9 @@
     color $lighter
     padding 0.6em 0.75em
 
-  > tr > th,
-  > tr > td,
-  > * > tr > th,
+  > tr > th
+  > tr > td
+  > * > tr > th
   > * > tr > td
     border 1px solid $border-subtle
     padding 0.5em 0.7em
@@ -66,7 +66,7 @@
     color $lighter
     padding 0.6em 0.75em
 
-  th,
+  th
   td
     border 1px solid $border-subtle
     padding 0.5em 0.7em
@@ -110,7 +110,7 @@ table.styled-table
     padding 0.6em 0.75em
 
   // Cell styling
-  th,
+  th
   td
     border 1px solid $border-subtle !important
     padding 0.5em 0.7em
@@ -139,7 +139,7 @@ table.styled-table
   tr:nth-child(odd)
     background-color transparent !important
 
-  tr:hover,
+  tr:hover
   tr:hover td
     background-color rgba($arch-blue, 0.06) !important
 
@@ -176,11 +176,11 @@ span.red
 // strong colours.
 
 // General box and widget styling
-#content-left-wrapper .box,
-#content-left .box,
-#content-right .widget,
-#content-right .box,
-.box,
+#content-left-wrapper .box
+#content-left .box
+#content-right .widget
+#content-right .box
+.box
 .widget
   background-color $base !important
   border 1px solid $border-subtle !important
@@ -190,7 +190,7 @@ span.red
   padding 0.75em
 
 // Headings within the AUR news sections
-#news h3,
+#news h3
 #news h4
   color $lighter
   font-weight 600
@@ -237,7 +237,7 @@ span.red
 // Ensure that cells with the `.wrap` class (used on Archweb for long
 // descriptions) inherit the row’s background and text colour. Without this,
 // these cells default to a light background and dark text.
-table.results td.wrap,
+table.results td.wrap
 #pkglist-results table td.wrap
   background-color inherit !important
   color $light !important
@@ -252,7 +252,7 @@ table.results td.wrap,
 // variations across templates. If additional specificity is needed, feel free
 // to duplicate the selector with the page’s parent container.
 
-table.results,
+table.results
 #pkglist-results table
   background-color $base !important
   color $light !important
@@ -265,9 +265,10 @@ table.results,
   width 100%
 
   // Header cells (both <th> and <td> in case the template uses <td> in the header)
-  thead th,
-  thead td
-    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04)) !important
+  thead
+    th
+    td
+      background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04)) !important
     color $lighter !important
     font-weight 600
     border 1px solid $border-subtle !important
@@ -302,15 +303,15 @@ table.results,
   // neutralize them, explicitly set the row background colours here with
   // `!important`, including a fallback without the `of` syntax for older
   // browsers.  Then override the hover background to our subtle blue tint.
-  tr:nth-child(even of :not([hidden])),
+  tr:nth-child(even of :not([hidden]))
   tr:nth-child(even)
     background-color rgba(255, 255, 255, 0.01) !important
 
-  tr:nth-child(odd of :not([hidden])),
+  tr:nth-child(odd of :not([hidden]))
   tr:nth-child(odd)
     background-color transparent !important
 
-  tr:hover,
+  tr:hover
   tr:hover td
     background-color rgba($arch-blue, 0.05) !important
 
@@ -330,7 +331,7 @@ table.results,
 // indicates selected options.  Use high specificity selectors tied to
 // `#pkglist-search` to avoid affecting other select boxes across the wiki.
 
-#pkglist-search select,
+#pkglist-search select
 #pkglist-search select[multiple]
   background-color $darker !important
   color $lighter !important
@@ -342,7 +343,7 @@ table.results,
   background-color $darker !important
   color $lighter !important
 
-#pkglist-search select option:hover,
+#pkglist-search select option:hover
 #pkglist-search select option:checked
   background-color rgba($arch-blue, 0.2) !important
   color $lighter !important

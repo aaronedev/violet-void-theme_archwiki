@@ -4,8 +4,8 @@
 @import '../mixins/effects'
 
 // Common code styling
-#content pre:not([class*="codemirror"]),
-#content code,
+#content pre:not([class*="codemirror"])
+#content code
 #content tt
   font-family $font-mono
   font-size 0.95em
@@ -14,7 +14,7 @@
   tab-size 4
 
 // Inline code chips
-#content code,
+#content code
 #content tt
   gradient-inline-code()
 
@@ -34,9 +34,9 @@
     micro-lift()
 
 // Inline code inside dense contexts (headings, tables, lists)
-#content h1 code,
-#content h2 code,
-#content th code,
+#content h1 code
+#content h2 code
+#content th code
 #content li code
   padding 0.06em 0.35em
   margin 0 0.08em
@@ -107,12 +107,12 @@
 
 // Syntax highlighting
 #content pre
-  .keyword,
+  .keyword
   .statement
     color $term-red
     font-weight 600
 
-  .string,
+  .string
   .value
     color $term-magenta
 
@@ -133,7 +133,7 @@
   .operator
     color $term-bright-yellow
 
-  .class,
+  .class
   .type
     color $term-bright-yellow
 
@@ -145,7 +145,7 @@
   user-select none
 
 // Comments in code blocks
-#content pre:not([class*="codemirror"]) .bash-comment,
+#content pre:not([class*="codemirror"]) .bash-comment
 #content pre:not([class*="codemirror"]) .line-comment
   color $muted
   font-style italic
@@ -188,7 +188,7 @@ for selector, index in copy-button-selectors
     color $secondary-blue !important
 
 // Ensure toolbars are visible if they wrap the button
-#content .code-toolbar,
+#content .code-toolbar
 #content .highlight .toolbar
   display block !important
   visibility visible !important
