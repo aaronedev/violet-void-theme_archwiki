@@ -8,6 +8,16 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 ## [Unreleased]
 
 ### Added
+- GitLab (gitlab.archlinux.org) styling support
+  - Navigation sidebar and top bar styling
+  - Project/group headers and lists
+  - Issues and merge request styling
+  - Code views, diffs, and file browser
+  - Forms, buttons, dropdowns, and tables
+  - Discussion threads and activity feeds
+  - User profiles and markdown content
+  - Flash messages and pagination
+  - This fixes styling for bugs.archlinux.org which now redirects to GitLab
 - EditorConfig for consistent code formatting across editors
 - Comprehensive CODE_QUALITY.md documentation
 - Code quality tools documentation (stylelint, prettier, pre-commit hooks)
