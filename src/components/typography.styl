@@ -1,0 +1,508 @@
+// Typography and content enhancements
+// Better styling for various content elements
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// LISTS
+// =============================================================================
+
+// Unordered lists with custom bullets
+ul
+  padding-left 1.5em
+
+  li
+    position relative
+    margin 0.3em 0
+
+    &::marker
+      color $secondary-blue
+
+// Nested lists
+ul ul,
+ol ol,
+ul ol,
+ol ul
+  margin 0.3em 0
+
+// Custom bullet styles
+ul.custom-bullets
+  list-style none
+  padding-left 1.5em
+
+  li::before
+    content "▸"
+    position absolute
+    left -1.2em
+    color $secondary-blue
+
+// Checkmark list
+ul.checklist
+  list-style none
+  padding-left 1.8em
+
+  li
+    position relative
+
+    &::before
+      content "✓"
+      position absolute
+      left -1.5em
+      color $green
+      font-weight bold
+
+// Ordered lists with better numbering
+ol
+  padding-left 1.8em
+  counter-reset item
+
+  li
+    position relative
+    margin 0.3em 0
+
+  &.styled-numbers
+    list-style none
+    padding-left 2.5em
+
+    li
+      counter-increment item
+
+      &::before
+        content counter(item)
+        position absolute
+        left -2.2em
+        width 1.5em
+        height 1.5em
+        background linear-gradient(135deg, $arch-blue, $secondary-blue)
+        color $darker
+        border-radius 50%
+        display flex
+        align-items center
+        justify-content center
+        font-size 0.8em
+        font-weight bold
+        line-height 1
+
+// Description lists
+dl
+  margin 1em 0
+
+dt
+  color $lighter
+  font-weight 600
+  margin-top 1em
+
+  &:first-child
+    margin-top 0
+
+dd
+  color $light
+  margin-left 1.5em
+  margin-top 0.3em
+
+// =============================================================================
+// BLOCKQUOTES
+// =============================================================================
+
+blockquote
+  position relative
+  margin 1.5em 0
+  padding 1em 1.5em
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+  border-left 4px solid $secondary-blue
+  border-radius 0 $border-radius-md $border-radius-md 0
+  font-style italic
+  color $light
+
+  &::before
+    content """
+    position absolute
+    top -0.2em
+    left 0.3em
+    font-size 3em
+    color $arch-blue
+    opacity 0.3
+    line-height 1
+
+  p:last-child
+    margin-bottom 0
+
+  cite
+    display block
+    margin-top 0.5em
+    font-size 0.9em
+    font-style normal
+    color $muted
+
+    &::before
+      content "— "
+
+// Nested blockquotes
+blockquote blockquote
+  margin 1em 0
+  border-left-color rgba($arch-blue, 0.5)
+
+// =============================================================================
+// KEYBOARD SHORTCUTS
+// =============================================================================
+
+kbd
+  display inline-block
+  padding 0.2em 0.5em
+  font-family $font-mono
+  font-size 0.85em
+  background linear-gradient(180deg, $dark, $darker)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  box-shadow 0 2px 0 $darker, inset 0 1px 0 rgba(255, 255, 255, 0.05)
+  color $lighter
+  vertical-align middle
+  line-height 1
+
+  // Key combination
+  & + kbd
+    margin-left 0.3em
+
+// Keyboard shortcut group
+.keyboard-shortcut
+  display inline-flex
+  align-items center
+  gap 0.3em
+
+  kbd
+    margin 0
+
+// =============================================================================
+// TIMESTAMPS & DATES
+// =============================================================================
+
+time,
+.timestamp,
+.date
+  color $light
+  font-size 0.9em
+  font-family $font-mono
+
+  &.relative
+    color $muted
+
+// Human-readable time
+time[datetime]
+  cursor help
+  border-bottom 1px dotted $border-subtle
+
+// =============================================================================
+// USER NAMES & AVATARS
+// =============================================================================
+
+.username
+  color $secondary-blue
+  font-weight 500
+  text-decoration none
+
+  &:hover
+    color white
+
+.user-link
+  display inline-flex
+  align-items center
+  gap 0.5em
+  text-decoration none
+
+  &:hover .username
+    color white
+
+// Avatar styling
+.avatar,
+.user-avatar
+  display inline-block
+  width 40px
+  height 40px
+  border-radius 50%
+  background linear-gradient(135deg, $arch-blue, $secondary-blue)
+  color $darker
+  font-weight bold
+  text-align center
+  line-height 40px
+  vertical-align middle
+
+  img
+    width 100%
+    height 100%
+    object-fit cover
+    border-radius 50%
+
+  &.avatar-sm
+    width 24px
+    height 24px
+    line-height 24px
+    font-size 0.7em
+
+  &.avatar-lg
+    width 56px
+    height 56px
+    line-height 56px
+    font-size 1.2em
+
+// =============================================================================
+// STATUS INDICATORS
+// =============================================================================
+
+.status-indicator
+  display inline-flex
+  align-items center
+  gap 0.5em
+  font-size 0.9em
+
+  &::before
+    content ""
+    width 8px
+    height 8px
+    border-radius 50%
+    background-color $muted
+
+  &.status-online::before
+    background-color $green
+    box-shadow 0 0 6px rgba($green, 0.6)
+
+  &.status-offline::before
+    background-color $muted
+
+  &.status-busy::before
+    background-color $secondary-red
+
+  &.status-away::before
+    background-color $orange
+
+// Status badges
+.status-badge
+  display inline-block
+  padding 0.2em 0.6em
+  font-size 0.75em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  border-radius $border-radius-sm
+
+  &.status-active
+    background-color rgba($green, 0.2)
+    color $green
+    border 1px solid rgba($green, 0.3)
+
+  &.status-inactive
+    background-color rgba($muted, 0.2)
+    color $muted
+    border 1px solid rgba($muted, 0.3)
+
+  &.status-pending
+    background-color rgba($orange, 0.2)
+    color $orange
+    border 1px solid rgba($orange, 0.3)
+
+  &.status-error
+    background-color rgba($secondary-red, 0.2)
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.3)
+
+// =============================================================================
+// ABBREVIATIONS & ACRONYMS
+// =============================================================================
+
+abbr[title],
+acronym[title]
+  border-bottom 1px dotted $border-subtle
+  cursor help
+  text-decoration none
+
+  &:hover
+    border-bottom-color $arch-blue
+
+// =============================================================================
+// MARK & HIGHLIGHT
+// =============================================================================
+
+mark,
+.highlight
+  background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($secondary-blue, 0.2))
+  color $lighter
+  padding 0.1em 0.3em
+  border-radius 2px
+
+.search-match
+  background-color rgba($orange, 0.3)
+  color $lighter
+  padding 0.1em 0.2em
+  border-radius 2px
+
+// =============================================================================
+// SUBSCRIPT & SUPERSCRIPT
+// =============================================================================
+
+sub,
+sup
+  font-size 0.75em
+  line-height 0
+  position relative
+  vertical-align baseline
+
+sup
+  top -0.5em
+
+sub
+  bottom -0.25em
+
+// =============================================================================
+// HORIZONTAL RULE
+// =============================================================================
+
+hr
+  border none
+  height 1px
+  background linear-gradient(90deg, transparent, $border-subtle, transparent)
+  margin 2em 0
+
+  &.hr-accent
+    height 2px
+    background linear-gradient(90deg, $arch-blue, $secondary-blue)
+
+  &.hr-strong
+    height 2px
+    background $border-subtle
+
+// =============================================================================
+// DETAILS & SUMMARY
+// =============================================================================
+
+details
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  margin 1em 0
+
+  &[open]
+    summary
+      border-bottom 1px solid $border-subtle
+      padding-bottom 0.75em
+      margin-bottom 0.75em
+
+summary
+  cursor pointer
+  color $lighter
+  font-weight 600
+  user-select none
+  outline none
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    border-radius $border-radius-sm
+
+  &::marker
+    color $secondary-blue
+
+  &:hover
+    color $secondary-blue
+
+// =============================================================================
+// MATH & EQUATIONS
+// =============================================================================
+
+.math,
+.equation
+  font-family "Times New Roman", serif
+  font-style italic
+  color $lighter
+
+.math-block
+  display block
+  text-align center
+  margin 1.5em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+  overflow-x auto
+
+// =============================================================================
+// FOOTNOTES
+// =============================================================================
+
+.footnote,
+a[href^="#fn"],
+a[href^="#cite"]
+  font-size 0.8em
+  vertical-align super
+  color $secondary-blue
+  text-decoration none
+  border-bottom 1px dotted $border-subtle
+
+  &:hover
+    color white
+    border-bottom-color $arch-blue
+
+.footnotes
+  margin-top 3em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+  font-size 0.9em
+
+  li
+    margin 0.5em 0
+
+// =============================================================================
+// EDITORIAL MARKS
+// =============================================================================
+
+ins
+  background-color rgba($green, 0.2)
+  color $lighter
+  text-decoration none
+  border-bottom 1px solid $green
+
+del
+  background-color rgba($secondary-red, 0.2)
+  color $light
+  text-decoration line-through
+
+// =============================================================================
+// ADDRESS
+// =============================================================================
+
+address
+  font-style normal
+  color $light
+  margin 1em 0
+  padding 1em
+  background-color $darker
+  border-left 3px solid $secondary-blue
+  border-radius 0 $border-radius-md $border-radius-md 0
+
+// =============================================================================
+// DEFINITION TERM
+// =============================================================================
+
+dfn
+  font-style italic
+  color $lighter
+  border-bottom 1px dotted $border-subtle
+
+// =============================================================================
+// VARIABLE
+// =============================================================================
+
+var
+  font-family $font-mono
+  font-style italic
+  color $term-bright-cyan
+
+// =============================================================================
+// SAMPLE OUTPUT
+// =============================================================================
+
+samp
+  font-family $font-mono
+  background-color $darker
+  color $term-bright-green
+  padding 0.1em 0.3em
+  border-radius 2px

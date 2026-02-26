@@ -1,0 +1,443 @@
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ACCESSIBILITY ENHANCEMENTS
+// =============================================================================
+
+// Respect user's motion preferences
+@media (prefers-reduced-motion reduce)
+  *,
+  *::before,
+  *::after
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+    scroll-behavior auto !important
+
+// High contrast mode support
+@media (prefers-contrast high)
+  :root
+    --border-subtle rgba(255, 255, 255, 0.3)
+
+  a
+    text-decoration underline !important
+
+  .mw-ui-button,
+  button
+    border 2px solid currentColor !important
+
+// Forced colors mode (Windows High Contrast)
+@media (forced-colors active)
+  .mw-ui-button,
+  button,
+  a
+    border 1px solid CurrentColor
+
+  .vector-icon svg,
+  .mw-ui-icon svg
+    fill CurrentColor !important
+
+// =============================================================================
+// RESPONSIVE DESIGN
+// =============================================================================
+
+// Large tablets and small desktops
+@media (max-width 1024px)
+  .mw-sidebar
+    font-size 0.9em
+
+  #content
+    padding 1em 1.25em
+
+// Tablets
+@media (max-width 768px)
+  // Content adjustments
+  #content
+    padding 0.75em 1em
+    font-size 0.95em
+
+  // Code blocks
+  #content pre:not([class*="codemirror"])
+    font-size 0.85em
+    padding 0.75em !important
+    padding-top 2em !important
+    border-radius $border-radius-md
+
+  // Tables
+  .wikitable,
+  .infobox
+    font-size 0.85em
+
+  .mw-parser-output .wikitable,
+  .mw-parser-output .infobox,
+  .mw-parser-output table.results
+    display block
+    overflow-x auto
+    max-width 100%
+    -webkit-overflow-scrolling touch
+
+    thead
+      display table-header-group
+
+    th
+      white-space nowrap
+
+  // Buttons
+  .mw-ui-button
+    padding 0.3em 0.8em
+    font-size 0.9em
+
+  // Navigation
+  .vector-header
+    padding 0.5em
+
+  .mw-sidebar
+    padding 0.5em
+
+  // Forums
+  .postleft,
+  .postfootleft
+    display none
+
+  .postright,
+  .postfootright
+    margin-left 0
+
+// Mobile phones
+@media (max-width 480px)
+  // Content
+  #content
+    padding 0.5em
+    border-radius $border-radius-sm
+    font-size 0.9em
+
+  // Code blocks
+  #content pre:not([class*="codemirror"])
+    font-size 0.8em
+    border-radius $border-radius-sm
+    padding 0.5em !important
+    padding-top 1.8em !important
+
+  // Tables
+  .wikitable,
+  .infobox
+    font-size 0.75em
+
+  // Headings
+  h1
+    font-size 1.5em
+
+  h2
+    font-size 1.3em
+
+  h3
+    font-size 1.1em
+
+  // Forums mobile
+  .blockpost .box-head
+    padding 0.5em
+
+  .main-item
+    padding 0.5em
+
+// Very small screens
+@media (max-width 320px)
+  body
+    font-size 14px
+
+  #content
+    padding 0.4em
+
+// =============================================================================
+// TOUCH DEVICE OPTIMIZATIONS
+// =============================================================================
+
+@media (hover none) and (pointer coarse)
+  // Larger touch targets
+  a,
+  button,
+  input,
+  select,
+  textarea
+    min-height 44px
+    min-width 44px
+
+  // Remove hover effects (no hover on touch)
+  a:hover,
+  button:hover,
+  .mw-ui-button:hover
+    transform none
+    box-shadow $shadow-subtle
+
+  // Better spacing for touch
+  .vector-menu-content li
+    margin 0.5em 0
+
+  .mw-collapsible-toggle
+    padding 0.4em 0.8em
+
+  // Disable hover underlines
+  a
+    background-size 0% 0px !important
+
+// =============================================================================
+// LANDSCAPE MOBILE
+// =============================================================================
+
+@media (max-width 896px) and (orientation landscape)
+  .vector-header
+    padding 0.3em 0.5em
+
+  #content
+    padding 0.5em 1em
+
+  .mw-sidebar
+    max-height 60vh
+    overflow-y auto
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  // Reset to light theme for printing
+  body,
+  #content,
+  .mw-body,
+  .mw-sidebar
+    background white !important
+    color black !important
+    box-shadow none !important
+    border 1px solid #cccccc !important
+
+  // Links
+  a
+    color black !important
+    text-decoration underline !important
+
+    &[href]::after
+      content " (" attr(href) ")"
+      font-size 0.8em
+      color #666666 !important
+
+  // Code blocks
+  pre,
+  code
+    border 1px solid #cccccc !important
+    background #f5f5f5 !important
+    color black !important
+    page-break-inside avoid
+
+  // Tables
+  table
+    border-collapse collapse !important
+
+  th,
+  td
+    border 1px solid #cccccc !important
+
+  // Hide non-essential elements
+  .mw-sidebar,
+  .vector-header,
+  .vector-sticky-header,
+  #archnavbar,
+  .mw-collapsible-toggle,
+  .copy-to-clipboard,
+  .copy-button,
+  nav,
+  footer,
+  .postfootright,
+  .postfootleft
+    display none !important
+
+  // Page breaks
+  h1,
+  h2,
+  h3
+    page-break-after avoid
+
+  img
+    max-width 100% !important
+    page-break-inside avoid
+
+  // Forums
+  .blockpost
+    page-break-inside avoid
+    border 1px solid #cccccc !important
+    margin 1em 0 !important
+
+// =============================================================================
+// SCREEN READER ONLY
+// =============================================================================
+
+.sr-only,
+.visually-hidden
+  position absolute
+  width 1px
+  height 1px
+  padding 0
+  margin -1px
+  overflow hidden
+  clip rect(0, 0, 0, 0)
+  white-space nowrap
+  border-width 0
+
+// =============================================================================
+// FOCUS VISIBLE
+// =============================================================================
+
+// Only show focus rings when using keyboard
+:focus:not(:focus-visible)
+  outline none
+
+:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// =============================================================================
+// SCROLLBAR STYLING (WEBKIT)
+// =============================================================================
+
+// Custom scrollbar for webkit browsers
+::-webkit-scrollbar
+  width 10px
+  height 10px
+
+::-webkit-scrollbar-track
+  background rgba(0, 0, 0, 0.1)
+  border-radius 5px
+
+::-webkit-scrollbar-thumb
+  background rgba($arch-blue, 0.5)
+  border-radius 5px
+  border 2px solid transparent
+  background-clip padding-box
+
+  &:hover
+    background rgba($secondary-blue, 0.7)
+    background-clip padding-box
+
+  &:active
+    background rgba($arch-blue, 0.8)
+    background-clip padding-box
+
+// Corner scrollbar
+::-webkit-scrollbar-corner
+  background rgba(0, 0, 0, 0.1)
+
+// =============================================================================
+// TEXT SELECTION
+// =============================================================================
+
+::selection
+  background rgba($arch-blue, 0.4)
+  color white
+
+::-moz-selection
+  background rgba($arch-blue, 0.4)
+  color white
+
+// =============================================================================
+// SMOOTH SCROLLING
+// =============================================================================
+
+@media (prefers-reduced-motion no-preference)
+  html
+    scroll-behavior smooth
+
+// =============================================================================
+// IMAGE HANDLING
+// =============================================================================
+
+// Responsive images
+img
+  max-width 100%
+  height auto
+  display block
+
+// Image lazy loading support
+img[loading="lazy"]
+  background-color $darker
+
+// =============================================================================
+// FORM IMPROVEMENTS
+// =============================================================================
+
+// Better form sizing on mobile
+@media (max-width 768px)
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select
+    font-size 16px // Prevents iOS zoom
+
+  textarea
+    min-height 120px
+
+// =============================================================================
+// LOADING STATES
+// =============================================================================
+
+// Skeleton loading effect
+.skeleton,
+[aria-busy="true"]
+  background linear-gradient(
+    90deg,
+    $darker 25%,
+    rgba($arch-blue, 0.1) 50%,
+    $darker 75%
+  )
+  background-size 200% 100%
+  animation skeleton-loading 1.5s infinite
+
+@keyframes skeleton-loading
+  0%
+    background-position 200% 0
+  100%
+    background-position -200% 0
+
+// =============================================================================
+// UTILITY CLASSES
+// =============================================================================
+
+// Hide on specific breakpoints
+.hide-mobile
+  @media (max-width 768px)
+    display none !important
+
+.hide-tablet
+  @media (max-width 1024px)
+    display none !important
+
+.hide-desktop
+  @media (min-width 1025px)
+    display none !important
+
+// Text truncation
+.truncate
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+// Aspect ratio containers
+.aspect-video
+  aspect-ratio 16 / 9
+
+.aspect-square
+  aspect-ratio 1 / 1
+
+// =============================================================================
+// DARK MODE PRINT (OPTIONAL)
+// =============================================================================
+
+// Uncomment if you want dark mode printing
+// @media print and (prefers-color-scheme dark)
+//   body,
+//   #content
+//     background $base !important
+//     color $lighter !important
+//     -webkit-print-color-adjust exact
+//     print-color-adjust exact

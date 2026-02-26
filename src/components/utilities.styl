@@ -1,0 +1,653 @@
+// Animations, transitions, and utility classes
+// Enhance interactivity and provide reusable utilities
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+// Fade in
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
+// Fade in up
+@keyframes fadeInUp
+  from
+    opacity 0
+    transform translateY(20px)
+  to
+    opacity 1
+    transform translateY(0)
+
+// Fade in down
+@keyframes fadeInDown
+  from
+    opacity 0
+    transform translateY(-20px)
+  to
+    opacity 1
+    transform translateY(0)
+
+// Scale in
+@keyframes scaleIn
+  from
+    opacity 0
+    transform scale(0.9)
+  to
+    opacity 1
+    transform scale(1)
+
+// Slide in left
+@keyframes slideInLeft
+  from
+    transform translateX(-100%)
+  to
+    transform translateX(0)
+
+// Slide in right
+@keyframes slideInRight
+  from
+    transform translateX(100%)
+  to
+    transform translateX(0)
+
+// Pulse
+@keyframes pulse
+  0%, 100%
+    opacity 1
+  50%
+    opacity 0.5
+
+// Bounce
+@keyframes bounce
+  0%, 100%
+    transform translateY(0)
+  50%
+    transform translateY(-10px)
+
+// Spin (for loading)
+@keyframes spin
+  from
+    transform rotate(0deg)
+  to
+    transform rotate(360deg)
+
+// Shimmer (skeleton loading)
+@keyframes shimmer
+  0%
+    background-position -1000px 0
+  100%
+    background-position 1000px 0
+
+// Glow pulse
+@keyframes glowPulse
+  0%, 100%
+    box-shadow 0 0 5px rgba($arch-blue, 0.5)
+  50%
+    box-shadow 0 0 20px rgba($arch-blue, 0.8), 0 0 30px rgba($arch-blue, 0.6)
+
+// =============================================================================
+// ANIMATION UTILITY CLASSES
+// =============================================================================
+
+.animate-fade-in
+  animation fadeIn 0.3s ease-in
+
+.animate-fade-in-up
+  animation fadeInUp 0.4s ease-out
+
+.animate-fade-in-down
+  animation fadeInDown 0.4s ease-out
+
+.animate-scale-in
+  animation scaleIn 0.3s ease-out
+
+.animate-slide-in-left
+  animation slideInLeft 0.3s ease-out
+
+.animate-slide-in-right
+  animation slideInRight 0.3s ease-out
+
+.animate-pulse
+  animation pulse 2s infinite
+
+.animate-bounce
+  animation bounce 1s infinite
+
+.animate-spin
+  animation spin 1s linear infinite
+
+.animate-glow
+  animation glowPulse 2s infinite
+
+// Hover animations
+.hover-lift
+  transition transform $transition-fast, box-shadow $transition-fast
+
+  &:hover
+    transform translateY(-2px)
+    box-shadow $shadow-elevated
+
+.hover-scale
+  transition transform $transition-fast
+
+  &:hover
+    transform scale(1.05)
+
+.hover-glow
+  transition box-shadow $transition-fast
+
+  &:hover
+    box-shadow 0 0 20px rgba($arch-blue, 0.6)
+
+// =============================================================================
+// TRANSITION UTILITIES
+// =============================================================================
+
+.transition-none
+  transition none !important
+
+.transition-all
+  transition all $transition-fast
+
+.transition-colors
+  transition color $transition-fast, background-color $transition-fast, border-color $transition-fast
+
+.transition-opacity
+  transition opacity $transition-fast
+
+.transition-transform
+  transition transform $transition-fast
+
+.transition-shadow
+  transition box-shadow $transition-fast
+
+// =============================================================================
+// SHADOW UTILITIES
+// =============================================================================
+
+.shadow-none
+  box-shadow none !important
+
+.shadow-subtle
+  box-shadow $shadow-subtle
+
+.shadow-elevated
+  box-shadow $shadow-elevated
+
+.shadow-glow
+  box-shadow 0 0 20px rgba($arch-blue, 0.5)
+
+.shadow-glow-strong
+  box-shadow 0 0 30px rgba($arch-blue, 0.7), 0 0 40px rgba($arch-blue, 0.5)
+
+// =============================================================================
+// GRADIENT UTILITIES
+// =============================================================================
+
+.gradient-primary
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+
+.gradient-primary-vertical
+  background linear-gradient(180deg, $arch-blue, $secondary-blue)
+
+.gradient-surface
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+
+.gradient-elevated
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+
+.gradient-radial
+  background radial-gradient(circle, rgba($arch-blue, 0.1), transparent)
+
+// Text gradient
+.text-gradient
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+  -webkit-background-clip text
+  -webkit-text-fill-color transparent
+  background-clip text
+
+// =============================================================================
+// OPACITY UTILITIES
+// =============================================================================
+
+.opacity-0
+  opacity 0
+
+.opacity-25
+  opacity 0.25
+
+.opacity-50
+  opacity 0.5
+
+.opacity-75
+  opacity 0.75
+
+.opacity-100
+  opacity 1
+
+// =============================================================================
+// BORDER UTILITIES
+// =============================================================================
+
+.border-none
+  border none !important
+
+.border-subtle
+  border 1px solid $border-subtle
+
+.border-accent
+  border 1px solid $arch-blue
+
+.border-accent-strong
+  border 2px solid $arch-blue
+
+.border-left-accent
+  border-left 3px solid $secondary-blue
+
+.border-top-accent
+  border-top 2px solid $arch-blue
+
+// Border radius
+.rounded-none
+  border-radius 0 !important
+
+.rounded-sm
+  border-radius $border-radius-sm
+
+.rounded-md
+  border-radius $border-radius-md
+
+.rounded-lg
+  border-radius $border-radius-lg
+
+.rounded-full
+  border-radius 9999px
+
+// =============================================================================
+// SPACING UTILITIES
+// =============================================================================
+
+// Margin
+.m-0
+  margin 0
+
+.m-1
+  margin 0.25em
+
+.m-2
+  margin 0.5em
+
+.m-3
+  margin 1em
+
+.m-4
+  margin 1.5em
+
+// Padding
+.p-0
+  padding 0
+
+.p-1
+  padding 0.25em
+
+.p-2
+  padding 0.5em
+
+.p-3
+  padding 1em
+
+.p-4
+  padding 1.5em
+
+// Gap
+.gap-1
+  gap 0.25em
+
+.gap-2
+  gap 0.5em
+
+.gap-3
+  gap 1em
+
+.gap-4
+  gap 1.5em
+
+// =============================================================================
+// DISPLAY UTILITIES
+// =============================================================================
+
+.block
+  display block
+
+.inline-block
+  display inline-block
+
+.inline
+  display inline
+
+.flex
+  display flex
+
+.inline-flex
+  display inline-flex
+
+.grid
+  display grid
+
+.hidden
+  display none
+
+// Flex utilities
+.flex-row
+  flex-direction row
+
+.flex-col
+  flex-direction column
+
+.flex-wrap
+  flex-wrap wrap
+
+.items-start
+  align-items flex-start
+
+.items-center
+  align-items center
+
+.items-end
+  align-items flex-end
+
+.justify-start
+  justify-content flex-start
+
+.justify-center
+  justify-content center
+
+.justify-end
+  justify-content flex-end
+
+.justify-between
+  justify-content space-between
+
+.flex-1
+  flex 1 1 auto
+
+.flex-none
+  flex none
+
+// =============================================================================
+// POSITIONING UTILITIES
+// =============================================================================
+
+.relative
+  position relative
+
+.absolute
+  position absolute
+
+.fixed
+  position fixed
+
+.sticky
+  position sticky
+
+.inset-0
+  top 0
+  right 0
+  bottom 0
+  left 0
+
+// =============================================================================
+// SIZE UTILITIES
+// =============================================================================
+
+.w-full
+  width 100%
+
+.w-auto
+  width auto
+
+.h-full
+  height 100%
+
+.h-auto
+  height auto
+
+.min-h-screen
+  min-height 100vh
+
+.max-w-full
+  max-width 100%
+
+// =============================================================================
+// TEXT UTILITIES
+// =============================================================================
+
+.text-left
+  text-align left
+
+.text-center
+  text-align center
+
+.text-right
+  text-align right
+
+.text-justify
+  text-align justify
+
+.text-xs
+  font-size 0.75em
+
+.text-sm
+  font-size 0.875em
+
+.text-base
+  font-size 1em
+
+.text-lg
+  font-size 1.125em
+
+.text-xl
+  font-size 1.25em
+
+.text-2xl
+  font-size 1.5em
+
+.font-normal
+  font-weight 400
+
+.font-medium
+  font-weight 500
+
+.font-semibold
+  font-weight 600
+
+.font-bold
+  font-weight 700
+
+.uppercase
+  text-transform uppercase
+
+.lowercase
+  text-transform lowercase
+
+.capitalize
+  text-transform capitalize
+
+// Text colors
+.text-primary
+  color $lighter
+
+.text-secondary
+  color $light
+
+.text-accent
+  color $secondary-blue
+
+.text-muted
+  color $muted
+
+// =============================================================================
+// OVERFLOW UTILITIES
+// =============================================================================
+
+.overflow-hidden
+  overflow hidden
+
+.overflow-auto
+  overflow auto
+
+.overflow-scroll
+  overflow scroll
+
+.overflow-x-auto
+  overflow-x auto
+
+.overflow-y-auto
+  overflow-y auto
+
+// =============================================================================
+// CURSOR UTILITIES
+// =============================================================================
+
+.cursor-pointer
+  cursor pointer
+
+.cursor-not-allowed
+  cursor not-allowed
+
+.cursor-wait
+  cursor wait
+
+// =============================================================================
+// POINTER EVENTS
+// =============================================================================
+
+.pointer-events-none
+  pointer-events none
+
+.pointer-events-auto
+  pointer-events auto
+
+// =============================================================================
+// USER SELECT
+// =============================================================================
+
+.select-none
+  user-select none
+
+.select-text
+  user-select text
+
+.select-all
+  user-select all
+
+// =============================================================================
+// Z-INDEX UTILITIES
+// =============================================================================
+
+.z-0
+  z-index 0
+
+.z-10
+  z-index 10
+
+.z-20
+  z-index 20
+
+.z-30
+  z-index 30
+
+.z-40
+  z-index 40
+
+.z-50
+  z-index 50
+
+.z-auto
+  z-index auto
+
+// =============================================================================
+// STATE INDICATORS
+// =============================================================================
+
+// Loading state
+.is-loading
+  position relative
+  pointer-events none
+
+  &::after
+    content ""
+    position absolute
+    inset 0
+    background rgba($darker, 0.8)
+    display flex
+    align-items center
+    justify-content center
+
+// Disabled state
+.is-disabled
+  opacity 0.5
+  pointer-events none
+  cursor not-allowed
+
+// Active state
+.is-active
+  background-color rgba($arch-blue, 0.15)
+  border-color $arch-blue
+  color $secondary-blue
+
+// Error state
+.is-error,
+.has-error
+  border-color $secondary-red
+  color $secondary-red
+
+  input,
+  textarea,
+  select
+    border-color $secondary-red
+
+// Success state
+.is-success,
+.has-success
+  border-color $green
+  color $green
+
+// Warning state
+.is-warning,
+.has-warning
+  border-color $orange
+  color $orange
+
+// =============================================================================
+// INTERACTIVE STATES
+// =============================================================================
+
+// Interactive element base
+.interactive
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    opacity 0.8
+
+  &:active
+    transform scale(0.98)
+
+  &.is-disabled
+    opacity 0.4
+    cursor not-allowed
+    pointer-events none
+
+// Focusable element
+.focusable
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    border-radius $border-radius-sm
