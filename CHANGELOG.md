@@ -7,6 +7,9 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 
 ## [Unreleased]
 
+### Changed
+- Added test artifacts to .gitignore (screenshots/, test-results/, playwright-report/)
+
 ### Added
 - **Enhanced OOUI Component Styling** (ooui-enhanced.styl)
   - Comprehensive styling for all MediaWiki OOUI widgets
