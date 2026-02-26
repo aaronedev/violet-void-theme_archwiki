@@ -32,7 +32,10 @@
       color $secondary-blue
 
 // Forum table cells
-.tcl, .tc2, .tc3, .tcr
+.tcl,
+.tc2,
+.tc3,
+.tcr
   color $light
   padding 0.5em 0.75em
   border-color $border-subtle
@@ -90,7 +93,8 @@
     font-size 0.9em
 
 // Post content area
-.postleft, .postfootleft
+.postleft,
+.postfootleft
   background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
   border-right 1px solid $border-subtle
   padding 1em
@@ -123,7 +127,8 @@
     color white
 
 // Post content
-.postright, .postfootright
+.postright,
+.postfootright
   background-color $dark
   padding 1em
   color $light
@@ -179,6 +184,7 @@
 .brd input[type="submit"],
 .brd input[type="button"]
   gradient-surface()
+
   color $lighter
   border 1px solid $border-subtle
   border-radius $border-radius-sm
@@ -280,7 +286,7 @@
       color white
 
   .crumb
-    &:after
+    &::after
       content " → "
       color $light
 
@@ -322,6 +328,7 @@
 
   input[type="submit"]
     gradient-surface()
+
     color $lighter
     border 1px solid $border-subtle
     border-radius $border-radius-sm

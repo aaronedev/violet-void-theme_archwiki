@@ -9,64 +9,74 @@
 // =============================================================================
 
 // Fade in
-@keyframes fadeIn
+@keyframes fade-in
   from
     opacity 0
+
   to
     opacity 1
 
 // Fade in up
-@keyframes fadeInUp
+@keyframes fade-in-up
   from
     opacity 0
     transform translateY(20px)
+
   to
     opacity 1
     transform translateY(0)
 
 // Fade in down
-@keyframes fadeInDown
+@keyframes fade-in-down
   from
     opacity 0
     transform translateY(-20px)
+
   to
     opacity 1
     transform translateY(0)
 
 // Scale in
-@keyframes scaleIn
+@keyframes scale-in
   from
     opacity 0
     transform scale(0.9)
+
   to
     opacity 1
     transform scale(1)
 
 // Slide in left
-@keyframes slideInLeft
+@keyframes slide-in-left
   from
     transform translateX(-100%)
+
   to
     transform translateX(0)
 
 // Slide in right
-@keyframes slideInRight
+@keyframes slide-in-right
   from
     transform translateX(100%)
+
   to
     transform translateX(0)
 
 // Pulse
 @keyframes pulse
-  0%, 100%
+  0%,
+  100%
     opacity 1
+
   50%
     opacity 0.5
 
 // Bounce
 @keyframes bounce
-  0%, 100%
+  0%,
+  100%
     transform translateY(0)
+
   50%
     transform translateY(-10px)
 
@@ -74,6 +84,7 @@
 @keyframes spin
   from
     transform rotate(0deg)
+
   to
     transform rotate(360deg)
 
@@ -81,13 +92,16 @@
 @keyframes shimmer
   0%
     background-position -1000px 0
+
   100%
     background-position 1000px 0
 
 // Glow pulse
-@keyframes glowPulse
-  0%, 100%
+@keyframes glow-pulse
+  0%,
+  100%
     box-shadow 0 0 5px rgba($arch-blue, 0.5)
+
   50%
     box-shadow 0 0 20px rgba($arch-blue, 0.8), 0 0 30px rgba($arch-blue, 0.6)
 
@@ -96,22 +110,22 @@
 // =============================================================================
 
 .animate-fade-in
-  animation fadeIn 0.3s ease-in
+  animation fade-in 0.3s ease-in
 
 .animate-fade-in-up
-  animation fadeInUp 0.4s ease-out
+  animation fade-in-up 0.4s ease-out
 
 .animate-fade-in-down
-  animation fadeInDown 0.4s ease-out
+  animation fade-in-down 0.4s ease-out
 
 .animate-scale-in
-  animation scaleIn 0.3s ease-out
+  animation scale-in 0.3s ease-out
 
 .animate-slide-in-left
-  animation slideInLeft 0.3s ease-out
+  animation slide-in-left 0.3s ease-out
 
 .animate-slide-in-right
-  animation slideInRight 0.3s ease-out
+  animation slide-in-right 0.3s ease-out
 
 .animate-pulse
   animation pulse 2s infinite
@@ -123,7 +137,7 @@
   animation spin 1s linear infinite
 
 .animate-glow
-  animation glowPulse 2s infinite
+  animation glow-pulse 2s infinite
 
 // Hover animations
 .hover-lift
@@ -397,10 +411,7 @@
   position sticky
 
 .inset-0
-  top 0
-  right 0
-  bottom 0
-  left 0
+  inset 0
 
 // =============================================================================
 // SIZE UTILITIES

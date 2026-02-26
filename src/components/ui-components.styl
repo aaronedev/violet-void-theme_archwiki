@@ -95,6 +95,7 @@ input[type="file"]
 
   &::file-selector-button
     gradient-surface()
+
     color $lighter
     border 1px solid $border-subtle
     border-radius $border-radius-sm
@@ -303,10 +304,7 @@ input[type="range"]
 .modal,
 .overlay
   position fixed
-  top 0
-  left 0
-  right 0
-  bottom 0
+  inset 0
   background-color rgba(0, 0, 0, 0.75)
   display flex
   align-items center
@@ -346,7 +344,8 @@ input[type="range"]
   gap 0.25em
   margin 1em 0
 
-  a, span
+  a,
+  span
     padding 0.5em 0.75em
     color $lighter
     text-decoration none
@@ -354,7 +353,7 @@ input[type="range"]
     border-radius $border-radius-sm
     transition all $transition-fast
 
-    &:hover:not(.disabled):not(.active)
+    &:hover:not(.disabled, .active)
       background-color rgba($arch-blue, 0.15)
       border-color rgba($arch-blue, 0.3)
       color white
