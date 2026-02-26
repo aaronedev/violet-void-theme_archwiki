@@ -33,8 +33,7 @@
     background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
 
   &:focus-visible
-    outline 2px solid $arch-blue
-    outline-offset 2px
+    focus-ring()
 
 // Text inputs
 input[type="text"],
@@ -62,8 +61,7 @@ textarea,
     outline none
 
   &:focus-visible
-    outline 2px solid $arch-blue
-    outline-offset 2px
+    focus-ring()
 
   &::placeholder
     color rgba($light, 0.5)
