@@ -13,6 +13,11 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 - Code quality tools documentation (stylelint, prettier, pre-commit hooks)
 
 ### Changed
+- Improved accessibility by replacing `:focus` with `:focus-visible` across all form controls
+  - Better keyboard navigation experience
+  - Reduced visual noise for mouse users
+  - Updated in ui-components.styl, forms-enhanced.styl, forums.styl, mediawiki-edit.styl, and optimizations.styl
+- Removed deprecated `gradient-button()` mixin (use `gradient-surface()` instead)
 - Fixed stylelint configuration to use proper Stylus standard config
 - Standardized selector formatting across all component files
 - Improved code consistency with automated linting fixes
@@ -24,6 +29,7 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 - Selector comma formatting issues
 - Indentation inconsistencies across all files
 - Table selector nesting in tables.styl
+- Deprecated code removal (gradient-button mixin)
 
 ## [Unreleased]
 

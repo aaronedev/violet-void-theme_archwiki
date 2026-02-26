@@ -1,9 +1,21 @@
 # Inconsistencies Fixed in Violet Void ArchWiki Theme
 
 ## Summary
-Unified all button styles across the theme to match the menu panel aesthetic, fixed complex table styling, and resolved all linting errors.
+Unified all button styles across the theme to match the menu panel aesthetic, fixed complex table styling, resolved all linting errors, and improved accessibility.
 
 ## Latest Updates (2026-02-26)
+
+### Accessibility Improvements
+- Replaced `:focus` with `:focus-visible` across all form controls
+  - Checkboxes, radios, and selects now use `:focus-visible`
+  - Form validation states use `:focus-visible`
+  - Edit interface inputs use `:focus-visible`
+  - Skip links use `:focus-visible`
+  - Improves keyboard accessibility while reducing visual noise for mouse users
+
+### Code Cleanup
+- Removed deprecated `gradient-button()` mixin (not used anywhere)
+- All code now uses `gradient-surface()` consistently
 
 ### Documentation Improvements
 - Created comprehensive CHANGELOG.md following Keep a Changelog format
