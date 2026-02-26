@@ -1,0 +1,564 @@
+// Form validation, states, and enhanced form elements
+// Better UX for all form interactions
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// FORM VALIDATION STATES
+// =============================================================================
+
+// Success state
+input.valid,
+input:valid,
+textarea.valid,
+textarea:valid,
+select.valid,
+select:valid
+  border-color $green
+  box-shadow 0 0 0 3px rgba($green, 0.2)
+
+  &:focus
+    box-shadow 0 0 0 3px rgba($green, 0.3)
+
+// Error state
+input.invalid,
+input:invalid,
+textarea.invalid,
+textarea:invalid,
+select.invalid,
+select:invalid
+  border-color $secondary-red
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.2)
+
+  &:focus
+    box-shadow 0 0 0 3px rgba($secondary-red, 0.3)
+
+// Warning state
+input.warning,
+textarea.warning,
+select.warning
+  border-color $orange
+  box-shadow 0 0 0 3px rgba($orange, 0.2)
+
+// Field with error message
+.form-field.has-error
+  input,
+  textarea,
+  select
+    border-color $secondary-red
+
+  .error-message
+    display block
+    color $secondary-red
+    font-size 0.85em
+    margin-top 0.3em
+
+.form-field.has-success
+  input,
+  textarea,
+  select
+    border-color $green
+
+  .success-message
+    display block
+    color $green
+    font-size 0.85em
+    margin-top 0.3em
+
+// =============================================================================
+// FORM FIELD GROUPS
+// =============================================================================
+
+.form-group,
+.field-group
+  margin 1em 0
+
+  label
+    display block
+    color $lighter
+    font-weight 600
+    margin-bottom 0.4em
+    font-size 0.95em
+
+  .help-text,
+  .field-description
+    color $light
+    font-size 0.85em
+    margin-top 0.3em
+
+  input,
+  textarea,
+  select
+    width 100%
+
+// Inline form
+.form-inline,
+.form-row
+  display flex
+  gap 1em
+  align-items flex-end
+
+  .form-group
+    flex 1
+    margin 0
+
+// =============================================================================
+// INPUT ADDONS
+// =============================================================================
+
+.input-group
+  display flex
+  align-items stretch
+
+  input
+    flex 1
+    border-radius $border-radius-sm 0 0 $border-radius-sm
+
+  .input-addon,
+  .input-group-addon
+    background linear-gradient(135deg, $dark, $darker)
+    border 1px solid $border-subtle
+    padding 0.5em 0.75em
+    color $lighter
+    display flex
+    align-items center
+    font-size 0.9em
+
+    &:first-child
+      border-right none
+      border-radius $border-radius-sm 0 0 $border-radius-sm
+
+    &:last-child
+      border-left none
+      border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  button
+    border-radius 0 $border-radius-sm $border-radius-sm 0
+    margin-left -1px
+
+// Prefix/suffix
+.input-prefix,
+.input-suffix
+  background-color $darker
+  border 1px solid $border-subtle
+  padding 0.5em 0.75em
+  color $lighter
+  font-family $font-mono
+  font-size 0.9em
+
+// =============================================================================
+// ENHANCED CHECKBOXES & RADIOS
+// =============================================================================
+
+// Checkbox group
+.checkbox-group,
+.radio-group
+  display flex
+  flex-direction column
+  gap 0.5em
+
+  label
+    display flex
+    align-items center
+    gap 0.5em
+    cursor pointer
+    color $light
+    padding 0.3em 0
+
+    &:hover
+      color $lighter
+
+    input
+      margin 0
+
+// Inline checkbox/radio group
+.checkbox-group-inline,
+.radio-group-inline
+  flex-direction row
+  flex-wrap wrap
+  gap 1.5em
+
+// Toggle switch
+.toggle-switch
+  position relative
+  display inline-block
+  width 48px
+  height 24px
+
+  input
+    opacity 0
+    width 0
+    height 0
+
+  .slider
+    position absolute
+    cursor pointer
+    inset 0
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius 24px
+    transition all $transition-fast
+
+    &:before
+      content ""
+      position absolute
+      height 18px
+      width 18px
+      left 2px
+      bottom 2px
+      background-color $light
+      border-radius 50%
+      transition all $transition-fast
+
+  input:checked + .slider
+    background-color $arch-blue
+    border-color $arch-blue
+
+    &:before
+      transform translateX(24px)
+      background-color $darker
+
+  input:focus + .slider
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// =============================================================================
+// MULTI-SELECT & TAGS
+// =============================================================================
+
+.tags-input
+  display flex
+  flex-wrap wrap
+  gap 0.3em
+  padding 0.4em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  min-height 2.5em
+
+  &:focus-within
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  .tag
+    display inline-flex
+    align-items center
+    gap 0.3em
+    padding 0.2em 0.5em
+    background-color rgba($arch-blue, 0.2)
+    color $lighter
+    border-radius $border-radius-sm
+    font-size 0.85em
+
+    .tag-remove
+      cursor pointer
+      opacity 0.6
+      transition opacity $transition-fast
+
+      &:hover
+        opacity 1
+
+  input
+    flex 1
+    min-width 100px
+    background transparent
+    border none
+    outline none
+    color $lighter
+    padding 0.2em
+
+// =============================================================================
+// AUTOCOMPLETE
+// =============================================================================
+
+.autocomplete-wrapper
+  position relative
+
+  input
+    width 100%
+
+  .autocomplete-results
+    position absolute
+    top 100%
+    left 0
+    right 0
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border 1px solid $border-subtle
+    border-top none
+    border-radius 0 0 $border-radius-md $border-radius-md
+    max-height 200px
+    overflow-y auto
+    box-shadow $shadow-elevated
+    z-index 1000
+
+    .autocomplete-item
+      padding 0.5em 0.75em
+      color $light
+      cursor pointer
+      transition background-color $transition-fast
+
+      &:hover,
+      &.active
+        background-color rgba($arch-blue, 0.15)
+        color $secondary-blue
+
+      &.selected
+        background-color rgba($arch-blue, 0.2)
+        color white
+
+// =============================================================================
+// DATE & TIME INPUTS
+// =============================================================================
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"]
+  &::-webkit-calendar-picker-indicator
+    filter invert(0.8)
+    cursor pointer
+
+    &:hover
+      filter invert(1)
+
+// =============================================================================
+// COLOR INPUT
+// =============================================================================
+
+input[type="color"]
+  -webkit-appearance none
+  width 50px
+  height 35px
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  cursor pointer
+  padding 2px
+
+  &::-webkit-color-swatch-wrapper
+    padding 0
+
+  &::-webkit-color-swatch
+    border none
+    border-radius 3px
+
+// =============================================================================
+// SEARCH ENHANCED
+// =============================================================================
+
+.search-enhanced
+  position relative
+  display flex
+  align-items center
+
+  input
+    padding-left 2.5em
+
+  .search-icon
+    position absolute
+    left 0.75em
+    color $secondary-blue
+    pointer-events none
+
+  .search-clear
+    position absolute
+    right 0.5em
+    background transparent
+    border none
+    color $light
+    cursor pointer
+    padding 0.3em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      color white
+
+// =============================================================================
+// FORM VALIDATION MESSAGES
+// =============================================================================
+
+.form-message
+  padding 0.75em 1em
+  border-radius $border-radius-sm
+  margin 0.5em 0
+  font-size 0.9em
+
+  &.form-message-error
+    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    border-left 3px solid $secondary-red
+    color $lighter
+
+  &.form-message-success
+    background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+    border-left 3px solid $green
+    color $lighter
+
+  &.form-message-warning
+    background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.08))
+    border-left 3px solid $orange
+    color $lighter
+
+  &.form-message-info
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
+    border-left 3px solid $secondary-blue
+    color $lighter
+
+// =============================================================================
+// REQUIRED FIELD INDICATORS
+// =============================================================================
+
+.required-indicator
+  color $secondary-red
+  font-weight bold
+  margin-left 0.2em
+
+label.required
+  &:after
+    content " *"
+    color $secondary-red
+    font-weight bold
+
+// =============================================================================
+// CHARACTER COUNTER
+// =============================================================================
+
+.char-counter
+  font-size 0.85em
+  color $muted
+  text-align right
+  margin-top 0.2em
+
+  &.char-limit-near
+    color $orange
+
+  &.char-limit-exceeded
+    color $secondary-red
+    font-weight 600
+
+// =============================================================================
+// FORM PROGRESS
+// =============================================================================
+
+.form-progress
+  display flex
+  gap 0.5em
+  margin-bottom 1.5em
+
+  .progress-step
+    flex 1
+    text-align center
+    padding 0.5em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.85em
+    transition all $transition-fast
+
+    &.active
+      background linear-gradient(135deg, $arch-blue, $secondary-blue)
+      color $darker
+      border-color $arch-blue
+      font-weight 600
+
+    &.completed
+      background-color rgba($green, 0.2)
+      border-color $green
+      color $green
+
+// =============================================================================
+// BUTTON GROUPS
+// =============================================================================
+
+.button-group
+  display flex
+  gap 0.5em
+
+  button,
+  .button
+    border-radius 0
+
+    &:first-child
+      border-radius $border-radius-sm 0 0 $border-radius-sm
+
+    &:last-child
+      border-radius 0 $border-radius-sm $border-radius-sm 0
+
+    &:not(:last-child)
+      border-right none
+
+// Vertical button group
+.button-group-vertical
+  flex-direction column
+
+  button,
+  .button
+    border-radius 0
+
+    &:first-child
+      border-radius $border-radius-sm $border-radius-sm 0 0
+
+    &:last-child
+      border-radius 0 0 $border-radius-sm $border-radius-sm
+
+    &:not(:last-child)
+      border-bottom none
+      border-right 1px solid $border-subtle
+
+// =============================================================================
+// FORM ACTIONS
+// =============================================================================
+
+.form-actions
+  display flex
+  gap 0.75em
+  margin-top 1.5em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+
+  button
+    min-width 100px
+
+  .spacer
+    flex 1
+
+// =============================================================================
+// DISABLED FORM
+// =============================================================================
+
+.form-disabled,
+fieldset[disabled]
+  opacity 0.6
+  pointer-events none
+
+// =============================================================================
+// READ-ONLY FORM
+// =============================================================================
+
+input[readonly],
+textarea[readonly],
+select[readonly]
+  background-color rgba($arch-blue, 0.05)
+  border-color rgba($arch-blue, 0.2)
+  cursor not-allowed
+
+// =============================================================================
+// FORM SKELETON LOADING
+// =============================================================================
+
+.form-skeleton
+  .skeleton-input
+    background linear-gradient(90deg, $darker 25%, rgba($arch-blue, 0.1) 50%, $darker 75%)
+    background-size 200% 100%
+    animation shimmer 1.5s infinite
+    height 2.5em
+    border-radius $border-radius-sm
+
+  .skeleton-label
+    background linear-gradient(90deg, $darker 25%, rgba($arch-blue, 0.1) 50%, $darker 75%)
+    background-size 200% 100%
+    animation shimmer 1.5s infinite
+    height 1em
+    width 60%
+    border-radius 2px
+    margin-bottom 0.4em

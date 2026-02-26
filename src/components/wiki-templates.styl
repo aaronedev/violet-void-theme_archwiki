@@ -1,0 +1,561 @@
+// Additional wiki-specific elements
+// Templates, see-also boxes, references, categories, navigation
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// WIKI TEMPLATES (ArchWiki specific)
+// =============================================================================
+
+// Related articles box (sidebar)
+.archwiki-template-related-articles
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .archwiki-template-related-articles-header
+    color $lighter
+    font-weight 700
+    font-size 0.9em
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 2px solid $secondary-blue
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      margin 0.4em 0
+
+      a
+        color $light
+        text-decoration none
+        display block
+        padding 0.2em 0.4em
+        border-radius $border-radius-sm
+        transition all $transition-fast
+
+        &:hover
+          background-color rgba($arch-blue, 0.1)
+          color $secondary-blue
+          padding-left 0.6em
+
+// Related articles start/end templates
+.archwiki-template-related-articles-start,
+.archwiki-template-related-articles-end
+  display none
+
+// Meta template (page information)
+.archwiki-template-meta
+  background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  margin 1em 0
+  font-size 0.9em
+  color $light
+
+// Translation status
+.archwiki-template-trans-status
+  background-color rgba($orange, 0.1)
+  border-left 3px solid $orange
+  padding 0.5em 1em
+  margin 1em 0
+  border-radius 0 $border-radius-md $border-radius-md 0
+  font-size 0.9em
+
+// Article status templates
+.archwiki-template-article-status
+  background linear-gradient(135deg, rgba($secondary-red, 0.1), rgba($secondary-red, 0.05))
+  border 1px solid rgba($secondary-red, 0.2)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .archwiki-template-article-status-heading
+    color $secondary-red
+    font-weight 600
+
+// =============================================================================
+// NAVIGATION BOXES
+// =============================================================================
+
+// Navigation box at bottom of pages
+.navbox,
+.navigation-box
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin 2em 0
+  overflow hidden
+  box-shadow $shadow-subtle
+
+  .navbox-title,
+  .navigation-box-title
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+    color $lighter
+    font-weight 600
+    padding 0.75em 1em
+    text-align center
+    border-bottom 1px solid $border-subtle
+
+  .navbox-content,
+  .navigation-box-content
+    padding 1em
+
+    table
+      width 100%
+      border-collapse collapse
+
+      td
+        padding 0.4em 0.8em
+        border 1px solid $border-subtle
+        color $light
+
+      a
+        color $secondary-blue
+        text-decoration none
+
+        &:hover
+          color white
+
+// =============================================================================
+// CATEGORIES
+// =============================================================================
+
+// Category links at bottom of page
+.catlinks,
+.mw-normal-catlinks
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  margin 2em 0 1em 0
+  font-size 0.9em
+
+  .mw-normal-catlinks
+    background transparent
+    border none
+    padding 0
+    margin 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      color white
+
+  // Category label
+  &:before
+    content "Categories: "
+    color $lighter
+    font-weight 600
+
+// Category pages
+#mw-subcategories,
+#mw-pages,
+#mw-category-media
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  h2,
+  h3
+    color $lighter
+    border-bottom 1px solid $border-subtle
+    padding-bottom 0.5em
+    margin-bottom 0.75em
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      display inline-block
+      margin 0.3em 0.6em 0.3em 0
+
+      a
+        color $light
+        padding 0.2em 0.5em
+        border-radius $border-radius-sm
+        transition all $transition-fast
+
+        &:hover
+          background-color rgba($arch-blue, 0.15)
+          color $secondary-blue
+
+// =============================================================================
+// REFERENCES & CITATIONS
+// =============================================================================
+
+// Reference list
+.references,
+ol.references,
+ul.references
+  margin 1.5em 0
+  padding-left 2em
+  font-size 0.9em
+
+  li
+    margin 0.5em 0
+    color $light
+
+  .reference-text
+    color $light
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color white
+
+// Citation backlinks
+.mw-cite-backlink
+  a
+    color $arch-blue
+    font-weight bold
+
+    &:hover
+      color $secondary-blue
+
+// Reference tooltip
+.mw-references-wrap
+  margin 1.5em 0
+
+// =============================================================================
+// SEE ALSO SECTIONS
+// =============================================================================
+
+// Manual "See also" sections
+.see-also,
+.related-links
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1.5em 0
+
+  h2,
+  h3
+    color $lighter
+    margin-top 0
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      margin 0.4em 0
+      padding-left 1em
+      position relative
+
+      &:before
+        content "→"
+        position absolute
+        left 0
+        color $secondary-blue
+
+      a
+        color $light
+        text-decoration none
+
+        &:hover
+          color $secondary-blue
+
+// =============================================================================
+// EXTERNAL LINKS
+// =============================================================================
+
+// External link icon
+a.external,
+a[href^="http"]:not([href*="archlinux.org"])
+  &:after
+    content " ↗"
+    font-size 0.8em
+    opacity 0.6
+    color $secondary-blue
+
+  &:hover:after
+    opacity 1
+    color white
+
+// =============================================================================
+// REDIRECT PAGES
+// =============================================================================
+
+.redirectMsg
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($secondary-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1em 0
+
+  p
+    margin 0
+    color $light
+
+  a
+    color $secondary-blue
+    font-weight 600
+
+    &:hover
+      color white
+
+// =============================================================================
+// EDIT SECTION LINKS
+// =============================================================================
+
+.mw-editsection
+  font-size 0.8em
+  font-weight normal
+  margin-left 0.5em
+  opacity 0.6
+  transition opacity $transition-fast
+
+  &:hover
+    opacity 1
+
+  a
+    color $light
+
+    &:hover
+      color $secondary-blue
+
+  .mw-editsection-bracket
+    color $muted
+
+// =============================================================================
+// PAGE INFORMATION
+// =============================================================================
+
+// Page statistics/info box
+#mw-page-info
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-size 0.9em
+
+  table
+    width 100%
+
+    tr
+      border-bottom 1px solid $border-subtle
+
+      &:last-child
+        border-bottom none
+
+    td
+      padding 0.5em
+      color $light
+
+      &:first-child
+        color $lighter
+        font-weight 600
+
+// =============================================================================
+// TABLE OF CONTENTS (ENHANCED)
+// =============================================================================
+
+// TOC already styled in navigation.styl, but add more
+
+// TOC hide/show link
+.toctoggle
+  font-size 0.85em
+
+// TOC number styling
+.tocnumber
+  color $secondary-blue
+  font-weight 600
+  margin-right 0.5em
+
+// TOC level styling
+.toclevel-1
+  margin-left 0
+
+.toclevel-2
+  margin-left 1.5em
+
+.toclevel-3
+  margin-left 3em
+
+.toclevel-4
+  margin-left 4.5em
+
+// =============================================================================
+// FILE/IMAGE DESCRIPTION PAGES
+// =============================================================================
+
+// File history table
+#mw-imagepage-section-filehistory
+  table
+    background-color $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    overflow hidden
+
+// Image metadata
+.mw-filepage-resolutioninfo
+  color $light
+  font-size 0.9em
+
+// =============================================================================
+// SPECIAL PAGES
+// =============================================================================
+
+// Special page subtitle
+.mw-specialpagesgroup
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  h2
+    color $lighter
+    margin 0 0 0.5em 0
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      display inline-block
+      margin 0.3em 0.6em 0.3em 0
+
+      a
+        color $secondary-blue
+
+        &:hover
+          color white
+
+// Search results on special pages
+.mw-search-results
+  li
+    margin 1em 0
+    padding 1em
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+
+    a
+      font-size 1.1em
+      font-weight 600
+      color $secondary-blue
+
+      &:hover
+        color white
+
+    .searchresult
+      color $light
+      margin-top 0.5em
+
+    .mw-search-result-data
+      color $muted
+      font-size 0.85em
+      margin-top 0.3em
+
+// =============================================================================
+// DIFF VIEW
+// =============================================================================
+
+// Diff table
+table.diff,
+td.diff-ntitle,
+td.diff-otitle
+  background-color transparent
+
+td.diff-context
+  background-color $darker
+  color $light
+
+td.diff-deletedline
+  background-color rgba($secondary-red, 0.15)
+  color $lighter
+  border none
+
+  .diffchange
+    background-color rgba($secondary-red, 0.3)
+    font-weight bold
+
+td.diff-addedline
+  background-color rgba($green, 0.15)
+  color $lighter
+  border none
+
+  .diffchange
+    background-color rgba($green, 0.3)
+    font-weight bold
+
+// =============================================================================
+// USER INTERFACE ELEMENTS
+// =============================================================================
+
+// User message
+.usermessage
+  background linear-gradient(135deg, rgba($orange, 0.2), rgba($orange, 0.1))
+  border 2px solid $orange
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+// Preview note
+.previewnote
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.08))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  p
+    margin 0
+    color $lighter
+    font-weight 600
+
+// Warning boxes
+.mw-warning
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  p
+    margin 0
+    color $light
+
+// =============================================================================
+// PATROLLED/UNPATROLLED
+// =============================================================================
+
+.unpatrolled
+  color $secondary-red
+  font-weight bold
+
+.not-patrolled
+  background-color rgba($orange, 0.1)
+  padding 0.1em 0.3em
+  border-radius 2px
