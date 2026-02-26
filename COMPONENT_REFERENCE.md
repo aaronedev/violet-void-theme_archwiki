@@ -36,6 +36,45 @@ Complete reference of all styled components and their locations.
 - **responsive-enhanced.styl** - Accessibility, responsive design, print styles
 - **optimizations.styl** - Performance, RTL support, browser compatibility
 
+## Recent Improvements (2026-02-26)
+
+### Accessibility
+- Added `:focus-visible` support for buttons and inputs
+- Improved keyboard navigation across all interactive elements
+
+### New Components
+- **mediawiki-edit.styl**: Complete edit interface styling
+  - Edit forms and toolbars
+  - Preview and diff views
+  - Login/create account forms
+  - User preferences
+  - Upload interface
+  - Page history
+  - Protection/delete interfaces
+  - Move/rename page
+  - Contributions and watchlist
+  - Recent changes
+  - Admin tools (userrights, block)
+  - Notifications and success messages
+
+- **optimizations.styl**: Performance and compatibility
+  - Print optimizations
+  - High contrast mode support
+  - Dark mode system preference handling
+  - Monochrome display support
+  - Reduced data mode
+  - Animation performance
+  - CSS containment
+  - Scrolling performance
+  - Text rendering optimization
+  - Grid/flexbox fallbacks
+  - Legacy browser support
+  - Screen reader improvements
+  - RTL support
+  - Loading states
+  - Error states
+  - Custom scrollbar styling
+
 ## Coverage
 
 ### Arch Linux Sites (100%)
