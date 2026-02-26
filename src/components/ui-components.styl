@@ -1,0 +1,430 @@
+// Additional form elements and UI components
+// Checkboxes, radios, selects, alerts, badges, etc.
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// Checkboxes and Radio buttons
+input[type="checkbox"],
+input[type="radio"]
+  appearance none
+  -webkit-appearance none
+  width 16px
+  height 16px
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  cursor pointer
+  transition all $transition-fast
+  vertical-align middle
+  position relative
+
+  &:checked
+    background-color $arch-blue
+    border-color $arch-blue
+
+    &::after
+      content "✓"
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      color $darker
+      font-size 12px
+      font-weight bold
+
+  &:hover
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  &:focus
+    outline none
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+input[type="radio"]
+  border-radius 50%
+
+  &:checked::after
+    content ""
+    width 6px
+    height 6px
+    background-color $darker
+    border-radius 50%
+
+// Select dropdowns
+select
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em 2em 0.5em 0.75em
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+  appearance none
+  -webkit-appearance none
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c7b8ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 12px
+
+  &:hover
+    border-color $arch-blue
+
+  &:focus
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+    outline none
+
+  option
+    background-color $darker
+    color $lighter
+    padding 0.5em
+
+// File inputs
+input[type="file"]
+  background-color transparent
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em
+  cursor pointer
+
+  &:hover
+    border-color $arch-blue
+
+  &::file-selector-button
+    gradient-surface()
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.4em 1em
+    margin-right 0.75em
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+// Range sliders
+input[type="range"]
+  -webkit-appearance none
+  appearance none
+  width 100%
+  height 6px
+  background-color $darker
+  border-radius $border-radius-sm
+  outline none
+
+  &::-webkit-slider-thumb
+    -webkit-appearance none
+    appearance none
+    width 18px
+    height 18px
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-radius 50%
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      transform scale(1.1)
+
+  &::-moz-range-thumb
+    width 18px
+    height 18px
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-radius 50%
+    cursor pointer
+    border none
+
+// Badges and Tags
+.badge,
+.tag,
+.label
+  display inline-block
+  padding 0.2em 0.6em
+  font-size 0.85em
+  font-weight 600
+  border-radius $border-radius-sm
+  background-color rgba($arch-blue, 0.15)
+  color $secondary-blue
+  border 1px solid rgba($arch-blue, 0.25)
+
+  &.badge-primary,
+  &.tag-primary
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    color $darker
+    border none
+
+  &.badge-success,
+  &.tag-success
+    background-color rgba($green, 0.15)
+    color $green
+    border-color rgba($green, 0.25)
+
+  &.badge-warning,
+  &.tag-warning
+    background-color rgba($orange, 0.15)
+    color $orange
+    border-color rgba($orange, 0.25)
+
+  &.badge-danger,
+  &.tag-danger
+    background-color rgba($secondary-red, 0.15)
+    color $secondary-red
+    border-color rgba($secondary-red, 0.25)
+
+// Alerts and Notifications
+.alert,
+.notification,
+.flash-message
+  padding 1em 1.5em
+  border-radius $border-radius-md
+  margin 1em 0
+  box-shadow $shadow-subtle
+  border-left 4px solid
+
+  &.alert-info,
+  &.notification-info
+    background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+    border-color $secondary-blue
+    color $lighter
+
+  &.alert-success,
+  &.notification-success
+    background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.05))
+    border-color $green
+    color $lighter
+
+  &.alert-warning,
+  &.notification-warning
+    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    border-color $orange
+    color $lighter
+
+  &.alert-error,
+  &.notification-error
+    background linear-gradient(135deg, rgba($secondary-red, 0.1), rgba($secondary-red, 0.05))
+    border-color $secondary-red
+    color $lighter
+
+// Progress bars
+.progress,
+.progress-bar
+  width 100%
+  height 8px
+  background-color $darker
+  border-radius $border-radius-sm
+  overflow hidden
+  box-shadow inset 0 1px 2px rgba(0, 0, 0, 0.1)
+
+  .progress-fill,
+  .progress-inner
+    height 100%
+    background linear-gradient(90deg, $arch-blue, $secondary-blue)
+    border-radius $border-radius-sm
+    transition width $transition-medium
+
+// Tabs
+.tabs,
+.tab-list
+  display flex
+  gap 0.5em
+  border-bottom 2px solid $border-subtle
+  margin-bottom 1em
+
+  .tab,
+  .tab-item
+    padding 0.5em 1em
+    color $light
+    text-decoration none
+    border-bottom 2px solid transparent
+    margin-bottom -2px
+    transition all $transition-fast
+    cursor pointer
+
+    &:hover
+      color $secondary-blue
+      background-color rgba($arch-blue, 0.05)
+
+    &.active,
+    &[aria-selected="true"]
+      color $secondary-blue
+      border-bottom-color $secondary-blue
+      font-weight 600
+
+// Breadcrumbs (general)
+.breadcrumbs,
+.breadcrumb
+  color $light
+  font-size 0.9em
+  margin 1em 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color white
+
+  .separator
+    margin 0 0.5em
+    color $light
+
+// Tooltips
+.tooltip,
+[data-tooltip]
+  position relative
+
+  &::after
+    content attr(data-tooltip)
+    position absolute
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    padding 0.5em 0.75em
+    background-color $darker
+    color $lighter
+    font-size 0.85em
+    border-radius $border-radius-sm
+    box-shadow $shadow-elevated
+    white-space nowrap
+    opacity 0
+    pointer-events none
+    transition opacity $transition-fast
+    z-index 1000
+
+  &:hover::after
+    opacity 1
+
+// Modals and Overlays
+.modal,
+.overlay
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color rgba(0, 0, 0, 0.75)
+  display flex
+  align-items center
+  justify-content center
+  z-index 9999
+
+  .modal-content,
+  .modal-body
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+    border 1px solid $border-subtle
+    border-radius $border-radius-lg
+    padding 2em
+    max-width 90%
+    max-height 90%
+    overflow auto
+    box-shadow $shadow-elevated
+
+  .modal-header
+    color $lighter
+    font-weight 600
+    font-size 1.2em
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+  .modal-footer
+    margin-top 1.5em
+    padding-top 1em
+    border-top 1px solid $border-subtle
+    display flex
+    gap 0.5em
+    justify-content flex-end
+
+// Pagination (general)
+.pagination
+  display flex
+  gap 0.25em
+  margin 1em 0
+
+  a, span
+    padding 0.5em 0.75em
+    color $lighter
+    text-decoration none
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover:not(.disabled):not(.active)
+      background-color rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.3)
+      color white
+
+    &.active
+      background linear-gradient(135deg, $arch-blue, $secondary-blue)
+      color $darker
+      border-color $arch-blue
+      font-weight 600
+
+    &.disabled
+      opacity 0.5
+      cursor not-allowed
+
+// Loading spinners
+.spinner,
+.loading
+  display inline-block
+  width 20px
+  height 20px
+  border 2px solid $border-subtle
+  border-top-color $secondary-blue
+  border-radius 50%
+  animation spin 0.8s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// Empty states
+.empty-state,
+.no-results
+  text-align center
+  padding 3em 2em
+  color $light
+  font-size 1.1em
+
+  .empty-icon
+    font-size 3em
+    opacity 0.3
+    margin-bottom 0.5em
+
+// Dividers and separators
+.divider,
+hr
+  border none
+  height 1px
+  background linear-gradient(90deg, transparent, $border-subtle, transparent)
+  margin 2em 0
+
+// Cards (general)
+.card
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  box-shadow $shadow-subtle
+  transition all $transition-fast
+
+  &:hover
+    box-shadow $shadow-elevated
+    border-color rgba($arch-blue, 0.2)
+
+  .card-header
+    font-weight 600
+    color $lighter
+    font-size 1.1em
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+  .card-body
+    color $light
