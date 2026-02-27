@@ -10,7 +10,7 @@
 
 // Unordered lists with custom bullets
 ul
-  padding-left 1.5em
+  padding-inline-start 1.5em
 
   li
     position relative
@@ -29,7 +29,7 @@ ol ul
 // Custom bullet styles
 ul.custom-bullets
   list-style none
-  padding-left 1.5em
+  padding-inline-start 1.5em
 
   li::before
     content "▸"
@@ -40,7 +40,7 @@ ul.custom-bullets
 // Checkmark list
 ul.checklist
   list-style none
-  padding-left 1.8em
+  padding-inline-start 1.8em
 
   li
     position relative
@@ -54,7 +54,7 @@ ul.checklist
 
 // Ordered lists with better numbering
 ol
-  padding-left 1.8em
+  padding-inline-start 1.8em
   counter-reset item
 
   li
@@ -63,7 +63,7 @@ ol
 
   &.styled-numbers
     list-style none
-    padding-left 2.5em
+    padding-inline-start 2.5em
 
     li
       counter-increment item
@@ -98,7 +98,7 @@ dt
 
 dd
   color $light
-  margin-left 1.5em
+  margin-inline-start 1.5em
   margin-top 0.3em
 
 // =============================================================================
@@ -110,7 +110,7 @@ blockquote
   margin 1.5em 0
   padding 1em 1.5em
   background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
-  border-left 4px solid $secondary-blue
+  border-inline-start 4px solid $secondary-blue
   border-radius 0 $border-radius-md $border-radius-md 0
   font-style italic
   color $light
@@ -141,7 +141,7 @@ blockquote
 // Nested blockquotes
 blockquote blockquote
   margin 1em 0
-  border-left-color rgba($arch-blue, 0.5)
+  border-inline-start-color rgba($arch-blue, 0.5)
 
 // =============================================================================
 // KEYBOARD SHORTCUTS
@@ -162,7 +162,7 @@ kbd
 
   // Key combination
   & + kbd
-    margin-left 0.3em
+    margin-inline-start 0.3em
 
 // Keyboard shortcut group
 .keyboard-shortcut
@@ -475,7 +475,7 @@ address
   margin 1em 0
   padding 1em
   background-color $darker
-  border-left 3px solid $secondary-blue
+  border-inline-start 3px solid $secondary-blue
   border-radius 0 $border-radius-md $border-radius-md 0
 
 // =============================================================================
