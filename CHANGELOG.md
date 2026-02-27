@@ -8,6 +8,11 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 ## [Unreleased]
 
 ### Added
+- Modern CSS enhancements for progressive improvement
+  - `accent-color` property for native form controls (checkboxes, radios, range, progress)
+  - `text-size-adjust` to prevent mobile text size adjustment
+  - `overscroll-behavior-y` to prevent scroll chaining for better UX
+  - Link underline offset adjustment (0.1em) for improved readability
 - Native HTML `<dialog>` element styling
   - Dark gradient background matching theme
   - Styled `::backdrop` for modal dialogs
