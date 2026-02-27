@@ -89,12 +89,12 @@
   - File: `src/components/typography.styl`
   - Stylus: Works directly
 
-- [ ] **`hyphens` for Narrow Columns**
+- [x] **`hyphens` for Narrow Columns**
   - Browser support: 95%+
   - Better text wrapping in infoboxes, sidebars, and narrow containers
   - Use `hyphens: auto` with `lang` attribute
   - File: `src/components/tables.styl`, `src/components/content.styl`
-  - Stylus: Works directly
+  - Commit: cf4e9af
 
 - [ ] **`::first-letter` Drop Caps for Article Intros**
   - Browser support: 100%
@@ -225,6 +225,7 @@
 | 2026-02-27 | ::spelling-error and ::grammar-error styling | ae696a1 |
 | 2026-02-27 | @counter-style for custom list markers | 6481f49 |
 | 2026-02-27 | text-decoration-skip-ink for better underlines | 2e4e47f |
+| 2026-02-27 | hyphens for narrow columns | cf4e9af |
 
 ---
 
