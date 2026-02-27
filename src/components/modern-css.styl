@@ -301,6 +301,135 @@
       animation none !important
 
 // =============================================================================
+// :HAS() SELECTOR - Parent Selection Based on Children (89%+ browser support)
+// =============================================================================
+
+// Note: :has() support is excellent (89%+ as of 2024)
+// Allows styling parents based on children state/content
+// Using @css wrapper for complex :has() selectors
+// IMPORTANT: Do NOT use @supports selector(:has(*)) - it breaks PostCSS autoprefixer
+
+@css {
+  /* Form validation states */
+  .mw-htmlform-field:has(:invalid),
+  .oo-ui-fieldLayout:has(:invalid),
+  .mw-ui-field-container:has(:invalid) {
+    border-left: 3px solid #ff1a67;
+    padding-left: 0.75em;
+    margin-left: -0.75em;
+  }
+
+  .mw-htmlform-field:has(:valid),
+  .oo-ui-fieldLayout:has(:valid),
+  .mw-ui-field-container:has(:valid) {
+    border-left: 3px solid #42ff97;
+    padding-left: 0.75em;
+    margin-left: -0.75em;
+  }
+
+  .mw-htmlform-field:has(:focus),
+  .oo-ui-fieldLayout:has(:focus),
+  .mw-ui-field-container:has(:focus) {
+    border-left-color: #8950c7;
+  }
+
+  /* Required field indicators */
+  .mw-htmlform-field:has([required]),
+  .oo-ui-fieldLayout:has([required]) {
+    position: relative;
+  }
+
+  .mw-htmlform-field:has([required])::before,
+  .oo-ui-fieldLayout:has([required])::before {
+    content: "*";
+    color: #ff1a67;
+    margin-right: 0.25em;
+  }
+
+  /* Empty content detection */
+  .mw-parser-output > p:empty,
+  .mw-heading:empty,
+  .toc:empty,
+  #toc:empty {
+    display: none;
+  }
+
+  /* Table row highlighting based on cell content */
+  .wikitable tbody tr:has(td:first-child:empty) {
+    opacity: 0.5;
+  }
+
+  /* Card/list hover states affecting siblings */
+  .mw-category-group:has(li:hover) {
+    background: rgba(137, 80, 199, 0.05);
+    border-radius: 0.5em;
+  }
+
+  /* Highlight parent when link is hovered */
+  .mw-parser-output p:has(a:hover),
+  .mw-parser-output li:has(a:hover) {
+    background: rgba(137, 80, 199, 0.03);
+    border-radius: 0.25em;
+  }
+
+  /* TOC highlighting based on active link */
+  #toc:has(a:hover),
+  .toc:has(a:hover) {
+    background: rgba(137, 80, 199, 0.05);
+  }
+
+  /* Infobox styling based on content */
+  .infobox:has(img) {
+    text-align: center;
+  }
+
+  .infobox tbody tr:has(th[colspan]) {
+    background: rgba(137, 80, 199, 0.15);
+  }
+
+  /* Navbox active state */
+  .navbox:has(a:hover) {
+    border-color: #8950c7;
+  }
+
+  /* Form section with errors */
+  .mw-htmlform:has(.error) {
+    border: 2px solid #ff1a67;
+    padding: 1em;
+    border-radius: 0.5em;
+  }
+
+  /* Input groups with focus */
+  .oo-ui-widget:has(input:focus),
+  .oo-ui-widget:has(textarea:focus),
+  .oo-ui-widget:has(select:focus) {
+    box-shadow: 0 0 0 2px rgba(137, 80, 199, 0.3);
+    border-radius: 0.25em;
+  }
+
+  /* List items with checked checkboxes */
+  li:has(input[type="checkbox"]:checked) {
+    opacity: 0.7;
+    text-decoration: line-through;
+  }
+
+  /* Code blocks with language indicator */
+  pre:has(code[class*="language-"]) {
+    border-left: 3px solid #8950c7;
+  }
+
+  /* Collapsed sections */
+  .mw-collapsible:has(.mw-collapsible-toggle-collapsed) {
+    opacity: 0.8;
+  }
+
+  /* Search results with matching query */
+  .mw-search-results:has(.mw-search-result) {
+    padding: 0.5em;
+  }
+}
+
+// =============================================================================
 // FUTURE ENHANCEMENTS
 // =============================================================================
 
