@@ -3,6 +3,90 @@
 @import '../mixins/gradients'
 @import '../mixins/effects'
 
+// Custom counter styles for list markers
+// Uses @css{} wrapper for Stylus compatibility
+@css {
+  /* Installation step counter - styled with arch-blue */
+  @counter-style archwiki-steps {
+    system: numeric;
+    symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+    suffix: ". ";
+    pad: 2 "0";
+    speak-as: numbers;
+  }
+
+  /* Terminal-style counter for command lists */
+  @counter-style terminal-prompt {
+    system: cyclic;
+    symbols: '$' '>' '#';
+    suffix: " ";
+  }
+
+  /* Checklist style for verification steps */
+  @counter-style archwiki-check {
+    system: cyclic;
+    symbols: '▸' '→' '✓' '◆';
+    suffix: " ";
+  }
+}
+
+// Apply custom counter styles to ordered lists
+ol
+  counter-reset archwiki-step
+
+  // Installation steps - uses padded numeric counter
+  &[data-style="steps"]
+  &.archwiki-steps
+    list-style archwiki-steps
+    padding-inline-start 2.5em
+
+    li
+      padding-inline-start 0.5em
+      position relative
+
+      &::before
+        content ""
+        position absolute
+        left -1.5em
+        top 0.4em
+        width 1.2em
+        height 1.2em
+        background rgba($arch-blue, 0.15)
+        border-radius 50%
+        z-index -1
+
+  // Terminal command lists
+  &[data-style="terminal"]
+  &.archwiki-terminal-list
+    list-style terminal-prompt
+    padding-inline-start 2em
+    font-family $font-mono
+
+    li
+      color $term-green
+
+      &::marker
+        color $term-bright-green
+
+  // Verification/checklist style
+  &[data-style="check"]
+  &.archwiki-check
+    list-style archwiki-check
+    padding-inline-start 2em
+
+    li
+      padding-inline-start 0.5em
+
+      &::marker
+        color $arch-blue
+
+// Nested list styling with custom markers
+ol ol
+  list-style lower-alpha
+
+ol ol ol
+  list-style lower-roman
+
 // Main content area
 #content
   background-color $dark
