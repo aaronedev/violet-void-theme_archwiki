@@ -7,8 +7,8 @@ public/
 
 # OS/IDE junk
 .DS_Store
-.idea/
-.vscode/
+.idea
+.vscode
 
 # Sensitive local files (for safety)
 .env
