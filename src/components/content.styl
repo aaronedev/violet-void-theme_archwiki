@@ -264,3 +264,31 @@ h2::after
         > *:not(summary)
           content-visibility hidden
           contain-intrinsic-size 0 50px
+
+// =============================================================================
+// HYPHENATION FOR NARROW CONTAINERS
+// =============================================================================
+
+// Better text wrapping in sidebars and narrow columns
+// Browser support: 95%+
+.mw-parser-output
+  // Sidebar content
+  .sidebar
+  .side-box
+    p
+    li
+      hyphens auto
+
+  // Narrow template boxes
+  .archwiki-template-box
+    p
+      hyphens auto
+
+  // Narrow columns in multi-column layouts
+  .mw-parser-output
+    [style*="width: 30%"]
+    [style*="width: 25%"]
+    [style*="width: 20%"]
+      p
+      li
+        hyphens auto

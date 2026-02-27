@@ -347,3 +347,24 @@ table.results
 #pkglist-search select option:checked
   background-color rgba($arch-blue, 0.2) !important
   color $lighter !important
+
+// =============================================================================
+// HYPHENATION FOR NARROW COLUMNS
+// =============================================================================
+
+// Better text wrapping in infoboxes and narrow table cells
+// Browser support: 95%+
+.infobox
+.wikitable
+  th
+  td
+    // Enable hyphenation with lang attribute support
+    hyphens auto
+    // Ensure proper word breaking for long content
+    overflow-wrap break-word
+
+// Narrow table cells benefit from hyphenation
+.wikitable
+  td
+    max-width 300px
+    hyphens auto
