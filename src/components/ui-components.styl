@@ -300,6 +300,57 @@ input[type="range"]
   &:hover::after
     opacity 1
 
+// Native HTML popover attribute
+[popover]
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-elevated
+  color $light
+
+  &:popover-open
+    animation popover-fade-in 0.15s ease-out
+
+@keyframes popover-fade-in
+  from
+    opacity 0
+    transform translateY(-5px)
+  to
+    opacity 1
+    transform translateY(0)
+
+// Backdrop for modal popovers
+[popover]::backdrop
+  background-color rgba(0, 0, 0, 0.5)
+
+// Native HTML dialog element
+dialog
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 2em
+  max-width 90vw
+  max-height 90vh
+  overflow auto
+  box-shadow $shadow-elevated
+  color $light
+
+  &::backdrop
+    background-color rgba(0, 0, 0, 0.75)
+
+  // Open state
+  &[open]
+    animation dialog-fade-in 0.2s ease-out
+
+@keyframes dialog-fade-in
+  from
+    opacity 0
+    transform scale(0.95)
+  to
+    opacity 1
+    transform scale(1)
+
 // Modals and Overlays
 .modal
 .overlay
