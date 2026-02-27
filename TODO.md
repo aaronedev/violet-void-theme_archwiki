@@ -96,12 +96,13 @@
   - File: `src/components/tables.styl`, `src/components/content.styl`
   - Commit: cf4e9af
 
-- [ ] **`::first-letter` Drop Caps for Article Intros**
+- [x] **`::first-letter` Drop Caps for Article Intros**
   - Browser support: 100%
   - Typographic polish for lead paragraphs
   - Subtle enhancement for article openings
   - File: `src/components/typography.styl`
   - Stylus: Works directly
+  Commit: def571c
 
 ## 🎨 Visual Effects
 
@@ -226,7 +227,9 @@
 | 2026-02-27 | @counter-style for custom list markers | 6481f49 |
 | 2026-02-27 | text-decoration-skip-ink for better underlines | 2e4e47f |
 | 2026-02-27 | hyphens for narrow columns | cf4e9af |
+| 2026-02-27 | ::first-letter drop caps | def571c |
 | 2026-02-27 | hyphens for narrow columns | cf4e9af |
+| 2026-02-27 | ::first-letter drop caps | def571c |
 
 ---
 
