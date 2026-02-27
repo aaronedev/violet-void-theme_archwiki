@@ -106,7 +106,7 @@
 
 ## 🎨 Visual Effects
 
-- [ ] **`mix-blend-mode` for Emphasis Effects**
+- [x] **`mix-blend-mode` for Emphasis Effects**
   - Browser support: 97%+
   - Subtle blend effects for warning boxes, highlights, overlays
   - Alternative to opacity for layered content
@@ -115,7 +115,7 @@
 
 ## 📱 Touch & Interaction
 
-- [ ] **`touch-action` for Better Touch UX**
+- [x] **`touch-action` for Better Touch UX**
   - Browser support: 97%+
   - Prevents accidental zooming/panning on interactive elements
   - Improves carousels, sliders, and custom gestures
@@ -124,7 +124,7 @@
 
 ## 🎯 Layout & Stacking
 
-- [ ] **`isolation: isolate` for Better Z-Index Management**
+- [x] **`isolation: isolate` for Better Z-Index Management**
   - Browser support: 97%+
   - Creates new stacking contexts for z-index isolation
   - Prevents z-index conflicts between modals, dropdowns, and overlays
@@ -133,14 +133,14 @@
 
 ## 📐 Typography Polish
 
-- [ ] **`hanging-punctuation` for Better Quote Typography**
+- [x] **`hanging-punctuation` for Better Quote Typography**
   - Browser support: 95%+
   - Hangs punctuation marks outside text box for better alignment
   - Improves readability of blockquotes and list items
   - File: `src/components/typography.styl`, `src/components/content.styl`
   - Stylus: Works directly
 
-- [ ] **`box-decoration-break: clone` for Multi-line Inline Styles**
+- [x] **`box-decoration-break: clone` for Multi-line Inline Styles**
   - Browser support: 97%+
   - Inline backgrounds/padding that span multiple lines properly
   - Fixes highlight, inline code, and marked text with line breaks
@@ -149,7 +149,7 @@
 
 ## 📏 Text Flow
 
-- [ ] **`overflow-wrap: anywhere` for Long Content**
+- [x] **`overflow-wrap: anywhere` for Long Content**
   - Browser support: 97%+
   - Better line breaking for long URLs, code paths, package names
   - Different from `break-word` - breaks at any character only when needed
@@ -158,12 +158,13 @@
 
 ## 🌈 Color Enhancements
 
-- [ ] **`color-gamut` Media Query for P3 Displays**
+- [x] **`color-gamut` Media Query for P3 Displays**
   - Browser support: 93%+
   - Detect wide-gamut (P3) displays and provide enhanced colors
   - More vibrant accent colors on capable hardware
   - File: `src/components/modern-css.styl`, `src/variables/colors.styl`
   - Stylus: Works directly
+  Commit: 1bf45d5
 
 ## 🔮 Future (Low Priority)
 
@@ -228,8 +229,22 @@
 | 2026-02-27 | text-decoration-skip-ink for better underlines | 2e4e47f |
 | 2026-02-27 | hyphens for narrow columns | cf4e9af |
 | 2026-02-27 | ::first-letter drop caps | def571c |
+| 2026-02-27 | mix-blend-mode for emphasis effects | 1bf45d5 |
+| 2026-02-27 | touch-action for better touch UX | 1bf45d5 |
+| 2026-02-27 | isolation: isolate for z-index management | 1bf45d5 |
+| 2026-02-27 | hanging-punctuation for quote typography | 1bf45d5 |
+| 2026-02-27 | box-decoration-break: clone for multi-line styles | 1bf45d5 |
+| 2026-02-27 | overflow-wrap: anywhere for long content | 1bf45d5 |
+| 2026-02-27 | color-gamut media query for P3 displays | 1bf45d5 |
 | 2026-02-27 | hyphens for narrow columns | cf4e9af |
 | 2026-02-27 | ::first-letter drop caps | def571c |
+| 2026-02-27 | mix-blend-mode for emphasis effects | 1bf45d5 |
+| 2026-02-27 | touch-action for better touch UX | 1bf45d5 |
+| 2026-02-27 | isolation: isolate for z-index management | 1bf45d5 |
+| 2026-02-27 | hanging-punctuation for quote typography | 1bf45d5 |
+| 2026-02-27 | box-decoration-break: clone for multi-line styles | 1bf45d5 |
+| 2026-02-27 | overflow-wrap: anywhere for long content | 1bf45d5 |
+| 2026-02-27 | color-gamut media query for P3 displays | 1bf45d5 |
 
 ---
 
