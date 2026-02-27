@@ -46,7 +46,7 @@
     &[href^="http"]:not([href*="archlinux.org"])::after
       content " (" attr(href) ")"
       font-size 0.85em
-      color #666 !important
+      color $print-text !important
 
   // =============================================================================
   // TYPOGRAPHY FOR PRINT
@@ -90,8 +90,8 @@
   code
     font-family "Courier New", Courier, monospace
     font-size 10pt
-    background #f5f5f5 !important
-    border 1px solid #ddd !important
+    background $print-bg !important
+    border 1px solid $print-border-light !important
     page-break-inside avoid
     overflow-wrap break-word
     white-space pre-wrap
@@ -105,17 +105,17 @@
     page-break-inside avoid
 
   th
-    background #f0f0f0 !important
+    background $print-bg !important
     font-weight bold
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
 
   td
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
 
   // Complex table headers
   th[colspan]
   th[rowspan]
-    background #e0e0e0 !important
+    background darken($print-bg, 5%) !important
     text-align center
 
   // =============================================================================
@@ -137,7 +137,7 @@
   a[href]::after
     content " (" attr(href) ")"
     font-size 0.8em
-    color #666 !important
+    color $print-text !important
 
   // Don't show for anchor links
   a[href^="#"]::after
@@ -154,8 +154,8 @@
   #toc
   .toc
     display block !important
-    background white !important
-    border 1px solid #ccc !important
+    background $print-white !important
+    border 1px solid $print-border !important
     padding 0.5em
     margin 0.5em 0
 
@@ -179,15 +179,15 @@
   .mw-notice
   .warningbox
   .notebox
-    border 1px solid #ccc !important
-    border-left 4px solid #666 !important
+    border 1px solid $print-border !important
+    border-left 4px solid $print-text !important
     padding 0.5em
     margin 0.5em 0
     page-break-inside avoid
 
   // Infoboxes
   .infobox
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
     float right
     width 250px
     margin 0 0 0.5em 0.5em
@@ -195,7 +195,7 @@
 
   // Message boxes
   .ambox
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
     margin 0.5em 0
 
   // =============================================================================
@@ -203,12 +203,12 @@
   // =============================================================================
 
   .blockpost
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
     margin 1em 0
     page-break-inside avoid
 
     .box-head
-      border-bottom 1px solid #ccc !important
+      border-bottom 1px solid $print-border !important
       font-weight bold
 
   // =============================================================================
@@ -216,12 +216,12 @@
   // =============================================================================
 
   #pkgdetails
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
     page-break-inside avoid
 
   .pkgsearch-results
   table.results
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
 
   // =============================================================================
   // PAGE BREAKS
@@ -303,7 +303,7 @@
   .ambox
   pre
   code
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
 
   // =============================================================================
   // SPECIAL PAGES PRINT OPTIMIZATION
@@ -315,22 +315,22 @@
     padding 0
 
     li
-      border-bottom 1px solid #ccc !important
+      border-bottom 1px solid $print-border !important
       padding 0.5em
 
   // Diff view
   table.diff
-    border 1px solid #ccc !important
+    border 1px solid $print-border !important
 
     td
-      border 1px solid #ccc !important
+      border 1px solid $print-border !important
       padding 0.5em
 
     td.diff-deletedline
-      background #ffe0e0 !important
+      background lighten(red, 45%) !important
 
     td.diff-addedline
-      background #e0ffe0 !important
+      background lighten(green, 45%) !important
 
   // =============================================================================
   // CATEGORIES PRINT
@@ -338,7 +338,7 @@
 
   .catlinks
     display block !important
-    border-top 1px solid #ccc !important
+    border-top 1px solid $print-border !important
     padding-top 0.5em
     margin-top 1em
 

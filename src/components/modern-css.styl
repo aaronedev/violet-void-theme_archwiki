@@ -1,0 +1,306 @@
+// Modern CSS Features (Progressive Enhancement)
+// Uses cutting-edge CSS features that may not be supported in all browsers
+// These enhancements will be automatically applied where supported
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CONTAINER QUERIES (@container) - Component-Based Responsive
+// =============================================================================
+
+// Note: @container support is good (89%+ browser support as of 2024)
+// Allows components to respond to their container size, not just viewport
+
+// Sidebar as a container
+.mw-sidebar
+#vector-main-menu
+  container-type inline-size
+  container-name sidebar
+
+// Content area as a container
+#content
+.mw-body
+  container-type inline-size
+  container-name content
+
+// TOC as a container
+#toc
+.toc
+  container-type inline-size
+  container-name toc
+
+// Example: Adjust sidebar layout based on container width
+@container sidebar (max-width: 250px)
+  .vector-menu-content
+    padding 0.25em
+
+  .vector-menu-heading
+    font-size 0.75em
+
+// =============================================================================
+// SCROLL-DRIVEN ANIMATIONS - Performance Animations
+// =============================================================================
+
+// Note: scroll() and view() support is growing (75%+ in 2024)
+// These run on the compositor thread for better performance
+
+// Fade in elements as they scroll into view
+@supports (animation-timeline: view())
+  .mw-heading
+  .mw-parser-output > h2
+  .mw-parser-output > h3
+    animation fade-in-up both
+    animation-timeline view()
+    animation-range entry 0% entry 25%
+
+  @keyframes fade-in-up
+    from
+      opacity 0
+      transform translateY(20px)
+
+    to
+      opacity 1
+      transform translateY(0)
+
+// Parallax effect for page headers (subtle)
+@supports (animation-timeline: scroll())
+  .mw-first-heading
+    animation parallax-header linear
+    animation-timeline scroll()
+    animation-range 0vh 50vh
+
+  @keyframes parallax-header
+    from
+      transform translateY(0)
+
+    to
+      transform translateY(-10px)
+
+// =============================================================================
+// @starting-style - Entry Animations
+// =============================================================================
+
+// Note: @starting-style support is growing (85%+ in 2024)
+// Allows defining initial styles for elements entering the DOM
+// Using @css for @starting-style since Stylus doesn't support it
+
+/* stylelint-disable selector-type-no-unknown */
+@css {
+  @supports (@starting-style) {
+    /* Dialogs and modals */
+    dialog {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    dialog@starting-style {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    /* Dropdowns */
+    .vector-dropdown-content,
+    .oo-ui-popupWidget-popup {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .vector-dropdown-content@starting-style,
+    .oo-ui-popupWidget-popup@starting-style {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    /* Notifications */
+    .mw-notification {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .mw-notification@starting-style {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+}
+/* stylelint-enable selector-type-no-unknown */
+
+// =============================================================================
+// SUBGRID - Better Grid Alignment
+// =============================================================================
+
+// Note: subgrid support is good (88%+ in 2024)
+// Allows nested grids to align with parent grid tracks
+
+@supports (grid-template-rows: subgrid)
+  // Table of contents with aligned items
+  #toc ul
+  .toc ul
+    display grid
+    grid-template-rows subgrid
+    gap 0.25em
+
+  // Infobox with aligned sections
+  .infobox tbody
+    display grid
+    grid-template-rows subgrid
+
+  // Navigation boxes
+  .navbox-table tbody
+    display grid
+    grid-template-rows subgrid
+
+// =============================================================================
+// SCROLL SNAP - Better Scroll Behavior
+// =============================================================================
+
+// Enhanced scroll snapping for navigation
+.vector-menu-content
+  scroll-snap-type y proximity
+
+  li
+    scroll-snap-align start
+
+// Smooth scrolling for TOC links
+@supports (scroll-behavior: smooth)
+  #toc a
+  .toc a
+    scroll-margin-top 4em
+
+// =============================================================================
+// BACKDROP FILTER - Frosted Glass Effects
+// =============================================================================
+
+// Note: backdrop-filter support is good (93%+ in 2024)
+// Allows blur and other effects behind elements
+
+@supports (backdrop-filter: blur(10px))
+  // Sticky header with frosted glass
+  .vector-sticky-header
+    background rgba($base, 0.8)
+    backdrop-filter blur(12px) saturate(180%)
+    -webkit-backdrop-filter blur(12px) saturate(180%)
+
+  // Dropdowns with frosted glass
+  .vector-dropdown-content
+  .oo-ui-popupWidget-popup
+    background rgba($dark, 0.9)
+    backdrop-filter blur(16px) saturate(180%)
+    -webkit-backdrop-filter blur(16px) saturate(180%)
+
+  // Modals with frosted glass
+  .oo-ui-window-frame
+    background rgba($base, 0.95)
+    backdrop-filter blur(20px)
+    -webkit-backdrop-filter blur(20px)
+
+// =============================================================================
+// FIELD SIZING - Auto-Growing Textareas
+// =============================================================================
+
+// Note: field-sizing support is new (Chrome 122+, 2024)
+// Allows textareas to auto-grow based on content
+
+@supports (field-sizing: content)
+  textarea
+  .oo-ui-textInputWidget-textarea
+    field-sizing content
+    min-height 3em
+    max-height 20em
+
+// =============================================================================
+// TRANSITION BEHAVIOR - Discrete Property Transitions
+// =============================================================================
+
+// Note: transition-behavior support is new (Chrome 117+, 2023)
+// Allows transitioning display and other discrete properties
+// Using @css for transition-behavior syntax
+
+@css {
+  @supports (transition-behavior: allow-discrete) {
+    .mw-collapsible {
+      transition: display 0.3s allow-discrete;
+    }
+
+    .vector-dropdown-content {
+      transition: display 0.2s allow-discrete, opacity 0.2s;
+    }
+  }
+}
+
+// =============================================================================
+// OVERLAY - Better Modal Positioning
+// =============================================================================
+
+// Note: overlay support is new (Chrome 117+, 2023)
+// Simplifies positioning of overlays
+
+@supports (overlay: auto)
+  dialog
+  .oo-ui-window-frame
+    overlay auto
+
+// =============================================================================
+// PERFORMANCE HINTS
+// =============================================================================
+
+// Hint to browsers about rendering priority
+.mw-parser-output
+  content-visibility auto
+  contain-intrinsic-size auto 500px
+
+// Note: loading and decoding are HTML attributes, not CSS properties
+// They should be set in HTML: <img loading="lazy" decoding="async">
+// Including here for documentation purposes only
+
+// =============================================================================
+// ACCESSIBILITY IMPROVEMENTS
+// =============================================================================
+
+// Better focus indication
+@supports (outline: auto)
+  :focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// High contrast mode support
+/* stylelint-disable media-feature-colon */
+@media (forced-colors active)
+  .mw-ui-button
+  .cdx-button
+    border 2px solid CurrentColor
+
+  .oo-ui-checkboxInputWidget [type="checkbox"]
+    border 2px solid CurrentColor
+/* stylelint-enable media-feature-colon */
+
+// =============================================================================
+// PRINT ENHANCEMENTS
+// =============================================================================
+
+@media print
+  // Ensure containers don't interfere with print
+  .mw-sidebar
+  #vector-main-menu
+  #content
+    container-type normal
+
+  // Remove scroll-driven animations for print
+  @supports (animation-timeline: view())
+    *
+      animation none !important
+
+// =============================================================================
+// FUTURE ENHANCEMENTS
+// =============================================================================
+
+// Modern CSS features that could be added in the future:
+// - @layer for better cascade control (needs @css wrapper)
+// - color-mix() for dynamic color manipulation (needs @css wrapper)
+// - Relative color syntax: rgb(from color r g b)
+// - Trigonometric functions: sin(), cos(), tan()
+// - Native CSS nesting (when dropping Stylus)
