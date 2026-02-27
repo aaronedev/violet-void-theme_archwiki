@@ -209,3 +209,58 @@ h2::after
   margin-top 0.6em
   padding-top 0.6em
   border-top 1px solid $border-subtle
+
+// ============================================================================
+// Performance: content-visibility for off-screen/collapsed content
+// Browser skips rendering work for hidden content (85%+ browser support)
+// Uses @css{} wrapper for advanced :has() selectors with Stylus compatibility
+// ============================================================================
+
+@css {
+  /* Collapsed content - browser skips layout/paint entirely */
+  .mw-collapsible:has(.mw-collapsible-toggle:not([aria-expanded="true"])) .mw-collapsible-content,
+  .mw-collapsible:not(:has(.mw-collapsible-content:not([hidden]))) .mw-collapsible-content,
+  .mw-collapsible.mw-collapsed .mw-collapsible-content {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 200px; /* Estimated height prevents layout shift */
+  }
+
+  /* Expanded content - browsers optimize rendering automatically */
+  .mw-collapsible:not(.mw-collapsed) .mw-collapsible-content {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+}
+
+// Fallback for browsers without :has() support (uses JS-added class)
+.mw-collapsible.mw-collapsed
+  .mw-collapsible-content
+    content-visibility hidden
+    // Provide intrinsic size hint to prevent layout thrash when expanding
+    contain-intrinsic-size 0 200px
+
+// Expandable sections in TOC and navigation
+.mw-parser-output
+  // Hidden subsections benefit from content-visibility
+  details:not([open])
+    summary
+      // Summary stays visible for interaction
+      content-visibility visible
+
+    // Hidden content skips rendering
+    > *:not(summary)
+      content-visibility hidden
+      contain-intrinsic-size 0 100px
+
+// Performance hint for deeply nested content
+// Browsers can skip rendering subtrees until needed
+#content
+  .mw-parser-output
+    // Off-screen content optimization for TOC levels
+    .toclevel-2,
+    .toclevel-3,
+    .toclevel-4
+      details:not([open])
+        > *:not(summary)
+          content-visibility hidden
+          contain-intrinsic-size 0 50px
