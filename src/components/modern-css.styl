@@ -435,6 +435,141 @@
       animation none !important
 
 // =============================================================================
+// @PROPERTY - Animatable CSS Custom Properties (93%+ browser support)
+// =============================================================================
+
+// Note: @property support is good (93%+ as of 2024)
+// Allows defining typed custom properties with syntax, inheritance, and initial values
+// Enables CSS transitions on custom properties for smooth theme changes
+// Using @css for @property since Stylus doesn't support it
+
+@css {
+  /* Base theme colors */
+  @property --theme-darker {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #0f0f0f;
+  }
+
+  @property --theme-dark {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #202020;
+  }
+
+  @property --theme-base {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #181818;
+  }
+
+  @property --theme-light {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #bfbfbf;
+  }
+
+  @property --theme-lighter {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #e7e7e7;
+  }
+
+  @property --theme-white {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #ffffff;
+  }
+
+  /* Accent colors */
+  @property --theme-arch-blue {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #8950c7;
+  }
+
+  @property --theme-secondary-blue {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #c7b8ff;
+  }
+
+  @property --theme-red {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #a80065;
+  }
+
+  @property --theme-secondary-red {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #ff1a67;
+  }
+
+  @property --theme-green {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #4bfe9b;
+  }
+
+  @property --theme-orange {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #fd7cff;
+  }
+
+  /* UI colors */
+  @property --theme-comment {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #6f6f6f;
+  }
+
+  @property --theme-muted {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #7a7a7a;
+  }
+
+  @property --theme-cell-delim {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #252525;
+  }
+}
+
+// Apply custom properties to root
+:root
+  --theme-darker $darker
+  --theme-dark $dark
+  --theme-base $base
+  --theme-light $light
+  --theme-lighter $lighter
+  --theme-white $white
+  --theme-arch-blue $arch-blue
+  --theme-secondary-blue $secondary-blue
+  --theme-red $red
+  --theme-secondary-red $secondary-red
+  --theme-green $green
+  --theme-orange $orange
+  --theme-comment $comment
+  --theme-muted $muted
+  --theme-cell-delim $cell-delim
+
+// Example: Smooth color transitions using custom properties
+// These transitions now work because @property defines types
+@supports (background: paint(something))
+  .mw-ui-button
+  .cdx-button
+    transition background-color 0.3s ease, color 0.3s ease
+
+  .vector-dropdown-content
+    transition background-color 0.2s ease
+
+  .oo-ui-popupWidget-popup
+    transition background-color 0.2s ease, border-color 0.2s ease
+
+// =============================================================================
 // FUTURE ENHANCEMENTS
 // =============================================================================
 

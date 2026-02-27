@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         violet-void-theme_archwiki
-@version      20260227.11.28
+@version      20260227.11.40
 @namespace    github.com/aaronedev/violet-void-theme
 @description  Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.
 @author       aaronedev
@@ -184,4 +184,97 @@ li:has(> a) {
     transition: display 0.2s allow-discrete, opacity 0.2s;
   }
 }
-@supports (overlay:auto){dialog,.oo-ui-window-frame{overlay:auto}}.mw-parser-output{content-visibility:auto;contain-intrinsic-size:auto 500px}@supports (outline:auto){:focus-visible{outline:2px solid #8950c7;outline-offset:2px}}@media (forced-colors:active){.mw-ui-button,.cdx-button{border:2px solid CurrentColor}.oo-ui-checkboxInputWidget [type="checkbox"]{border:2px solid CurrentColor}}@media print{.mw-sidebar,#vector-main-menu,#content{container-type:normal}@supports (animation-timeline:view()){*{animation:none !important}}}@supports (accent-color:#8950c7){:root{accent-color:#8950c7}input[type="checkbox"],input[type="radio"],input[type="range"],progress{accent-color:#8950c7}}@supports (text-wrap:balance){h1,h2,h3,.mw-heading{text-wrap:balance}}@supports (text-wrap:pretty){p,li,dd{text-wrap:pretty}}@supports (scrollbar-gutter:stable){.mw-body,#content,.mw-parser-output{scrollbar-gutter:stable}pre,code{scrollbar-gutter:stable both-edges}.wikitable,.infobox,table.results{scrollbar-gutter:stable}.mw-sidebar,#vector-main-menu{scrollbar-gutter:stable}}}
+@supports (overlay:auto){dialog,.oo-ui-window-frame{overlay:auto}}.mw-parser-output{content-visibility:auto;contain-intrinsic-size:auto 500px}@supports (outline:auto){:focus-visible{outline:2px solid #8950c7;outline-offset:2px}}@media (forced-colors:active){.mw-ui-button,.cdx-button{border:2px solid CurrentColor}.oo-ui-checkboxInputWidget [type="checkbox"]{border:2px solid CurrentColor}}@media print{.mw-sidebar,#vector-main-menu,#content{container-type:normal}@supports (animation-timeline:view()){*{animation:none !important}}}
+/* Base theme colors */
+@property --theme-darker {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0f0f0f;
+}
+
+@property --theme-dark {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #202020;
+}
+
+@property --theme-base {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #181818;
+}
+
+@property --theme-light {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #bfbfbf;
+}
+
+@property --theme-lighter {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e7e7e7;
+}
+
+@property --theme-white {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ffffff;
+}
+
+/* Accent colors */
+@property --theme-arch-blue {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8950c7;
+}
+
+@property --theme-secondary-blue {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c7b8ff;
+}
+
+@property --theme-red {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #a80065;
+}
+
+@property --theme-secondary-red {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ff1a67;
+}
+
+@property --theme-green {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #4bfe9b;
+}
+
+@property --theme-orange {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fd7cff;
+}
+
+/* UI colors */
+@property --theme-comment {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #6f6f6f;
+}
+
+@property --theme-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #7a7a7a;
+}
+
+@property --theme-cell-delim {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #252525;
+}
+:root{--theme-darker:#0f0f0f;--theme-dark:#202020;--theme-base:#181818;--theme-light:#bfbfbf;--theme-lighter:#e7e7e7;--theme-white:#fff;--theme-arch-blue:#8950c7;--theme-secondary-blue:#c7b8ff;--theme-red:#a80065;--theme-secondary-red:#ff1a67;--theme-green:#4bfe9b;--theme-orange:#fd7cff;--theme-comment:#6f6f6f;--theme-muted:#7a7a7a;--theme-cell-delim:#252525}@supports (background:paint(something)){.mw-ui-button,.cdx-button{transition:background-color .3s ease,color .3s ease}.vector-dropdown-content{transition:background-color .2s ease}.oo-ui-popupWidget-popup{transition:background-color .2s ease,border-color .2s ease}}@supports (accent-color:#8950c7){:root{accent-color:#8950c7}input[type="checkbox"],input[type="radio"],input[type="range"],progress{accent-color:#8950c7}}@supports (text-wrap:balance){h1,h2,h3,.mw-heading{text-wrap:balance}}@supports (text-wrap:pretty){p,li,dd{text-wrap:pretty}}@supports (scrollbar-gutter:stable){.mw-body,#content,.mw-parser-output{scrollbar-gutter:stable}pre,code{scrollbar-gutter:stable both-edges}.wikitable,.infobox,table.results{scrollbar-gutter:stable}.mw-sidebar,#vector-main-menu{scrollbar-gutter:stable}}}
