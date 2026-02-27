@@ -12,7 +12,7 @@
   - Card/list hover states affecting siblings
   - File: `src/components/modern-css.styl` (use `@css{}` wrapper)
 
-- [ ] **Add `@property` for animatable CSS custom properties**
+- [x] **Add `@property` for animatable CSS custom properties**
   - Define typed custom properties for colors
   - Enable CSS transitions on custom properties
   - Type safety for theme variables
@@ -101,6 +101,7 @@
 | Date | Item | Commit |
 |------|------|--------|
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
+| 2026-02-27 | Add `@property` for animatable CSS custom properties | 9ec0d2e |
 
 ---
 
