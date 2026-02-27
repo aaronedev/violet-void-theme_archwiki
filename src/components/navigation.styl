@@ -379,6 +379,36 @@ header.vector-header
   padding 0.4em 0.75em
   box-shadow $shadow-subtle
 
+// -----------------------------------------------------------------------------
+// Scroll-snap for TOC (better mobile UX)
+// Enables smooth snap scrolling on mobile devices when navigating the TOC.
+// Uses `proximity` mode for natural feel without aggressive snapping.
+
+.vector-toc
+  // Enable vertical scroll snapping for TOC containers
+  scroll-snap-type y proximity
+  // Smooth scrolling when using keyboard or programmatic navigation
+  scroll-behavior smooth
+  // Ensure overflow is handled for scroll-snap to work
+  overflow-y auto
+  // Set a max-height to enable scrolling on mobile when TOC is long
+  max-height 50vh
+
+// TOC list items snap to the top of the viewport
+.vector-toc .vector-toc-list-item
+  scroll-snap-align start
+  scroll-snap-stop normal
+
+// Sticky header TOC dropdown also gets scroll-snap
+.vector-sticky-header-toc .vector-toc
+  scroll-snap-type y proximity
+  scroll-behavior smooth
+  overflow-y auto
+  max-height 40vh
+
+  .vector-toc-list-item
+    scroll-snap-align start
+
 // List items within the TOC
 .vector-toc .vector-toc-list-item
   position relative

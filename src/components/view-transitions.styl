@@ -1,0 +1,30 @@
+// View Transitions API for smooth navigation
+// Browser support: ~70% (Chrome 111+, Edge 111+)
+// https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
+
+@css {
+  @view-transition {
+    navigation: auto;
+  }
+  
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+  }
+  
+  ::view-transition-old(page-content) {
+    animation: fade-out 0.2s ease-out;
+  }
+  
+  ::view-transition-new(page-content) {
+    animation: fade-in 0.3s ease-in;
+  }
+  
+  @keyframes fade-out {
+    to { opacity: 0; transform: translateY(-10px); }
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+  }
+}
