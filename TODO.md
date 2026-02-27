@@ -82,7 +82,7 @@
 
 ## 📝 Typography
 
-- [ ] **`text-decoration-skip-ink` for Better Underlines**
+- [x] **`text-decoration-skip-ink` for Better Underlines**
   - Browser support: 95%+
   - Prevents underlines from crossing through descenders (g, y, p)
   - Improves readability of links and underlined text
@@ -224,8 +224,9 @@
 | 2026-02-27 | prefers-reduced-transparency support | dd881f5 |
 | 2026-02-27 | ::spelling-error and ::grammar-error styling | ae696a1 |
 | 2026-02-27 | @counter-style for custom list markers | 6481f49 |
+| 2026-02-27 | text-decoration-skip-ink for better underlines | 2e4e47f |
 
 ---
 
-*Last updated: 2026-02-27 17:15*
+*Last updated: 2026-02-27 17:45*
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
