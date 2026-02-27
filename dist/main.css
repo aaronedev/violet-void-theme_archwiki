@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         violet-void-theme_archwiki
-@version      20260227.09.55
+@version      20260227.10.04
 @namespace    github.com/aaronedev/violet-void-theme
 @description  Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.
 @author       aaronedev
@@ -63,4 +63,4 @@
     transition: display 0.2s allow-discrete, opacity 0.2s;
   }
 }
-@supports (overlay:auto){dialog,.oo-ui-window-frame{overlay:auto}}.mw-parser-output{content-visibility:auto;contain-intrinsic-size:auto 500px}@supports (outline:auto){:focus-visible{outline:2px solid #8950c7;outline-offset:2px}}@media (forced-colors:active){.mw-ui-button,.cdx-button{border:2px solid CurrentColor}.oo-ui-checkboxInputWidget [type="checkbox"]{border:2px solid CurrentColor}}@media print{.mw-sidebar,#vector-main-menu,#content{container-type:normal}@supports (animation-timeline:view()){*{animation:none !important}}}}
+@supports (overlay:auto){dialog,.oo-ui-window-frame{overlay:auto}}.mw-parser-output{content-visibility:auto;contain-intrinsic-size:auto 500px}@supports (outline:auto){:focus-visible{outline:2px solid #8950c7;outline-offset:2px}}@media (forced-colors:active){.mw-ui-button,.cdx-button{border:2px solid CurrentColor}.oo-ui-checkboxInputWidget [type="checkbox"]{border:2px solid CurrentColor}}@media print{.mw-sidebar,#vector-main-menu,#content{container-type:normal}@supports (animation-timeline:view()){*{animation:none !important}}}@supports (accent-color:#8950c7){:root{accent-color:#8950c7}input[type="checkbox"],input[type="radio"],input[type="range"],progress{accent-color:#8950c7}}@supports (text-wrap:balance){h1,h2,h3,.mw-heading{text-wrap:balance}}@supports (text-wrap:pretty){p,li,dd{text-wrap:pretty}}@supports (scrollbar-gutter:stable){.mw-body,#content,.mw-parser-output{scrollbar-gutter:stable}pre,code{scrollbar-gutter:stable both-edges}.wikitable,.infobox,table.results{scrollbar-gutter:stable}.mw-sidebar,#vector-main-menu{scrollbar-gutter:stable}}}

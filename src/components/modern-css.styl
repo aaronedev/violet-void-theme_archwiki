@@ -310,3 +310,66 @@
 // - Relative color syntax: rgb(from color r g b)
 // - Trigonometric functions: sin(), cos(), tan()
 // - Native CSS nesting (when dropping Stylus)
+
+// =============================================================================
+// ACCENT-COLOR - Native Form Control Styling (93%+ browser support)
+// =============================================================================
+
+// Provides native styling for checkboxes, radios, range inputs, and progress bars
+@supports (accent-color: $arch-blue)
+  :root
+    accent-color $arch-blue
+
+  // Form controls inherit accent color
+  input[type="checkbox"]
+  input[type="radio"]
+  input[type="range"]
+  progress
+    accent-color $arch-blue
+
+// =============================================================================
+// TEXT-WRAP - Better Text Wrapping (Chrome 114+, Safari 17.4+)
+// =============================================================================
+
+// Balance headlines for better appearance
+@supports (text-wrap: balance)
+  h1
+  h2
+  h3
+  .mw-heading
+    text-wrap balance
+
+// Pretty wrapping for paragraphs (prevents orphans)
+@supports (text-wrap: pretty)
+  p
+  li
+  dd
+    text-wrap pretty
+
+// =============================================================================
+// SCROLLBAR-GUTTER - Prevent Layout Shift (90%+ browser support)
+// =============================================================================
+
+// Prevents layout shift when content overflows
+@supports (scrollbar-gutter: stable)
+  // Main content areas
+  .mw-body
+  #content
+  .mw-parser-output
+    scrollbar-gutter stable
+
+  // Code blocks
+  pre
+  code
+    scrollbar-gutter stable both-edges
+
+  // Tables that might overflow
+  .wikitable
+  .infobox
+  table.results
+    scrollbar-gutter stable
+
+  // Sidebars
+  .mw-sidebar
+  #vector-main-menu
+    scrollbar-gutter stable
