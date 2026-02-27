@@ -1,0 +1,13 @@
+// Cascade Layers for violet-void-theme_archwiki
+// Uses @css{} wrapper because Stylus doesn't natively support @layer
+// Layer order: base -> components -> utilities -> overrides (increasing specificity)
+
+@css {
+  @layer base, components, utilities, overrides;
+}
+
+// Layer assignment reference:
+// - base: variables, resets, fundamental styles (imported first)
+// - components: buttons, forms, navigation, UI elements
+// - utilities: helper classes, utility modifiers
+// - overrides: high-specificity fixes, !important overrides
