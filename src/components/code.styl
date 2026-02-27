@@ -65,17 +65,17 @@
     box-shadow 0 0 0 1px rgba($arch-blue, 0.18), 0 6px 16px rgba(0, 0, 0, 0.5)
 
 // -----------------------------------------------------------------------------
-// Scroll-snap for code blocks (better mobile UX)
-// Enables horizontal snap scrolling on mobile devices when viewing wide code.
-// Uses `proximity` mode for natural feel without aggressive snapping.
+// Scroll Snap Enhancements for Code Blocks
+// Horizontal scroll snapping provides a smoother experience when scrolling
+// through long lines of code on touch devices.
 
+// Code block horizontal scroll snap
 #content pre:not([class*="codemirror"])
-  // Enable horizontal scroll snapping for code blocks
-  scroll-snap-type x proximity
-  // Smooth scrolling when using keyboard navigation
+  scroll-snap-type x mandatory
+  // Smooth scrolling behavior
   scroll-behavior smooth
 
-// Code content inside pre snaps to the left edge
+// Snap points for code content - snap to start of each "page" of horizontal scroll
 #content pre:not([class*="codemirror"]) code
   scroll-snap-align start
 

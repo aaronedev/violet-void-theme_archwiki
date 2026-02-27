@@ -45,6 +45,11 @@
     line-height 1.5
     padding 0.2em 0
 
+// -----------------------------------------------------------------------------
+// Scroll Snap Enhancements for Mobile UX
+// Scroll snapping provides a smoother navigation experience on touch devices
+// by aligning content to snap points during scrolling.
+
 // Table of contents
 #toc
 .toc
@@ -54,10 +59,19 @@
   padding 0.4em 0.75em
   box-shadow $shadow-subtle
   transition all $transition-medium
+  // Scroll snap for better mobile UX
+  scroll-snap-type y proximity
+  overflow-y auto
 
   &:hover
     box-shadow $shadow-elevated
     border-color rgba($arch-blue, 0.2)
+
+// TOC list items snap alignment
+#toc li
+.toc li
+  scroll-snap-align start
+  scroll-snap-stop always
 
 // Page title bar table of contents button alignment
 .vector-toc-landmark
@@ -105,13 +119,16 @@
 // styles without resorting to excessive `!important` flags.
 
 // Outer wrapper for dropdown menus (e.g. the main menu opened via the
-// hamburger button).  Apply the theme’s gradient, rounded corners and shadow.
+// hamburger button).  Apply the theme's gradient, rounded corners and shadow.
 .vector-dropdown-content
   menu-panel()
+  // Scroll snap for smooth navigation menus on mobile
+  scroll-snap-type y proximity
+  overflow-y auto
 
-  // Ensure nested blocks don’t introduce their own light backgrounds.  The
+  // Ensure nested blocks don't introduce their own light backgrounds.  The
   // `>` selector combined with class names targets immediate children as well
-  // as deeper nested containers used by Vector’s layout (like
+  // as deeper nested containers used by Vector's layout (like
   // `.vector-main-menu`, `.vector-unpinned-container`, `.mw-portlet` and the
   // pinnable header bar).
   > *
@@ -124,7 +141,7 @@
     border 0
     box-shadow none
 
-  // Style the pinnable header bar (“Main menu” label and pin/unpin buttons)
+  // Style the pinnable header bar ("Main menu" label and pin/unpin buttons)
   .vector-pinnable-header
     pinnable-header()
 
@@ -135,6 +152,9 @@
   // List items in dropdown menus
   .vector-menu-content li
     menu-list-item(true)
+    // Scroll snap alignment for smooth menu navigation
+    scroll-snap-align start
+    scroll-snap-stop always
 
     a
       padding 0.25em 0.5em
@@ -183,6 +203,9 @@
 // Menu items within pinned menus
 .vector-pinnable-element .vector-menu-content li
   menu-list-item(true)
+  // Scroll snap for pinned menu items
+  scroll-snap-align start
+  scroll-snap-stop always
 
   a
     padding 0.25em 0.5em
@@ -192,7 +215,7 @@
 // Vector header styling
 // The page header in the Vector skin uses a very dark hue (#050A10) that
 // clashes with the Violet‑Void palette.  These rules set the header and its
-// container to our theme’s dark gradient and ensure the border aligns with
+// container to our theme's dark gradient and ensure the border aligns with
 // other components.  Only key structural elements are targeted to avoid
 // unintended overrides.
 
@@ -325,6 +348,9 @@ header.vector-header
   menu-panel()
 
   width max-content
+  // Scroll snap for sticky TOC dropdown
+  scroll-snap-type y proximity
+  overflow-y auto
 
   // Transparent backgrounds for nested elements
   > *
@@ -348,6 +374,9 @@ header.vector-header
   // Menu items within the sticky TOC dropdown
   .vector-menu-content li
     menu-list-item(true)
+    // Scroll snap alignment for sticky TOC items
+    scroll-snap-align start
+    scroll-snap-stop always
 
     a
       padding 0.25em 0.5em
@@ -378,40 +407,16 @@ header.vector-header
   border-radius $border-radius-md
   padding 0.4em 0.75em
   box-shadow $shadow-subtle
-
-// -----------------------------------------------------------------------------
-// Scroll-snap for TOC (better mobile UX)
-// Enables smooth snap scrolling on mobile devices when navigating the TOC.
-// Uses `proximity` mode for natural feel without aggressive snapping.
-
-.vector-toc
-  // Enable vertical scroll snapping for TOC containers
+  // Scroll snap for better mobile UX
   scroll-snap-type y proximity
-  // Smooth scrolling when using keyboard or programmatic navigation
-  scroll-behavior smooth
-  // Ensure overflow is handled for scroll-snap to work
   overflow-y auto
-  // Set a max-height to enable scrolling on mobile when TOC is long
-  max-height 50vh
-
-// TOC list items snap to the top of the viewport
-.vector-toc .vector-toc-list-item
-  scroll-snap-align start
-  scroll-snap-stop normal
-
-// Sticky header TOC dropdown also gets scroll-snap
-.vector-sticky-header-toc .vector-toc
-  scroll-snap-type y proximity
-  scroll-behavior smooth
-  overflow-y auto
-  max-height 40vh
-
-  .vector-toc-list-item
-    scroll-snap-align start
 
 // List items within the TOC
 .vector-toc .vector-toc-list-item
   position relative
+  // Scroll snap alignment for smooth navigation
+  scroll-snap-align start
+  scroll-snap-stop always
 
 // Links inside the TOC
 .vector-toc .vector-toc-link
@@ -480,7 +485,7 @@ header.vector-header
 
 // -----------------------------------------------------------------------------
 // Site-wide search box and autocomplete results styling
-// The ArchWiki search component uses Codex classes (`cdx-*`) to build its
+// The ArchWiki search component uses Codex classes (\`cdx-*\`) to build its
 // typeahead search boxes and result lists.  By default, these controls use
 // generic light themes that contrast poorly with the Violet‑Void palette.
 // These overrides restyle the search input, button and autocomplete menu to
@@ -511,7 +516,7 @@ header.vector-header
   gap 0.25em
 
 // Wrapper around the text input and menu
-// IMPORTANT: keep `position: relative` (Codex uses it to anchor the menu).
+// IMPORTANT: keep \`position: relative\` (Codex uses it to anchor the menu).
 // Do NOT turn this into a flex/grid container; that can mess with menu placement.
 .cdx-search-input__input-wrapper
   position relative
