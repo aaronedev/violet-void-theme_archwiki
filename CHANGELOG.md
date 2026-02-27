@@ -7,6 +7,16 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 
 ## [Unreleased]
 
+### Added
+- Native HTML `<dialog>` element styling
+  - Dark gradient background matching theme
+  - Styled `::backdrop` for modal dialogs
+  - Smooth fade-in animation on open
+- Native HTML `popover` attribute styling
+  - Consistent dark theme styling
+  - Animation on open state
+  - Backdrop support for modal popovers
+
 ### Changed
 - Added test artifacts to .gitignore (screenshots/, test-results/, playwright-report/)
 
