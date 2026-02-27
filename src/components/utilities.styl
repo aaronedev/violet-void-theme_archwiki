@@ -503,6 +503,37 @@
 .text-muted
   color $muted
 
+// ============================================================================
+// LINE CLAMP UTILITIES
+// ============================================================================
+
+// Line clamp utilities (90%+ browser support with -webkit prefix)
+.line-clamp-1
+  display -webkit-box
+  -webkit-line-clamp 1
+  -webkit-box-orient vertical
+  overflow hidden
+
+.line-clamp-2
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  overflow hidden
+
+.line-clamp-3
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Apply to specific elements
+.infobox-description
+.package-description
+  -webkit-line-clamp 3
+  display -webkit-box
+  -webkit-box-orient vertical
+  overflow hidden
+
 // =============================================================================
 // OVERFLOW UTILITIES
 // =============================================================================

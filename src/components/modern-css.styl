@@ -161,6 +161,7 @@
     grid-template-rows subgrid
 
 // =============================================================================
+// =============================================================================
 // SCROLL SNAP - Better Scroll Behavior
 // =============================================================================
 
@@ -171,11 +172,35 @@
   li
     scroll-snap-align start
 
+// =============================================================================
+// SCROLL PADDING - Account for Sticky Headers
+// =============================================================================
+
+// When navigating to anchors (hash links), the sticky header covers content.
+// scroll-padding-top on html ensures the browser accounts for this offset.
+// scroll-margin-top on targets ensures proper positioning for in-page links.
+
+// Root scroll padding for hash navigation
+html
+  scroll-padding-top 5em
+
+// TOC links need scroll margin for proper positioning
+#toc a
+.toc a
+  scroll-margin-top 5em
+
+// Headings as anchor targets need scroll margin
+.mw-heading
+h2[id]
+h3[id]
+h4[id]
+  scroll-margin-top 5em
+
 // Smooth scrolling for TOC links
 @supports (scroll-behavior: smooth)
   #toc a
   .toc a
-    scroll-margin-top 4em
+    scroll-behavior smooth
 
 // =============================================================================
 // BACKDROP FILTER - Frosted Glass Effects
@@ -692,3 +717,31 @@
   .mw-sidebar
   #vector-main-menu
     scrollbar-gutter stable
+
+// =============================================================================
+// @SCOPE - Component Isolation (88%+ browser support)
+// =============================================================================
+
+// Note: @scope support is good (88%+ as of 2024)
+// Allows scoped styles that only apply within specific components
+// Using @css for @scope since Stylus doesn't support it
+
+@css {
+  @supports (@scope) {
+    /* Infobox scoped styles */
+    @scope (.infobox) {
+      th { background: rgba(137, 80, 199, 0.1); }
+      td { border-color: rgba(137, 80, 199, 0.2); }
+    }
+
+    /* Wikitable scoped styles */
+    @scope (.wikitable) {
+      th { background: rgba(137, 80, 199, 0.08); }
+    }
+
+    /* Navigation scoped styles */
+    @scope (.vector-menu) {
+      li:hover { background: rgba(137, 80, 199, 0.05); }
+    }
+  }
+}
