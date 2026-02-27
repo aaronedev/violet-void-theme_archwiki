@@ -74,10 +74,52 @@
   - File: `src/components/content.styl`
   - Commit: 98369b5
 
-- [ ] **`will-change` Expansion**
+- [x] **`will-change` Expansion**
   - Browser support: 95%+
   - Smoother animations on more elements
   - File: `src/components/navigation.styl`
+  - Commit: 32f2f71
+
+## 📝 Typography
+
+- [ ] **`text-decoration-skip-ink` for Better Underlines**
+  - Browser support: 95%+
+  - Prevents underlines from crossing through descenders (g, y, p)
+  - Improves readability of links and underlined text
+  - File: `src/components/typography.styl`
+  - Stylus: Works directly
+
+- [ ] **`hyphens` for Narrow Columns**
+  - Browser support: 95%+
+  - Better text wrapping in infoboxes, sidebars, and narrow containers
+  - Use `hyphens: auto` with `lang` attribute
+  - File: `src/components/tables.styl`, `src/components/content.styl`
+  - Stylus: Works directly
+
+- [ ] **`::first-letter` Drop Caps for Article Intros**
+  - Browser support: 100%
+  - Typographic polish for lead paragraphs
+  - Subtle enhancement for article openings
+  - File: `src/components/typography.styl`
+  - Stylus: Works directly
+
+## 🎨 Visual Effects
+
+- [ ] **`mix-blend-mode` for Emphasis Effects**
+  - Browser support: 97%+
+  - Subtle blend effects for warning boxes, highlights, overlays
+  - Alternative to opacity for layered content
+  - File: `src/components/boxes.styl`, `src/components/content.styl`
+  - Stylus: Works directly
+
+## 📱 Touch & Interaction
+
+- [ ] **`touch-action` for Better Touch UX**
+  - Browser support: 97%+
+  - Prevents accidental zooming/panning on interactive elements
+  - Improves carousels, sliders, and custom gestures
+  - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
+  - Stylus: Works directly
 
 ## 🔮 Future (Low Priority)
 
@@ -125,6 +167,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
 | 2026-02-27 | Add `@property` for animatable CSS vars | 9ec0d2e |
@@ -141,5 +184,5 @@
 
 ---
 
-*Last updated: 2026-02-27 15:38*
+*Last updated: 2026-02-27 16:50*
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
