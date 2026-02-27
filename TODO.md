@@ -18,7 +18,7 @@
   - Type safety for theme variables
   - File: `src/components/modern-css.styl` (use `@css{}` wrapper)
 
-- [ ] **Expand `scroll-snap` for better mobile UX**
+- [x] **Expand `scroll-snap` for better mobile UX**
   - TOC snap scrolling
   - Code block horizontal scroll with snap
   - Card deck navigation
@@ -102,6 +102,7 @@
 |------|------|--------|
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
 | 2026-02-27 | Add `@property` for animatable CSS custom properties | 9ec0d2e |
+| 2026-02-27 | Expand `scroll-snap` for better mobile UX | ff357a5 |
 
 ---
 
