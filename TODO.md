@@ -68,10 +68,11 @@
 
 ## ⚡ Performance
 
-- [ ] **`content-visibility: hidden` for Off-screen Content**
+- [x] **`content-visibility: hidden` for Off-screen Content**
   - Browser support: 85%+
   - Better performance for collapsed sections
   - File: `src/components/content.styl`
+  - Commit: 98369b5
 
 - [ ] **`will-change` Expansion**
   - Browser support: 95%+
@@ -124,6 +125,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
 | 2026-02-27 | Add `@property` for animatable CSS vars | 9ec0d2e |
 | 2026-02-27 | Expand `scroll-snap` for mobile UX | ff357a5, 737428d |
@@ -139,5 +141,5 @@
 
 ---
 
-*Last updated: 2026-02-27 14:24*
+*Last updated: 2026-02-27 15:38*
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
