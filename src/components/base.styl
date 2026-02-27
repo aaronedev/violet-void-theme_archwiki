@@ -47,6 +47,15 @@
   --term-bright-cyan $term-bright-cyan
   --term-bright-white $term-bright-white
 
+// Modern form control accent color (progressive enhancement)
+// Applies to checkboxes, radios, range inputs, and progress bars
+// Note: Most form controls have custom styling, but this provides fallback
+html
+  accent-color $arch-blue
+  // Prevent mobile browsers from adjusting text size
+  -webkit-text-size-adjust 100%
+  text-size-adjust 100%
+
 // Selection and focus
 ::selection
   background-color rgba($arch-blue, 0.4) !important
@@ -104,6 +113,8 @@ body
   font-family $font-sans
   -webkit-font-smoothing antialiased
   line-height 1.6
+  // Prevent scroll chaining (scroll bouncing) for better UX
+  overscroll-behavior-y contain
 
 body.skin-vector div.mw-page-container
   background-color $base
