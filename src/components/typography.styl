@@ -523,3 +523,94 @@ samp
   color $term-bright-green
   padding 0.1em 0.3em
   border-radius 2px
+
+// =============================================================================
+// DROP CAPS FOR ARTICLE INTROS
+// =============================================================================
+
+// Subtle typographic enhancement for article openings
+// Browser support: 100%
+// Applies drop cap to first letter of lead paragraphs
+
+// Article lead paragraph class for explicit drop cap
+.drop-cap
+  &::first-letter
+    float left
+    font-size 3.5em
+    line-height 0.8
+    padding-right 0.12em
+    margin-top 0.05em
+    font-weight 700
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    -webkit-background-clip text
+    background-clip text
+    -webkit-text-fill-color transparent
+    color $arch-blue // Fallback
+
+// Small drop cap variant
+.drop-cap-sm
+  &::first-letter
+    float left
+    font-size 2em
+    line-height 0.9
+    padding-right 0.08em
+    margin-top 0.1em
+    font-weight 600
+    color $secondary-blue
+
+// Raised cap (not floating) variant
+.raised-cap
+  &::first-letter
+    font-size 2.5em
+    font-weight 700
+    color $arch-blue
+    vertical-align baseline
+    margin-right 0.05em
+
+// =============================================================================
+// AUTO DROP CAP FOR ARTICLE FIRST PARAGRAPHS
+// Using @css{} for sibling selectors that conflict with Stylus built-ins
+// =============================================================================
+
+@css {
+  /* First paragraph of article content gets subtle drop cap */
+  .mw-parser-output > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3em;
+    line-height: 0.85;
+    padding-right: 0.1em;
+    margin-top: 0.08em;
+    font-weight: 600;
+    color: #7eb8e2;
+  }
+
+  /* First paragraph after main heading */
+  .mw-parser-output h1 + p::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.1em;
+    margin-top: 0.05em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7eb8e2, #4a90c2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #7eb8e2; /* Fallback */
+  }
+
+  /* Lead paragraph class */
+  .lead-paragraph::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.12em;
+    margin-top: 0.05em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7eb8e2, #4a90c2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #7eb8e2;
+  }
+}
