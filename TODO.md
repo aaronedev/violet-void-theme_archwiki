@@ -61,7 +61,7 @@
   - Solid backgrounds for transparency-sensitive users
   - Commit: dd881f5
 
-- [ ] **`::spelling-error` and `::grammar-error` Pseudo-elements**
+- [x] **`::spelling-error` and `::grammar-error` Pseudo-elements**
   - Browser support: 85%+
   - Theme-colored spell-check underlines
   - File: `src/components/modern-css.styl`
@@ -134,9 +134,10 @@
 | 2026-02-27 | Logical properties for RTL support | b20b154 |
 | 2026-02-27 | scroll-padding for sticky headers | d32a74a |
 | 2026-02-27 | prefers-reduced-transparency support | dd881f5 |
+| 2026-02-27 | ::spelling-error and ::grammar-error styling | ae696a1 |
 | 2026-02-27 | @counter-style for custom list markers | 6481f49 |
 
 ---
 
-*Last updated: 2026-02-27 13:18*
+*Last updated: 2026-02-27 14:24*
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
