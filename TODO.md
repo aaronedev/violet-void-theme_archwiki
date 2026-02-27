@@ -226,6 +226,7 @@
 | 2026-02-27 | @counter-style for custom list markers | 6481f49 |
 | 2026-02-27 | text-decoration-skip-ink for better underlines | 2e4e47f |
 | 2026-02-27 | hyphens for narrow columns | cf4e9af |
+| 2026-02-27 | hyphens for narrow columns | cf4e9af |
 
 ---
 
