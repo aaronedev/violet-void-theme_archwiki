@@ -94,7 +94,8 @@ const tryAutoCommit = (newVersion) => {
   }
 
   tryAddFile('package.json')
-  tryAddFile('dist/main.css', { forceIfIgnored: true })
+  // dist/main.css is gitignored - don't force add
+  // tryAddFile('dist/main.css', { forceIfIgnored: true })
 
   const stagedAfterAdd = execSync('git diff --cached --name-only', {
     encoding: 'utf8',
