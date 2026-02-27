@@ -135,3 +135,30 @@ div.archwiki-template-box.archwiki-template-box-warning
     font-size 1em
     font-weight bold
     color $secondary-red
+
+// =============================================================================
+// MIX-BLEND-MODE FOR EMPHASIS EFFECTS
+// =============================================================================
+
+// Subtle blend effects for emphasis and overlays
+// Browser support: 97%+
+
+// Warning boxes with enhanced contrast via blend mode
+.warningbox
+.errorbox
+  mix-blend-mode normal // Base - ensures consistent appearance
+
+  // Overlay effect for nested emphasis
+  strong
+  em
+    mix-blend-mode plus-lighter
+
+// Highlight overlays
+.highlight-overlay
+  mix-blend-mode screen
+  opacity 0.15
+
+// Emphasis marks with blend effects
+mark
+.highlight
+  mix-blend-mode multiply

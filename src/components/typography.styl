@@ -645,3 +645,65 @@ samp
       color $arch-blue
       font-weight 700
       text-shadow 2px 2px 4px rgba($darker, 0.3)
+
+// =============================================================================
+// HANGING PUNCTUATION FOR BETTER QUOTE TYPOGRAPHY
+// =============================================================================
+
+// Hangs punctuation marks outside text box for better alignment
+// Browser support: 95%+
+
+blockquote
+  hanging-punctuation first last
+
+  p
+    hanging-punctuation first last
+
+// List items with hanging quotes
+blockquote li
+  hanging-punctuation first
+
+// =============================================================================
+// BOX-DECORATION-BREAK FOR MULTI-LINE INLINE STYLES
+// =============================================================================
+
+// Inline backgrounds/padding that span multiple lines properly
+// Browser support: 97%+
+
+mark
+.highlight
+.search-match
+kbd
+code
+  -webkit-box-decoration-break clone
+  box-decoration-break clone
+
+// Inline code with proper line wrapping
+.mw-parser-output
+  code
+    -webkit-box-decoration-break clone
+    box-decoration-break clone
+
+// =============================================================================
+// OVERFLOW-WRAP FOR LONG CONTENT
+// =============================================================================
+
+// Better line breaking for long URLs, code paths, package names
+// Browser support: 97%+
+
+// Code blocks
+pre
+code
+  overflow-wrap anywhere
+
+// Tables with long content
+.wikitable
+.infobox
+  td
+    overflow-wrap anywhere
+
+// Content areas with long URLs/paths
+.mw-parser-output
+  p
+  li
+    overflow-wrap anywhere

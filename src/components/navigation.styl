@@ -729,3 +729,51 @@ header.vector-header
   display block
   margin 0
   vertical-align middle
+
+// =============================================================================
+// TOUCH-ACTION FOR BETTER TOUCH UX
+// =============================================================================
+
+// Prevents accidental zooming/panning on interactive elements
+// Browser support: 97%+
+
+// Navigation menus
+.vector-menu
+.vector-dropdown
+.mw-portlet
+  touch-action manipulation
+
+// Dropdowns and popups
+.vector-dropdown-content
+.mw-body-content
+  touch-action manipulation
+
+// Interactive navigation elements
+#p-navigation
+#p-tb
+#p-personal
+  a
+  button
+    touch-action manipulation
+
+// =============================================================================
+// ISOLATION FOR Z-INDEX MANAGEMENT
+// =============================================================================
+
+// Creates new stacking contexts for z-index isolation
+// Browser support: 97%+
+
+// Dropdown menus need isolated stacking
+.vector-dropdown
+.vector-menu-content
+  isolation isolate
+
+// Modals and overlays
+.mw-modal
+.overlay
+  isolation isolate
+
+// Navigation panels
+#mw-navigation
+#mw-panel
+  isolation isolate

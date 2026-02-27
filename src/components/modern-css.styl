@@ -838,3 +838,22 @@ h4[id]
     }
   }
 }
+
+// =============================================================================
+// COLOR-GAMUT MEDIA QUERY FOR P3 DISPLAYS
+// =============================================================================
+
+// Detect wide-gamut (P3) displays and provide enhanced colors
+// Browser support: 93%+
+@supports (color: color(display-p3 1 1 1))
+  @media (color-gamut: p3)
+    // More vibrant accent colors on capable hardware
+    :root
+      --arch-blue-p3 color(display-p3 0.537 0.314 0.78)
+      --secondary-blue-p3 color(display-p3 0.78 0.722 1)
+      --arch-blue var(--arch-blue-p3)
+      --secondary-blue var(--secondary-blue-p3)
+
+    // Enhanced gradients
+    .gradient-primary
+      background linear-gradient(135deg, var(--arch-blue-p3), var(--secondary-blue-p3))

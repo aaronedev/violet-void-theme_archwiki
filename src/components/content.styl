@@ -292,3 +292,23 @@ h2::after
       p
       li
         hyphens auto
+
+// =============================================================================
+// MIX-BLEND-MODE FOR CONTENT EMPHASIS
+// =============================================================================
+
+// Browser support: 97%+
+
+// Emphasis overlays in content
+.mw-parser-output
+  // Highlighted text with blend
+  .archwiki-template-highlight
+    mix-blend-mode multiply
+    opacity 0.9
+
+  // Warning emphasis
+  .archwiki-template-warning
+    mix-blend-mode normal
+
+    strong
+      mix-blend-mode plus-lighter
