@@ -24,6 +24,8 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 
 ### Changed
 - Added test artifacts to .gitignore (screenshots/, test-results/, playwright-report/)
+- Refactored print-enhanced.styl to use color variables instead of hardcoded hex values
+  - Using `$print-border`, `$print-bg`, `$print-text`, `$print-white`, `$print-black`
 
 ### Added
 - **Enhanced OOUI Component Styling** (ooui-enhanced.styl)
