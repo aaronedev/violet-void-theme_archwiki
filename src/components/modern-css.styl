@@ -95,9 +95,11 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    dialog@starting-style {
-      opacity: 0;
-      transform: scale(0.95);
+    @starting-style {
+      dialog {
+        opacity: 0;
+        transform: scale(0.95);
+      }
     }
 
     /* Dropdowns */
@@ -108,10 +110,12 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .vector-dropdown-content@starting-style,
-    .oo-ui-popupWidget-popup@starting-style {
-      opacity: 0;
-      transform: translateY(-10px);
+    @starting-style {
+      .vector-dropdown-content,
+      .oo-ui-popupWidget-popup {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
     }
 
     /* Notifications */
@@ -121,9 +125,11 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .mw-notification@starting-style {
-      opacity: 0;
-      transform: translateX(100%);
+    @starting-style {
+      .mw-notification {
+        opacity: 0;
+        transform: translateX(100%);
+      }
     }
   }
 }
@@ -268,7 +274,7 @@
     outline-offset 2px
 
 // High contrast mode support
-/* stylelint-disable media-feature-colon */
+/* stylelint-disable media-feature-colon, stylus/single-line-comment */
 @media (forced-colors active)
   .mw-ui-button
   .cdx-button
@@ -276,7 +282,7 @@
 
   .oo-ui-checkboxInputWidget [type="checkbox"]
     border 2px solid CurrentColor
-/* stylelint-enable media-feature-colon */
+/* stylelint-enable media-feature-colon, stylus/single-line-comment */
 
 // =============================================================================
 // PRINT ENHANCEMENTS
