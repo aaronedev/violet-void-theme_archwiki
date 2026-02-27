@@ -62,6 +62,8 @@
   // Scroll snap for better mobile UX
   scroll-snap-type y proximity
   overflow-y auto
+  // Performance: hint browser about scroll and box-shadow changes
+  will-change scroll-position, box-shadow
 
   &:hover
     box-shadow $shadow-elevated
@@ -125,6 +127,8 @@
   // Scroll snap for smooth navigation menus on mobile
   scroll-snap-type y proximity
   overflow-y auto
+  // Performance: hint browser about scroll and transform changes
+  will-change scroll-position, transform, opacity
 
   // Ensure nested blocks don't introduce their own light backgrounds.  The
   // `>` selector combined with class names targets immediate children as well
@@ -299,6 +303,8 @@ header.vector-header
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border-bottom 1px solid $border-subtle
   box-shadow $shadow-subtle
+  // Performance: hint browser for sticky positioning transforms
+  will-change transform
 
 // Buttons and icons within the sticky header (search toggle, discussion/history
 // icons, user menu, etc.)
@@ -312,6 +318,8 @@ header.vector-header
   padding 0.25em 0.5em
   font-size 0.85em
   line-height 1
+  // Performance: hint browser for hover transitions
+  will-change background-color, border-color, color
 
   &:hover
     background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
@@ -337,6 +345,8 @@ header.vector-header
   border-radius $border-radius-sm
   padding 0.3em 0.6em
   font-size 0.8em
+  // Performance: hint browser for hover transitions
+  will-change background-color, border-color, color
 
   &:hover
     background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
@@ -351,6 +361,8 @@ header.vector-header
   // Scroll snap for sticky TOC dropdown
   scroll-snap-type y proximity
   overflow-y auto
+  // Performance: hint browser about scroll and visibility changes
+  will-change scroll-position, transform, opacity
 
   // Transparent backgrounds for nested elements
   > *
@@ -410,6 +422,8 @@ header.vector-header
   // Scroll snap for better mobile UX
   scroll-snap-type y proximity
   overflow-y auto
+  // Performance: hint browser about scroll changes
+  will-change scroll-position
 
 // List items within the TOC
 .vector-toc .vector-toc-list-item
@@ -427,6 +441,8 @@ header.vector-header
   border-radius $border-radius-sm
   text-decoration none
   line-height 1.4
+  // Performance: hint browser for hover transitions
+  will-change background-color, color
 
   &:hover
     background-color rgba($arch-blue, 0.15)
@@ -469,6 +485,8 @@ header.vector-header
   padding 0
   margin 0
   flex-shrink 0
+  // Performance: hint browser for transform and hover transitions
+  will-change transform, background-color, border-color
 
   &:hover
     background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
@@ -585,6 +603,8 @@ header.vector-header
 
   // Ensure it doesn't float away in flex layouts
   flex 0 0 auto
+  // Performance: hint browser for hover transitions
+  will-change background-color, border-color, color
 
   &:hover
     background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
@@ -602,6 +622,8 @@ header.vector-header
   // set colours and borders; do not adjust margin or scrolling, as doing
   // so can cause the menu to render in the wrong place.
   padding 0
+  // Performance: hint browser for menu visibility changes
+  will-change transform, opacity
 
 .cdx-menu__listbox
   list-style none
@@ -621,6 +643,8 @@ header.vector-header
       padding 0.3em 0.5em
       border-radius $border-radius-sm
       text-decoration none
+      // Performance: hint browser for hover transitions
+      will-change background-color, color
 
       &:hover
         background-color rgba($arch-blue, 0.1)
