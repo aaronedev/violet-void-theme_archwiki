@@ -319,6 +319,22 @@ acronym[title]
     border-bottom-color $arch-blue
 
 // =============================================================================
+// TEXT DECORATION ENHANCEMENTS
+// =============================================================================
+
+// Better underlines that skip descenders (g, y, p, etc.)
+// Browser support: 95%+
+a
+ins
+u
+.marked-text
+  text-decoration-skip-ink auto
+
+// Ensure links with text-decoration also benefit
+[style*="text-decoration: underline"]
+  text-decoration-skip-ink auto
+
+// =============================================================================
 // MARK & HIGHLIGHT
 // =============================================================================
 
@@ -328,6 +344,7 @@ mark
   color $lighter
   padding 0.1em 0.3em
   border-radius 2px
+  text-decoration-skip-ink auto
 
 .search-match
   background-color rgba($orange, 0.3)

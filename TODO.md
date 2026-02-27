@@ -121,6 +121,49 @@
   - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
   - Stylus: Works directly
 
+## 🎯 Layout & Stacking
+
+- [ ] **`isolation: isolate` for Better Z-Index Management**
+  - Browser support: 97%+
+  - Creates new stacking contexts for z-index isolation
+  - Prevents z-index conflicts between modals, dropdowns, and overlays
+  - File: `src/components/ui-components.styl`, `src/components/navigation.styl`
+  - Stylus: Works directly
+
+## 📐 Typography Polish
+
+- [ ] **`hanging-punctuation` for Better Quote Typography**
+  - Browser support: 95%+
+  - Hangs punctuation marks outside text box for better alignment
+  - Improves readability of blockquotes and list items
+  - File: `src/components/typography.styl`, `src/components/content.styl`
+  - Stylus: Works directly
+
+- [ ] **`box-decoration-break: clone` for Multi-line Inline Styles**
+  - Browser support: 97%+
+  - Inline backgrounds/padding that span multiple lines properly
+  - Fixes highlight, inline code, and marked text with line breaks
+  - File: `src/components/typography.styl`, `src/components/code.styl`
+  - Stylus: Works directly
+
+## 📏 Text Flow
+
+- [ ] **`overflow-wrap: anywhere` for Long Content**
+  - Browser support: 97%+
+  - Better line breaking for long URLs, code paths, package names
+  - Different from `break-word` - breaks at any character only when needed
+  - File: `src/components/code.styl`, `src/components/content.styl`, `src/components/tables.styl`
+  - Stylus: Works directly
+
+## 🌈 Color Enhancements
+
+- [ ] **`color-gamut` Media Query for P3 Displays**
+  - Browser support: 93%+
+  - Detect wide-gamut (P3) displays and provide enhanced colors
+  - More vibrant accent colors on capable hardware
+  - File: `src/components/modern-css.styl`, `src/variables/colors.styl`
+  - Stylus: Works directly
+
 ## 🔮 Future (Low Priority)
 
 - [ ] **Add `anchor()` positioning API**
@@ -184,5 +227,5 @@
 
 ---
 
-*Last updated: 2026-02-27 16:50*
+*Last updated: 2026-02-27 17:15*
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
