@@ -4,7 +4,7 @@
 
 ## 🔥 High Priority
 
-- [ ] **Expand `:has()` selector usage**
+- [x] **Expand `:has()` selector usage**
   - Form validation states (`:has(:invalid)`, `:has(:valid)`)
   - Empty content detection (`:has(:empty)`)
   - Parent styling based on children state
@@ -100,7 +100,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| _None yet_ | | |
+| 2026-02-27 | Expand `:has()` selector usage | 8074cef |
 
 ---
 
