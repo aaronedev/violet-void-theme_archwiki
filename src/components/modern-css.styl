@@ -229,7 +229,38 @@ h4[id]
     backdrop-filter blur(20px)
     -webkit-backdrop-filter blur(20px)
 
+
 // =============================================================================
+// REDUCED TRANSPARENCY - Accessibility Preference (92%+ browser support)
+// =============================================================================
+
+// Note: prefers-reduced-transparency support is good (92%+ as of 2024)
+// Respects user preference for reduced transparency (Windows 10+ setting)
+
+@media (prefers-reduced-transparency reduce)
+  // Remove backdrop-filter transparency
+  .vector-sticky-header
+    background $dark !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .vector-dropdown-content
+  .oo-ui-popupWidget-popup
+    background $base !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .oo-ui-window-frame
+    background $darker !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  // Solid backgrounds for panels
+  .mw-sidebar
+  #vector-main-menu
+    background $darker !important
+// =============================================================================
+
 // FIELD SIZING - Auto-Growing Textareas
 // =============================================================================
 
