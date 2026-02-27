@@ -50,11 +50,10 @@
   - Already implemented alongside line-clamp
   - Commit: (previous session)
 
-- [ ] **`@counter-style` for Custom List Markers**
-  - Browser support: 90%+
-  - Custom numbering for installation steps
-  - File: `src/components/content.styl`
-  - Note: Requires `@css{}` wrapper
+- [x] **`@counter-style` for Custom List Markers**
+  - 3 custom counter styles: archwiki-steps, terminal-prompt, archwiki-check
+  - Padded numeric steps, terminal prompts ($, >, #), checkmarks
+  - Commit: 6481f49
 
 ## ♿ Accessibility
 
@@ -135,8 +134,9 @@
 | 2026-02-27 | Logical properties for RTL support | b20b154 |
 | 2026-02-27 | scroll-padding for sticky headers | d32a74a |
 | 2026-02-27 | prefers-reduced-transparency support | dd881f5 |
+| 2026-02-27 | @counter-style for custom list markers | 6481f49 |
 
 ---
 
-*Last updated: 2026-02-27 13:11*
+*Last updated: 2026-02-27 13:18*
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
