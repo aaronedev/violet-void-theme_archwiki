@@ -183,7 +183,7 @@
   - File: `src/components/typography.styl`, `src/components/tables.styl`
   - Stylus: Works directly
 
-- [ ] **`text-align-last` for Justified Text Control**
+- [x] **`text-align-last` for Justified Text Control**
   - Browser support: 97%+
   - Control alignment of last line in justified text
   - Better multilingual support and headline polish
