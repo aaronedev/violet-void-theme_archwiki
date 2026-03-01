@@ -275,7 +275,7 @@
   - Page margins, page numbers
   - File: `src/components/print-enhanced.styl`
 
-- [ ] **Dynamic Viewport Units (`dvh`, `dvw`, `svh`, `lvh`)**
+- [x] **Dynamic Viewport Units (`dvh`, `dvw`, `svh`, `lvh`)**
   - Better mobile viewport handling
   - File: `src/variables/layout.styl`
 
@@ -431,14 +431,14 @@ Last updated: 2026-03-01 06:05
 
 ## 📖 MediaWiki-Specific (New)
 
-- [ ] **Edit Section Link Styling** (97%+ browser support)
+- [x] **Edit Section Link Styling** (97%+ browser support)
   - Browser support: 97%+
   - File: `src/components/content.styl`
   - Hover-reveal edit links
   - `:hover` on section shows edit button
   - Consistent with theme icons
 
-- [ ] **Table of Contents Enhancements** (CSS)
+- [x] **Table of Contents Enhancements** (CSS)
   - File: `src/components/navigation.styl`, `toc.styl`
   - Collapsible TOC with smooth animations
   - Current section highlighting via scroll-spy
@@ -456,7 +456,7 @@ Last updated: 2026-03-01 06:05
   - Hover preview effects
   - Consistent with navigation styling
 
-- [ ] **Category Tag Styling** (97%+ browser support)
+- [x] **Category Tag Styling** (97%+ browser support)
   - File: `src/components/content.styl`
   - Pill-style category links
   - `border-radius` + `background`
@@ -464,28 +464,28 @@ Last updated: 2026-03-01 06:05
 
 ## ♿ Accessibility Improvements (New)
 
-- [ ] **Skip Link Styling** (100% browser support)
+- [x] **Skip Link Styling** (100% browser support)
   - Browser support: 100%
   - File: `src/components/accessibility.styl`
   - Visible on focus, hidden otherwise
   - High contrast for keyboard users
   - Smooth scroll to target
 
-- [ ] **Focus Order Indicators** (97%+ browser support)
+- [x] **Focus Order Indicators** (97%+ browser support)
   - Browser support: 97%+
   - File: `src/components/accessibility.styl`
   - Sequential focus indicators
   - `:focus-visible` with clear outline
   - Consistent across all interactive elements
 
-- [ ] **Error/Warning Message Styling** (97%+ browser support)
+- [x] **Error/Warning Message Styling** (97%+ browser support)
   - Browser support: 97%+
   - File: `src/components/boxes.styl`
   - Clear visual distinction
   - Icon + color coding
   - `role="alert"` compatible styling
 
-- [ ] **Reduced Motion Alternative Animations** (95%+ browser support)
+- [x] **Reduced Motion Alternative Animations** (95%+ browser support)
   - Browser support: 95%+
   - File: `src/components/accessibility.styl`
   - `@media (prefers-reduced-motion: reduce)`
@@ -494,13 +494,13 @@ Last updated: 2026-03-01 06:05
 
 ## 🖨️ Print Enhancements (New)
 
-- [ ] **Print-Only Link URLs** (100% browser support)
+- [x] **Print-Only Link URLs** (100% browser support)
   - Browser support: 100%
   - File: `src/components/print.styl`
   - `@media print { a[href]::after { content: " (" attr(href) ")"; } }`
   - Visible link destinations in print
 
-- [ ] **Page Break Control** (97%+ browser support)
+- [x] **Page Break Control** (97%+ browser support)
   - Browser support: 97%+
   - File: `src/components/print.styl`
   - `break-inside: avoid` for infoboxes, code blocks
@@ -2818,7 +2818,7 @@ Last updated: 2026-03-01 06:05
   - Parent category link
   - Quick navigation
 
-- [ ] **Table of Contents Enhancements** (CSS)
+- [x] **Table of Contents Enhancements** (CSS)
   - File: `src/components/navigation.styl`
   - Sticky TOC on scroll
   - Active section highlight
