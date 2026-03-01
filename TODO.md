@@ -233,14 +233,14 @@
 
 ## 🔍 Modern Selectors
 
-- [ ] **`:is()` for Selector Grouping**
+- [x] **`:is()` for Selector Grouping**
   - Browser support: 97%+
   - Simplify complex selectors: `:is(h1, h2, h3):hover`
   - Reduces repetition in stylesheets
   - File: `src/components/typography.styl`, `src/components/content.styl`
   - Stylus: Works directly
 
-- [ ] **`:where()` for Zero-Specificity Selectors**
+- [x] **`:where()` for Zero-Specificity Selectors**
   - Browser support: 97%+
   - Low-specificity overrides for theming
   - Useful for base styles that should be easily overridden
@@ -249,7 +249,7 @@
 
 ## 📰 Multi-Column Layouts
 
-- [ ] **`column-count` for Multi-Column Content**
+- [x] **`column-count` for Multi-Column Content**
   - Browser support: 97%+
   - Multi-column layouts for TOC, related articles, link lists
   - Responsive column count with column-width
