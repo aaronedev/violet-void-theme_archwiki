@@ -2119,19 +2119,19 @@ Last updated: 2026-03-01 06:05
 
 ## 📐 Sizing Keywords (New - 2026-03-01 Scout 3)
 
-- [ ] **`fit-content()` Function** (97%+ browser support)
+- [x] **`fit-content()` Function** (97%+ browser support)
   - File: `src/components/layout.styl`
   - Size to fit content with max
   - `width: fit-content(300px);`
   - Stylus: Works directly
 
-- [ ] **`min-content` / `max-content` Keywords** (97%+ browser support)
+- [x] **`min-content` / `max-content` Keywords** (97%+ browser support)
   - File: `src/components/layout.styl`
   - Content-based sizing
   - `width: min-content;`
   - Stylus: Works directly
 
-- [ ] **`stretch` Sizing Keyword** (85%+ browser support)
+- [x] **`stretch` Sizing Keyword** (85%+ browser support)
   - File: `src/components/layout.styl`
   - Fill available space
   - `width: stretch;`
@@ -2139,27 +2139,27 @@ Last updated: 2026-03-01 06:05
 
 ## 🎯 Interaction Enhancements (New)
 
-- [ ] **`user-select: contain`** (97%+ browser support)
+- [x] **`user-select: contain`** (97%+ browser support)
   - File: `src/components/content.styl`
   - Selection containment
   - Stylus: Works directly
 
-- [ ] **`pointer-events: painted` for SVG** (97%+ browser support)
+- [x] **`pointer-events: painted` for SVG** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - SVG pointer events on fill only
   - Stylus: Works directly
 
-- [ ] **`resize: block` / `inline`** (97%+ browser support)
+- [x] **`resize: block` / `inline`** (97%+ browser support)
   - File: `src/components/editing.styl`
   - Logical axis resizing
   - Stylus: Works directly
 
-- [ ] **`cursor: zoom-in` / `zoom-out`** (97%+ browser support)
+- [x] **`cursor: zoom-in` / `zoom-out`** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Zoom cursor hints
   - Stylus: Works directly
 
-- [ ] **`caret-shape` Property** (85%+ browser support)
+- [x] **`caret-shape` Property** (85%+ browser support)
   - File: `src/components/editing.styl`
   - Style text cursor shape
   - `caret-shape: block;`
@@ -2191,24 +2191,24 @@ Last updated: 2026-03-01 06:05
 
 ## 🔲 Visibility & Opacity (New)
 
-- [ ] **`visibility: collapse` for Table Rows** (97%+ browser support)
+- [x] **`visibility: collapse` for Table Rows** (97%+ browser support)
   - File: `src/components/tables.styl`
   - Hide table rows properly
   - Stylus: Works directly
 
-- [ ] **`opacity: percentages` in Animations** (97%+ browser support)
+- [x] **`opacity: percentages` in Animations** (97%+ browser support)
   - File: `src/components/animations.styl`
   - Smooth fade transitions
   - Stylus: Works directly
 
 ## 📦 Display Enhancements (New)
 
-- [ ] **`display: flow-root`** (97%+ browser support)
+- [x] **`display: flow-root`** (97%+ browser support)
   - File: `src/components/layout.styl`
   - Clearfix replacement
   - Stylus: Works directly
 
-- [ ] **`display: contents` for Semantic HTML** (97%+ browser support)
+- [x] **`display: contents` for Semantic HTML** (97%+ browser support)
   - File: `src/components/layout.styl`
   - Remove element from box tree
   - Accessibility: use with caution
@@ -2222,18 +2222,18 @@ Last updated: 2026-03-01 06:05
 
 ## 🎬 Animation Properties (New - 2026-03-01 Scout 4)
 
-- [ ] **`animation-delay: negative` for Pre-delayed Start** (97%+ browser support)
+- [x] **`animation-delay: negative` for Pre-delayed Start** (97%+ browser support)
   - File: `src/components/animations.styl`
   - Start animation mid-cycle
   - `animation-delay: -1s;`
   - Stylus: Works directly
 
-- [ ] **`animation-direction: alternate-reverse`** (97%+ browser support)
+- [x] **`animation-direction: alternate-reverse`** (97%+ browser support)
   - File: `src/components/animations.styl`
   - Reverse alternate direction
   - Stylus: Works directly
 
-- [ ] **`animation-fill-mode: both`** (97%+ browser support)
+- [x] **`animation-fill-mode: both`** (97%+ browser support)
   - File: `src/components/animations.styl`
   - Apply before and after
   - Stylus: Works directly
@@ -2245,7 +2245,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🔲 Outline Enhancements (New)
 
-- [ ] **`outline-offset` for Spaced Outlines** (97%+ browser support)
+- [x] **`outline-offset` for Spaced Outlines** (97%+ browser support)
   - File: `src/components/focus.styl`
   - Space outline from element
   - `outline-offset: 2px;`
@@ -2264,7 +2264,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🖼️ Border Image (New)
 
-- [ ] **`border-image` for Decorative Borders** (97%+ browser support)
+- [x] **`border-image` for Decorative Borders** (97%+ browser support)
   - File: `src/components/decorative.styl` (new file)
   - Image-based borders
   - `border-image: url(border.png) 30 round;`
@@ -2300,12 +2300,12 @@ Last updated: 2026-03-01 06:05
 
 ## 🔢 Counter Enhancements (New)
 
-- [ ] **`counter-set` for Resetting** (97%+ browser support)
+- [x] **`counter-set` for Resetting** (97%+ browser support)
   - File: `src/components/lists.styl`
   - Set counter without increment
   - Stylus: Works directly
 
-- [ ] **`counters()` for Nested Lists** (97%+ browser support)
+- [x] **`counters()` for Nested Lists** (97%+ browser support)
   - File: `src/components/lists.styl`
   - Nested counter display
   - `content: counters(item, ".") " ";`
