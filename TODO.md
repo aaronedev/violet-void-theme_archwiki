@@ -1140,7 +1140,7 @@ Last updated: 2026-03-01 06:05
 
 ## ⚡ Performance Isolation (New)
 
-- [ ] **`contain` Property** (97%+ browser support)
+- [x] **`contain` Property** (97%+ browser support)
   - File: `src/base/_performance.styl` (new file)
   - Isolate layout/paint/style for performance
   - `contain: layout paint` for content sections
@@ -1297,13 +1297,13 @@ Last updated: 2026-03-01 06:05
 
 ## 🎨 Visual Effects (New)
 
-- [ ] **`mask-image` for Image Effects** (97%+ browser support)
+- [x] **`mask-image` for Image Effects** (97%+ browser support)
   - File: `src/components/content.styl`
   - CSS masking for images, icons
   - Gradient masks for fade effects
   - Stylus: Works directly
 
-- [ ] **`clip-path` Basic Shapes** (97%+ browser support)
+- [x] **`clip-path` Basic Shapes** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Clip elements to shapes
   - Circle, ellipse, polygon
@@ -1504,7 +1504,7 @@ Last updated: 2026-03-01 06:05
   - `ascent-override`, `descent-override`, `line-gap-override`
   - Stylus: Works directly
 
-- [ ] **`text-emphasis` for Ruby/Emphasis** (90%+ browser support)
+- [x] **`text-emphasis` for Ruby/Emphasis** (90%+ browser support)
   - File: `src/components/typography.styl`
   - Add emphasis marks to text
   - `text-emphasis: filled circle;`
@@ -1571,7 +1571,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🎯 Container Style Queries (New)
 
-- [ ] **`@container style()` Queries** (87%+ browser support)
+- [x] **`@container style()` Queries** (87%+ browser support)
   - File: `src/components/modern-css.styl`
   - Query custom property values
   - `@container style(--theme: dark) { ... }`
@@ -2315,7 +2315,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🖱️ Input Capability Detection (New - 2026-03-01 Scout 14)
 
-- [ ] **`@media (hover: hover)` for Hover Capable Devices** (97%+ browser support)
+- [x] **`@media (hover: hover)` for Hover Capable Devices** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Only show hover effects on devices that support true hover
   - Hide tooltip delays, hover previews on touch devices
@@ -2328,7 +2328,7 @@ Last updated: 2026-03-01 06:05
   - Larger touch targets, no hover-dependent UI
   - Stylus: Works directly
 
-- [ ] **`@media (pointer: fine)` for Precise Input** (97%+ browser support)
+- [x] **`@media (pointer: fine)` for Precise Input** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Mouse/trackpad - can use smaller targets
   - Stylus: Works directly
@@ -2339,7 +2339,7 @@ Last updated: 2026-03-01 06:05
   - Minimum 44px touch targets
   - Stylus: Works directly
 
-- [ ] **`@media (any-hover)` for Hybrid Devices** (97%+ browser support)
+- [x] **`@media (any-hover)` for Hybrid Devices** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Detect if ANY input device supports hover
   - Tablets with mice, touch laptops
@@ -2388,14 +2388,14 @@ Last updated: 2026-03-01 06:05
 
 ## 🎨 Color Preference Queries (New)
 
-- [ ] **`@media (forced-colors: active)` for High Contrast Mode** (95%+ browser support)
+- [x] **`@media (forced-colors: active)` for High Contrast Mode** (95%+ browser support)
   - File: `src/components/accessibility.styl`
   - Windows High Contrast Mode support
   - Use system colors: `CanvasText`, `Canvas`, `Highlight`
   - Ensure visibility when colors are forced
   - Stylus: Works directly
 
-- [ ] **`@media (inverted-colors: inverted)` for Color Inversion** (87%+ browser support)
+- [x] **`@media (inverted-colors: inverted)` for Color Inversion** (87%+ browser support)
   - File: `src/components/accessibility.styl`
   - Detect if user has inverted colors (macOS, iOS)
   - Adjust images, shadows for better appearance
@@ -2418,7 +2418,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🔧 Scripting & Capabilities (New)
 
-- [ ] **`@media (scripting: enabled/none/initial-only)`** (92%+ browser support)
+- [x] **`@media (scripting: enabled/none/initial-only)`** (92%+ browser support)
   - File: `src/components/modern-css.styl`
   - Detect JavaScript availability
   - Provide fallback styles for no-JS
@@ -2477,13 +2477,13 @@ Last updated: 2026-03-01 06:05
 
 ## 📖 Ruby Text Support (New)
 
-- [ ] **`ruby-align` for Ruby Text Alignment** (97%+ browser support)
+- [x] **`ruby-align` for Ruby Text Alignment** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Control alignment of ruby annotations (East Asian)
   - `start`, `center`, `space-between`, `space-around`
   - Stylus: Works directly
 
-- [ ] **`ruby-position` for Ruby Placement** (97%+ browser support)
+- [x] **`ruby-position` for Ruby Placement** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Control ruby annotation position
   - `over`, `under`, `inter-character`
@@ -2491,7 +2491,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🌐 Web Components / Shadow DOM (New)
 
-- [ ] **`:defined` Pseudo-class for Custom Elements** (97%+ browser support)
+- [x] **`:defined` Pseudo-class for Custom Elements** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style only defined custom elements
   - Prevent FOUC for web components
@@ -2507,12 +2507,12 @@ Last updated: 2026-03-01 06:05
   - Style based on shadow host ancestors
   - Stylus: Works directly
 
-- [ ] **`::slotted()` for Slotted Content** (97%+ browser support)
+- [x] **`::slotted()` for Slotted Content** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style light DOM content in slots
   - Stylus: Works directly
 
-- [ ] **`::part()` for Shadow Parts** (95%+ browser support)
+- [x] **`::part()` for Shadow Parts** (95%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style specific parts exposed by shadow DOM
   - Stylus: Works directly
@@ -2651,13 +2651,13 @@ Last updated: 2026-03-01 06:05
 
 ## 🌈 System Color Keywords (New)
 
-- [ ] **`light-dark()` Function** (92%+ browser support)
+- [x] **`light-dark()` Function** (92%+ browser support)
   - File: `src/variables/colors.styl`
   - Automatic light/dark color selection
   - Example: `color: light-dark(#333, #ccc);`
   - Stylus: Works directly
 
-- [ ] **Extended System Colors** (97%+ browser support)
+- [x] **Extended System Colors** (97%+ browser support)
   - File: `src/components/accessibility.styl`
   - `AccentColorText`, `SelectedItem`, `SelectedItemText`
   - `Mark`, `MarkText` for mark element
@@ -2666,14 +2666,14 @@ Last updated: 2026-03-01 06:05
 
 ## 📊 MathML Styling (New)
 
-- [ ] **MathML Element Styling** (97%+ browser support)
+- [x] **MathML Element Styling** (97%+ browser support)
   - File: `src/components/content.styl`
   - Style mathematical equations in articles
   - `math`, `mrow`, `mi`, `mo`, `mn` elements
   - Consistent with code block styling
   - Stylus: Works directly
 
-- [ ] **`math-style` Property** (87%+ browser support)
+- [x] **`math-style` Property** (87%+ browser support)
   - File: `src/components/content.styl`
   - Control math display style (`normal`, `compact`)
   - Stylus: Works directly
