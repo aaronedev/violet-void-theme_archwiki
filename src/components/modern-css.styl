@@ -857,3 +857,46 @@ h4[id]
     // Enhanced gradients
     .gradient-primary
       background linear-gradient(135deg, var(--arch-blue-p3), var(--secondary-blue-p3))
+
+// =============================================================================
+// :IS() FOR SELECTOR GROUPING
+// =============================================================================
+
+// Simplify complex selectors: :is(h1, h2, h3):hover
+// Browser support: 97%+
+// Stylus: Works directly
+
+// Heading hover effects
+:is(h1, h2, h3, h4, h5, h6):hover
+  color $lighter
+
+// Focus states for interactive elements
+:is(a, button, input, select, textarea):focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Code and pre hover
+:is(code, pre):hover
+  background-color rgba($arch-blue, 0.05)
+
+// =============================================================================
+// :WHERE() FOR ZERO-SPECIFICITY SELECTORS
+// =============================================================================
+
+// Low-specificity overrides for theming
+// Browser support: 97%+
+// Stylus: Works directly
+
+// Base link styles (easily overridden)
+:where(a)
+  color $secondary-blue
+  text-decoration none
+
+// Base list styles
+:where(ul, ol)
+  padding-inline-start 1.5em
+
+// Base heading margins
+:where(h1, h2, h3, h4, h5, h6)
+  margin 0.5em 0
+

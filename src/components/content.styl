@@ -374,3 +374,50 @@ img.hq
   object-fit cover
   object-position center bottom
 
+
+// =============================================================================
+// MULTI-COLUMN LAYOUT
+// =============================================================================
+
+// Multi-column layouts for TOC, related articles, link lists
+// Browser support: 97%+
+
+// Two-column layout
+.columns-2
+  column-count 2
+  column-gap 2em
+  column-rule 1px solid $border-subtle
+
+// Three-column layout
+.columns-3
+  column-count 3
+  column-gap 2em
+  column-rule 1px solid $border-subtle
+
+// Responsive columns (width-based)
+.columns-auto
+  column-width 15em
+  column-gap 1.5em
+
+// Column span
+.column-span-all
+  column-span all
+
+// Column fill balance
+.columns-balanced
+  column-fill balance
+
+// Related articles grid
+.related-articles
+  column-count 3
+  column-gap 1.5em
+  column-rule 1px solid $border-subtle
+
+  li
+    break-inside avoid
+
+// Category list multi-column
+.category-list
+  column-count 2
+  column-gap 2em
+
