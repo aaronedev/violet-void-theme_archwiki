@@ -192,14 +192,14 @@
 
 ## 🖼️ Media & Images
 
-- [ ] **`image-rendering` for Screenshot/Diagram Quality**
+- [x] **`image-rendering` for Screenshot/Diagram Quality**
   - Browser support: 97%+
   - Control image scaling: auto, crisp-edges, pixelated
   - Preserve pixel art and terminal screenshots in docs
   - File: `src/components/content.styl`, `src/components/code.styl`
   - Stylus: Works directly
 
-- [ ] **`object-position` for Image Framing**
+- [x] **`object-position` for Image Framing**
   - Browser support: 97%+
   - Control visible area when using object-fit
   - Complements existing object-fit cover usage
@@ -208,7 +208,7 @@
 
 ## 📝 Form Enhancements
 
-- [ ] **`caret-color` for Themed Text Cursor**
+- [x] **`caret-color` for Themed Text Cursor**
   - Browser support: 97%+
   - Style text cursor in inputs/textareas to match theme
   - Consistent violet cursor across form elements
@@ -217,14 +217,14 @@
 
 ## 📐 Fluid Sizing
 
-- [ ] **`clamp()` for Fluid Typography**
+- [x] **`clamp()` for Fluid Typography**
   - Browser support: 95%+
   - Responsive font sizes without media queries
   - `font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem)`
   - File: `src/components/typography.styl`, `src/variables/layout.styl`
   - Stylus: Works directly
 
-- [ ] **`min()` / `max()` for Responsive Values**
+- [x] **`min()` / `max()` for Responsive Values**
   - Browser support: 95%+
   - Dynamic padding, margins, and dimensions
   - `padding: min(5vw, 2rem)` for responsive spacing
