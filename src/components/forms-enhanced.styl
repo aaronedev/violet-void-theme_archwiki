@@ -562,3 +562,27 @@ select[readonly]
     width 60%
     border-radius 2px
     margin-bottom 0.4em
+
+// =============================================================================
+// CARET-COLOR FOR THEMED TEXT CURSOR
+// =============================================================================
+
+// Style text cursor in inputs/textareas to match theme
+// Browser support: 97%+
+
+// Themed cursor for all text inputs
+input[type="text"]
+input[type="search"]
+input[type="email"]
+input[type="password"]
+input[type="url"]
+input[type="number"]
+input[type="tel"]
+textarea
+  caret-color $arch-blue
+
+// Edit form textarea
+#wpTextbox1
+.mw-editfont-monospace
+  caret-color $secondary-blue
+

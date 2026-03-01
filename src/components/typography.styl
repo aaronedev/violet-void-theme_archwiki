@@ -773,3 +773,53 @@ pre
   text-align justify
   text-align-last left
   hyphens auto
+
+// =============================================================================
+// FLUID TYPOGRAPHY WITH CLAMP()
+// =============================================================================
+
+// Responsive font sizes without media queries
+// Browser support: 95%+
+
+// Fluid body text
+.fluid-text
+  font-size clamp(0.9rem, 0.85rem + 0.25vw, 1.1rem)
+
+// Fluid headings
+.fluid-h1
+  font-size clamp(1.8rem, 1.5rem + 2vw, 3rem)
+
+.fluid-h2
+  font-size clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem)
+
+.fluid-h3
+  font-size clamp(1.25rem, 1.1rem + 1vw, 1.75rem)
+
+.fluid-h4
+  font-size clamp(1.1rem, 1rem + 0.5vw, 1.4rem)
+
+// Fluid lead paragraph
+.fluid-lead
+  font-size clamp(1rem, 0.9rem + 0.5vw, 1.25rem)
+
+// =============================================================================
+// MIN() / MAX() FOR RESPONSIVE VALUES
+// =============================================================================
+
+// Dynamic padding, margins, and dimensions
+// Browser support: 95%+
+
+// Responsive spacing
+.spacing-fluid
+  padding clamp(0.75rem, 2vw, 2rem)
+  margin clamp(0.5rem, 1.5vw, 1.5rem)
+
+// Responsive container width
+.container-fluid
+  width min(100% - 2rem, 1200px)
+  margin-inline auto
+
+// Responsive gap
+.gap-fluid
+  gap clamp(0.5rem, 1vw, 1.5rem)
+

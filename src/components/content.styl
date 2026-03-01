@@ -331,3 +331,46 @@ h2::after
   h2
   h3
     text-align-last left
+
+// =============================================================================
+// IMAGE-RENDERING FOR SCREENSHOT/DIAGRAM QUALITY
+// =============================================================================
+
+// Control image scaling: auto, crisp-edges, pixelated
+// Browser support: 97%+
+
+// Preserve pixel art and terminal screenshots in docs
+img.pixel-art
+img.screenshot
+img.terminal
+img[data-pixel]
+  image-rendering crisp-edges
+  image-rendering pixelated // Firefox
+
+// High-quality photo rendering
+img.photo
+img.hq
+  image-rendering auto
+
+// =============================================================================
+// OBJECT-POSITION FOR IMAGE FRAMING
+// =============================================================================
+
+// Control visible area when using object-fit
+// Browser support: 97%+
+
+// Center-focused images
+.img-center
+  object-fit cover
+  object-position center center
+
+// Top-focused (faces, portraits)
+.img-top
+  object-fit cover
+  object-position center top
+
+// Bottom-focused
+.img-bottom
+  object-fit cover
+  object-position center bottom
+
