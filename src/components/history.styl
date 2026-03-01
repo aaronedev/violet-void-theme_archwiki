@@ -1,0 +1,127 @@
+// Edit history styling for Violet Void ArchWiki
+// Revision list, timestamps, rollback/undo buttons
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// EDIT HISTORY LIST
+// =============================================================================
+
+// Revision row styling
+#pagehistory
+.mw-history-list
+  list-style none
+  padding 0
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  li
+    padding 0.6em 1em
+    border-bottom 1px solid $border-subtle
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    align-items center
+    transition background-color 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.03)
+
+    &:last-child
+      border-bottom none
+
+// User avatar/link styling
+.history-user
+  a
+    color $secondary-blue
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+
+// Timestamp with tabular-nums
+.mw-history-histlinks
+.history-timestamp
+  font-variant-numeric tabular-nums
+  color $muted
+  font-size 0.85em
+  white-space nowrap
+
+// Edit summary
+.comment
+.history-summary
+  font-style italic
+  color $light
+  max-width 30em
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+// Rollback/undo button styling
+.mw-history-undo
+.mw-rollback-link
+  a
+    display inline-block
+    padding 0.2em 0.5em
+    font-size 0.8em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    text-decoration none
+
+    &:hover
+      background-color $arch-blue
+      color $darker
+
+// Minor edit indicator
+.minor-edit
+  font-size 0.75em
+  padding 0.1em 0.3em
+  background-color rgba($muted, 0.2)
+  color $muted
+  border-radius $border-radius-sm
+  text-transform uppercase
+
+// Current revision marker
+.mw-history-selected
+  background-color rgba($arch-blue, 0.08)
+
+// Tag indicators
+.mw-tag-markers
+  font-size 0.75em
+
+  span
+    display inline-block
+    padding 0.1em 0.4em
+    margin 0.1em
+    background-color rgba($purple, 0.15)
+    color $purple
+    border-radius $border-radius-sm
+
+// History pagination
+.mw-history-paginator
+  display flex
+  justify-content center
+  gap 0.5em
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+  margin-top 1em
+
+  a
+    padding 0.3em 0.6em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    text-decoration none
+
+    &:hover
+      background-color $arch-blue
+      color $darker
+
+    &.mw-prev-link
+    &.mw-next-link
+      font-weight 600
+
