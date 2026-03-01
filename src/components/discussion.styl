@@ -1,0 +1,175 @@
+// Discussion and talk page styling for Violet Void ArchWiki
+// Talk formatting, threads, replies, notifications
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// TALK PAGE FORMATTING
+// =============================================================================
+
+// Indentation levels visual distinction
+.mw-parser-output
+  dl
+    margin 0.5em 0
+
+    dl
+      margin-inline-start 2em
+      padding-inline-start 1em
+      border-inline-start 2px solid rgba($arch-blue, 0.3)
+
+// User signature styling
+.mw-userlink
+  color $secondary-blue
+  font-weight 500
+
+  &:hover
+    color $arch-blue
+
+// Timestamp formatting with tabular-nums
+.mw-timestamp
+  font-variant-numeric tabular-nums
+  color $muted
+  font-size 0.85em
+
+// =============================================================================
+// REPLY THREAD STYLING
+// =============================================================================
+
+// Thread collapse/expand indicators
+.mw-thread-toggle
+  cursor pointer
+  user-select none
+
+  &::before
+    content "▼ "
+    color $arch-blue
+    font-size 0.8em
+    display inline-block
+    transition transform 0.2s ease
+
+  &.collapsed::before
+    transform rotate(-90deg)
+
+// New messages indicator
+.mw-newmessages
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.2em 0.5em
+  background-color rgba($green, 0.15)
+  color $green
+  border-radius $border-radius-sm
+  font-size 0.8em
+  font-weight 500
+
+  &::before
+    content "●"
+    font-size 0.6em
+
+// Archive notice styling
+.mw-archive-notice
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "📦 "
+    color $orange
+
+// =============================================================================
+// USER TALK NOTIFICATION
+// =============================================================================
+
+// New message banner
+.mw-user-talk-new
+  background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.4)
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1em 0
+  color $lighter
+
+  a
+    color $arch-blue
+    font-weight 500
+
+// Orange bar indicator
+.mw-user-talk-indicator
+  position relative
+
+  &::before
+    content ""
+    position absolute
+    top 0
+    left 0
+    right 0
+    height 4px
+    background linear-gradient(90deg, $orange, $arch-blue)
+    border-radius $border-radius-sm $border-radius-sm 0 0
+
+// Dismiss button styling
+.mw-dismiss-link
+  float right
+  font-size 0.8em
+  color $muted
+
+  &:hover
+    color $lighter
+
+// =============================================================================
+// LQT / STRUCTURED DISCUSSIONS
+// =============================================================================
+
+// Discussion board styling
+.flow-board
+  background-color $base
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// Topic containers
+.flow-topic
+  border-bottom 1px solid $border-subtle
+  padding 1em
+
+  &:last-child
+    border-bottom none
+
+  &:hover
+    background-color rgba($arch-blue, 0.02)
+
+// Topic title
+.flow-topic-title
+  color $lighter
+  font-size 1.1em
+  font-weight 600
+  margin-bottom 0.5em
+
+  a
+    color inherit
+
+    &:hover
+      color $arch-blue
+
+// Reply threading
+.flow-replies
+  margin-inline-start 1.5em
+  padding-inline-start 1em
+  border-inline-start 2px solid rgba($arch-blue, 0.2)
+
+// Moderation tools
+.flow-moderation
+  font-size 0.8em
+
+  a
+    color $muted
+    padding 0.2em 0.4em
+    border-radius $border-radius-sm
+
+    &:hover
+      background-color rgba($secondary-red, 0.1)
+      color $secondary-red
+

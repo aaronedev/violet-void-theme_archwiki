@@ -1,0 +1,297 @@
+// User page styling for Violet Void ArchWiki
+// Profile headers, talk pages, contribution grids, achievements
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// USER PROFILE HEADER
+// =============================================================================
+
+.mw-user-profile
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.05))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+  display flex
+  gap 1.5em
+  align-items flex-start
+
+// User avatar
+.mw-user-avatar
+  width 80px
+  height 80px
+  border-radius 50%
+  background linear-gradient(135deg, $arch-blue, $secondary-blue)
+  display flex
+  align-items center
+  justify-content center
+  color $darker
+  font-size 2em
+  font-weight 700
+  flex-shrink 0
+
+  img
+    width 100%
+    height 100%
+    border-radius 50%
+    object-fit cover
+
+// User info
+.mw-user-info
+  flex 1
+
+.mw-user-name
+  color $lighter
+  font-size 1.5em
+  font-weight 600
+  margin 0
+
+// User group badges
+.mw-user-groups
+  display flex
+  flex-wrap wrap
+  gap 0.3em
+  margin-top 0.5em
+
+.mw-user-group
+  padding 0.2em 0.5em
+  font-size 0.75em
+  border-radius $border-radius-sm
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &.sysop
+    background-color rgba($green, 0.2)
+    color $green
+
+  &.bureaucrat
+    background-color rgba($purple, 0.2)
+    color $purple
+
+  &.autopatrolled
+    background-color rgba($arch-blue, 0.2)
+    color $arch-blue
+
+  &.bot
+    background-color rgba($muted, 0.2)
+    color $muted
+
+// Registration date and edit count
+.mw-user-stats
+  display flex
+  gap 1.5em
+  margin-top 0.75em
+  font-size 0.9em
+
+.mw-user-stat
+  color $muted
+
+  strong
+    color $lighter
+    font-variant-numeric tabular-nums
+
+// =============================================================================
+// USER TALK PAGE STYLING
+// =============================================================================
+
+.mw-user-talk
+  // Message container
+  .mw-message
+    background-color $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+    margin 1em 0
+
+  // Reply button
+  .mw-reply-link
+    display inline-block
+    padding 0.3em 0.6em
+    font-size 0.85em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    text-decoration none
+
+    &:hover
+      background-color $arch-blue
+      color $darker
+
+// =============================================================================
+// USER CONTRIBUTIONS GRID
+// =============================================================================
+
+// Activity heatmap grid
+.mw-contributions-grid
+  display grid
+  grid-template-columns repeat(53, 1fr)
+  gap 2px
+  background-color $darker
+  padding 1em
+  border-radius $border-radius-md
+  overflow-x auto
+
+.contrib-cell
+  width 10px
+  height 10px
+  background-color rgba($arch-blue, 0.1)
+  border-radius 2px
+
+  &.level-1
+    background-color rgba($arch-blue, 0.25)
+
+  &.level-2
+    background-color rgba($arch-blue, 0.4)
+
+  &.level-3
+    background-color rgba($arch-blue, 0.6)
+
+  &.level-4
+    background-color $arch-blue
+
+// Contribution streak indicator
+.mw-streak
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 1em
+  background-color rgba($green, 0.1)
+  border-radius $border-radius-md
+  color $green
+  font-size 0.9em
+
+  strong
+    font-variant-numeric tabular-nums
+
+// Namespace breakdown
+.mw-namespace-stats
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 1em
+
+.mw-namespace-stat
+  padding 0.3em 0.6em
+  background-color rgba($arch-blue, 0.1)
+  border-radius $border-radius-sm
+  font-size 0.85em
+
+  .label
+    color $muted
+    margin-inline-end 0.3em
+
+  .count
+    color $lighter
+    font-variant-numeric tabular-nums
+
+// =============================================================================
+// USER ACHIEVEMENTS / BADGES
+// =============================================================================
+
+.mw-achievements
+  display flex
+  flex-wrap wrap
+  gap 1em
+  margin 1em 0
+
+.mw-achievement
+  display flex
+  flex-direction column
+  align-items center
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  min-width 100px
+
+.mw-achievement-icon
+  font-size 2em
+  margin-bottom 0.5em
+
+.mw-achievement-name
+  color $lighter
+  font-size 0.85em
+  text-align center
+
+// Tier indicators (bronze/silver/gold)
+.mw-achievement
+  &.bronze
+    border-color rgba(#cd7f32, 0.5)
+    .mw-achievement-icon
+      color #cd7f32
+
+  &.silver
+    border-color rgba(#c0c0c0, 0.5)
+    .mw-achievement-icon
+      color #c0c0c0
+
+  &.gold
+    border-color rgba(#ffd700, 0.5)
+    .mw-achievement-icon
+      color #ffd700
+
+// Progress bar for next badge
+.mw-achievement-progress
+  width 100%
+  height 4px
+  background-color rgba($border-subtle, 0.5)
+  border-radius 2px
+  margin-top 0.5em
+  overflow hidden
+
+  .progress-fill
+    height 100%
+    background linear-gradient(90deg, $arch-blue, $secondary-blue)
+    border-radius 2px
+
+// =============================================================================
+// USER MENU DROPDOWN
+// =============================================================================
+
+#pt-userpage
+  a
+    color $lighter
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+
+// User dropdown menu styling
+#p-personal
+  ul
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    box-shadow $shadow-lg
+
+    li a
+      color $light
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $lighter
+
+// Notification count badge
+.mw-echo-notifications-badge
+  position relative
+
+  &.mw-echo-unread-notifications::after
+    content attr(data-counter-num)
+    position absolute
+    top -5px
+    right -5px
+    min-width 18px
+    height 18px
+    padding 0 4px
+    background-color $secondary-red
+    color $white
+    font-size 0.7em
+    font-weight 600
+    border-radius 9px
+    display flex
+    align-items center
+    justify-content center
+    font-variant-numeric tabular-nums
+
