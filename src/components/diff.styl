@@ -1,0 +1,87 @@
+// Diff view styling for Violet Void ArchWiki
+// Added/removed line highlighting, inline diffs
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// DIFF VIEW STYLING
+// =============================================================================
+
+// Added/removed line highlighting
+.diff
+  font-family $font-mono
+  font-size 0.9em
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  // Context lines
+  .diff-context
+    background-color $base
+    color $light
+
+  // Added lines (green)
+  .diff-addedline
+    background-color rgba($green, 0.15)
+    border-inline-start 3px solid $green
+
+    .diffchange
+      background-color rgba($green, 0.3)
+      color $lighter
+
+  // Deleted lines (red)
+  .diff-deletedline
+    background-color rgba($secondary-red, 0.15)
+    border-inline-start 3px solid $secondary-red
+
+    .diffchange
+      background-color rgba($secondary-red, 0.3)
+      color $lighter
+
+  // Inline diff indicators
+  .diffchange
+    padding 0.1em 0.2em
+    border-radius 2px
+
+  // Line numbers
+  .diff-lineno
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.8em
+    padding 0 0.5em
+    user-select none
+
+// Side-by-side diff layout for wide screens
+@media (min-width: 1200px)
+  .diff-sidebyside
+    display grid
+    grid-template-columns 1fr 1fr
+    gap 1em
+
+    .diff-deletedline
+    .diff-addedline
+      margin 0
+
+// Unified diff
+.diff-unified
+  .diff-addedline
+  .diff-deletedline
+    margin 0.2em 0
+    padding 0.3em 0.5em
+
+// Diff marker column
+.diff-marker
+  width 2em
+  text-align center
+  color $muted
+  font-size 0.8em
+  user-select none
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $arch-blue
+
