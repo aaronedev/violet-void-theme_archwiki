@@ -901,3 +901,65 @@ h6
 .no-autospace
   text-autospace none
 
+
+// =============================================================================
+// COUNTER ENHANCEMENTS
+// =============================================================================
+
+// counter-set for resetting without increment
+// Browser support: 97%+
+
+.counter-reset
+  counter-set item 0
+
+// counters() for nested lists
+// Browser support: 97%+
+
+ol.nested-counter
+  counter-reset section
+  list-style none
+
+  li::before
+    content counters(section, ".") " "
+    counter-increment section
+    font-weight 600
+    color $arch-blue
+    margin-inline-end 0.5em
+
+// =============================================================================
+// FONT-VARIANT EXPANSION
+// =============================================================================
+
+// font-variant-caps
+// Browser support: 97%+
+
+.small-caps
+  font-variant-caps small-caps
+
+.all-small-caps
+  font-variant-caps all-small-caps
+
+// font-variant-ligatures
+// Browser support: 97%+
+
+.ligatures
+  font-variant-ligatures common-ligatures
+
+.no-ligatures
+  font-variant-ligatures none
+
+// font-variant-position for super/subscript
+// Browser support: 97%+
+
+.super
+  font-variant-position super
+
+.sub
+  font-variant-position sub
+
+// font-optical-sizing
+// Browser support: 97%+
+
+.optical-sizing
+  font-optical-sizing auto
+

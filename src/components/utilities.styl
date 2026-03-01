@@ -693,3 +693,128 @@
     outline 2px solid $arch-blue
     outline-offset 2px
     border-radius $border-radius-sm
+
+// =============================================================================
+// DISPLAY ENHANCEMENTS
+// =============================================================================
+
+// flow-root: clearfix replacement
+// Browser support: 97%+
+
+.clearfix
+.flow-root
+  display flow-root
+
+// contents: remove from box tree
+// Browser support: 97%+
+
+.contents-wrapper
+  display contents
+
+// =============================================================================
+// VISIBILITY ENHANCEMENTS
+// =============================================================================
+
+// collapse for table rows
+// Browser support: 97%+
+
+tr.collapsed
+  visibility collapse
+
+// opacity in animations
+// Browser support: 97%+
+
+.fade-in
+  animation fadeIn 0.3s ease
+
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
+.fade-out
+  animation fadeOut 0.3s ease
+
+@keyframes fadeOut
+  from
+    opacity 1
+  to
+    opacity 0
+
+// =============================================================================
+// INTERACTION ENHANCEMENTS
+// =============================================================================
+
+// user-select containment
+// Browser support: 97%+
+
+.no-select
+  user-select none
+
+.select-all
+  user-select all
+
+.select-contain
+  user-select contain
+
+// pointer-events for SVG
+// Browser support: 97%+
+
+.pointer-painted
+  pointer-events painted
+
+.pointer-none
+  pointer-events none
+
+// resize logical axis
+// Browser support: 97%+
+
+.resize-block
+  resize block
+
+.resize-inline
+  resize inline
+
+// cursor hints
+.cursor-zoom-in
+  cursor zoom-in
+
+.cursor-zoom-out
+  cursor zoom-out
+
+.cursor-grab
+  cursor grab
+
+.cursor-grabbing
+  cursor grabbing
+
+// caret-shape
+// Browser support: 85%+
+
+.caret-block
+  caret-shape block
+
+.caret-bar
+  caret-shape bar
+
+// =============================================================================
+// SIZING KEYWORDS
+// =============================================================================
+
+// fit-content, min-content, max-content, stretch
+// Browser support: 97%+
+
+.fit-content
+  width fit-content
+
+.min-content
+  width min-content
+
+.max-content
+  width max-content
+
+.stretch-width
+  width -webkit-fill-available
+  width stretch
+

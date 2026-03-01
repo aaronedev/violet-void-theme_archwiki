@@ -1022,3 +1022,66 @@ h4[id]
   scale 1.02
   transition translate 0.2s, scale 0.2s
 
+
+// =============================================================================
+// ANIMATION PROPERTIES
+// =============================================================================
+
+// animation-delay negative for mid-cycle start
+// Browser support: 97%+
+
+.pre-start
+  animation-delay -1s
+
+// animation-direction alternate-reverse
+// Browser support: 97%+
+
+.bounce-reverse
+  animation-direction alternate-reverse
+
+// animation-fill-mode both
+// Browser support: 97%+
+
+.fill-both
+  animation-fill-mode both
+
+// animation-play-state paused
+// Browser support: 97%+
+
+.paused
+  animation-play-state paused
+
+// =============================================================================
+// OUTLINE ENHANCEMENTS
+// =============================================================================
+
+// outline-offset for spaced outlines
+// Browser support: 97%+
+
+.outline-spaced
+  outline 2px solid $arch-blue
+  outline-offset 4px
+
+// outline-style auto for platform focus
+// Browser support: 97%+
+
+.outline-native
+  outline-style auto
+  outline-color $arch-blue
+
+// =============================================================================
+// BORDER IMAGE
+// =============================================================================
+
+// border-image for decorative borders
+// Browser support: 97%+
+
+.border-image-gradient
+  border-image linear-gradient(135deg, $arch-blue, $secondary-blue) 1
+
+.border-image-slice
+  border-image-slice 30
+
+.border-image-round
+  border-image-repeat round
+
