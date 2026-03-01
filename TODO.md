@@ -444,7 +444,7 @@ Last updated: 2026-03-01 06:05
   - Current section highlighting via scroll-spy
   - Number alignment with tabular-nums
 
-- [ ] **Infobox Layout Improvements** (CSS)
+- [x] **Infobox Layout Improvements** (CSS)
   - File: `src/components/tables.styl`
   - Responsive infobox on mobile
   - Image aspect-ratio enforcement
@@ -2811,7 +2811,7 @@ Last updated: 2026-03-01 06:05
   - Page count badges
   - Active category highlight
 
-- [ ] **Related Pages Sidebar** (CSS)
+- [x] **Related Pages Sidebar** (CSS)
   - File: `src/components/navigation.styl`
   - Related articles panel
   - Sibling pages list
@@ -2825,7 +2825,7 @@ Last updated: 2026-03-01 06:05
   - Expand/collapse all toggle
   - Section count indicator
 
-- [ ] **Breadcrumb Trail** (CSS)
+- [x] **Breadcrumb Trail** (CSS)
   - File: `src/components/navigation.styl`
   - Category path display
   - Separator styling
@@ -2834,21 +2834,21 @@ Last updated: 2026-03-01 06:05
 
 ## 📊 ArchWiki Infoboxes (New)
 
-- [ ] **Software Infobox** (CSS)
+- [x] **Software Infobox** (CSS)
   - File: `src/components/infobox.styl`
   - Software name/version info
   - License indicator
   - Platform support grid
   - Website link styling
 
-- [ ] **Hardware Infobox** (CSS)
+- [x] **Hardware Infobox** (CSS)
   - File: `src/components/infobox.styl`
   - Device compatibility status
   - Driver status indicators
   - Firmware requirements
   - Workaround badges
 
-- [ ] **Developer Infobox** (CSS)
+- [x] **Developer Infobox** (CSS)
   - File: `src/components/infobox.styl`
   - Maintainer info
   - Contact methods
@@ -2857,28 +2857,28 @@ Last updated: 2026-03-01 06:05
 
 ## ⚠️ ArchWiki Advisory Boxes (New)
 
-- [ ] **Warning Boxes Enhanced** (CSS)
+- [x] **Warning Boxes Enhanced** (CSS)
   - File: `src/components/advisory.styl`
   - Data loss warning
   - System instability warning
   - Security warning
   - Critical action warning
 
-- [ ] **Tip Boxes Enhanced** (CSS)
+- [x] **Tip Boxes Enhanced** (CSS)
   - File: `src/components/advisory.styl`
   - Performance tip
   - Alternative method
   - Shortcut tip
   - Best practice tip
 
-- [ ] **Note Boxes Enhanced** (CSS)
+- [x] **Note Boxes Enhanced** (CSS)
   - File: `src/components/advisory.styl`
   - Version-specific note
   - Distribution-specific note
   - Architecture-specific note
   - Prerequisite note
 
-- [ ] **Deprecated Content** (CSS)
+- [x] **Deprecated Content** (CSS)
   - File: `src/components/advisory.styl`
   - Outdated version strikethrough
   - Deprecated command styling
@@ -3785,3 +3785,279 @@ Last updated: 2026-03-01 06:05
   - Landmark regions
 
 | 2026-03-01 | Twenty-first scout | Added language & localization (language selector, RTL support, translation indicators, multilingual content), maintenance tools (maintenance templates, quality assessment, protection indicators, revision management), analytics & metrics (page statistics, traffic analytics, editor activity, content metrics), modern CSS features (@property, @layer, :has(), :is()/:where()), accessibility deep cuts (reduced motion, high contrast, focus-visible, screen reader optimizations) |
+
+
+## 📰 Feed & Syndication (New - 2026-03-01 Scout 22)
+
+- [ ] **RSS/Atom Feed Links** (CSS, 97%+ browser support)
+  - File: `src/components/feeds.styl`
+  - Feed icon styling
+  - Subscribe button styling
+  - Feed format selector (RSS/Atom)
+  - Feed URL display
+
+- [ ] **Recent Changes Feed** (CSS, 97%+ browser support)
+  - File: `src/components/feeds.styl`
+  - Changes list item styling
+  - Timestamp formatting
+  - Namespace indicator
+  - Diff size indicator
+
+- [ ] **Watchlist Feed** (CSS, 97%+ browser support)
+  - File: `src/components/feeds.styl`
+  - Watchlist item styling
+  - Unwatch button styling
+  - Group by page toggle
+  - Mark as visited button
+
+- [ ] **Contribution Feed** (CSS, 97%+ browser support)
+  - File: `src/components/feeds.styl`
+  - Contribution item styling
+  - User link styling
+  - Edit summary display
+  - Minor edit indicator
+
+## 🔖 Bookmark & Quick Links (New)
+
+- [ ] **Page Bookmarks** (CSS, 97%+ browser support)
+  - File: `src/components/bookmarks.styl`
+  - Bookmark button styling
+  - Bookmarks list panel
+  - Bookmark folder styling
+  - Quick access sidebar
+
+- [ ] **Quick Links Panel** (CSS, 97%+ browser support)
+  - File: `src/components/quicklinks.styl`
+  - Links grid layout
+  - Link card styling
+  - Custom link button
+  - Reorder handles
+
+- [ ] **Related Pages** (CSS, 97%+ browser support)
+  - File: `src/components/related.styl`
+  - Related pages list
+  - See also section
+  - Subpages list
+  - Parent page link
+
+- [ ] **External Links Panel** (CSS, 97%+ browser support)
+  - File: `src/components/external.styl`
+  - External link styling
+  - Link type icons
+  - Security indicator
+  - Archive link
+
+## 🧪 Sandbox & Testing (New)
+
+- [ ] **Sandbox Page Styling** (CSS, 97%+ browser support)
+  - File: `src/components/sandbox.styl`
+  - Sandbox warning banner
+  - Clear sandbox button
+  - Reset confirmation
+  - Edit intro styling
+
+- [ ] **Template Testing Page** (CSS, 97%+ browser support)
+  - File: `src/components/testing.styl`
+  - Test case sections
+  - Expected output display
+  - Actual output display
+  - Pass/fail indicator
+
+- [ ] **Documentation Subpage** (CSS, 97%+ browser support)
+  - File: `src/components/documentation.styl`
+  - Doc subpage indicator
+  - Transclusion preview
+  - Parameter table
+  - Example usage block
+
+- [ ] **Wizard Interface** (CSS, 97%+ browser support)
+  - File: `src/components/wizard.styl`
+  - Step indicator styling
+  - Step content area
+  - Navigation buttons
+  - Progress bar
+
+## 🔔 Real-time Updates (New)
+
+- [ ] **Live Edit Indicator** (CSS, 97%+ browser support)
+  - File: `src/components/live.styl`
+  - Live edit badge
+  - Conflict warning
+  - Auto-refresh toggle
+  - New edits notification
+
+- [ ] **Page Changes Alert** (CSS, 97%+ browser support)
+  - File: `src/components/live.styl`
+  - Change notification styling
+  - Diff preview popup
+  - Accept/reject buttons
+  - View full diff link
+
+- [ ] **Collaborative Editing** (CSS, 97%+ browser support)
+  - File: `src/components/collab.styl`
+  - Active editor indicators
+  - Cursor position display
+  - Edit lock indicator
+  - Chat panel styling
+
+- [ ] **Push Notifications** (CSS, 97%+ browser support)
+  - File: `src/components/notifications.styl`
+  - Notification permission prompt
+  - Notification preview styling
+  - Settings panel
+  - Test notification button
+
+| 2026-03-01 | Twenty-second scout | Added feed & syndication (RSS/Atom links, recent changes feed, watchlist feed, contribution feed), bookmarks & quick links (page bookmarks, quick links panel, related pages, external links panel), sandbox & testing (sandbox page styling, template testing, documentation subpage, wizard interface), real-time updates (live edit indicator, page changes alert, collaborative editing, push notifications) |
+
+
+## 🔧 Advanced Editor Features (New - 2026-03-01 Scout 23)
+
+- [ ] **CodeMirror 6 Integration** (CSS, 97%+ browser support)
+  - File: `src/components/editor-cm.styl`
+  - Editor container styling
+  - Gutter/line numbers styling
+  - Active line highlight
+  - Selection styling
+
+- [ ] **Syntax Highlighting Extended** (CSS, 97%+ browser support)
+  - File: `src/components/syntax.styl`
+  - Extended language support
+  - Diff highlighting
+  - Inline syntax colors
+  - Theme-consistent tokens
+
+- [ ] **Autocomplete Dropdown** (CSS, 97%+ browser support)
+  - File: `src/components/autocomplete.styl`
+  - Suggestion list styling
+  - Category headers
+  - Match highlighting
+  - Documentation tooltip
+
+- [ ] **Find & Replace Panel** (CSS, 97%+ browser support)
+  - File: `src/components/find-replace.styl`
+  - Search input styling
+  - Replace input styling
+  - Match counter display
+  - Navigation buttons
+
+## 📊 Diagram & Visualization (New)
+
+- [ ] **Mermaid Diagram Styling** (CSS, 97%+ browser support)
+  - File: `src/components/diagrams.styl`
+  - Flowchart node styling
+  - Sequence diagram styling
+  - Gantt chart styling
+  - Pie chart styling
+
+- [ ] **Graphviz Integration** (CSS, 97%+ browser support)
+  - File: `src/components/graphviz.styl`
+  - Node styling
+  - Edge styling
+  - Cluster styling
+  - Label formatting
+
+- [ ] **PlantUML Support** (CSS, 97%+ browser support)
+  - File: `src/components/plantuml.styl`
+  - UML diagram styling
+  - Component diagram styling
+  - Class diagram styling
+  - Activity diagram styling
+
+- [ ] **Chart.js Theming** (CSS, 97%+ browser support)
+  - File: `src/components/charts.styl`
+  - Chart container styling
+  - Legend styling
+  - Tooltip styling
+  - Grid line styling
+
+## 🎨 UI Components Extended (New)
+
+- [ ] **Modal/Dialog Extended** (CSS, 97%+ browser support)
+  - File: `src/components/modal.styl`
+  - Modal backdrop styling
+  - Modal content animation
+  - Close button styling
+  - Footer action buttons
+
+- [ ] **Dropdown/Select Extended** (CSS, 97%+ browser support)
+  - File: `src/components/dropdown.styl`
+  - Dropdown trigger styling
+  - Option list styling
+  - Selected state styling
+  - Group header styling
+
+- [ ] **Tabs Extended** (CSS, 97%+ browser support)
+  - File: `src/components/tabs.styl`
+  - Tab list styling
+  - Active tab indicator
+  - Tab panel styling
+  - Vertical tabs variant
+
+- [ ] **Accordion/Collapse** (CSS, 97%+ browser support)
+  - File: `src/components/accordion.styl`
+  - Accordion header styling
+  - Expand/collapse icon
+  - Panel animation
+  - Nested accordion support
+
+## 🔗 External Integrations (New)
+
+- [ ] **GitHub Gist Embed** (CSS, 97%+ browser support)
+  - File: `src/components/gist.styl`
+  - Gist container styling
+  - File tab styling
+  - Code block styling
+  - Copy button styling
+
+- [ ] **YouTube Embed Styling** (CSS, 97%+ browser support)
+  - File: `src/components/youtube.styl`
+  - Video container styling
+  - Placeholder styling
+  - Play button overlay
+  - Responsive aspect ratio
+
+- [ ] **Twitter/X Embed Styling** (CSS, 97%+ browser support)
+  - File: `src/components/twitter.styl`
+  - Tweet container styling
+  - Author info styling
+  - Content area styling
+  - Action buttons styling
+
+- [ ] **PDF Embed Viewer** (CSS, 97%+ browser support)
+  - File: `src/components/pdf.styl`
+  - PDF container styling
+  - Toolbar styling
+  - Page navigation
+  - Zoom controls
+
+## 📱 Progressive Enhancement (New)
+
+- [ ] **Service Worker Status** (CSS, 97%+ browser support)
+  - File: `src/components/pwa.styl`
+  - Offline indicator styling
+  - Update available badge
+  - Install prompt styling
+  - Cache status display
+
+- [ ] **PWA Install Prompt** (CSS, 97%+ browser support)
+  - File: `src/components/pwa.styl`
+  - Install banner styling
+  - Install button styling
+  - Dismiss button styling
+  - Feature list styling
+
+- [ ] **Offline Mode Indicator** (CSS, 97%+ browser support)
+  - File: `src/components/pwa.styl`
+  - Offline badge styling
+  - Sync pending indicator
+  - Retry button styling
+  - Cached content badge
+
+- [ ] **Background Sync Status** (CSS, 97%+ browser support)
+  - File: `src/components/pwa.styl`
+  - Sync progress indicator
+  - Sync success badge
+  - Sync error badge
+  - Retry sync button
+
+| 2026-03-01 | Twenty-third scout | Added advanced editor features (CodeMirror 6, syntax highlighting extended, autocomplete dropdown, find & replace), diagram & visualization (Mermaid, Graphviz, PlantUML, Chart.js theming), UI components extended (modal/dialog, dropdown/select, tabs, accordion/collapse), external integrations (GitHub Gist, YouTube, Twitter/X, PDF embed), progressive enhancement (service worker status, PWA install prompt, offline mode, background sync) |
