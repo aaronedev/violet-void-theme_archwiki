@@ -1,0 +1,163 @@
+// Infobox styling for Violet Void ArchWiki
+// Software, hardware, developer infoboxes
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// SOFTWARE INFOBOX
+// =============================================================================
+
+.infobox.software
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  // Header
+  .infobox-header
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+    padding 0.75em 1em
+    text-align center
+
+    h2
+    .infobox-title
+      margin 0
+      color $lighter
+      font-size 1.1em
+      font-weight 600
+
+  // Image
+  .infobox-image
+    padding 1em
+    text-align center
+    background-color $darker
+
+    img
+      max-width 100%
+      height auto
+      border-radius $border-radius-sm
+
+  // Data rows
+  .infobox-row
+    display flex
+    border-top 1px solid $border-subtle
+
+    .infobox-label
+      flex 0 0 40%
+      padding 0.5em 0.75em
+      background-color rgba($darker, 0.5)
+      color $muted
+      font-size 0.85em
+      font-weight 500
+
+    .infobox-data
+      flex 1
+      padding 0.5em 0.75em
+      color $light
+      font-size 0.9em
+
+  // License indicator
+  .license-tag
+    display inline-block
+    padding 0.2em 0.5em
+    background-color rgba($green, 0.15)
+    color $green
+    border-radius $border-radius-sm
+    font-size 0.8em
+    font-weight 500
+
+// =============================================================================
+// HARDWARE INFOBOX
+// =============================================================================
+
+.infobox.hardware
+  // Device compatibility status
+  .compatibility-status
+    display flex
+    align-items center
+    gap 0.5em
+    padding 0.5em
+
+    &.works
+      color $green
+      &::before
+        content "✓"
+
+    &.partial
+      color $orange
+      &::before
+        content "◐"
+
+    &.broken
+      color $secondary-red
+      &::before
+        content "✗"
+
+  // Driver status
+  .driver-status
+    font-size 0.85em
+    padding 0.3em 0.5em
+    border-radius $border-radius-sm
+
+    &.open-source
+      background-color rgba($green, 0.1)
+      color $green
+
+    &.proprietary
+      background-color rgba($orange, 0.1)
+      color $orange
+
+    &.none
+      background-color rgba($secondary-red, 0.1)
+      color $secondary-red
+
+// =============================================================================
+// DEVELOPER INFOBOX
+// =============================================================================
+
+.infobox.developer
+  .maintainer-info
+    display flex
+    align-items center
+    gap 0.75em
+    padding 0.75em
+
+  .maintainer-avatar
+    width 48px
+    height 48px
+    border-radius 50%
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    display flex
+    align-items center
+    justify-content center
+    color $darker
+    font-weight 600
+
+  .maintainer-details
+    flex 1
+
+    .maintainer-name
+      color $lighter
+      font-weight 500
+
+    .maintainer-role
+      color $muted
+      font-size 0.85em
+
+  // Activity indicators
+  .activity-indicator
+    display inline-flex
+    align-items center
+    gap 0.3em
+    font-size 0.8em
+
+    &::before
+      content ""
+      width 6px
+      height 6px
+      border-radius 50%
+      background-color $green
+
+    &.inactive::before
+      background-color $muted
+

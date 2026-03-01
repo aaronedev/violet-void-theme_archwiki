@@ -855,3 +855,82 @@ h6:hover .mw-editsection
     max-height calc(100vh - 6em)
     overflow-y auto
 
+
+// =============================================================================
+// RELATED PAGES SIDEBAR
+// =============================================================================
+
+// Related articles panel
+// Browser support: 97%+
+
+.related-pages
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  h3
+    color $lighter
+    font-size 0.9em
+    margin-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+    padding-bottom 0.3em
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+  li
+    margin 0.3em 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+    display block
+    padding 0.3em 0.5em
+    border-radius $border-radius-sm
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $arch-blue
+
+// =============================================================================
+// BREADCRUMB TRAIL
+// =============================================================================
+
+// Category path display
+// Browser support: 97%+
+
+.breadcrumbs
+.mw-category-breadcrumb
+  display flex
+  flex-wrap wrap
+  gap 0.3em
+  align-items center
+  padding 0.5em 0
+  font-size 0.9em
+  color $muted
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $arch-blue
+
+  // Separator
+  .breadcrumb-separator
+    color $border-subtle
+    margin 0 0.2em
+
+    &::before
+      content "›"
+
+  // Current page
+  .breadcrumb-current
+    color $light
+    font-weight 500
+
