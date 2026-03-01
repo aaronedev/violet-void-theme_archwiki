@@ -920,3 +920,105 @@ h4[id]
 .animate-replace
   animation-composition replace
 
+
+// =============================================================================
+// BACKDROP-FILTER FOR GLASSMORPHISM
+// =============================================================================
+
+// Blur behind elements
+// Browser support: 97%+
+
+.glass
+  backdrop-filter blur(10px)
+  -webkit-backdrop-filter blur(10px)
+  background-color rgba($base, 0.7)
+
+.glass-strong
+  backdrop-filter blur(20px) saturate(1.2)
+  -webkit-backdrop-filter blur(20px) saturate(1.2)
+  background-color rgba($base, 0.5)
+
+// Navigation glass effect
+.mw-header
+#mw-head
+  backdrop-filter blur(12px)
+  -webkit-backdrop-filter blur(12px)
+
+// =============================================================================
+// FILTER EXPANSION
+// =============================================================================
+
+// Various filter effects
+// Browser support: 97%+
+
+// Blur unfocused elements
+.blur-light
+  filter blur(2px)
+
+// Brightness adjustments
+.brighten
+  filter brightness(1.1)
+
+.darken
+  filter brightness(0.9)
+
+// Saturate/desaturate
+.saturate
+  filter saturate(1.3)
+
+.desaturate
+  filter saturate(0)
+
+// Grayscale for disabled states
+.disabled
+.muted-element
+  filter grayscale(1)
+  opacity 0.6
+
+// Hue rotate for variations
+.hue-shift
+  filter hue-rotate(180deg)
+
+// Invert for dark/light mode helpers
+.invert
+  filter invert(1)
+
+// Sepia for vintage
+.vintage
+  filter sepia(0.5)
+
+// Drop shadow for irregular shapes
+.drop-shadow
+  filter drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3))
+
+// =============================================================================
+// INDIVIDUAL TRANSFORM PROPERTIES
+// =============================================================================
+
+// translate, rotate, scale without transform shorthand
+// Browser support: 97%+
+
+.translate-up
+  translate 0 -10px
+
+.translate-center
+  translate -50% -50%
+
+.rotate-45
+  rotate 45deg
+
+.rotate-90
+  rotate 90deg
+
+.scale-up
+  scale 1.1
+
+.scale-down
+  scale 0.9
+
+// Combined transforms
+.transform-hover:hover
+  translate 0 -2px
+  scale 1.02
+  transition translate 0.2s, scale 0.2s
+

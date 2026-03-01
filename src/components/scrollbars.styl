@@ -1,0 +1,68 @@
+// Scrollbar styling for Violet Void ArchWiki
+// Custom scrollbar colors and sizing
+
+@import '../variables/colors'
+
+// =============================================================================
+// SCROLLBAR-COLOR FOR CUSTOM SCROLLBARS
+// =============================================================================
+
+// Color scrollbar thumb/track
+// Browser support: 97%+
+
+html
+  scrollbar-color $arch-blue $darker
+  scrollbar-width thin
+
+// Webkit scrollbars (Chrome, Safari, Edge)
+::-webkit-scrollbar
+  width 10px
+  height 10px
+
+::-webkit-scrollbar-track
+  background $darker
+  border-radius 5px
+
+::-webkit-scrollbar-thumb
+  background linear-gradient(180deg, $arch-blue, $secondary-blue)
+  border-radius 5px
+  border 2px solid $darker
+
+  &:hover
+    background $lighter
+
+::-webkit-scrollbar-corner
+  background $darker
+
+// =============================================================================
+// SCROLLBAR-GUTTER FOR LAYOUT STABILITY
+// =============================================================================
+
+// Reserve scrollbar space to prevent layout shift
+// Browser support: 92%+
+
+.scroll-stable
+  scrollbar-gutter stable
+
+.scroll-both-edges
+  scrollbar-gutter stable both-edges
+
+// =============================================================================
+// OVERSCROLL-BEHAVIOR FOR SCROLL CHAINING
+// =============================================================================
+
+// Prevent scroll chaining in nested scrollables
+// Browser support: 92%+
+
+.no-overscroll
+  overscroll-behavior none
+
+.contain-scroll
+  overscroll-behavior contain
+
+// Modal/dropdown scroll containment
+.modal-body
+.dropdown-menu
+.toc
+  overscroll-behavior contain
+

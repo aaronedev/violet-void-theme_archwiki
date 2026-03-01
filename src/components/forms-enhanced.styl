@@ -586,3 +586,38 @@ textarea
 .mw-editfont-monospace
   caret-color $secondary-blue
 
+
+// =============================================================================
+// FORM ENHANCEMENTS
+// =============================================================================
+
+// Field-sizing for auto-expanding textareas
+// Browser support: 85%+
+
+.auto-expand
+  field-sizing content
+  min-height 3em
+  max-height 20em
+
+// Accent-color for form controls
+// Browser support: 97%+
+
+input[type="checkbox"]
+input[type="radio"]
+input[type="range"]
+progress
+  accent-color $arch-blue
+
+// Appearance: none for custom controls
+// Browser support: 97%+
+
+.custom-checkbox
+.custom-radio
+.custom-select
+  appearance none
+  -webkit-appearance none
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em
+
