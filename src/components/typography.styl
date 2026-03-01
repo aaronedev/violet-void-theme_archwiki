@@ -707,3 +707,41 @@ code
   p
   li
     overflow-wrap anywhere
+
+// =============================================================================
+// FONT-VARIANT-NUMERIC FOR NUMBER FORMATTING
+// =============================================================================
+
+// Tabular numbers for tables, slashed-zero for code, ordinals
+// Browser support: 97%+
+
+// Slashed zero for code/monospace content - better distinction between 0 and O
+code
+kbd
+samp
+pre
+  font-variant-numeric slashed-zero
+
+// Ordinals for better typography (1st, 2nd, etc.)
+.ordinal
+  font-variant-numeric ordinal
+
+// Tabular numbers utility class - fixed-width digits for alignment
+.tabular-nums
+  font-variant-numeric tabular-nums
+
+// Lining figures (default) - numbers align with capitals
+.lining-nums
+  font-variant-numeric lining-nums
+
+// Oldstyle figures - numbers have ascenders/descenders like text
+.oldstyle-nums
+  font-variant-numeric oldstyle-nums
+
+// Fraction formatting
+.fraction
+  font-variant-numeric diagonal-fractions
+
+// Combined: tabular nums with slashed zero (great for financial/technical data)
+.tabular-zero
+  font-variant-numeric tabular-nums slashed-zero

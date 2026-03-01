@@ -368,3 +368,33 @@ table.results
   td
     max-width 300px
     hyphens auto
+
+// =============================================================================
+// FONT-VARIANT-NUMERIC FOR TABLE NUMBERS
+// =============================================================================
+
+// Tabular numbers for better alignment in tables
+// Browser support: 97%+
+
+// Apply tabular-nums to wikitable and infobox cells
+.wikitable
+.infobox
+  // Numeric columns benefit from fixed-width digits
+  td
+    font-variant-numeric tabular-nums
+
+  // Header cells also get tabular numbers for consistency
+  th
+    font-variant-numeric tabular-nums
+
+// Sortable tables - numbers should align
+table.sortable
+  td
+  th
+    font-variant-numeric tabular-nums
+
+// Tables with counts, dates, versions - use tabular-nums
+.mw-parser-output
+  table
+    td
+      font-variant-numeric tabular-nums
