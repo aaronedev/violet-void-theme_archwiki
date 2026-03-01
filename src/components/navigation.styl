@@ -777,3 +777,81 @@ header.vector-header
 #mw-navigation
 #mw-panel
   isolation isolate
+
+// =============================================================================
+// EDIT SECTION LINK STYLING
+// =============================================================================
+
+// Hover-reveal edit links for sections
+// Browser support: 97%+
+
+.mw-editsection
+  font-size 0.75em
+  opacity 0.3
+  transition opacity 0.2s ease
+  margin-inline-start 0.5em
+
+  &:hover
+    opacity 1
+
+// Show edit link on section hover
+.mw-headline:hover + .mw-editsection
+h1:hover .mw-editsection
+h2:hover .mw-editsection
+h3:hover .mw-editsection
+h4:hover .mw-editsection
+h5:hover .mw-editsection
+h6:hover .mw-editsection
+  opacity 1
+
+.mw-editsection a
+  color $muted
+  text-decoration none
+  padding 0.2em 0.4em
+  border-radius $border-radius-sm
+  transition all 0.2s ease
+
+  &:hover
+    color $arch-blue
+    background-color rgba($arch-blue, 0.1)
+
+// =============================================================================
+// TABLE OF CONTENTS ENHANCEMENTS
+// =============================================================================
+
+// Collapsible TOC with smooth animations
+// Current section highlighting
+
+.toc
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+
+  // Number alignment with tabular-nums
+  .tocnumber
+    font-variant-numeric tabular-nums
+    color $muted
+    margin-inline-end 0.5em
+
+  // Current section highlight
+  .tocactive > a
+    color $arch-blue
+    font-weight 600
+    background-color rgba($arch-blue, 0.1)
+    border-radius $border-radius-sm
+    padding 0.1em 0.3em
+
+  // Smooth collapse animation
+  ul
+    overflow hidden
+    transition max-height 0.3s ease
+
+// TOC sticky on scroll (for wide screens)
+@media (min-width: 1200px)
+  .toc
+    position sticky
+    top 5em
+    max-height calc(100vh - 6em)
+    overflow-y auto
+

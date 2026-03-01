@@ -455,3 +455,34 @@ img.float-right
 .shape-margin
   shape-margin 1em
 
+
+// =============================================================================
+// CATEGORY TAG STYLING
+// =============================================================================
+
+// Pill-style category links
+// Browser support: 97%+
+
+#catlinks
+  margin-top 2em
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+#mw-normal-catlinks
+  a
+    display inline-block
+    padding 0.2em 0.6em
+    margin 0.2em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius 1em
+    font-size 0.85em
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color $arch-blue
+      color $darker
+

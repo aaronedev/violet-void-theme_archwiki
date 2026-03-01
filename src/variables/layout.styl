@@ -18,3 +18,33 @@ $scrollbar-width = 8px
 
 $font-sans = "Inter", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif
 $font-mono = "JetBrains Mono", "Fira Code", "Source Code Pro", consolas, monaco, monospace
+
+// =============================================================================
+// DYNAMIC VIEWPORT UNITS
+// =============================================================================
+
+// Better mobile viewport handling
+// Browser support: 92%+
+
+// Dynamic viewport height (accounts for mobile browser chrome)
+$vh-dynamic = dvh
+$vw-dynamic = dvw
+
+// Small viewport (minimum)
+$vh-small = svh
+$vw-small = svw
+
+// Large viewport (maximum)
+$vh-large = lvh
+$vw-large = lvw
+
+// Utility classes
+.h-dvh
+  height 100dvh
+
+.h-svh
+  height 100svh
+
+.h-lvh
+  height 100lvh
+

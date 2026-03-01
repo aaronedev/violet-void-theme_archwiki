@@ -345,3 +345,95 @@
     a
       display inline-block
       margin-right 0.5em
+
+// =============================================================================
+// PRINT-ONLY LINK URLs
+// =============================================================================
+
+// Show link destinations in print
+// Browser support: 100%
+
+@media print
+  a[href]::after
+    content " (" attr(href) ")"
+    font-size 0.8em
+    color $muted
+
+  // Don't show for internal anchors
+  a[href^="#"]::after
+  a[href^="javascript"]::after
+    content none
+
+  // Truncate long URLs
+  a[href^="http"]::after
+    max-width 30em
+    overflow hidden
+    text-overflow ellipsis
+    display inline-block
+
+// =============================================================================
+// PAGE BREAK CONTROL
+// =============================================================================
+
+// Prevent orphaned headings and break issues
+// Browser support: 97%+
+
+@media print
+  // Avoid breaking inside these elements
+  .infobox
+  .wikitable
+  pre
+  code
+  blockquote
+  figure
+  .mw-highlight
+    break-inside avoid
+
+  // Major sections start on new page
+  h1
+    break-before page
+
+  h2
+    break-before auto
+    break-after avoid
+
+  // Prevent orphaned headings
+  h1, h2, h3, h4, h5, h6
+    break-after avoid
+
+  // Prevent breaking right after heading
+  h1 + p, h2 + p, h3 + p
+    break-before avoid
+
+// =============================================================================
+// PRINT HEADER/FOOTER
+// =============================================================================
+
+@media print
+  // Article title in header
+  @page
+    margin 2cm
+    size A4
+
+  @top-center
+    content element(page-header)
+
+  @bottom-center
+    content element(page-footer)
+
+  // Page numbers
+  @bottom-right
+    content "Page " counter(page) " of " counter(pages)
+
+  .page-header
+    position running(page-header)
+    font-size 0.9em
+    color $muted
+    border-bottom 1px solid $border-subtle
+    padding-bottom 0.5em
+
+  .page-footer
+    position running(page-footer)
+    font-size 0.8em
+    color $muted
+

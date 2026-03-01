@@ -1,0 +1,141 @@
+// Accessibility enhancements for Violet Void ArchWiki
+// Skip links, focus indicators, reduced motion, etc.
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// SKIP LINK STYLING
+// =============================================================================
+
+// Visible on focus, hidden otherwise
+// Browser support: 100%
+
+.skip-link
+.mw-jump-link
+  position absolute
+  top -100px
+  left 0
+  z-index 9999
+  padding 0.5em 1em
+  background-color $arch-blue
+  color $darker
+  font-weight 600
+  text-decoration none
+  border-radius 0 0 $border-radius-md 0
+  transition top 0.2s ease
+
+  &:focus
+    top 0
+
+// =============================================================================
+// FOCUS ORDER INDICATORS
+// =============================================================================
+
+// Sequential focus indicators with clear outline
+// Browser support: 97%+
+
+// Global focus-visible style
+:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius $border-radius-sm
+
+// Remove default focus for mouse users
+:focus:not(:focus-visible)
+  outline none
+
+// Interactive elements focus
+a:focus-visible
+button:focus-visible
+input:focus-visible
+select:focus-visible
+textarea:focus-visible
+[tabindex]:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.2)
+
+// =============================================================================
+// ERROR/WARNING MESSAGE STYLING
+// =============================================================================
+
+// Clear visual distinction with icon + color coding
+// Browser support: 97%+
+
+.error-message
+.mw-error
+  padding 1em
+  background-color rgba($secondary-red, 0.15)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-inline-start 4px solid $secondary-red
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "⚠ "
+    color $secondary-red
+
+.warning-message
+.mw-warning
+  padding 1em
+  background-color rgba($orange, 0.15)
+  border 1px solid rgba($orange, 0.3)
+  border-inline-start 4px solid $orange
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "⚡ "
+    color $orange
+
+.success-message
+  padding 1em
+  background-color rgba($green, 0.15)
+  border 1px solid rgba($green, 0.3)
+  border-inline-start 4px solid $green
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "✓ "
+    color $green
+
+.info-message
+  padding 1em
+  background-color rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-inline-start 4px solid $arch-blue
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "ℹ "
+    color $arch-blue
+
+// =============================================================================
+// REDUCED MOTION ALTERNATIVE ANIMATIONS
+// =============================================================================
+
+// Fade-only alternatives to slide animations
+// Browser support: 95%+
+
+@media (prefers-reduced-motion: reduce)
+  *
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+    scroll-behavior auto !important
+
+  // Replace slide with fade
+  .slide-in
+  .slide-up
+  .slide-down
+    animation-name fade-in !important
+    transform none !important
+
+  // Instant transitions
+  .collapsible
+  details
+    transition none !important
+
