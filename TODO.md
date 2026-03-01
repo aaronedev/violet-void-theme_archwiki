@@ -351,14 +351,14 @@ Last updated: 2026-03-01 06:05
 
 ## 🔤 Typography Polish (New)
 
-- [ ] **`quotes` Property for Custom Quotation Marks**
+- [x] **`quotes` Property for Custom Quotation Marks**
   - Browser support: 97%+
   - Define custom quotation marks for nested quotes
   - Better typography for blockquotes and `q` elements
   - File: `src/components/typography.styl`, `src/components/content.styl`
   - Stylus: Works directly
 
-- [ ] **`font-kerning` for Typography Control**
+- [x] **`font-kerning` for Typography Control**
   - Browser support: 97%+
   - Enable/disable font kerning for better letter spacing
   - Improves readability in headings and body text
@@ -367,14 +367,14 @@ Last updated: 2026-03-01 06:05
 
 ## 📐 Table Enhancements (New)
 
-- [ ] **`empty-cells` for Table Styling**
+- [x] **`empty-cells` for Table Styling**
   - Browser support: 97%+
   - Control visibility of empty table cells
   - Apply to wikitable, infobox
   - File: `src/components/tables.styl`
   - Stylus: Works directly
 
-- [ ] **`caption-side` for Table Captions**
+- [x] **`caption-side` for Table Captions**
   - Browser support: 97%+
   - Control position of table captions (top/bottom)
   - File: `src/components/tables.styl`
@@ -383,7 +383,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🖼️ Image Wrapping (New)
 
-- [ ] **`shape-outside` for Text Wrapping Around Images**
+- [x] **`shape-outside` for Text Wrapping Around Images**
   - Browser support: 97%+
   - Flow text around images with custom shapes
   - Apply to floated images in articles
@@ -391,7 +391,7 @@ Last updated: 2026-03-01 06:05
   - File: `src/components/content.styl`
   - Stylus: Works directly
 
-- [ ] **`shape-margin` for Shape Wrapping Spacing**
+- [x] **`shape-margin` for Shape Wrapping Spacing**
   - Browser support: 97%+
   - Add margin around shaped floats
   - Pairs with shape-outside
@@ -400,7 +400,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🔤 Font Control (New)
 
-- [ ] **`font-synthesis` for Auto-Generated Fonts**
+- [x] **`font-synthesis` for Auto-Generated Fonts**
   - Browser support: 97%+
   - Control automatic bold/italic generation
   - Disable for web fonts that have proper weights
@@ -410,7 +410,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🌏 CJK Typography (New)
 
-- [ ] **`text-autospace` for CJK-Latin Spacing**
+- [x] **`text-autospace` for CJK-Latin Spacing**
   - Browser support: 87%+ (Chrome 120+, Safari 17.2+)
   - Auto-insert spacing between CJK and Latin text
   - Improves readability for multilingual content
@@ -420,7 +420,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🎭 Animation (New)
 
-- [ ] **`animation-composition` for Layered Animations**
+- [x] **`animation-composition` for Layered Animations**
   - Browser support: 87%+ (Chrome 112+, Safari 16+)
   - Control how multiple animations combine
   - Values: replace, add, accumulate
@@ -3630,3 +3630,158 @@ Last updated: 2026-03-01 06:05
   - Parent category link
 
 | 2026-03-01 | Twentieth scout | Added content templates (related articles, related pages, app template, pkg/aur templates, man page links), code & commands extended (output styling, prompt styling, multi-line commands, annotations, interactive hints), lists & outlines (nested lists, definition lists, checklists, step-by-step), user workflow aids (progress trackers, prerequisites, troubleshooting, verification), cross-reference features (anchor links, footnotes, citations, related categories) |
+
+
+## 🌐 Language & Localization (New - 2026-03-01 Scout 21)
+
+- [ ] **Language Selector Styling** (CSS, 97%+ browser support)
+  - File: `src/components/i18n.styl`
+  - Language dropdown styling
+  - Active language indicator
+  - Language search input
+  - Recent languages list
+
+- [ ] **RTL Support Enhancements** (CSS, 100% browser support)
+  - File: `src/components/i18n.styl`
+  - Direction-aware margins/paddings
+  - Logical properties (inline-start/end)
+  - Mirrored icons/indicators
+  - Bidirectional text handling
+
+- [ ] **Translation Indicators** (CSS, 97%+ browser support)
+  - File: `src/components/i18n.styl`
+  - Outdated translation badge
+  - Translation progress indicator
+  - Missing translation placeholder
+  - Language completeness meter
+
+- [ ] **Multilingual Content** (CSS, 97%+ browser support)
+  - File: `src/components/i18n.styl`
+  - Language switch tabs
+  - Original language badge
+  - Machine translation notice
+  - Human verified indicator
+
+## 🔧 Maintenance Tools (New)
+
+- [ ] **Maintenance Templates** (CSS, 97%+ browser support)
+  - File: `src/components/maintenance.styl`
+  - Cleanup template styling
+  - Merge proposal banner
+  - Split proposal indicator
+  - Accuracy dispute notice
+
+- [ ] **Quality Assessment** (CSS, 97%+ browser support)
+  - File: `src/components/maintenance.styl`
+  - Quality grade badges
+  - Completeness indicator
+  - Review status display
+  - Improvement suggestions
+
+- [ ] **Protection Indicators** (CSS, 100% browser support)
+  - File: `src/components/maintenance.styl`
+  - Lock icon styling
+  - Protection level badge
+  - Edit restriction notice
+  - Expiry countdown
+
+- [ ] **Revision Management** (CSS, 97%+ browser support)
+  - File: `src/components/maintenance.styl`
+  - Revision comparison view
+  - Change summary styling
+  - Rollback button styling
+  - Edit conflict resolution
+
+## 📊 Analytics & Metrics (New)
+
+- [ ] **Page Statistics** (CSS, 97%+ browser support)
+  - File: `src/components/analytics.styl`
+  - View count display
+  - Edit count badge
+  - Contributor count
+  - Last modified indicator
+
+- [ ] **Traffic Analytics** (CSS, 97%+ browser support)
+  - File: `src/components/analytics.styl`
+  - Pageviews chart styling
+  - Trend indicator
+  - Comparison graph
+  - Period selector
+
+- [ ] **Editor Activity** (CSS, 97%+ browser support)
+  - File: `src/components/analytics.styl`
+  - Active editors list
+  - Edit frequency heatmap
+  - Top contributors display
+  - Edit size distribution
+
+- [ ] **Content Metrics** (CSS, 97%+ browser support)
+  - File: `src/components/analytics.styl`
+  - Word count display
+  - Section count indicator
+  - Link density meter
+  - Media count badge
+
+## 🎨 Modern CSS Features (New)
+
+- [ ] **@property Custom Properties** (CSS, 90%+ browser support)
+  - File: `src/variables.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Type checking for custom props
+  - Animation of custom properties
+  - Initial value inheritance
+  - Syntax validation
+
+- [ ] **@layer Cascade Layers** (CSS, 97%+ browser support)
+  - File: `src/main.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Layer ordering for overrides
+  - Theme layer separation
+  - Plugin layer isolation
+  - Base/component/utility layers
+
+- [ ] **:has() Selector Usage** (CSS, 90%+ browser support)
+  - File: `src/components/*.styl`
+  - Parent selection patterns
+  - Sibling state styling
+  - Empty state detection
+  - Form validation states
+
+- [ ] **:is()/:where() Selectors** (CSS, 97%+ browser support)
+  - File: `src/components/*.styl`
+  - Selector list simplification
+  - Zero-specificity with :where()
+  - Forgiving selector parsing
+  - Complex hover combinations
+
+## ♿ Accessibility Deep Cuts (New)
+
+- [ ] **Reduced Motion Support** (CSS, 100% browser support)
+  - File: `src/accessibility.styl`
+  - @media (prefers-reduced-motion)
+  - Disable non-essential animations
+  - Instant transitions alternative
+  - Motion-safe class fallback
+
+- [ ] **High Contrast Mode** (CSS, 100% browser support)
+  - File: `src/accessibility.styl`
+  - @media (prefers-contrast)
+  - Forced colors adaptation
+  - System color keywords
+  - Border emphasis
+
+- [ ] **Focus Visible Enhancement** (CSS, 97%+ browser support)
+  - File: `src/accessibility.styl`
+  - :focus-visible styling
+  - Custom focus rings
+  - Focus outline offset
+  - Keyboard navigation hints
+
+- [ ] **Screen Reader Optimizations** (CSS, 100% browser support)
+  - File: `src/accessibility.styl`
+  - sr-only utility class
+  - aria-label support
+  - Skip to content links
+  - Landmark regions
+
+| 2026-03-01 | Twenty-first scout | Added language & localization (language selector, RTL support, translation indicators, multilingual content), maintenance tools (maintenance templates, quality assessment, protection indicators, revision management), analytics & metrics (page statistics, traffic analytics, editor activity, content metrics), modern CSS features (@property, @layer, :has(), :is()/:where()), accessibility deep cuts (reduced motion, high contrast, focus-visible, screen reader optimizations) |
