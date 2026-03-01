@@ -1318,7 +1318,7 @@ Last updated: 2026-03-01 06:05
 
 ## 📜 Scroll Enhancements (New - 2026-02-28 Scout 9)
 
-- [ ] **`overscroll-behavior` for Scroll Chaining** (92%+ browser support)
+- [x] **`overscroll-behavior` for Scroll Chaining** (92%+ browser support)
   - File: `src/components/navigation.styl`, `src/components/content.styl`
   - Prevent scroll chaining in nested scrollables
   - `overscroll-behavior: contain` for TOC, modals
@@ -1924,19 +1924,19 @@ Last updated: 2026-03-01 06:05
 
 ## 🎨 Form Styling (New - 2026-03-01 Scout 1)
 
-- [ ] **`field-sizing` for Auto-Expanding Textareas** (85%+ browser support)
+- [x] **`field-sizing` for Auto-Expanding Textareas** (85%+ browser support)
   - File: `src/components/editing.styl`
   - Auto-size textareas based on content
   - `field-sizing: content;`
   - Stylus: Works directly
 
-- [ ] **`accent-color` for Form Controls** (97%+ browser support)
+- [x] **`accent-color` for Form Controls** (97%+ browser support)
   - File: `src/components/forms.styl`
   - Style checkboxes, radios, range inputs
   - `accent-color: var(--accent);`
   - Stylus: Works directly
 
-- [ ] **`appearance: none` for Custom Controls** (97%+ browser support)
+- [x] **`appearance: none` for Custom Controls** (97%+ browser support)
   - File: `src/components/forms.styl`
   - Remove native styling
   - Build custom form controls
@@ -1979,7 +1979,7 @@ Last updated: 2026-03-01 06:05
 
 ## 🌫️ Backdrop Effects (New)
 
-- [ ] **`backdrop-filter` for Glassmorphism** (97%+ browser support)
+- [x] **`backdrop-filter` for Glassmorphism** (97%+ browser support)
   - File: `src/components/navigation.styl`, `src/components/modals.styl`
   - Blur behind elements
   - `backdrop-filter: blur(10px);`
@@ -1997,19 +1997,19 @@ Last updated: 2026-03-01 06:05
 
 ## 📜 Scrollbar Styling (New)
 
-- [ ] **`scrollbar-color` for Custom Scrollbars** (97%+ browser support)
+- [x] **`scrollbar-color` for Custom Scrollbars** (97%+ browser support)
   - File: `src/components/scrollbars.styl` (new file)
   - Color scrollbar thumb/track
   - `scrollbar-color: var(--accent) var(--bg-secondary);`
   - Stylus: Works directly
 
-- [ ] **`scrollbar-width` for Scrollbar Size** (97%+ browser support)
+- [x] **`scrollbar-width` for Scrollbar Size** (97%+ browser support)
   - File: `src/components/scrollbars.styl`
   - Thin/auto/none scrollbars
   - `scrollbar-width: thin;`
   - Stylus: Works directly
 
-- [ ] **`scrollbar-gutter` Expansion** (92%+ browser support)
+- [x] **`scrollbar-gutter` Expansion** (92%+ browser support)
   - File: `src/components/scrollbars.styl`
   - Reserve space for scrollbar
   - `scrollbar-gutter: stable both-edges;`
@@ -2018,19 +2018,19 @@ Last updated: 2026-03-01 06:05
 
 ## 🎭 Individual Transform Properties (New - 2026-03-01 Scout 2)
 
-- [ ] **`translate` Property** (97%+ browser support)
+- [x] **`translate` Property** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Individual translate without transform
   - `translate: 50% 0;`
   - Stylus: Works directly
 
-- [ ] **`rotate` Property** (97%+ browser support)
+- [x] **`rotate` Property** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Individual rotate without transform
   - `rotate: 45deg;`
   - Stylus: Works directly
 
-- [ ] **`scale` Property** (97%+ browser support)
+- [x] **`scale` Property** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Individual scale without transform
   - `scale: 1.5;`
@@ -2044,43 +2044,43 @@ Last updated: 2026-03-01 06:05
 
 ## 🎨 Filter Expansion (New)
 
-- [ ] **`filter: blur()` for Focus Effects** (97%+ browser support)
+- [x] **`filter: blur()` for Focus Effects** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Blur unfocused elements
   - `filter: blur(2px);`
   - Stylus: Works directly
 
-- [ ] **`filter: brightness()` for Themes** (97%+ browser support)
+- [x] **`filter: brightness()` for Themes** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Adjust element brightness
   - Stylus: Works directly
 
-- [ ] **`filter: saturate()` for Color Control** (97%+ browser support)
+- [x] **`filter: saturate()` for Color Control** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Adjust color saturation
   - Stylus: Works directly
 
-- [ ] **`filter: hue-rotate()` for Color Shifts** (97%+ browser support)
+- [x] **`filter: hue-rotate()` for Color Shifts** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Rotate hue of elements
   - Stylus: Works directly
 
-- [ ] **`filter: invert()` for Dark Mode** (97%+ browser support)
+- [x] **`filter: invert()` for Dark Mode** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Invert element colors
   - Stylus: Works directly
 
-- [ ] **`filter: grayscale()` for Disabled States** (97%+ browser support)
+- [x] **`filter: grayscale()` for Disabled States** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Grayscale disabled elements
   - Stylus: Works directly
 
-- [ ] **`filter: sepia()` for Vintage Effects** (97%+ browser support)
+- [x] **`filter: sepia()` for Vintage Effects** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Sepia tone for images
   - Stylus: Works directly
 
-- [ ] **`filter: drop-shadow()` for Irregular Shapes** (97%+ browser support)
+- [x] **`filter: drop-shadow()` for Irregular Shapes** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Shadow for PNG/SVG shapes
   - `filter: drop-shadow(2px 4px 6px black);`
