@@ -963,3 +963,79 @@ ol.nested-counter
 .optical-sizing
   font-optical-sizing auto
 
+
+// =============================================================================
+// MATHML STYLING
+// =============================================================================
+
+// Style mathematical equations
+// Browser support: 97%+
+
+math
+  font-family "Times New Roman", "STIX Two Math", serif
+  font-size 1.1em
+  color $lighter
+
+  mi
+    font-style italic
+    color $arch-blue
+
+  mo
+    color $lighter
+
+  mn
+    color $secondary-blue
+    font-variant-numeric tabular-nums
+
+  mfrac
+    color $lighter
+
+  msqrt
+  mroot
+    color $lighter
+
+.math-style-compact
+  math-style compact
+
+.math-style-normal
+  math-style normal
+
+// =============================================================================
+// RUBY TEXT SUPPORT
+// =============================================================================
+
+// Ruby annotation styling (East Asian)
+// Browser support: 97%+
+
+ruby
+  ruby-align center
+  font-size 1em
+
+rt
+  ruby-position over
+  font-size 0.6em
+  color $muted
+
+ruby.under
+  rt
+    ruby-position under
+
+// =============================================================================
+// TEXT EMPHASIS
+// =============================================================================
+
+// Emphasis marks for text
+// Browser support: 90%+
+
+.emphasis-dot
+  text-emphasis filled dot
+  text-emphasis-position over right
+
+.emphasis-circle
+  text-emphasis filled circle
+  text-emphasis-position over right
+
+.emphasis-sesame
+  text-emphasis filled sesame
+  text-emphasis-position under right
+

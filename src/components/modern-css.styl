@@ -1085,3 +1085,206 @@ h4[id]
 .border-image-round
   border-image-repeat round
 
+
+// =============================================================================
+// INPUT CAPABILITY DETECTION
+// =============================================================================
+
+// Hover capability detection
+// Browser support: 97%+
+
+@media (hover: hover)
+  .hover-only
+    display block
+  .touch-only
+    display none
+
+@media (hover: none)
+  .hover-only
+    display none
+  .touch-only
+    display block
+
+// Pointer precision
+@media (pointer: fine)
+  .fine-pointer
+    // Smaller targets OK
+
+@media (pointer: coarse)
+  // Increase touch targets
+  button
+  a
+    min-height 44px
+    min-width 44px
+
+// Any-hover/any-pointer for hybrid devices
+@media (any-hover: hover)
+  .has-hover-capable
+    display block
+
+@media (any-pointer: fine)
+  .has-fine-pointer
+    display block
+
+// =============================================================================
+// COLOR PREFERENCE QUERIES
+// =============================================================================
+
+// Forced colors (high contrast mode)
+// Browser support: 95%+
+
+@media (forced-colors: active)
+  .forced-colors-adapt
+    // Use system colors
+    color CanvasText
+    background-color Canvas
+    border-color CanvasText
+
+// Inverted colors detection
+@media (inverted-colors: inverted)
+  img
+    filter invert(1)
+
+// =============================================================================
+// SCRIPTING DETECTION
+// =============================================================================
+
+@media (scripting: enabled)
+  .js-required
+    display block
+
+@media (scripting: none)
+  .no-js-fallback
+    display block
+
+  .js-required
+    display none
+
+// Update frequency
+@media (update: slow)
+  // Reduce animations for e-ink
+  *
+    animation none !important
+    transition none !important
+
+
+// =============================================================================
+// WEB COMPONENTS / SHADOW DOM
+// =============================================================================
+
+// Custom element styling
+// Browser support: 97%+
+
+// Style defined custom elements
+:defined
+  display block
+
+// Shadow DOM parts
+::part(button)
+  background $arch-blue
+  color $darker
+  border-radius $border-radius-sm
+  padding 0.5em 1em
+  border none
+  cursor pointer
+
+  &:hover
+    background $secondary-blue
+
+// Slotted content
+::slotted(.highlight)
+  background rgba($arch-blue, 0.2)
+  padding 0.1em 0.2em
+  border-radius 2px
+
+// =============================================================================
+// SYSTEM COLORS
+// =============================================================================
+
+// Extended system color keywords
+// Browser support: 97%+
+
+.system-accent
+  color AccentColor
+  background-color AccentColorText
+
+.system-selected
+  color SelectedItemText
+  background-color SelectedItem
+
+.system-mark
+  color MarkText
+  background-color Mark
+
+// light-dark() function
+// Browser support: 92%+
+
+.adaptive-text
+  color light-dark(#333, #ccc)
+
+.adaptive-bg
+  background-color light-dark(#fff, #1a1a2e)
+
+// =============================================================================
+// MASK AND CLIP PATH
+// =============================================================================
+
+// CSS masking
+// Browser support: 97%+
+
+.mask-gradient
+  mask-image linear-gradient(to bottom, black, transparent)
+  -webkit-mask-image linear-gradient(to bottom, black, transparent)
+
+// Clip path shapes
+.clip-circle
+  clip-path circle(50%)
+
+.clip-ellipse
+  clip-path ellipse(50% 30%)
+
+.clip-polygon
+  clip-path polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+// Triangle
+.clip-triangle
+  clip-path polygon(50% 0, 0 100%, 100% 100%)
+
+// =============================================================================
+// CONTAIN PROPERTY
+// =============================================================================
+
+// Performance isolation
+// Browser support: 97%+
+
+.contain-layout
+  contain layout
+
+.contain-paint
+  contain paint
+
+.contain-strict
+  contain strict
+
+.contain-content
+  contain content
+
+// =============================================================================
+// CONTAINER QUERIES
+// =============================================================================
+
+// Container-based responsive design
+// Browser support: 87%+
+
+.container-query
+  container-type inline-size
+  container-name sidebar
+
+@container (min-width: 300px)
+  .container-responsive
+    flex-direction row
+
+@container (max-width: 299px)
+  .container-responsive
+    flex-direction column
+
