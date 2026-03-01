@@ -398,3 +398,36 @@ table.sortable
   table
     td
       font-variant-numeric tabular-nums
+
+// =============================================================================
+// TABLE ENHANCEMENTS
+// =============================================================================
+
+// Empty cells visibility control
+// Browser support: 97%+
+.wikitable
+.infobox
+  empty-cells show
+
+// Hide empty cells for cleaner tables
+.hide-empty-cells
+  empty-cells hide
+
+// Caption position control
+// Browser support: 97%+
+.wikitable
+.infobox
+  caption
+    caption-side top
+    text-align left
+    padding 0.5em 0.75em
+    color $lighter
+    font-weight 600
+
+// Bottom caption variant
+.caption-bottom
+  caption-side bottom
+    text-align center
+    color $muted
+    font-size 0.85em
+

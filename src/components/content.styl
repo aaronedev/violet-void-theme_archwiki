@@ -421,3 +421,37 @@ img.hq
   column-count 2
   column-gap 2em
 
+
+// =============================================================================
+// SHAPE-OUTSIDE FOR TEXT WRAPPING AROUND IMAGES
+// =============================================================================
+
+// Flow text around images with custom shapes
+// Browser support: 97%+
+
+// Float left with circle shape
+img.float-left
+.shape-circle-left
+  float left
+  shape-outside circle(50%)
+  margin 0 1.5em 1em 0
+  border-radius 50%
+
+// Float right with circle
+img.float-right
+.shape-circle-right
+  float right
+  shape-outside circle(50%)
+  margin 0 0 1em 1.5em
+  border-radius 50%
+
+// Polygon shape for complex wrapping
+.shape-polygon
+  float left
+  shape-outside polygon(0 0, 100% 0, 100% 100%, 0 100%)
+  clip-path polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+// Shape margin for spacing
+.shape-margin
+  shape-margin 1em
+

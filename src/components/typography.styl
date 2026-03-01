@@ -823,3 +823,81 @@ pre
 .gap-fluid
   gap clamp(0.5rem, 1vw, 1.5rem)
 
+
+// =============================================================================
+// QUOTES PROPERTY FOR CUSTOM QUOTATION MARKS
+// =============================================================================
+
+// Define custom quotation marks for nested quotes
+// Browser support: 97%+
+
+q
+  quotes "«" "»" "‹" "›"
+
+blockquote q
+  quotes "„" "“" "‚" "‘"
+
+// French-style quotes
+.quotes-french
+  quotes "«\00a0" "\00a0»" "‹\00a0" "\00a0›"
+
+// =============================================================================
+// FONT-KERNING FOR TYPOGRAPHY CONTROL
+// =============================================================================
+
+// Enable/disable font kerning for better letter spacing
+// Browser support: 97%+
+
+body
+  font-kerning auto
+
+// Headings benefit from kerning
+h1
+h2
+h3
+h4
+h5
+h6
+  font-kerning normal
+
+
+// =============================================================================
+// FONT-SYNTHESIS FOR AUTO-GENERATED FONTS
+// =============================================================================
+
+// Control automatic bold/italic generation
+// Browser support: 97%+
+
+// Disable synthesis for web fonts with proper weights
+.webfont
+  font-synthesis none
+
+// Enable synthesis for system fonts (default)
+.system-font
+  font-synthesis auto
+
+// Only synthesize weight
+.synth-weight
+  font-synthesis weight
+
+// Only synthesize style
+.synth-style
+  font-synthesis style
+
+
+// =============================================================================
+// TEXT-AUTOSPACE FOR CJK-LATIN SPACING
+// =============================================================================
+
+// Auto-insert spacing between CJK and Latin text
+// Browser support: 87%+ (Chrome 120+, Safari 17.2+)
+
+// Enable auto-spacing for multilingual content
+.i18n-content
+.cjk-content
+  text-autospace insert
+
+// No auto-spacing
+.no-autospace
+  text-autospace none
+

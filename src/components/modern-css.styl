@@ -900,3 +900,23 @@ h4[id]
 :where(h1, h2, h3, h4, h5, h6)
   margin 0.5em 0
 
+
+// =============================================================================
+// ANIMATION-COMPOSITION FOR LAYERED ANIMATIONS
+// =============================================================================
+
+// Control how multiple animations combine
+// Browser support: 87%+ (Chrome 112+, Safari 16+)
+
+// Add animations together
+.animate-add
+  animation-composition add
+
+// Accumulate animations
+.animate-accumulate
+  animation-composition accumulate
+
+// Replace (default)
+.animate-replace
+  animation-composition replace
+
