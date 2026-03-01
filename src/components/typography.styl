@@ -745,3 +745,31 @@ pre
 // Combined: tabular nums with slashed zero (great for financial/technical data)
 .tabular-zero
   font-variant-numeric tabular-nums slashed-zero
+
+// =============================================================================
+// TEXT-ALIGN-LAST FOR JUSTIFIED TEXT CONTROL
+// =============================================================================
+
+// Control alignment of last line in justified text
+// Browser support: 97%+
+
+// Justified text with left-aligned last line (better for readability)
+.justified
+  text-align justify
+  text-align-last left
+
+// Justified with centered last line (headlines)
+.justified-center
+  text-align justify
+  text-align-last center
+
+// Justified with auto (browser default)
+.justified-auto
+  text-align justify
+  text-align-last auto
+
+// Article body text - justified with clean last line
+.article-body
+  text-align justify
+  text-align-last left
+  hyphens auto

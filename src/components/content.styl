@@ -312,3 +312,22 @@ h2::after
 
     strong
       mix-blend-mode plus-lighter
+
+// =============================================================================
+// TEXT-ALIGN-LAST FOR JUSTIFIED TEXT CONTROL
+// =============================================================================
+
+// Control alignment of last line in justified text
+// Browser support: 97%+
+
+// Article content - justified with left-aligned last line for better readability
+.mw-parser-output
+  p
+    text-align justify
+    text-align-last left
+
+  // Headlines with centered last line
+  h1
+  h2
+  h3
+    text-align-last left
