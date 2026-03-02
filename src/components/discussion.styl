@@ -425,3 +425,408 @@
     .section-actions
       margin-left 0
       margin-top 0.5em
+
+// =============================================================================
+// ENHANCED REPLY THREAD STYLING
+// =============================================================================
+
+// Thread container
+.mw-thread
+.reply-thread
+  margin 0.5em 0
+  padding 0.5em 0
+  border-bottom 1px solid $border-subtle
+
+  &:last-child
+    border-bottom none
+
+// Thread collapse/expand with smooth animation
+.mw-thread-collapsed
+.thread-collapsed
+  .mw-thread-content
+  .thread-content
+    max-height 0
+    overflow hidden
+    opacity 0
+    transition max-height 0.3s ease, opacity 0.2s ease
+
+.mw-thread-expanded
+.thread-expanded
+  .mw-thread-content
+  .thread-content
+    max-height 10000px
+    opacity 1
+    transition max-height 0.5s ease, opacity 0.3s ease
+
+// Enhanced thread toggle button
+.mw-thread-toggle
+.thread-toggle-btn
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.3em 0.6em
+  background-color transparent
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $muted
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+  .toggle-icon
+    display inline-block
+    transition transform 0.2s ease
+
+  &.collapsed .toggle-icon
+    transform rotate(-90deg)
+
+// Thread header with metadata
+.thread-header
+  display flex
+  flex-wrap wrap
+  align-items center
+  gap 0.75em
+  padding 0.5em 0
+
+  .thread-title
+    color $lighter
+    font-weight 500
+    flex 1
+
+    a
+      color inherit
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+
+  .thread-meta
+    display flex
+    align-items center
+    gap 0.5em
+    font-size 0.8em
+    color $muted
+
+    .reply-count
+      font-variant-numeric tabular-nums
+
+// New messages indicator (enhanced)
+.mw-newmessages
+.new-messages-badge
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.25em 0.6em
+  background linear-gradient(135deg, rgba($green, 0.2), rgba($green, 0.1))
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-sm
+  color $green
+  font-size 0.8em
+  font-weight 600
+  animation pulse-green 2s ease-in-out infinite
+
+  &::before
+    content "●"
+    font-size 0.6em
+
+@keyframes pulse-green
+  0%, 100%
+    opacity 1
+  50%
+    opacity 0.7
+
+// Unread post count
+.unread-count
+  font-variant-numeric tabular-nums
+  padding 0.15em 0.4em
+  background-color $arch-blue
+  color $darker
+  border-radius 1em
+  font-size 0.7em
+  font-weight 600
+  min-width 1.5em
+  text-align center
+
+// Archive notice styling (enhanced)
+.mw-archive-notice
+.archive-notice
+  display flex
+  align-items flex-start
+  gap 0.75em
+  padding 1em 1.25em
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin 1em 0
+  color $light
+
+  .archive-icon
+    font-size 1.5em
+    opacity 0.8
+
+  .archive-content
+    flex 1
+
+    h3
+      color $orange
+      margin 0 0 0.3em 0
+      font-size 1em
+
+    p
+      margin 0
+      font-size 0.9em
+
+  .archive-link
+    margin-top 0.5em
+
+    a
+      color $secondary-blue
+      font-size 0.85em
+
+// Auto-archived notice
+.auto-archived
+  font-style italic
+  color $muted
+  font-size 0.85em
+  padding 0.5em 0
+
+// Thread reply form
+.mw-thread-replyform
+.thread-reply-form
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-top 0.5em
+
+  textarea
+    width 100%
+    min-height 100px
+    padding 0.6em 0.8em
+    background-color $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    resize vertical
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  .reply-actions
+    display flex
+    justify-content flex-end
+    gap 0.5em
+    margin-top 0.75em
+
+    button
+      padding 0.4em 1em
+      border-radius $border-radius-sm
+      font-size 0.9em
+      cursor pointer
+      transition all 0.2s ease
+
+    .submit-reply
+      background-color $arch-blue
+      border none
+      color $darker
+      font-weight 500
+
+      &:hover
+        background-color rgba($arch-blue, 0.8)
+
+    .cancel-reply
+      background transparent
+      border 1px solid $border-subtle
+      color $muted
+
+      &:hover
+        border-color rgba($secondary-red, 0.3)
+        color $secondary-red
+
+// =============================================================================
+// ENHANCED USER TALK NOTIFICATION
+// =============================================================================
+
+// New message banner (enhanced)
+.mw-user-talk-new
+.user-talk-banner
+  display flex
+  align-items center
+  gap 1em
+  padding 1em 1.5em
+  background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.4)
+  border-radius $border-radius-md
+  margin 1em 0
+
+  .banner-icon
+    font-size 2em
+    animation bell-shake 0.5s ease-in-out
+
+  .banner-content
+    flex 1
+
+    h3
+      color $lighter
+      margin 0 0 0.25em 0
+      font-size 1.1em
+
+    p
+      margin 0
+      color $light
+      font-size 0.9em
+
+    a
+      color $secondary-blue
+      font-weight 500
+
+      &:hover
+        text-decoration underline
+
+@keyframes bell-shake
+  0%, 100%
+    transform rotate(0)
+  20%
+    transform rotate(15deg)
+  40%
+    transform rotate(-10deg)
+  60%
+    transform rotate(5deg)
+  80%
+    transform rotate(-5deg)
+
+// Orange bar indicator (enhanced)
+.mw-user-talk-indicator
+.talk-notification-bar
+  position relative
+
+  &::before
+    content ""
+    position absolute
+    top -1em
+    left 0
+    right 0
+    height 4px
+    background linear-gradient(90deg, $orange, $arch-blue, $orange)
+    border-radius $border-radius-sm $border-radius-sm 0 0
+    animation gradient-slide 3s ease-in-out infinite
+
+@keyframes gradient-slide
+  0%
+    background-position 0% 50%
+  50%
+    background-position 100% 50%
+  100%
+    background-position 0% 50%
+
+// Dismiss button styling (enhanced)
+.mw-dismiss-link
+.notification-dismiss
+  display inline-flex
+  align-items center
+  justify-content center
+  width 24px
+  height 24px
+  background-color transparent
+  border 1px solid $border-subtle
+  border-radius 50%
+  color $muted
+  font-size 1em
+  cursor pointer
+  transition all 0.2s ease
+  text-decoration none
+
+  &:hover
+    background-color rgba($secondary-red, 0.1)
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+  &::before
+    content "×"
+
+// You have new messages alert box
+.mw-new-messages-alert
+.new-messages-alert
+  display flex
+  align-items center
+  gap 0.75em
+  padding 0.75em 1em
+  background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+  border 1px solid rgba($green, 0.4)
+  border-radius $border-radius-md
+  margin 1em 0
+
+  .alert-icon
+    color $green
+    font-size 1.2em
+
+  .alert-text
+    color $lighter
+    font-size 0.95em
+
+    strong
+      color $green
+
+  .alert-action
+    margin-left auto
+
+    a
+      padding 0.3em 0.8em
+      background-color $green
+      color $darker
+      border-radius $border-radius-sm
+      text-decoration none
+      font-weight 500
+      font-size 0.85em
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($green, 0.8)
+
+// Last message preview
+.last-message-preview
+  padding 0.75em 1em
+  background-color $darker
+  border-radius $border-radius-sm
+  margin-top 0.5em
+  font-size 0.85em
+  color $light
+
+  .preview-label
+    color $muted
+    font-size 0.75em
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin-bottom 0.3em
+
+  .preview-text
+    font-style italic
+
+// Responsive thread styling
+@media (max-width: 768px)
+  .thread-header
+    flex-direction column
+    align-items flex-start
+
+    .thread-meta
+      margin-top 0.25em
+
+  .mw-user-talk-new
+  .user-talk-banner
+    flex-direction column
+    text-align center
+
+    .banner-icon
+      margin-bottom 0.5em
+
+  .last-message-preview
+    margin 0.5em -0.5em -0.5em
+    border-radius 0
