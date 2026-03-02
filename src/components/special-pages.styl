@@ -1,5 +1,6 @@
-// Special Pages styling for Violet Void ArchWiki
-// Search, categories, contributions, whatlinkshere, etc.
+// Special Pages Styling
+// Styles for MediaWiki special pages (Search, Categories, Contributions, etc.)
+// Browser support: 97%+
 
 @import '../variables/colors'
 @import '../variables/layout'
@@ -8,230 +9,260 @@
 // SEARCH RESULTS PAGE ENHANCEMENTS
 // =============================================================================
 
-// Search result item styling
+// Search results container
 .mw-search-results
-  li
-    padding 0.75em
-    margin 0.5em 0
-    background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
-    border 1px solid $border-subtle
-    border-radius $border-radius-md
+.search-results
+  list-style none
+  padding 0
+  margin 1em 0
+
+// Individual search result item
+.mw-search-result
+.search-result-item
+  padding 1em 1.25em
+  margin 0.5em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border-color rgba($arch-blue, 0.2)
+    box-shadow $shadow-subtle
+
+// Search result title link
+.mw-search-result-heading
+.search-result-title
+  margin-bottom 0.5em
+
+  a
+    color $secondary-blue
+    font-size 1.1em
+    font-weight 500
+    text-decoration none
+    border-bottom 1px solid transparent
     transition all 0.2s ease
 
     &:hover
-      border-color rgba($arch-blue, 0.3)
-      box-shadow $shadow-subtle
-
-  .mw-search-result-heading a
-    color $secondary-blue
-    font-weight 600
-    font-size 1.1em
-
-    &:hover
       color $arch-blue
+      border-bottom-color rgba($arch-blue, 0.3)
+
+    &:visited
+      color rgba($arch-blue, 0.7)
 
 // Match highlighting in snippets
 .searchmatch
-  background-color rgba($orange, 0.3)
+.search-highlight
+  background-color rgba($arch-blue, 0.25)
   color $lighter
-  padding 0.1em 0.2em
+  padding 0.1em 0.3em
   border-radius 2px
+  font-weight 500
 
-// Advanced search form
+// Search result snippet/excerpt
+.mw-search-result-data
+.search-result-excerpt
+  color $muted
+  font-size 0.9em
+  line-height 1.5
+  margin 0.5em 0
+
+  // Limit to 3 lines
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Search result metadata (size, date, word count)
+.mw-search-result-info
+.search-result-meta
+  font-size 0.8em
+  color $muted
+  margin-top 0.5em
+  display flex
+  flex-wrap wrap
+  gap 0.5em 1em
+
+  span
+    display inline-flex
+    align-items center
+    gap 0.3em
+
+// Advanced search form styling
 .mw-search-form
-  background-color $darker
-  padding 1em
-  border-radius $border-radius-md
+.search-form
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
   border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin 1em 0
 
-// Search suggestions dropdown
-.mw-search-suggest
+// Search input field
+.mw-search-input
+.search-input
+  width 100%
+  padding 0.75em 1em
   background-color $darker
   border 1px solid $border-subtle
   border-radius $border-radius-md
-  box-shadow $shadow-lg
+  color $lighter
+  font-size 1em
+  transition all 0.2s ease
 
-  a
-    color $light
-    padding 0.5em 0.75em
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $muted
+
+// Search options panel
+.mw-search-options
+.search-options
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+  gap 1em
+  margin-top 1em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+
+// Search option group
+.search-option-group
+  label
     display block
+    color $muted
+    font-size 0.85em
+    margin-bottom 0.5em
+    text-transform uppercase
+    letter-spacing 0.05em
 
-    &:hover
-      background-color rgba($arch-blue, 0.1)
-      color $lighter
-
-// =============================================================================
-// CATEGORY PAGE GRID LAYOUT
-// =============================================================================
-
-// Category member grid/list toggle
-.mw-category
-  column-count 3
-  column-gap 2em
-  column-rule 1px solid $border-subtle
-
-  @media (max-width: 768px)
-    column-count 2
-
-  @media (max-width: 480px)
-    column-count 1
-
-// Subcategory cards
-.mw-category-group
-  margin-bottom 1em
-
-  h3
+  select
+  input[type="text"]
+    width 100%
+    padding 0.5em 0.75em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
     color $lighter
     font-size 0.9em
-    padding 0.5em
-    background-color rgba($arch-blue, 0.05)
-    border-radius $border-radius-sm
 
-  ul
-    list-style none
-    padding 0
+    &:focus
+      outline none
+      border-color $arch-blue
 
-  li
-    padding 0.3em 0.5em
+// Namespace filter chips
+.namespace-filter
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 0.5em
+
+.namespace-chip
+  padding 0.3em 0.7em
+  background-color rgba($arch-blue, 0.1)
+  border 1px solid transparent
+  border-radius 1em
+  color $secondary-blue
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.3)
+
+  &.active
+    background-color $arch-blue
+    color $darker
+    border-color $arch-blue
+
+// Search button
+.mw-search-button
+.search-button
+  padding 0.75em 1.5em
+  background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-size 1em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &:active
+    transform translateY(0)
+
+// "Did you mean" suggestion
+.search-suggestion
+  padding 1em
+  background-color rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin 1em 0
+  color $lighter
+
+  a
+    color $orange
+    font-weight 500
+
+    &:hover
+      text-decoration underline
+
+// No results message
+.mw-search-nonefound
+.search-no-results
+  padding 2em
+  text-align center
+  color $muted
+  font-size 1.1em
+
+  .search-suggestions
+    margin-top 1em
+    font-size 0.9em
 
     a
       color $secondary-blue
 
-      &:hover
-        color $arch-blue
-
-// Page count badges
-.page-count
-  font-variant-numeric tabular-nums
-  font-size 0.8em
-  color $muted
-  margin-inline-start 0.5em
-
-// =============================================================================
-// SPECIAL:ALLPAGES / SPECIAL:PREFIXINDEX
-// =============================================================================
-
-// Alphabetical navigation styling
-.mw-allpages-nav
+// Search results pagination
+.mw-search-pager
+.search-pagination
   display flex
-  flex-wrap wrap
-  gap 0.3em
+  justify-content center
+  align-items center
+  gap 0.5em
+  margin 2em 0
   padding 1em
   background-color $darker
   border-radius $border-radius-md
-  margin-bottom 1em
 
   a
-    padding 0.3em 0.6em
-    background-color rgba($arch-blue, 0.1)
-    color $secondary-blue
+  span
+    padding 0.5em 0.75em
     border-radius $border-radius-sm
     text-decoration none
-    font-variant-numeric tabular-nums
+    transition all 0.2s ease
+
+  a
+    color $secondary-blue
+    background-color transparent
 
     &:hover
-      background-color $arch-blue
-      color $darker
+      background-color rgba($arch-blue, 0.1)
+      color $arch-blue
 
-// Page list with hover states
-.mw-allpages-body
-  ul
-    list-style none
-    padding 0
+  .active
+  .mw-search-pager-current
+    background-color $arch-blue
+    color $darker
+    font-weight 500
 
-  li
-    padding 0.4em 0.6em
-    border-bottom 1px solid $border-subtle
-    transition background-color 0.2s ease
-
-    &:hover
-      background-color rgba($arch-blue, 0.05)
-
-    a
-      color $light
-
-      &:hover
-        color $arch-blue
-
-// Namespace selector
-.mw-allpages-form
-  select
-    background-color $darker
-    color $lighter
-    border 1px solid $border-subtle
-    border-radius $border-radius-sm
-    padding 0.5em
-
-// =============================================================================
-// USER CONTRIBUTIONS PAGE
-// =============================================================================
-
-// Contribution list styling
-.mw-contributions-list
-  list-style none
-  padding 0
-
-  li
-    padding 0.5em
-    border-bottom 1px solid $border-subtle
-    display flex
-    flex-wrap wrap
-    gap 0.5em
-    align-items center
-
-    &:hover
-      background-color rgba($arch-blue, 0.03)
-
-// Date grouping with tabular-nums timestamps
-.mw-contributions-date
-  font-variant-numeric tabular-nums
-  color $muted
-  font-size 0.85em
-  min-width 10em
-
-// Edit summary highlighting
-.comment
-  font-style italic
-  color $light
-
-  &.mw-comment-unhidden
-    color $lighter
-
-// =============================================================================
-// SPECIAL:WHATLINKSHERE
-// =============================================================================
-
-// Backlinks list styling
-#mw-whatlinkshere-list
-  list-style none
-  padding 0
-
-  li
-    padding 0.5em
-    border-bottom 1px solid $border-subtle
-
-    &:hover
-      background-color rgba($arch-blue, 0.03)
-
-// Redirect badge styling
-.mw-whatlinkshere-redirect
-  display inline-block
-  padding 0.1em 0.4em
-  font-size 0.75em
-  background-color rgba($purple, 0.2)
-  color $purple
-  border-radius $border-radius-sm
-  text-transform uppercase
-  letter-spacing 0.05em
-
-// Namespace filtering UI
-.mw-whatlinkshere-nsfilter
-  background-color $darker
-  padding 1em
-  border-radius $border-radius-md
-  margin 1em 0
-
-  label
-    color $lighter
-    margin-inline-end 0.5em
-
+  .disabled
+    color $muted
+    cursor not-allowed
+    opacity 0.5
