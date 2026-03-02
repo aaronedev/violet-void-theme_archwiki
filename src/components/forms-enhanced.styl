@@ -976,3 +976,282 @@ progress
     button
     input[type="submit"]
       width 100%
+
+// =============================================================================
+// PAGE MOVE FORM (Special:MovePage)
+// =============================================================================
+
+// Move form container
+.mw-movepage
+.movepage-form
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin 1em 0
+
+// Form fieldset
+.mw-movepage fieldset
+.movepage-fieldset
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 0 0 1em 0
+
+  legend
+    color $lighter
+    font-weight 600
+    padding 0 0.5em
+
+// New title input section
+.mw-movepage-newtitle
+.new-title-section
+  margin-bottom 1em
+
+  label
+    display block
+    color $lighter
+    font-weight 500
+    margin-bottom 0.5em
+
+  input[type="text"]
+    width 100%
+    padding 0.6em 0.9em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-size 1em
+    transition all 0.2s ease
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Namespace selector with title input group
+.mw-movepage-namespace
+.namespace-title-group
+  display flex
+  gap 0.5em
+  align-items stretch
+
+  select
+    padding 0.6em 0.9em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-size 1em
+    min-width 120px
+    cursor pointer
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+  input[type="text"]
+    flex 1
+
+// Reason textarea
+.mw-movepage-reason
+.reason-section
+  margin-bottom 1em
+
+  label
+    display block
+    color $lighter
+    font-weight 500
+    margin-bottom 0.5em
+
+  textarea
+  input[type="text"]
+    width 100%
+    padding 0.6em 0.9em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-size 0.95em
+    min-height 80px
+    resize vertical
+    transition all 0.2s ease
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Options checkboxes
+.mw-movepage-options
+.move-options
+  display flex
+  flex-direction column
+  gap 0.75em
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  .option-item
+    display flex
+    align-items flex-start
+    gap 0.5em
+
+    input[type="checkbox"]
+      margin-top 0.2em
+      accent-color $arch-blue
+
+    label
+      color $light
+      font-size 0.9em
+      cursor pointer
+      line-height 1.4
+
+      .option-description
+        display block
+        color $muted
+        font-size 0.85em
+        margin-top 0.2em
+
+// Talk page move option (highlighted)
+.talk-move-option
+  padding 0.75em
+  background-color rgba($arch-blue, 0.08)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+
+  label
+    color $lighter
+    font-weight 500
+
+// Leave redirect option
+.leave-redirect-option
+  padding-left 0.5em
+
+// Watch pages option
+.watch-pages-option
+  padding 0.5em
+  background-color rgba($green, 0.05)
+  border-radius $border-radius-sm
+
+// Submit button
+.mw-movepage-submit
+.move-submit
+  margin-top 1.5em
+  display flex
+  gap 0.75em
+
+  input[type="submit"]
+  button
+    padding 0.6em 1.5em
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+    border none
+    border-radius $border-radius-md
+    color $darker
+    font-size 1em
+    font-weight 600
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      transform translateY(-1px)
+      box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+    &:active
+      transform translateY(0)
+
+  .cancel-link
+    padding 0.6em 1em
+    background transparent
+    border none
+    color $muted
+    font-size 0.95em
+    text-decoration none
+    cursor pointer
+
+    &:hover
+      color $secondary-red
+
+// Warning messages
+.mw-movepage-warning
+.movepage-warning
+  padding 1em
+  background-color rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+  strong
+    color $orange
+
+// Error messages
+.mw-movepage-error
+.movepage-error
+  padding 1em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+// Success message
+.mw-movepage-success
+.movepage-success
+  padding 1em
+  background-color rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+  a
+    color $secondary-blue
+
+// Log entries display
+.mw-movepage-log
+.move-log
+  margin-top 1.5em
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  h3
+    color $lighter
+    font-size 1em
+    margin 0 0 0.75em 0
+
+  .log-entry
+    padding 0.5em 0
+    border-bottom 1px solid $border-subtle
+    font-size 0.9em
+    color $light
+
+    &:last-child
+      border-bottom none
+
+    .log-timestamp
+      font-variant-numeric tabular-nums
+      color $muted
+      margin-right 0.75em
+
+    a
+      color $secondary-blue
+
+// Responsive move form
+@media (max-width: 768px)
+  .mw-movepage-namespace
+  .namespace-title-group
+    flex-direction column
+
+    select
+      width 100%
+
+  .mw-movepage-submit
+  .move-submit
+    flex-direction column
+
+    button
+    input[type="submit"]
+      width 100%
