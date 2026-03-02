@@ -536,7 +536,8 @@ Last updated: 2026-03-01 06:05
   - Subcategory cards
   - Page count badges with tabular-nums
 
-- [ ] **Special:AllPages/Special:PrefixIndex** (CSS)
+- [x] **Special:AllPages/Special:PrefixIndex** (CSS)
+  Commit: defed5d
   - File: `src/components/special-pages.styl`
   - Alphabetical navigation styling
   - Namespace selector
