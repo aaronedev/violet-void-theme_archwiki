@@ -614,19 +614,22 @@ Last updated: 2026-03-01 06:05
 
 ## 📁 File & Media Pages (New)
 
-- [ ] **File Description Page** (CSS)
+- [x] **File Description Page** (CSS)
+  Commit: c9968a6
   - File: `src/components/file-pages.styl` (new file)
   - File history table styling
   - MIME type badge
   - File usage list
 
-- [ ] **Image Gallery Layout** (97%+ browser support)
+- [x] **Image Gallery Layout** (97%+ browser support)
+  Commit: c9968a6
   - File: `src/components/file-pages.styl`
   - Gallery grid with aspect-ratio
   - Caption truncation with line-clamp
   - Hover zoom effect
 
-- [ ] **Video Player Styling** (CSS)
+- [x] **Video Player Styling** (CSS)
+  Commit: c9968a6
   - File: `src/components/file-pages.styl`
   - Custom play button overlay
   - Progress bar theming
