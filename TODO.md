@@ -598,13 +598,15 @@ Last updated: 2026-03-01 06:05
   - User signature styling
   - Timestamp formatting with tabular-nums
 
-- [ ] **Reply Thread Styling** (CSS)
+- [x] **Reply Thread Styling** (CSS)
+  Commit: a5d5639
   - File: `src/components/discussion.styl`
   - Thread collapse/expand indicators
   - New messages indicator
   - Archive notice styling
 
-- [ ] **User Talk Notification** (CSS)
+- [x] **User Talk Notification** (CSS)
+  Commit: a5d5639
   - File: `src/components/discussion.styl`
   - New message banner
   - Orange bar indicator
@@ -5048,7 +5050,8 @@ Last updated: 2026-03-01 06:05
   - Edit summary display
   - Time ago indicator
 
-- [ ] **User Talk Notification** (CSS)
+- [x] **User Talk Notification** (CSS)
+  Commit: a5d5639
   - File: `src/user/talk.styl`
   - New message indicator
   - Talk page link styling
