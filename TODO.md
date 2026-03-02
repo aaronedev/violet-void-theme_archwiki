@@ -281,7 +281,8 @@
   - Better mobile viewport handling
   - File: `src/variables/layout.styl`
 
-- [ ] **`::target-text` Pseudo-element**
+- [x] **`::target-text` Pseudo-element**
+  Commit: 5146002
   - Style text highlighted by URL fragments
   - File: `src/components/modern-css.styl`
 
@@ -6159,3 +6160,124 @@ Last updated: 2026-03-01 06:05
 | 2026-03-02 | Thirtieth scout | Added gallery & media, gadgets & extensions, documentation & help, interwiki & sister projects, templates extended, parser & output, maintenance & tools, analytics extended |
 | 2026-03-02 | Thirty-first scout | Added API & developer documentation, mobile & responsive extended, accessibility extended, performance extended, animation extended, data visualization, external services, testing & QA |
 | 2026-03-02 | Thirty-second scout | Added learning & tutorials (tutorial container, code playground, quiz interface, achievement badge), search extended (search filters, suggestions, results, advanced search), tables extended (sortable headers, sticky headers, responsive tables, data grid), theming extended (theme variables, switcher, high contrast, print theme), navigation extended (breadcrumb extended, quick nav, related pages, page tree), interactive elements (copy button, tooltip extended, popover, disclosure widget), layout utilities (grid utilities, flex utilities, container queries, logical properties) |
+
+
+## 🆕 MediaWiki 1.44+ Features (New - 2026-03-02 Scout 33)
+
+- [ ] **Vector 2022 Updates** (CSS, 97%+ browser support)
+  - File: `src/components/skin-vector-2022.styl`
+  - Updated limited width toggle
+  - Improved page tools menu
+  - Enhanced sticky header with TOC
+  - Better language switcher dropdown
+
+- [ ] **Parsoid Output Styling** (CSS)
+  - File: `src/components/parsoid.styl`
+  - Parsoid HTML output styling
+  - Media structure differences
+  - Data-mw attribute targeting
+  - Figure/figcaption handling
+
+- [ ] **RESTBase API UI** (CSS)
+  - File: `src/components/api-ui.styl`
+  - API explorer styling
+  - Endpoint documentation cards
+  - Try-it-out panel styling
+  - Response viewer styling
+
+## 🎨 New CSS Features (New)
+
+- [ ] **field-sizing: content** (CSS, 85%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Auto-expanding textareas in edit forms
+  - Content-based input sizing
+  - Stylus: Works directly
+
+- [ ] **scrollbar-color / scrollbar-width Expansion** (CSS, 97%+ browser support)
+  - File: `src/components/scrollbars.styl`
+  - Theme-consistent scrollbar styling
+  - Thin/auto/none variants
+  - Dark mode scrollbar colors
+  - Stylus: Works directly
+
+- [ ] **text-wrap-mode Property** (CSS, 97%+ browser support)
+  - File: `src/components/typography.styl`
+  - Control text wrapping behavior
+  - nowrap alternative
+  - Stylus: Works directly
+
+## ⚡ Performance Patterns (New)
+
+- [ ] **Layout Containment Optimization** (CSS, 97%+ browser support)
+  - File: `src/performance/layout.styl`
+  - contain: layout for sidebars
+  - contain: layout for infoboxes
+  - Improved reflow performance
+  - Stylus: Works directly
+
+- [ ] **Paint Containment Optimization** (CSS, 97%+ browser support)
+  - File: `src/performance/paint.styl`
+  - contain: paint for complex elements
+  - Reduced repaint overhead
+  - Apply to navboxes, tables
+  - Stylus: Works directly
+
+## ♿ Accessibility Enhancements (New)
+
+- [ ] **forced-colors Mode Support** (CSS, 95%+ browser support)
+  - File: `src/components/accessibility.styl`
+  - Windows High Contrast Mode
+  - System color keywords
+  - Border adjustments for visibility
+  - Stylus: Works directly
+
+- [ ] **inverted-colors Detection** (CSS, 87%+ browser support)
+  - File: `src/components/accessibility.styl`
+  - @media (inverted-colors)
+  - Adjust shadows for inverted displays
+  - Image filter adjustments
+  - Stylus: Works directly
+
+## 📦 ArchWiki-Specific (New)
+
+- [ ] **Package Template Styling** (CSS)
+  - File: `src/components/archwiki-packages.styl`
+  - {{Pkg}} template styling
+  - {{AUR}} template styling
+  - {{Grp}} template styling
+  - Package status indicators
+
+- [ ] **Command Block Styling** (CSS)
+  - File: `src/components/archwiki-commands.styl`
+  - Terminal prompt styling ($, #)
+  - Command/output separation
+  - Root vs user prompt distinction
+  - Copy button positioning
+
+- [ ] **Config File Styling** (CSS)
+  - File: `src/components/archwiki-config.styl`
+  - File path header
+  - Syntax highlighting for configs
+  - Comment styling
+  - Variable/setting distinction
+
+- [ ] **Status Indicators** (CSS)
+  - File: `src/components/archwiki-status.styl`
+  - Installation status badges
+  - Service status indicators
+  - Kernel module status
+  - Deprecated/outdated warnings
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions, form elements extended, table patterns extended, navigation patterns, search extended, footer patterns, header patterns, sidebar patterns |
+| 2026-03-01 | Twenty-eighth scout | Added discussion/talk pages, categories & interwiki, diff views, file/media pages, special pages, user pages, revision history, edit conflicts, watchlist |
+| 2026-03-02 | Twenty-ninth scout | Added login & registration, admin & moderation, recent changes, edit interface, contributions, tags & markers, page information, notifications, Flow/structured discussions |
+| 2026-03-02 | Thirtieth scout | Added gallery & media, gadgets & extensions, documentation & help, interwiki & sister projects, templates extended, parser & output, maintenance & tools, analytics extended |
+| 2026-03-02 | Thirty-first scout | Added API & developer documentation, mobile & responsive extended, accessibility extended, performance extended, animation extended, data visualization, external services, testing & QA |
+| 2026-03-02 | Thirty-second scout | Added learning & tutorials, search extended, tables extended, theming extended, navigation extended, interactive elements, layout utilities |
+| 2026-03-02 | Thirty-third scout | Added MediaWiki 1.44+ features (Vector 2022 updates, Parsoid output, RESTBase API UI), new CSS features (field-sizing, scrollbar-color expansion, text-wrap-mode), performance patterns (layout/paint containment), accessibility (forced-colors, inverted-colors), ArchWiki-specific (package templates, command blocks, config files, status indicators) |
