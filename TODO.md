@@ -574,7 +574,8 @@ Last updated: 2026-03-01 06:05
   - Timestamp with tabular-nums
   - Rollback/undo button styling
 
-- [ ] **Edit Form Enhancements** (CSS)
+- [x] **Edit Form Enhancements** (CSS)
+  Commit: 5f6d4ce
   - File: `src/components/forms-enhanced.styl`
   - Summary input styling
   - Minor edit checkbox
