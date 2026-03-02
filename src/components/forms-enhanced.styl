@@ -621,3 +621,358 @@ progress
   border-radius $border-radius-sm
   padding 0.5em
 
+
+// =============================================================================
+// EDIT FORM ENHANCEMENTS (MediaWiki)
+// =============================================================================
+
+// Edit form container
+.mw-editform
+.edit-form
+  margin 1em 0
+
+// Main edit textarea
+#wpTextbox1
+.mw-editarea
+  width 100%
+  min-height 400px
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.6
+  resize vertical
+  transition border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $muted
+
+// Edit summary input styling
+#wpSummary
+.mw-summary
+  width 100%
+  padding 0.6em 0.9em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-size 0.95em
+  transition all 0.2s ease
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $muted
+
+// Summary label with character counter
+.mw-summary-label
+.summary-label-wrapper
+  display flex
+  justify-content space-between
+  align-items center
+  margin-bottom 0.5em
+
+  label
+    color $lighter
+    font-weight 500
+
+  .char-counter
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.8em
+
+    &.near-limit
+      color $orange
+
+    &.at-limit
+      color $secondary-red
+
+// Minor edit checkbox
+.mw-editsection-checkbox
+.minor-edit-wrapper
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 0.75em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+
+  input[type="checkbox"]
+    accent-color $arch-blue
+    width 1.1em
+    height 1.1em
+
+  label
+    color $lighter
+    font-size 0.9em
+    cursor pointer
+
+// Watch this page checkbox
+.watch-page-wrapper
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 0.75em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+
+  input[type="checkbox"]
+    accent-color $arch-blue
+
+  label
+    color $lighter
+    font-size 0.9em
+    cursor pointer
+
+// Edit checkboxes container
+.mw-edit-options
+.edit-options
+  display flex
+  flex-wrap wrap
+  gap 0.75em
+  margin 1em 0
+
+// Preview/Show changes tabs
+.mw-edit-tabs
+.edit-tabs
+  display flex
+  gap 0
+  margin-bottom 1em
+  border-bottom 2px solid $border-subtle
+
+  .edit-tab
+    padding 0.6em 1.2em
+    background-color transparent
+    border 1px solid transparent
+    border-bottom none
+    border-radius $border-radius-sm $border-radius-sm 0 0
+    color $muted
+    font-size 0.9em
+    font-weight 500
+    cursor pointer
+    transition all 0.2s ease
+    margin-bottom -2px
+
+    &:hover
+      background-color rgba($arch-blue, 0.05)
+      color $secondary-blue
+
+    &.active
+    &.selected
+      background-color $darker
+      border-color $border-subtle
+      color $arch-blue
+      border-bottom 2px solid $darker
+
+// Tab content areas
+.mw-preview
+.mw-diff
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1em
+
+// Edit toolbar button styling
+.mw-editTools
+.edit-toolbar
+  display flex
+  flex-wrap wrap
+  gap 0.25em
+  padding 0.5em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-bottom none
+  border-radius $border-radius-md $border-radius-md 0 0
+  margin-bottom 0
+
+  .editbutton
+  button
+    padding 0.4em 0.6em
+    background-color transparent
+    border 1px solid transparent
+    border-radius $border-radius-sm
+    color $muted
+    font-size 0.85em
+    cursor pointer
+    transition all 0.15s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.2)
+      color $secondary-blue
+
+    &:active
+      transform scale(0.95)
+
+  // Character insertion buttons
+  .char-insert
+    font-family $font-mono
+    min-width 2em
+    text-align center
+
+// Toolbar groups
+.toolbar-group
+  display flex
+  gap 0.15em
+  padding-right 0.5em
+  margin-right 0.5em
+  border-right 1px solid $border-subtle
+
+  &:last-child
+    border-right none
+    padding-right 0
+    margin-right 0
+
+// Save/Preview/Changes buttons container
+.mw-edit-buttons
+.edit-buttons
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 1em
+
+// Primary save button
+#wpSave
+.save-button
+  padding 0.6em 1.5em
+  background linear-gradient(135deg, $green, rgba($green, 0.8))
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-size 1em
+  font-weight 600
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($green, 0.3)
+
+  &:active
+    transform translateY(0)
+
+// Preview button
+#wpPreview
+.preview-button
+  padding 0.6em 1.2em
+  background-color $arch-blue
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-size 0.95em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.8)
+
+// Show changes button
+#wpDiff
+.changes-button
+  padding 0.6em 1.2em
+  background-color transparent
+  border 1px solid $arch-blue
+  border-radius $border-radius-md
+  color $secondary-blue
+  font-size 0.95em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+
+// Cancel link
+.cancel-link
+  padding 0.6em 1em
+  color $muted
+  font-size 0.9em
+  text-decoration none
+
+  &:hover
+    color $secondary-red
+
+// Copyright warning
+.mw-editnotice
+.edit-notice
+  padding 0.75em 1em
+  background-color rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  font-size 0.85em
+  color $lighter
+
+  a
+    color $secondary-blue
+
+// Section edit link
+.mw-editsection
+  font-size 0.75em
+  margin-left 0.5em
+
+  a
+    color $muted
+    text-decoration none
+    padding 0.2em 0.4em
+    border-radius $border-radius-sm
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $secondary-blue
+
+// Edit conflict warning
+.mw-editconflict
+.edit-conflict
+  padding 1em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+  h2
+    color $secondary-red
+    margin 0 0 0.5em 0
+    font-size 1.1em
+
+// Responsive edit form
+@media (max-width: 768px)
+  #wpTextbox1
+  .mw-editarea
+    min-height 250px
+    font-size 0.85em
+
+  .mw-edit-tabs
+    flex-wrap wrap
+
+    .edit-tab
+      flex 1
+      text-align center
+      border-radius $border-radius-sm
+      border 1px solid $border-subtle
+      margin-bottom 0.25em
+
+  .mw-edit-buttons
+  .edit-buttons
+    flex-direction column
+
+    button
+    input[type="submit"]
+      width 100%
