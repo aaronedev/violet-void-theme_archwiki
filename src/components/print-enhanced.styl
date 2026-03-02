@@ -406,8 +406,13 @@
     break-before avoid
 
 // =============================================================================
+// =============================================================================
 // PRINT HEADER/FOOTER
 // =============================================================================
+
+// Enhanced @page rules for page margins and page numbers
+// Browser support: 97%+ for basic @page, 85%+ for named pages
+// Note: Margin boxes require @css{} wrapper for Stylus
 
 @media print
   // Article title in header
@@ -415,16 +420,49 @@
     margin 2cm
     size A4
 
-  @top-center
-    content element(page-header)
+// Named page styles for different content types
+// Note: Wrap in @css{} for Stylus compatibility with margin boxes
+@css {
+  @page {
+    /* Page margins */
+    margin: 2cm;
+    
+    /* Page numbers in bottom-right corner */
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 9pt;
+      color: #666;
+    }
+    
+    /* Article title in top-center */
+    @top-center {
+      content: element(page-header);
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+  
+  /* First page styling */
+  @page :first {
+    margin-top: 3cm;
+    @top-center {
+      content: none;
+    }
+  }
+  
+  /* Landscape pages for wide tables */
+  @page landscape {
+    size: A4 landscape;
+    margin: 1.5cm;
+  }
+  
+  /* Apply landscape to wide tables */
+  table.wikitable-wide {
+    page: landscape;
+  }
+}
 
-  @bottom-center
-    content element(page-footer)
-
-  // Page numbers
-  @bottom-right
-    content "Page " counter(page) " of " counter(pages)
-
+@media print
   .page-header
     position running(page-header)
     font-size 0.9em
@@ -436,4 +474,3 @@
     position running(page-footer)
     font-size 0.8em
     color $muted
-
