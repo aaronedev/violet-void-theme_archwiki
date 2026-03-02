@@ -489,3 +489,242 @@
       opacity 0.4
       cursor not-allowed
       pointer-events none
+
+// =============================================================================
+// SPECIAL:ALLPAGES / SPECIAL:PREFIXINDEX
+// =============================================================================
+
+// All pages container
+.mw-allpages
+.allpages-container
+  margin 1em 0
+
+// Alphabetical navigation styling
+.mw-allpages-nav
+.alphabet-nav
+  display flex
+  flex-wrap wrap
+  justify-content center
+  gap 0.25em
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 1.5em
+
+// Alphabet letter links
+.mw-allpages-nav a
+.alphabet-nav a
+.alphabet-letter
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 2em
+  padding 0.4em 0.6em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $secondary-blue
+  font-weight 500
+  text-decoration none
+  font-variant-numeric tabular-nums
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.3)
+    color $arch-blue
+    transform translateY(-1px)
+
+  &.current
+  &.active
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+    cursor default
+    transform none
+
+  &.disabled
+    opacity 0.3
+    cursor not-allowed
+    pointer-events none
+
+// Namespace selector styling
+.mw-allpages-selector
+.namespace-selector
+  display flex
+  align-items center
+  gap 0.75em
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1.5em
+
+  label
+    color $muted
+    font-size 0.9em
+    white-space nowrap
+
+  select
+    flex 1
+    max-width 300px
+    padding 0.5em 1em
+    background-color $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    cursor pointer
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Page list styling
+.mw-allpages-body
+.allpages-list
+  list-style none
+  padding 0
+  margin 0
+
+  li
+  .page-item
+    margin 0.25em 0
+    padding 0.5em 0.75em
+    border-radius $border-radius-sm
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.08)
+
+    // Group separator (letter changes)
+    &.mw-allpages-group
+    &.letter-group-header
+      margin-top 1em
+      padding 0.75em
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+      border-left 3px solid $arch-blue
+      font-weight 600
+      color $lighter
+      font-size 1.1em
+
+      &:first-child
+        margin-top 0
+
+    a
+      color $secondary-blue
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+        text-decoration underline
+
+      // Redirect indicator
+      &.mw-redirect
+        color rgba($arch-blue, 0.7)
+
+        &::after
+          content " ↪"
+          font-size 0.8em
+          opacity 0.6
+
+// Prefix filter input
+.prefix-filter
+  display flex
+  gap 0.5em
+  margin-bottom 1em
+
+  input[type="text"]
+    flex 1
+    padding 0.5em 0.75em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+    &::placeholder
+      color $muted
+
+  button
+    padding 0.5em 1em
+    background-color $arch-blue
+    border none
+    border-radius $border-radius-sm
+    color $darker
+    font-weight 500
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.8)
+
+// "From" / "To" navigation sections
+.mw-allpages-range
+.pages-range
+  display flex
+  gap 1em
+  margin 1em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  > div
+    flex 1
+
+  h3
+    color $muted
+    font-size 0.85em
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin 0 0 0.5em 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $arch-blue
+
+// Chunk navigation (next X pages)
+.mw-allpages-chunk
+.chunk-navigation
+  display flex
+  justify-content space-between
+  align-items center
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+  margin-top 1.5em
+
+  .chunk-info
+    color $muted
+    font-size 0.9em
+
+  .chunk-links
+    display flex
+    gap 0.5em
+
+    a
+      padding 0.5em 1em
+      background-color transparent
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $secondary-blue
+      text-decoration none
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        border-color rgba($arch-blue, 0.3)
+
+      &.disabled
+        opacity 0.4
+        cursor not-allowed
+        pointer-events none
