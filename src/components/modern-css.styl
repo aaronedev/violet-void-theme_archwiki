@@ -1288,3 +1288,32 @@ h4[id]
   .container-responsive
     flex-direction column
 
+
+// =============================================================================
+// ::target-text PSEUDO-ELEMENT
+// =============================================================================
+
+// Style text highlighted by URL fragments (#:~:text=...)
+// Browser support: 85%+ (Chrome 89+, Safari 17.2+, Edge 89+)
+// Note: Uses theme accent color for highlighted text
+
+@css {
+  ::target-text {
+    background-color: rgba(199, 146, 234, 0.3); /* --arch-blue with alpha */
+    color: inherit;
+    text-shadow: none;
+  }
+  
+  /* Dark mode variant */
+  @media (prefers-color-scheme: dark) {
+    ::target-text {
+      background-color: rgba(199, 146, 234, 0.4);
+    }
+  }
+}
+
+// Alternative approach using custom properties
+// For browsers that support ::target-text with custom properties
+.target-text-highlight
+  background-color rgba($arch-blue, 0.3)
+  color inherit
