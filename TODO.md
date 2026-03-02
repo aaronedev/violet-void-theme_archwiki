@@ -582,7 +582,8 @@ Last updated: 2026-03-01 06:05
   - Preview/show changes tabs
   - Edit toolbar button styling
 
-- [ ] **Page Move Form** (CSS)
+- [x] **Page Move Form** (CSS)
+  Commit: 70291e0
   - File: `src/components/forms-enhanced.styl`
   - New title input
   - Reason textarea
