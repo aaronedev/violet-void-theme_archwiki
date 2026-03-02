@@ -272,7 +272,8 @@
   - Smooth expand/collapse for collapsible sections
   - File: `src/components/navigation.styl`
 
-- [ ] **Enhanced print styles with `@page`**
+- [x] **Enhanced print styles with `@page`**
+  Commit: efd9c06
   - Page margins, page numbers
   - File: `src/components/print-enhanced.styl`
 
