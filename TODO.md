@@ -637,13 +637,15 @@ Last updated: 2026-03-01 06:05
 
 ## 👤 User Pages (New)
 
-- [ ] **User Page Layout** (CSS)
+- [x] **User Page Layout** (CSS)
+  Commit: d663085
   - File: `src/components/user-pages.styl` (new file)
   - User profile box
   - Babel box styling
   - User contribution stats
 
-- [ ] **User Menu Dropdown** (CSS)
+- [x] **User Menu Dropdown** (CSS)
+  Commit: d663085
   - File: `src/components/user-pages.styl`
   - User dropdown menu styling
   - Notification count badge
