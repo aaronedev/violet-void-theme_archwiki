@@ -511,7 +511,8 @@ Last updated: 2026-03-01 06:05
   - `break-before: page` for major sections
   - Prevent orphaned headings
 
-- [ ] **Print Header/Footer** (CSS)
+- [x] **Print Header/Footer** (CSS)
+  Commit: efd9c06 (already implemented in print-enhanced.styl)
   - File: `src/components/print.styl`
   - `@page` with margin adjustments
   - Article title in header
@@ -520,7 +521,8 @@ Last updated: 2026-03-01 06:05
 
 ## 📋 Special Pages Styling (New)
 
-- [ ] **Search Results Page Enhancements** (CSS)
+- [x] **Search Results Page Enhancements** (CSS)
+  Commit: fd47b40
   - Browser support: 97%+
   - File: `src/components/special-pages.styl` (new file)
   - Search result item styling
