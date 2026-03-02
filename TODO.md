@@ -550,7 +550,8 @@ Last updated: 2026-03-01 06:05
   - Date grouping with tabular-nums timestamps
   - Edit summary highlighting
 
-- [ ] **Special:WhatLinksHere** (CSS)
+- [x] **Special:WhatLinksHere** (CSS)
+  Commit: 8a2cc0f
   - File: `src/components/special-pages.styl`
   - Backlinks list styling
   - Redirect badge styling
