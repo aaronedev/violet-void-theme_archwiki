@@ -266,3 +266,226 @@
     color $muted
     cursor not-allowed
     opacity 0.5
+
+// =============================================================================
+// CATEGORY PAGE GRID LAYOUT
+// =============================================================================
+
+// Category page container
+.mw-category
+.category-page
+  margin 1em 0
+
+// Category member grid
+.mw-category-members
+.category-members
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(220px, 1fr))
+  gap 1em
+  padding 0
+  margin 1em 0
+  list-style none
+
+// Grid/list toggle buttons
+.category-view-toggle
+  display flex
+  gap 0.5em
+  margin-bottom 1em
+
+  button
+  .toggle-btn
+    padding 0.5em 1em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $muted
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+    &.active
+      background-color $arch-blue
+      border-color $arch-blue
+      color $darker
+
+// Category member item (grid view)
+.mw-category-item
+.category-member
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border-color rgba($arch-blue, 0.2)
+    transform translateY(-1px)
+    box-shadow $shadow-subtle
+
+  a
+    color $secondary-blue
+    text-decoration none
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+
+// List view variant
+.category-list-view
+  .mw-category-members
+  .category-members
+    grid-template-columns 1fr
+
+  .mw-category-item
+  .category-member
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.75em 1em
+
+// Subcategory section
+.mw-category-subcategories
+.subcategories-section
+  margin 2em 0
+
+  h2
+  h3
+    color $lighter
+    font-size 1.1em
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+// Subcategory cards grid
+.subcategories-grid
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(180px, 1fr))
+  gap 0.75em
+  list-style none
+  padding 0
+  margin 0
+
+// Subcategory card
+.subcategory-item
+  padding 0.75em 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.08)
+    border-color rgba($arch-blue, 0.2)
+
+  a
+    display flex
+    align-items center
+    gap 0.5em
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $arch-blue
+
+    // Folder icon
+    &::before
+      content "📁"
+      font-size 0.9em
+      opacity 0.8
+
+// Page count badges with tabular-nums
+.page-count-badge
+.category-count
+  display inline-flex
+  align-items center
+  padding 0.2em 0.5em
+  background-color rgba($arch-blue, 0.15)
+  border-radius 1em
+  color $secondary-blue
+  font-size 0.75em
+  font-variant-numeric tabular-nums
+  font-weight 500
+  margin-left auto
+
+// Category header with description
+.mw-category-header
+.category-header
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 2em
+
+  h1
+    color $lighter
+    margin 0 0 0.5em 0
+    font-size 1.5em
+
+  .category-description
+    color $muted
+    font-size 0.95em
+    line-height 1.5
+
+// Category pagination
+.mw-category-pagination
+.category-pagination
+  display flex
+  justify-content center
+  gap 0.5em
+  margin 2em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  a
+    padding 0.5em 1em
+    background-color transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+  .current
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+    font-weight 500
+
+// "Next page" / "Previous page" links
+.mw-category-next
+.category-nav-links
+  display flex
+  justify-content space-between
+  gap 1em
+  margin 1.5em 0
+
+  a
+    display inline-flex
+    align-items center
+    gap 0.5em
+    padding 0.5em 1em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+    &.disabled
+      opacity 0.4
+      cursor not-allowed
+      pointer-events none
