@@ -566,7 +566,8 @@ Last updated: 2026-03-01 06:05
   - Inline diff indicators
   - Side-by-side diff layout for wide screens
 
-- [ ] **Edit History List** (97%+ browser support)
+- [x] **Edit History List** (97%+ browser support)
+  Commit: 5555a45
   - File: `src/components/history.styl` (new file)
   - Revision row styling
   - User avatar/link styling
