@@ -267,7 +267,8 @@
   - Long-term consideration for dropping Stylus
   - Status: Research phase only
 
-- [ ] **Expand `interpolate-size` for auto transitions**
+- [x] **Expand `interpolate-size` for auto transitions**
+  Commit: a411b8d
   - Smooth expand/collapse for collapsible sections
   - File: `src/components/navigation.styl`
 
@@ -4061,3 +4062,2099 @@ Last updated: 2026-03-01 06:05
   - Retry sync button
 
 | 2026-03-01 | Twenty-third scout | Added advanced editor features (CodeMirror 6, syntax highlighting extended, autocomplete dropdown, find & replace), diagram & visualization (Mermaid, Graphviz, PlantUML, Chart.js theming), UI components extended (modal/dialog, dropdown/select, tabs, accordion/collapse), external integrations (GitHub Gist, YouTube, Twitter/X, PDF embed), progressive enhancement (service worker status, PWA install prompt, offline mode, background sync) |
+
+
+## 🎮 Gamification & Contribution (New - 2026-03-01 Scout 24)
+
+- [ ] **Edit Streak Indicator** (CSS, 97%+ browser support)
+  - File: `src/components/gamification.styl`
+  - Streak badge styling
+  - Day count display
+  - Flame animation
+  - Streak milestone badges
+
+- [ ] **Achievement System** (CSS, 97%+ browser support)
+  - File: `src/components/gamification.styl`
+  - Achievement badge styling
+  - Locked/unlocked states
+  - Progress indicator
+  - Rarity indicator
+
+- [ ] **Leaderboard Styling** (CSS, 97%+ browser support)
+  - File: `src/components/gamification.styl`
+  - Leaderboard table styling
+  - Rank badge styling
+  - User highlight styling
+  - Pagination controls
+
+- [ ] **Contribution Counter** (CSS, 97%+ browser support)
+  - File: `src/components/gamification.styl`
+  - Counter display styling
+  - Animation on increment
+  - Milestone celebration
+  - Category breakdown
+
+## 🤖 Automation & Scripts (New)
+
+- [ ] **Auto-Wiki Browser Styling** (CSS, 97%+ browser support)
+  - File: `src/components/automation.styl`
+  - AWB container styling
+  - Progress indicator
+  - Log display styling
+  - Control buttons styling
+
+- [ ] **Bot Edit Indicator** (CSS, 97%+ browser support)
+  - File: `src/components/automation.styl`
+  - Bot badge styling
+  - Bot type indicator
+  - Edit summary styling
+  - Approve/reject buttons
+
+- [ ] **Mass Operations UI** (CSS, 97%+ browser support)
+  - File: `src/components/automation.styl`
+  - Operation queue styling
+  - Item list styling
+  - Progress bar styling
+  - Error log display
+
+- [ ] **Template Replacement Tool** (CSS)
+  - File: `src/components/automation.styl`
+  - Replacement form styling
+  - Preview diff styling
+  - Apply button styling
+  - Undo button styling
+
+## 📡 API & Developer Features (New)
+
+- [ ] **API Documentation Styling** (CSS, 97%+ browser support)
+  - File: `src/components/api.styl`
+  - Endpoint list styling
+  - Method badge styling
+  - Parameter table styling
+  - Response example styling
+
+- [ ] **API Sandbox UI** (CSS)
+  - File: `src/components/api.styl`
+  - Request builder styling
+  - Parameter input styling
+  - Response viewer styling
+  - Authentication selector
+
+- [ ] **OAuth Flow Styling** (CSS, 97%+ browser support)
+  - File: `src/components/api.styl`
+  - OAuth consent screen
+  - Permission list styling
+  - Grant/deny buttons
+  - Token display styling
+
+- [ ] **Rate Limit Indicator** (CSS)
+  - File: `src/components/api.styl`
+  - Limit progress bar
+  - Reset countdown display
+  - Warning indicator
+  - Usage statistics
+
+## 🔐 Security & Trust (New)
+
+- [ ] **Edit Filter Status** (CSS, 97%+ browser support)
+  - File: `src/components/security.styl`
+  - Filter pass indicator
+  - Filter warning styling
+  - Filter block styling
+  - Dismiss button styling
+
+- [ ] **Abuse Filter Log** (CSS)
+  - File: `src/components/security.styl`
+  - Log entry styling
+  - Action badge styling
+  - Details expand styling
+  - Filter link styling
+
+- [ ] **Spam Protection UI** (CSS)
+  - File: `src/components/security.styl`
+  - CAPTCHA container styling
+  - Challenge styling
+  - Success/failure indicator
+  - Alternative options
+
+- [ ] **Trust Level Badges** (CSS, 97%+ browser support)
+  - File: `src/components/security.styl`
+  - Trust level indicator
+  - Autoconfirmed badge
+  - Established user badge
+  - Admin badge styling
+
+## 🌍 Internationalization Extended (New)
+
+- [ ] **Language Link Panel** (CSS, 97%+ browser support)
+  - File: `src/components/i18n-extended.styl`
+  - Language link list styling
+  - Active language highlight
+  - Missing language indicator
+  - Add translation link
+
+- [ ] **Translation Variables** (CSS)
+  - File: `src/components/i18n-extended.styl`
+  - Variable list styling
+  - Variable value display
+  - Edit variable button
+  - Validation feedback
+
+- [ ] **Bidirectional Text Support** (CSS, 100% browser support)
+  - File: `src/components/i18n-extended.styl`
+  - RTL container styling
+  - Direction toggle button
+  - Mixed direction handling
+  - Text alignment options
+
+- [ ] **CJK Typography** (CSS, 97%+ browser support)
+  - File: `src/components/i18n-extended.styl`
+  - CJK font stack
+  - Ruby text styling
+  - Emphasis mark styling
+  - Line breaking controls
+
+| 2026-03-01 | Twenty-fourth scout | Added gamification & contribution (edit streak indicator, achievement system, leaderboard styling, contribution counter), automation & scripts (auto-wiki browser, bot edit indicator, mass operations UI, template replacement tool), API & developer features (API documentation, sandbox UI, OAuth flow, rate limit indicator), security & trust (edit filter status, abuse filter log, spam protection UI, trust level badges), internationalization extended (language link panel, translation variables, bidirectional text, CJK typography) |
+
+
+## 🎨 Visual Design Patterns (New - 2026-03-01 Scout 25)
+
+- [ ] **Glassmorphism Effects** (CSS, 93%+ browser support)
+  - File: `src/components/glass.styl`
+  - Backdrop blur styling
+  - Semi-transparent backgrounds
+  - Border glow effects
+  - Note: Include -webkit- prefix
+
+- [ ] **Neumorphism Accents** (CSS, 97%+ browser support)
+  - File: `src/components/neumorphic.styl`
+  - Soft shadow styling
+  - Inset shadow styling
+  - Highlight/shadow balance
+  - Subtle 3D effects
+
+- [ ] **Gradient Borders** (CSS, 97%+ browser support)
+  - File: `src/components/gradients.styl`
+  - Border-image gradients
+  - Pseudo-element borders
+  - Animated gradient borders
+  - Corner accent gradients
+
+- [ ] **Depth & Layering** (CSS, 97%+ browser support)
+  - File: `src/components/depth.styl`
+  - Z-index scale system
+  - Layer isolation patterns
+  - Stacking context helpers
+  - Drop shadow variations
+
+## 📐 Advanced Layout Patterns (New)
+
+- [ ] **Holy Grail Layout** (CSS, 97%+ browser support)
+  - File: `src/layouts/holy-grail.styl`
+  - Three-column layout
+  - Sticky sidebar patterns
+  - Responsive collapse
+  - Grid-based implementation
+
+- [ ] **Masonry-Style Layouts** (CSS, 85%+ browser support)
+  - File: `src/layouts/masonry.styl`
+  - CSS columns fallback
+  - Grid masonry (experimental)
+  - Item ordering control
+  - Responsive column count
+
+- [ ] **Split Panel Layouts** (CSS, 97%+ browser support)
+  - File: `src/layouts/split.styl`
+  - Resizable panel dividers
+  - Collapse/expand patterns
+  - Min/max constraints
+  - Touch-friendly handles
+
+- [ ] **Aspect Ratio Containers** (CSS, 95%+ browser support)
+  - File: `src/layouts/aspect-ratio.styl`
+  - aspect-ratio property
+  - Media embed containers
+  - Card aspect ratios
+  - Responsive scaling
+
+## 🎭 Interaction Patterns (New)
+
+- [ ] **Drag & Drop Feedback** (CSS, 97%+ browser support)
+  - File: `src/components/drag-drop.styl`
+  - Drag source styling
+  - Drop target highlight
+  - Drag ghost styling
+  - Drop zone indicators
+
+- [ ] **Sort & Filter UI** (CSS, 97%+ browser support)
+  - File: `src/components/sort-filter.styl`
+  - Sort toggle styling
+  - Filter chip styling
+  - Active filter display
+  - Clear all button
+
+- [ ] **Bulk Selection** (CSS, 97%+ browser support)
+  - File: `src/components/selection.styl`
+  - Selection checkbox styling
+  - Select all toggle
+  - Selected item highlight
+  - Bulk action bar
+
+- [ ] **Inline Editing** (CSS, 97%+ browser support)
+  - File: `src/components/inline-edit.styl`
+  - Edit trigger styling
+  - Input field appearance
+  - Save/cancel buttons
+  - Validation feedback
+
+## 📊 Data Presentation (New)
+
+- [ ] **Data Table Patterns** (CSS, 97%+ browser support)
+  - File: `src/components/data-tables.styl`
+  - Sortable column headers
+  - Row hover states
+  - Row selection styling
+  - Sticky headers
+
+- [ ] **Timeline Components** (CSS, 97%+ browser support)
+  - File: `src/components/timeline.styl`
+  - Vertical timeline styling
+  - Timeline markers
+  - Date labels
+  - Content cards
+
+- [ ] **Card Grid Patterns** (CSS, 97%+ browser support)
+  - File: `src/components/card-grid.styl`
+  - Auto-fit grid layout
+  - Card hover effects
+  - Card content layout
+  - Equal height cards
+
+- [ ] **Metric Displays** (CSS, 97%+ browser support)
+  - File: `src/components/metrics.styl`
+  - Big number styling
+  - Trend indicators
+  - Comparison displays
+  - Progress indicators
+
+## 🔧 Utility Classes (New)
+
+- [ ] **Spacing Utilities** (CSS, 100% browser support)
+  - File: `src/utilities/spacing.styl`
+  - Margin scale classes
+  - Padding scale classes
+  - Gap utilities
+  - Logical property variants
+
+- [ ] **Typography Utilities** (CSS, 100% browser support)
+  - File: `src/utilities/typography.styl`
+  - Font size scale
+  - Font weight helpers
+  - Text alignment
+  - Text transform
+
+- [ ] **Color Utilities** (CSS, 100% browser support)
+  - File: `src/utilities/colors.styl`
+  - Text color classes
+  - Background color classes
+  - Border color classes
+  - Opacity variants
+
+- [ ] **Visibility Utilities** (CSS, 100% browser support)
+  - File: `src/utilities/visibility.styl`
+  - Display classes
+  - Visibility classes
+  - Screen reader only
+  - Responsive visibility
+
+## 🚀 Performance Optimizations (New)
+
+- [ ] **Critical CSS Patterns** (CSS, 100% browser support)
+  - File: `src/critical.styl`
+  - Above-fold styles
+  - Deferred styles pattern
+  - Minimal initial payload
+  - Progressive enhancement
+
+- [ ] **CSS Containment** (CSS, 97%+ browser support)
+  - File: `src/performance/containment.styl`
+  - Layout containment
+  - Paint containment
+  - Style containment
+  - Size containment
+
+- [ ] **Lazy Loading Hints** (CSS, 85%+ browser support)
+  - File: `src/performance/lazy.styl`
+  - content-visibility patterns
+  - Skeleton screens
+  - Placeholder styling
+  - Fade-in transitions
+
+- [ ] **Animation Performance** (CSS, 97%+ browser support)
+  - File: `src/performance/animation.styl`
+  - Transform-only animations
+  - Opacity transitions
+  - will-change hints
+  - GPU acceleration
+
+| 2026-03-01 | Twenty-fifth scout | Added visual design patterns (glassmorphism, neumorphism accents, gradient borders, depth & layering), advanced layout patterns (holy grail, masonry, split panels, aspect ratio containers), interaction patterns (drag & drop, sort & filter, bulk selection, inline editing), data presentation (data tables, timelines, card grids, metric displays), utility classes (spacing, typography, color, visibility), performance optimizations (critical CSS, containment, lazy loading hints, animation performance) |
+
+
+## 📱 Responsive Design Patterns (New - 2026-03-01 Scout 26)
+
+- [ ] **Breakpoint System** (CSS, 100% browser support)
+  - File: `src/responsive/breakpoints.styl`
+  - Mobile-first breakpoints
+  - Media query variables
+  - Container query fallbacks
+  - Print breakpoint
+
+- [ ] **Responsive Typography** (CSS, 95%+ browser support)
+  - File: `src/responsive/typography.styl`
+  - clamp() for fluid text
+  - Viewport-relative sizing
+  - Minimum readable size
+  - Maximum width constraints
+
+- [ ] **Responsive Images** (CSS, 97%+ browser support)
+  - File: `src/responsive/images.styl`
+  - max-width: 100% pattern
+  - aspect-ratio containers
+  - Lazy loading hints
+  - Responsive srcset support
+
+- [ ] **Responsive Tables** (CSS, 97%+ browser support)
+  - File: `src/responsive/tables.styl`
+  - Horizontal scroll wrapper
+  - Stacked table pattern
+  - Priority column hiding
+  - Card-based mobile view
+
+## 🖨️ Print Extended (New)
+
+- [ ] **Print Page Breaks** (CSS, 97%+ browser support)
+  - File: `src/print/breaks.styl`
+  - break-before controls
+  - break-after controls
+  - break-inside: avoid
+  - Orphan/widow control
+
+- [ ] **Print Typography** (CSS, 100% browser support)
+  - File: `src/print/typography.styl`
+  - Print-optimized fonts
+  - Line height for print
+  - Font size for print
+  - Serif font stack
+
+- [ ] **Print Links** (CSS, 97%+ browser support)
+  - File: `src/print/links.styl`
+  - URL display after links
+  - Link text styling
+  - External link indicator
+  - Reference list generation
+
+- [ ] **Print Images** (CSS, 97%+ browser support)
+  - File: `src/print/images.styl`
+  - Image sizing for print
+  - Caption styling
+  - Alt text display option
+  - Background image handling
+
+## 🎭 State Patterns (New)
+
+- [ ] **Loading States** (CSS, 97%+ browser support)
+  - File: `src/states/loading.styl`
+  - Spinner animation
+  - Skeleton screens
+  - Progress indicators
+  - Loading overlays
+
+- [ ] **Empty States** (CSS, 97%+ browser support)
+  - File: `src/states/empty.styl`
+  - Empty list message
+  - Empty search results
+  - No permission state
+  - First-time user state
+
+- [ ] **Error States** (CSS, 97%+ browser support)
+  - File: `src/states/error.styl`
+  - Error message styling
+  - Error icon display
+  - Recovery suggestions
+  - Contact support link
+
+- [ ] **Success States** (CSS, 97%+ browser support)
+  - File: `src/states/success.styl`
+  - Success message styling
+  - Success animation
+  - Auto-dismiss timing
+  - Undo action button
+
+## 🔤 Code & Syntax Extended (New)
+
+- [ ] **Inline Code Styling** (CSS, 97%+ browser support)
+  - File: `src/code/inline.styl`
+  - Monospace font stack
+  - Background color
+  - Padding/border-radius
+  - Word-break handling
+
+- [ ] **Code Block Styling** (CSS, 97%+ browser support)
+  - File: `src/code/block.styl`
+  - Container styling
+  - Line numbers
+  - Scrollable container
+  - Copy button position
+
+- [ ] **Syntax Highlighting** (CSS, 97%+ browser support)
+  - File: `src/code/syntax.styl`
+  - Keyword colors
+  - String colors
+  - Comment colors
+  - Function colors
+
+- [ ] **Terminal/Command Styling** (CSS, 97%+ browser support)
+  - File: `src/code/terminal.styl`
+  - Terminal background
+  - Prompt styling
+  - Command/output distinction
+  - Selection colors
+
+## 📐 Spacing System (New)
+
+- [ ] **Margin Scale** (CSS, 100% browser support)
+  - File: `src/spacing/margins.styl`
+  - 4px base unit scale
+  - Negative margins
+  - Auto margins
+  - Logical margin properties
+
+- [ ] **Padding Scale** (CSS, 100% browser support)
+  - File: `src/spacing/padding.styl`
+  - 4px base unit scale
+  - Symmetric shorthand
+  - Logical padding properties
+  - Component padding tokens
+
+- [ ] **Gap Utilities** (CSS, 97%+ browser support)
+  - File: `src/spacing/gap.styl`
+  - row-gap classes
+  - column-gap classes
+  - gap shorthand
+  - Responsive gaps
+
+- [ ] **Spacing Variables** (CSS, 100% browser support)
+  - File: `src/spacing/variables.styl`
+  - --space-xs through --space-3xl
+  - Semantic spacing tokens
+  - Component-specific spacing
+  - Density variants
+
+## 🌗 Dark Mode Support (New)
+
+- [ ] **Dark Mode Toggle** (CSS, 97%+ browser support)
+  - File: `src/dark/toggle.styl`
+  - Toggle button styling
+  - Icon swap animation
+  - System preference detection
+  - Manual override storage
+
+- [ ] **Dark Color Scheme** (CSS, 100% browser support)
+  - File: `src/dark/colors.styl`
+  - Inverted background
+  - Adjusted text colors
+  - Muted accent colors
+  - Shadow adjustments
+
+- [ ] **Dark Mode Images** (CSS, 97%+ browser support)
+  - File: `src/dark/images.styl`
+  - Reduced brightness option
+  - Invert filter for diagrams
+  - Dark mode logos
+  - Background handling
+
+- [ ] **Dark Mode Forms** (CSS, 97%+ browser support)
+  - File: `src/dark/forms.styl`
+  - Input field colors
+  - Border colors
+  - Focus ring colors
+  - Placeholder text
+
+## 🔗 Link Patterns (New)
+
+- [ ] **Internal Link Styling** (CSS, 97%+ browser support)
+  - File: `src/links/internal.styl`
+  - Link color
+  - Hover state
+  - Visited state
+  - Focus state
+
+- [ ] **External Link Styling** (CSS, 97%+ browser support)
+  - File: `src/links/external.styl`
+  - External icon indicator
+  - Security warning styling
+  - New tab indicator
+  - Different color option
+
+- [ ] **Redirect Link Styling** (CSS, 97%+ browser support)
+  - File: `src/links/redirect.styl`
+  - Redirect indicator
+  - Interwiki link styling
+  - Language link styling
+  - Archive link styling
+
+- [ ] **Broken Link Styling** (CSS, 97%+ browser support)
+  - File: `src/links/broken.styl`
+  - Red link color
+  - Hover explanation
+  - Edit link option
+  - Missing page indicator
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns (breakpoints, typography, images, tables), print extended (page breaks, typography, links, images), state patterns (loading, empty, error, success), code & syntax extended (inline code, code blocks, syntax highlighting, terminal), spacing system (margin scale, padding scale, gap utilities, spacing variables), dark mode support (toggle, color scheme, images, forms), link patterns (internal, external, redirect, broken) |
+
+
+## 🎬 Animation & Transitions (New - 2026-03-01 Scout 27)
+
+- [ ] **@starting-style Patterns** (CSS, 85%+ browser support)
+  - File: `src/animations/entry.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Entry animations for elements
+  - Dialog/modal open transitions
+  - Dropdown reveal animations
+
+- [ ] **Transition Utilities** (CSS, 97%+ browser support)
+  - File: `src/animations/transitions.styl`
+  - Transition timing functions
+  - Transition duration scale
+  - Transition property helpers
+  - Transition delay utilities
+
+- [ ] **Animation Keyframes** (CSS, 100% browser support)
+  - File: `src/animations/keyframes.styl`
+  - Fade in/out animations
+  - Slide animations
+  - Scale animations
+  - Pulse animations
+
+- [ ] **Scroll-Driven Animations** (CSS, 85%+ browser support)
+  - File: `src/animations/scroll.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Progress bar animation
+  - Reveal on scroll
+  - Parallax effects
+
+## 📝 Form Elements Extended (New)
+
+- [ ] **Input Field Styling** (CSS, 97%+ browser support)
+  - File: `src/forms/input.styl`
+  - Input container styling
+  - Placeholder styling
+  - Validation states
+  - Disabled states
+
+- [ ] **Select Dropdown Styling** (CSS, 97%+ browser support)
+  - File: `src/forms/select.styl`
+  - Select container styling
+  - Option styling
+  - Dropdown indicator
+  - Multi-select chips
+
+- [ ] **Checkbox & Radio Styling** (CSS, 97%+ browser support)
+  - File: `src/forms/checkbox.styl`
+  - Custom checkbox styling
+  - Custom radio styling
+  - Checked states
+  - Indeterminate state
+
+- [ ] **Textarea Styling** (CSS, 97%+ browser support)
+  - File: `src/forms/textarea.styl`
+  - Textarea container
+  - Resize handle styling
+  - Character counter
+  - Auto-grow indicator
+
+## 📊 Table Patterns Extended (New)
+
+- [ ] **Sortable Tables** (CSS, 97%+ browser support)
+  - File: `src/tables/sortable.styl`
+  - Sort indicator styling
+  - Active sort column
+  - Sort direction icons
+  - Hover state for headers
+
+- [ ] **Responsive Table Patterns** (CSS, 97%+ browser support)
+  - File: `src/tables/responsive.styl`
+  - Horizontal scroll wrapper
+  - Stacked card pattern
+  - Priority-based hiding
+  - Expandable rows
+
+- [ ] **Table Zebra Striping** (CSS, 100% browser support)
+  - File: `src/tables/striped.styl`
+  - Alternating row colors
+  - Hover highlight
+  - Selected row highlight
+  - Nested table handling
+
+- [ ] **Sticky Table Headers** (CSS, 97%+ browser support)
+  - File: `src/tables/sticky.styl`
+  - position: sticky headers
+  - Sticky first column
+  - Sticky footer
+  - Scroll shadow indicators
+
+## 🧭 Navigation Patterns (New)
+
+- [ ] **Breadcrumbs Extended** (CSS, 97%+ browser support)
+  - File: `src/navigation/breadcrumbs.styl`
+  - Breadcrumb container
+  - Separator styling
+  - Current page indicator
+  - Truncation for long paths
+
+- [ ] **Table of Contents** (CSS, 97%+ browser support)
+  - File: `src/navigation/toc.styl`
+  - TOC container styling
+  - TOC item styling
+  - Active section highlight
+  - Collapse/expand control
+
+- [ ] **Related Pages** (CSS)
+  - File: `src/navigation/related.styl`
+  - Related pages container
+  - Link item styling
+  - Category badge
+  - See also section
+
+- [ ] **Page Navigation** (CSS)
+  - File: `src/navigation/pagenav.styl`
+  - Previous/next page links
+  - Page navigation container
+  - Arrow icons
+  - Page title preview
+
+## 🔍 Search Extended (New)
+
+- [ ] **Search Results Page** (CSS, 97%+ browser support)
+  - File: `src/search/results.styl`
+  - Results container styling
+  - Result item styling
+  - Match highlight styling
+  - No results message
+
+- [ ] **Search Suggestions** (CSS)
+  - File: `src/search/suggestions.styl`
+  - Suggestion dropdown
+  - Suggestion item styling
+  - Match emphasis
+  - Keyboard navigation hints
+
+- [ ] **Advanced Search Form** (CSS)
+  - File: `src/search/advanced.styl`
+  - Field group styling
+  - Filter chips
+  - Date range input
+  - Namespace selector
+
+- [ ] **Search Filters Sidebar** (CSS)
+  - File: `src/search/filters.styl`
+  - Filter section styling
+  - Filter checkbox styling
+  - Apply/clear buttons
+  - Active filter count
+
+## 🦶 Footer Patterns (New)
+
+- [ ] **Site Footer Container** (CSS)
+  - File: `src/layout/footer.styl`
+  - Footer background
+  - Footer layout grid
+  - Footer spacing
+  - Footer border
+
+- [ ] **Footer Links** (CSS, 97%+ browser support)
+  - File: `src/layout/footer.styl`
+  - Link column styling
+  - Link hover states
+  - External link indicators
+  - Social media links
+
+- [ ] **Footer Info** (CSS)
+  - File: `src/layout/footer.styl`
+  - Copyright text styling
+  - License info styling
+  - Powered by styling
+  - Last modified info
+
+- [ ] **Footer Actions** (CSS)
+  - File: `src/layout/footer.styl`
+  - Back to top button
+  - Print page button
+  - Share page button
+  - Report issue link
+
+## 🔝 Header Patterns (New)
+
+- [ ] **Site Header Container** (CSS, 97%+ browser support)
+  - File: `src/layout/header.styl`
+  - Header background
+  - Sticky header behavior
+  - Header height
+  - Header border/shadow
+
+- [ ] **Logo Area** (CSS)
+  - File: `src/layout/header.styl`
+  - Logo container styling
+  - Logo image sizing
+  - Site title styling
+  - Tagline styling
+
+- [ ] **Header Search** (CSS)
+  - File: `src/layout/header.styl`
+  - Search input container
+  - Search icon styling
+  - Search expand animation
+  - Quick search trigger
+
+- [ ] **User Menu** (CSS)
+  - File: `src/layout/header.styl`
+  - User menu trigger
+  - Dropdown menu styling
+  - User avatar styling
+  - Notification badge
+
+## 📐 Sidebar Patterns (New)
+
+- [ ] **Sidebar Container** (CSS, 97%+ browser support)
+  - File: `src/layout/sidebar.styl`
+  - Sidebar width
+  - Sidebar background
+  - Sidebar border
+  - Collapsible behavior
+
+- [ ] **Sidebar Sections** (CSS)
+  - File: `src/layout/sidebar.styl`
+  - Section header styling
+  - Section content styling
+  - Collapse/expand toggle
+  - Active section indicator
+
+- [ ] **Sidebar Navigation** (CSS)
+  - File: `src/layout/sidebar.styl`
+  - Nav item styling
+  - Nested nav styling
+  - Active nav indicator
+  - Hover states
+
+- [ ] **Sidebar Widgets** (CSS)
+  - File: `src/layout/sidebar.styl`
+  - Widget container styling
+  - Widget title styling
+  - Widget content styling
+  - Widget divider
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions (@starting-style, transition utilities, keyframes, scroll-driven animations), form elements extended (input, select, checkbox/radio, textarea), table patterns extended (sortable, responsive, zebra striping, sticky headers), navigation patterns (breadcrumbs, TOC, related pages, page navigation), search extended (results, suggestions, advanced form, filters sidebar), footer patterns (container, links, info, actions), header patterns (container, logo area, header search, user menu), sidebar patterns (container, sections, navigation, widgets) |
+
+
+## 💬 Discussion/Talk Pages (New - 2026-03-01 Scout 28)
+
+- [ ] **Talk Page Container** (CSS)
+  - File: `src/talk/container.styl`
+  - Talk page background
+  - Section dividers
+  - Thread nesting indicator
+  - Reply depth styling
+
+- [ ] **Comment Thread** (CSS, 97%+ browser support)
+  - File: `src/talk/threads.styl`
+  - Thread container styling
+  - Thread collapse/expand
+  - Reply button positioning
+  - Thread timestamp display
+
+- [ ] **User Signature** (CSS)
+  - File: `src/talk/signature.styl`
+  - Username link styling
+  - Timestamp styling
+  - User badge indicator
+  - Custom signature container
+
+- [ ] **Archived Discussion** (CSS)
+  - File: `src/talk/archive.styl`
+  - Archive notice styling
+  - Archive link display
+  - Historical indicator
+  - Search archive button
+
+## 📂 Categories & Interwiki (New)
+
+- [ ] **Category Page Layout** (CSS)
+  - File: `src/categories/page.styl`
+  - Category header styling
+  - Subcategory grid
+  - Page list styling
+  - Member count display
+
+- [ ] **Category Links Bar** (CSS)
+  - File: `src/categories/links.styl`
+  - Category tag styling
+  - Hidden category indicator
+  - Sort key display
+  - Edit categories button
+
+- [ ] **Interwiki Links** (CSS)
+  - File: `src/categories/interwiki.styl`
+  - Interwiki icon styling
+  - Language link styling
+  - Sister project links
+  - External wiki indicator
+
+- [ ] **Category Tree** (CSS)
+  - File: `src/categories/tree.styl`
+  - Tree container styling
+  - Expand/collapse nodes
+  - Parent category display
+  - Subcategory count badge
+
+## 📝 Diff Views (New)
+
+- [ ] **Diff Container** (CSS)
+  - File: `src/diff/container.styl`
+  - Diff table layout
+  - Diff legend styling
+  - Side-by-side toggle
+  - Unified diff toggle
+
+- [ ] **Diff Highlighting** (CSS, 97%+ browser support)
+  - File: `src/diff/highlight.styl`
+  - Addition background color
+  - Deletion background color
+  - Change indicator colors
+  - Word-level diff styling
+
+- [ ] **Diff Navigation** (CSS)
+  - File: `src/diff/navigation.styl`
+  - Next/previous change buttons
+  - Change count indicator
+  - Jump to change links
+  - Scroll sync indicator
+
+- [ ] **Diff Summary** (CSS)
+  - File: `src/diff/summary.styl`
+  - Summary container styling
+  - Added lines count
+  - Removed lines count
+  - Edit summary display
+
+## 📁 File/Media Pages (New)
+
+- [ ] **File Page Container** (CSS)
+  - File: `src/file/container.styl`
+  - File page layout
+  - File history section
+  - File usage section
+  - Metadata table styling
+
+- [ ] **File Preview** (CSS)
+  - File: `src/file/preview.styl`
+  - Image preview container
+  - Zoom controls styling
+  - Fullscreen button
+  - File dimensions display
+
+- [ ] **File Information** (CSS)
+  - File: `src/file/info.styl`
+  - Info table styling
+  - MIME type display
+  - File size display
+  - Upload date display
+
+- [ ] **File Licensing** (CSS)
+  - File: `src/file/licensing.styl`
+  - License box styling
+  - License icon display
+  - Attribution requirements
+  - Permission details
+
+## ⚙️ Special Pages (New)
+
+- [ ] **Special Page Header** (CSS)
+  - File: `src/special/header.styl`
+  - Special page title styling
+  - Description text styling
+  - Navigation breadcrumbs
+  - Back to main link
+
+- [ ] **Special Page List** (CSS, 97%+ browser support)
+  - File: `src/special/list.styl`
+  - List item styling
+  - Alternating row colors
+  - Pagination styling
+  - Empty list message
+
+- [ ] **Log Entries** (CSS)
+  - File: `src/special/logs.styl`
+  - Log entry container
+  - Action type indicator
+  - Timestamp styling
+  - User link styling
+
+- [ ] **Query Results** (CSS)
+  - File: `src/special/query.styl`
+  - Results container
+  - Result item styling
+  - Sort controls styling
+  - Filter controls styling
+
+## 👤 User Pages (New)
+
+- [ ] **User Page Header** (CSS)
+  - File: `src/user/header.styl`
+  - Username display styling
+  - User group badges
+  - Edit count display
+  - Registration date display
+
+- [ ] **User Contributions** (CSS)
+  - File: `src/user/contributions.styl`
+  - Contribution list styling
+  - Page link styling
+  - Edit summary display
+  - Time ago indicator
+
+- [ ] **User Talk Notification** (CSS)
+  - File: `src/user/talk.styl`
+  - New message indicator
+  - Talk page link styling
+  - Archive link display
+  - Leave message button
+
+- [ ] **User Stats** (CSS)
+  - File: `src/user/stats.styl`
+  - Stats container styling
+  - Stat item styling
+  - Graph/chart container
+  - Comparison display
+
+## 📜 Revision History (New)
+
+- [ ] **History List** (CSS, 97%+ browser support)
+  - File: `src/history/list.styl`
+  - History table styling
+  - Revision row styling
+  - Selected revision highlight
+  - Checkbox styling for diff
+
+- [ ] **Revision Info** (CSS)
+  - File: `src/history/info.styl`
+  - Timestamp styling
+  - User link styling
+  - Edit summary styling
+  - Minor edit indicator
+
+- [ ] **Revision Actions** (CSS)
+  - File: `src/history/actions.styl`
+  - View diff button
+  - View source button
+  - Rollback button
+  - Thank button
+
+- [ ] **History Navigation** (CSS)
+  - File: `src/history/navigation.styl`
+  - Pagination styling
+  - Date range selector
+  - User filter input
+  - Tag filter dropdown
+
+## ⚔️ Edit Conflicts (New)
+
+- [ ] **Conflict Warning** (CSS)
+  - File: `src/conflict/warning.styl`
+  - Warning container styling
+  - Conflict explanation text
+  - Resolution instructions
+  - Help link styling
+
+- [ ] **Conflict Diff** (CSS)
+  - File: `src/conflict/diff.styl`
+  - Your version styling
+  - Stored version styling
+  - Conflict markers
+  - Diff highlighting
+
+- [ ] **Merge Interface** (CSS)
+  - File: `src/conflict/merge.styl`
+  - Merge container styling
+  - Version selector styling
+  - Preview pane styling
+  - Accept/reject buttons
+
+- [ ] **Conflict Resolution** (CSS)
+  - File: `src/conflict/resolution.styl`
+  - Resolution options styling
+  - Combined text preview
+  - Save resolution button
+  - Cancel and retry button
+
+## 👁️ Watchlist (New)
+
+- [ ] **Watchlist Container** (CSS)
+  - File: `src/watchlist/container.styl`
+  - Watchlist layout
+  - Section headers
+  - Filter controls
+  - Edit watchlist button
+
+- [ ] **Watchlist Item** (CSS, 97%+ browser support)
+  - File: `src/watchlist/item.styl`
+  - Page title styling
+  - Change indicator
+  - Timestamp display
+  - Unwatch button styling
+
+- [ ] **Watchlist Preferences** (CSS)
+  - File: `src/watchlist/preferences.styl`
+  - Preferences container
+  - Toggle options styling
+  - Namespace filters
+  - Save preferences button
+
+- [ ] **Watchstar Indicator** (CSS)
+  - File: `src/watchlist/watchstar.styl`
+  - Watch/unwatch star icon
+  - Hover state animation
+  - Watched state indicator
+  - Watchlist count badge
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions, form elements extended, table patterns extended, navigation patterns, search extended, footer patterns, header patterns, sidebar patterns |
+| 2026-03-01 | Twenty-eighth scout | Added discussion/talk pages (container, comment thread, user signature, archived discussion), categories & interwiki (category page, category links, interwiki links, category tree), diff views (container, highlighting, navigation, summary), file/media pages (container, preview, information, licensing), special pages (header, list, log entries, query results), user pages (header, contributions, talk notification, stats), revision history (history list, revision info, revision actions, history navigation), edit conflicts (warning, conflict diff, merge interface, conflict resolution), watchlist (container, item, preferences, watchstar indicator) |
+
+
+## 🔐 Login & Registration (New - 2026-03-02 Scout 29)
+
+- [ ] **Login Form** (CSS, 97%+ browser support)
+  - File: `src/auth/login.styl`
+  - Form container styling
+  - Input field styling
+  - Submit button styling
+  - Remember me checkbox
+
+- [ ] **Registration Form** (CSS)
+  - File: `src/auth/register.styl`
+  - Form container styling
+  - Field validation styling
+  - Password strength indicator
+  - Terms agreement checkbox
+
+- [ ] **Password Reset** (CSS)
+  - File: `src/auth/reset.styl`
+  - Reset form container
+  - Email input styling
+  - Submit button styling
+  - Success message styling
+
+- [ ] **OAuth Providers** (CSS)
+  - File: `src/auth/oauth.styl`
+  - Provider button styling
+  - Provider icon display
+  - Divider styling
+  - Return URL display
+
+## 🛡️ Admin & Moderation (New)
+
+- [ ] **Admin Panel** (CSS)
+  - File: `src/admin/panel.styl`
+  - Panel container styling
+  - Section navigation
+  - Quick action buttons
+  - Status indicators
+
+- [ ] **Block/Unblock UI** (CSS)
+  - File: `src/admin/block.styl`
+  - Block form styling
+  - Duration selector
+  - Reason textarea
+  - Block log preview
+
+- [ ] **Protect Page** (CSS)
+  - File: `src/admin/protect.styl`
+  - Protection form container
+  - Protection level selector
+  - Expiry selector
+  - Cascade option styling
+
+- [ ] **Delete/Restore** (CSS)
+  - File: `src/admin/delete.styl`
+  - Delete form container
+  - Reason input styling
+  - Revision selection
+  - Confirm button styling
+
+## 📊 Recent Changes (New)
+
+- [ ] **Recent Changes List** (CSS, 97%+ browser support)
+  - File: `src/recent/changes.styl`
+  - Changes table styling
+  - Row highlighting
+  - Namespace indicator
+  - Timestamp display
+
+- [ ] **Change Filters** (CSS)
+  - File: `src/recent/filters.styl`
+  - Filter panel container
+  - Tag filter styling
+  - Namespace selector
+  - User filter input
+
+- [ ] **Change Legend** (CSS)
+  - File: `src/recent/legend.styl`
+  - Legend container
+  - Letter indicators
+  - Color key display
+  - Expandable legend
+
+- [ ] **Live Update Indicator** (CSS)
+  - File: `src/recent/live.styl`
+  - Live update toggle
+  - Update count badge
+  - Pause/resume button
+  - Auto-scroll indicator
+
+## 📝 Edit Interface (New)
+
+- [ ] **Edit Container** (CSS)
+  - File: `src/edit/container.styl`
+  - Edit form layout
+  - Toolbar positioning
+  - Textarea container
+  - Summary section
+
+- [ ] **Edit Toolbar** (CSS, 97%+ browser support)
+  - File: `src/edit/toolbar.styl`
+  - Toolbar container
+  - Button group styling
+  - Dropdown menus
+  - Special character picker
+
+- [ ] **Edit Summary** (CSS)
+  - File: `src/edit/summary.styl`
+  - Summary input styling
+  - Preset summary buttons
+  - Character count display
+  - Minor edit checkbox
+
+- [ ] **Edit Preview** (CSS)
+  - File: `src/edit/preview.styl`
+  - Preview container
+  - Loading indicator
+  - Diff toggle button
+  - Refresh preview button
+
+## 📋 Contributions (New)
+
+- [ ] **Contributions List** (CSS, 97%+ browser support)
+  - File: `src/contributions/list.styl`
+  - List container styling
+  - Contribution item styling
+  - Tag badges
+  - Date grouping
+
+- [ ] **Contribution Stats** (CSS)
+  - File: `src/contributions/stats.styl`
+  - Stats container
+  - Edit count display
+  - Activity graph
+  - Namespace breakdown
+
+- [ ] **Contribution Filters** (CSS)
+  - File: `src/contributions/filters.styl`
+  - Filter container
+  - Namespace selector
+  - Date range picker
+  - Tag filter input
+
+- [ ] **Top Contributors** (CSS)
+  - File: `src/contributions/top.styl`
+  - Leaderboard container
+  - Rank item styling
+  - User avatar display
+  - Contribution count
+
+## 🏷️ Tags & Markers (New)
+
+- [ ] **Tag Display** (CSS)
+  - File: `src/tags/display.styl`
+  - Tag container styling
+  - Tag badge styling
+  - Tag description tooltip
+  - Remove tag button
+
+- [ ] **Tag Manager** (CSS)
+  - File: `src/tags/manager.styl`
+  - Manager container
+  - Tag list styling
+  - Add tag input
+  - Delete tag button
+
+- [ ] **Edit Tag UI** (CSS)
+  - File: `src/tags/edit.styl`
+  - Tag form container
+  - Tag name input
+  - Description textarea
+  - Active status toggle
+
+- [ ] **Tag Statistics** (CSS)
+  - File: `src/tags/stats.styl`
+  - Stats container
+  - Usage count display
+  - Recent changes count
+  - Hit count display
+
+## 📑 Page Information (New)
+
+- [ ] **Info Container** (CSS)
+  - File: `src/info/container.styl`
+  - Info page layout
+  - Section headers
+  - Data table styling
+  - Navigation links
+
+- [ ] **Page Stats** (CSS)
+  - File: `src/info/stats.styl`
+  - Stats container
+  - View count display
+  - Edit count display
+  - Author display
+
+- [ ] **Page Properties** (CSS)
+  - File: `src/info/properties.styl`
+  - Properties list
+  - Redirect indicator
+  - Page ID display
+  - Last modified info
+
+- [ ] **Linked Pages** (CSS)
+  - File: `src/info/linked.styl`
+  - Links list container
+  - Link item styling
+  - Broken link indicator
+  - External link marker
+
+## 🔔 Notifications (New)
+
+- [ ] **Notification Badge** (CSS, 97%+ browser support)
+  - File: `src/notifications/badge.styl`
+  - Badge container
+  - Count display
+  - Alert color variants
+  - Pulse animation
+
+- [ ] **Notification Panel** (CSS)
+  - File: `src/notifications/panel.styl`
+  - Panel container
+  - Notification item
+  - Mark read button
+  - Clear all button
+
+- [ ] **Notification Types** (CSS)
+  - File: `src/notifications/types.styl`
+  - Mention notification
+  - Edit notification
+  - Talk page notification
+  - Watchlist notification
+
+- [ ] **Notification Preferences** (CSS)
+  - File: `src/notifications/preferences.styl`
+  - Preferences container
+  - Toggle switches
+  - Email options
+  - Frequency selector
+
+## 📰 Flow/Structured Discussions (New)
+
+- [ ] **Flow Board** (CSS)
+  - File: `src/flow/board.styl`
+  - Board container
+  - Topic list styling
+  - New topic button
+  - Sort controls
+
+- [ ] **Flow Topic** (CSS, 97%+ browser support)
+  - File: `src/flow/topic.styl`
+  - Topic container
+  - Reply thread styling
+  - Collapsed state
+  - Reply count badge
+
+- [ ] **Flow Post** (CSS)
+  - File: `src/flow/post.styl`
+  - Post container
+  - Author info display
+  - Timestamp display
+  - Actions menu
+
+- [ ] **Flow Editor** (CSS)
+  - File: `src/flow/editor.styl`
+  - Editor container
+  - Toolbar styling
+  - Preview toggle
+  - Submit button
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions, form elements extended, table patterns extended, navigation patterns, search extended, footer patterns, header patterns, sidebar patterns |
+| 2026-03-01 | Twenty-eighth scout | Added discussion/talk pages, categories & interwiki, diff views, file/media pages, special pages, user pages, revision history, edit conflicts, watchlist |
+| 2026-03-02 | Twenty-ninth scout | Added login & registration (login form, registration form, password reset, OAuth providers), admin & moderation (admin panel, block/unblock, protect page, delete/restore), recent changes (changes list, filters, legend, live update), edit interface (edit container, toolbar, summary, preview), contributions (list, stats, filters, top contributors), tags & markers (display, manager, edit UI, statistics), page information (info container, stats, properties, linked pages), notifications (badge, panel, types, preferences), Flow/structured discussions (board, topic, post, editor) |
+
+
+## 🖼️ Gallery & Media (New - 2026-03-02 Scout 30)
+
+- [ ] **Gallery Container** (CSS, 97%+ browser support)
+  - File: `src/gallery/container.styl`
+  - Gallery grid layout
+  - Gallery mode selector
+  - Item spacing control
+  - Caption display toggle
+
+- [ ] **Gallery Item** (CSS)
+  - File: `src/gallery/item.styl`
+  - Image container styling
+  - Thumbnail placeholder
+  - Caption text styling
+  - Border/frame styling
+
+- [ ] **Gallery Slider** (CSS)
+  - File: `src/gallery/slider.styl`
+  - Slider container
+  - Navigation arrows
+  - Thumbnail strip
+  - Caption overlay
+
+- [ ] **Gallery Pack** (CSS)
+  - File: `src/gallery/pack.styl`
+  - Pack layout container
+  - Image positioning
+  - Gap handling
+  - Nolines mode
+
+## 🔧 Gadgets & Extensions (New)
+
+- [ ] **Gadget Manager** (CSS)
+  - File: `src/gadgets/manager.styl`
+  - Gadget list container
+  - Gadget item styling
+  - Toggle switch styling
+  - Description display
+
+- [ ] **Gadget Preferences** (CSS)
+  - File: `src/gadgets/preferences.styl`
+  - Preferences container
+  - Option rows styling
+  - Save button styling
+  - Reset to defaults
+
+- [ ] **Extension Info** (CSS)
+  - File: `src/gadgets/extensions.styl`
+  - Extension card styling
+  - Version display
+  - License display
+  - Documentation link
+
+- [ ] **Gadget Dependencies** (CSS)
+  - File: `src/gadgets/deps.styl`
+  - Dependency list container
+  - Required badge styling
+  - Version requirement display
+  - Install prompt
+
+## 📚 Documentation & Help (New)
+
+- [ ] **Help Page Layout** (CSS)
+  - File: `src/help/layout.styl`
+  - Help page container
+  - Section navigation
+  - TOC styling
+  - Related links
+
+- [ ] **Documentation Templates** (CSS)
+  - File: `src/help/templates.styl`
+  - Template container
+  - Parameter table styling
+  - Example display
+  - Copy code button
+
+- [ ] **FAQ Accordion** (CSS, 97%+ browser support)
+  - File: `src/help/faq.styl`
+  - Accordion container
+  - Question row styling
+  - Expand/collapse indicator
+  - Answer content area
+
+- [ ] **Tutorial Steps** (CSS)
+  - File: `src/help/tutorial.styl`
+  - Step container styling
+  - Step number indicator
+  - Progress bar styling
+  - Next/previous buttons
+
+## 🔗 Interwiki & Sister Projects (New)
+
+- [ ] **Interwiki Links Panel** (CSS)
+  - File: `src/interwiki/panel.styl`
+  - Panel container
+  - Project icon display
+  - Link item styling
+  - Language variant selector
+
+- [ ] **Sister Project Box** (CSS)
+  - File: `src/interwiki/sister.styl`
+  - Box container styling
+  - Project logo display
+  - Description text
+  - Visit link button
+
+- [ ] **Language Links** (CSS, 97%+ browser support)
+  - File: `src/interwiki/languages.styl`
+  - Language list container
+  - Language item styling
+  - Current language indicator
+  - Add translation link
+
+- [ ] **Wikidata Integration** (CSS)
+  - File: `src/interwiki/wikidata.styl`
+  - Wikidata badge styling
+  - Item ID display
+  - Edit on Wikidata link
+  - Synchronization indicator
+
+## 📦 Templates Extended (New)
+
+- [ ] **Template Documentation** (CSS)
+  - File: `src/templates/docs.styl`
+  - Documentation container
+  - Usage examples styling
+  - Parameter description
+  - See also section
+
+- [ ] **Infobox Extended** (CSS, 97%+ browser support)
+  - File: `src/templates/infobox.styl`
+  - Infobox container
+  - Header image styling
+  - Data row styling
+  - Collapsible sections
+
+- [ ] **Navbox Styling** (CSS)
+  - File: `src/templates/navbox.styl`
+  - Navbox container
+  - Group header styling
+  - List item styling
+  - Collapse/expand toggle
+
+- [ ] **Message Boxes** (CSS)
+  - File: `src/templates/ambox.styl`
+  - Ambox container
+  - Type indicator (warning, info, etc.)
+  - Icon display area
+  - Dismiss button
+
+## 📊 Parser & Output (New)
+
+- [ ] **TOC Extended** (CSS, 97%+ browser support)
+  - File: `src/parser/toc.styl`
+  - TOC container styling
+  - Numbered list styling
+  - Level indentation
+  - Sticky TOC option
+
+- [ ] **Reference List** (CSS)
+  - File: `src/parser/references.styl`
+  - References container
+  - Reference item styling
+  - Backlink indicator
+  - Group separator
+
+- [ ] **Math Output** (CSS)
+  - File: `src/parser/math.styl`
+  - Math container styling
+  - Formula display
+  - Equation numbering
+  - Overflow handling
+
+- [ ] **Citation Display** (CSS)
+  - File: `src/parser/citation.styl`
+  - Citation container
+  - Author/date styling
+  - Source link styling
+  - Citation error indicator
+
+## 🔧 Maintenance & Tools (New)
+
+- [ ] **Maintenance Reports** (CSS)
+  - File: `src/maintenance/reports.styl`
+  - Report container
+  - Issue list styling
+  - Severity indicator
+  - Fix action button
+
+- [ ] **Broken Links Report** (CSS)
+  - File: `src/maintenance/broken.styl`
+  - Links list container
+  - Link item styling
+  - HTTP status badge
+  - Check date display
+
+- [ ] **Wanted Pages** (CSS)
+  - File: `src/maintenance/wanted.styl`
+  - Wanted list container
+  - Page item styling
+  - Link count badge
+  - Create page button
+
+- [ ] **Orphaned Pages** (CSS)
+  - File: `src/maintenance/orphaned.styl`
+  - Orphan list container
+  - Page item styling
+  - Last edit date
+  - Review action button
+
+## 📈 Analytics Extended (New)
+
+- [ ] **Page View Stats** (CSS, 97%+ browser support)
+  - File: `src/analytics/pageviews.styl`
+  - Stats container
+  - Chart display area
+  - Date range selector
+  - Comparison toggle
+
+- [ ] **Edit Statistics** (CSS)
+  - File: `src/analytics/edits.styl`
+  - Edit count display
+  - Editor list styling
+  - Time period selector
+  - Export button
+
+- [ ] **Traffic Sources** (CSS)
+  - File: `src/analytics/traffic.styl`
+  - Sources container
+  - Source item styling
+  - Percentage bar
+  - Referrer display
+
+- [ ] **Search Analytics** (CSS)
+  - File: `src/analytics/search.styl`
+  - Search stats container
+  - Popular queries list
+  - Zero results display
+  - Search trends chart
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions, form elements extended, table patterns extended, navigation patterns, search extended, footer patterns, header patterns, sidebar patterns |
+| 2026-03-01 | Twenty-eighth scout | Added discussion/talk pages, categories & interwiki, diff views, file/media pages, special pages, user pages, revision history, edit conflicts, watchlist |
+| 2026-03-02 | Twenty-ninth scout | Added login & registration, admin & moderation, recent changes, edit interface, contributions, tags & markers, page information, notifications, Flow/structured discussions |
+| 2026-03-02 | Thirtieth scout | Added gallery & media (gallery container, item, slider, pack), gadgets & extensions (gadget manager, preferences, extension info, dependencies), documentation & help (help page layout, documentation templates, FAQ accordion, tutorial steps), interwiki & sister projects (interwiki links panel, sister project box, language links, Wikidata integration), templates extended (template documentation, infobox extended, navbox styling, message boxes), parser & output (TOC extended, reference list, math output, citation display), maintenance & tools (maintenance reports, broken links, wanted pages, orphaned pages), analytics extended (page view stats, edit statistics, traffic sources, search analytics) |
+
+
+## 🔌 API & Developer Documentation (New - 2026-03-02 Scout 31)
+
+- [ ] **API Sandbox** (CSS, 97%+ browser support)
+  - File: `src/api/sandbox.styl`
+  - Sandbox container
+  - Endpoint selector
+  - Parameter inputs styling
+  - Response display area
+
+- [ ] **API Documentation** (CSS)
+  - File: `src/api/docs.styl`
+  - Documentation container
+  - Endpoint list styling
+  - Method badge (GET/POST/etc.)
+  - Code example styling
+
+- [ ] **OAuth Flow** (CSS)
+  - File: `src/api/oauth.styl`
+  - OAuth dialog styling
+  - Permission list
+  - Authorize button
+  - Token display area
+
+- [ ] **Rate Limit Display** (CSS)
+  - File: `src/api/ratelimit.styl`
+  - Limit indicator styling
+  - Remaining requests display
+  - Reset time display
+  - Warning threshold
+
+## 🖥️ Mobile & Responsive Extended (New)
+
+- [ ] **Mobile Navigation** (CSS, 97%+ browser support)
+  - File: `src/mobile/navigation.styl`
+  - Hamburger menu styling
+  - Slide-out drawer
+  - Touch-friendly targets
+  - Swipe gestures
+
+- [ ] **Mobile Tables** (CSS)
+  - File: `src/mobile/tables.styl`
+  - Stacked table pattern
+  - Priority column display
+  - Horizontal scroll wrapper
+  - Expand row button
+
+- [ ] **Touch Interactions** (CSS)
+  - File: `src/mobile/touch.styl`
+  - Touch target sizing
+  - Long-press menus
+  - Swipe actions
+  - Pull to refresh
+
+- [ ] **Offline Support** (CSS)
+  - File: `src/mobile/offline.styl`
+  - Offline indicator styling
+  - Cached content badge
+  - Sync status display
+  - Retry button styling
+
+## ♿ Accessibility Extended (New)
+
+- [ ] **Skip Links** (CSS, 97%+ browser support)
+  - File: `src/a11y/skiplinks.styl`
+  - Skip to content link
+  - Skip to navigation link
+  - Skip to search link
+  - Focus styling
+
+- [ ] **Focus Management** (CSS)
+  - File: `src/a11y/focus.styl`
+  - :focus-visible styling
+  - Custom focus rings
+  - Focus trap styling
+  - Focus indicator animation
+
+- [ ] **Screen Reader Content** (CSS)
+  - File: `src/a11y/sr.styl`
+  - sr-only utility class
+  - Visually hidden patterns
+  - Announcer region
+  - Live region styling
+
+- [ ] **Color Contrast** (CSS)
+  - File: `src/a11y/contrast.styl`
+  - High contrast mode support
+  - @media (prefers-contrast)
+  - Forced-colors adaptation
+  - System color keywords
+
+## ⚡ Performance Extended (New)
+
+- [ ] **content-visibility Patterns** (CSS, 85%+ browser support)
+  - File: `src/performance/content.styl`
+  - Skip rendering off-screen content
+  - contain-intrinsic-size pairing
+  - Apply to long lists
+  - Note: Test with JS lazy loading
+
+- [ ] **CSS Containment** (CSS, 97%+ browser support)
+  - File: `src/performance/containment.styl`
+  - Layout containment
+  - Paint containment
+  - Size containment
+  - Style containment
+
+- [ ] **will-change Optimization** (CSS, 95%+ browser support)
+  - File: `src/performance/willchange.styl`
+  - GPU layer hints
+  - Apply to animated elements
+  - Remove after animation
+  - Performance monitoring
+
+- [ ] **Dynamic Viewport Units** (CSS, 92%+ browser support)
+  - File: `src/performance/viewport.styl`
+  - dvh for mobile
+  - svh for fixed elements
+  - lvh for full-height
+  - Fallback patterns
+
+## 🎬 Animation Extended (New)
+
+- [ ] **@starting-style Patterns** (CSS, 85%+ browser support)
+  - File: `src/animation/starting.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Entry animations
+  - Dialog open transitions
+  - Dropdown reveal
+  - Respect prefers-reduced-motion
+
+- [ ] **Scroll-Driven Animations** (CSS, 85%+ browser support)
+  - File: `src/animation/scroll.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Progress bar animation
+  - Reveal on scroll
+  - Parallax effects
+  - Timeline scroller
+
+- [ ] **View Transitions** (CSS, 85%+ browser support)
+  - File: `src/animation/transitions.styl`
+  - Note: Wrap in `@css{}` for Stylus
+  - Page transition animation
+  - Element morphing
+  - Cross-fade effects
+  - Navigation transitions
+
+- [ ] **Keyframe Utilities** (CSS, 100% browser support)
+  - File: `src/animation/keyframes.styl`
+  - Predefined animations
+  - Fade in/out
+  - Slide animations
+  - Pulse/shake effects
+
+## 📊 Data Visualization (New)
+
+- [ ] **Chart Containers** (CSS, 97%+ browser support)
+  - File: `src/data/charts.styl`
+  - Chart wrapper styling
+  - Legend positioning
+  - Axis label styling
+  - Tooltip container
+
+- [ ] **Data Table Visual** (CSS)
+  - File: `src/data/datatable.styl`
+  - Sortable headers
+  - Filter row styling
+  - Pagination controls
+  - Export button
+
+- [ ] **Progress Indicators** (CSS)
+  - File: `src/data/progress.styl`
+  - Progress bar styling
+  - Circular progress
+  - Step indicators
+  - Completion badges
+
+- [ ] **Stat Cards** (CSS)
+  - File: `src/data/stats.styl`
+  - Card container
+  - Big number display
+  - Trend indicator
+  - Comparison display
+
+## 🔗 External Services (New)
+
+- [ ] **Social Share Buttons** (CSS, 97%+ browser support)
+  - File: `src/external/share.styl`
+  - Share button container
+  - Platform icon styling
+  - Share count display
+  - Copy link button
+
+- [ ] **Embed Containers** (CSS)
+  - File: `src/external/embeds.styl`
+  - Embed wrapper styling
+  - Aspect ratio container
+  - Loading placeholder
+  - Error fallback
+
+- [ ] **Map Embeds** (CSS)
+  - File: `src/external/maps.styl`
+  - Map container styling
+  - Marker info popup
+  - Fullscreen toggle
+  - Static map fallback
+
+- [ ] **Video Embeds** (CSS)
+  - File: `src/external/video.styl`
+  - Video container
+  - Play button overlay
+  - Thumbnail display
+  - Duration badge
+
+## 🧪 Testing & QA (New)
+
+- [ ] **Test Results** (CSS)
+  - File: `src/testing/results.styl`
+  - Results container
+  - Pass/fail indicators
+  - Error message styling
+  - Rerun test button
+
+- [ ] **Comparison View** (CSS, 97%+ browser support)
+  - File: `src/testing/comparison.styl`
+  - Side-by-side container
+  - Diff highlight styling
+  - Toggle controls
+  - Export comparison
+
+- [ ] **Preview Mode** (CSS)
+  - File: `src/testing/preview.styl`
+  - Preview container
+  - Device frame styling
+  - Viewport size selector
+  - Refresh preview button
+
+- [ ] **Sandbox Mode** (CSS)
+  - File: `src/testing/sandbox.styl`
+  - Sandbox indicator
+  - Reset button styling
+  - Warning banner
+  - Exit sandbox button
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions, form elements extended, table patterns extended, navigation patterns, search extended, footer patterns, header patterns, sidebar patterns |
+| 2026-03-01 | Twenty-eighth scout | Added discussion/talk pages, categories & interwiki, diff views, file/media pages, special pages, user pages, revision history, edit conflicts, watchlist |
+| 2026-03-02 | Twenty-ninth scout | Added login & registration, admin & moderation, recent changes, edit interface, contributions, tags & markers, page information, notifications, Flow/structured discussions |
+| 2026-03-02 | Thirtieth scout | Added gallery & media, gadgets & extensions, documentation & help, interwiki & sister projects, templates extended, parser & output, maintenance & tools, analytics extended |
+| 2026-03-02 | Thirty-first scout | Added API & developer documentation (API sandbox, documentation, OAuth flow, rate limit display), mobile & responsive extended (mobile navigation, tables, touch interactions, offline support), accessibility extended (skip links, focus management, screen reader content, color contrast), performance extended (content-visibility, CSS containment, will-change optimization, dynamic viewport units), animation extended (@starting-style, scroll-driven, view transitions, keyframe utilities), data visualization (chart containers, data table visual, progress indicators, stat cards), external services (social share buttons, embed containers, map embeds, video embeds), testing & QA (test results, comparison view, preview mode, sandbox mode) |
+
+
+## 📚 Learning & Tutorials (New - 2026-03-02 Scout 32)
+
+- [ ] **Tutorial Container** (CSS, 97%+ browser support)
+  - File: `src/learn/tutorial.styl`
+  - Tutorial wrapper styling
+  - Step indicator dots
+  - Progress bar display
+  - Skip tutorial button
+
+- [ ] **Code Playground** (CSS)
+  - File: `src/learn/playground.styl`
+  - Playground container
+  - Editor/preview split
+  - Run code button
+  - Reset button styling
+
+- [ ] **Quiz Interface** (CSS)
+  - File: `src/learn/quiz.styl`
+  - Question container
+  - Answer option styling
+  - Correct/incorrect feedback
+  - Next question button
+
+- [ ] **Achievement Badge** (CSS)
+  - File: `src/learn/badge.styl`
+  - Badge container styling
+  - Badge icon display
+  - Progress to unlock
+  - Share achievement button
+
+## 🔍 Search Extended (New)
+
+- [ ] **Search Filters** (CSS, 97%+ browser support)
+  - File: `src/search/filters.styl`
+  - Filter panel container
+  - Filter chip styling
+  - Active filter count
+  - Clear all button
+
+- [ ] **Search Suggestions** (CSS)
+  - File: `src/search/suggestions.styl`
+  - Suggestion dropdown
+  - Suggestion item styling
+  - Category badges
+  - Recent searches section
+
+- [ ] **Search Results** (CSS)
+  - File: `src/search/results.styl`
+  - Results container
+  - Result item styling
+  - Highlight matching text
+  - Pagination controls
+
+- [ ] **Advanced Search** (CSS)
+  - File: `src/search/advanced.styl`
+  - Advanced panel toggle
+  - Field selector styling
+  - Date range picker
+  - Boolean operators UI
+
+## 📊 Tables Extended (New)
+
+- [ ] **Sortable Headers** (CSS, 97%+ browser support)
+  - File: `src/tables/sortable.styl`
+  - Header click styling
+  - Sort direction indicator
+  - Active sort highlight
+  - Multi-sort indicator
+
+- [ ] **Sticky Headers** (CSS)
+  - File: `src/tables/sticky.styl`
+  - Sticky header styling
+  - Scroll shadow effect
+  - Resize column handle
+  - Column visibility toggle
+
+- [ ] **Responsive Tables** (CSS)
+  - File: `src/tables/responsive.styl`
+  - Horizontal scroll wrapper
+  - Priority column display
+  - Stack on mobile
+  - Expand row details
+
+- [ ] **Data Grid** (CSS)
+  - File: `src/tables/grid.styl`
+  - Grid container styling
+  - Cell styling
+  - Row hover effect
+  - Selection checkbox
+
+## 🎨 Theming Extended (New)
+
+- [ ] **Theme Variables** (CSS, 97%+ browser support)
+  - File: `src/theme/variables.styl`
+  - CSS custom properties
+  - Color token system
+  - Spacing scale
+  - Typography scale
+
+- [ ] **Theme Switcher** (CSS)
+  - File: `src/theme/switcher.styl`
+  - Switcher dropdown
+  - Theme preview card
+  - Apply button styling
+  - Custom theme option
+
+- [ ] **High Contrast** (CSS)
+  - File: `src/theme/contrast.styl`
+  - @media (prefers-contrast)
+  - Forced-colors support
+  - System color keywords
+  - Focus ring enhancement
+
+- [ ] **Print Theme** (CSS)
+  - File: `src/theme/print.styl`
+  - @media print overrides
+  - Remove backgrounds
+  - Optimize for B&W
+  - Page break controls
+
+## 🔗 Navigation Extended (New)
+
+- [ ] **Breadcrumb Extended** (CSS, 97%+ browser support)
+  - File: `src/nav/breadcrumb.styl`
+  - Breadcrumb container
+  - Separator styling
+  - Truncation indicator
+  - Home icon styling
+
+- [ ] **Quick Nav** (CSS)
+  - File: `src/nav/quick.styl`
+  - Quick nav container
+  - Jump link styling
+  - Section indicator
+  - Back to top button
+
+- [ ] **Related Pages** (CSS)
+  - File: `src/nav/related.styl`
+  - Related container
+  - Link card styling
+  - Category badge
+  - See more button
+
+- [ ] **Page Tree** (CSS)
+  - File: `src/nav/tree.styl`
+  - Tree container
+  - Node styling
+  - Expand/collapse toggle
+  - Current page highlight
+
+## ⚡ Interactive Elements (New)
+
+- [ ] **Copy Button** (CSS, 97%+ browser support)
+  - File: `src/ui/copy.styl`
+  - Copy button styling
+  - Success feedback
+  - Error feedback
+  - Position in code blocks
+
+- [ ] **Tooltip Extended** (CSS)
+  - File: `src/ui/tooltip.styl`
+  - Tooltip container
+  - Arrow positioning
+  - Rich content support
+  - Delay animation
+
+- [ ] **Popover** (CSS)
+  - File: `src/ui/popover.styl`
+  - Popover container
+  - Close button styling
+  - Arrow positioning
+  - Keyboard dismiss
+
+- [ ] **Disclosure Widget** (CSS)
+  - File: `src/ui/disclosure.styl`
+  - Summary styling
+  - Expand/collapse icon
+  - Content transition
+  - Nested disclosure
+
+## 📐 Layout Utilities (New)
+
+- [ ] **Grid Utilities** (CSS, 97%+ browser support)
+  - File: `src/util/grid.styl`
+  - Grid container classes
+  - Column span utilities
+  - Gap utilities
+  - Auto-fit/fix patterns
+
+- [ ] **Flex Utilities** (CSS)
+  - File: `src/util/flex.styl`
+  - Flex container classes
+  - Alignment utilities
+  - Gap utilities
+  - Order utilities
+
+- [ ] **Container Queries** (CSS, 89%+ browser support)
+  - File: `src/util/containers.styl`
+  - Container type classes
+  - Query-based variants
+  - Fallback patterns
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **Logical Properties** (CSS, 97%+ browser support)
+  - File: `src/util/logical.styl`
+  - margin-inline/block
+  - padding-inline/block
+  - inset properties
+  - RTL-friendly utilities
+
+## Completion Log
+
+| Date | Scout | Changes |
+|------|-------|---------|
+| 2026-02-27 | Initial | Baseline established |
+| 2026-03-01 | Twenty-sixth scout | Added responsive design patterns, print extended, state patterns, code & syntax extended, spacing system, dark mode support, link patterns |
+| 2026-03-01 | Twenty-seventh scout | Added animation & transitions, form elements extended, table patterns extended, navigation patterns, search extended, footer patterns, header patterns, sidebar patterns |
+| 2026-03-01 | Twenty-eighth scout | Added discussion/talk pages, categories & interwiki, diff views, file/media pages, special pages, user pages, revision history, edit conflicts, watchlist |
+| 2026-03-02 | Twenty-ninth scout | Added login & registration, admin & moderation, recent changes, edit interface, contributions, tags & markers, page information, notifications, Flow/structured discussions |
+| 2026-03-02 | Thirtieth scout | Added gallery & media, gadgets & extensions, documentation & help, interwiki & sister projects, templates extended, parser & output, maintenance & tools, analytics extended |
+| 2026-03-02 | Thirty-first scout | Added API & developer documentation, mobile & responsive extended, accessibility extended, performance extended, animation extended, data visualization, external services, testing & QA |
+| 2026-03-02 | Thirty-second scout | Added learning & tutorials (tutorial container, code playground, quiz interface, achievement badge), search extended (search filters, suggestions, results, advanced search), tables extended (sortable headers, sticky headers, responsive tables, data grid), theming extended (theme variables, switcher, high contrast, print theme), navigation extended (breadcrumb extended, quick nav, related pages, page tree), interactive elements (copy button, tooltip extended, popover, disclosure widget), layout utilities (grid utilities, flex utilities, container queries, logical properties) |
