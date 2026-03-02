@@ -816,6 +816,25 @@ h6:hover .mw-editsection
     background-color rgba($arch-blue, 0.1)
 
 // =============================================================================
+// INTERPOLATE-SIZE FOR AUTO TRANSITIONS
+// =============================================================================
+
+// Enable smooth transitions to/from auto values
+// Browser support: 85%+ (Chrome 129+, Safari 17.5+)
+// Note: Wrap in @css{} for Stylus compatibility
+
+@css {
+  // Collapsible sections can now animate to/from auto
+  .mw-collapsible-content,
+  .vector-toc ul,
+  .toc ul,
+  .vector-dropdown-content,
+  .vector-menu-content {
+    interpolate-size: allow-keywords;
+  }
+}
+
+// =============================================================================
 // TABLE OF CONTENTS ENHANCEMENTS
 // =============================================================================
 
@@ -845,7 +864,7 @@ h6:hover .mw-editsection
   // Smooth collapse animation
   ul
     overflow hidden
-    transition max-height 0.3s ease
+    transition height 0.3s ease, max-height 0.3s ease
 
 // TOC sticky on scroll (for wide screens)
 @media (min-width: 1200px)
