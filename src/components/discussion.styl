@@ -173,3 +173,255 @@
       background-color rgba($secondary-red, 0.1)
       color $secondary-red
 
+
+// =============================================================================
+// ENHANCED TALK PAGE FORMATTING
+// =============================================================================
+
+// Talk page container
+.mw-talkpage
+.talk-page
+  margin 1em 0
+
+// Enhanced indentation levels with visual distinction
+// Each level gets progressively darker background and different border color
+.mw-parser-output
+  // Level 1 - base
+  > dl
+    margin 0.75em 0
+    padding 0.75em 1em
+    background-color rgba($arch-blue, 0.02)
+    border-radius $border-radius-sm
+
+    // Level 2
+    > dd > dl
+      margin-inline-start 0
+      padding 0.6em 0.8em
+      background-color rgba($arch-blue, 0.04)
+      border-inline-start 3px solid rgba($arch-blue, 0.4)
+
+      // Level 3
+      > dd > dl
+        background-color rgba($arch-blue, 0.06)
+        border-inline-start-color rgba($secondary-blue, 0.5)
+
+        // Level 4
+        > dd > dl
+          background-color rgba($arch-blue, 0.08)
+          border-inline-start-color rgba($orange, 0.4)
+
+          // Level 5+
+          > dd > dl
+            background-color rgba($arch-blue, 0.1)
+            border-inline-start-color rgba($green, 0.4)
+
+// Comment container
+.mw-comment
+.talk-comment
+  position relative
+  padding 0.5em 0
+
+// Enhanced user signature styling
+.mw-userlink
+.user-signature
+  a
+    color $secondary-blue
+    font-weight 500
+    text-decoration none
+    padding 0.1em 0.3em
+    border-radius 2px
+    transition all 0.2s ease
+
+    &:hover
+      color $arch-blue
+      background-color rgba($arch-blue, 0.1)
+
+    &.mw-anonuserlink
+      color rgba($orange, 0.9)
+      font-style italic
+
+      &::before
+        content "anon "
+        font-size 0.75em
+        color $muted
+
+// User with rights indicator
+.user-rights-indicator
+  font-size 0.65em
+  padding 0.1em 0.3em
+  border-radius 2px
+  margin-left 0.3em
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &.admin
+    background-color rgba($secondary-red, 0.2)
+    color $secondary-red
+
+  &.moderator
+    background-color rgba($green, 0.2)
+    color $green
+
+  &.bot
+    background-color rgba($muted, 0.2)
+    color $muted
+
+// Enhanced timestamp formatting
+.mw-timestamp
+.talk-timestamp
+  font-variant-numeric tabular-nums
+  color $muted
+  font-size 0.85em
+  white-space nowrap
+
+  // Relative time styling
+  &.recent
+    color $green
+
+  &.today
+    color $secondary-blue
+    font-weight 500
+
+// Signature block (user + timestamp)
+.talk-signature
+  display inline-flex
+  flex-wrap wrap
+  align-items baseline
+  gap 0.3em
+  font-size 0.9em
+
+  .signature-separator
+    color $muted
+    margin 0 0.2em
+
+// Talk page section headers
+.mw-talksection-header
+.talk-section-header
+  display flex
+  align-items center
+  gap 0.75em
+  padding 0.75em 0
+  border-bottom 1px solid $border-subtle
+  margin-bottom 1em
+
+  h2
+    margin 0
+    color $lighter
+    font-size 1.3em
+
+  .section-actions
+    margin-left auto
+    display flex
+    gap 0.5em
+
+    a
+      font-size 0.8em
+      color $muted
+      padding 0.2em 0.5em
+      border-radius $border-radius-sm
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        color $secondary-blue
+
+// "Add topic" button
+.mw-talk-addtopic
+.add-topic-button
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.5em 1em
+  background-color $arch-blue
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-weight 500
+  text-decoration none
+  transition all 0.2s ease
+
+  &:hover
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &::before
+    content "+"
+    font-size 1.2em
+    font-weight 600
+
+// Reply link at end of sections
+.mw-talk-replylink
+.reply-link
+  font-size 0.85em
+
+  a
+    color $secondary-blue
+    text-decoration none
+    padding 0.2em 0.5em
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+// Edit section link in talk pages
+.mw-talk-editsection
+  font-size 0.75em
+  opacity 0.6
+  transition opacity 0.2s ease
+
+  &:hover
+    opacity 1
+
+// Talk page info box
+.mw-talk-info
+.talk-info-box
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1.5em
+  font-size 0.9em
+  color $light
+
+  a
+    color $secondary-blue
+
+// Guidelines/warning box
+.mw-talk-guidelines
+.talk-guidelines
+  padding 1em
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+
+  h3
+    color $orange
+    font-size 1em
+    margin 0 0 0.5em 0
+
+  ul
+    margin 0
+    padding-left 1.5em
+    color $light
+
+    li
+      margin 0.3em 0
+
+// Responsive talk page
+@media (max-width: 768px)
+  .mw-parser-output > dl > dd > dl
+  .mw-parser-output > dl > dd > dl > dd > dl
+    margin-inline-start 0.5em
+    padding-inline-start 0.5em
+
+  .talk-section-header
+    flex-direction column
+    align-items flex-start
+
+    .section-actions
+      margin-left 0
+      margin-top 0.5em
