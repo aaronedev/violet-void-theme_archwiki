@@ -559,7 +559,8 @@ Last updated: 2026-03-01 06:05
 
 ## 📝 Edit & History Pages (New)
 
-- [ ] **Diff View Styling** (CSS)
+- [x] **Diff View Styling** (CSS)
+  Commit: b9d680c
   - File: `src/components/diff.styl` (new file)
   - Added/removed line highlighting
   - Inline diff indicators
@@ -3034,7 +3035,8 @@ Last updated: 2026-03-01 06:05
   - User link styling
   - Edit summary styling
 
-- [ ] **Diff View Styling** (CSS)
+- [x] **Diff View Styling** (CSS)
+  Commit: b9d680c
   - File: `src/components/info.styl`
   - Added text highlighting
   - Removed text highlighting
