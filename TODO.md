@@ -529,7 +529,8 @@ Last updated: 2026-03-01 06:05
   - Match highlighting in snippets
   - Advanced search form styling
 
-- [ ] **Category Page Grid Layout** (CSS)
+- [x] **Category Page Grid Layout** (CSS)
+  Commit: 4d6dd81
   - File: `src/components/special-pages.styl`
   - Category member grid/list toggle
   - Subcategory cards
