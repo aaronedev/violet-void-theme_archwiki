@@ -1001,3 +1001,229 @@
     font-size 1.1em
     font-weight 600
     font-variant-numeric tabular-nums
+
+// =============================================================================
+// SPECIAL:WHATLINKSHERE
+// =============================================================================
+
+// WhatLinksHere container
+.mw-whatlinkshere
+.whatlinkshere-container
+  margin 1em 0
+
+// Backlinks list styling
+.mw-whatlinkshere-list
+.backlinks-list
+  list-style none
+  padding 0
+  margin 1em 0
+
+  li
+  .backlink-item
+    padding 0.75em 1em
+    margin 0.25em 0
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.01))
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    display flex
+    align-items center
+    gap 0.75em
+    transition all 0.2s ease
+
+    &:hover
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+      border-color rgba($arch-blue, 0.2)
+
+// Page title link
+.mw-whatlinkshere-link
+.backlink-title
+  a
+    color $secondary-blue
+    text-decoration none
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+      text-decoration underline
+
+    &.new
+      color rgba($orange, 0.8)
+
+// Redirect badge styling
+.is-redirect
+.redirect-badge
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.2em 0.5em
+  background-color rgba($arch-blue, 0.15)
+  color $secondary-blue
+  border-radius 1em
+  font-size 0.7em
+  text-transform uppercase
+  font-weight 600
+  letter-spacing 0.05em
+
+  &::before
+    content "↪"
+    font-size 1em
+
+// Edit link indicator
+.edit-link
+  font-size 0.8em
+  margin-left auto
+
+  a
+    color $muted
+    text-decoration none
+
+    &:hover
+      color $secondary-blue
+
+// Namespace filtering UI
+.mw-whatlinkshere-filter
+.namespace-filter-ui
+  display flex
+  flex-wrap wrap
+  gap 1em
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1.5em
+
+  fieldset
+    border none
+    padding 0
+    margin 0
+    flex 1
+    min-width 200px
+
+  legend
+    color $lighter
+    font-weight 500
+    margin-bottom 0.5em
+    padding 0
+    font-size 0.9em
+
+  label
+    display inline-flex
+    align-items center
+    gap 0.5em
+    margin 0.25em 0.5em 0.25em 0
+    color $muted
+    font-size 0.9em
+    cursor pointer
+
+    input[type="checkbox"]
+      accent-color $arch-blue
+
+// Filter buttons
+.filter-buttons
+  display flex
+  gap 0.5em
+  margin-top 1em
+  width 100%
+
+  button
+  input[type="submit"]
+    padding 0.5em 1em
+    background-color $arch-blue
+    border none
+    border-radius $border-radius-sm
+    color $darker
+    font-weight 500
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.8)
+      transform translateY(-1px)
+
+  .reset-btn
+    background-color transparent
+    border 1px solid $border-subtle
+    color $muted
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+// "Show/hide" transclusions toggle
+.transclusion-toggle
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 0.75em
+  background-color $darker
+  border-radius $border-radius-sm
+  margin-bottom 1em
+
+  label
+    color $muted
+    font-size 0.9em
+    cursor pointer
+    display flex
+    align-items center
+    gap 0.5em
+
+// WhatLinksHere pagination
+.mw-whatlinkshere-pagination
+.whatlinkshere-pagination
+  display flex
+  justify-content center
+  gap 0.5em
+  margin 2em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  a
+    padding 0.5em 1em
+    background-color transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+  .current
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+
+// Info message
+.mw-whatlinkshere-info
+.whatlinkshere-info
+  padding 1em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  color $lighter
+  font-size 0.9em
+  margin-bottom 1em
+
+  strong
+    color $secondary-blue
+
+// No results message
+.mw-whatlinkshere-none
+.whatlinkshere-empty
+  padding 2em
+  text-align center
+  color $muted
+  font-size 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+// Entry count
+.entry-count
+  font-variant-numeric tabular-nums
+  color $muted
+  font-size 0.85em
+  margin-left auto
