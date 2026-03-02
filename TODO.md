@@ -543,7 +543,8 @@ Last updated: 2026-03-01 06:05
   - Namespace selector
   - Page list with hover states
 
-- [ ] **User Contributions Page** (97%+ browser support)
+- [x] **User Contributions Page** (97%+ browser support)
+  Commit: 51ecb8d
   - File: `src/components/special-pages.styl`
   - Contribution list styling
   - Date grouping with tabular-nums timestamps
