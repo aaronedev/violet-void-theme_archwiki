@@ -85,3 +85,302 @@
     &:hover
       color $arch-blue
 
+
+// =============================================================================
+// ENHANCED DIFF VIEW STYLING
+// =============================================================================
+
+// Diff table layout
+table.diff
+  width 100%
+  border-collapse collapse
+  margin 1em 0
+
+  col.diff-marker
+    width 2em
+    text-align center
+    vertical-align top
+
+  col.diff-content
+    width auto
+
+  td
+    padding 0.3em 0.5em
+    vertical-align top
+    line-height 1.5
+
+// Deleted line marker
+.diff-deletedline .diff-marker
+  &::before
+    content "−"
+    color $secondary-red
+    font-weight bold
+
+// Added line marker
+.diff-addedline .diff-marker
+  &::before
+    content "+"
+    color $green
+    font-weight bold
+
+// Diff title/header
+.diff-header
+  display flex
+  justify-content space-between
+  align-items center
+  padding 0.75em 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-bottom none
+  border-radius $border-radius-md $border-radius-md 0 0
+
+  h3
+    margin 0
+    color $lighter
+    font-size 1em
+
+  .diff-meta
+    font-size 0.85em
+    color $muted
+
+// Diff navigation
+.diff-navigation
+  display flex
+  gap 0.5em
+  padding 0.5em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-top none
+  border-radius 0 0 $border-radius-md $border-radius-md
+  margin-bottom 1em
+
+  a
+    padding 0.3em 0.6em
+    background-color transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    font-size 0.85em
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+// Multi-column diff (side-by-side enhanced)
+.diff-multi-col
+  display grid
+  grid-template-columns 50% 50%
+  gap 0
+
+  .diff-col-header
+    padding 0.5em 1em
+    background-color $darker
+    border-bottom 1px solid $border-subtle
+    font-weight 500
+    color $lighter
+    text-align center
+
+    &:first-child
+      border-right 1px solid $border-subtle
+
+  .diff-col-content
+    padding 0.5em
+    border-right 1px solid $border-subtle
+
+    &:last-child
+      border-right none
+
+// Inline diff with word-level highlighting
+.diff-word-level
+  .diffchange
+    display inline
+    padding 0.05em 0
+    border-bottom 2px solid
+
+  .diff-addedline .diffchange
+    border-bottom-color $green
+    background-color rgba($green, 0.2)
+
+  .diff-deletedline .diffchange
+    border-bottom-color $secondary-red
+    background-color rgba($secondary-red, 0.2)
+
+// Diff legend
+.diff-legend
+  display flex
+  flex-wrap wrap
+  gap 1em
+  padding 0.75em 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1em
+  font-size 0.85em
+
+  .legend-item
+    display flex
+    align-items center
+    gap 0.5em
+    color $muted
+
+  .legend-color
+    width 1.5em
+    height 1em
+    border-radius 2px
+
+  .legend-added
+    background-color rgba($green, 0.3)
+
+  .legend-deleted
+    background-color rgba($secondary-red, 0.3)
+
+  .legend-context
+    background-color $base
+    border 1px solid $border-subtle
+
+// Diff statistics
+.diff-stats
+  display flex
+  gap 1.5em
+  padding 0.75em 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1em
+
+  .stat-item
+    display flex
+    align-items center
+    gap 0.5em
+
+  .stat-label
+    color $muted
+    font-size 0.85em
+
+  .stat-value
+    font-variant-numeric tabular-nums
+    font-weight 500
+
+    &.added
+      color $green
+
+    &.deleted
+      color $secondary-red
+
+    &.unchanged
+      color $muted
+
+// No changes message
+.diff-nochange
+  padding 2em
+  text-align center
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $muted
+  font-size 1em
+
+  &::before
+    content "✓"
+    display block
+    font-size 2em
+    color $green
+    margin-bottom 0.5em
+
+// Diff loading state
+.diff-loading
+  padding 3em
+  text-align center
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $muted
+
+  .spinner
+    width 2em
+    height 2em
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    margin 0 auto 1em
+    animation diff-spin 1s linear infinite
+
+@keyframes diff-spin
+  to
+    transform rotate(360deg)
+
+// Diff error state
+.diff-error
+  padding 2em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  color $lighter
+
+  .error-icon
+    font-size 2em
+    margin-bottom 0.5em
+
+  .error-message
+    color $muted
+    font-size 0.9em
+
+// Copy diff button
+.diff-copy
+  position absolute
+  top 0.5em
+  right 0.5em
+  padding 0.3em 0.6em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $muted
+  font-size 0.75em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+// Responsive diff adjustments
+@media (max-width: 768px)
+  .diff-multi-col
+    grid-template-columns 1fr
+
+    .diff-col-header
+      border-right none
+      border-bottom 1px solid $border-subtle
+
+    .diff-col-content
+      border-right none
+      border-bottom 1px solid $border-subtle
+
+      &:last-child
+        border-bottom none
+
+  table.diff
+    font-size 0.8em
+
+    td
+      padding 0.2em 0.3em
+
+// Print-friendly diff
+@media print
+  .diff
+    border 1px solid #ccc
+
+    .diff-addedline
+      background-color #e8f5e9
+      border-left 3px solid #4caf50
+
+    .diff-deletedline
+      background-color #ffebee
+      border-left 3px solid #f44336
+
+    .diffchange
+      background-color inherit
+      font-weight bold
