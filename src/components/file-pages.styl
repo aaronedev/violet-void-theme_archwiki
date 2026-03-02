@@ -1,0 +1,496 @@
+// File and Media Pages Styling
+// File description, image galleries, video players
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// FILE DESCRIPTION PAGE
+// =============================================================================
+
+// File page container
+.mw-filepage
+.file-page
+  margin 1em 0
+
+// File info box
+.mw-filepage-info
+.file-info-box
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 1.5em
+
+  h2
+    color $lighter
+    font-size 1.2em
+    margin 0 0 1em 0
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+// File preview area
+.mw-filepage-preview
+.file-preview
+  display flex
+  justify-content center
+  align-items center
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1em
+  min-height 200px
+
+  img
+    max-width 100%
+    max-height 600px
+    border-radius $border-radius-sm
+
+// MIME type badge
+.mime-type-badge
+.file-type-badge
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.3em 0.7em
+  background-color rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius 1em
+  color $secondary-blue
+  font-size 0.8em
+  font-weight 500
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &.image
+    background-color rgba($green, 0.15)
+    border-color rgba($green, 0.3)
+    color $green
+
+  &.video
+    background-color rgba($orange, 0.15)
+    border-color rgba($orange, 0.3)
+    color $orange
+
+  &.audio
+    background-color rgba($secondary-red, 0.15)
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+  &.document
+    background-color rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+// File metadata grid
+.file-metadata
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+  gap 1em
+  margin-top 1em
+
+  .metadata-item
+    padding 0.75em
+    background-color $darker
+    border-radius $border-radius-sm
+
+    .metadata-label
+      color $muted
+      font-size 0.75em
+      text-transform uppercase
+      letter-spacing 0.05em
+      margin-bottom 0.3em
+
+    .metadata-value
+      color $lighter
+      font-size 0.95em
+      font-variant-numeric tabular-nums
+
+// File history table styling
+.mw-filehistory
+.file-history-table
+  width 100%
+  border-collapse collapse
+  margin 1em 0
+
+  th
+    padding 0.6em 0.8em
+    background-color $darker
+    border 1px solid $border-subtle
+    color $lighter
+    font-size 0.85em
+    text-align left
+    font-weight 600
+
+  td
+    padding 0.5em 0.8em
+    border 1px solid $border-subtle
+    color $light
+    font-size 0.9em
+
+  tr:hover td
+    background-color rgba($arch-blue, 0.03)
+
+  // Date/time column
+  .filehistory-timestamp
+    font-variant-numeric tabular-nums
+    color $muted
+    white-space nowrap
+
+  // Dimensions column
+  .filehistory-dimensions
+    font-variant-numeric tabular-nums
+
+  // User column
+  .filehistory-user a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+  // File size
+  .filehistory-size
+    font-variant-numeric tabular-nums
+    color $muted
+
+  // Comment column
+  .filehistory-comment
+    font-style italic
+    color $light
+
+// File usage list
+.mw-fileusage
+.file-usage-list
+  list-style none
+  padding 0
+  margin 1em 0
+
+  li
+  .usage-item
+    padding 0.5em 0.75em
+    border-bottom 1px solid $border-subtle
+    transition background-color 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.03)
+
+    &:last-child
+      border-bottom none
+
+    a
+      color $secondary-blue
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+
+    .usage-meta
+      font-size 0.8em
+      color $muted
+      margin-top 0.2em
+
+// File usage section header
+.file-usage-header
+  display flex
+  align-items center
+  justify-content space-between
+  padding 0.75em 0
+  border-bottom 1px solid $border-subtle
+  margin-bottom 0.75em
+
+  h3
+    color $lighter
+    font-size 1em
+    margin 0
+
+  .usage-count
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.85em
+
+// =============================================================================
+// IMAGE GALLERY LAYOUT
+// =============================================================================
+
+// Gallery container
+.mw-gallery
+.image-gallery
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+  gap 1em
+  margin 1em 0
+
+// Gallery item
+.mw-gallery-item
+.gallery-item
+  position relative
+  padding 0.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border-color rgba($arch-blue, 0.3)
+    transform translateY(-2px)
+    box-shadow $shadow-subtle
+
+// Gallery image wrapper with aspect-ratio
+.gallery-image-wrapper
+  position relative
+  width 100%
+  padding-bottom 100% // Square aspect ratio
+  overflow hidden
+  border-radius $border-radius-sm
+  background-color $darker
+
+  img
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    object-fit cover
+    transition transform 0.3s ease
+
+// Hover zoom effect
+.gallery-item:hover .gallery-image-wrapper img
+  transform scale(1.05)
+
+// Gallery caption
+.gallery-caption
+  padding 0.5em 0.25em
+  text-align center
+
+  p
+    margin 0
+    color $light
+    font-size 0.85em
+    line-height 1.3
+
+    // Caption truncation with line-clamp
+    display -webkit-box
+    -webkit-line-clamp 2
+    -webkit-box-orient vertical
+    overflow hidden
+
+// Gallery caption link
+.gallery-caption a
+  color $secondary-blue
+  text-decoration none
+
+  &:hover
+    color $arch-blue
+
+// Traditional table gallery (legacy support)
+.mw-gallery-traditional
+  table.gallery
+    border-collapse collapse
+
+    td.gallery
+      padding 0.5em
+      vertical-align top
+
+// Packed gallery (tighter spacing)
+.mw-gallery-packed
+.gallery-packed
+  grid-template-columns repeat(auto-fill, minmax(120px, 1fr))
+  gap 0.5em
+
+  .gallery-item
+    padding 0.25em
+
+// Slideshow gallery
+.mw-gallery-slideshow
+.gallery-slideshow
+  position relative
+  display block
+
+  .slideshow-container
+    position relative
+    overflow hidden
+    border-radius $border-radius-lg
+
+  .slideshow-image
+    width 100%
+    max-height 500px
+    object-fit contain
+
+  .slideshow-nav
+    display flex
+    justify-content center
+    gap 1em
+    margin-top 1em
+
+    button
+      padding 0.5em 1em
+      background-color $darker
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $lighter
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        border-color rgba($arch-blue, 0.3)
+
+  .slideshow-counter
+    text-align center
+    color $muted
+    font-size 0.85em
+    margin-top 0.5em
+    font-variant-numeric tabular-nums
+
+// =============================================================================
+// VIDEO PLAYER STYLING
+// =============================================================================
+
+// Video container
+.mw-video
+.video-player-container
+  position relative
+  display inline-block
+  max-width 100%
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  video
+    display block
+    max-width 100%
+    border-radius $border-radius-md
+
+// Custom play button overlay
+.video-play-overlay
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  display flex
+  align-items center
+  justify-content center
+  background-color rgba($base, 0.5)
+  cursor pointer
+  transition background-color 0.2s ease
+
+  &:hover
+    background-color rgba($base, 0.3)
+
+  .play-button
+    width 80px
+    height 80px
+    display flex
+    align-items center
+    justify-content center
+    background-color $arch-blue
+    border-radius 50%
+    transition all 0.2s ease
+
+    &::before
+      content ""
+      width 0
+      height 0
+      margin-left 8px
+      border-style solid
+      border-width 15px 0 15px 25px
+      border-color transparent transparent transparent $darker
+
+  &:hover .play-button
+    transform scale(1.1)
+    box-shadow 0 0 30px rgba($arch-blue, 0.5)
+
+// Hide overlay when playing
+.mw-video.playing .video-play-overlay
+  opacity 0
+  pointer-events none
+
+// Progress bar theming
+video::-webkit-media-controls
+  // Custom styling for WebKit browsers
+
+video::-webkit-media-controls-panel
+  background linear-gradient(transparent, rgba($base, 0.8))
+
+video::-webkit-media-controls-play-button
+video::-webkit-media-controls-mute-button
+video::-webkit-media-controls-fullscreen-button
+  filter invert(0.8)
+
+video::-webkit-media-controls-current-time-display
+video::-webkit-media-controls-time-remaining-display
+  color $lighter
+  font-variant-numeric tabular-nums
+
+// Timeline/seek bar
+video::-webkit-media-controls-timeline
+  background-color rgba($arch-blue, 0.3)
+  border-radius 4px
+  height 4px
+
+video::-webkit-media-controls-timeline::-webkit-slider-thumb
+  background-color $arch-blue
+
+// Volume slider
+video::-webkit-media-controls-volume-slider
+  background-color rgba($arch-blue, 0.3)
+  border-radius 4px
+
+// Video info bar
+.video-info-bar
+  display flex
+  align-items center
+  gap 1em
+  padding 0.75em 1em
+  background-color $darker
+  border-top 1px solid $border-subtle
+
+  .video-title
+    flex 1
+    color $lighter
+    font-size 0.95em
+
+  .video-duration
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.85em
+
+// Video thumbnail
+.video-thumbnail
+  position relative
+  cursor pointer
+
+  img
+    display block
+    width 100%
+    border-radius $border-radius-md
+
+  .duration-badge
+    position absolute
+    bottom 0.5em
+    right 0.5em
+    padding 0.2em 0.5em
+    background-color rgba($base, 0.9)
+    border-radius 3px
+    color $lighter
+    font-size 0.75em
+    font-variant-numeric tabular-nums
+
+// Responsive video
+@media (max-width: 768px)
+  .mw-gallery
+  .image-gallery
+    grid-template-columns repeat(auto-fill, minmax(100px, 1fr))
+
+  .video-play-overlay .play-button
+    width 60px
+    height 60px
+
+    &::before
+      border-width 12px 0 12px 20px
