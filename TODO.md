@@ -453,7 +453,8 @@ Last updated: 2026-03-01 06:05
   - Image aspect-ratio enforcement
   - Better data label/value alignment
 
-- [ ] **Related Articles Section** (CSS)
+- [x] **Related Articles Section** (CSS)
+  Commit: d780574
   - File: `src/components/content.styl`
   - Card-style related article links
   - Hover preview effects
