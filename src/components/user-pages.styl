@@ -1,297 +1,484 @@
-// User page styling for Violet Void ArchWiki
-// Profile headers, talk pages, contribution grids, achievements
+// User Pages Styling
+// User profile, menu, contributions
+// Browser support: 97%+
 
 @import '../variables/colors'
 @import '../variables/layout'
 
 // =============================================================================
-// USER PROFILE HEADER
+// USER PAGE LAYOUT
 // =============================================================================
 
-.mw-user-profile
-  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.05))
-  border 1px solid $border-subtle
-  border-radius $border-radius-md
-  padding 1.5em
+// User page container
+.mw-userpage
+.user-page
   margin 1em 0
+
+// User profile box
+.user-profile-box
+.mw-userprofile
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 1.5em
   display flex
+  flex-wrap wrap
   gap 1.5em
-  align-items flex-start
 
 // User avatar
-.mw-user-avatar
-  width 80px
-  height 80px
-  border-radius 50%
-  background linear-gradient(135deg, $arch-blue, $secondary-blue)
-  display flex
-  align-items center
-  justify-content center
-  color $darker
-  font-size 2em
-  font-weight 700
+.user-avatar
   flex-shrink 0
 
   img
-    width 100%
-    height 100%
+    width 120px
+    height 120px
     border-radius 50%
+    border 3px solid $border-subtle
     object-fit cover
 
-// User info
-.mw-user-info
+  .avatar-placeholder
+    width 120px
+    height 120px
+    border-radius 50%
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.6))
+    display flex
+    align-items center
+    justify-content center
+    font-size 3em
+    color $darker
+    font-weight bold
+
+// User info section
+.user-info
   flex 1
+  min-width 250px
 
-.mw-user-name
-  color $lighter
-  font-size 1.5em
-  font-weight 600
-  margin 0
-
-// User group badges
-.mw-user-groups
-  display flex
-  flex-wrap wrap
-  gap 0.3em
-  margin-top 0.5em
-
-.mw-user-group
-  padding 0.2em 0.5em
-  font-size 0.75em
-  border-radius $border-radius-sm
-  text-transform uppercase
-  letter-spacing 0.05em
-
-  &.sysop
-    background-color rgba($green, 0.2)
-    color $green
-
-  &.bureaucrat
-    background-color rgba($purple, 0.2)
-    color $purple
-
-  &.autopatrolled
-    background-color rgba($arch-blue, 0.2)
-    color $arch-blue
-
-  &.bot
-    background-color rgba($muted, 0.2)
-    color $muted
-
-// Registration date and edit count
-.mw-user-stats
-  display flex
-  gap 1.5em
-  margin-top 0.75em
-  font-size 0.9em
-
-.mw-user-stat
-  color $muted
-
-  strong
+  .user-name
     color $lighter
-    font-variant-numeric tabular-nums
+    font-size 1.5em
+    font-weight 600
+    margin 0 0 0.25em 0
 
-// =============================================================================
-// USER TALK PAGE STYLING
-// =============================================================================
+  .user-title
+    color $muted
+    font-size 0.9em
+    margin-bottom 0.75em
 
-.mw-user-talk
-  // Message container
-  .mw-message
-    background-color $base
-    border 1px solid $border-subtle
-    border-radius $border-radius-md
-    padding 1em
-    margin 1em 0
+    &.admin
+      color $secondary-red
 
-  // Reply button
-  .mw-reply-link
-    display inline-block
-    padding 0.3em 0.6em
-    font-size 0.85em
-    background-color rgba($arch-blue, 0.1)
-    color $secondary-blue
-    border-radius $border-radius-sm
-    text-decoration none
+    &.moderator
+      color $green
 
-    &:hover
-      background-color $arch-blue
-      color $darker
+    &.bot
+      color $muted
 
-// =============================================================================
-// USER CONTRIBUTIONS GRID
-// =============================================================================
+  .user-stats
+    display flex
+    flex-wrap wrap
+    gap 1.5em
+    margin-top 0.75em
 
-// Activity heatmap grid
-.mw-contributions-grid
-  display grid
-  grid-template-columns repeat(53, 1fr)
-  gap 2px
+    .stat
+      text-align center
+
+      .stat-value
+        color $lighter
+        font-size 1.3em
+        font-weight 600
+        font-variant-numeric tabular-nums
+
+      .stat-label
+        color $muted
+        font-size 0.75em
+        text-transform uppercase
+        letter-spacing 0.05em
+
+  .user-actions
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    margin-top 1em
+
+    a
+      padding 0.4em 0.8em
+      background-color transparent
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $secondary-blue
+      text-decoration none
+      font-size 0.85em
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        border-color rgba($arch-blue, 0.3)
+
+// Babel box styling
+.mw-babel
+.babel-box
+  display inline-block
+  padding 0.25em 0.5em
+  margin 0.15em
   background-color $darker
-  padding 1em
-  border-radius $border-radius-md
-  overflow-x auto
-
-.contrib-cell
-  width 10px
-  height 10px
-  background-color rgba($arch-blue, 0.1)
-  border-radius 2px
-
-  &.level-1
-    background-color rgba($arch-blue, 0.25)
-
-  &.level-2
-    background-color rgba($arch-blue, 0.4)
-
-  &.level-3
-    background-color rgba($arch-blue, 0.6)
-
-  &.level-4
-    background-color $arch-blue
-
-// Contribution streak indicator
-.mw-streak
-  display flex
-  align-items center
-  gap 0.5em
-  padding 0.5em 1em
-  background-color rgba($green, 0.1)
-  border-radius $border-radius-md
-  color $green
-  font-size 0.9em
-
-  strong
-    font-variant-numeric tabular-nums
-
-// Namespace breakdown
-.mw-namespace-stats
-  display flex
-  flex-wrap wrap
-  gap 0.5em
-  margin-top 1em
-
-.mw-namespace-stat
-  padding 0.3em 0.6em
-  background-color rgba($arch-blue, 0.1)
+  border 1px solid $border-subtle
   border-radius $border-radius-sm
   font-size 0.85em
 
-  .label
+  .babel-label
+    display inline-block
+    padding 0.1em 0.4em
+    background-color $arch-blue
+    color $darker
+    border-radius 2px
+    font-weight 600
+    margin-right 0.3em
+    font-size 0.9em
+
+  .babel-level
     color $muted
-    margin-inline-end 0.3em
+    font-size 0.8em
+    margin-left 0.2em
 
-  .count
-    color $lighter
-    font-variant-numeric tabular-nums
-
-// =============================================================================
-// USER ACHIEVEMENTS / BADGES
-// =============================================================================
-
-.mw-achievements
+// Babel box container
+.babel-container
   display flex
   flex-wrap wrap
-  gap 1em
-  margin 1em 0
+  gap 0.25em
+  margin 0.5em 0
 
-.mw-achievement
-  display flex
-  flex-direction column
-  align-items center
+// Language proficiency levels
+.babel-level-N .babel-label
+  background-color $green
+
+.babel-level-4 .babel-label
+  background-color rgba($green, 0.8)
+
+.babel-level-3 .babel-label
+  background-color $arch-blue
+
+.babel-level-2 .babel-label
+  background-color $orange
+
+.babel-level-1 .babel-label
+  background-color rgba($orange, 0.7)
+
+.babel-level-0 .babel-label
+  background-color rgba($secondary-red, 0.7)
+
+// User contribution stats
+.user-contribution-stats
+.contribution-stats
   padding 1em
   background-color $darker
   border 1px solid $border-subtle
   border-radius $border-radius-md
-  min-width 100px
+  margin 1em 0
 
-.mw-achievement-icon
-  font-size 2em
-  margin-bottom 0.5em
+  h3
+    color $lighter
+    font-size 1em
+    margin 0 0 0.75em 0
 
-.mw-achievement-name
-  color $lighter
-  font-size 0.85em
-  text-align center
+  .stats-grid
+    display grid
+    grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+    gap 1em
 
-// Tier indicators (bronze/silver/gold)
-.mw-achievement
-  &.bronze
-    border-color rgba(#cd7f32, 0.5)
-    .mw-achievement-icon
-      color #cd7f32
+    .stat-item
+      padding 0.75em
+      background-color $base
+      border-radius $border-radius-sm
+      text-align center
 
-  &.silver
-    border-color rgba(#c0c0c0, 0.5)
-    .mw-achievement-icon
-      color #c0c0c0
+      .stat-value
+        color $lighter
+        font-size 1.2em
+        font-weight 600
+        font-variant-numeric tabular-nums
 
-  &.gold
-    border-color rgba(#ffd700, 0.5)
-    .mw-achievement-icon
-      color #ffd700
+      .stat-label
+        color $muted
+        font-size 0.75em
+        margin-top 0.25em
 
-// Progress bar for next badge
-.mw-achievement-progress
-  width 100%
-  height 4px
-  background-color rgba($border-subtle, 0.5)
-  border-radius 2px
-  margin-top 0.5em
-  overflow hidden
+// Edit count chart
+.edit-count-chart
+  margin-top 1em
+  padding 1em
+  background-color $base
+  border-radius $border-radius-sm
 
-  .progress-fill
-    height 100%
-    background linear-gradient(90deg, $arch-blue, $secondary-blue)
-    border-radius 2px
+  .chart-bar
+    display flex
+    align-items center
+    gap 0.5em
+    margin 0.4em 0
+
+    .bar-label
+      width 100px
+      color $muted
+      font-size 0.8em
+      text-align right
+
+    .bar-track
+      flex 1
+      height 16px
+      background-color $darker
+      border-radius 8px
+      overflow hidden
+
+    .bar-fill
+      height 100%
+      background linear-gradient(90deg, $arch-blue, rgba($arch-blue, 0.6))
+      border-radius 8px
+      transition width 0.3s ease
+
+    .bar-value
+      width 60px
+      color $lighter
+      font-size 0.8em
+      font-variant-numeric tabular-nums
+
+// User groups display
+.user-groups
+  display flex
+  flex-wrap wrap
+  gap 0.4em
+  margin 0.5em 0
+
+  .group-badge
+    padding 0.2em 0.5em
+    background-color rgba($arch-blue, 0.15)
+    border 1px solid rgba($arch-blue, 0.3)
+    border-radius 1em
+    color $secondary-blue
+    font-size 0.75em
+    text-transform uppercase
+    letter-spacing 0.03em
+
+    &.admin
+      background-color rgba($secondary-red, 0.15)
+      border-color rgba($secondary-red, 0.3)
+      color $secondary-red
+
+    &.bureaucrat
+      background-color rgba($orange, 0.15)
+      border-color rgba($orange, 0.3)
+      color $orange
+
+    &.bot
+      background-color rgba($muted, 0.2)
+      border-color rgba($muted, 0.3)
+      color $muted
 
 // =============================================================================
 // USER MENU DROPDOWN
 // =============================================================================
 
-#pt-userpage
-  a
-    color $lighter
-    font-weight 500
-
-    &:hover
-      color $arch-blue
-
-// User dropdown menu styling
-#p-personal
-  ul
-    background-color $darker
-    border 1px solid $border-subtle
-    border-radius $border-radius-md
-    box-shadow $shadow-lg
-
-    li a
-      color $light
-
-      &:hover
-        background-color rgba($arch-blue, 0.1)
-        color $lighter
-
-// Notification count badge
-.mw-echo-notifications-badge
+// User dropdown container
+.vector-user-menu
+.user-menu-dropdown
   position relative
 
-  &.mw-echo-unread-notifications::after
-    content attr(data-counter-num)
-    position absolute
-    top -5px
-    right -5px
-    min-width 18px
-    height 18px
-    padding 0 4px
-    background-color $secondary-red
-    color $white
+// User menu toggle button
+.vector-user-menu-logout
+.user-menu-toggle
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.4em 0.75em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-size 0.9em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.08))
+    border-color rgba($arch-blue, 0.3)
+
+  .user-name
+    max-width 120px
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+
+  .dropdown-arrow
     font-size 0.7em
+    color $muted
+    transition transform 0.2s ease
+
+  &.open .dropdown-arrow
+    transform rotate(180deg)
+
+// User dropdown content
+.vector-user-menu-content
+.user-menu-content
+  position absolute
+  top 100%
+  right 0
+  min-width 200px
+  padding 0.5em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  z-index 1000
+  margin-top 0.5em
+
+// User menu header
+.user-menu-header
+  padding 0.75em 1em
+  border-bottom 1px solid $border-subtle
+  margin-bottom 0.25em
+
+  .header-username
+    color $lighter
     font-weight 600
-    border-radius 9px
+    font-size 0.95em
+
+  .header-groups
+    color $muted
+    font-size 0.75em
+    margin-top 0.2em
+
+// Menu items
+.user-menu-item
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 1em
+  color $light
+  text-decoration none
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.08)
+    color $lighter
+
+  .menu-icon
+    width 16px
+    text-align center
+    color $muted
+
+  .menu-label
+    flex 1
+
+// Notification count badge
+.notification-badge
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 18px
+  height 18px
+  padding 0 5px
+  background-color $secondary-red
+  color $white
+  border-radius 9px
+  font-size 0.7em
+  font-weight 600
+  font-variant-numeric tabular-nums
+
+  &.empty
+    display none
+
+// Alert notification badge (with animation)
+.notification-badge.alert
+  animation pulse-badge 2s ease-in-out infinite
+
+@keyframes pulse-badge
+  0%, 100%
+    transform scale(1)
+  50%
+    transform scale(1.1)
+
+// Menu divider
+.user-menu-divider
+  height 1px
+  background-color $border-subtle
+  margin 0.5em 0
+
+// Preferences link
+.user-menu-preferences
+  .menu-icon
+    color $secondary-blue
+
+// Logout link
+.user-menu-logout
+  color $secondary-red
+
+  &:hover
+    background-color rgba($secondary-red, 0.1)
+
+  .menu-icon
+    color $secondary-red
+
+// User menu footer
+.user-menu-footer
+  padding 0.5em 1em
+  border-top 1px solid $border-subtle
+  margin-top 0.25em
+
+  .footer-link
+    color $muted
+    font-size 0.8em
+    text-decoration none
+
+    &:hover
+      color $secondary-blue
+
+// Anonymous user menu
+.user-menu-anon
+  .user-menu-content
+    min-width 160px
+
+  .login-link
+  .create-account-link
     display flex
     align-items center
-    justify-content center
-    font-variant-numeric tabular-nums
+    gap 0.5em
+    padding 0.6em 1em
+    text-decoration none
+    transition all 0.2s ease
 
+  .login-link
+    color $secondary-blue
+
+    &:hover
+      background-color rgba($arch-blue, 0.08)
+
+  .create-account-link
+    color $green
+
+    &:hover
+      background-color rgba($green, 0.08)
+
+// Responsive user menu
+@media (max-width: 768px)
+  .user-profile-box
+    flex-direction column
+    align-items center
+    text-align center
+
+    .user-info
+      .user-stats
+        justify-content center
+
+      .user-actions
+        justify-content center
+
+  .vector-user-menu-logout
+  .user-menu-toggle
+    .user-name
+      max-width 80px
+
+  .vector-user-menu-content
+  .user-menu-content
+    position fixed
+    left 1em
+    right 1em
+    width auto
