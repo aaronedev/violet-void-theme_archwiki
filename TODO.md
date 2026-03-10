@@ -364,6 +364,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | Print Images enhanced styling | 8575e65 |
 | 2026-03-10 | @starting-style for entry/exit animations | 6445bd7 |
 | 2026-03-10 | widows/orphans control for print typography | 2a51280 |
 | 2026-03-10 | transition-behavior: allow-discrete for display transitions | a2245f4 |
@@ -4616,12 +4617,13 @@ Last updated: 2026-03-10 13:30
   - Special link type indicators (mailto, tel, GitHub, packages, etc.)
   - Commit: 24a99ea
 
-- [ ] **Print Images** (CSS, 97%+ browser support)
-  - File: `src/print/images.styl`
+- [x] **Print Images** (CSS, 97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Image sizing for print
   - Caption styling
   - Alt text display option
   - Background image handling
+  - Commit: 8575e65
 
 ## 🎭 State Patterns (New)
 

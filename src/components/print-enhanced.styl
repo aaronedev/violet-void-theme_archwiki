@@ -140,15 +140,213 @@
     text-align center
 
   // =============================================================================
-  // IMAGES FOR PRINT
+  // IMAGES FOR PRINT - Enhanced
   // =============================================================================
 
+  // Browser support: 97%+
+  // Comprehensive image handling for print output
+
+  // Base image sizing
   img
     max-width 100%
+    height auto
     page-break-inside avoid
+    break-inside avoid
+    display block
 
+    // Constrain very large images to fit page
+    // Typical printable area is ~6.5in wide for letter/A4
+    &:not([width])
+      max-width 6in
+
+    // Respect explicit dimensions but cap at page width
+    &[width]
+      max-width min(attr(width pt), 6in)
+
+  // Figure containers
   figure
     page-break-inside avoid
+    break-inside avoid
+    margin 1em 0
+    text-align center
+
+    // Keep caption with image
+    figcaption
+      page-break-before avoid
+      break-before avoid
+      margin-top 0.5em
+      font-size 10pt
+      color $print-text !important
+      font-style italic
+      text-align center
+      max-width 6in
+
+  // Thumbnail images
+  .thumb
+  .mw-file-element
+    page-break-inside avoid
+    break-inside avoid
+
+  // Image captions in MediaWiki
+  .thumbcaption
+  .mw-file-element + p
+    font-size 9pt
+    color $print-text !important
+    font-style italic
+    margin-top 0.25em
+    text-align center
+
+  // Gallery images
+  .gallery
+    display block
+    page-break-inside avoid
+
+    .gallerybox
+      display inline-block
+      width 45%
+      vertical-align top
+      margin 0.25em
+      page-break-inside avoid
+
+      img
+        max-width 100%
+        height auto
+
+  // Floating images - clear floats for print
+  .thumb.tright
+  .floatright
+  img[style*="float: right"]
+  img[style*="float:right"]
+    float none !important
+    margin 1em auto
+    display block
+
+  .thumb.tleft
+  .floatleft
+  img[style*="float: left"]
+  img[style*="float:left"]
+    float none !important
+    margin 1em auto
+    display block
+
+  // SVG images - ensure they render properly
+  svg
+    max-width 100%
+    height auto
+    page-break-inside avoid
+
+    // Ensure stroke/fill colors are printable
+    *
+      stroke black !important
+      fill black !important
+
+    // But preserve none values for transparency
+    [stroke="none"]
+      stroke none !important
+
+    [fill="none"]
+      fill none !important
+
+  // Background images - convert to printable
+  // Most background images should be hidden in print
+  [style*="background-image"]
+    background-image none !important
+
+  // Image placeholders for broken/missing images
+  img[src=""]
+  img:not([src])
+  img[alt]::before
+    content attr(alt)
+    display block
+    padding 1em
+    background $print-bg !important
+    border 1px dashed $print-border !important
+    font-style italic
+    font-size 10pt
+    color $print-text !important
+    text-align center
+
+  // Alt text display option - show alt text in parentheses after images
+  // Useful for screen reader users and when images don't print well
+  img[alt]:not([alt=""])::after
+    content " (" attr(alt) ")"
+    display block
+    font-size 8pt
+    color $print-text !important
+    font-style italic
+    margin-top 0.25em
+    text-align center
+
+  // Don't show alt text for decorative images
+  img[role="presentation"]::after
+  img[aria-hidden="true"]::after
+    content none
+
+  // Logo and icon sizing for print
+  .mw-logo
+  #archnavbar-logo
+    img
+      max-height 1in
+      max-width 2in
+      width auto
+      height auto
+
+  // Screenshots and diagrams - ensure visibility
+  .screenshot
+  .diagram
+  .mw-file-resolution-option
+    img
+      border 1px solid $print-border !important
+      padding 0.25em
+
+  // Infobox images
+  .infobox
+    img
+      max-width 200px
+      margin 0 auto
+
+  // Math images (rendered LaTeX)
+  img.mwe-math-fallback-image
+    max-width 100%
+    height auto
+
+  // Emoji images - keep small
+  img.emoji
+    max-width 1em
+    max-height 1em
+    display inline
+    vertical-align middle
+
+  // High-resolution images - maintain aspect ratio
+  // Note: aspect-ratio with attr() is not widely supported
+  // Images with width/height attributes maintain aspect ratio naturally
+
+  // Image maps - not printable, show alt text
+  map + img
+  img[usemap]
+    &::before
+      content "[Image map - not printable]"
+      display block
+      font-size 8pt
+      color $print-text !important
+      font-style italic
+
+  // Prevent images from being cut off at page boundaries
+  img
+  figure
+  .thumb
+    break-inside avoid
+    page-break-inside avoid
+
+  // Ensure images don't overflow page
+  img
+    box-sizing border-box
+
+  // Dark images need inversion for print (optional)
+  // Uncomment if printing dark screenshots
+  // img[src*="dark"]
+  // img.dark-theme
+  //   filter invert(1) hue-rotate(180deg)
 
   // =============================================================================
   // LINKS FOR PRINT - Enhanced
