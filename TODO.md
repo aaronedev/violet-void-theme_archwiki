@@ -6304,3 +6304,68 @@ Last updated: 2026-03-01 06:05
 | 2026-03-02 | Thirty-first scout | Added API & developer documentation, mobile & responsive extended, accessibility extended, performance extended, animation extended, data visualization, external services, testing & QA |
 | 2026-03-02 | Thirty-second scout | Added learning & tutorials, search extended, tables extended, theming extended, navigation extended, interactive elements, layout utilities |
 | 2026-03-02 | Thirty-third scout | Added MediaWiki 1.44+ features (Vector 2022 updates, Parsoid output, RESTBase API UI), new CSS features (field-sizing, scrollbar-color expansion, text-wrap-mode), performance patterns (layout/paint containment), accessibility (forced-colors, inverted-colors), ArchWiki-specific (package templates, command blocks, config files, status indicators) |
+
+---
+
+## 🆕 CSS @supports Extensions (New - 2026-03-10 Scout 34)
+
+- [ ] **`@supports font-tech()` for Font Technology Detection** (CSS, 87%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Detect COLRv1, variable fonts, color fonts, incremental loading
+  - Example: `@supports font-tech(color-COLRv1) { ... }`
+  - Enable advanced font features only when supported
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`@supports font-format()` for Font Format Detection** (CSS, 87%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Detect WOFF2, OpenType, TrueType, collection support
+  - Example: `@supports font-format(woff2) { ... }`
+  - Conditional font loading strategies
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`@supports named-feature()` for CSS Feature Detection** (CSS, 85%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Detect named CSS features via supports
+  - Example: `@supports named-feature(anchor-positioning) { ... }`
+  - Future-proof feature detection
+  - Stylus: Requires `@css{}` wrapper
+
+## 🆕 Anchor Positioning Extensions (New - 2026-03-10 Scout 34)
+
+- [ ] **`anchor-scope` Property for Anchor Scope Control** (CSS, 85%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Control which anchors are visible to positioned elements
+  - Prevent anchor conflicts in nested components
+  - Example: `anchor-scope: --tooltip-anchor;`
+  - Apply to dropdowns, tooltips in navigation
+  - Stylus: Requires `@css{}` wrapper
+
+## 🆕 Form Styling Extensions (New - 2026-03-10 Scout 34)
+
+- [ ] **`::picker` Pseudo-element for Custom Select Styling** (CSS, 80%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Style the dropdown picker of select elements
+  - Custom option list styling
+  - Theme-consistent dropdown appearance
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`::picker-icon` Pseudo-element for Select Arrow** (CSS, 80%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Style the dropdown indicator arrow
+  - Custom SVG arrow icons
+  - Hover/focus state styling
+  - Stylus: Requires `@css{}` wrapper
+
+## 🆕 ArchWiki i18n Patterns (New - 2026-03-10 Scout 34)
+
+- [ ] **Template:Related2 Translation Link Styling** (CSS, 97%+ browser support)
+  - File: `src/components/content.styl`
+  - Style translated related article links in non-English pages
+  - Language indicator badges
+  - Consistent with Template:Related styling
+  - RTL support for translated anchors
+  - Stylus: Works directly
+
+---
+
+| 2026-03-10 | Thirty-fourth scout | Added @supports extensions (font-tech, font-format, named-feature), anchor-scope property, form styling extensions (::picker, ::picker-icon), ArchWiki i18n patterns (Template:Related2) |
