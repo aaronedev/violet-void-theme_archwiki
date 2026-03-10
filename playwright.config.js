@@ -1,4 +1,4 @@
-const { defineConfig, devices } = require('@playwright/test');
+const { defineConfig, devices } = require('@playwright/test')
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -9,7 +9,7 @@ module.exports = defineConfig({
   reporter: [
     ['html', { outputFolder: 'playwright-report' }],
     ['json', { outputFile: 'test-results.json' }],
-    ['list']
+    ['list'],
   ],
   use: {
     baseURL: 'https://wiki.archlinux.org',
@@ -42,4 +42,4 @@ module.exports = defineConfig({
   ],
 
   outputDir: 'test-results/',
-});
+})
