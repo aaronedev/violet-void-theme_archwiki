@@ -4612,7 +4612,7 @@ Last updated: 2026-03-10 13:30
   - External link indicator (↗ arrow symbol)
   - Reference list generation (footnote-style numbering)
   - Special link type indicators (mailto, tel, GitHub, packages, etc.)
-  - Commit: [TO BE FILLED]
+  - Commit: 24a99ea
 
 - [ ] **Print Images** (CSS, 97%+ browser support)
   - File: `src/print/images.styl`
@@ -6759,7 +6759,7 @@ Last updated: 2026-03-10 13:30
 | 2026-03-10 | Implementer | Command prompt styling with user/root prompts, user@host patterns, directory paths, command output states, copy prompt button, continuation prompts | 7f9876e |
 | 2026-03-10 | Implementer | Search Suggestions Dropdown with suggestion item styling, match highlighting, category badges with tabular-nums, search input enhancements, filters, pagination, accessibility | 9a16660 |
 | 2026-03-10 | Implementer | white-space-collapse for fine-grained whitespace control in code blocks and content areas (97%+ browser support) | a1fc976 |
-| 2026-03-10 | Implementer | Enhanced print link styling with URL display, external link indicators, reference list generation, intelligent truncation, special link type indicators (mailto, tel, GitHub, packages, etc.) | [pending] |
+| 2026-03-10 | Implementer | Enhanced print link styling with URL display, external link indicators, reference list generation, intelligent truncation, special link type indicators (mailto, tel, GitHub, packages, etc.) | 24a99ea |
 
 ---
 
