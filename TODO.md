@@ -371,9 +371,11 @@
 | 2026-03-01 | Fourth scout | Added animation properties (delay negative, direction, fill-mode, play-state), outline enhancements (offset, style auto, shorthand), border image (slice, repeat), table enhancements (layout, collapse, spacing), counter enhancements (counter-set, counters()) |
 | 2026-03-10 | Broken/Red Links | Added links.styl with red link styling, hover create indicator, broken link distinction | 5185b7b |
 
+| 2026-03-10 | Twenty-ninth scout | Added contrast-color() and progress() CSS functions, :open/:interest-source/:interest-target pseudo-classes, media state pseudo-classes (:seeking, :stalled, :volume-locked), ArchWiki navigation patterns (magic words, interlanguage links, category placement, related articles positioning), {{Related2}} and {{Lowercase title}} template support |
+
 ---
 
-Last updated: 2026-03-01 06:05
+Last updated: 2026-03-10 13:30
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -3522,6 +3524,49 @@ Last updated: 2026-03-01 06:05
 | 2026-03-01 | Nineteenth scout | Added page previews & hovercards (preview card, reference tooltip, citation popup, image preview, interwiki preview), media viewer extended (overlay, controls, sidebar, gallery navigation, video player), visual editor extended (toolbar, context menu, inspectors, dialogs, diff view), quick actions & shortcuts (keyboard display, quick action menu, FAB, context actions), statistics & analytics (page stats, contribution graph, quality score, reading time) |
 
 
+## 🎯 Interaction State Pseudo-Classes (New - 2026-03-10 Scout 29)
+
+- [ ] **`:open` Pseudo-class** (97%+ browser support)
+  - File: `src/components/ui-components.styl`
+  - Style elements in open state (details, dialogs, popovers)
+  - Example: `details:open { ... }`, `dialog:open { ... }`
+  - Unified open state handling
+  - Stylus: Works directly
+
+- [ ] **`:interest-source` Pseudo-class** (85%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Detect element receiving user interest (hover/focus)
+  - Enhanced dropdown menu interactions
+  - Progressive disclosure patterns
+  - Stylus: Works directly
+
+- [ ] **`:interest-target` Pseudo-class** (85%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Element targeted by interest source
+  - Preview card hover patterns
+  - Related articles hover effects
+  - Stylus: Works directly
+
+## 📺 Media State Pseudo-Classes (New)
+
+- [ ] **`:seeking` Pseudo-class** (87%+ browser support)
+  - File: `src/components/file-pages.styl`
+  - Style video when seeking
+  - Loading indicator during seek
+  - Stylus: Works directly
+
+- [ ] **`:stalled` Pseudo-class** (87%+ browser support)
+  - File: `src/components/file-pages.styl`
+  - Style video when stalled (buffering)
+  - Network issue indicator
+  - Stylus: Works directly
+
+- [ ] **`:volume-locked` Pseudo-class** (87%+ browser support)
+  - File: `src/components/file-pages.styl`
+  - Style when volume is locked/unadjustable
+  - Embedded video volume indicator
+  - Stylus: Works directly
+
 ## 📝 Content Templates (New - 2026-03-01 Scout 20)
 
 - [ ] **Related Articles Box** (CSS)
@@ -4708,6 +4753,22 @@ Last updated: 2026-03-01 06:05
   - Example: `@import "theme.css" layer(theme);`
   - Third-party library isolation
 
+- [ ] **`contrast-color()` Function** (92%+ browser support)
+  - File: `src/variables/colors.styl`
+  - Returns a color with maximum contrast for a given color
+  - Example: `color: contrast-color(var(--bg));`
+  - Automatic accessible text color selection
+  - Works with WCAG contrast requirements
+  - Stylus: Works directly
+
+- [ ] **`progress()` Math Function** (89%+ browser support)
+  - File: `src/utilities/_math.styl`
+  - Calculate position of a value between start and end (returns 0-1)
+  - Example: `opacity: progress(var(--scroll), 0, 100);`
+  - Scroll progress indicators
+  - Reading progress bar calculations
+  - Stylus: Works directly
+
 ## 🏷️ ArchWiki Status Templates (New)
 
 - [ ] **{{Accuracy}} Template Styling** (CSS)
@@ -4739,6 +4800,45 @@ Last updated: 2026-03-01 06:05
   - Deletion candidate banner
   - Reason display
   - Discussion link
+
+- [ ] **{{Related2}} Template Styling** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Related articles with translated anchor text
+  - Non-English article navigation
+  - Bilingual link support
+
+- [ ] **{{Lowercase title}} Template Support** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Lowercase title display handling
+  - DISPLAYTITLE magic word support
+  - Proper title case exceptions
+
+## 📝 ArchWiki Navigation Patterns (New - 2026-03-10 Scout 29)
+
+- [ ] **Magic Words Top-of-Article Styling** (CSS)
+  - File: `src/components/content.styl`
+  - DISPLAYTITLE, __NOTOC__, __NOEDITSECTION__ handling
+  - Behavior switch indicators
+  - Article configuration display
+
+- [ ] **Interlanguage Link Column Styling** (CSS)
+  - File: `src/components/i18n.styl`
+  - Left sidebar language links
+  - Alphabetical sorting visual indicator
+  - Current language highlight
+  - Missing translation indicator
+
+- [ ] **Category Top-of-Article Placement** (CSS)
+  - File: `src/components/navigation.styl`
+  - Categories at top (ArchWiki style vs Wikipedia bottom)
+  - No blank lines between categories and content
+  - Category sort key display
+
+- [ ] **Related Articles Box Positioning** (CSS)
+  - File: `src/components/navigation.styl`
+  - Right-aligned related articles box
+  - Position below status templates, above intro
+  - Mobile collapse behavior
 
 ## 🌐 ArchWiki i18n Templates (New)
 
