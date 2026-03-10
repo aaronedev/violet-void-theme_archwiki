@@ -6454,8 +6454,59 @@ Last updated: 2026-03-01 06:05
   - RTL support for translated anchors
   - Stylus: Works directly
 
+## 🆕 CSS Transitions Extended (New - 2026-03-10 Scout 35)
+
+- [ ] **`transition-behavior: allow-discrete`** (CSS, 85%+ browser support)
+  - File: `src/animation/discrete-transitions.styl`
+  - Enable smooth transitions for `display: none` ↔ block
+  - Enable transitions for `content-visibility`
+  - Pair with `@starting-style` for entry animations
+  - Stylus: Works directly
+
+## 🆕 Text Typography Extended (New - 2026-03-10 Scout 35)
+
+- [ ] **`text-wrap: balance`** for Headlines (CSS, 87%+ browser support)
+  - File: `src/typography/headlines.styl`
+  - Balance text lines in headings for better readability
+  - Apply to h1, h2, infobox titles
+  - Limit to 3-4 lines max for performance
+  - Stylus: Works directly
+
+- [ ] **`text-wrap: pretty`** for Paragraphs (CSS, 85%+ browser support)
+  - File: `src/typography/paragraphs.styl`
+  - Prevent typographic orphans/widows
+  - Better paragraph ending balance
+  - Apply to article content paragraphs
+  - Stylus: Works directly
+
+## 🆕 URL Fragment Targeting (New - 2026-03-10 Scout 35)
+
+- [ ] **`::target-text` Pseudo-element** (CSS, 85%+ browser support)
+  - File: `src/components/target-text.styl`
+  - Style text fragments highlighted via URL #:~:text=
+  - Custom highlight background color
+  - Smooth highlight animation
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Status Templates Extended (New - 2026-03-10 Scout 35)
+
+- [ ] **Template:Expansion Styling** (CSS, 97%+ browser support)
+  - File: `src/templates/expansion.styl`
+  - Expansion needed indicator styling
+  - Expansion reason text display
+  - Consistent with Template:Style colors
+  - Stylus: Works directly
+
+- [ ] **Template:Out of date Styling** (CSS, 97%+ browser support)
+  - File: `src/templates/outdated.styl`
+  - Outdated content warning styling
+  - Date/version indicator display
+  - Prominent warning colors
+  - Stylus: Works directly
+
 ---
 
 | 2026-03-10 | Section Anchors Implementation | Added section permalink styling with hover reveal pattern, copy link indicator, and target highlight animation | 3d0b8cf |
 | 2026-03-10 | Thirty-fourth scout | Added @supports extensions (font-tech, font-format, named-feature), anchor-scope property, form styling extensions (::picker, ::picker-icon), ArchWiki i18n patterns (Template:Related2) |
 | 2026-03-10 | Message Boxes Implementation | Added comprehensive Ambox, Ombox, Imbox, Tmbox, Cmbox, Fmbox styling with type-specific colors, Citation Needed template with hover tooltip, collapsible support, accessibility features | 631a6c0 |
+| 2026-03-10 | Thirty-fifth scout | Added CSS transitions extended (transition-behavior: allow-discrete), text typography extended (text-wrap: balance, text-wrap: pretty), URL fragment targeting (::target-text), ArchWiki status templates extended (Template:Expansion, Template:Out of date) |
