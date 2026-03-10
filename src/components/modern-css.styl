@@ -329,18 +329,14 @@ h4[id]
     font-weight: 600;
   }
 
-  /* Table row highlighting based on cell content */
-  /* Highlight rows with warning text */
-  .wikitable tbody tr:has(td:only-child:contains("Warning")) {
-    background: rgba(255, 170, 0, 0.1);
-  }
-
-  /* Highlight rows with deprecated content */
-  .wikitable tbody tr:has(td.deprecated),
-  .wikitable tbody tr:has(td:contains("Deprecated")) {
+  /* Table row highlighting based on cell class */
+  /* Highlight rows with deprecated class */
+  .wikitable tbody tr:has(td.deprecated) {
     opacity: 0.6;
     text-decoration: line-through;
   }
+
+  /* Note: :contains() is not valid CSS - use JS or add classes to HTML for text-based selection */
 
   /* Card/list hover states affecting siblings */
   /* Dim sibling items when hovering */

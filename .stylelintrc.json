@@ -3,13 +3,61 @@
   "rules": {
     "stylus/declaration-colon": "never",
     "stylus/semicolon": "never",
-    "stylus/indentation": 2,
+    "stylus/indentation": [2, { "except": ["param"] }],
     "stylus/selector-type-no-unknown": [
       true,
       {
         "ignoreTypes": ["page-content", "root", "caption-side", "bottom"]
       }
-    ]
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["interpolate-size", "navigation", "copy-button-selectors"]
+      }
+    ],
+    "at-rule-no-unknown": null,
+    "stylus/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "view-transition",
+          "container",
+          "layer",
+          "css",
+          "if",
+          "else",
+          "for",
+          "each",
+          "while",
+          "return",
+          "import",
+          "require",
+          "extend",
+          "block",
+          "mixin",
+          "function",
+          "media",
+          "keyframes",
+          "supports",
+          "font-face",
+          "charset",
+          "namespace",
+          "page",
+          "counter-style",
+          "font-feature-values",
+          "property",
+          "scope"
+        ]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["contains", "has", "is", "where", "not", "nth-child", "local", "global"]
+      }
+    ],
+    "stylus/no-eol-whitespace": true
   },
   "ignoreFiles": ["dist/**", "node_modules/**", "**/*.css"]
 }
