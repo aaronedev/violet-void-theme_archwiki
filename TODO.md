@@ -364,7 +364,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | Print Images enhanced styling | 8575e65 |
+| 2026-03-10 | Print Images enhanced styling | ae8426b |
 | 2026-03-10 | @starting-style for entry/exit animations | 6445bd7 |
 | 2026-03-10 | widows/orphans control for print typography | 2a51280 |
 | 2026-03-10 | transition-behavior: allow-discrete for display transitions | a2245f4 |
@@ -4623,7 +4623,7 @@ Last updated: 2026-03-10 13:30
   - Caption styling
   - Alt text display option
   - Background image handling
-  - Commit: 8575e65
+  - Commit: ae8426b
 
 ## 🎭 State Patterns (New)
 
