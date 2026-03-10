@@ -1,0 +1,441 @@
+// Navbox Styling for Violet Void ArchWiki Theme
+// Navigation boxes at the bottom of articles for related topic navigation
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// NAVBOX BASE STYLES
+// =============================================================================
+// MediaWiki navboxes use .navbox class and various table structures
+// These appear at the bottom of articles to link related topics
+
+.navbox
+.mw-navbox
+.tpl-navbox
+  // Container styling
+  width 100%
+  max-width 100%
+  margin 1em auto
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+  box-shadow $shadow-subtle
+  overflow hidden
+  font-size 0.9em
+  clear both
+
+  // Table reset
+  table
+    width 100%
+    border-collapse collapse
+    margin 0
+    background transparent
+
+  // Remove default cell borders
+  td
+  th
+    border none
+    padding 0
+
+// =============================================================================
+// NAVBOX TITLE/HEADER
+// =============================================================================
+
+.navbox-title
+.navbox-header
+.mw-navbox-title
+  // Title bar styling
+  background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($secondary-blue, 0.1))
+  padding 0.6em 1em
+  font-weight 600
+  color $lighter
+  text-align center
+  border-bottom 1px solid rgba($arch-blue, 0.2)
+
+  // Title link
+  a
+    color $lighter
+    text-decoration none
+
+    &:hover
+      color $orange
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+  // Collapse toggle button
+  .mw-collapsible-toggle
+    float right
+    font-size 0.85em
+    font-weight normal
+    margin-left 0.5em
+    color $light
+    cursor pointer
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.2)
+      color $lighter
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    // Toggle icon
+    &::before
+      content "▼ "
+      font-size 0.8em
+      opacity 0.7
+
+  // Collapsed state toggle
+  .mw-collapsed &
+    .mw-collapsible-toggle::before
+      content "▶ "
+
+// =============================================================================
+// NAVBOX GROUPS
+// =============================================================================
+
+.navbox-group
+.mw-navbox-group
+  // Group header cell
+  background-color rgba($arch-blue, 0.08)
+  padding 0.5em 0.8em
+  font-weight 500
+  color $secondary-blue
+  text-align left
+  white-space nowrap
+  vertical-align top
+  width 1% // Minimum width for group label
+  min-width 100px
+  border-right 1px solid rgba($arch-blue, 0.15)
+
+  // Group link
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $orange
+      text-decoration underline
+
+// =============================================================================
+// NAVBOX CONTENT LISTS
+// =============================================================================
+
+.navbox-list
+.mw-navbox-list
+  // Content area styling
+  padding 0.4em 0.8em
+  background-color rgba($base, 0.5)
+  color $light
+  line-height 1.6
+
+  // List styling
+  ul
+  ol
+    margin 0
+    padding 0
+    list-style none
+
+    li
+      display inline-block
+      margin 0.2em 0.4em
+      white-space nowrap
+
+      // Separator between items
+      &::after
+        content " •"
+        color $muted
+        margin-left 0.4em
+        opacity 0.5
+
+      &:last-child::after
+        content none
+
+  // Links in lists
+  a
+    color $secondary-blue
+    text-decoration none
+    padding 0.1em 0.3em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      color $orange
+      background-color rgba($arch-blue, 0.15)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &:active
+      color $secondary-red
+
+// =============================================================================
+// NAVBOX SUBGROUPS
+// =============================================================================
+
+.navbox-subgroup
+.mw-navbox-subgroup
+  // Nested navbox styling
+  margin 0.3em 0
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-sm
+  background-color rgba($darker, 0.5)
+  overflow hidden
+
+  // Subgroup title
+  .navbox-title
+  .navbox-group
+    background-color rgba($arch-blue, 0.12)
+    padding 0.4em 0.6em
+    font-size 0.95em
+
+  // Subgroup content
+  .navbox-list
+    padding 0.3em 0.5em
+    background-color rgba($base, 0.3)
+
+// =============================================================================
+// COLLAPSIBLE SECTIONS
+// =============================================================================
+
+// Collapsible navbox content
+.navbox-content
+.mw-navbox-content
+  // Smooth collapse animation
+  transition all $transition-medium
+  overflow hidden
+
+// Collapsed state
+.mw-collapsed
+  .navbox-content
+  .mw-navbox-content
+  .navbox-list
+  .navbox-group
+    display none
+
+// Always show title even when collapsed
+.mw-collapsed
+  .navbox-title
+  .mw-navbox-title
+    border-bottom none
+
+// =============================================================================
+// NAVBOX ROWS
+// =============================================================================
+
+.navbox-row
+.mw-navbox-row
+  // Alternating row styling
+  border-bottom 1px solid rgba($arch-blue, 0.1)
+
+  &:last-child
+    border-bottom none
+
+  // Odd/even row distinction
+  &:nth-child(odd)
+    background-color rgba($darker, 0.3)
+
+  &:nth-child(even)
+    background-color rgba($base, 0.3)
+
+// =============================================================================
+// NAVBOX BELOW/ABOVE SECTIONS
+// =============================================================================
+
+.navbox-above
+.navbox-below
+.mw-navbox-above
+.mw-navbox-below
+  // Header/footer sections
+  background-color rgba($arch-blue, 0.08)
+  padding 0.5em 1em
+  text-align center
+  color $light
+  font-size 0.9em
+  border-top 1px solid rgba($arch-blue, 0.15)
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $orange
+
+.navbox-above
+.mw-navbox-above
+  border-top none
+  border-bottom 1px solid rgba($arch-blue, 0.15)
+
+// =============================================================================
+// NAVBOX VARIANTS
+// =============================================================================
+
+// Horizontal layout navbox
+.navbox-horizontal
+  .navbox-list
+    ul
+      display flex
+      flex-wrap wrap
+      gap 0.3em
+
+      li
+        &::after
+          content none
+
+// Simple navbox (no groups)
+.navbox-simple
+  .navbox-title
+    text-align left
+    padding-left 1.2em
+
+  .navbox-list
+    padding 0.5em 1em
+
+// Compact navbox
+.navbox-compact
+  font-size 0.85em
+  margin 0.5em auto
+
+  .navbox-title
+    padding 0.4em 0.8em
+
+  .navbox-list
+    padding 0.3em 0.6em
+
+// =============================================================================
+// MULTIPLE NAVBOXES (STACKING)
+// =============================================================================
+
+// When multiple navboxes appear together
+.navbox + .navbox
+.mw-navbox + .mw-navbox
+  margin-top -1px
+  border-top 1px solid rgba($arch-blue, 0.15)
+  border-top-left-radius 0
+  border-top-right-radius 0
+
+// First navbox in group
+.navbox:first-of-type
+.mw-navbox:first-of-type
+  margin-top 1em
+
+// =============================================================================
+// RESPONSIVE STYLES
+// =============================================================================
+
+@media screen and (max-width 768px)
+  .navbox
+  .mw-navbox
+    font-size 0.85em
+    margin 0.8em 0
+
+    .navbox-group
+      display block
+      width 100%
+      min-width unset
+      border-right none
+      border-bottom 1px solid rgba($arch-blue, 0.15)
+      text-align center
+      padding 0.4em
+
+    .navbox-list
+      padding 0.4em
+
+      ul li
+        display block
+        margin 0.3em 0
+        text-align center
+
+        &::after
+          content none
+
+  // Stack subgroups on mobile
+  .navbox-subgroup
+    margin 0.3em 0
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// High contrast mode support
+@media (forced-colors active)
+  .navbox
+  .mw-navbox
+    border 2px solid CanvasText
+
+    .navbox-title
+    .navbox-group
+      background-color Canvas
+      color CanvasText
+      forced-color-adjust none
+
+    .navbox-list a
+      color LinkText
+
+      &:visited
+        color VisitedText
+
+// Reduced motion - instant transitions
+@media (prefers-reduced-motion reduce)
+  .navbox
+  .mw-navbox
+    .navbox-content
+    .mw-collapsible-toggle
+    a
+      transition none
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  .navbox
+  .mw-navbox
+    // Simplified print styling
+    border 1px solid $print-border
+    background $print-white
+    page-break-inside avoid
+    font-size 0.85em
+    box-shadow none
+
+    .navbox-title
+      background-color $print-bg
+      color $print-black
+      border-bottom 1px solid $print-border
+
+    .navbox-group
+      background-color $print-bg
+      color $print-black
+      border-right 1px solid $print-border
+
+    .navbox-list
+      background-color $print-white
+      color $print-black
+
+      a
+        color $print-black
+        text-decoration underline
+
+        &::after
+          content " (" attr(href) ")"
+          font-size 0.8em
+          color $print-text
+
+    // Hide collapse toggles in print
+    .mw-collapsible-toggle
+      display none
+
+    // Ensure all content visible in print
+    .navbox-content
+    .navbox-list
+    .navbox-group
+      display block !important
