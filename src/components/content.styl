@@ -172,6 +172,153 @@ h2::after
   border-radius 1px
 
 // =============================================================================
+// LEAD SECTION STYLING
+// First paragraph emphasis and article intro formatting
+// Browser support: 97%+
+// =============================================================================
+
+// Lead section - the first paragraph(s) before the first heading
+// In MediaWiki, this is content before the TOC and first section
+.mw-parser-output
+  // Lead section container (first paragraphs before first heading)
+  > p:first-of-type
+  > p:nth-of-type(2)
+    // Lead paragraph emphasis
+    font-size 1.05em
+    line-height 1.7
+    color $lighter
+
+    // First paragraph gets extra emphasis
+    &:first-of-type
+      font-size 1.1em
+
+      // Bold first occurrence of article subject
+      // The first bold text in lead is typically the article title/subject
+      b
+      strong
+        color $white
+        font-weight 700
+
+        // First bold gets special styling
+        &:first-of-type
+          background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.08))
+          padding 0.1em 0.3em
+          margin 0 0.1em
+          border-radius $border-radius-sm
+
+  // Lead section paragraphs (before first h2)
+  > p:not(h2 ~ p)
+    // Slightly enhanced readability for lead content
+    max-width 75ch
+
+// Alternative: Use CSS to target content before first heading
+// This uses :has() for modern browsers
+@css {
+  /* Lead section - paragraphs before first section heading */
+  .mw-parser-output:has(h2) > p:has(~ h2),
+  .mw-parser-output:not(:has(h2)) > p {
+    font-size: 1.05em;
+    line-height: 1.7;
+  }
+
+  /* First paragraph of article gets lead emphasis */
+  .mw-parser-output > p:first-of-type {
+    font-size: 1.1em;
+  }
+
+  /* Lead paragraph bold text (typically article subject) */
+  .mw-parser-output > p:first-of-type b:first-of-type,
+  .mw-parser-output > p:first-of-type strong:first-of-type {
+    color: var(--lighter, #e8e8e8);
+    font-weight: 700;
+  }
+}
+
+// =============================================================================
+// DISAMBIGUATION HATNOTE
+// "For other uses, see..." notices at top of articles
+// Browser support: 97%+
+// =============================================================================
+
+// Hatnote - disambiguation and clarification notes at article start
+.hatnote
+.dablink
+.rellink
+// Also target common MediaWiki hatnote patterns
+.mw-parser-output > .hatnote
+.mw-parser-output > .dablink
+.mw-parser-output > p.hatnote
+  font-style italic
+  font-size 0.92em
+  color $muted
+  padding 0.6em 1em
+  margin 0.5em 0 1em 0
+  border-left 3px solid $arch-blue
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.02))
+  border-radius 0 $border-radius-md $border-radius-md 0
+  line-height 1.5
+
+  // Remove italic from nested elements for better readability
+  i
+  em
+    font-style normal
+
+  // Links in hatnote
+  a
+    color $secondary-blue
+    font-style normal
+    font-weight 500
+    text-decoration none
+
+    &:hover
+      color $orange
+
+  // "Not to be confused with" variant
+  &.hatnote-confusion
+    border-left-color $term-yellow
+    background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.02))
+
+  // "Main article" variant
+  &.hatnote-main
+    border-left-color $term-green
+    background linear-gradient(135deg, rgba($term-green, 0.08), rgba($term-green, 0.02))
+    font-weight 500
+
+    &::before
+      content "→ "
+      color $term-green
+      font-style normal
+
+  // "See also" variant
+  &.hatnote-see-also
+    border-left-color $term-cyan
+    background linear-gradient(135deg, rgba($term-cyan, 0.08), rgba($term-cyan, 0.02))
+
+    &::before
+      content "📚 "
+      font-style normal
+
+// "May refer to" formatting for disambiguation pages
+.mw-disambig-page
+.dab-page
+  // Lead section on disambiguation pages
+  .mw-parser-output > p:first-of-type
+    font-style italic
+    color $light
+    border-bottom 1px solid $border-subtle
+    padding-bottom 1em
+    margin-bottom 1em
+
+// Disambiguation page list items
+.dab-list
+  column-width 20em
+  column-gap 2em
+
+  li
+    break-inside avoid
+    margin 0.5em 0
+
+// =============================================================================
 // SECTION ANCHORS - Permalink styling with hover reveal
 // Browser support: 97%+
 // =============================================================================
