@@ -4644,6 +4644,88 @@ Last updated: 2026-03-01 06:05
 | 2026-03-01 | Twenty-sixth scout | Added responsive design patterns (breakpoints, typography, images, tables), print extended (page breaks, typography, links, images), state patterns (loading, empty, error, success), code & syntax extended (inline code, code blocks, syntax highlighting, terminal), spacing system (margin scale, padding scale, gap utilities, spacing variables), dark mode support (toggle, color scheme, images, forms), link patterns (internal, external, redirect, broken) |
 
 
+## 🔧 Advanced CSS Functions (New - 2026-03-10 Scout 28)
+
+- [ ] **`attr()` with type() Function** (90%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Parse HTML attributes as typed CSS values
+  - Example: `width: attr(data-width px);`
+  - Example: `color: attr(data-color type(<color>));`
+  - Use for dynamic component sizing from data attributes
+  - Note: Requires `@css{}` wrapper for Stylus
+
+- [ ] **`color-mix()` Function** (97%+ browser support)
+  - File: `src/variables/colors.styl`
+  - Mix two colors together in CSS
+  - Example: `color: color-mix(in srgb, var(--accent) 50%, white);`
+  - Dynamic color variants without pre-computing
+  - Hover/active state color adjustments
+  - Note: Requires `@css{}` wrapper for Stylus
+
+- [ ] **`@import` with supports() Function** (95%+ browser support)
+  - File: `src/main.styl`
+  - Conditional stylesheet imports based on feature support
+  - Example: `@import "modern.css" supports(display: grid);`
+  - Progressive enhancement pattern
+  - Load modern CSS only when features supported
+
+- [ ] **`@import` with layer() Function** (97%+ browser support)
+  - File: `src/main.styl`
+  - Import external stylesheets into cascade layers
+  - Example: `@import "reset.css" layer(reset);`
+  - Example: `@import "theme.css" layer(theme);`
+  - Third-party library isolation
+
+## 🏷️ ArchWiki Status Templates (New)
+
+- [ ] **{{Accuracy}} Template Styling** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Accuracy warning banner
+  - Dispute indicator styling
+  - Discussion link styling
+
+- [ ] **{{Out of date}} Template Styling** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Outdated content warning
+  - Last updated date display
+  - Update needed indicator
+
+- [ ] **{{Expansion}} Template Styling** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Expansion needed banner
+  - Missing sections indicator
+  - Contribution call-to-action
+
+- [ ] **{{Translateme}} Template Styling** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Translation needed banner
+  - Language indicator
+  - Translation help link
+
+- [ ] **{{Deletion}} Template Styling** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - Deletion candidate banner
+  - Reason display
+  - Discussion link
+
+## 🌐 ArchWiki i18n Templates (New)
+
+- [ ] **{{i18n}} Language Bar Styling** (CSS)
+  - File: `src/components/archwiki-i18n.styl`
+  - Language link list
+  - Available languages indicator
+  - Missing translation indicator
+  - Current language highlight
+
+- [ ] **{{Related languages start/end}} Styling** (CSS)
+  - File: `src/components/archwiki-i18n.styl`
+  - Related languages box
+  - Language link styling
+  - Status indicator (complete/partial/stub)
+
+| 2026-03-10 | Twenty-eighth scout | Added advanced CSS functions (attr() with type(), color-mix(), @import with supports()/layer()), ArchWiki status templates (Accuracy, Out of date, Expansion, Translateme, Deletion), ArchWiki i18n templates (i18n language bar, Related languages) |
+
+
 ## 🎬 Animation & Transitions (New - 2026-03-01 Scout 27)
 
 - [ ] **@starting-style Patterns** (CSS, 85%+ browser support)
