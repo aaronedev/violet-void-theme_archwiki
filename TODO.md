@@ -7083,3 +7083,52 @@ Last updated: 2026-03-10 13:30
   - Link to talk page for discussion
   - Similar to Template:Expansion but translation-specific
   - Stylus: Works directly
+
+## 🆕 MediaWiki 1.45 Features (New - 2026-03-10 Scout 41)
+
+- [ ] **Special:SpecialPages Search Box** (CSS, 97%+ browser support)
+  - File: `src/components/special-pages.styl`
+  - New in MediaWiki 1.45: search filter for special pages list
+  - Filter input styling with search icon
+  - Real-time filtering indicator
+  - No results message styling
+  - Stylus: Works directly
+
+- [ ] **Partial Action Blocks UI** (CSS, 97%+ browser support)
+  - File: `src/components/admin.styl`
+  - New in MediaWiki 1.45: block specific actions (move, upload) without full block
+  - Action checkbox group styling
+  - Partial block indicator badge
+  - Blocked action list display
+  - Stylus: Works directly
+
+- [ ] **Built-in Notifications Framework Styling** (CSS, 97%+ browser support)
+  - File: `src/components/notifications.styl`
+  - MediaWiki 1.45: notifications framework now stable for extensions
+  - Notification panel cards
+  - Notification type icons
+  - Read/unread state styling
+  - Dismiss/action buttons
+  - Stylus: Works directly
+
+## 🆕 CSS Scroll Snap Extensions (New - 2026-03-10 Scout 41)
+
+- [ ] **`scroll-snap-align` Property** (CSS, 97%+ browser support)
+  - File: `src/components/scroll-snap.styl`
+  - Control snap alignment for scroll snap children
+  - Values: `none`, `start`, `end`, `center`
+  - Apply to carousel items, TOC items, image gallery slides
+  - Example: `scroll-snap-align: center;`
+  - Stylus: Works directly
+
+- [ ] **`scroll-snap-stop` Property** (CSS, 97%+ browser support)
+  - File: `src/components/scroll-snap.styl`
+  - Force scroll to stop at snap point (prevent passing)
+  - Values: `normal`, `always`
+  - Use for critical snap points (e.g., section headers)
+  - Example: `scroll-snap-stop: always;`
+  - Stylus: Works directly
+
+---
+
+| 2026-03-10 | Forty-first scout | Added MediaWiki 1.45 features (Special:SpecialPages search box, partial action blocks UI, built-in notifications framework), CSS scroll snap extensions (scroll-snap-align, scroll-snap-stop) |
