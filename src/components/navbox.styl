@@ -394,6 +394,119 @@
       transition none
 
 // =============================================================================
+// SIDEBAR TEMPLATE
+// =============================================================================
+
+.vertical-navbox
+.sidebar
+.mw-sidebar
+  width 22em
+  float right
+  clear right
+  margin 0 0 1em 1em
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  padding 0.5em
+  box-shadow $shadow-subtle
+  font-size 0.9em
+
+  .sidebar-title
+  .sidebar-heading
+  .sidebar-top
+    font-size 1.1em
+    font-weight 600
+    text-align center
+    padding 0.5em
+    color $lighter
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($secondary-blue, 0.1))
+    border-radius $border-radius-sm
+    margin-bottom 0.5em
+
+  .sidebar-image
+    text-align center
+    padding 0.5em 0
+
+    img
+      max-width 100%
+      height auto
+      border-radius $border-radius-sm
+
+  .sidebar-content
+    padding 0.5em
+
+  .sidebar-group
+  .sidebar-list
+    padding 0.2em 0
+
+  .sidebar-list-title
+  .sidebar-heading
+    font-weight 600
+    color $lighter
+    text-align center
+    padding 0.3em 0
+    margin-top 0.5em
+    border-top 1px solid rgba($arch-blue, 0.1)
+
+  a
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $orange
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+  .mw-collapsible-toggle
+    float right
+    font-size 0.85em
+    font-weight normal
+    color $light
+    cursor pointer
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.2)
+      color $lighter
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  ul
+  ol
+    list-style none
+    padding 0
+    margin 0
+    text-align center
+
+    li
+      display inline-block
+      margin 0.1em 0.3em
+
+      &::after
+        content " •"
+        color $muted
+        margin-left 0.4em
+        opacity 0.5
+
+      &:last-child::after
+        content none
+
+  // Mobile layout
+  @media screen and (max-width 768px)
+    float none
+    width 100%
+    margin 1em 0
+
+// =============================================================================
 // PRINT STYLES
 // =============================================================================
 

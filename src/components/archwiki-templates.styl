@@ -1,0 +1,259 @@
+// ArchWiki Status Templates
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ACCURACY TEMPLATE
+// =============================================================================
+.box-accuracy
+.ambox-accuracy
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.05))
+  border-left 4px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .dispute-indicator
+    font-weight 600
+    color $secondary-red
+    margin-bottom 0.5em
+    display block
+
+  .discussion-link
+    display inline-block
+    margin-top 0.5em
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// OUT OF DATE TEMPLATE
+// =============================================================================
+.box-out-of-date
+.ambox-outdated
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.05))
+  border-left 4px solid $orange
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .outdated-warning
+    font-weight 600
+    color $orange
+    margin-bottom 0.5em
+    display block
+
+  .update-needed
+    color $lighter
+    font-style italic
+
+  .last-updated
+    font-size 0.9em
+    color $light
+    margin-top 0.5em
+    display block
+
+// =============================================================================
+// EXPANSION TEMPLATE
+// =============================================================================
+.box-expansion
+.ambox-expansion
+  background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.05))
+  border-left 4px solid $arch-blue
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .expansion-banner
+    font-weight 600
+    color $secondary-blue
+    margin-bottom 0.5em
+    display block
+
+  .missing-sections
+    color $light
+    margin-bottom 0.5em
+    display block
+
+  .contribution-cta
+    display inline-block
+    margin-top 0.5em
+    font-weight 600
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// TRANSLATEME TEMPLATE
+// =============================================================================
+.box-translateme
+.ambox-translateme
+  background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.05))
+  border-left 4px solid $green
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .translation-banner
+    font-weight 600
+    color $green
+    margin-bottom 0.5em
+    display block
+
+  .language-indicator
+    display inline-block
+    background-color rgba($green, 0.2)
+    color $lighter
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    margin-right 0.5em
+
+  .translation-help
+    display inline-block
+    margin-top 0.5em
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// DELETION TEMPLATE
+// =============================================================================
+.box-deletion
+.ambox-delete
+  background linear-gradient(135deg, rgba($secondary-red, 0.2), rgba($secondary-red, 0.1))
+  border 2px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .deletion-banner
+    font-weight 700
+    font-size 1.1em
+    color $secondary-red
+    margin-bottom 0.5em
+    display block
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  .deletion-reason
+    color $lighter
+    margin-bottom 0.5em
+    display block
+    padding 0.5em
+    background-color rgba($darker, 0.5)
+    border-radius $border-radius-sm
+    border-left 3px solid $secondary-red
+
+  .discussion-link
+    display inline-block
+    margin-top 0.5em
+    font-weight 600
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// RELATED2 TEMPLATE
+// =============================================================================
+.archwiki-template-related2
+  background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      margin 0.4em 0
+
+  .bilingual-link
+    display inline-flex
+    align-items center
+    gap 0.5em
+
+    .original-link
+      color $secondary-blue
+      text-decoration none
+      transition color $transition-fast
+
+      &:hover
+        color $lighter
+        text-decoration underline
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+        border-radius 2px
+
+    .translated-anchor
+      color $light
+      font-style italic
+
+      &::before
+        content "("
+        color $muted
+      &::after
+        content ")"
+        color $muted
+
+// =============================================================================
+// LOWERCASE TITLE TEMPLATE
+// =============================================================================
+#firstHeading
+.firstHeading
+  .lowercase-title
+    text-transform lowercase
+    display inline-block
+
+    // exception for specific parts that should remain uppercase if nested
+    .title-exception
+      text-transform none
