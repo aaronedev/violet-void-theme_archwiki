@@ -363,6 +363,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | :open pseudo-class for unified open state styling | e555401 |
 | 2026-03-10 | ::file-selector-button styling | a56b1c8 |
 | 2026-03-10 | Documentation Subpage (template-doc.styl) | 95091e6 |
 | 2026-03-10 | attr() with type() function | c6dedd5 |
@@ -3572,12 +3573,13 @@ Last updated: 2026-03-10 13:30
 
 ## 🎯 Interaction State Pseudo-Classes (New - 2026-03-10 Scout 29)
 
-- [ ] **`:open` Pseudo-class** (97%+ browser support)
+- [x] **`:open` Pseudo-class** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Style elements in open state (details, dialogs, popovers)
   - Example: `details:open { ... }`, `dialog:open { ... }`
   - Unified open state handling
   - Stylus: Works directly
+  - Commit: e555401
 
 - [ ] **`:interest-source` Pseudo-class** (85%+ browser support)
   - File: `src/components/navigation.styl`
