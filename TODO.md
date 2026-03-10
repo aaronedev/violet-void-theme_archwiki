@@ -6674,6 +6674,83 @@ Last updated: 2026-03-01 06:05
   - Category visibility without scrolling
   - Stylus: Works directly
 
+## 🆕 CSS Text Box Properties (New - 2026-03-10 Scout 37)
+
+- [ ] **`text-box` Shorthand Property** (CSS, 80%+ browser support)
+  - File: `src/typography/text-box.styl`
+  - Shorthand for `text-box-trim` and `text-box-edge`
+  - Control text spacing in block direction
+  - Trim leading/trailing spacing from text containers
+  - Example: `text-box: trim-both cap alphabetic;`
+  - Stylus: Works directly
+
+- [ ] **`text-box-trim` Property** (CSS, 80%+ browser support)
+  - File: `src/typography/text-box.styl`
+  - Trim spacing from text container edges
+  - Values: `none`, `trim-start`, `trim-end`, `trim-both`
+  - Better vertical alignment for text in buttons, badges
+  - Eliminate half-leading spacing issues
+  - Stylus: Works directly
+
+- [ ] **`text-box-edge` Property** (CSS, 80%+ browser support)
+  - File: `src/typography/text-box.styl`
+  - Define text edge for trimming
+  - Values: `auto`, `<text-edge>` combinations (text, ideographic, cap, ex, alphabetic)
+  - Example: `text-box-edge: cap alphabetic;` for Latin text
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Template:hc Styling (New - 2026-03-10 Scout 37)
+
+- [ ] **Template:hc (Header-Code Block) Styling** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-templates.styl`
+  - Two-pane code block: header + output
+  - Header pane styling (filename, command)
+  - Content pane styling (code/output)
+  - Visual separator between panes
+  - Known issue: breaks in lists/indented context
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Interlanguage Links (New - 2026-03-10 Scout 37)
+
+- [ ] **Interlanguage Link Column Styling** (CSS, 97%+ browser support)
+  - File: `src/components/interlanguage.styl`
+  - Language links in left sidebar column
+  - Sorted alphabetically by language tag (fi before fr)
+  - Active language indicator
+  - Compact language code display
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Standard Section Conventions (New - 2026-03-10 Scout 37)
+
+- [ ] **Standard Section Styling (Installation, Troubleshooting, etc.)** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-sections.styl`
+  - Style standard sections per Help:Style conventions:
+    - Installation section (early in article)
+    - Known issues section (with bug report links)
+    - Tips and tricks section (subsection organization)
+    - Troubleshooting section (FAQ/problem solutions)
+    - See also section (bulleted link list, last position)
+  - Section-specific icons or indicators
+  - Consistent section ordering visual cues
+  - Stylus: Works directly
+
+## 🆕 CSS Nesting Migration (New - 2026-03-10 Scout 37)
+
+- [ ] **Native CSS Nesting Syntax Patterns** (CSS, 89%+ browser support)
+  - File: `src/modern/nesting.styl`
+  - Migrate from Stylus nesting to native CSS `&` selector
+  - Nested at-rules support
+  - Specificity considerations for nested rules
+  - Progressive enhancement strategy
+  - Note: Can be used alongside Stylus for future-proofing
+  - Example:
+    ```css
+    .article {
+      & h2 { margin-top: 1.5em; }
+      & p { line-height: 1.6; }
+    }
+    ```
+
 ---
 
 | 2026-03-10 | Section Anchors Implementation | Added section permalink styling with hover reveal pattern, copy link indicator, and target highlight animation | 3d0b8cf |
@@ -6681,3 +6758,4 @@ Last updated: 2026-03-01 06:05
 | 2026-03-10 | Thirty-sixth scout | Added scroll-initial-target, media resource states (:seeking/:stalled/:volume-locked), time-dimensional pseudo-classes, :heading() functional pseudo-class, position-visibility, ArchWiki conventions (magic words, category positioning) |
 | 2026-03-10 | Message Boxes Implementation | Added comprehensive Ambox, Ombox, Imbox, Tmbox, Cmbox, Fmbox styling with type-specific colors, Citation Needed template with hover tooltip, collapsible support, accessibility features | 631a6c0 |
 | 2026-03-10 | Thirty-fifth scout | Added CSS transitions extended (transition-behavior: allow-discrete), text typography extended (text-wrap: balance, text-wrap: pretty), URL fragment targeting (::target-text), ArchWiki status templates extended (Template:Expansion, Template:Out of date) |
+| 2026-03-10 | Thirty-seventh scout | Added CSS text box properties (text-box, text-box-trim, text-box-edge), ArchWiki Template:hc styling, interlanguage link column, standard section conventions, native CSS nesting patterns |
