@@ -305,6 +305,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -4660,13 +4661,14 @@ Last updated: 2026-03-01 06:05
   - Use for dynamic component sizing from data attributes
   - Note: Requires `@css{}` wrapper for Stylus
 
-- [ ] **`color-mix()` Function** (97%+ browser support)
-  - File: `src/variables/colors.styl`
+- [x] **`color-mix()` Function** (97%+ browser support)
+  - File: `src/components/modern-css.styl`
   - Mix two colors together in CSS
   - Example: `color: color-mix(in srgb, var(--accent) 50%, white);`
   - Dynamic color variants without pre-computing
   - Hover/active state color adjustments
   - Note: Requires `@css{}` wrapper for Stylus
+  - Commit: 84aac1c
 
 - [ ] **`@import` with supports() Function** (95%+ browser support)
   - File: `src/main.styl`
