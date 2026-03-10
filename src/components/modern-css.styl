@@ -1257,8 +1257,9 @@ h4[id]
 // Browser support: 97%+
 
 // Style defined custom elements
-:defined
-  display block
+// Removed: :defined applies to all elements, causing massive layout issues with inline elements
+// :defined
+//   display block
 
 // Shadow DOM parts
 ::part(button)
