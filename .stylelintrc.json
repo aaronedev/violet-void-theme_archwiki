@@ -13,7 +13,11 @@
     "property-no-unknown": [
       true,
       {
-        "ignoreProperties": ["interpolate-size", "navigation", "copy-button-selectors"]
+        "ignoreProperties": [
+          "interpolate-size",
+          "navigation",
+          "copy-button-selectors"
+        ]
       }
     ],
     "at-rule-no-unknown": null,
@@ -54,7 +58,16 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["contains", "has", "is", "where", "not", "nth-child", "local", "global"]
+        "ignorePseudoClasses": [
+          "contains",
+          "has",
+          "is",
+          "where",
+          "not",
+          "nth-child",
+          "local",
+          "global"
+        ]
       }
     ],
     "stylus/no-eol-whitespace": true
