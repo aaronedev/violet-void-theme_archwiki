@@ -6483,7 +6483,7 @@ Last updated: 2026-03-01 06:05
 | 2026-03-02 | Thirty-third scout | Added MediaWiki 1.44+ features (Vector 2022 updates, Parsoid output, RESTBase API UI), new CSS features (field-sizing, scrollbar-color expansion, text-wrap-mode), performance patterns (layout/paint containment), accessibility (forced-colors, inverted-colors), ArchWiki-specific (package templates, command blocks, config files, status indicators) |
 | 2026-03-10 | Implementer | Lead section styling with first paragraph emphasis, bold first occurrence, disambiguation hatnote variants | f1bc9f2 |
 | 2026-03-10 | Implementer | Reference list styling with tabular-nums, tooltips, backlinks, reference groups, accessibility, print styles | e664fa2 |
-| 2026-03-10 | Implementer | Category Tree styling with expandable tree, subcategory indicators, page count badges, active category highlight, depth indicators, sidebar support, accessibility | 82871a5 |
+| 2026-03-10 | Implementer | Category Tree styling with expandable tree, subcategory indicators, page count badges, active category highlight, depth indicators, sidebar support, accessibility | a4c12a2 |
 
 ---
 
