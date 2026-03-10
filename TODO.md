@@ -707,11 +707,13 @@ Last updated: 2026-03-01 06:05
   - Bold first occurrence styling
   - Disambiguation hatnote
 
-- [ ] **Section Anchors** (97%+ browser support)
+- [x] **Section Anchors** (97%+ browser support)
   - File: `src/components/content.styl`
-  - Section link permalink styling
-  - Hover reveal pattern
-  - Copy link action
+  - Section link permalink styling with § symbol
+  - Hover reveal pattern on hover-capable devices
+  - Copy link action styling with success indicator
+  - Deep link target highlight animation
+  - Commit: 45d96cf
 
 - [ ] **Reference List Styling** (CSS)
   - File: `src/components/content.styl`
@@ -6368,4 +6370,5 @@ Last updated: 2026-03-01 06:05
 
 ---
 
+| 2026-03-10 | Section Anchors Implementation | Added section permalink styling with hover reveal pattern, copy link indicator, and target highlight animation | 45d96cf |
 | 2026-03-10 | Thirty-fourth scout | Added @supports extensions (font-tech, font-format, named-feature), anchor-scope property, form styling extensions (::picker, ::picker-icon), ArchWiki i18n patterns (Template:Related2) |

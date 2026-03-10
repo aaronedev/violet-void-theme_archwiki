@@ -171,6 +171,203 @@ h2::after
   background linear-gradient(90deg, $arch-blue, transparent)
   border-radius 1px
 
+// =============================================================================
+// SECTION ANCHORS - Permalink styling with hover reveal
+// Browser support: 97%+
+// =============================================================================
+
+// Section heading container for anchor positioning
+.mw-headline
+  position relative
+  display inline-block
+
+// Section edit link - already exists in MediaWiki, style for consistency
+.mw-editsection
+  font-size 0.65em
+  font-weight 400
+  margin-inline-start 0.75em
+  opacity 0.5
+  transition opacity $transition-fast
+
+  // Hide on mobile by default, show on touch
+  @media (pointer: coarse)
+    opacity 1
+
+// Show edit link on heading hover (hover-capable devices only)
+@media (hover: hover)
+  h1:hover,
+  h2:hover,
+  h3:hover,
+  h4:hover,
+  h5:hover,
+  h6:hover
+    .mw-editsection
+      opacity 1
+
+// Section anchor permalink (the § or # link next to headings)
+// MediaWiki adds these for linking directly to sections
+.mw-headline-anchor
+.section-anchor
+  display inline-flex
+  align-items center
+  justify-content center
+  width 1.5em
+  height 1.5em
+  margin-inline-start 0.25em
+  color $muted
+  text-decoration none
+  font-size 0.7em
+  opacity 0
+  transition opacity $transition-fast, color $transition-fast, background-color $transition-fast, transform $transition-fast
+  border-radius $border-radius-sm
+  vertical-align middle
+
+  // Hash/pilcrow icon styling
+  &::before
+    content "§"
+    font-weight 600
+
+  // Hover state
+  &:hover
+  &:focus
+    color $arch-blue
+    background-color rgba($arch-blue, 0.1)
+    opacity 1
+    transform scale(1.1)
+
+  // Focus visible for keyboard navigation
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Hover reveal pattern for section anchors
+// Only show on hover-capable devices
+@media (hover: hover)
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    // Show anchor on heading hover
+    &:hover
+      .mw-headline-anchor,
+      .section-anchor
+        opacity 0.7
+
+        &:hover
+          opacity 1
+
+    // Always visible when focused (keyboard navigation)
+    &:focus-within
+      .mw-headline-anchor,
+      .section-anchor
+        opacity 1
+
+// Touch devices - always show anchors but smaller
+@media (hover: none)
+  .mw-headline-anchor
+  .section-anchor
+    opacity 0.6
+    width 1.2em
+    height 1.2em
+    font-size 0.65em
+
+// Copy link tooltip/indicator
+.section-anchor-copy
+  position absolute
+  top -2em
+  left 50%
+  transform translateX(-50%)
+  padding 0.3em 0.6em
+  background-color $darker
+  color $lighter
+  font-size 0.75em
+  border-radius $border-radius-sm
+  white-space nowrap
+  opacity 0
+  pointer-events none
+  transition opacity $transition-fast
+  box-shadow $shadow-subtle
+
+  // Arrow pointing down
+  &::after
+    content ""
+    position absolute
+    bottom -0.4em
+    left 50%
+    transform translateX(-50%)
+    border 0.3em solid transparent
+    border-top-color $darker
+
+// Show copy indicator when anchor is focused or recently clicked
+.section-anchor
+  &:focus
+  &.copied
+    .section-anchor-copy
+      opacity 1
+
+  // Success state after copying
+  &.copied
+    &::before
+      content "✓"
+      color $term-green
+
+// Section link URL preview (optional enhancement)
+.section-link-preview
+  position absolute
+  bottom -2.5em
+  left 0
+  padding 0.4em 0.8em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  font-family $font-mono
+  font-size 0.75em
+  color $muted
+  max-width 300px
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+  opacity 0
+  pointer-events none
+  transition opacity $transition-fast
+  z-index 10
+
+// Show URL preview on hover
+@media (hover: hover)
+  .section-anchor:hover
+    .section-link-preview
+      opacity 1
+
+// Deep link target highlight
+// When user navigates to a section via anchor link
+:target
+  scroll-margin-top 5em // Account for sticky headers
+
+  // Subtle highlight animation for the target section
+  animation target-highlight 2s ease-out
+
+// Keyframe for target highlight animation
+@keyframes target-highlight
+  0%
+    background-color rgba($arch-blue, 0.15)
+  100%
+    background-color transparent
+
+// Alternative: highlight the heading specifically
+// Some wikis wrap headings in spans with IDs
+.mw-headline:target
+  animation target-heading-highlight 2s ease-out
+
+@keyframes target-heading-highlight
+  0%
+    text-decoration underline
+    text-decoration-color rgba($arch-blue, 0.5)
+    text-underline-offset 0.3em
+  100%
+    text-decoration none
+
 // Collapsible content blocks
 .mw-collapsible
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
