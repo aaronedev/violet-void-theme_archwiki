@@ -2,6 +2,20 @@
 
 > Auto-maintained by OpenClaw agents. Check off items as completed.
 
+## ⚠️ CSS Rules (READ FIRST)
+
+**NEVER use these - they cause Stylus lint errors:**
+- `:contains()` pseudo-class - jQuery only, NOT valid CSS
+- Hardcoded hex colors - use variables (`$arch-blue`, `$base`, etc.)
+- Deprecated `gradient-button()` - use `gradient-surface()`
+- Wrong gradient angle - must be `135deg`
+
+**These are OK (modern CSS):**
+- `interpolate-size` - Chrome 129+
+- `@view-transition`, `navigation: auto` - Chrome 111+
+- `//` double-slash comments - valid in Stylus
+- `:has()`, `:is()`, `:where()` - modern pseudo-classes
+
 ## 🔥 High Priority
 
 - [x] **Expand `:has()` selector usage**
