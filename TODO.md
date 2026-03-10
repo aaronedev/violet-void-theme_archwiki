@@ -149,7 +149,7 @@
   - Combine with @starting-style for full enter/leave animations
   - File: `src/components/modern-css.styl`
   - Stylus: Works directly (Chrome 117+, Safari 17.5+)
-  - Commit: d8cb44d
+  - Commit: a2245f4
 
 ## 📱 Touch & Interaction
 
@@ -364,7 +364,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | transition-behavior: allow-discrete for display transitions | d8cb44d |
+| 2026-03-10 | transition-behavior: allow-discrete for display transitions | a2245f4 |
 | 2026-03-10 | overflow-anchor for scroll anchoring | 7d2ec95 |
 | 2026-03-10 | :open pseudo-class for unified open state styling | a0104ee |
 | 2026-03-10 | ::file-selector-button styling | a56b1c8 |
