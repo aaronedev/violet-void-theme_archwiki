@@ -363,7 +363,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | :open pseudo-class for unified open state styling | e555401 |
+| 2026-03-10 | :open pseudo-class for unified open state styling | a0104ee |
 | 2026-03-10 | ::file-selector-button styling | a56b1c8 |
 | 2026-03-10 | Documentation Subpage (template-doc.styl) | 95091e6 |
 | 2026-03-10 | attr() with type() function | c6dedd5 |
@@ -3579,7 +3579,7 @@ Last updated: 2026-03-10 13:30
   - Example: `details:open { ... }`, `dialog:open { ... }`
   - Unified open state handling
   - Stylus: Works directly
-  - Commit: e555401
+  - Commit: a0104ee
 
 - [ ] **`:interest-source` Pseudo-class** (85%+ browser support)
   - File: `src/components/navigation.styl`
