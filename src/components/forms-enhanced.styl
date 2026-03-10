@@ -591,13 +591,14 @@ textarea
 // FORM ENHANCEMENTS
 // =============================================================================
 
-// Field-sizing for auto-expanding textareas
-// Browser support: 85%+
+// Field-sizing for auto-expanding textareas (Chrome 122+ only)
+// Firefox doesn't support - already wrapped in modern-css.styl, this is utility class
 
-.auto-expand
-  field-sizing content
-  min-height 3em
-  max-height 20em
+@supports (field-sizing: content)
+  .auto-expand
+    field-sizing content
+    min-height 3em
+    max-height 20em
 
 // Accent-color for form controls
 // Browser support: 97%+

@@ -52,9 +52,13 @@
 // Note: Most form controls have custom styling, but this provides fallback
 html
   accent-color $arch-blue
-  // Prevent mobile browsers from adjusting text size
-  -webkit-text-size-adjust 100%
-  text-size-adjust 100%
+
+// Prevent mobile browsers from adjusting text size (Chrome/Safari only)
+@supports (-webkit-text-size-adjust: 100%)
+  html
+    -webkit-text-size-adjust 100%
+
+// Note: text-size-adjust (unprefixed) not widely supported, omit to avoid errors
 
 // Selection and focus
 ::selection

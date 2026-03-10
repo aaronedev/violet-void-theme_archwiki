@@ -473,65 +473,19 @@ h4[id]
 
 
 // =============================================================================
-// SPELLING & GRAMMAR ERROR STYLING (85%+ browser support)
+// SPELLING & GRAMMAR ERROR STYLING
 // =============================================================================
+// Note: ::spelling-error and ::grammar-error are Chrome/Edge only
+// Firefox doesn't support these - removed to prevent PostCSS build errors
+// These pseudo-elements are not critical for theme functionality
 
-// Note: ::spelling-error and ::grammar-error support is good (85%+ as of 2024)
-// Provides theme-colored underlines for spell-check and grammar errors
-// Using @css for pseudo-elements that Stylus doesn't recognize
+// High contrast for reduced motion preference
+@media screen and (prefers-reduced-motion reduce)
+  [contenteditable="true"]
+  textarea
+    text-decoration-style solid
+    text-decoration-thickness 3px
 
-@css {
-  /* Spelling errors - theme red with wavy underline */
-  ::spelling-error {
-    text-decoration-line: underline;
-    text-decoration-style: wavy;
-    text-decoration-color: #a80065; /* $red */
-    text-decoration-thickness: 2px;
-    text-underline-offset: 2px;
-  }
-
-  /* Grammar errors - theme orange with dotted underline */
-  ::grammar-error {
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
-    text-decoration-color: #fd7cff; /* $orange */
-    text-decoration-thickness: 2px;
-    text-underline-offset: 2px;
-  }
-
-  /* Editable areas - make errors more visible */
-  [contenteditable="true"] ::spelling-error,
-  textarea ::spelling-error {
-    text-decoration-color: #ff1a67; /* $secondary-red - more vibrant */
-    background-color: rgba(168, 0, 101, 0.1); /* subtle red background */
-  }
-
-  [contenteditable="true"] ::grammar-error,
-  textarea ::grammar-error {
-    text-decoration-color: #fd7cff; /* $orange */
-    background-color: rgba(253, 124, 255, 0.1); /* subtle orange background */
-  }
-
-  /* OOUI text inputs - enhanced visibility */
-  .oo-ui-textInputWidget ::spelling-error {
-    text-decoration-color: #ff1a67;
-    background-color: rgba(168, 0, 101, 0.15);
-  }
-
-  .oo-ui-textInputWidget ::grammar-error {
-    text-decoration-color: #fd7cff;
-    background-color: rgba(253, 124, 255, 0.15);
-  }
-
-  /* High contrast for reduced motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    ::spelling-error,
-    ::grammar-error {
-      text-decoration-style: solid;
-      text-decoration-thickness: 3px;
-    }
-  }
-}
 // =============================================================================
 // PRINT ENHANCEMENTS
 // =============================================================================

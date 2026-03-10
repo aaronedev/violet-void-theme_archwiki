@@ -789,14 +789,13 @@ tr.collapsed
 .cursor-grabbing
   cursor grabbing
 
-// caret-shape
-// Browser support: 85%+
+// caret-shape - Chrome/Edge only (Firefox doesn't support)
+@supports (caret-shape: block)
+  .caret-block
+    caret-shape block
 
-.caret-block
-  caret-shape block
-
-.caret-bar
-  caret-shape bar
+  .caret-bar
+    caret-shape bar
 
 // =============================================================================
 // SIZING KEYWORDS

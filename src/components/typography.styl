@@ -651,17 +651,18 @@ samp
 // =============================================================================
 
 // Hangs punctuation marks outside text box for better alignment
-// Browser support: 95%+
+// Browser support: Chrome/Safari only (Firefox doesn't support)
 
-blockquote
-  hanging-punctuation first last
-
-  p
+@supports (hanging-punctuation: first)
+  blockquote
     hanging-punctuation first last
 
-// List items with hanging quotes
-blockquote li
-  hanging-punctuation first
+    p
+      hanging-punctuation first last
+
+  // List items with hanging quotes
+  blockquote li
+    hanging-punctuation first
 
 // =============================================================================
 // BOX-DECORATION-BREAK FOR MULTI-LINE INLINE STYLES
