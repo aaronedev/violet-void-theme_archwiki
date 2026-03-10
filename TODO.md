@@ -1450,11 +1450,13 @@ Last updated: 2026-03-10 13:30
 
 ## 🔤 Text Enhancements (New)
 
-- [ ] **`text-wrap: balance/pretty`** (92%+ browser support)
+- [x] **`text-wrap: balance/pretty`** (92%+ browser support)
   - File: `src/components/typography.styl`
   - Better headline wrapping: `text-wrap: balance;`
   - Prevent orphans in paragraphs: `text-wrap: pretty;`
+  - Applied to headings, lead paragraphs, and article body
   - Stylus: Works directly
+  - Commit: fab1702
 
 ## 🎨 Color Font Support (New)
 
@@ -7315,3 +7317,4 @@ Last updated: 2026-03-10 13:30
 
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
+| 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | fab1702 |

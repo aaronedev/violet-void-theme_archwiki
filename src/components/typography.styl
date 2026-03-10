@@ -1040,3 +1040,60 @@ ruby.under
   text-emphasis filled sesame
   text-emphasis-position under right
 
+
+// =============================================================================
+// TEXT-WRAP FOR BETTER TYPOGRAPHY
+// =============================================================================
+
+// Better headline wrapping and paragraph orphans
+// Browser support: 92%+
+// text-wrap: balance - Balances lines in headlines for better appearance
+// text-wrap: pretty - Prevents orphans in paragraphs (single words on last line)
+
+// Balanced text for headlines - distributes words more evenly across lines
+// Great for headings, titles, and short blocks of text
+.text-balance
+  text-wrap balance
+
+// Pretty text for paragraphs - prevents typographic orphans
+// Browser adjusts line breaks to avoid single words on last line
+.text-pretty
+  text-wrap pretty
+
+// Apply to all headings for better typography
+h1
+h2
+h3
+  text-wrap balance
+
+// Apply to article lead paragraphs for better line distribution
+.lead-paragraph
+.mw-parser-output > p:first-of-type
+  text-wrap pretty
+
+// Wiki headings
+.mw-heading
+  h1
+  h2
+  h3
+    text-wrap balance
+
+// Section headings in content
+.mw-parser-output
+  h2
+  h3
+  h4
+    text-wrap balance
+
+// Article body text - prevent orphans
+.article-body
+.wiki-article
+  p
+    text-wrap pretty
+
+// Card titles and short text blocks
+.card-title
+.info-box-title
+.navbox-title
+  text-wrap balance
+
