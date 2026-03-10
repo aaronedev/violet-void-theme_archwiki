@@ -682,12 +682,14 @@ Last updated: 2026-03-01 06:05
 ## 📦 Message Boxes (New)
 
 - [x] **Ambox (Article Message Box) Refinement** (CSS)
+  - Commit: 631a6c0
   - File: `src/components/message-boxes.styl`
   - Ambox type colors (serious, content, style, notice, move, protection)
   - Icon alignment
   - Mobile responsive layout
 
 - [x] **Ombox/Imbox/Tmbox Styling** (CSS)
+  - Commit: 631a6c0
   - File: `src/components/message-boxes.styl`
   - Consistent styling across message box types
   - Type-specific color coding
@@ -695,6 +697,7 @@ Last updated: 2026-03-01 06:05
   - Includes Cmbox and Fmbox
 
 - [x] **Citation Needed Template** (CSS)
+  - Commit: 631a6c0
   - File: `src/components/message-boxes.styl`
   - Inline citation needed styling
   - Hover explanation tooltip
@@ -6455,3 +6458,4 @@ Last updated: 2026-03-01 06:05
 
 | 2026-03-10 | Section Anchors Implementation | Added section permalink styling with hover reveal pattern, copy link indicator, and target highlight animation | 3d0b8cf |
 | 2026-03-10 | Thirty-fourth scout | Added @supports extensions (font-tech, font-format, named-feature), anchor-scope property, form styling extensions (::picker, ::picker-icon), ArchWiki i18n patterns (Template:Related2) |
+| 2026-03-10 | Message Boxes Implementation | Added comprehensive Ambox, Ombox, Imbox, Tmbox, Cmbox, Fmbox styling with type-specific colors, Citation Needed template with hover tooltip, collapsible support, accessibility features | 631a6c0 |
