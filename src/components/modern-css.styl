@@ -689,13 +689,144 @@ h4[id]
 
 // =============================================================================
 // =============================================================================
+// COLOR-MIX() FUNCTION - Dynamic Color Mixing (97%+ browser support)
+// =============================================================================
+
+// Note: color-mix() support is excellent (97%+ as of 2024)
+// Allows mixing two colors together in CSS without pre-computing variants
+// Useful for hover states, transparency adjustments, and dynamic color variants
+// Using @css for color-mix() since Stylus parser doesn't support it
+
+@css {
+  @supports (color: color-mix(in srgb, red, blue)) {
+    :root {
+      /* Hover state colors - lighter variants */
+      --arch-blue-hover: color-mix(in srgb, var(--theme-arch-blue), white 15%);
+      --secondary-blue-hover: color-mix(in srgb, var(--theme-secondary-blue), white 15%);
+      --red-hover: color-mix(in srgb, var(--theme-red), white 15%);
+      --secondary-red-hover: color-mix(in srgb, var(--theme-secondary-red), white 15%);
+      --green-hover: color-mix(in srgb, var(--theme-green), white 15%);
+      --orange-hover: color-mix(in srgb, var(--theme-orange), white 15%);
+
+      /* Active/pressed state colors - darker variants */
+      --arch-blue-active: color-mix(in srgb, var(--theme-arch-blue), black 15%);
+      --secondary-blue-active: color-mix(in srgb, var(--theme-secondary-blue), black 15%);
+      --red-active: color-mix(in srgb, var(--theme-red), black 15%);
+      --secondary-red-active: color-mix(in srgb, var(--theme-secondary-red), black 15%);
+      --green-active: color-mix(in srgb, var(--theme-green), black 15%);
+      --orange-active: color-mix(in srgb, var(--theme-orange), black 15%);
+
+      /* Transparent color variants for backgrounds and overlays */
+      --arch-blue-t-10: color-mix(in srgb, var(--theme-arch-blue), transparent 90%);
+      --arch-blue-t-20: color-mix(in srgb, var(--theme-arch-blue), transparent 80%);
+      --arch-blue-t-30: color-mix(in srgb, var(--theme-arch-blue), transparent 70%);
+      --arch-blue-t-50: color-mix(in srgb, var(--theme-arch-blue), transparent 50%);
+
+      --secondary-blue-t-10: color-mix(in srgb, var(--theme-secondary-blue), transparent 90%);
+      --secondary-blue-t-20: color-mix(in srgb, var(--theme-secondary-blue), transparent 80%);
+      --secondary-blue-t-30: color-mix(in srgb, var(--theme-secondary-blue), transparent 70%);
+
+      --red-t-10: color-mix(in srgb, var(--theme-red), transparent 90%);
+      --red-t-20: color-mix(in srgb, var(--theme-red), transparent 80%);
+      --red-t-30: color-mix(in srgb, var(--theme-red), transparent 70%);
+
+      --green-t-10: color-mix(in srgb, var(--theme-green), transparent 90%);
+      --green-t-20: color-mix(in srgb, var(--theme-green), transparent 80%);
+      --green-t-30: color-mix(in srgb, var(--theme-green), transparent 70%);
+
+      --orange-t-10: color-mix(in srgb, var(--theme-orange), transparent 90%);
+      --orange-t-20: color-mix(in srgb, var(--theme-orange), transparent 80%);
+      --orange-t-30: color-mix(in srgb, var(--theme-orange), transparent 70%);
+
+      /* Muted color variants for secondary UI elements */
+      --arch-blue-muted: color-mix(in srgb, var(--theme-arch-blue), var(--theme-muted) 40%);
+      --secondary-blue-muted: color-mix(in srgb, var(--theme-secondary-blue), var(--theme-muted) 40%);
+      --red-muted: color-mix(in srgb, var(--theme-red), var(--theme-muted) 40%);
+      --green-muted: color-mix(in srgb, var(--theme-green), var(--theme-muted) 40%);
+      --orange-muted: color-mix(in srgb, var(--theme-orange), var(--theme-muted) 40%);
+    }
+
+    /* Utility classes for color-mix */
+    .text-hover-light:hover {
+      color: color-mix(in srgb, currentColor, white 20%);
+    }
+
+    .text-hover-dark:hover {
+      color: color-mix(in srgb, currentColor, black 20%);
+    }
+
+    .bg-hover-light:hover {
+      background-color: color-mix(in srgb, currentColor, white 10%);
+    }
+
+    .bg-hover-dark:hover {
+      background-color: color-mix(in srgb, currentColor, black 10%);
+    }
+
+    /* Button hover states using color-mix */
+    .mw-ui-button:hover,
+    .cdx-button:hover {
+      background-color: color-mix(in srgb, var(--theme-arch-blue), white 15%);
+    }
+
+    .mw-ui-button:active,
+    .cdx-button:active {
+      background-color: color-mix(in srgb, var(--theme-arch-blue), black 15%);
+    }
+
+    /* Link hover states */
+    a:hover {
+      color: color-mix(in srgb, var(--theme-secondary-blue), white 15%);
+    }
+
+    a:active {
+      color: color-mix(in srgb, var(--theme-secondary-blue), black 15%);
+    }
+
+    /* Code block hover */
+    code:hover,
+    pre:hover {
+      background-color: color-mix(in srgb, var(--theme-base), var(--theme-arch-blue) 10%);
+    }
+
+    /* Table row hover */
+    .wikitable tbody tr:hover {
+      background-color: color-mix(in srgb, var(--theme-base), var(--theme-arch-blue) 5%);
+    }
+
+    /* Infobox header */
+    .infobox th {
+      background-color: color-mix(in srgb, var(--theme-darker), var(--theme-arch-blue) 20%);
+    }
+
+    /* Focus ring using color-mix */
+    :focus-visible {
+      outline-color: color-mix(in srgb, var(--theme-arch-blue), white 20%);
+    }
+
+    /* Selection color */
+    ::selection {
+      background-color: color-mix(in srgb, var(--theme-arch-blue), transparent 70%);
+    }
+
+    /* Scrollbar thumb */
+    ::-webkit-scrollbar-thumb {
+      background-color: color-mix(in srgb, var(--theme-comment), var(--theme-arch-blue) 30%);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: color-mix(in srgb, var(--theme-comment), var(--theme-arch-blue) 50%);
+    }
+  }
+}
+
+// =============================================================================
 // RELATIVE COLOR SYNTAX - Dynamic Color Variants (88%+ browser support)
 // =============================================================================
 
 // Note: Relative color syntax support is good (88%+ as of 2024)
 // Allows creating color variants dynamically from base colors
 // Using @css for relative color syntax since Stylus doesn't support it
-// IMPORTANT: Do NOT use color-mix() - it breaks Stylus parser
 
 @css {
   @supports (color: rgb(from red r g b)) {
