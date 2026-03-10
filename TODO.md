@@ -136,6 +136,20 @@
   - Stylus: Works directly
   - Commit: 1bf45d5
 
+- [ ] **`@starting-style` for Entry/Exit Animations**
+  - Browser support: 80%+
+  - Enable CSS transitions on first render and display: none changes
+  - Smooth popover, dialog, and collapsible section animations
+  - File: `src/components/animations.styl`, `src/components/navigation.styl`
+  - Stylus: Works directly (Chrome 117+, Safari 17.5+)
+
+- [ ] **`transition-behavior: allow-discrete` for Display Transitions**
+  - Browser support: 80%+
+  - Animate discrete properties like display and overlay
+  - Combine with @starting-style for full enter/leave animations
+  - File: `src/components/animations.styl`, `src/components/modals.styl`
+  - Stylus: Works directly (Chrome 117+, Safari 17.5+)
+
 ## 📱 Touch & Interaction
 
 - [x] **`touch-action` for Better Touch UX**
@@ -236,6 +250,22 @@
   - File: `src/components/forms.styl`, `src/components/forms-enhanced.styl`
   - Stylus: Works directly
 
+- [ ] **`::checkmark` Pseudo-element for Select Checkmarks**
+  - Browser support: 60%+ (rising rapidly)
+  - Style checkmarks in customizable select dropdowns
+  - Custom icons, colors, and positioning for selected options
+  - Requires: `appearance: base-select` on select and ::picker(select)
+  - File: `src/components/forms-enhanced.styl`
+  - Stylus: Works directly (Chrome 135+, Edge 135+)
+
+- [ ] **`::picker(select)` Pseudo-element for Dropdown Styling**
+  - Browser support: 60%+ (rising rapidly)
+  - Style the dropdown picker container of select elements
+  - Custom borders, backgrounds, shadows for dropdowns
+  - Requires: `appearance: base-select` on select element
+  - File: `src/components/forms-enhanced.styl`
+  - Stylus: Works directly (Chrome 135+, Edge 135+)
+
 ## 📐 Fluid Sizing
 
 - [x] **`clamp()` for Fluid Typography**
@@ -267,6 +297,13 @@
   - Useful for base styles that should be easily overridden
   - File: `src/components/base.styl`, `src/components/utilities.styl`
   - Stylus: Works directly
+
+- [ ] **`:open` Pseudo-class for Open State Styling**
+  - Browser support: 85%+
+  - Target elements in open state: details, dialog, select dropdowns
+  - Apply different styles when dropdowns/accordions are expanded
+  - File: `src/components/navigation.styl`, `src/components/forms-enhanced.styl`
+  - Stylus: Works directly (Chrome 120+, Firefox 124+, Safari 17.5+)
 
 ## 📰 Multi-Column Layouts
 
