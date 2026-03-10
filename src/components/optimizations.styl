@@ -200,6 +200,49 @@
   contain layout
 
 // =============================================================================
+// SCROLL ANCHORING (overflow-anchor)
+// =============================================================================
+
+// Browser support: 97%+
+// Controls scroll anchoring behavior to prevent scroll jumps when content
+// is dynamically inserted above the viewport
+
+// Default: enable scroll anchoring for main content areas
+// This prevents scroll jumps when lazy-loaded images or dynamic content appears
+.mw-body
+.mw-body-content
+.mw-parser-output
+#content
+  overflow-anchor auto
+
+// Disable scroll anchoring for elements that shouldn't affect scroll position
+// Useful for chat messages, live feeds, and dynamically prepended content
+.mw-notification
+.oo-ui-popupWidget
+.vector-dropdown-content
+.mw-indicators
+  overflow-anchor none
+
+// Opt out of scroll anchoring for sidebars and navigation
+// Prevents scroll position changes when navigation items expand/collapse
+.mw-sidebar
+#vector-main-menu
+.vector-sticky-header
+.mw-portlet
+  overflow-anchor none
+
+// Prevent scroll anchoring in edit areas where content frequently changes
+.mw-editsection
+.editCheckboxes
+.mw-editTools
+  overflow-anchor none
+
+// Chat/discussion areas where new messages shouldn't affect scroll
+.mw-thread-item
+.flow-topic
+  overflow-anchor none
+
+// =============================================================================
 // SCROLLING PERFORMANCE
 // =============================================================================
 
