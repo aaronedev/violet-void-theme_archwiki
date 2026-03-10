@@ -725,7 +725,7 @@ Last updated: 2026-03-01 06:05
   - Reference number styling with tabular-nums
   - Reference tooltip on hover
   - Backlink indicators
-  - Commit: (pending)
+  - Commit: e664fa2
 
 - [ ] **Footnote Scroll Animation** (CSS)
   - File: `src/components/content.styl`
@@ -6480,6 +6480,7 @@ Last updated: 2026-03-01 06:05
 | 2026-03-02 | Thirty-second scout | Added learning & tutorials, search extended, tables extended, theming extended, navigation extended, interactive elements, layout utilities |
 | 2026-03-02 | Thirty-third scout | Added MediaWiki 1.44+ features (Vector 2022 updates, Parsoid output, RESTBase API UI), new CSS features (field-sizing, scrollbar-color expansion, text-wrap-mode), performance patterns (layout/paint containment), accessibility (forced-colors, inverted-colors), ArchWiki-specific (package templates, command blocks, config files, status indicators) |
 | 2026-03-10 | Implementer | Lead section styling with first paragraph emphasis, bold first occurrence, disambiguation hatnote variants | f1bc9f2 |
+| 2026-03-10 | Implementer | Reference list styling with tabular-nums, tooltips, backlinks, reference groups, accessibility, print styles | e664fa2 |
 
 ---
 
