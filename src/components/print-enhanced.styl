@@ -151,22 +151,46 @@
     page-break-inside avoid
 
   // =============================================================================
-  // LINKS FOR PRINT
+  // LINKS FOR PRINT - Enhanced
   // =============================================================================
 
-  // Show link destinations
-  a[href]::after
+  // Base link styling
+  a
+    color black !important
+    text-decoration underline
+    font-weight inherit
+
+  // Show URLs for external links only (not internal Arch Linux links)
+  a[href^="http"]:not([href*="archlinux.org"])::after
     content " (" attr(href) ")"
-    font-size 0.8em
+    font-size 0.75em
     color $print-text !important
+    text-decoration none
+    font-family "Courier New", monospace
+
+  // Don't show URLs for internal links (same domain)
+  a[href*="archlinux.org"]::after
+    content none
 
   // Don't show for anchor links
   a[href^="#"]::after
     content none
 
-  // Don't show for repeated links
-  a[href][title]::after
+  // Don't show for javascript links
+  a[href^="javascript"]::after
     content none
+
+  // Don't show for mailto links (they're self-explanatory)
+  a[href^="mailto"]::after
+    content none
+
+  // Truncate very long URLs
+  a[href^="http"]::after
+    max-width 40em
+    overflow hidden
+    text-overflow ellipsis
+    display inline-block
+    white-space nowrap
 
   // =============================================================================
   // TABLE OF CONTENTS FOR PRINT
@@ -368,29 +392,179 @@
       margin-right 0.5em
 
 // =============================================================================
-// PRINT-ONLY LINK URLs
+// PRINT-ONLY LINK URLs - Enhanced
 // =============================================================================
 
 // Show link destinations in print
 // Browser support: 100%
 
 @media print
+  // External link indicator with arrow symbol
+  a[href^="http"]:not([href*="archlinux.org"])::before
+    content "↗ "
+    font-size 0.9em
+    color $print-text
+    display inline-block
+    margin-right 0.1em
+
+  // Show URL for external links
   a[href]::after
     content " (" attr(href) ")"
-    font-size 0.8em
+    font-size 0.75em
     color $muted
+    font-family "Courier New", monospace
 
   // Don't show for internal anchors
   a[href^="#"]::after
   a[href^="javascript"]::after
+  a[href*="archlinux.org"]::after
     content none
 
-  // Truncate long URLs
+  // Truncate long URLs intelligently
   a[href^="http"]::after
-    max-width 30em
+    max-width 35em
     overflow hidden
     text-overflow ellipsis
     display inline-block
+    white-space nowrap
+    vertical-align baseline
+
+  // Don't show arrow for internal links
+  a[href*="archlinux.org"]::before
+    content none
+
+  // Special styling for mailto links
+  a[href^="mailto"]
+    text-decoration underline
+
+    &::before
+      content "✉ "
+      font-size 0.9em
+
+  // Special styling for tel links
+  a[href^="tel"]
+    &::before
+      content "📞 "
+
+// =============================================================================
+// REFERENCE LIST GENERATION - Footnote Style
+// =============================================================================
+
+// Generate a reference list at the end of printed document
+// This uses CSS counters to create numbered references
+
+@media print
+  // Counter for references
+  body
+    counter-reset ref-links
+
+  // Add reference numbers to links
+  a[href^="http"]:not([href*="archlinux.org"])
+    counter-increment ref-links
+
+    &::after
+      content " [" counter(ref-links) "]"
+      font-size 0.7em
+      color $print-text
+      vertical-align super
+      font-family "Courier New", monospace
+
+  // Create reference list at end of document
+  // Note: This is a visual enhancement - actual list generation would require JS
+  #content::after
+    content "\A\AReferences:\A"
+    font-size 11pt
+    font-weight bold
+    display block
+    margin-top 1em
+    padding-top 0.5em
+    border-top 2px solid black
+    white-space pre
+
+// =============================================================================
+// LINK STYLING BY TYPE
+// =============================================================================
+
+@media print
+  // Interwiki links (Wikipedia, etc.)
+  a[href*="wikipedia.org"]::before
+    content "W "
+    font-weight bold
+    font-size 0.85em
+
+  // Wikidata links
+  a[href*="wikidata.org"]::before
+    content "D "
+    font-weight bold
+    font-size 0.85em
+
+  // GitHub links
+  a[href*="github.com"]::before
+    content "⌨ "
+    font-size 0.85em
+
+  // Package links (Arch packages)
+  a[href*="archlinux.org/packages"]::before
+    content "📦 "
+    font-size 0.85em
+
+  // AUR links
+  a[href*="aur.archlinux.org"]::before
+    content "📦 "
+    font-size 0.85em
+
+  // Documentation links
+  a[href*="wiki.archlinux.org"]::before
+    content "📄 "
+    font-size 0.85em
+
+  // Forum links
+  a[href*="bbs.archlinux.org"]::before
+    content "💬 "
+    font-size 0.85em
+
+// =============================================================================
+// INTELLIGENT URL DISPLAY
+// =============================================================================
+
+@media print
+  // For very long URLs, show domain + path truncated
+  a[href^="http"]:not([href*="archlinux.org"])
+    // This is handled by the ::after pseudo-element above
+    // but we can add additional styling here
+
+    &[href*="?"]
+      // URLs with query strings - show them (important for reference)
+      &::after
+        font-size 0.7em  // Smaller for complex URLs
+
+    &[href*="#"]
+      // URLs with anchors - the anchor is usually less important
+      // The truncation will handle this
+
+// =============================================================================
+// ACCESSIBILITY FOR PRINT LINKS
+// =============================================================================
+
+@media print
+  // Ensure link text is readable
+  a
+    // Minimum font size for readability
+    font-size 10pt
+
+    // Ensure underline is visible
+    text-decoration underline
+    text-decoration-thickness 1px
+    text-underline-offset 2px
+
+  // High contrast for link text
+  a:link
+  a:visited
+    color black !important
+
+  // Ensure reference numbers don't break lines awkwardly
+  a[href]::after
+    white-space nowrap
 
 // =============================================================================
 // PAGE BREAK CONTROL
