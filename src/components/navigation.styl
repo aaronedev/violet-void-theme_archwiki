@@ -839,6 +839,156 @@ h6:hover .mw-editsection
 }
 
 // =============================================================================
+// @starting-style FOR COLLAPSIBLE SECTIONS
+// =============================================================================
+
+// Entry animations for collapsible sections in navigation
+// Browser support: 80%+ (Chrome 117+, Safari 17.5+)
+// Note: Wrap in @css{} for Stylus compatibility
+
+@css {
+  @supports (@starting-style) {
+    /* TOC collapsible sections */
+    .toc > ul,
+    .vector-toc > ul {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    @starting-style {
+      .toc > ul,
+      .vector-toc > ul {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Vector menu collapsible content */
+    .vector-menu-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    @starting-style {
+      .vector-menu-content {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Sidebar panel content */
+    .mw-sidebar .vector-menu-content {
+      opacity: 1;
+      transition: opacity 0.25s ease;
+    }
+
+    @starting-style {
+      .mw-sidebar .vector-menu-content {
+        opacity: 0;
+      }
+    }
+
+    /* Dropdown menu content */
+    .vector-dropdown-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    @starting-style {
+      .vector-dropdown-content {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Sticky header TOC dropdown */
+    .vector-sticky-header-toc .vector-dropdown-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    @starting-style {
+      .vector-sticky-header-toc .vector-dropdown-content {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Category tree collapsible children */
+    .CategoryTreeChildren,
+    .mw-categorytree-children {
+      opacity: 1;
+      transition: opacity 0.25s ease;
+    }
+
+    @starting-style {
+      .CategoryTreeChildren,
+      .mw-categorytree-children {
+        opacity: 0;
+      }
+    }
+
+    /* Navigation list items - staggered fade in */
+    .vector-menu-content li {
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    @starting-style {
+      .vector-menu-content li {
+        opacity: 0;
+      }
+    }
+
+    /* TOC list items */
+    .toc li,
+    .vector-toc li {
+      opacity: 1;
+      transition: opacity 0.15s ease;
+    }
+
+    @starting-style {
+      .toc li,
+      .vector-toc li {
+        opacity: 0;
+      }
+    }
+
+    /* Related pages panel */
+    .related-pages {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @starting-style {
+      .related-pages {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs,
+    .mw-category-breadcrumb {
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    @starting-style {
+      .breadcrumbs,
+      .mw-category-breadcrumb {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+// =============================================================================
 // TABLE OF CONTENTS ENHANCEMENTS
 // =============================================================================
 

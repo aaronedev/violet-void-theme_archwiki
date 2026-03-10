@@ -136,7 +136,7 @@
   - Stylus: Works directly
   - Commit: 1bf45d5
 
-- [ ] **`@starting-style` for Entry/Exit Animations**
+- [x] **`@starting-style` for Entry/Exit Animations**
   - Browser support: 80%+
   - Enable CSS transitions on first render and display: none changes
   - Smooth popover, dialog, and collapsible section animations
@@ -364,6 +364,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | @starting-style for entry/exit animations | TBD |
 | 2026-03-10 | widows/orphans control for print typography | 2a51280 |
 | 2026-03-10 | transition-behavior: allow-discrete for display transitions | a2245f4 |
 | 2026-03-10 | overflow-anchor for scroll anchoring | 7d2ec95 |
