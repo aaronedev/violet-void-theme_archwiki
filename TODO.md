@@ -6753,6 +6753,64 @@ Last updated: 2026-03-01 06:05
     }
     ```
 
+## 🆕 Modern Pseudo-Elements (New - 2026-03-10 Scout 38)
+
+- [ ] **`::details-content` Pseudo-element** (CSS, 90%+ browser support)
+  - File: `src/components/ui-components.styl`
+  - Style expandable/collapsible contents of `<details>` elements
+  - Apply to collapsible sections, FAQ accordions
+  - Separate styling for summary vs content
+  - Example: `details::details-content { padding: 1em; }`
+  - Stylus: Works directly
+
+- [ ] **`::search-text` Pseudo-element** (CSS, 87%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Style browser "Find in page" search results
+  - Custom highlight color for in-page search
+  - Example: `::search-text { background: var(--accent-light); }`
+  - Stylus: Works directly
+
+- [ ] **`::column` Pseudo-element** (CSS, 85%+ browser support)
+  - File: `src/components/content.styl`
+  - Style individual columns in multi-column layouts
+  - Column borders, backgrounds, spacing
+  - Example: `.multicol::column { border-right: 1px solid var(--border); }`
+  - Stylus: Works directly
+
+- [ ] **`::scroll-button()` Pseudo-element** (CSS, 85%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Create scroll control buttons for scroll containers
+  - Apply to horizontal TOC, image galleries
+  - Example: `.scroll-container::scroll-button(left) { content: "◀"; }`
+  - Stylus: Works directly
+
+- [ ] **`::checkmark` Pseudo-element** (CSS, 87%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Style checkmark in customizable select elements
+  - Custom checkmark icon/color for selected options
+  - Example: `option::checkmark { color: var(--accent); }`
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Code Templates Enhanced (New - 2026-03-10 Scout 38)
+
+- [ ] **Template:ic (Inline Code) Enhanced Styling** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-code.styl`
+  - Short inline code, file names, paths, config parameters
+  - Monospace font with theme colors
+  - Distinct from regular text, subtle background
+  - Works inline without breaking flow
+  - Example: `Run {{ic|./configure}} in the console.`
+  - Stylus: Works directly
+
+- [ ] **Template:bc (Block Code) Enhanced Styling** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-code.styl`
+  - Multi-line code blocks in proper frame
+  - Syntax for scripts, config files, output
+  - Scrollable for long content
+  - Consistent with code.styl styling
+  - Example usage: shell scripts, config files
+  - Stylus: Works directly
+
 ---
 
 | 2026-03-10 | Section Anchors Implementation | Added section permalink styling with hover reveal pattern, copy link indicator, and target highlight animation | 3d0b8cf |
@@ -6761,3 +6819,4 @@ Last updated: 2026-03-01 06:05
 | 2026-03-10 | Message Boxes Implementation | Added comprehensive Ambox, Ombox, Imbox, Tmbox, Cmbox, Fmbox styling with type-specific colors, Citation Needed template with hover tooltip, collapsible support, accessibility features | 631a6c0 |
 | 2026-03-10 | Thirty-fifth scout | Added CSS transitions extended (transition-behavior: allow-discrete), text typography extended (text-wrap: balance, text-wrap: pretty), URL fragment targeting (::target-text), ArchWiki status templates extended (Template:Expansion, Template:Out of date) |
 | 2026-03-10 | Thirty-seventh scout | Added CSS text box properties (text-box, text-box-trim, text-box-edge), ArchWiki Template:hc styling, interlanguage link column, standard section conventions, native CSS nesting patterns |
+| 2026-03-10 | Thirty-eighth scout | Added modern pseudo-elements (::details-content, ::search-text, ::column, ::scroll-button(), ::checkmark), ArchWiki code templates enhanced (Template:ic, Template:bc) |
