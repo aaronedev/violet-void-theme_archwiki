@@ -750,11 +750,12 @@ Last updated: 2026-03-01 06:05
 
 ## 🔧 Template Elements (New)
 
-- [ ] **Navbox Styling** (CSS)
-  - File: `src/components/navbox.styl` (new file)
+- [x] **Navbox Styling** (CSS)
+  - File: `src/components/navbox.styl`
   - Navigation box at bottom of articles
   - Collapsible groups
   - Subgroup styling
+  Commit: 3e89550
 
 - [ ] **Sidebar Template Styling** (CSS)
   - File: `src/components/navbox.styl`
