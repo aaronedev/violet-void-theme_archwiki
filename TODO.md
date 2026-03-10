@@ -6593,9 +6593,91 @@ Last updated: 2026-03-01 06:05
   - Prominent warning colors
   - Stylus: Works directly
 
+## 🆕 CSS Scroll Snap Level 2 (New - 2026-03-10 Scout 36)
+
+- [ ] **`scroll-initial-target` Property** (CSS, 85%+ browser support)
+  - File: `src/components/navigation.styl`, `src/components/toc.styl`
+  - Define elements that should snap when scroll containers first render
+  - Values: `none`, `nearest`
+  - Apply to TOC sections, category lists, long navigation
+  - Example: `.toc-item { scroll-initial-target: nearest; }`
+  - Stylus: Works directly
+
+## 🆕 Media Resource State Pseudo-classes (New - 2026-03-10 Scout 36)
+
+- [ ] **`:seeking` Pseudo-class for Media** (CSS, 87%+ browser support)
+  - File: `src/components/media.styl`
+  - Style video/audio elements that are seeking playback position
+  - Loading indicator styling during seek
+  - Apply to embedded videos, audio players
+  - Stylus: Works directly
+
+- [ ] **`:stalled` Pseudo-class for Media** (CSS, 87%+ browser support)
+  - File: `src/components/media.styl`
+  - Style media elements that are stalled (cannot download)
+  - Error/buffering indicator styling
+  - Network issue visual feedback
+  - Stylus: Works directly
+
+- [ ] **`:volume-locked` Pseudo-class for Media** (CSS, 85%+ browser support)
+  - File: `src/components/media.styl`
+  - Style elements with volume locked by browser
+  - Visual indicator for locked volume state
+  - Apply to embedded media controls
+  - Stylus: Works directly
+
+## 🆕 Time-dimensional Pseudo-classes (New - 2026-03-10 Scout 36)
+
+- [ ] **`:current / :past / :future` for Timed Content** (CSS, 85%+ browser support)
+  - File: `src/components/media.styl`, `src/components/accessibility.styl`
+  - Style current, past, and future timed content (WebVTT captions, etc.)
+  - Apply to video subtitles, timed transcripts
+  - Example: `::cue(:current) { color: var(--accent); }`
+  - Accessibility enhancement for timed media
+  - Stylus: Works directly
+
+## 🆕 Modern Heading Selector (New - 2026-03-10 Scout 36)
+
+- [ ] **`:heading()` Functional Pseudo-class** (CSS, 87%+ browser support)
+  - File: `src/components/typography.styl`, `src/components/modern-css.styl`
+  - Select heading elements using An+B notation
+  - Example: `:heading(2n+1)` for odd headings
+  - Alternating heading styles, table of contents generation
+  - More flexible than `:is(h1, h2, h3, h4, h5, h6)`
+  - Stylus: Works directly
+
+## 🆕 Anchor Positioning Visibility (New - 2026-03-10 Scout 36)
+
+- [ ] **`position-visibility` Property** (CSS, 85%+ browser support)
+  - File: `src/components/navigation.styl`, `src/components/tooltips.styl`
+  - Control when anchored elements are visible
+  - Values: `always`, `anchors-visible`, `no-overflow`
+  - Hide tooltips when anchor scrolls out of view
+  - Prevent orphaned dropdowns
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Article Structure Conventions (New - 2026-03-10 Scout 36)
+
+- [ ] **Magic Words Styling (DISPLAYTITLE, lowercase title)** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-conventions.styl`
+  - Style for pages with custom display titles
+  - Lowercase title template indicator
+  - Visual distinction for modified titles
+  - Apply to first heading with display title
+  - Stylus: Works directly
+
+- [ ] **Category Positioning (Top of Article)** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-conventions.styl`
+  - Style category links at article top (ArchWiki convention)
+  - Different from Wikipedia bottom placement
+  - Compact category pill styling
+  - Category visibility without scrolling
+  - Stylus: Works directly
+
 ---
 
 | 2026-03-10 | Section Anchors Implementation | Added section permalink styling with hover reveal pattern, copy link indicator, and target highlight animation | 3d0b8cf |
 | 2026-03-10 | Thirty-fourth scout | Added @supports extensions (font-tech, font-format, named-feature), anchor-scope property, form styling extensions (::picker, ::picker-icon), ArchWiki i18n patterns (Template:Related2) |
+| 2026-03-10 | Thirty-sixth scout | Added scroll-initial-target, media resource states (:seeking/:stalled/:volume-locked), time-dimensional pseudo-classes, :heading() functional pseudo-class, position-visibility, ArchWiki conventions (magic words, category positioning) |
 | 2026-03-10 | Message Boxes Implementation | Added comprehensive Ambox, Ombox, Imbox, Tmbox, Cmbox, Fmbox styling with type-specific colors, Citation Needed template with hover tooltip, collapsible support, accessibility features | 631a6c0 |
 | 2026-03-10 | Thirty-fifth scout | Added CSS transitions extended (transition-behavior: allow-discrete), text typography extended (text-wrap: balance, text-wrap: pretty), URL fragment targeting (::target-text), ArchWiki status templates extended (Template:Expansion, Template:Out of date) |
