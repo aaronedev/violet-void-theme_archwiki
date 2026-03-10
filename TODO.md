@@ -6821,3 +6821,79 @@ Last updated: 2026-03-01 06:05
 | 2026-03-10 | Thirty-fifth scout | Added CSS transitions extended (transition-behavior: allow-discrete), text typography extended (text-wrap: balance, text-wrap: pretty), URL fragment targeting (::target-text), ArchWiki status templates extended (Template:Expansion, Template:Out of date) |
 | 2026-03-10 | Thirty-seventh scout | Added CSS text box properties (text-box, text-box-trim, text-box-edge), ArchWiki Template:hc styling, interlanguage link column, standard section conventions, native CSS nesting patterns |
 | 2026-03-10 | Thirty-eighth scout | Added modern pseudo-elements (::details-content, ::search-text, ::column, ::scroll-button(), ::checkmark), ArchWiki code templates enhanced (Template:ic, Template:bc) |
+| 2026-03-10 | Thirty-ninth scout | Added CSS text hyphenation (hyphens, hyphenate-character, hanging-punctuation), CSS image & layout (image-set(), isolation, shape-outside), ArchWiki package instruction styling per Help:Style conventions |
+
+
+## 🆕 CSS Text Hyphenation (New - 2026-03-10 Scout 39)
+
+- [ ] **`hyphens` Property for Automatic Hyphenation** (CSS, 97%+ browser support)
+  - File: `src/typography/hyphenation.styl`
+  - Values: `none`, `manual`, `auto`
+  - Automatic word breaking at appropriate hyphenation points
+  - Requires `lang` attribute for proper language-specific hyphenation
+  - Apply to article content, infobox text, narrow columns
+  - Example: `hyphens: auto;`
+  - Stylus: Works directly
+
+- [ ] **`hyphenate-character` Property for Custom Hyphen** (CSS, 87%+ browser support)
+  - File: `src/typography/hyphenation.styl`
+  - Customize the character shown at line break (default: `-`)
+  - Values: `auto` or any string (e.g., `"="`, `"—"`)
+  - Pair with `hyphens: auto` for full effect
+  - Example: `hyphenate-character: "—";`
+  - Stylus: Works directly
+
+- [ ] **`hanging-punctuation` Property for Typography** (CSS, Safari-only, ~15%)
+  - File: `src/typography/punctuation.styl`
+  - Values: `none`, `first`, `last`, `allow-end`, `force-end`
+  - Hang opening/closing quotes and punctuation outside margins
+  - Apply to blockquotes, article text
+  - Example: `hanging-punctuation: first last;`
+  - Stylus: Works directly (progressive enhancement)
+
+## 🆕 CSS Image & Layout (New - 2026-03-10 Scout 39)
+
+- [ ] **`image-set()` Function for Responsive Images** (CSS, 97%+ browser support)
+  - File: `src/components/images.styl`
+  - Provide alternative images based on resolution (1x, 2x)
+  - Provide alternative formats (AVIF, WebP with JPEG fallback)
+  - Apply to background images in infoboxes, icons, logos
+  - Example:
+    ```css
+    background-image: image-set(
+      "icon.avif" type("image/avif"),
+      "icon.webp" type("image/webp"),
+      "icon.png" 1x,
+      "icon@2x.png" 2x
+    );
+    ```
+  - Stylus: Works directly
+
+- [ ] **`isolation` Property for Stacking Context** (CSS, 97%+ browser support)
+  - File: `src/utilities/isolation.styl`
+  - Values: `auto`, `isolate`
+  - Force new stacking context for mix-blend-mode isolation
+  - Apply to modals, dropdowns, complex layered components
+  - Prevent blend-mode bleeding to parent elements
+  - Example: `isolation: isolate;`
+  - Stylus: Works directly
+
+- [ ] **`shape-outside` Property for Text Wrapping** (CSS, 97%+ browser support)
+  - File: `src/components/shapes.styl`
+  - Define shape around which inline content wraps
+  - Values: `none`, `<basic-shape>`, `<shape-box>`, `<image>`
+  - Apply to floated images in articles, infobox images
+  - Functions: `circle()`, `ellipse()`, `polygon()`, `inset()`, `url()`
+  - Example: `shape-outside: circle(50%);`
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Package Instructions (New - 2026-03-10 Scout 39)
+
+- [ ] **Package Installation Instruction Styling** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-packages.styl`
+  - Style per Help:Style package management conventions
+  - Avoid pacman command examples (use prose instead)
+  - Link packages without variant suffixes (-bin, -git, -nightly)
+  - [[install]] redirect styling for first installation mention
+  - Example prose: "Install the foobar package."
+  - Stylus: Works directly
