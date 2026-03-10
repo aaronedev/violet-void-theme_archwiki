@@ -705,34 +705,34 @@ h4[id]
       --arch-blue-lighter: rgb(from #8950c7 r g b / 0.3);
       --arch-blue-dark: rgb(from #8950c7 calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
       --arch-blue-darker: rgb(from #8950c7 calc(r * 0.6) calc(g * 0.6) calc(b * 0.6));
-      
+
       /* Secondary-blue variants */
       --secondary-blue-muted: rgb(from #c7b8ff r g b / 0.6);
       --secondary-blue-subtle: rgb(from #c7b8ff r g b / 0.3);
       --secondary-blue-dark: rgb(from #c7b8ff calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
-      
+
       /* Red variants */
       --red-light: rgb(from #a80065 r g b / 0.5);
       --red-dark: rgb(from #a80065 calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
-      
+
       /* Secondary-red variants */
       --secondary-red-muted: rgb(from #ff1a67 r g b / 0.6);
       --secondary-red-subtle: rgb(from #ff1a67 r g b / 0.3);
-      
+
       /* Green variants */
       --green-muted: rgb(from #4bfe9b r g b / 0.6);
       --green-dark: rgb(from #4bfe9b calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
-      
+
       /* Orange variants */
       --orange-muted: rgb(from #fd7cff r g b / 0.6);
       --orange-subtle: rgb(from #fd7cff r g b / 0.3);
-      
+
       /* Base/UI variants */
       --base-lighter-opaque: rgb(from #181818 r g b / 0.8);
       --base-semi-transparent: rgb(from #181818 r g b / 0.5);
       --light-muted: rgb(from #bfbfbf r g b / 0.7);
       --light-subtle: rgb(from #bfbfbf r g b / 0.4);
-      
+
       /* Comment/muted variants */
       --comment-light: rgb(from #6f6f6f calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
       --muted-light: rgb(from #7a7a7a calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
@@ -846,7 +846,7 @@ h4[id]
 // Detect wide-gamut (P3) displays and provide enhanced colors
 // Browser support: 93%+
 @supports (color: color(display-p3 1 1 1))
-  @media (color-gamut: p3)
+  @media (color-gamut p3)
     // More vibrant accent colors on capable hardware
     :root
       --arch-blue-p3 color(display-p3 0.537 0.314 0.78)
@@ -1093,24 +1093,24 @@ h4[id]
 // Hover capability detection
 // Browser support: 97%+
 
-@media (hover: hover)
+@media (hover hover)
   .hover-only
     display block
   .touch-only
     display none
 
-@media (hover: none)
+@media (hover none)
   .hover-only
     display none
   .touch-only
     display block
 
 // Pointer precision
-@media (pointer: fine)
+@media (pointer fine)
   .fine-pointer
     // Smaller targets OK
 
-@media (pointer: coarse)
+@media (pointer coarse)
   // Increase touch targets
   button
   a
@@ -1118,11 +1118,11 @@ h4[id]
     min-width 44px
 
 // Any-hover/any-pointer for hybrid devices
-@media (any-hover: hover)
+@media (any-hover hover)
   .has-hover-capable
     display block
 
-@media (any-pointer: fine)
+@media (any-pointer fine)
   .has-fine-pointer
     display block
 
@@ -1133,7 +1133,7 @@ h4[id]
 // Forced colors (high contrast mode)
 // Browser support: 95%+
 
-@media (forced-colors: active)
+@media (forced-colors active)
   .forced-colors-adapt
     // Use system colors
     color CanvasText
@@ -1141,7 +1141,7 @@ h4[id]
     border-color CanvasText
 
 // Inverted colors detection
-@media (inverted-colors: inverted)
+@media (inverted-colors inverted)
   img
     filter invert(1)
 
@@ -1149,11 +1149,11 @@ h4[id]
 // SCRIPTING DETECTION
 // =============================================================================
 
-@media (scripting: enabled)
+@media (scripting enabled)
   .js-required
     display block
 
-@media (scripting: none)
+@media (scripting none)
   .no-js-fallback
     display block
 
@@ -1161,7 +1161,7 @@ h4[id]
     display none
 
 // Update frequency
-@media (update: slow)
+@media (update slow)
   // Reduce animations for e-ink
   *
     animation none !important
@@ -1303,7 +1303,7 @@ h4[id]
     color: inherit;
     text-shadow: none;
   }
-  
+
   /* Dark mode variant */
   @media (prefers-color-scheme: dark) {
     ::target-text {

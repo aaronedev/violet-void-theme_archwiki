@@ -190,16 +190,16 @@ h2::after
   transition opacity $transition-fast
 
   // Hide on mobile by default, show on touch
-  @media (pointer: coarse)
+  @media (pointer coarse)
     opacity 1
 
 // Show edit link on heading hover (hover-capable devices only)
-@media (hover: hover)
-  h1:hover,
-  h2:hover,
-  h3:hover,
-  h4:hover,
-  h5:hover,
+@media (hover hover)
+  h1:hover
+  h2:hover
+  h3:hover
+  h4:hover
+  h5:hover
   h6:hover
     .mw-editsection
       opacity 1
@@ -242,16 +242,16 @@ h2::after
 
 // Hover reveal pattern for section anchors
 // Only show on hover-capable devices
-@media (hover: hover)
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+@media (hover hover)
+  h1
+  h2
+  h3
+  h4
+  h5
   h6
     // Show anchor on heading hover
     &:hover
-      .mw-headline-anchor,
+      .mw-headline-anchor
       .section-anchor
         opacity 0.7
 
@@ -260,12 +260,12 @@ h2::after
 
     // Always visible when focused (keyboard navigation)
     &:focus-within
-      .mw-headline-anchor,
+      .mw-headline-anchor
       .section-anchor
         opacity 1
 
 // Touch devices - always show anchors but smaller
-@media (hover: none)
+@media (hover none)
   .mw-headline-anchor
   .section-anchor
     opacity 0.6
@@ -335,7 +335,7 @@ h2::after
   z-index 10
 
 // Show URL preview on hover
-@media (hover: hover)
+@media (hover hover)
   .section-anchor:hover
     .section-link-preview
       opacity 1
@@ -454,8 +454,8 @@ h2::after
 #content
   .mw-parser-output
     // Off-screen content optimization for TOC levels
-    .toclevel-2,
-    .toclevel-3,
+    .toclevel-2
+    .toclevel-3
     .toclevel-4
       details:not([open])
         > *:not(summary)

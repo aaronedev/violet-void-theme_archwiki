@@ -398,11 +398,18 @@
     break-after avoid
 
   // Prevent orphaned headings
-  h1, h2, h3, h4, h5, h6
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
     break-after avoid
 
   // Prevent breaking right after heading
-  h1 + p, h2 + p, h3 + p
+  h1 + p
+  h2 + p
+  h3 + p
     break-before avoid
 
 // =============================================================================
@@ -426,14 +433,14 @@
   @page {
     /* Page margins */
     margin: 2cm;
-    
+
     /* Page numbers in bottom-right corner */
     @bottom-right {
       content: "Page " counter(page) " of " counter(pages);
       font-size: 9pt;
       color: #666;
     }
-    
+
     /* Article title in top-center */
     @top-center {
       content: element(page-header);
@@ -441,21 +448,22 @@
       color: #666;
     }
   }
-  
+
   /* First page styling */
   @page :first {
     margin-top: 3cm;
+
     @top-center {
       content: none;
     }
   }
-  
+
   /* Landscape pages for wide tables */
   @page landscape {
     size: A4 landscape;
     margin: 1.5cm;
   }
-  
+
   /* Apply landscape to wide tables */
   table.wikitable-wide {
     page: landscape;

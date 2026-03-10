@@ -412,8 +412,8 @@
   pointer-events none
 
 // Progress bar theming
-video::-webkit-media-controls
-  // Custom styling for WebKit browsers
+video::-webkit-media-controls{}
+// Custom styling for WebKit browsers
 
 video::-webkit-media-controls-panel
   background linear-gradient(transparent, rgba($base, 0.8))
@@ -483,7 +483,7 @@ video::-webkit-media-controls-volume-slider
     font-variant-numeric tabular-nums
 
 // Responsive video
-@media (max-width: 768px)
+@media (max-width 768px)
   .mw-gallery
   .image-gallery
     grid-template-columns repeat(auto-fill, minmax(100px, 1fr))

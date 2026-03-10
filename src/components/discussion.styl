@@ -412,7 +412,7 @@
       margin 0.3em 0
 
 // Responsive talk page
-@media (max-width: 768px)
+@media (max-width 768px)
   .mw-parser-output > dl > dd > dl
   .mw-parser-output > dl > dd > dl > dd > dl
     margin-inline-start 0.5em
@@ -535,7 +535,8 @@
     font-size 0.6em
 
 @keyframes pulse-green
-  0%, 100%
+  0%
+  100%
     opacity 1
   50%
     opacity 0.7
@@ -692,7 +693,8 @@
         text-decoration underline
 
 @keyframes bell-shake
-  0%, 100%
+  0%
+  100%
     transform rotate(0)
   20%
     transform rotate(15deg)
@@ -811,7 +813,7 @@
     font-style italic
 
 // Responsive thread styling
-@media (max-width: 768px)
+@media (max-width 768px)
   .thread-header
     flex-direction column
     align-items flex-start
