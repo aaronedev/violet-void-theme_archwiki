@@ -1398,3 +1398,198 @@ h4[id]
 .target-text-highlight
   background-color rgba($arch-blue, 0.3)
   color inherit
+
+// =============================================================================
+// ATTR() WITH TYPE() FUNCTION - Dynamic Values from HTML Attributes
+// =============================================================================
+
+// Note: attr() with type() support is growing (90%+ browser support)
+// Allows parsing HTML attributes as typed CSS values
+// Enables dynamic component sizing and styling from data attributes
+// Using @css for attr() type() syntax since Stylus doesn't support it
+
+@css {
+  @supports (width: attr(data-width px)) {
+    /* Dynamic sizing from data attributes */
+    /* Components can be sized via HTML data-* attributes */
+
+    /* Dynamic width components */
+    [data-width] {
+      width: attr(data-width px);
+    }
+
+    /* Dynamic height components */
+    [data-height] {
+      height: attr(data-height px);
+    }
+
+    /* Dynamic max-width constraints */
+    [data-max-width] {
+      max-width: attr(data-max-width px);
+    }
+
+    /* Dynamic min-width constraints */
+    [data-min-width] {
+      min-width: attr(data-min-width px);
+    }
+
+    /* Dynamic padding */
+    [data-padding] {
+      padding: attr(data-padding em);
+    }
+
+    /* Dynamic margin */
+    [data-margin] {
+      margin: attr(data-margin em);
+    }
+
+    /* Dynamic gap for flex/grid containers */
+    [data-gap] {
+      gap: attr(data-gap em);
+    }
+
+    /* Card components with dynamic sizing */
+    .archwiki-card[data-card-width] {
+      width: attr(data-card-width px);
+      max-width: 100%;
+    }
+
+    /* Sidebar with configurable width */
+    .mw-sidebar[data-sidebar-width] {
+      width: attr(data-sidebar-width px);
+      min-width: attr(data-sidebar-width px);
+    }
+
+    /* Infobox with dynamic sizing */
+    .infobox[data-infobox-width] {
+      width: attr(data-infobox-width px);
+    }
+
+    /* Code blocks with configurable max-height */
+    pre[data-max-lines] {
+      max-height: attr(data-max-lines em, 20em);
+    }
+
+    /* Progress bars with dynamic value */
+    progress[data-progress]::progress-bar {
+      width: attr(data-progress %);
+    }
+
+    /* Dynamic border radius */
+    [data-radius] {
+      border-radius: attr(data-radius px);
+    }
+
+    /* Dynamic font size */
+    [data-font-size] {
+      font-size: attr(data-font-size rem);
+    }
+
+    /* Color values from data attributes */
+    /* Note: attr() with type(<color>) has limited support */
+
+    /* Dynamic accent color for buttons */
+    .mw-ui-button[data-accent-color] {
+      background-color: attr(data-accent-color type(<color>), var(--theme-arch-blue));
+      border-color: attr(data-accent-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Dynamic text color */
+    [data-text-color] {
+      color: attr(data-text-color type(<color>), var(--theme-light));
+    }
+
+    /* Dynamic background color */
+    [data-bg-color] {
+      background-color: attr(data-bg-color type(<color>), var(--theme-base));
+    }
+
+    /* Dynamic border color */
+    [data-border-color] {
+      border-color: attr(data-border-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Status indicators with dynamic colors */
+    .status-indicator[data-status-color] {
+      background-color: attr(data-status-color type(<color>));
+      border-color: attr(data-status-color type(<color>));
+    }
+
+    /* Tag/badge components with dynamic colors */
+    .archwiki-tag[data-tag-color] {
+      background-color: attr(data-tag-color type(<color>), var(--theme-arch-blue));
+      color: var(--theme-darker);
+    }
+
+    /* Alert boxes with dynamic accent */
+    .mw-message-box[data-box-accent] {
+      border-left-color: attr(data-box-accent type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Highlight elements with dynamic background */
+    .highlight[data-highlight-color] {
+      background-color: attr(data-highlight-color type(<color>), rgba(137, 80, 199, 0.2));
+    }
+
+    /* Navigation items with dynamic active color */
+    .vector-menu-item[data-active-color].active {
+      background-color: attr(data-active-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Progress indicators */
+    .progress-bar[data-progress-color] {
+      background-color: attr(data-progress-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Fallback values with var() */
+    /* attr() supports fallback values */
+    [data-spacing] {
+      padding: attr(data-spacing rem, 1rem);
+    }
+
+    /* Complex selectors combining multiple attrs */
+    .archwiki-component[data-width][data-height] {
+      width: attr(data-width px);
+      height: attr(data-height px);
+    }
+
+    /* Responsive components using attr with media queries */
+    /* Note: attr() values are computed, not reactive to media changes */
+    /* Use CSS custom properties for reactive values */
+
+    /* Grid layouts with dynamic columns */
+    [data-columns] {
+      grid-template-columns: repeat(attr(data-columns type(<integer>), 3), 1fr);
+    }
+
+    /* List styling with dynamic marker */
+    ol[data-start] {
+      counter-reset: item attr(data-start type(<integer>), 1);
+    }
+  }
+}
+
+// Fallback for browsers without attr() type() support
+// Uses CSS custom properties as alternative
+
+.archwiki-card
+  --card-width auto
+  width var(--card-width)
+  max-width 100%
+
+.mw-sidebar
+  --sidebar-width 250px
+  width var(--sidebar-width)
+  min-width var(--sidebar-width)
+
+.infobox
+  --infobox-width 300px
+  width var(--infobox-width)
+
+.mw-ui-button[data-accent-color]
+  --button-accent var(--theme-arch-blue)
+  background-color var(--button-accent)
+  border-color var(--button-accent)
+
+// JavaScript can set these custom properties as fallback
+// Example JS: element.style.setProperty('--card-width', '400px')

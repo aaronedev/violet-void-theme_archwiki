@@ -326,6 +326,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | attr() with type() function | 97d08ef |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
@@ -4675,13 +4676,14 @@ Last updated: 2026-03-01 06:05
 
 ## 🔧 Advanced CSS Functions (New - 2026-03-10 Scout 28)
 
-- [ ] **`attr()` with type() Function** (90%+ browser support)
+- [x] **`attr()` with type() Function** (90%+ browser support)
   - File: `src/components/modern-css.styl`
   - Parse HTML attributes as typed CSS values
   - Example: `width: attr(data-width px);`
   - Example: `color: attr(data-color type(<color>));`
   - Use for dynamic component sizing from data attributes
   - Note: Requires `@css{}` wrapper for Stylus
+  - Commit: 97d08ef
 
 - [x] **`color-mix()` Function** (97%+ browser support)
   - File: `src/components/modern-css.styl`
