@@ -29,3 +29,6 @@ screenshots/
 test-results/
 playwright-report/
 /test-results.json
+
+# Browser extensions (downloaded at runtime)
+.browser-extensions/
