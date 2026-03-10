@@ -326,6 +326,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | ::file-selector-button styling | a56b1c8 |
 | 2026-03-10 | Documentation Subpage (template-doc.styl) | 95091e6 |
 | 2026-03-10 | attr() with type() function | c6dedd5 |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
@@ -1524,11 +1525,12 @@ Last updated: 2026-03-10 13:30
 
 ## 📝 Form Enhancements (New)
 
-- [ ] **`::file-selector-button` Styling** (97%+ browser support)
+- [x] **`::file-selector-button` Styling** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style file input button
   - `input[type="file"]::file-selector-button { ... }`
   - Stylus: Works directly
+  - Commit: a56b1c8
 
 - [ ] **`:autofill` Pseudo-class** (85%+ browser support)
   - File: `src/components/forms-enhanced.styl`
