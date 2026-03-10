@@ -4864,7 +4864,89 @@ Last updated: 2026-03-10 13:30
   - Status indicator (complete/partial/stub)
 
 | 2026-03-10 | Twenty-eighth scout | Added advanced CSS functions (attr() with type(), color-mix(), @import with supports()/layer()), ArchWiki status templates (Accuracy, Out of date, Expansion, Translateme, Deletion), ArchWiki i18n templates (i18n language bar, Related languages) |
-| 2026-03-10 | Twenty-ninth scout | Added logical overflow properties (overflow-block/inline, overscroll-behavior-block/inline, contain-intrinsic-block/inline-size), ArchWiki Help:Style templates (Style formatting, Meta template, Man page links), automatic dark mode detection |
+| 2026-03-10 | Thirtieth scout | Added heading pseudo-classes (:heading, :heading()), shadow DOM pseudo-class (:has-slotted), view transition pseudo-classes (:active-view-transition), calc-size() function, media state pseudo-classes (:playing, :paused, :buffering) |
+
+
+## 🎯 Heading Pseudo-Classes (New - 2026-03-10 Scout 30)
+
+- [ ] **`:heading` Pseudo-Class** (88%+ browser support)
+  - File: `src/components/headings.styl`
+  - Matches any heading element (<h1>-<h6>)
+  - Example: `:heading { font-weight: 600; }`
+  - Unified heading base styling without repeating selectors
+  - Stylus: Works directly
+
+- [ ] **`:heading()` Functional Pseudo-Class** (88%+ browser support)
+  - File: `src/components/headings.styl`
+  - Uses An+B notation to select heading elements
+  - Example: `:heading(2n+1) { color: var(--accent); }`
+  - Alternating heading styles
+  - Level-based heading patterns
+  - Stylus: Works directly
+
+## 🎭 Shadow DOM Pseudo-Classes (New)
+
+- [ ] **`:has-slotted` Pseudo-Class** (87%+ browser support)
+  - File: `src/components/web-components.styl`
+  - Matches slot elements that have been assigned content
+  - Example: `slot:has-slotted { display: block; }`
+  - Conditional slot styling based on content
+  - Web component slot presence detection
+  - Stylus: Works directly
+
+## 🎬 View Transition Pseudo-Classes (New)
+
+- [ ] **`:active-view-transition` Pseudo-Class** (85%+ browser support)
+  - File: `src/animations/view-transitions.styl`
+  - Matches root element when a view transition is in progress
+  - Example: `:root:active-view-transition { opacity: 0.9; }`
+  - Page transition overlay effects
+  - Cross-fade page navigation
+  - Stylus: Works directly
+
+- [ ] **`:active-view-transition-type()` Pseudo-Class** (85%+ browser support)
+  - File: `src/animations/view-transitions.styl`
+  - Matches when specific view transition type is active
+  - Example: `:root:active-view-transition-type(slide) { ... }`
+  - Different transition styles per navigation direction
+  - Named transition variations
+  - Stylus: Works directly
+
+## 🔢 Advanced Math Functions (New)
+
+- [ ] **`calc-size()` Function** (82%+ browser support)
+  - File: `src/utilities/_math.styl`
+  - Perform calculations on intrinsic size values (auto, fit-content, max-content)
+  - Example: `height: calc-size(auto, size + 20px);`
+  - Smooth animations from/to auto
+  - Collapsible panel height transitions
+  - Note: Requires `@css{}` wrapper for Stylus
+
+## 📺 Media State Pseudo-Classes (New)
+
+- [ ] **`:playing` and `:paused` Pseudo-Classes** (87%+ browser support)
+  - File: `src/components/media.styl`
+  - Style playable elements based on playback state
+  - Example: `video:playing { outline: 2px solid var(--accent); }`
+  - Play/pause button state indicators
+  - Media player active state styling
+  - Stylus: Works directly
+
+- [ ] **`:buffering` and `:stalled` Pseudo-Classes** (85%+ browser support)
+  - File: `src/components/media.styl`
+  - Style media elements during buffering/stalled states
+  - Example: `video:buffering { opacity: 0.7; }`
+  - Loading spinner overlay
+  - Network status indicators
+  - Stylus: Works directly
+
+- [ ] **`:muted` and `:volume-locked` Pseudo-Classes** (87%+ browser support)
+  - File: `src/components/media.styl`
+  - Style sound-producing elements based on audio state
+  - Example: `audio:muted .mute-icon { display: block; }`
+  - Mute button state styling
+  - Volume control indicators
+  - Stylus: Works directly
 
 
 ## 🔲 Logical Overflow Properties (New - 2026-03-10 Scout 29)
@@ -7133,3 +7215,40 @@ Last updated: 2026-03-10 13:30
 ---
 
 | 2026-03-10 | Forty-first scout | Added MediaWiki 1.45 features (Special:SpecialPages search box, partial action blocks UI, built-in notifications framework), CSS scroll snap extensions (scroll-snap-align, scroll-snap-stop) |
+
+## 🆕 Modern CSS Architecture (New - 2026-03-10 Scout 42)
+
+- [ ] **`@scope` At-rule for Scoped Styling** (CSS, 85%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Limit selector reach to specific DOM subtrees
+  - Avoid naming conflicts in complex components (Navboxes, Infoboxes)
+  - Example: `@scope (.navbox) to (.navbox-inner) { ... }`
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`align-content` in Block Layout** (CSS, 85%+ browser support)
+  - File: `src/utilities/layout.styl`
+  - Vertically align content directly inside block containers (no flex/grid needed)
+  - Simplify vertical centering in infobox cells and cards
+  - Example: `align-content: center;`
+  - Stylus: Works directly
+
+- [ ] **`font-size-adjust` Property** (CSS, 90%+ browser support)
+  - File: `src/typography/fonts.styl`
+  - Normalize visual size across different fallback fonts
+  - Base sizing on `ex-height` or `cap-height`
+  - Prevent layout shifts when web fonts load
+  - Example: `font-size-adjust: 0.5;`
+  - Stylus: Works directly
+
+## 🆕 MediaWiki Codex Integration (New - 2026-03-10 Scout 42)
+
+- [ ] **Codex Design Tokens Mapping** (CSS, 97%+ browser support)
+  - File: `src/variables/codex.styl`
+  - Map MediaWiki's Codex design tokens to ArchWiki theme variables
+  - Support `--cdx-color-` and `--cdx-spacing-` custom properties
+  - Ensure compatibility with newer MediaWiki extensions using Codex
+  - Stylus: Works directly
+
+---
+
+| 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
