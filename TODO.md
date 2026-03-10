@@ -705,11 +705,12 @@ Last updated: 2026-03-01 06:05
 
 ## 📖 Article Structure (New)
 
-- [ ] **Lead Section Styling** (CSS)
+- [x] **Lead Section Styling** (CSS)
   - File: `src/components/content.styl`
   - First paragraph emphasis
   - Bold first occurrence styling
   - Disambiguation hatnote
+  - Commit: f1bc9f2
 
 - [x] **Section Anchors** (97%+ browser support)
   - File: `src/components/content.styl`
@@ -6392,6 +6393,7 @@ Last updated: 2026-03-01 06:05
 | 2026-03-02 | Thirty-first scout | Added API & developer documentation, mobile & responsive extended, accessibility extended, performance extended, animation extended, data visualization, external services, testing & QA |
 | 2026-03-02 | Thirty-second scout | Added learning & tutorials, search extended, tables extended, theming extended, navigation extended, interactive elements, layout utilities |
 | 2026-03-02 | Thirty-third scout | Added MediaWiki 1.44+ features (Vector 2022 updates, Parsoid output, RESTBase API UI), new CSS features (field-sizing, scrollbar-color expansion, text-wrap-mode), performance patterns (layout/paint containment), accessibility (forced-colors, inverted-colors), ArchWiki-specific (package templates, command blocks, config files, status indicators) |
+| 2026-03-10 | Implementer | Lead section styling with first paragraph emphasis, bold first occurrence, disambiguation hatnote variants | f1bc9f2 |
 
 ---
 
