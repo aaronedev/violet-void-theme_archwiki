@@ -46,13 +46,32 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 - **Message Boxes**
   - Comprehensive message boxes styling (warning, info, note, etc.)
 
+- **Navigation & Templates**
+  - CategoryTree extension styling
+  - Navbox styling for article navigation boxes
+  - Sidebar template styling (archwiki-templates component)
+  - Template documentation subpage styling
+
+- **Search Enhancements**
+  - Search suggestions dropdown styling
+
+- **Code & Typography**
+  - Enhanced command prompt styling for ArchWiki
+  - `white-space-collapse` for fine-grained whitespace control
+  - Comprehensive widows/orphans control for print
+
 - **Modern CSS Features**
   - `::target-text` pseudo-element styling
   - `::spelling-error` and `::grammar-error` pseudo-elements
+  - `::file-selector-button` styling for themed file inputs
+  - `:open` pseudo-class for unified open state styling
   - `@property` for animatable CSS custom properties
   - `@scope` for component isolation
   - `@layer` cascade control
   - `@counter-style` for custom list markers
+  - `attr()` with `type()` function for dynamic component styling
+  - `color-mix()` function for dynamic color mixing
+  - `transition-behavior: allow-discrete` for display transitions
   - Comprehensive `:has()` selector usage for parent-child styling
   - `:is()` and `:where()` selectors
   - `interpolate-size` for auto transitions
@@ -60,8 +79,9 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
   - `will-change` for smoother navigation animations
   - `scroll-snap` for TOC and code blocks (mobile UX)
   - `scroll-padding` for sticky header offsets
-  - Relative color syntax for dynamic colors
+  - `scrollbar-gutter: stable` for layout stability
   - Logical properties for RTL support
+  - Logical overflow properties for RTL/writing-mode support
   - `prefers-reduced-transparency` support
 
 - **Typography Enhancements**
@@ -96,6 +116,11 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 - Stylelint warnings in modern-css.styl
 - All linting errors resolved
 - Build process issues
+- Global `:defined` selector removed to restore inline element flow
+- `:open` pseudo-class reverted (caused page rendering issues)
+- PostCSS vulnerability via npm overrides
+- Firefox compatibility with `@supports` wrappers for unsupported CSS
+- Invalid `:contains()` pseudo-class removed from stylelint config
 
 ### Maintenance
 - Added test artifacts to .gitignore (screenshots/, test-results/, playwright-report/)
@@ -103,6 +128,11 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 - Untracked build artifacts
 - Removed outdated files (applied patch, old scripts)
 - Updated dependencies
+- Added console-fixer for headless browser CSS validation
+- Code formatting and linting improvements
+
+### Performance
+- `overflow-anchor` for scroll anchoring control
 
 ## [2026.02.26] - 2026-02-26
 
