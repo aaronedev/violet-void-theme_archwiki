@@ -3620,12 +3620,13 @@ Last updated: 2026-03-10 13:30
   - Error output indicator
   - Warning output indicator
 
-- [ ] **Command Prompt Styling** (CSS)
+- [x] **Command Prompt Styling** (CSS)
   - File: `src/components/code.styl`
   - Prompt character styling ($, #)
   - User/host display
   - Current directory
   - Copy prompt button
+  - Commit: 7f9876e
 
 - [ ] **Multi-line Commands** (CSS)
   - File: `src/components/code.styl`
@@ -6698,6 +6699,7 @@ Last updated: 2026-03-10 13:30
 | 2026-03-10 | Implementer | Lead section styling with first paragraph emphasis, bold first occurrence, disambiguation hatnote variants | f1bc9f2 |
 | 2026-03-10 | Implementer | Reference list styling with tabular-nums, tooltips, backlinks, reference groups, accessibility, print styles | e664fa2 |
 | 2026-03-10 | Implementer | Category Tree styling with expandable tree, subcategory indicators, page count badges, active category highlight, depth indicators, sidebar support, accessibility | a4c12a2 |
+| 2026-03-10 | Implementer | Command prompt styling with user/root prompts, user@host patterns, directory paths, command output states, copy prompt button, continuation prompts | 7f9876e |
 
 ---
 
