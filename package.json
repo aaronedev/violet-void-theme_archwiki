@@ -11,7 +11,7 @@
   },
   "userStyle": {
     "namespace": "github.com/aaronedev/violet-void-theme",
-    "version": "20260301.12.25"
+    "version": "20260310.12.31"
   },
   "scripts": {
     "build": "node scripts/build.js",
@@ -29,9 +29,9 @@
     "@playwright/test": "^1.50.0",
     "autoprefixer-stylus": "^1.0.0",
     "prettier": "^3.6.2",
-    "stylelint": "^17.4.0",
-    "stylelint-config-recommended": "^18.0.0",
-    "stylelint-config-standard": "^40.0.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-recommended": "^14.0.0",
+    "stylelint-config-standard": "^36.0.0",
     "stylelint-plugin-stylus": "^1.0.0",
     "stylus": "^0.64.0",
     "stylus-loader": "^8.1.2"
