@@ -363,7 +363,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | overflow-anchor for scroll anchoring | 1836068 |
+| 2026-03-10 | overflow-anchor for scroll anchoring | 7d2ec95 |
 | 2026-03-10 | :open pseudo-class for unified open state styling | a0104ee |
 | 2026-03-10 | ::file-selector-button styling | a56b1c8 |
 | 2026-03-10 | Documentation Subpage (template-doc.styl) | 95091e6 |
@@ -1257,7 +1257,7 @@ Last updated: 2026-03-10 13:30
   - `overflow-anchor: auto` for main content, `overflow-anchor: none` to opt out
   - Prevents scroll jumps when dynamic content is inserted
   - Stylus: Works directly
-  - Commit: 1836068
+  - Commit: 7d2ec95
 
 
 ## 🔄 Discrete Property Transitions (New - 2026-02-28 Scout 7)
