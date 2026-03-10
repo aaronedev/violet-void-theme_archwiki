@@ -1355,11 +1355,12 @@ Last updated: 2026-03-10 13:30
   - Better typography for Asian languages
   - Stylus: Works directly
 
-- [ ] **`white-space-collapse` Control** (97%+ browser support)
+- [x] **`white-space-collapse` Control** (97%+ browser support)
   - File: `src/components/code.styl`, `src/components/content.styl`
   - Fine-grained whitespace handling
   - Values: collapse, preserve, preserve-breaks
   - Stylus: Works directly
+  - Commit: a1fc976
 
 - [ ] **`text-group-align` for Block Alignment** (87%+ browser support)
   - File: `src/components/typography.styl`
@@ -6751,6 +6752,7 @@ Last updated: 2026-03-10 13:30
 | 2026-03-10 | Implementer | Category Tree styling with expandable tree, subcategory indicators, page count badges, active category highlight, depth indicators, sidebar support, accessibility | a4c12a2 |
 | 2026-03-10 | Implementer | Command prompt styling with user/root prompts, user@host patterns, directory paths, command output states, copy prompt button, continuation prompts | 7f9876e |
 | 2026-03-10 | Implementer | Search Suggestions Dropdown with suggestion item styling, match highlighting, category badges with tabular-nums, search input enhancements, filters, pagination, accessibility | 9a16660 |
+| 2026-03-10 | Implementer | white-space-collapse for fine-grained whitespace control in code blocks and content areas (97%+ browser support) | a1fc976 |
 
 ---
 

@@ -390,3 +390,50 @@ for selector, index in copy-button-selectors
 #content .highlight .toolbar
   display block !important
   visibility visible !important
+
+// =============================================================================
+// WHITE-SPACE-COLLAPSE - Fine-Grained Whitespace Control (97%+ browser support)
+// =============================================================================
+// Controls how whitespace sequences are handled within text
+// Values: collapse, preserve, preserve-breaks, preserve-spaces, discard
+// Useful for code blocks, preformatted text, and precise layout control
+
+// Code blocks preserve all whitespace (default behavior, explicit for clarity)
+#content pre
+#content pre:not([class*="codemirror"])
+  white-space-collapse preserve
+
+// Inline code preserves spaces but allows line breaking
+#content code
+#content tt
+  white-space-collapse preserve-breaks
+
+// Terminal output preserves all whitespace
+.terminal-output
+.command-output
+  white-space-collapse preserve
+
+// Configuration files need exact whitespace
+.config-file
+.conf-block
+  white-space-collapse preserve
+
+// Diff output preserves whitespace for alignment
+.diff-output
+.diff-block
+  white-space-collapse preserve
+
+// Collapsible code sections - preserve breaks for readability when expanded
+.mw-collapsible-content pre
+.collapsible-code
+  white-space-collapse preserve-breaks
+
+// Code comments and annotations - collapse extra spaces
+.code-comment
+.code-annotation
+  white-space-collapse collapse
+
+// Multi-line command examples - preserve line structure
+.multi-line-command
+.command-continuation
+  white-space-collapse preserve-breaks

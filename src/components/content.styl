@@ -1413,3 +1413,83 @@ sup.reference:target
   // Hide tooltips in print
   .reference-tooltip
     display none
+
+// =============================================================================
+// WHITE-SPACE-COLLAPSE - Fine-Grained Whitespace Control (97%+ browser support)
+// =============================================================================
+// Controls how whitespace sequences are handled within text
+// Values: collapse, preserve, preserve-breaks, preserve-spaces, discard
+// Useful for precise content layout and typography control
+
+// Default content areas collapse extra whitespace (standard behavior)
+.mw-parser-output
+  white-space-collapse collapse
+
+// Preserve line breaks in poetry and formatted text
+.poem
+.verse
+.formatted-text
+  white-space-collapse preserve-breaks
+
+// Preserve all whitespace in preformatted content
+.preformatted
+.preserve-whitespace
+  white-space-collapse preserve
+
+// Table cells with code or commands
+.wikitable td code
+.infobox td code
+  white-space-collapse preserve-breaks
+
+// Navigation lists - collapse for cleaner display
+.navbox-list
+.vector-menu-content
+  white-space-collapse collapse
+
+// Message boxes - preserve breaks for readability
+.mw-message-box
+.ambox
+.tmbox
+.imbox
+.cmbox
+.ombox
+  white-space-collapse preserve-breaks
+
+// Lead section - collapse for normal text flow
+.mw-parser-output > p:first-of-type
+  white-space-collapse collapse
+
+// Blockquotes preserve structure
+blockquote
+.quote
+  white-space-collapse preserve-breaks
+
+// Definition lists - preserve breaks for definitions
+dl
+dd
+  white-space-collapse preserve-breaks
+
+// Footnotes and references
+.references
+.footnotes
+  white-space-collapse collapse
+
+// Collapsible content - preserve when expanded
+.mw-collapsible-content
+.collapsible-content
+  white-space-collapse preserve-breaks
+
+// Table of contents - collapse for compact display
+#toc
+.toc
+  white-space-collapse collapse
+
+// Infobox data cells
+.infobox td
+.infobox th
+  white-space-collapse collapse
+
+// Category links - collapse for inline display
+.mw-normal-catlinks
+.mw-hidden-catlinks
+  white-space-collapse collapse
