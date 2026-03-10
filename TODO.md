@@ -4952,47 +4952,53 @@ Last updated: 2026-03-10 13:30
 
 ## 🔲 Logical Overflow Properties (New - 2026-03-10 Scout 29)
 
-- [ ] **`overflow-block` Property** (97%+ browser support)
-  - File: `src/utilities/overflow.styl`
+- [x] **`overflow-block` Property** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Logical overflow for block dimension
   - Example: `overflow-block: auto;`
   - RTL/vertical writing mode support
   - Stylus: Works directly
+  - Commit: 259e73f
 
-- [ ] **`overflow-inline` Property** (97%+ browser support)
-  - File: `src/utilities/overflow.styl`
+- [x] **`overflow-inline` Property** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Logical overflow for inline dimension
   - Example: `overflow-inline: hidden;`
   - Horizontal scroll for horizontal text, vertical for vertical text
   - Stylus: Works directly
+  - Commit: 259e73f
 
-- [ ] **`overscroll-behavior-block` Property** (92%+ browser support)
-  - File: `src/components/navigation.styl`
+- [x] **`overscroll-behavior-block` Property** (92%+ browser support)
+  - File: `src/components/utilities.styl`
   - Logical overscroll for block dimension
   - Prevent scroll chaining in nested scrollables
   - `overscroll-behavior-block: contain;`
   - Stylus: Works directly
+  - Commit: 259e73f
 
-- [ ] **`overscroll-behavior-inline` Property** (92%+ browser support)
-  - File: `src/components/navigation.styl`
+- [x] **`overscroll-behavior-inline` Property** (92%+ browser support)
+  - File: `src/components/utilities.styl`
   - Logical overscroll for inline dimension
   - Horizontal scroll chaining prevention
   - `overscroll-behavior-inline: none;`
   - Stylus: Works directly
+  - Commit: 259e73f
 
-- [ ] **`contain-intrinsic-block-size` Property** (87%+ browser support)
-  - File: `src/base/performance.styl`
+- [x] **`contain-intrinsic-block-size` Property** (87%+ browser support)
+  - File: `src/components/utilities.styl`
   - Logical containment size for block dimension
   - Pair with `content-visibility: auto`
   - Example: `contain-intrinsic-block-size: 500px;`
   - Stylus: Works directly
+  - Commit: 259e73f
 
-- [ ] **`contain-intrinsic-inline-size` Property** (87%+ browser support)
-  - File: `src/base/performance.styl`
+- [x] **`contain-intrinsic-inline-size` Property** (87%+ browser support)
+  - File: `src/components/utilities.styl`
   - Logical containment size for inline dimension
   - Reserve space for off-screen content
   - Example: `contain-intrinsic-inline-size: 100%;`
   - Stylus: Works directly
+  - Commit: 259e73f
 
 ## 📖 ArchWiki Help:Style Templates (New)
 
@@ -7254,3 +7260,4 @@ Last updated: 2026-03-10 13:30
 ---
 
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
+| 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 259e73f |

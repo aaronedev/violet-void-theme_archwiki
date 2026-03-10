@@ -554,6 +554,104 @@
   overflow-y auto
 
 // =============================================================================
+// LOGICAL OVERFLOW PROPERTIES
+// =============================================================================
+
+// Logical overflow for block/inline dimensions
+// Browser support: 97%+
+// These properties are direction-aware, supporting RTL and vertical writing modes
+// - Block dimension: vertical for horizontal text, horizontal for vertical text
+// - Inline dimension: horizontal for horizontal text, vertical for vertical text
+
+.overflow-block-auto
+  overflow-block auto
+
+.overflow-block-hidden
+  overflow-block hidden
+
+.overflow-block-scroll
+  overflow-block scroll
+
+.overflow-block-clip
+  overflow-block clip
+
+.overflow-block-visible
+  overflow-block visible
+
+.overflow-inline-auto
+  overflow-inline auto
+
+.overflow-inline-hidden
+  overflow-inline hidden
+
+.overflow-inline-scroll
+  overflow-inline scroll
+
+.overflow-inline-clip
+  overflow-inline clip
+
+.overflow-inline-visible
+  overflow-inline visible
+
+// =============================================================================
+// LOGICAL OVERSCROLL BEHAVIOR
+// =============================================================================
+
+// Logical overscroll behavior for block/inline dimensions
+// Browser support: 92%+
+// Prevents scroll chaining in nested scrollables
+// - contain: prevents scroll chaining and overscroll effects
+// - none: disables overscroll entirely
+
+.overscroll-block-contain
+  overscroll-behavior-block contain
+
+.overscroll-block-none
+  overscroll-behavior-block none
+
+.overscroll-inline-contain
+  overscroll-behavior-inline contain
+
+.overscroll-inline-none
+  overscroll-behavior-inline none
+
+// =============================================================================
+// LOGICAL CONTAINMENT SIZE
+// =============================================================================
+
+// Logical containment size for content-visibility optimization
+// Browser support: 87%+
+// Reserve space for off-screen content when using content-visibility: auto
+// Prevents layout shifts when content becomes visible
+
+.contain-intrinsic-block-auto
+  contain-intrinsic-block-size auto
+
+.contain-intrinsic-block-none
+  contain-intrinsic-block-size none
+
+.contain-intrinsic-inline-auto
+  contain-intrinsic-inline-size auto
+
+.contain-intrinsic-inline-none
+  contain-intrinsic-inline-size none
+
+// Common presets for content-visibility optimization
+// Apply to elements with content-visibility: auto
+.content-visibility-block-sm
+  contain-intrinsic-block-size 200px
+
+.content-visibility-block-md
+  contain-intrinsic-block-size 400px
+
+.content-visibility-block-lg
+  contain-intrinsic-block-size 600px
+
+// Apply to sidebars and fixed-width content
+.content-visibility-inline-full
+  contain-intrinsic-inline-size 100%
+
+// =============================================================================
 // CURSOR UTILITIES
 // =============================================================================
 
