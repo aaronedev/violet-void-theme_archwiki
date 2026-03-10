@@ -364,7 +364,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | @starting-style for entry/exit animations | TBD |
+| 2026-03-10 | @starting-style for entry/exit animations | 6445bd7 |
 | 2026-03-10 | widows/orphans control for print typography | 2a51280 |
 | 2026-03-10 | transition-behavior: allow-discrete for display transitions | a2245f4 |
 | 2026-03-10 | overflow-anchor for scroll anchoring | 7d2ec95 |
