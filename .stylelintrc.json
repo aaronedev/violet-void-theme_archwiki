@@ -3,7 +3,13 @@
   "rules": {
     "stylus/declaration-colon": "never",
     "stylus/semicolon": "never",
-    "stylus/indentation": 2
+    "stylus/indentation": 2,
+    "stylus/selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": ["page-content", "root", "caption-side", "bottom"]
+      }
+    ]
   },
   "ignoreFiles": ["dist/**", "node_modules/**", "**/*.css"]
 }
