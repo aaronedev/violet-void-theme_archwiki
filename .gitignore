@@ -28,3 +28,4 @@ public/
 screenshots/
 test-results/
 playwright-report/
+/test-results.json
