@@ -979,6 +979,205 @@ progress
       width 100%
 
 // =============================================================================
+// FILE INPUT STYLING (::file-selector-button)
+// Browser support: 97%+
+// =============================================================================
+
+// File input container styling
+input[type="file"]
+  width 100%
+  padding 0
+  background-color transparent
+  border none
+  color $lighter
+  font-size 0.95em
+  cursor pointer
+
+  // File name display area
+  &::file-selector-button
+    display inline-flex
+    align-items center
+    gap 0.4em
+    padding 0.5em 1em
+    margin-inline-end 0.75em
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+    border none
+    border-radius $border-radius-md
+    color $darker
+    font-family inherit
+    font-size 0.9em
+    font-weight 600
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      background linear-gradient(135deg, rgba($arch-blue, 0.9), rgba($arch-blue, 0.75))
+      transform translateY(-1px)
+      box-shadow 0 2px 8px rgba($arch-blue, 0.3)
+
+    &:active
+      transform translateY(0)
+      box-shadow none
+
+  // Focus state
+  &:focus-visible
+    outline none
+
+    &::file-selector-button
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+  // Disabled state
+  &:disabled
+    cursor not-allowed
+    opacity 0.5
+
+    &::file-selector-button
+      cursor not-allowed
+      background linear-gradient(135deg, $muted, rgba($muted, 0.85))
+
+// Alternative styled file input wrapper
+.file-input-wrapper
+  position relative
+  display inline-flex
+  align-items center
+  gap 0.75em
+
+  input[type="file"]
+    position absolute
+    inset 0
+    opacity 0
+    cursor pointer
+    width 100%
+    height 100%
+
+  .file-input-button
+    display inline-flex
+    align-items center
+    gap 0.4em
+    padding 0.5em 1em
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+    border none
+    border-radius $border-radius-md
+    color $darker
+    font-size 0.9em
+    font-weight 600
+    cursor pointer
+    pointer-events none
+    transition all $transition-fast
+
+  .file-input-filename
+    color $light
+    font-size 0.9em
+    font-variant-numeric tabular-nums
+
+    &.empty
+      color $muted
+      font-style italic
+
+  &:hover .file-input-button
+    background linear-gradient(135deg, rgba($arch-blue, 0.9), rgba($arch-blue, 0.75))
+    transform translateY(-1px)
+    box-shadow 0 2px 8px rgba($arch-blue, 0.3)
+
+  &:has(input:focus-visible) .file-input-button
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// Multiple file input
+input[type="file"][multiple]
+  &::file-selector-button
+    &::before
+      content "📁 "
+
+// Accept-specific styling
+input[type="file"][accept="image/*"]
+  &::file-selector-button
+    &::before
+      content "🖼️ "
+
+input[type="file"][accept=".pdf"]
+input[type="file"][accept="application/pdf"]
+  &::file-selector-button
+    &::before
+      content "📄 "
+
+// Drag and drop file zone
+.file-drop-zone
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  gap 0.75em
+  padding 2em
+  border 2px dashed $border-subtle
+  border-radius $border-radius-lg
+  background-color rgba($arch-blue, 0.02)
+  text-align center
+  transition all $transition-fast
+  cursor pointer
+
+  &:hover
+  &.drag-over
+    border-color $arch-blue
+    background-color rgba($arch-blue, 0.08)
+
+  .drop-icon
+    font-size 2.5em
+    color $secondary-blue
+    opacity 0.8
+
+  .drop-text
+    color $lighter
+    font-size 1em
+    font-weight 500
+
+  .drop-hint
+    color $muted
+    font-size 0.85em
+
+  input[type="file"]
+    position absolute
+    inset 0
+    opacity 0
+    cursor pointer
+    width 100%
+    height 100%
+
+// Responsive file input
+@media (max-width 768px)
+  input[type="file"]
+    &::file-selector-button
+      display block
+      width 100%
+      margin-bottom 0.5em
+      margin-inline-end 0
+      text-align center
+
+  .file-input-wrapper
+    flex-direction column
+    width 100%
+
+    .file-input-filename
+      text-align center
+      width 100%
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
+
+// High contrast mode
+@media (forced-colors active)
+  input[type="file"]
+    &::file-selector-button
+      border 2px solid ButtonText
+      background-color ButtonFace
+      color ButtonText
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  input[type="file"]
+    &::file-selector-button
+      transition none
+
+// =============================================================================
 // PAGE MOVE FORM (Special:MovePage)
 // =============================================================================
 
