@@ -4729,6 +4729,91 @@ Last updated: 2026-03-01 06:05
   - Status indicator (complete/partial/stub)
 
 | 2026-03-10 | Twenty-eighth scout | Added advanced CSS functions (attr() with type(), color-mix(), @import with supports()/layer()), ArchWiki status templates (Accuracy, Out of date, Expansion, Translateme, Deletion), ArchWiki i18n templates (i18n language bar, Related languages) |
+| 2026-03-10 | Twenty-ninth scout | Added logical overflow properties (overflow-block/inline, overscroll-behavior-block/inline, contain-intrinsic-block/inline-size), ArchWiki Help:Style templates (Style formatting, Meta template, Man page links), automatic dark mode detection |
+
+
+## 🔲 Logical Overflow Properties (New - 2026-03-10 Scout 29)
+
+- [ ] **`overflow-block` Property** (97%+ browser support)
+  - File: `src/utilities/overflow.styl`
+  - Logical overflow for block dimension
+  - Example: `overflow-block: auto;`
+  - RTL/vertical writing mode support
+  - Stylus: Works directly
+
+- [ ] **`overflow-inline` Property** (97%+ browser support)
+  - File: `src/utilities/overflow.styl`
+  - Logical overflow for inline dimension
+  - Example: `overflow-inline: hidden;`
+  - Horizontal scroll for horizontal text, vertical for vertical text
+  - Stylus: Works directly
+
+- [ ] **`overscroll-behavior-block` Property** (92%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Logical overscroll for block dimension
+  - Prevent scroll chaining in nested scrollables
+  - `overscroll-behavior-block: contain;`
+  - Stylus: Works directly
+
+- [ ] **`overscroll-behavior-inline` Property** (92%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Logical overscroll for inline dimension
+  - Horizontal scroll chaining prevention
+  - `overscroll-behavior-inline: none;`
+  - Stylus: Works directly
+
+- [ ] **`contain-intrinsic-block-size` Property** (87%+ browser support)
+  - File: `src/base/performance.styl`
+  - Logical containment size for block dimension
+  - Pair with `content-visibility: auto`
+  - Example: `contain-intrinsic-block-size: 500px;`
+  - Stylus: Works directly
+
+- [ ] **`contain-intrinsic-inline-size` Property** (87%+ browser support)
+  - File: `src/base/performance.styl`
+  - Logical containment size for inline dimension
+  - Reserve space for off-screen content
+  - Example: `contain-intrinsic-inline-size: 100%;`
+  - Stylus: Works directly
+
+## 📖 ArchWiki Help:Style Templates (New)
+
+- [ ] **{{Style}} Template Styling** (CSS)
+  - File: `src/components/archwiki-style.styl`
+  - Links to Help:Style/Formatting_and_punctuation
+  - Style guideline callout box
+  - Consistent with Note/Tip/Warning styling
+  - Icon + link formatting
+
+- [ ] **{{Meta}} Template Styling** (CSS)
+  - File: `src/components/archwiki-meta.styl`
+  - Meta information box for articles
+  - ArchWiki namespace indicator
+  - Policy/guideline distinction
+  - Related meta pages
+
+- [ ] **Man Page Link Template Enhanced** (CSS)
+  - File: `src/components/archwiki-templates.styl`
+  - {{man}} template styling
+  - Man section indicator (1-8)
+  - External link to man7.org or similar
+  - Inline monospace with section badge
+
+## 🌗 Automatic Dark Mode (New)
+
+- [ ] **`prefers-color-scheme` Media Query** (97%+ browser support)
+  - File: `src/variables/colors.styl`, `src/base/dark-mode.styl`
+  - `@media (prefers-color-scheme: dark)` detection
+  - Automatic theme switching based on system preference
+  - Manual override toggle support
+  - Stylus: Works directly
+
+- [ ] **`color-scheme` Property** (97%+ browser support)
+  - File: `src/base/base.styl`
+  - `color-scheme: light dark;` declaration
+  - Native form control theming
+  - Scrollbar color adaptation
+  - Stylus: Works directly
 
 
 ## 🎬 Animation & Transitions (New - 2026-03-01 Scout 27)
