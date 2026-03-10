@@ -4,11 +4,18 @@
 
 ## ⚠️ CSS Rules (READ FIRST)
 
-**NEVER use these - they cause Stylus lint errors:**
+**NEVER use these - they cause browser/postcss errors:**
 - `:contains()` pseudo-class - jQuery only, NOT valid CSS
+- `::spelling-error`, `::grammar-error` - Firefox doesn't support, breaks PostCSS
 - Hardcoded hex colors - use variables (`$arch-blue`, `$base`, etc.)
 - Deprecated `gradient-button()` - use `gradient-surface()`
 - Wrong gradient angle - must be `135deg`
+
+**These need @supports wrapper (Firefox doesn't support):**
+- `hanging-punctuation` → wrap in `@supports (hanging-punctuation: first)`
+- `field-sizing` → wrap in `@supports (field-sizing: content)`
+- `caret-shape` → wrap in `@supports (caret-shape: block)`
+- `-webkit-text-size-adjust` → wrap in `@supports (-webkit-text-size-adjust: 100%)`
 
 **These are OK (modern CSS):**
 - `interpolate-size` - Chrome 129+
@@ -6837,6 +6844,7 @@ Last updated: 2026-03-01 06:05
 | 2026-03-10 | Thirty-seventh scout | Added CSS text box properties (text-box, text-box-trim, text-box-edge), ArchWiki Template:hc styling, interlanguage link column, standard section conventions, native CSS nesting patterns |
 | 2026-03-10 | Thirty-eighth scout | Added modern pseudo-elements (::details-content, ::search-text, ::column, ::scroll-button(), ::checkmark), ArchWiki code templates enhanced (Template:ic, Template:bc) |
 | 2026-03-10 | Thirty-ninth scout | Added CSS text hyphenation (hyphens, hyphenate-character, hanging-punctuation), CSS image & layout (image-set(), isolation, shape-outside), ArchWiki package instruction styling per Help:Style conventions |
+| 2026-03-10 | Fortieth scout | Added :open pseudo-class for details/dialog, :active-view-transition pseudo-class, position-area property for anchor grid, margin-trim property, ArchWiki translation templates (Template:TranslationStatus, Template:Translateme) |
 
 
 ## 🆕 CSS Text Hyphenation (New - 2026-03-10 Scout 39)
@@ -6911,4 +6919,58 @@ Last updated: 2026-03-01 06:05
   - Link packages without variant suffixes (-bin, -git, -nightly)
   - [[install]] redirect styling for first installation mention
   - Example prose: "Install the foobar package."
+  - Stylus: Works directly
+
+## 🆕 CSS Interactive State Pseudo-classes (New - 2026-03-10 Scout 40)
+
+- [ ] **`:open` Pseudo-class for Details/Dialog** (CSS, 85%+ browser support)
+  - File: `src/components/interactive-states.styl`
+  - Matches elements that are in "open" state
+  - Apply to `<details>`, `<dialog>`, `<select>` with popover
+  - Style expanded accordion content differently
+  - Example: `details:open summary { font-weight: bold; }`
+  - Stylus: Works directly
+
+- [ ] **`:active-view-transition` Pseudo-class** (CSS, 85%+ browser support)
+  - File: `src/components/view-transitions.styl`
+  - Matches root element during an active view transition
+  - Style page during navigation animation
+  - Combine with `:active-view-transition-type(name)` for specific transitions
+  - Example: `:root:active-view-transition { background: var(--bg); }`
+  - Stylus: Works directly
+
+## 🆕 CSS Layout & Positioning Extensions (New - 2026-03-10 Scout 40)
+
+- [ ] **`position-area` Property for Anchor Grid** (CSS, 85%+ browser support)
+  - File: `src/components/anchor-positioning.styl`
+  - Grid-based positioning relative to anchor element
+  - Values: `top left`, `center`, `bottom right`, etc.
+  - Simplifies anchor-positioned element placement
+  - Example: `position-area: top span-right;`
+  - Stylus: Works directly
+
+- [ ] **`margin-trim` Property for Container Edges** (CSS, 85%+ browser support)
+  - File: `src/utilities/layout.styl`
+  - Trim margins at container edges for flex/grid children
+  - Values: `none`, `block`, `inline`, `block-start`, etc.
+  - Eliminates need for negative margins or `:last-child` rules
+  - Example: `margin-trim: block-end;`
+  - Stylus: Works directly
+
+## 🆕 ArchWiki Translation Templates (New - 2026-03-10 Scout 40)
+
+- [ ] **Template:TranslationStatus Styling** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-i18n.styl`
+  - Translation status indicator at article start
+  - Shows original page, last translation date, sync link
+  - Style with subtle info box appearance
+  - Link to check changes since last translation
+  - Stylus: Works directly
+
+- [ ] **Template:Translateme Styling** (CSS, 97%+ browser support)
+  - File: `src/components/archwiki-i18n.styl`
+  - Flag incomplete translations needing help
+  - Warning-style box with translation icon
+  - Link to talk page for discussion
+  - Similar to Template:Expansion but translation-specific
   - Stylus: Works directly
