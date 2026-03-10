@@ -681,19 +681,20 @@ Last updated: 2026-03-01 06:05
 
 ## 📦 Message Boxes (New)
 
-- [ ] **Ambox (Article Message Box) Refinement** (CSS)
-  - File: `src/components/message-boxes.styl` (new file)
-  - Ambox type colors (warning, info, etc.)
+- [x] **Ambox (Article Message Box) Refinement** (CSS)
+  - File: `src/components/message-boxes.styl`
+  - Ambox type colors (serious, content, style, notice, move, protection)
   - Icon alignment
   - Mobile responsive layout
 
-- [ ] **Ombox/Imbox/Tmbox Styling** (CSS)
+- [x] **Ombox/Imbox/Tmbox Styling** (CSS)
   - File: `src/components/message-boxes.styl`
   - Consistent styling across message box types
   - Type-specific color coding
   - Collapsible notice boxes
+  - Includes Cmbox and Fmbox
 
-- [ ] **Citation Needed Template** (CSS)
+- [x] **Citation Needed Template** (CSS)
   - File: `src/components/message-boxes.styl`
   - Inline citation needed styling
   - Hover explanation tooltip
