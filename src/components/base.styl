@@ -81,7 +81,9 @@ textarea
 [tabindex]
   focus-ring()
 
-// Scrollbar theming
+// Scrollbar theming with stable gutter to prevent layout shift
+// scrollbar-gutter: stable reserves space for scrollbar even when not visible
+// This prevents content from jumping when scrollbar appears/disappears
 html
 body
 #content
@@ -91,6 +93,7 @@ body
 .vector-body
   scrollbar-width thin
   scrollbar-color $secondary-blue transparent
+  scrollbar-gutter stable
 
   &::-webkit-scrollbar
     width $scrollbar-width

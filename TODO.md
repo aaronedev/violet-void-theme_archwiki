@@ -1388,11 +1388,12 @@ Last updated: 2026-03-10 13:30
   - `overscroll-behavior: contain` for TOC, modals
   - Stylus: Works directly
 
-- [ ] **`scrollbar-gutter: stable` for Layout** (92%+ browser support)
-  - File: `src/components/base.styl`, `src/components/content.styl`
+- [x] **`scrollbar-gutter: stable` for Layout** (92%+ browser support)
+  - File: `src/components/base.styl`, `src/components/content.styl`, `src/components/navigation.styl`
   - Prevent layout shift from scrollbars
   - Reserve scrollbar space even when hidden
   - Stylus: Works directly
+  - Commit: 48b85d9
 
 - [ ] **`scroll-timeline` for Custom Animations** (87%+ browser support)
   - File: `src/components/modern-css.styl`

@@ -62,6 +62,7 @@
   // Scroll snap for better mobile UX
   scroll-snap-type y proximity
   overflow-y auto
+  scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll and box-shadow changes
   will-change scroll-position, box-shadow
 
@@ -127,6 +128,7 @@
   // Scroll snap for smooth navigation menus on mobile
   scroll-snap-type y proximity
   overflow-y auto
+  scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll and transform changes
   will-change scroll-position, transform, opacity
 
@@ -361,6 +363,7 @@ header.vector-header
   // Scroll snap for sticky TOC dropdown
   scroll-snap-type y proximity
   overflow-y auto
+  scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll and visibility changes
   will-change scroll-position, transform, opacity
 
@@ -422,6 +425,7 @@ header.vector-header
   // Scroll snap for better mobile UX
   scroll-snap-type y proximity
   overflow-y auto
+  scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll changes
   will-change scroll-position
 
@@ -873,6 +877,7 @@ h6:hover .mw-editsection
     top 5em
     max-height calc(100vh - 6em)
     overflow-y auto
+    scrollbar-gutter stable // Prevent layout shift when scrollbar appears
 
 
 // =============================================================================
