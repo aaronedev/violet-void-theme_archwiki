@@ -346,7 +346,7 @@
 | 2026-03-01 | Second scout | Added individual transform properties (translate, rotate, scale), filter expansion (blur, brightness, saturate, hue-rotate, invert, grayscale, sepia, drop-shadow), print enhancements (break-*, page, size, marks, bleed) |
 | 2026-03-01 | Third scout | Added sizing keywords (fit-content, min/max-content, stretch), interaction enhancements (user-select, pointer-events, resize, cursor, caret-shape), multi-column layout (column-rule, column-span, column-fill, columns), visibility/display enhancements (visibility: collapse, opacity, display: flow-root/contents) |
 | 2026-03-01 | Fourth scout | Added animation properties (delay negative, direction, fill-mode, play-state), outline enhancements (offset, style auto, shorthand), border image (slice, repeat), table enhancements (layout, collapse, spacing), counter enhancements (counter-set, counters()) |
-| 2026-03-10 | Broken/Red Links | Added links.styl with red link styling, hover create indicator, broken link distinction | 4386119 |
+| 2026-03-10 | Broken/Red Links | Added links.styl with red link styling, hover create indicator, broken link distinction | 5185b7b |
 
 ---
 
@@ -677,7 +677,7 @@ Last updated: 2026-03-01 06:05
   - Red link styling with consistent color
   - Hover state indicating "create page"
   - Different shade for nonexistent vs. broken
-  - Commit: 4386119
+  - Commit: 5185b7b
 
 ## 📦 Message Boxes (New)
 
