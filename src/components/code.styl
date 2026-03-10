@@ -152,6 +152,189 @@
   .type
     color $term-bright-yellow
 
+// =============================================================================
+// Command Prompt Styling
+// Enhanced terminal/command prompt styling for ArchWiki command examples
+// Supports user prompts ($), root prompts (#), user@host patterns, and more
+
+// Prompt character colors - distinct for user vs root
+$prompt-user = $term-bright-green      // $ - user prompt
+$prompt-root = $term-bright-red        // # - root prompt
+$prompt-host = $term-bright-cyan       // @host part
+$prompt-path = $term-bright-blue       // directory path
+$prompt-user-name = $term-bright-yellow // username
+
+// Base prompt styling class
+#content pre:not([class*="codemirror"]) .prompt
+  display inline
+  font-weight 600
+  user-select none
+
+  // Default user prompt ($)
+  &::before
+    content "$ "
+    color $prompt-user
+    font-weight bold
+
+// Root prompt (#) - dangerous commands
+#content pre:not([class*="codemirror"]) .prompt-root::before
+#content pre:not([class*="codemirror"]) .root-prompt::before
+#content pre:not([class*="codemirror"]) [data-prompt="root"]::before
+  content "# "
+  color $prompt-root
+  font-weight bold
+
+// User prompt ($) - explicit class
+#content pre:not([class*="codemirror"]) .prompt-user::before
+#content pre:not([class*="codemirror"]) [data-prompt="user"]::before
+  content "$ "
+  color $prompt-user
+  font-weight bold
+
+// Full prompt line with user@host:path$ pattern
+// Usage: <span class="prompt-line"><span class="prompt-userhost">user@host</span><span class="prompt-path">:~</span><span class="prompt-char">$</span></span>
+#content pre:not([class*="codemirror"]) .prompt-line
+  display inline
+  color $lighter
+
+// User@host portion styling
+#content pre:not([class*="codemirror"]) .prompt-userhost
+#content pre:not([class*="codemirror"]) .prompt-user-name
+  color $prompt-user-name
+  font-weight 600
+
+// @ symbol between user and host
+#content pre:not([class*="codemirror"]) .prompt-at
+  color $muted
+  font-weight normal
+
+// Hostname portion
+#content pre:not([class*="codemirror"]) .prompt-host
+  color $prompt-host
+  font-weight 500
+
+// Path/directory portion
+#content pre:not([class*="codemirror"]) .prompt-path
+#content pre:not([class*="codemirror"]) .prompt-directory
+  color $prompt-path
+  font-weight 500
+
+// Colon separator between host and path
+#content pre:not([class*="codemirror"]) .prompt-colon
+  color $muted
+
+// The actual prompt character ($ or #)
+#content pre:not([class*="codemirror"]) .prompt-char
+  font-weight bold
+  margin-right 0.3em
+
+  // User prompt
+  &.user
+  &.dollar
+    color $prompt-user
+
+  // Root prompt
+  &.root
+  &.hash
+  &.sudo
+    color $prompt-root
+
+// Command portion (after prompt)
+#content pre:not([class*="codemirror"]) .prompt-command
+#content pre:not([class*="codemirror"]) .command
+  color $lighter
+  font-weight normal
+
+// Output from commands (not the command itself)
+#content pre:not([class*="codemirror"]) .command-output
+#content pre:not([class*="codemirror"]) .prompt-output
+  color $muted
+  font-style italic
+
+// Success output indicator
+#content pre:not([class*="codemirror"]) .output-success
+  color $term-bright-green
+  font-style normal
+
+// Error output indicator
+#content pre:not([class*="codemirror"]) .output-error
+  color $term-bright-red
+  font-style normal
+
+// Warning output indicator
+#content pre:not([class*="codemirror"]) .output-warning
+  color $term-bright-yellow
+  font-style normal
+
+// -----------------------------------------------------------------------------
+// Auto-detection patterns for common prompt formats
+// These use attribute selectors for data attributes and class patterns
+
+// Lines that start with $ or # (common in ArchWiki)
+// Style the prompt character distinctly from the command
+
+// data-prompt attribute - explicit prompt type
+#content pre:not([class*="codemirror"]) [data-prompt]
+  &::before
+    font-weight bold
+    margin-right 0.3em
+
+// Prompt environment wrapper - for multi-line commands with continuation
+#content pre:not([class*="codemirror"]) .prompt-environment
+#content pre:not([class*="codemirror"]) .terminal-session
+  display block
+  padding 0.2em 0
+
+// Continuation prompt for multi-line commands
+#content pre:not([class*="codemirror"]) .prompt-continuation
+#content pre:not([class*="codemirror"]) .continuation
+  color $muted
+  &::before
+    content "> "
+    color $muted
+
+// Copy prompt button - positioned differently than copy code button
+#content pre:not([class*="codemirror"]) .copy-prompt
+#content pre:not([class*="codemirror"]) .copy-command
+  display inline-block
+  visibility hidden
+  position relative
+  margin-left 0.5em
+  padding 0.1em 0.4em
+  font-size 0.75em
+  color $muted
+  background transparent
+  border 1px solid transparent
+  border-radius $border-radius-sm
+  cursor pointer
+  opacity 0
+  transition all $transition-fast
+  vertical-align middle
+
+// Show copy prompt button on hover
+#content pre:not([class*="codemirror"]):hover .copy-prompt
+#content pre:not([class*="codemirror"]):hover .copy-command
+  visibility visible
+  opacity 1
+
+  &:hover
+    color $secondary-blue
+    border-color rgba($arch-blue, 0.3)
+    background rgba($arch-blue, 0.08)
+
+  &:active
+    transform scale(0.95)
+
+// Focus state for keyboard accessibility
+#content pre:not([class*="codemirror"]) .copy-prompt:focus-visible
+#content pre:not([class*="codemirror"]) .copy-command:focus-visible
+  visibility visible
+  opacity 1
+  outline 2px solid $secondary-blue
+  outline-offset 2px
+
+// -----------------------------------------------------------------------------
+// Legacy prompt styling (backwards compatibility)
 // Prompt styling
 #content pre:not([class*="codemirror"]) .prompt::before
   content "$ "
