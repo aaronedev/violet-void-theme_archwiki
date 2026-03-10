@@ -326,7 +326,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | attr() with type() function | 97d08ef |
+| 2026-03-10 | attr() with type() function | c6dedd5 |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
@@ -4683,7 +4683,7 @@ Last updated: 2026-03-01 06:05
   - Example: `color: attr(data-color type(<color>));`
   - Use for dynamic component sizing from data attributes
   - Note: Requires `@css{}` wrapper for Stylus
-  - Commit: 97d08ef
+  - Commit: c6dedd5
 
 - [x] **`color-mix()` Function** (97%+ browser support)
   - File: `src/components/modern-css.styl`
