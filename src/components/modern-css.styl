@@ -406,24 +406,378 @@ h4[id]
 }
 
 // =============================================================================
-// TRANSITION BEHAVIOR - Discrete Property Transitions
+// TRANSITION BEHAVIOR - Discrete Property Transitions (80%+ browser support)
 // =============================================================================
 
-// Note: transition-behavior support is new (Chrome 117+, 2023)
-// Allows transitioning display and other discrete properties
-// Using @css for transition-behavior syntax
+// Note: transition-behavior support is growing (Chrome 117+, Safari 17.5+, 80%+ as of 2024)
+// Allows transitioning discrete properties like display, overlay, and visibility
+// Must be combined with @starting-style for full enter/leave animations
+// Using @css for transition-behavior since Stylus doesn't support the allow-discrete keyword
 
 @css {
   @supports (transition-behavior: allow-discrete) {
+    /* ==========================================================================
+       COLLAPSIBLE SECTIONS - Smooth Expand/Collapse
+       ========================================================================== */
+
+    /* MediaWiki collapsible elements */
     .mw-collapsible {
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    .mw-collapsible.mw-collapsed {
+      display: none;
+    }
+
+    /* HTML5 details/summary elements */
+    details {
       transition: display 0.3s allow-discrete;
     }
 
+    details[open] {
+      display: block;
+    }
+
+    /* Details content animation */
+    details > *:not(summary) {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @starting-style {
+      details > *:not(summary) {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ==========================================================================
+       DROPDOWNS & POPOVERS - Smooth Show/Hide
+       ========================================================================== */
+
+    /* Vector dropdown menus */
     .vector-dropdown-content {
-      transition: display 0.2s allow-discrete, opacity 0.2s;
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: display 0.2s allow-discrete, opacity 0.2s ease, transform 0.2s ease, overlay 0.2s allow-discrete;
+    }
+
+    .vector-dropdown:hover .vector-dropdown-content,
+    .vector-dropdown:focus-within .vector-dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .vector-dropdown:hover .vector-dropdown-content,
+      .vector-dropdown:focus-within .vector-dropdown-content {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* OOUI popup widgets */
+    .oo-ui-popupWidget-popup {
+      display: none;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: display 0.2s allow-discrete, opacity 0.2s ease, transform 0.2s ease, overlay 0.2s allow-discrete;
+    }
+
+    .oo-ui-popupWidget-popup:not([hidden]) {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .oo-ui-popupWidget-popup:not([hidden]) {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Native popovers */
+    [popover] {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, transform 0.25s ease, overlay 0.25s allow-discrete;
+    }
+
+    [popover]:popover-open {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      [popover]:popover-open {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* ==========================================================================
+       MODALS & DIALOGS - Smooth Entry/Exit
+       ========================================================================== */
+
+    /* HTML5 dialog element */
+    dialog {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease, overlay 0.3s allow-discrete;
+    }
+
+    dialog[open] {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* OOUI modals */
+    .oo-ui-window-frame {
+      display: none;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease, overlay 0.3s allow-discrete;
+    }
+
+    .oo-ui-window-frame:not([hidden]) {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      .oo-ui-window-frame:not([hidden]) {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+    }
+
+    /* ==========================================================================
+       NOTIFICATIONS & TOASTS - Slide Animations
+       ========================================================================== */
+
+    /* MediaWiki notifications */
+    .mw-notification {
+      display: none;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .mw-notification:not([hidden]) {
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @starting-style {
+      .mw-notification:not([hidden]) {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Echo notifications */
+    .mw-echo-notification {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .mw-echo-notification:not([hidden]) {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .mw-echo-notification:not([hidden]) {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ==========================================================================
+       TABLE OF CONTENTS - Smooth Expand/Collapse
+       ========================================================================== */
+
+    /* TOC collapsible sections */
+    .toc > ul {
+      display: none;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, max-height 0.25s ease;
+    }
+
+    .toc:not(.tochidden) > ul {
+      display: block;
+      opacity: 1;
+      max-height: 2000px;
+    }
+
+    @starting-style {
+      .toc:not(.tochidden) > ul {
+        opacity: 0;
+        max-height: 0;
+      }
+    }
+
+    /* ==========================================================================
+       SIDEBAR PANELS - Smooth Show/Hide
+       ========================================================================== */
+
+    /* Collapsible sidebar sections */
+    .vector-menu-content {
+      display: none;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, max-height 0.25s ease;
+    }
+
+    .vector-menu:not(.collapsed) .vector-menu-content {
+      display: block;
+      opacity: 1;
+      max-height: 2000px;
+    }
+
+    @starting-style {
+      .vector-menu:not(.collapsed) .vector-menu-content {
+        opacity: 0;
+        max-height: 0;
+      }
+    }
+
+    /* ==========================================================================
+       MESSAGE BOXES - Dismissible Animations
+       ========================================================================== */
+
+    /* Dismissible message boxes */
+    .mw-message-box[dismissible] {
+      display: block;
+      opacity: 1;
+      max-height: 500px;
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    .mw-message-box.dismissed {
+      display: none;
+      opacity: 0;
+      max-height: 0;
+    }
+
+    /* ==========================================================================
+       UTILITY CLASSES - Reusable Transition Patterns
+       ========================================================================== */
+
+    /* Generic fade in/out */
+    .fade-transition {
+      display: none;
+      opacity: 0;
+      transition: display 0.3s allow-discrete, opacity 0.3s ease;
+    }
+
+    .fade-transition.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    @starting-style {
+      .fade-transition.visible {
+        opacity: 0;
+      }
+    }
+
+    /* Generic slide in/out */
+    .slide-transition {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .slide-transition.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .slide-transition.visible {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    /* Generic scale in/out */
+    .scale-transition {
+      display: none;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .scale-transition.visible {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      .scale-transition.visible {
+        opacity: 0;
+        transform: scale(0.9);
+      }
     }
   }
 }
+
+// Fallback for browsers without transition-behavior support
+// These use traditional opacity/visibility transitions
+@supports not (transition-behavior: allow-discrete)
+  .mw-collapsible.mw-collapsed
+    visibility hidden
+    opacity 0
+    max-height 0
+
+
+  .vector-dropdown-content
+    visibility hidden
+    opacity 0
+
+
+  .vector-dropdown:hover .vector-dropdown-content
+    visibility visible
+    opacity 1
+
+
+  dialog
+    visibility hidden
+    opacity 0
+
+
+  dialog[open]
+    visibility visible
+    opacity 1
+
+
 
 // =============================================================================
 // OVERLAY - Better Modal Positioning
