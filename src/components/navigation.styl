@@ -953,3 +953,255 @@ h6:hover .mw-editsection
     color $light
     font-weight 500
 
+// =============================================================================
+// CATEGORY TREE STYLING
+// =============================================================================
+
+// CategoryTree extension styling for expandable category trees
+// Browser support: 97%+
+// Used on category pages and in sidebar widgets
+
+.CategoryTree
+.mw-categorytree
+  font-size 0.9em
+  line-height 1.5
+
+// Category tree item
+.CategoryTreeItem
+.mw-categorytree-item
+  display flex
+  align-items flex-start
+  gap 0.4em
+  padding 0.25em 0
+  transition background-color $transition-fast
+
+  &:hover
+    background-color rgba($arch-blue, 0.05)
+    border-radius $border-radius-sm
+
+// Category tree toggle (expand/collapse button)
+.CategoryTreeToggle
+.mw-categorytree-toggle
+  cursor pointer
+  color $arch-blue
+  font-size 0.85em
+  padding 0.1em 0.3em
+  border-radius $border-radius-sm
+  transition all $transition-fast
+  user-select none
+  flex-shrink 0
+
+  &:hover
+    background-color rgba($arch-blue, 0.15)
+    color $lighter
+
+  &:active
+    background-color rgba($arch-blue, 0.25)
+
+// Expanded state indicator
+.CategoryTreeToggle.expanded
+.mw-categorytree-toggle.expanded
+  &::before
+    content "▼"
+    font-size 0.75em
+
+// Collapsed state indicator
+.CategoryTreeToggle.collapsed
+.mw-categorytree-toggle.collapsed
+  &::before
+    content "▶"
+    font-size 0.75em
+
+// Loading state
+.CategoryTreeLoading
+.mw-categorytree-loading
+  color $muted
+  font-style italic
+  padding 0.25em 0.5em
+
+  &::before
+    content "◌ "
+    animation spin 1s linear infinite
+
+@keyframes spin
+  from
+    transform rotate(0deg)
+  to
+    transform rotate(360deg)
+
+// Category tree children container
+.CategoryTreeChildren
+.mw-categorytree-children
+  margin-inline-start 1.5em
+  padding-inline-start 0.5em
+  border-inline-start 1px dashed $border-subtle
+  overflow hidden
+  transition max-height 0.3s ease
+
+// Empty children
+.CategoryTreeChildren:empty
+.mw-categorytree-children:empty
+  display none
+
+// Category link styling
+.CategoryTreeLabel
+.mw-categorytree-label
+  a
+    color $secondary-blue
+    text-decoration none
+    transition color $transition-fast
+
+    &:hover
+      color $arch-blue
+      text-decoration underline
+
+    &:visited
+      color darken($secondary-blue, 10%)
+
+// Page count badge
+.CategoryTreePageCount
+.mw-categorytree-count
+  font-size 0.75em
+  color $muted
+  background-color rgba($arch-blue, 0.08)
+  padding 0.1em 0.4em
+  border-radius $border-radius-sm
+  margin-inline-start 0.5em
+  font-variant-numeric tabular-nums
+  white-space nowrap
+
+// Subcategory indicator
+.CategoryTreeSubcat
+.mw-categorytree-subcat
+  &::before
+    content "📁"
+    font-size 0.85em
+    margin-inline-end 0.3em
+    opacity 0.7
+
+// Page indicator
+.CategoryTreePage
+.mw-categorytree-page
+  &::before
+    content "📄"
+    font-size 0.85em
+    margin-inline-end 0.3em
+    opacity 0.7
+
+// Active category highlight
+.CategoryTreeActive
+.mw-categorytree-active
+  > .CategoryTreeLabel a
+  > .mw-categorytree-label a
+    color $arch-blue
+    font-weight 600
+    background-color rgba($arch-blue, 0.1)
+    padding 0.1em 0.3em
+    border-radius $border-radius-sm
+
+// Category tree section (used in sidebar widgets)
+.CategoryTreeSection
+.mw-categorytree-section
+  margin 1em 0
+
+  > h3
+  > h4
+    color $lighter
+    font-size 0.9em
+    font-weight 600
+    margin-bottom 0.5em
+    padding-bottom 0.3em
+    border-bottom 1px solid $border-subtle
+
+// Special:CategoryTree page
+.mw-special-CategoryTree
+  .mw-categorytree
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+
+// Root category styling
+.CategoryTreeRoot
+.mw-categorytree-root
+  > .CategoryTreeItem
+  > .mw-categorytree-item
+    font-weight 500
+
+    > .CategoryTreeLabel a
+    > .mw-categorytree-label a
+      color $lighter
+      font-size 1em
+
+// Depth indicators (visual nesting)
+.CategoryTreeDepth1
+  margin-inline-start 0
+
+.CategoryTreeDepth2
+  margin-inline-start 1.5em
+
+.CategoryTreeDepth3
+  margin-inline-start 3em
+
+.CategoryTreeDepth4
+  margin-inline-start 4.5em
+
+.CategoryTreeDepth5
+  margin-inline-start 6em
+
+// Maximum depth styling (for very deep trees)
+.CategoryTreeDepth6
+.CategoryTreeDepth7
+.CategoryTreeDepth8
+  margin-inline-start 7em
+  font-size 0.85em
+  opacity 0.9
+
+// Category tree in sidebar
+#mw-panel
+.mw-sidebar
+  .CategoryTree
+  .mw-categorytree
+    font-size 0.85em
+    padding 0.5em
+
+    .CategoryTreeItem
+    .mw-categorytree-item
+      padding 0.15em 0
+
+    .CategoryTreePageCount
+    .mw-categorytree-count
+      font-size 0.7em
+
+// Focus states for accessibility
+.CategoryTreeToggle:focus-visible
+.mw-categorytree-toggle:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+.CategoryTreeLabel a:focus-visible
+.mw-categorytree-label a:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius 2px
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  .CategoryTreeChildren
+  .mw-categorytree-children
+    transition none
+
+  .CategoryTreeLoading::before
+  .mw-categorytree-loading::before
+    animation none
+
+// High contrast mode
+@media (forced-colors active)
+  .CategoryTreeToggle
+  .mw-categorytree-toggle
+    forced-color-adjust none
+
+  .CategoryTreePageCount
+  .mw-categorytree-count
+    border 1px solid CanvasText
+
