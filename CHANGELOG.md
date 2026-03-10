@@ -7,121 +7,102 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 
 ## [Unreleased]
 
-### Added
-- Modern CSS enhancements for progressive improvement
-  - `accent-color` property for native form controls (checkboxes, radios, range, progress)
-  - `text-size-adjust` to prevent mobile text size adjustment
-  - `overscroll-behavior-y` to prevent scroll chaining for better UX
-  - Link underline offset adjustment (0.1em) for improved readability
-- Native HTML `<dialog>` element styling
-  - Dark gradient background matching theme
-  - Styled `::backdrop` for modal dialogs
-  - Smooth fade-in animation on open
-- Native HTML `popover` attribute styling
-  - Consistent dark theme styling
-  - Animation on open state
-  - Backdrop support for modal popovers
-
-### Changed
-- Added test artifacts to .gitignore (screenshots/, test-results/, playwright-report/)
-- Refactored print-enhanced.styl to use color variables instead of hardcoded hex values
-  - Using `$print-border`, `$print-bg`, `$print-text`, `$print-white`, `$print-black`
+## [2026.03.10] - 2026-03-10
 
 ### Added
-- **Enhanced OOUI Component Styling** (ooui-enhanced.styl)
-  - Comprehensive styling for all MediaWiki OOUI widgets
-  - Enhanced button styles (primary, destructive, disabled states)
-  - Custom checkboxes and radio buttons with proper focus states
-  - Toggle switches with smooth animations
-  - Enhanced dropdowns with hover effects and selected states
-  - Text inputs with icons and validation states
-  - Dialogs and modals with proper styling
-  - Popup menus and toolbars
-  - Progress bars (determinate and indeterminate)
-  - Tab select widgets (framed and unframed)
-  - Field layouts with error/success messages
-  - Draggable elements for drag-and-drop interfaces
-  
-- **Enhanced AUR Styling** (aur-enhanced.styl)
-  - Complete package listing styling
-  - Package details page with metadata tables
-  - Package actions (vote, unvote, flag)
-  - Dependencies and file lists
-  - Comments section styling
-  - Search form enhancements
-  - User account pages
-  - Statistics and notifications
-  
-- **Enhanced Print Styles** (print-enhanced.styl)
-  - Optimized printing for all Arch Linux sites
-  - White background with black text for readability
-  - Hides unnecessary navigation elements
-  - Shows URLs for external links
-  - Proper page breaks and margins
-  - Optimized typography for print
-  - Code blocks with proper formatting
-  - Tables with borders
-  - Table of contents for print
-  - Forum and AUR print optimizations
-  - Accessibility improvements for print
+- **Article Content Enhancements**
+  - Reference list styling with tooltips and backlinks
+  - Lead section styling for article intros
+  - Section anchors with hover reveal pattern
+  - Related articles section styling
+  - Broken/red links styling for nonexistent pages
+  - Drop caps (::first-letter) for article intros
 
-- GitLab (gitlab.archlinux.org) styling support
-  - Navigation sidebar and top bar styling
-  - Project/group headers and lists
-  - Issues and merge request styling
-  - Code views, diffs, and file browser
-  - Forms, buttons, dropdowns, and tables
-  - Discussion threads and activity feeds
-  - User profiles and markdown content
-  - Flash messages and pagination
-  - This fixes styling for bugs.archlinux.org which now redirects to GitLab
-- EditorConfig for consistent code formatting across editors
-- Comprehensive CODE_QUALITY.md documentation
-- Code quality tools documentation (stylelint, prettier, pre-commit hooks)
+- **Discussion & Talk Pages**
+  - Talk page formatting enhancements
+  - Reply thread styling
+  - User talk notification styling
+
+- **Special Pages**
+  - Special:WhatLinksHere styling
+  - User Contributions page styling
+  - Special:AllPages/Special:PrefixIndex styling
+  - Category page grid layout
+  - Search results page enhancements
+
+- **Edit & History**
+  - Edit form enhancements
+  - Page move form styling
+  - Edit history list styling
+  - Diff view styling enhancements
+
+- **User & File Pages**
+  - User page layout styling
+  - User menu dropdown styling
+  - File description page styling
+  - Image gallery styling
+  - Video player styling
+
+- **Message Boxes**
+  - Comprehensive message boxes styling (warning, info, note, etc.)
+
+- **Modern CSS Features**
+  - `::target-text` pseudo-element styling
+  - `::spelling-error` and `::grammar-error` pseudo-elements
+  - `@property` for animatable CSS custom properties
+  - `@scope` for component isolation
+  - `@layer` cascade control
+  - `@counter-style` for custom list markers
+  - Comprehensive `:has()` selector usage for parent-child styling
+  - `:is()` and `:where()` selectors
+  - `interpolate-size` for auto transitions
+  - `content-visibility` for off-screen content performance
+  - `will-change` for smoother navigation animations
+  - `scroll-snap` for TOC and code blocks (mobile UX)
+  - `scroll-padding` for sticky header offsets
+  - Relative color syntax for dynamic colors
+  - Logical properties for RTL support
+  - `prefers-reduced-transparency` support
+
+- **Typography Enhancements**
+  - `text-align-last` for justified text control
+  - `font-variant-numeric` for number formatting
+  - `hyphens: auto` for narrow columns
+  - `text-decoration-skip-ink` for better underlines
+  - Multi-column layout support
+
+- **Additional Features**
+  - Capability detection (MathML, Ruby, masks, containers)
+  - Display, visibility, interaction, sizing utilities
+  - Animation, outline, counter utilities
+  - Image-rendering, object-position, caret-color
+  - Fluid typography with clamp()
+  - Advisory boxes, infoboxes, navigation enhancements
+  - Playwright visual regression testing
+
+- **Print Enhancements**
+  - Enhanced `@page` styles with margins and page numbers
 
 ### Changed
-- Improved accessibility by replacing `:focus` with `:focus-visible` across all form controls
-  - Better keyboard navigation experience
-  - Reduced visual noise for mouse users
-  - Updated in ui-components.styl, forms-enhanced.styl, forums.styl, mediawiki-edit.styl, optimizations.styl, and gitlab.styl
-  - Toggle switches now use `:focus-visible` for focus ring on slider
-  - GitLab form inputs and textareas use `:focus-visible` for better UX
-  - Removed redundant :focus rule in forms.styl, keeping only :focus-visible
-- Removed deprecated `gradient-button()` mixin (use `gradient-surface()` instead)
-- Fixed stylelint configuration to use proper Stylus standard config
-- Standardized selector formatting across all component files
+- Downgraded stylelint to v16 for stylus plugin compatibility
 - Improved code consistency with automated linting fixes
-- Fixed indentation in main.styl and all component files
-- Optimized table selector structure for better maintainability
+- Refactored print styles to use color variables
+- Replaced hardcoded print colors with variables
+- Improved accessibility with focus-visible across components
 
 ### Fixed
-- All linting errors resolved (362 errors → 0 errors)
-- Selector comma formatting issues
-- Indentation inconsistencies across all files
-- Table selector nesting in tables.styl
-- Deprecated code removal (gradient-button mixin)
+- Indentation and stylelint config for view-transitions
+- @starting-style CSS syntax and stylelint warnings
+- Stylelint warnings in modern-css.styl
+- All linting errors resolved
+- Build process issues
 
-## [Unreleased]
-
-### Added
-- $white color variable for consistency (replaces hardcoded 'white' references)
-- hover-bg() mixin for consistent hover backgrounds across components
-- Print-specific color variables for better maintainability
-  - $print-border (#cccccc)
-  - $print-border-light (#dddddd)
-  - $print-bg (#f5f5f5)
-  - $print-text (#666666)
-  - $print-black (#000000)
-  - $print-button-bg (#333333)
-  - $print-white (#ffffff)
-
-### Changed
-- Refactored all 'color white' references to use $white variable (13 files)
-- Improved code maintainability and consistency
-- Replaced hardcoded hex colors in print styles with variables
-  - responsive-enhanced.styl
-  - responsive.styl
-  - optimizations.styl
+### Maintenance
+- Added test artifacts to .gitignore (screenshots/, test-results/, playwright-report/)
+- Refined .gitignore for IDE directories
+- Untracked build artifacts
+- Removed outdated files (applied patch, old scripts)
+- Updated dependencies
 
 ## [2026.02.26] - 2026-02-26
 
