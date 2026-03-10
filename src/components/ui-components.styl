@@ -300,6 +300,107 @@ input[type="range"]
   &:hover::after
     opacity 1
 
+// =============================================================================
+// :OPEN PSEUDO-CLASS - Unified Open State Handling
+// Browser support: 97%+
+// Works with: details, dialog, popover elements
+// Stylus: Works directly
+// =============================================================================
+
+// The :open pseudo-class matches elements that have both "open" and "closed"
+// states, and which are currently in the open state. This provides a unified
+// way to style open states across different element types.
+
+// Details element - collapsible sections
+details
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  margin 0.5em 0
+  transition all $transition-fast
+
+  // Summary/trigger styling
+  summary
+    cursor pointer
+    color $lighter
+    font-weight 500
+    list-style none
+    display flex
+    align-items center
+    gap 0.5em
+    padding 0.25em 0
+    transition color $transition-fast
+
+    // Remove default triangle marker
+    &::-webkit-details-marker
+      display none
+
+    &::marker
+      display none
+
+    // Custom expand indicator
+    &::before
+      content "▸"
+      color $arch-blue
+      font-size 0.9em
+      transition transform $transition-fast
+      display inline-block
+
+    &:hover
+      color $secondary-blue
+
+      &::before
+        color $secondary-blue
+
+    // Focus state for keyboard navigation
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius $border-radius-sm
+
+  // Content inside details
+  > *:not(summary)
+    padding-top 0.75em
+    margin-top 0.75em
+    border-top 1px solid $border-subtle
+    color $light
+
+  // :open pseudo-class for unified open state styling
+  &:open
+    border-color rgba($arch-blue, 0.3)
+    box-shadow 0 2px 8px rgba(0, 0, 0, 0.15)
+
+    summary
+      color $secondary-blue
+
+      // Rotate arrow when open
+      &::before
+        transform rotate(90deg)
+        color $secondary-blue
+
+  // Fallback for browsers without :open support (uses open attribute)
+  &[open]
+    border-color rgba($arch-blue, 0.3)
+    box-shadow 0 2px 8px rgba(0, 0, 0, 0.15)
+
+    summary
+      color $secondary-blue
+
+      &::before
+        transform rotate(90deg)
+        color $secondary-blue
+
+// Nested details - subtle styling difference
+details details
+  background-color rgba($darker, 0.5)
+  border-color $border-subtle
+  margin 0.5em 0
+
+  &:open
+  &[open]
+    border-color rgba($arch-blue, 0.2)
+
 // Native HTML popover attribute
 [popover]
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
@@ -309,6 +410,11 @@ input[type="range"]
   box-shadow $shadow-elevated
   color $light
 
+  // :open pseudo-class for popovers (also :popover-open for compatibility)
+  &:open
+    animation popover-fade-in 0.15s ease-out
+
+  // :popover-open is the specific pseudo-class for popover elements
   &:popover-open
     animation popover-fade-in 0.15s ease-out
 
@@ -339,7 +445,11 @@ dialog
   &::backdrop
     background-color rgba(0, 0, 0, 0.75)
 
-  // Open state
+  // :open pseudo-class for dialogs
+  &:open
+    animation dialog-fade-in 0.2s ease-out
+
+  // Fallback with attribute selector for older browsers
   &[open]
     animation dialog-fade-in 0.2s ease-out
 
@@ -350,6 +460,74 @@ dialog
   to
     opacity 1
     transform scale(1)
+
+// =============================================================================
+// UNIFIED OPEN STATE TRANSITIONS
+// Common animations and styles for all open state elements
+// =============================================================================
+
+// Shared open state enhancements
+details:open
+dialog:open
+[popover]:open
+  // Subtle entrance glow effect
+  &::before
+    content ""
+    position absolute
+    inset -1px
+    border-radius inherit
+    padding 1px
+    background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($secondary-blue, 0.1))
+    mask linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+    mask-composite exclude
+    -webkit-mask-composite xor
+    pointer-events none
+    opacity 0.5
+
+// Open state for modal dialogs - enhanced backdrop
+dialog:open::backdrop
+  backdrop-filter blur(4px)
+  background-color rgba(0, 0, 0, 0.6)
+
+// =============================================================================
+// ACCESSIBILITY - Reduced motion for open animations
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  details
+    transition none
+    summary::before
+      transition none
+    &:open
+      animation none
+    &[open]
+      animation none
+
+  dialog
+    transition none
+    &:open
+      animation none
+    &[open]
+      animation none
+
+  [popover]
+    transition none
+    &:open
+      animation none
+    &:popover-open
+      animation none
+
+// High contrast mode support
+@media (forced-colors active)
+  details
+    border 1px solid CanvasText
+
+    summary
+      forced-color-adjust none
+
+      &::before
+        forced-color-adjust none
+        color LinkText
 
 // Modals and Overlays
 .modal
