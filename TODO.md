@@ -326,6 +326,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | Documentation Subpage (template-doc.styl) | 95091e6 |
 | 2026-03-10 | attr() with type() function | c6dedd5 |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
@@ -679,23 +680,26 @@ Last updated: 2026-03-10 13:30
 
 ## 🔗 Link Types (New)
 
-- [ ] **Interwiki Link Indicators** (CSS)
-  - File: `src/components/links.styl` (new file)
+- [x] **Interwiki Link Indicators** (CSS)
+  - File: `src/components/links.styl`
   - External link icon (arrow)
   - Interwiki icon styling
   - Secure/insecure indicator
+  Commit: (previous session)
 
-- [ ] **Redirect Pages** (CSS)
+- [x] **Redirect Pages** (CSS)
   - File: `src/components/links.styl`
   - Redirect notice styling
   - Target page preview on hover
   - Redirect category badge
+  Commit: (previous session)
 
-- [ ] **Disambiguation Links** (CSS)
+- [x] **Disambiguation Links** (CSS)
   - File: `src/components/links.styl`
   - Disambiguation page indicator
   - Hatnote styling refinements
   - "May refer to" formatting
+  Commit: (previous session)
 
 - [x] **Broken/Red Links** (97%+ browser support)
   - File: `src/components/links.styl`
@@ -752,11 +756,12 @@ Last updated: 2026-03-10 13:30
   - Backlink indicators
   - Commit: e664fa2
 
-- [ ] **Footnote Scroll Animation** (CSS)
+- [x] **Footnote Scroll Animation** (CSS)
   - File: `src/components/content.styl`
   - Smooth scroll to footnote
   - Highlight on arrival
   - Back scroll animation
+  Commit: (previous session)
 
 ## 🔧 Template Elements (New)
 
@@ -773,11 +778,12 @@ Last updated: 2026-03-10 13:30
   - Collapsible sections
   - Image/icon alignment
 
-- [ ] **Documentation Subpage** (CSS)
-  - File: `src/components/template-doc.styl` (new file)
+- [x] **Documentation Subpage** (CSS)
+  - File: `src/components/template-doc.styl`
   - Template documentation box
   - Usage example formatting
   - Parameter table styling
+  Commit: 95091e6
 
 
 ## 🌐 Internationalization & Localization (New)
@@ -3965,12 +3971,13 @@ Last updated: 2026-03-10 13:30
   - Actual output display
   - Pass/fail indicator
 
-- [ ] **Documentation Subpage** (CSS, 97%+ browser support)
-  - File: `src/components/documentation.styl`
+- [x] **Documentation Subpage** (CSS, 97%+ browser support)
+  - File: `src/components/template-doc.styl`
   - Doc subpage indicator
   - Transclusion preview
   - Parameter table
   - Example usage block
+  Commit: 95091e6
 
 - [ ] **Wizard Interface** (CSS, 97%+ browser support)
   - File: `src/components/wizard.styl`
