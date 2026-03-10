@@ -720,11 +720,12 @@ Last updated: 2026-03-01 06:05
   - Deep link target highlight animation
   - Commit: 3d0b8cf
 
-- [ ] **Reference List Styling** (CSS)
+- [x] **Reference List Styling** (CSS)
   - File: `src/components/content.styl`
   - Reference number styling with tabular-nums
   - Reference tooltip on hover
   - Backlink indicators
+  - Commit: (pending)
 
 - [ ] **Footnote Scroll Animation** (CSS)
   - File: `src/components/content.styl`

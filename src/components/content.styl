@@ -973,3 +973,442 @@ img.float-right
 
   .related-pages-title
     font-size 0.9em
+
+
+// =============================================================================
+// REFERENCE LIST STYLING
+// Citations and footnotes with tabular-nums, tooltips, and backlinks
+// Browser support: 97%+
+// =============================================================================
+
+// Reference list container (at bottom of article)
+.references
+.mw-references-wrap
+ol.references
+  margin 1.5em 0
+  padding 0.75em 1em 0.75em 2.5em
+  background linear-gradient(135deg, rgba($darker, 0.5), rgba($base, 0.3))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-size 0.9em
+  line-height 1.6
+
+  // List styling
+  li
+    margin 0.4em 0
+    padding 0.25em 0
+    break-inside avoid
+
+    // Reference text
+    .reference-text
+      color $light
+
+// Reference number markers (superscript links in text)
+// MediaWiki uses <sup class="reference"> for citation markers
+sup.reference
+.mw-reference
+  font-size 0.75em
+  font-weight 500
+  vertical-align super
+  line-height 0
+  margin 0 0.1em
+
+  // The actual link inside the sup
+  a
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 1.4em
+    height 1.4em
+    padding 0.1em 0.35em
+    background-color rgba($arch-blue, 0.15)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    text-decoration none
+    font-family $font-mono
+    font-feature-settings "tnum" // Tabular numbers for alignment
+    font-size 0.9em
+    transition all $transition-fast
+
+    &:hover
+    &:focus
+      background-color rgba($arch-blue, 0.3)
+      color $lighter
+      transform scale(1.05)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// Multiple references (e.g., [1][2][3])
+sup.reference + sup.reference
+  margin-left 0.15em
+
+// Reference link in the reference list (back to citation point)
+.references
+  .reference
+    a
+      font-weight 500
+
+      // Backlink arrow
+      &::before
+        content "↑ "
+        color $muted
+        font-size 0.85em
+
+      &:hover::before
+        color $secondary-blue
+
+// Named reference groups (e.g., [a], [b] for general references)
+.reference-group-alpha
+  sup.reference a
+    background-color rgba($term-cyan, 0.15)
+    color $term-cyan
+
+    &:hover
+      background-color rgba($term-cyan, 0.3)
+
+// =============================================================================
+// REFERENCE TOOLTIPS ON HOVER
+// =============================================================================
+
+// Reference tooltip container (JS-enhanced)
+.reference-tooltip
+.mw-reference-tooltip
+  position absolute
+  z-index 1000
+  max-width 350px
+  padding 0.75em 1em
+  background-color $darker
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  font-size 0.85em
+  line-height 1.5
+  color $light
+  pointer-events none
+  opacity 0
+  transform translateY(-5px)
+  transition opacity 0.2s ease, transform 0.2s ease
+
+  // Arrow pointing to reference
+  &::before
+    content ""
+    position absolute
+    bottom 100%
+    left 1em
+    border 6px solid transparent
+    border-bottom-color $darker
+
+  // When visible (via JS or CSS hover)
+  &.visible
+  &.is-visible
+    opacity 1
+    transform translateY(0)
+    pointer-events auto
+
+  // Tooltip title (citation number)
+  .tooltip-title
+  .mw-reference-tooltip-title
+    color $secondary-blue
+    font-weight 600
+    margin-bottom 0.4em
+    font-feature-settings "tnum"
+
+  // Tooltip content (reference text preview)
+  .tooltip-content
+  .mw-reference-tooltip-text
+    color $light
+    max-height 150px
+    overflow-y auto
+
+    // Links in tooltip
+    a
+      color $secondary-blue
+
+      &:hover
+        color $orange
+
+  // Tooltip footer (link to full reference)
+  .tooltip-footer
+    margin-top 0.5em
+    padding-top 0.5em
+    border-top 1px solid $border-subtle
+    font-size 0.85em
+
+    a
+      color $muted
+
+      &:hover
+        color $secondary-blue
+
+// CSS-only hover tooltip for references
+// For browsers without JS tooltip enhancement
+sup.reference
+  position relative
+
+  a
+    // Tooltip appears on hover
+    &:hover::after
+      content attr(data-tooltip)
+      position absolute
+      bottom 100%
+      left 50%
+      transform translateX(-50%)
+      padding 0.5em 0.75em
+      background-color $darker
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      font-size 0.8em
+      line-height 1.4
+      white-space normal
+      max-width 250px
+      width max-content
+      color $light
+      z-index 100
+      box-shadow $shadow-subtle
+      pointer-events none
+
+// =============================================================================
+// BACKLINK INDICATORS
+// =============================================================================
+
+// Jump-back links from reference list to citation points
+.cite-backlink
+.mw-cite-backlink
+  display inline-flex
+  align-items center
+  justify-content center
+  width 1.6em
+  height 1.6em
+  margin-right 0.3em
+  background-color rgba($arch-blue, 0.1)
+  color $secondary-blue
+  border-radius $border-radius-sm
+  font-size 0.75em
+  text-decoration none
+  transition all $transition-fast
+
+  &:hover
+    background-color rgba($arch-blue, 0.25)
+    color $lighter
+    transform scale(1.1)
+
+  // Backlink arrow
+  &::before
+    content "↑"
+    font-weight 600
+
+// Multiple backlinks (for references cited multiple times)
+.cite-backlink-multi
+  display inline-flex
+  flex-wrap wrap
+  gap 0.2em
+  margin-right 0.5em
+
+  a
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 1.4em
+    height 1.4em
+    padding 0 0.2em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    font-size 0.7em
+    font-feature-settings "tnum"
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.25)
+      transform scale(1.1)
+
+// Backlink with context (shows citation context on hover)
+.cite-backlink-context
+  position relative
+
+  &:hover
+    .backlink-context-popup
+      opacity 1
+      visibility visible
+
+.backlink-context-popup
+  position absolute
+  bottom 100%
+  left 0
+  padding 0.4em 0.6em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  font-size 0.75em
+  white-space nowrap
+  color $muted
+  opacity 0
+  visibility hidden
+  transition opacity $transition-fast
+  z-index 10
+
+// =============================================================================
+// REFERENCE GROUPS
+// =============================================================================
+
+// Different reference groups get different styling
+// MediaWiki supports groups like "note", "lower-alpha", etc.
+
+// General references (no group)
+.mw-ref-general
+  sup.reference a
+    background-color rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+// Notes group (often used for explanatory notes)
+.mw-ref-note
+.mw-ref-lower-alpha
+  sup.reference a
+    background-color rgba($term-cyan, 0.15)
+    color $term-cyan
+    font-weight 400
+
+    &:hover
+      background-color rgba($term-cyan, 0.3)
+
+// Lower-roman group
+.mw-ref-lower-roman
+  sup.reference a
+    background-color rgba($term-magenta, 0.15)
+    color $term-magenta
+
+// Upper-alpha group
+.mw-ref-upper-alpha
+  sup.reference a
+    background-color rgba($term-yellow, 0.15)
+    color $term-yellow
+
+// =============================================================================
+// REFERENCE ERRORS AND WARNINGS
+// =============================================================================
+
+// Invalid or malformed references
+.mw-ext-cite-error
+  color $secondary-red
+  font-size 0.85em
+  padding 0.5em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-sm
+  margin 0.5em 0
+
+// Reference warnings (less severe)
+.mw-ext-cite-warning
+  color $term-yellow
+  font-size 0.85em
+  padding 0.3em 0.5em
+  background-color rgba($term-yellow, 0.1)
+  border-radius $border-radius-sm
+
+// Empty reference
+.reference-empty
+  font-style italic
+  color $muted
+
+  &::after
+    content " (citation needed)"
+    color $secondary-red
+    font-size 0.85em
+
+// =============================================================================
+// FOOTNOTE SCROLL ANIMATION
+// =============================================================================
+
+// Smooth scroll behavior for reference links
+html
+  scroll-behavior smooth
+
+// Highlight animation when jumping to reference
+:target
+  scroll-margin-top 5em // Account for sticky header
+
+// Reference target highlight
+.reference-target
+.mw-cite-target
+  animation reference-highlight 2s ease-out
+
+@keyframes reference-highlight
+  0%
+    background-color rgba($arch-blue, 0.2)
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+  100%
+    background-color transparent
+    box-shadow none
+
+// Highlight the citation marker when reference is targeted
+sup.reference:has(a:target)
+sup.reference:target
+  animation reference-marker-pulse 1.5s ease-out
+
+@keyframes reference-marker-pulse
+  0%
+  100%
+    transform scale(1)
+  50%
+    transform scale(1.2)
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// Reduced motion - instant transitions
+@media (prefers-reduced-motion reduce)
+  sup.reference a
+  .cite-backlink
+    transition none
+
+  .reference-tooltip
+    transition none
+    transform none
+
+  @keyframes reference-highlight
+    0%
+    100%
+      background-color transparent
+      box-shadow none
+
+  @keyframes reference-marker-pulse
+    0%
+    100%
+      transform none
+
+// High contrast mode
+@media (forced-colors active)
+  sup.reference a
+    forced-color-adjust none
+    background-color transparent
+    border 1px solid LinkText
+
+  .cite-backlink
+    border 1px solid LinkText
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  // Show reference text inline for print
+  sup.reference a::after
+    content none
+
+  // Reference list styling for print
+  .references
+  ol.references
+    background-color transparent
+    border none
+    padding-left 1.5em
+
+    li
+      color $print-black
+
+  // Hide tooltips in print
+  .reference-tooltip
+    display none
