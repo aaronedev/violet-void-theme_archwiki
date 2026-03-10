@@ -326,7 +326,6 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-03-10 | :open pseudo-class for unified open state handling | (pending) |
 | 2026-03-10 | attr() with type() function | c6dedd5 |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
@@ -3527,13 +3526,12 @@ Last updated: 2026-03-10 13:30
 
 ## 🎯 Interaction State Pseudo-Classes (New - 2026-03-10 Scout 29)
 
-- [x] **`:open` Pseudo-class** (97%+ browser support)
+- [ ] **`:open` Pseudo-class** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Style elements in open state (details, dialogs, popovers)
   - Example: `details:open { ... }`, `dialog:open { ... }`
   - Unified open state handling
   - Stylus: Works directly
-  - Commit: (pending)
 
 - [ ] **`:interest-source` Pseudo-class** (85%+ browser support)
   - File: `src/components/navigation.styl`

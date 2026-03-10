@@ -66,8 +66,7 @@
           "not",
           "nth-child",
           "local",
-          "global",
-          "open"
+          "global"
         ]
       }
     ],
