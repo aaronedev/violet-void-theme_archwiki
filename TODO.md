@@ -364,6 +364,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-10 | widows/orphans control for print typography | 2a51280 |
 | 2026-03-10 | transition-behavior: allow-discrete for display transitions | a2245f4 |
 | 2026-03-10 | overflow-anchor for scroll anchoring | 7d2ec95 |
 | 2026-03-10 | :open pseudo-class for unified open state styling | a0104ee |
@@ -1528,8 +1529,8 @@ Last updated: 2026-03-10 13:30
   - Force exact color reproduction
   - Stylus: Works directly
 
-- [ ] **`widows` / `orphans` Control** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`widows` / `orphans` Control** (97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Prevent lonely lines at page breaks
   - `orphans: 3; widows: 3;`
   - Stylus: Works directly

@@ -78,9 +78,30 @@
     font-size 12pt
     page-break-after avoid
 
+  // =============================================================================
+  // WIDOWS & ORPHANS CONTROL
+  // =============================================================================
+
+  // Widow: single line at top of page (from previous paragraph)
+  // Orphan: single line at bottom of page (from next paragraph)
+  // Browser support: 97%+
+  // Values: minimum number of lines that must stay together
+
   p
-    orphans 3
-    widows 3
+  li
+  dd
+  dt
+  blockquote
+    orphans 3    // Minimum 3 lines at bottom of page
+    widows 3     // Minimum 3 lines at top of page
+
+  // Definition lists - keep terms with definitions
+  dl
+    break-inside avoid
+
+  // Keep list items together
+  li
+    break-inside avoid
 
   // =============================================================================
   // CODE BLOCKS FOR PRINT
