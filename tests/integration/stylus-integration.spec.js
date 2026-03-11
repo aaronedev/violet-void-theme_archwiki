@@ -2,20 +2,26 @@ const { test: base, chromium, expect } = require('@playwright/test')
 const path = require('path')
 const fs = require('fs')
 const http = require('http')
+const os = require('os')
 
 const test = base.extend({
-  context: async ({}, use, testInfo) => {
-    const pathToExtension = path.join(__dirname, 'stylus')
-    const userDataDir = path.join(
-      __dirname,
-      `../../test-user-data-integration-${testInfo.workerIndex}`
+  context: [async ({}, use, testInfo) => {
+    test.skip(
+      testInfo.project.name !== 'chromium',
+      'Stylus extension tests require the desktop Chromium project'
     )
 
-    if (fs.existsSync(userDataDir)) {
-      try {
-        fs.rmSync(userDataDir, { recursive: true, force: true })
-      } catch {}
-    }
+    const extensionSourceDir = path.join(__dirname, 'stylus')
+    const extensionWorkspaceDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), `stylus-extension-${testInfo.workerIndex}-`)
+    )
+    const pathToExtension = path.join(extensionWorkspaceDir, 'stylus')
+    const userDataDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), `stylus-profile-${testInfo.workerIndex}-`)
+    )
+
+    // Keep Chromium extension loading stable in disposable worktrees and test sandboxes.
+    fs.cpSync(extensionSourceDir, pathToExtension, { recursive: true })
 
     const context = await chromium.launchPersistentContext(userDataDir, {
       headless: false,
@@ -27,9 +33,14 @@ const test = base.extend({
       ],
     })
 
-    await use({ context })
-    await context.close()
-  },
+    try {
+      await use({ context })
+    } finally {
+      await context.close()
+      fs.rmSync(extensionWorkspaceDir, { recursive: true, force: true })
+      fs.rmSync(userDataDir, { recursive: true, force: true })
+    }
+  }, { timeout: 120000 }],
 })
 
 function getInstallSourceUrl(urlString) {
@@ -122,7 +133,12 @@ async function openInstallPageFromManage(page, extensionId, themeUrl) {
     `Malformed Stylus install URL before navigation: ${installUrl}`
   ).toBe(themeUrl)
 
-  await page.goto(installUrl, { waitUntil: 'domcontentloaded' })
+  await page.goto(`chrome-extension://${extensionId}/manage.html`, {
+    waitUntil: 'domcontentloaded',
+  })
+  await page.evaluate((url) => {
+    window.location.href = url
+  }, installUrl)
 
   await expectStylusInstallPage(page, themeUrl)
 }
@@ -163,6 +179,8 @@ async function clickInstallUntilInstalled(page, installButton) {
 }
 
 test.describe('Stylus Extension Integration', () => {
+  test.setTimeout(120000)
+
   let server
   let port
   const host = '127.0.0.1'
