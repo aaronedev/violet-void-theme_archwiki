@@ -1,0 +1,397 @@
+// MediaWiki Extensions Styling
+// Styling for MediaWiki extension interfaces including VisualEditor
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// VISUALEDITOR STYLING
+// =============================================================================
+
+// VisualEditor toolbar container
+.ve-ui-toolbar
+.ve-ui-mwToolbar
+.ve-ui-surface
+.ve-ui-diffSurface
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.5em
+
+// VisualEditor toolbar bar
+.ve-ui-toolbar-bar
+.ve-ui-mwToolbar-bar
+  background linear-gradient(180deg, rgba($arch-blue, 0.1), transparent)
+  border-bottom 1px solid $border-subtle
+  padding 0.25em 0.5em
+  margin-bottom 0.5em
+  display flex
+  flex-wrap wrap
+  gap 0.25em
+
+// VisualEditor tool groups
+.ve-ui-toolbar-group
+.ve-ui-mwToolbar-group
+  display flex
+  align-items center
+  gap 0.15em
+  padding 0.15em 0.3em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.05)
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+
+// VisualEditor tool buttons
+.ve-ui-toolbar-tool
+.ve-ui-toolbar-tool-button
+.ve-ui-mwToolbar-tool
+  appearance none
+  -webkit-appearance none
+  background transparent
+  border 1px solid transparent
+  border-radius $border-radius-sm
+  color $light
+  cursor pointer
+  padding 0.4em 0.6em
+  transition all $transition-fast
+  display flex
+  align-items center
+  justify-content center
+  min-width 2em
+  min-height 2em
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+    transform translateY(-1px)
+
+  &:focus
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &:active
+    background rgba($arch-blue, 0.2)
+    transform translateY(0)
+
+// VisualEditor tool active state
+.ve-ui-toolbar-tool-active
+.ve-ui-toolbar-tool-button-active
+  background rgba($arch-blue, 0.2)
+  border-color $arch-blue
+  color $secondary-blue
+
+  &:hover
+    background rgba($arch-blue, 0.25)
+
+// VisualEditor dropdown menus
+.ve-ui-toolbar-popup
+.ve-ui-mwToolbar-popup
+.ve-ui-dropdownWidget
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+
+// VisualEditor dropdown options
+.ve-ui-dropdownOption
+.ve-ui-menuOption
+  padding 0.5em 0.75em
+  border-radius $border-radius-sm
+  color $light
+  cursor pointer
+  transition background $transition-fast
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  &.oo-ui-option-selected
+    background rgba($arch-blue, 0.2)
+    color $accent
+
+// VisualEditor formatting dialogs
+.ve-ui-dialog
+.ve-ui-mwDialog
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  box-shadow $shadow-modal
+
+// VisualEditor dialog title
+.ve-ui-dialog-title
+.ve-ui-mwDialog-title
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), transparent)
+  border-bottom 1px solid $border-subtle
+  padding 0.75em 1em
+  color $light
+  font-weight 600
+
+// VisualEditor dialog body
+.ve-ui-dialog-content
+.ve-ui-mwDialog-content
+  padding 1em
+  color $light
+
+// VisualEditor dialog footer
+.ve-ui-dialog-footer
+.ve-ui-mwDialog-footer
+  background linear-gradient(180deg, transparent, rgba($arch-blue, 0.05))
+  border-top 1px solid $border-subtle
+  padding 0.75em 1em
+  display flex
+  justify-content flex-end
+  gap 0.5em
+
+// VisualEditor edit surface / editing area
+.ve-ui-surface-editor
+.ve-ui-mwEditSurface
+.ve-ui-texture-editor
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  min-height 400px
+
+  // Content area inside editor
+  .ve-ce-documentNode
+  .ve-ce-contentEditable
+    background $darker
+    color $light
+    padding 1.5em
+    line-height 1.6
+
+    // Placeholder text
+    &.ve-ce-placeholder
+      color rgba($light, 0.4)
+      font-style italic
+
+// VisualEditor selection highlight
+.ve-ui-selection
+.ve-ce-selection
+  background rgba($arch-blue, 0.3)
+  color inherit
+
+// VisualEditor cursor / caret
+.ve-ce-cursor
+.ve-ui-cursorWidget
+  background $arch-blue
+  width 2px
+
+// VisualEditor focus outline
+.ve-ui-surface-focused
+.ve-ui-mwSurface-focused
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// VisualEditor floating toolbar (appears on text selection)
+.ve-ui-floatingToolbar
+.ve-ui-mwFloatingToolbar
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.15))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+
+// VisualEditor formatting buttons in floating toolbar
+.ve-ui-floatingToolbar-tool
+  appearance none
+  -webkit-appearance none
+  background transparent
+  border none
+  border-radius $border-radius-sm
+  color $light
+  cursor pointer
+  padding 0.35em 0.5em
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    color $secondary-blue
+
+  &:active
+    background rgba($arch-blue, 0.25)
+
+// =============================================================================
+// VISUALEDITOR DIFF HIGHLIGHT COLORS
+// =============================================================================
+
+// Diff surface container
+.ve-ui-diffSurface
+.ve-ui-mwDiffSurface
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// VisualEditor diff: added content
+.ve-ui-diff-added
+.ve-ce-diff-added
+  background rgba($green, 0.2)
+  border-left 3px solid $green
+  padding 0.1em 0.25em
+  margin 0.1em 0
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &:hover
+    background rgba($green, 0.25)
+
+// VisualEditor diff: removed content
+.ve-ui-diff-removed
+.ve-ce-diff-removed
+  background rgba($red, 0.2)
+  border-left 3px solid $red
+  padding 0.1em 0.25em
+  margin 0.1em 0
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+  text-decoration line-through
+  opacity 0.8
+
+  &:hover
+    background rgba($red, 0.25)
+    opacity 0.9
+
+// VisualEditor diff: unchanged content
+.ve-ui-diff-unmodified
+.ve-ce-diff-unmodified
+  background transparent
+  padding 0.1em 0.25em
+  margin 0.1em 0
+
+// VisualEditor diff: moved content
+.ve-ui-diff-moved
+.ve-ce-diff-moved
+  background rgba($orange, 0.15)
+  border 1px dashed rgba($orange, 0.5)
+  border-radius $border-radius-sm
+  padding 0.25em 0.5em
+  margin 0.25em 0
+
+// VisualEditor diff: paragraph formatting changes
+.ve-ui-diff-paragraphFormat
+.ve-ce-diff-paragraphFormat
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-sm
+  padding 0.25em 0.5em
+
+// VisualEditor diff: cursor position indicator
+.ve-ui-diff-cursor
+.ve-ce-diff-cursor
+  background $arch-blue
+  width 3px
+  border-radius 1px
+  opacity 0.6
+
+// VisualEditor diff: change summary
+.ve-ui-diff-change-summary
+.ve-ce-diff-change-summary
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), transparent)
+  border-bottom 1px solid $border-subtle
+  padding 0.5em 1em
+  color rgba($light, 0.7)
+  font-size 0.9em
+
+// =============================================================================
+// VISUALEDITOR SPECIAL ELEMENTS
+// =============================================================================
+
+// VisualEditor template dialog
+.ve-ui-mwTemplateDialog
+.ve-ui-templateDialog
+  background $darker
+  border 1px solid $border-subtle
+
+  // Template title
+  .ve-ui-mwTemplateTitle
+    background rgba($arch-blue, 0.1)
+    border-bottom 1px solid $border-subtle
+    padding 0.5em 1em
+    color $light
+    font-weight 600
+
+  // Template preview
+  .ve-ui-mwTemplatePreview
+    background rgba($dark, 0.5)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 1em
+    margin 0.5em
+
+// VisualEditor reference dialog
+.ve-ui-mwReferenceDialog
+.ve-ui-referenceDialog
+  background $darker
+
+  // Reference list
+  .ve-ui-mwReferenceList
+    background transparent
+
+  // Individual reference item
+  .ve-ui-mwReferenceItem
+    background rgba($arch-blue, 0.05)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.75em
+    margin 0.5em 0
+
+// VisualEditor image dialog
+.ve-ui-mwImageInsertDialog
+.ve-ui-imageInsertDialog
+  background $darker
+
+  // Image preview
+  .ve-ui-mwImageInsertPreview
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+    min-height 150px
+    display flex
+    align-items center
+    justify-content center
+
+// VisualEditor link dialog
+.ve-ui-mwLinkTargetInput
+.ve-ui-linkTargetInput
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  color $light
+
+  &:focus
+    border-color $arch-blue
+    outline none
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// =============================================================================
+// ACCESSIBILITY: Focus and keyboard navigation
+// =============================================================================
+
+// Visible focus for keyboard navigation
+.ve-ui-toolbar-tool:focus-visible
+.ve-ui-toolbar-tool-button:focus-visible
+.ve-ui-dropdownOption:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// High contrast mode support
+@media (forced-colors active)
+  .ve-ui-toolbar-tool
+    border 1px solid CanvasText
+
+    &:hover
+      border 1px solid Highlight
+
+    &:active
+      background Highlight
+      color Canvas
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .ve-ui-toolbar-tool
+  .ve-ui-dropdownOption
+    transition none
+
+  .ve-ui-toolbar-tool:hover
+    transform none

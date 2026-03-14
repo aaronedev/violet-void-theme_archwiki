@@ -864,11 +864,12 @@ Last updated: 2026-03-10 13:30
 
 ## 🔧 Extension Compatibility (New)
 
-- [ ] **VisualEditor Styling** (CSS)
-  - File: `src/components/extensions.styl`
+- [x] **VisualEditor Styling** (CSS)
+  - File: `src/components/extensions.styl` (new file)
   - Visual editor toolbar theming
   - Edit surface styling
   - Diff highlight colors
+  - Commit: addee2c
 
 - [ ] **Wikidata Integration** (CSS)
   - File: `src/components/extensions.styl`
@@ -2837,12 +2838,13 @@ Last updated: 2026-03-10 13:30
   - Active line highlight
   - Bracket matching indicator
 
-- [ ] **Extension:VisualEditor Styling** (CSS)
-  - File: `src/components/extensions.styl`
+- [x] **Extension:VisualEditor Styling** (CSS)
+  - File: `src/components/extensions.styl` (new file)
   - Visual editor toolbar
   - Floating toolbar styling
   - Context item styling
   - Diff highlighting
+  - Commit: addee2c
 
 - [ ] **Extension:Echo Notifications** (CSS)
   - File: `src/components/extensions.styl`
