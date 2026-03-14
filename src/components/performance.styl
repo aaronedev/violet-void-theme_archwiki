@@ -1,289 +1,288 @@
-// Performance patterns for Violet Void ArchWiki
-// render-subtree, content-visibility, and other performance optimizations
-// stylelint-disable-next-line stylus/property-no-unknown
+// Page Load Indicator Styling
+// Progress bars and skeleton screen patterns for loading states
+// Browser support: 97%+
 
 @import '../variables/colors'
 @import '../variables/layout'
 
 // =============================================================================
-// RENDER-SUBTREE FOR VISIBILITY
+// LOADING PROGRESS BAR
 // =============================================================================
 
-// Control rendering of subtrees for performance
-// Browser support: 87%+
-// Allows browser to skip rendering entire subtrees when not visible
+// Top progress bar for page load indication
+.page-load-progress
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 3px
+  background rgba($arch-blue, 0.1)
+  z-index 10000
+  overflow hidden
 
-// Hide content from rendering but keep it in the DOM
-@supports (render-subtree: invisible)
-  .render-subtree-invisible
-    // stylelint-disable-next-line stylus/property-no-unknown
-    render-subtree invisible
+  // Progress fill
+  .progress-fill
+    height 100%
+    background linear-gradient(90deg, $arch-blue, $secondary-blue, $arch-blue)
+    background-size 200% 100%
+    animation load-progress 1.5s ease-in-out infinite
+    width 0%
+    transition width 0.3s ease-out
 
-  .performance-wrapper
-    // stylelint-disable-next-line stylus/property-no-unknown
-    render-subtree visible
-
-    &.optimized
-      // stylelint-disable-next-line stylus/property-no-unknown
-      render-subtree invisible
-
-// Accessibility: hidden but searchable content (works with hidden=until-found attribute)
-@supports (content-visibility: hidden)
-  .hidden-until-found
-    content-visibility hidden
-    contain-intrinsic-size 1px 1px
-
-    // stylelint-disable-next-line stylus/selector-pseudo-class-no-unknown
-    &:until-found
-      content-visibility visible
-
-// =============================================================================
-// CONTENT VISIBILITY EXPANSION
-// =============================================================================
-
-// Already-invisible content can skip rendering
-.content-lazy
-  content-visibility auto
-  contain-intrinsic-size 0 500px
-
-// Heavy content sections that should be deferred
-.deferred-content
-  content-visibility hidden
-  contain-intrinsic-size auto 300px
-
-// Restore visibility when needed (for search, accessibility)
-.deferred-content.visible
-  content-visibility visible
-
-// =============================================================================
-// SCROLL PERFORMANCE
-// =============================================================================
-
-// Smooth scrolling with GPU acceleration
-.smooth-scroll
-  scroll-behavior smooth
-  -webkit-overflow-scrolling touch
-
-// GPU-accelerated transforms for animations
-.gpu-accelerated
-  transform translateZ(0)
-  backface-visibility hidden
-  perspective 1000px
-
-// =============================================================================
-// LAYOUT CONTAINMENT
-// =============================================================================
-
-// Isolate layout for complex sections
-.isolate-layout
-  contain layout style paint
-
-// Content containment for sidebars
-.content-contained
-  contain content
-
-// Style containment for components
-.style-contained
-  contain style
-
-// Paint containment for media
-.media-contained
-  contain paint
-
-// =============================================================================
-// REDUCED DATA MODE (prefers-reduced-data)
-// =============================================================================
-
-@media (prefers-reduced-data reduce)
-  // Reduce image quality
-  .high-quality-image
-    image-rendering pixelated
-
-  // Hide non-essential animations
-  .decorative-animation
-    display none
-
-  // Simplify gradients
-  .complex-gradient
-    background var(--bg-secondary)
-
-// =============================================================================
-// ANIMATION PERFORMANCE
-// =============================================================================
-
-// Transform-only animations for GPU acceleration
-// Browser support: 97%+
-// Using transform and opacity ensures animations run on the GPU
-// Avoid animating: width, height, margin, padding, top, left, border
-
-// Transform-only slide animation (GPU accelerated)
-@keyframes slide-in-right
-  from
-    transform translateX(100%)
-    opacity 0
-  to
-    transform translateX(0)
-    opacity 1
-
-@keyframes slide-in-left
-  from
-    transform translateX(-100%)
-    opacity 0
-  to
-    transform translateX(0)
-    opacity 1
-
-@keyframes slide-in-up
-  from
-    transform translateY(20px)
-    opacity 0
-  to
-    transform translateY(0)
-    opacity 1
-
-@keyframes slide-in-down
-  from
-    transform translateY(-20px)
-    opacity 0
-  to
-    transform translateY(0)
-    opacity 1
-
-@keyframes scale-in
-  from
-    transform scale(0.9)
-    opacity 0
-  to
-    transform scale(1)
-    opacity 1
-
-@keyframes rotate-in
-  from
-    transform rotate(-10deg) scale(0.95)
-    opacity 0
-  to
-    transform rotate(0) scale(1)
-    opacity 1
-
-// Transform-only utility classes
-.animate-slide-right
-  animation-name slide-in-right
-
-.animate-slide-left
-  animation-name slide-in-left
-
-.animate-slide-up
-  animation-name slide-in-up
-
-.animate-slide-down
-  animation-name slide-in-down
-
-.animate-scale-in
-  animation-name scale-in
-
-.animate-rotate-in
-  animation-name rotate-in
-
-// Common animation properties for performance
-.animate-transform
-  transform translateZ(0)
-  backface-visibility hidden
-  perspective 1000px
-
-// Opacity transitions (GPU accelerated)
-// opacity is one of the cheapest properties to animate
-.animate-fade-in
-  animation-name fade-in
-
-.animate-fade-out
-  animation-name fade-out
-
-@keyframes fade-in
-  from
-    opacity 0
-  to
-    opacity 1
-
-@keyframes fade-out
-  from
-    opacity 1
-  to
-    opacity 0
-
-// will-change hints for browser optimization
-// Use sparingly - too many will-change can hurt performance
-// Use before animation starts, remove after animation completes
-
-// Hint transform for sliding elements
-.will-change-transform
-  will-change transform
-
-// Hint opacity for fading elements
-.will-change-opacity
-  will-change opacity
-
-// Hint scroll-position for scrolling containers
-.will-change-scroll
-  will-change scroll-position
-
-// Hint for multiple properties
-.will-change-composite
-  will-change transform, opacity
-
-// Best practice: remove will-change after animation
-// This class can be added via JS, then removed on animationend
-.remove-will-change
-  will-change auto
-
-// GPU acceleration compositing
-// Use translate3d as shortcut for translateZ(0) with GPU
-.gpu-layer
-  transform translate3d(0, 0, 0)
-  backface-visibility hidden
-
-.gpu-layer-strong
-  transform translate3d(0, 0, 0) scale(1.01)
-  backface-visibility hidden
-  perspective 2000px
-
-// Composite animations with transform and opacity
-// These are the only properties that don't trigger layout/paint
-.composite-animate
-  transform translateZ(0)
-  opacity 1
-  transition transform 0.3s ease, opacity 0.3s ease
-
-// Animation with hardware acceleration
-.hw-accelerated
-  transform translateZ(0)
-  will-change transform
-  backface-visibility hidden
-  perspective 1000px
-  -webkit-transform translateZ(0)
-
-// Optimize animations for reduced motion preference
-@media (prefers-reduced-motion reduce)
-  // Disable all animations
-  .animate-slide-right
-  .animate-slide-left
-  .animate-slide-up
-  .animate-slide-down
-  .animate-scale-in
-  .animate-rotate-in
-  .animate-fade-in
-  .animate-fade-out
+  // Determinate progress
+  &.determinate .progress-fill
     animation none
-    transform none
+    background $arch-blue
+
+@keyframes load-progress
+  0%
+    background-position 200% 0
+    width 0%
+  50%
+    width 70%
+    background-position 100% 0
+  100%
+    background-position 0 0
+    width 100%
+
+// =============================================================================
+// SKELETON SCREEN PATTERNS
+// =============================================================================
+
+// Skeleton loading placeholder
+.skeleton
+  background linear-gradient(90deg,
+  rgba($darker, 0.3) 0%,
+  rgba($dark, 0.5) 50%,
+  rgba($darker, 0.3) 100%)
+  background-size 200% 100%
+  animation skeleton-pulse 1.5s ease-in-out infinite
+  border-radius $border-radius-sm
+  color transparent
+  position relative
+  overflow hidden
+
+  // Prevent text selection during load
+  &
+  & *
+    user-select none
+    pointer-events none
+
+@keyframes skeleton-pulse
+  0%
+    background-position 200% 0
+  100%
+    background-position -200% 0
+
+// Skeleton text line
+.skeleton-text
+  @extend .skeleton
+  height 1em
+  margin-bottom 0.5em
+
+  &:last-child
+    width 70%
+
+// Skeleton heading
+.skeleton-heading
+  @extend .skeleton
+  height 1.5em
+  width 60%
+  margin-bottom 0.75em
+
+// Skeleton paragraph
+.skeleton-paragraph
+  @extend .skeleton
+  height 1em
+  width 100%
+  margin-bottom 0.25em
+
+// Skeleton image/thumbnail
+.skeleton-image
+  @extend .skeleton
+  aspect-ratio 16 / 9
+  width 100%
+  border-radius $border-radius-md
+
+// Skeleton avatar
+.skeleton-avatar
+  @extend .skeleton
+  width 48px
+  height 48px
+  border-radius 50%
+
+// Skeleton button
+.skeleton-button
+  @extend .skeleton
+  width 120px
+  height 40px
+  border-radius $border-radius-md
+
+// Skeleton card
+.skeleton-card
+  @extend .skeleton
+  padding 1em
+  border-radius $border-radius-lg
+  border 1px solid rgba($arch-blue, 0.15)
+
+  .skeleton-image
+    margin-bottom 0.75em
+
+  .skkeleton-heading
+    margin-bottom 0.5em
+
+  .skeleton-text
+    margin-bottom 0.25em
+
+// =============================================================================
+// CONTENT LOADING STATES
+// =============================================================================
+
+// Loading wrapper for dynamic content
+.content-loading
+  position relative
+  min-height 200px
+
+  // Overlay with spinner
+  &::after
+    content ''
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background rgba($darker, 0.7)
+    display flex
+    align-items center
+    justify-content center
+    z-index 10
+
+// Spinner for loading state
+.loading-spinner
+  width 40px
+  height 40px
+  border 3px solid rgba($arch-blue, 0.2)
+  border-top-color $arch-blue
+  border-radius 50%
+  animation spin 0.8s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// =============================================================================
+// BLUR-UP IMAGE LOADING
+// =============================================================================
+
+// Blur-up effect for lazy loaded images
+.img-loading
+  filter blur(10px)
+  transform scale(1.05)
+  transition filter 0.3s ease, transform 0.3s ease
+
+  &.loaded
+    filter blur(0)
+    transform scale(1)
+
+// Placeholder for images
+.img-placeholder
+  background-color rgba($dark, 0.3)
+  // Note: Use actual aspect-ratio values or aspect-ratio: attr(width) / attr(height) with proper fallback
+  aspect-ratio 16 / 9
+  min-height 100px
+
+// =============================================================================
+// LAZY LOAD FADE-IN
+// =============================================================================
+
+// Fade-in for lazy loaded content
+.lazy-load-fade
+  opacity 0
+  transform translateY(10px)
+  transition opacity 0.4s ease, transform 0.4s ease
+
+  &.loaded
     opacity 1
+    transform translateY(0)
 
-  // Remove will-change hints when animations disabled
-  .will-change-transform
-  .will-change-opacity
-  .will-change-scroll
-  .will-change-composite
-  .hw-accelerated
-    will-change auto
+// Intersection observer loading trigger
+.lazy-load-trigger
+  min-height 1px
 
-  // Instant transitions
-  .composite-animate
+// =============================================================================
+// ERROR STATE STYLING
+// =============================================================================
+
+// Loading error state
+.loading-error
+  padding 1.5em
+  text-align center
+  background rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  color $light
+
+  .error-icon
+    font-size 2em
+    margin-bottom 0.5em
+    color $secondary-red
+
+  .error-message
+    margin-bottom 0.75em
+
+  .retry-button
+    display inline-block
+    padding 0.5em 1.5em
+    background $arch-blue
+    color $lighter
+    border-radius $border-radius-md
+    cursor pointer
+    transition background 0.2s
+
+    &:hover
+      background $secondary-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// =============================================================================
+// REDUCED MOTION - SIMPLE TRANSITIONS
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .skeleton
+    animation none
+    background rgba($dark, 0.3)
+
+  .loading-spinner
+    animation none
+    border-top-color $arch-blue
+
+  .img-loading
     transition none
+    filter none
+    transform none
+
+    &.loaded
+      filter none
+      transform none
+
+  .lazy-load-fade
+    transition none
+    opacity 1
+    transform none
+
+// =============================================================================
+// HIGH CONTRAST MODE
+// =============================================================================
+
+@media (forced-colors active)
+  .skeleton
+    border 1px solid CanvasText
+
+  .loading-spinner
+    border-top-color Highlight
+
+  .loading-error
+    border-color HighlightText
