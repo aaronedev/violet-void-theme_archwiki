@@ -702,6 +702,348 @@ em
   .search-category-badge
     border 1px solid CanvasText
 
+// =============================================================================
+// ADVANCED SEARCH FORM
+// =============================================================================
+
+// Advanced search form container
+.mw-advanced-search-form
+.advanced-search-form
+.search-advanced-form
+  // Form container
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-lg
+  padding 1.25em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+// Search field grouping
+.search-field-group
+.search-group
+.field-group
+  // Group container for related search fields
+  background rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-md
+  padding 1em
+  margin-bottom 1em
+
+  &:last-child
+    margin-bottom 0
+
+  // Group title/label
+  .group-title
+  .group-label
+  .search-group-title
+    display block
+    font-weight 600
+    color $lighter
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($arch-blue, 0.15)
+    font-size 0.95em
+
+  // Fields within group
+  .mw-input
+  .search-field
+  input[type="text"]
+  input[type="search"]
+    width 100%
+    padding 0.6em 0.8em
+    background rgba($base, 0.5)
+    border 1px solid rgba($arch-blue, 0.25)
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.95em
+    transition all $transition-fast
+
+    &::placeholder
+      color $muted
+
+    &:hover
+      border-color rgba($arch-blue, 0.4)
+      background rgba($base, 0.6)
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      background rgba($base, 0.7)
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// Filter chip styling
+.filter-chips
+.filter-chip-container
+.search-filters-chip
+  // Container for filter chips
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  padding 0.5em 0
+
+.filter-chip
+.search-filter-chip
+.mw-filter-chip
+  // Individual filter chip
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.4em 0.75em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-pill
+  color $light
+  font-size 0.85em
+  cursor pointer
+  transition all $transition-fast
+  user-select none
+
+  // Chip label
+  .chip-label
+    font-weight 500
+
+  // Chip remove button
+  .chip-remove
+    display inline-flex
+    align-items center
+    justify-content center
+    width 1.1em
+    height 1.1em
+    margin-left 0.2em
+    background rgba($arch-blue, 0.2)
+    border-radius 50%
+    font-size 0.9em
+    line-height 1
+    cursor pointer
+    transition all $transition-fast
+
+    &::before
+      content "×"
+
+    &:hover
+      background $secondary-red
+      color $lighter
+
+  // Hover state
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+    transform translateY(-1px)
+
+  // Active/selected chip
+  &.active
+  &.selected
+  &[aria-selected="true"]
+    background rgba($arch-blue, 0.3)
+    border-color $arch-blue
+    color $lighter
+
+  // Focus visible
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Filter chip categories
+.filter-chip-category
+  // Category label for filter chips
+  font-size 0.75em
+  text-transform uppercase
+  letter-spacing 0.05em
+  color $muted
+  margin-right 0.25em
+  font-weight 500
+
+// Boolean operator indicators
+.boolean-operator
+.search-operator
+.mw-search-operator
+  // Boolean operator buttons (AND, OR, NOT)
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 2.5em
+  padding 0.3em 0.6em
+  background rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-sm
+  color $secondary-blue
+  font-size 0.8em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  cursor pointer
+  transition all $transition-fast
+
+  // Hover state
+  &:hover
+    background rgba($arch-blue, 0.25)
+    border-color $arch-blue
+    color $lighter
+
+  // Active/selected state
+  &.active
+  &.selected
+    background $arch-blue
+    border-color $arch-blue
+    color $lighter
+
+  // NOT operator special styling
+  &.not-operator
+    background rgba($secondary-red, 0.15)
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+    &:hover
+      background rgba($secondary-red, 0.25)
+      border-color $secondary-red
+
+    &.active
+    &.selected
+      background $secondary-red
+      color $lighter
+
+  // Focus visible
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Operator between fields
+.search-field + .boolean-operator
+.search-field + .search-operator
+  margin 0 0.5em
+
+.boolean-operator + .search-field
+.search-operator + .search-field
+  margin-left 0.5em
+
+// Namespace selector in advanced search
+.namespace-selector
+.search-namespace
+.mw-namespace-select
+  // Namespace dropdown in advanced search
+  padding 0.5em 0.75em
+  background rgba($base, 0.5)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-sm
+  color $light
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+  min-width 150px
+
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Date range inputs in advanced search
+.date-range-inputs
+.search-date-range
+  // Container for date range fields
+  display flex
+  align-items center
+  gap 0.75em
+
+  .date-from
+  .date-to
+    flex 1
+
+  .date-separator
+    color $muted
+    font-size 0.9em
+    padding 0 0.25em
+
+// Advanced search submit button
+.advanced-search-submit
+.search-submit-advanced
+.mw-advanced-search-submit
+  // Submit button for advanced search
+  padding 0.6em 1.5em
+  background linear-gradient(135deg, $arch-blue, rgba($secondary-blue, 0.8))
+  border 1px solid rgba($arch-blue, 0.5)
+  border-radius $border-radius-md
+  color $lighter
+  font-weight 600
+  font-size 0.95em
+  cursor pointer
+  transition all $transition-fast
+  text-transform uppercase
+  letter-spacing 0.03em
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.9), $secondary-blue)
+    transform translateY(-2px)
+    box-shadow $shadow-subtle
+
+  &:active
+    transform translateY(0)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &:disabled
+    opacity 0.5
+    cursor not-allowed
+    transform none
+
+// Advanced search reset button
+.advanced-search-reset
+.search-reset-advanced
+  // Reset/clear button
+  padding 0.6em 1.25em
+  background transparent
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  color $light
+  font-weight 500
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Advanced search field rows
+.advanced-search-row
+.search-row
+  // Row container for search field + operator
+  display flex
+  align-items center
+  flex-wrap wrap
+  gap 0.5em
+  margin-bottom 0.75em
+
+  &:last-child
+    margin-bottom 0
+
+// Advanced search help text
+.advanced-search-help
+.search-help-text
+  // Help text below fields
+  font-size 0.8em
+  color $muted
+  margin-top 0.5em
+  padding-left 0.5em
+  border-left 2px solid rgba($arch-blue, 0.3)
+
 // Reduced motion
 @media (prefers-reduced-motion reduce)
   .suggestions-result

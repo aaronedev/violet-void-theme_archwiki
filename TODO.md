@@ -918,11 +918,12 @@ Last updated: 2026-03-14 17:39
 
 ## 🔍 Search & Navigation Enhancements (New)
 
-- [ ] **Advanced Search Form** (CSS)
-  - File: `src/components/search.styl` (new file)
+- [x] **Advanced Search Form** (CSS)
+  - File: `src/components/search.styl`
   - Search field grouping
   - Filter chip styling
   - Boolean operator indicators
+  - Commit: ac12f84
 
 - [x] **Search Suggestions Dropdown** (97%+ browser support)
   - File: `src/components/search.styl`
@@ -5257,12 +5258,13 @@ Last updated: 2026-03-14 17:39
   - Match emphasis
   - Keyboard navigation hints
 
-- [ ] **Advanced Search Form** (CSS)
-  - File: `src/search/advanced.styl`
+- [x] **Advanced Search Form** (CSS)
+  - File: `src/components/search.styl`
   - Field group styling
   - Filter chips
   - Date range input
   - Namespace selector
+  - Commit: ac12f84
 
 - [ ] **Search Filters Sidebar** (CSS)
   - File: `src/search/filters.styl`
@@ -7347,3 +7349,4 @@ Last updated: 2026-03-14 17:39
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
 | 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | 552d96c |
 | 2026-03-14 | page-orientation for print | Added page-orientation descriptor support for controlling portrait/landscape orientation in print styles | 04799e9 |
+| 2026-03-14 | Advanced Search Form | Added advanced search form styling with field grouping, filter chips, boolean operators, namespace selector, date range inputs | ac12f84 |
