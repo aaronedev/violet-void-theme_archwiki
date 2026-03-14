@@ -1,0 +1,273 @@
+// Mobile Touch-Friendly Enhancements
+// Styling for touch devices and mobile editing interface
+// Browser support: 97%+ for touch-action, 44px touch targets
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// TOUCH-FRIENDLY EDIT CONTROLS
+// =============================================================================
+
+// Minimum touch target size (44x44px as per WCAG guidelines)
+$touch-target-min = 44px
+
+// Edit form touch enhancements
+.mw-editform
+  // Larger touch targets for form elements on mobile
+  input
+  textarea
+  select
+    @media (pointer coarse)
+      min-height $touch-target-min
+      padding 0.75em 1em
+      font-size 16px // Prevents iOS zoom on focus
+
+  // Touch-friendly checkboxes and radios
+  input[type="checkbox"]
+  input[type="radio"]
+    @media (pointer coarse)
+      width 24px
+      height 24px
+      margin 0.5em
+
+  // Larger submit buttons
+  input[type="submit"]
+  input[type="button"]
+  button
+    @media (pointer coarse)
+      min-height $touch-target-min
+      padding 0.75em 1.5em
+      font-size 1rem
+
+// Edit toolbar - touch-friendly
+.mw-editTools
+.editToolbar
+#toolbar
+  @media (pointer coarse)
+    padding 0.75em
+
+    button
+    .mw-editbutton
+      min-width $touch-target-min
+      min-height $touch-target-min
+      padding 0.5em
+      font-size 1rem
+
+// Textarea improvements for touch
+#wpTextbox1
+.mw-edit textarea
+  @media (pointer coarse)
+    min-height 300px
+    line-height 1.8
+
+// Edit summary - touch-friendly
+#wpSummary
+.mw-summary
+  @media (pointer coarse)
+    min-height $touch-target-min
+    padding 0.75em 1em
+    font-size 16px // Prevents iOS zoom
+
+// =============================================================================
+// TOUCH ACTION - PREVENT ACCIDENTAL ZOOM/PAN
+// =============================================================================
+
+// Allow manipulation (touch-action) for better touch UX
+// Disables double-tap to zoom, allows panning and scrolling
+#editform
+.mw-editform
+.mw-parser-output
+  @media (pointer coarse)
+    touch-action manipulation
+
+// Form elements - prevent unwanted zoom on iOS
+input
+select
+textarea
+  @media (pointer coarse) and (max-width 768px)
+    font-size 16px // iOS requires 16px+ to prevent auto-zoom on focus
+
+// =============================================================================
+// SWIPE GESTURE INDICATORS
+// =============================================================================
+
+// Visual feedback for swipe-capable elements
+.swipeable
+  position relative
+
+  &::after
+    content ''
+    position absolute
+    bottom 0.5em
+    right 0.5em
+    width 2em
+    height 3px
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.4))
+    border-radius 2px
+    opacity 0.6
+    pointer-events none
+
+    @media (pointer fine)
+      display none // Hide on mouse devices
+
+// Swipe hint for horizontal scroll containers
+.horizontal-scroll
+  position relative
+
+  &::before
+    content ''
+    position absolute
+    right 0
+    top 0
+    bottom 0
+    width 30px
+    background linear-gradient(to right, transparent, rgba($base, 0.8))
+    pointer-events none
+    opacity 0
+
+    @media (pointer coarse)
+      opacity 1
+
+// =============================================================================
+// MOBILE EDIT BUTTONS
+// =============================================================================
+
+// Mobile-specific edit button styling
+#mw-editsection
+  @media (pointer coarse)
+    // Larger edit section links on touch devices
+    a
+      min-width $touch-target-min
+      min-height $touch-target-min
+      padding 0.5em 0.75em
+      display inline-flex
+      align-items center
+      justify-content center
+
+// Edit page buttons
+.editButtons
+  @media (pointer coarse)
+    display flex
+    flex-direction column
+    gap 0.75em
+
+    .mw-ui-button
+      min-height $touch-target-min
+      padding 0.75em 1.5em
+      font-size 1rem
+
+// =============================================================================
+// TOUCH-FRIENDLY NAVIGATION IN EDIT MODE
+// =============================================================================
+
+// Page history controls
+.mw-history-legend
+  @media (pointer coarse)
+    .mw-history-compareselectedversions
+    .mw-history-suppress
+      min-height $touch-target-min
+      padding 0.5em 1em
+
+// Diff controls
+.diff-navigator
+  @media (pointer coarse)
+    .diff-next
+    .diff-prev
+      min-width $touch-target-min
+      min-height $touch-target-min
+      padding 0.5em
+
+// =============================================================================
+// SAFE AREA SUPPORT FOR NOTCHED DEVICES
+// =============================================================================
+
+// Safe area inset for modern mobile devices
+@supports (padding: max(0px))
+  // Respect notched devices
+  .mw-body
+  #content
+  .mw-editform
+    @media (max-width 768px)
+      padding-left max(1em, env(safe-area-inset-left))
+      padding-right max(1em, env(safe-area-inset-right))
+
+  // Fixed bottom elements need bottom safe area
+  .mw-footer
+    @media (max-width 768px)
+      padding-bottom max(0.5em, env(safe-area-inset-bottom))
+
+// =============================================================================
+// MOBILE KEYBOARD SUPPORT
+// =============================================================================
+
+// Adjust layout when virtual keyboard is visible
+@supports (padding: env(keyboard-inset-bottom))
+  .mw-editform
+    @media (max-width 768px)
+      padding-bottom calc(1em + env(keyboard-inset-bottom))
+
+// =============================================================================
+// HORIZONTAL SCROLL ON TOUCH DEVICES
+// =============================================================================
+
+// Smooth horizontal scrolling for code blocks and tables on touch
+pre
+code
+.mw-code
+  @media (pointer coarse)
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+    scroll-behavior smooth
+
+// Tables on mobile - horizontal scroll with visual hint
+table.wikitable
+  @media (max-width 768px)
+    display block
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+
+    // Fade indicator for scrollable content
+    position relative
+
+    &::after
+      content ''
+      position absolute
+      right 0
+      top 0
+      bottom 0
+      width 20px
+      background linear-gradient(to right, transparent, rgba($base, 0.6))
+      pointer-events none
+      display none // Only show when actually scrollable via JS
+
+// =============================================================================
+// TOUCH CURSOR INDICATORS
+// =============================================================================
+
+// Change cursor to indicate interactivity on touch
+@media (pointer coarse)
+  a
+  button
+  .mw-ui-button
+  input[type="checkbox"]
+  input[type="radio"]
+  input[type="submit"]
+  input[type="button"]
+    cursor pointer
+
+// =============================================================================
+// REDUCED MOTION FOR TOUCH ANIMATIONS
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .swipeable::after
+  .horizontal-scroll::before
+    display none
+
+  pre
+  code
+  .mw-code
+    @media (pointer coarse)
+      scroll-behavior auto
+      overflow-x auto
