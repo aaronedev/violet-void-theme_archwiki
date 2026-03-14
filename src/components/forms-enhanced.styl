@@ -1602,3 +1602,152 @@ select:blank[optional]
     &::placeholder
       color $light
       opacity 1
+
+// =============================================================================
+// :autofill PSEUDO-CLASS - Style Autofilled Inputs (85%+ browser support)
+// =============================================================================
+// Style inputs when browser autofills them (username, password, etc.)
+// Browser support: Chrome/Edge 99+, Firefox 119+, Safari 16.5+
+// Note: WebKit prefix required for Safari
+
+// Apply to all autofilled inputs
+input:-webkit-autofill
+input:-webkit-autofill:hover
+input:-webkit-autofill:focus
+input:-webkit-autofill:active
+  // Override default yellow background
+  -webkit-text-fill-color $light
+  -webkit-box-shadow 0 0 0px 1000px $darker inset
+  transition background-color 5000s ease-in-out 0s
+
+// Username/password autofill specific styling
+input[name="wpName"]:autofill
+input[name="wpName"]:-webkit-autofill
+input[name="wpPassword"]:autofill
+input[name="wpPassword"]:-webkit-autofill
+input[type="email"]:autofill
+input[type="email"]:-webkit-autofill
+input[type="tel"]:autofill
+input[type="tel"]:-webkit-autofill
+input[type="username"]:autofill
+input[type="username"]:-webkit-autofill
+  background-color $darker
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Credit card / payment autofill styling
+input[autocomplete="cc-name"]:autofill
+input[autocomplete="cc-name"]:-webkit-autofill
+input[autocomplete="cc-number"]:autofill
+input[autocomplete="cc-number"]:-webkit-autofill
+  background linear-gradient(135deg, rgba($arch-blue, 0.05) 0%, rgba($darker, 0.1) 100%) !important
+  border-color $arch-blue
+
+// Prevent autofill animation flicker
+@supports (-webkit-appearance: none)
+  input:-webkit-autofill
+    animation-name onautofillstart
+
+@keyframes onautofillstart
+  from
+    background transparent
+  to
+    background $darker
+
+// =============================================================================
+// :indeterminate PSEUDO-CLASS - Style Indeterminate Checkboxes/Radios (97%+ browser support)
+// =============================================================================
+// Style checkboxes/radios in indeterminate state (neither checked nor unchecked)
+// Also applies to progress bars without value
+
+// Indeterminate checkbox styling
+input[type="checkbox"]:indeterminate
+input[type="checkbox"]:indeterminate:hover
+input[type="checkbox"]:indeterminate:focus
+  // Custom indeterminate indicator
+  appearance none
+  -webkit-appearance none
+  background-color $darker
+  border-color $border-subtle
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  // Custom checkmark for indeterminate state
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%) rotate(45deg)
+    width 8px
+    height 8px
+    background $arch-blue
+    border-radius 1px
+
+// Indeterminate radio button styling
+input[type="radio"]:indeterminate
+input[type="radio"]:indeterminate:hover
+input[type="radio"]:indeterminate:focus
+  appearance none
+  -webkit-appearance none
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 6px
+    height 6px
+    background $arch-blue
+    border-radius 50%
+
+// Progress bar in indeterminate state
+progress:indeterminate
+progress:not([value]):indeterminate
+  appearance none
+  -webkit-appearance none
+  background $darker
+  border none
+  border-radius $border-radius-sm
+
+  &::-webkit-progress-bar
+    background $darker
+    border-radius $border-radius-sm
+
+  &::-webkit-progress-value
+    background linear-gradient(90deg, $arch-blue 0%, lighten($arch-blue, 15%) 50%, $arch-blue 100%)
+    background-size 200% 100%
+    animation indeterminate-progress 1.5s ease-in-out infinite
+    border-radius $border-radius-sm
+
+  &::-moz-progress-bar
+    background linear-gradient(90deg, $arch-blue 0%, lighten($arch-blue, 15%) 50%, $arch-blue 100%)
+    background-size 200% 100%
+    animation indeterminate-progress 1.5s ease-in-out infinite
+    border-radius $border-radius-sm
+
+@keyframes indeterminate-progress
+  0%
+    background-position 100% 0
+  100%
+    background-position -100% 0
+
+// Checkbox container for custom styling
+.mw-ui-checkbox
+  input[type="checkbox"]:indeterminate
+    & + label::before
+      background-color $arch-blue
+      border-color $arch-blue
+
+      &::after
+        content ''
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        width 8px
+        height 2px
+        background $light
+        border-radius 1px
