@@ -3,6 +3,96 @@
 @import '../mixins/gradients'
 @import '../mixins/effects'
 
+// =============================================================================
+// ULTRA HIGH SPECIFICITY MAIN CONTENT DARK MODE
+// Force dark theme on ArchWiki main content area
+// =============================================================================
+
+@layer violet-void-content
+
+// Main content area - the core dark background
+html body div#content,
+html body div#bodyContent,
+html body div.mw-body,
+html body div.mw-body-content,
+html body div.mw-body-content.mw-body,
+html body #mw-content-text,
+html body div#mw-content-text,
+html body .mw-body .mw-body-content,
+html body .mw-parser-output,
+html body div.mw-parser-output,
+body .mw-body,
+body #content,
+body #mw-content-text,
+body .mw-body-content,
+body .mw-parser-output,
+#content #bodyContent,
+#content .mw-body,
+#content .mw-body-content,
+#content .mw-parser-output,
+.mw-body #content,
+.mw-body .mw-body-content,
+.mw-body .mw-parser-output,
+.mw-body-content #content,
+.mw-body-content .mw-body,
+.mw-body-content .mw-parser-output,
+.mw-parser-output
+  background-color: #181818 !important
+  color: #bfbfbf !important
+
+// Main content text
+html body div#content div.mw-body-content.mw-body p,
+html body div.mw-body-content p,
+html body .mw-body p,
+html body .mw-parser-output p,
+body .mw-body p,
+body .mw-parser-output p,
+#content p,
+#mw-content-text p,
+.mw-body p,
+.mw-body-content p,
+.mw-parser-output p
+  color: #e7e7e7 !important
+
+// Headings in main content
+html body .mw-body h1,
+html body .mw-body h2,
+html body .mw-body h3,
+html body .mw-body h4,
+html body .mw-body h5,
+html body .mw-body h6,
+html body .mw-parser-output h1,
+html body .mw-parser-output h2,
+html body .mw-parser-output h3,
+html body .mw-parser-output h4,
+html body .mw-parser-output h5,
+html body .mw-parser-output h6,
+body .mw-body h1,
+body .mw-body h2,
+body .mw-body h3,
+body .mw-body h4,
+body .mw-body h5,
+body .mw-body h6,
+body .mw-parser-output h1,
+body .mw-parser-output h2,
+body .mw-parser-output h3,
+body .mw-parser-output h4,
+body .mw-parser-output h5,
+body .mw-parser-output h6,
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6,
+#mw-content-text h1,
+#mw-content-text h2,
+#mw-content-text h3,
+#mw-content-text h4,
+#mw-content-text h5,
+#mw-content-text h6
+  color: #e7e7e7 !important
+
 // Custom counter styles for list markers
 // Uses @css{} wrapper for Stylus compatibility
 @css {

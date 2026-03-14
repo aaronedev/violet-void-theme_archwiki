@@ -137,11 +137,144 @@ div.archwiki-template-box.archwiki-template-box-warning
     color $secondary-red
 
 // =============================================================================
+// ULTRA HIGH SPECIFICITY NOTICE BOX OVERRIDES
+// Force dark theme on notice boxes
+// =============================================================================
+
+// High specificity notice box overrides
+
+// Target notice boxes with maximum specificity
+body .mw-body .mw-body-content .note,
+body .mw-body-content .note,
+.mw-body .note,
+.mw-body-content .note,
+.mw-parser-output .note,
+#content .note,
+#mw-content-text .note,
+.mw-body .mw-parser-output .note,
+body .mw-body .mw-body-content .tip,
+body .mw-body-content .tip,
+.mw-body .tip,
+.mw-body-content .tip,
+.mw-parser-output .tip,
+#content .tip,
+#mw-content-text .tip,
+.mw-body .mw-parser-output .tip,
+body .mw-body .mw-body-content .warning,
+body .mw-body-content .warning,
+.mw-body .warning,
+.mw-body-content .warning,
+.mw-parser-output .warning,
+#content .warning,
+#mw-content-text .warning,
+.mw-body .mw-parser-output .warning,
+body .mw-body .mw-body-content .important,
+body .mw-body-content .important,
+.mw-body .important,
+.mw-body-content .important,
+.mw-parser-output .important,
+#content .important,
+#mw-content-text .important,
+.mw-body .mw-parser-output .important,
+div.note,
+div.tip,
+div.warning,
+div.important,
+div[class*="note"],
+div[class*="tip"],
+div[class*="warning"],
+.mw-notice,
+.notification,
+.admonition,
+.admonition-note,
+.admonition-tip,
+.admonition-warning
+  background-color: #181818 !important
+  color: #bfbfbf !important
+  border-color: rgba(137, 80, 199, 0.25) !important
+  border-radius: 9px !important
+
+// Note specific styling - blue accent
+body .mw-body .note,
+body .mw-body .mw-parser-output .note,
+.note,
+div.note,
+.notification-note,
+.admonition-note
+  border-left: 4px solid #8950c7 !important
+  background: linear-gradient(135deg, rgba(137, 80, 199, 0.12), rgba(137, 80, 199, 0.06)) !important
+
+// Tip specific styling - green accent
+body .mw-body .tip,
+body .mw-body .mw-parser-output .tip,
+.tip,
+div.tip,
+.notification-tip,
+.admonition-tip
+  border-left: 4px solid #4bfe9b !important
+  background: linear-gradient(135deg, rgba(75, 254, 155, 0.12), rgba(75, 254, 155, 0.06)) !important
+
+// Warning specific styling - orange accent  
+body .mw-body .warning,
+body .mw-body .mw-parser-output .warning,
+.warning,
+div.warning,
+.notification-warning,
+.admonition-warning
+  border-left: 4px solid #fd7cff !important
+  background: linear-gradient(135deg, rgba(253, 124, 255, 0.12), rgba(253, 124, 255, 0.06)) !important
+
+// Important/Caution - red accent
+body .mw-body .important,
+body .mw-body .mw-parser-output .important,
+.important,
+div.important,
+.caution,
+.notification-error,
+.admonition-caution,
+.admonition-danger
+  border-left: 4px solid #ff1a67 !important
+  background: linear-gradient(135deg, rgba(255, 26, 103, 0.12), rgba(255, 26, 103, 0.06)) !important
+
+// Ensure text in notice boxes is readable
+.note p,
+.tip p,
+.warning p,
+.important p,
+div.note p,
+div.tip p,
+div.warning p,
+div.important p,
+.notification p,
+.admonition p
+  color: #e7e7e7 !important
+
+// Links in notice boxes
+.note a,
+.tip a,
+.warning a,
+.important a,
+div.note a,
+div.tip a,
+div.warning a,
+div.important a
+  color: #c7b8ff !important
+
+.note a:hover,
+.tip a:hover,
+.warning a:hover,
+.important a:hover,
+div.note a:hover,
+div.tip a:hover,
+div.warning a:hover,
+div.important a:hover
+  color: #fd7cff !important
+
+// =============================================================================
 // MIX-BLEND-MODE FOR EMPHASIS EFFECTS
 // =============================================================================
 
 // Subtle blend effects for emphasis and overlays
-// Browser support: 97%+
 
 // Warning boxes with enhanced contrast via blend mode
 .warningbox
