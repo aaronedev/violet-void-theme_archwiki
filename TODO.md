@@ -1042,7 +1042,7 @@ Last updated: 2026-03-14 18:06
 
 ## 📱 Mobile-First Optimizations (New)
 
-- [ ] **Touch-Friendly Edit Controls** (97%+ browser support)
+- [x] **Touch-Friendly Edit Controls** (97%+ browser support) - Commit: 6a44dbf
   - File: `src/components/mobile.styl` (new file)
   - Larger touch targets (min 44px)
   - `touch-action: manipulation`
