@@ -1200,10 +1200,11 @@ Last updated: 2026-03-14 18:06
   - Theme backdrop behind dialogs/modals
   - Example: `dialog::backdrop { background: rgba(0,0,0,0.7); }`
 
-- [ ] **`:modal` Pseudo-class** (90%+ browser support)
+- [x] **`:modal` Pseudo-class** (90%+ browser support)
   - File: `src/components/ui-components.styl`
   - Style modal dialogs differently from modeless
   - Centering, z-index management
+  - Commit: fac20f1
 
 ## 🧮 CSS Math Functions (New)
 
