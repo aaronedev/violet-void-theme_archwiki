@@ -2044,3 +2044,108 @@ input:out-of-range:invalid
   input:in-range
   input:out-of-range
     transition none
+
+// =============================================================================
+// :READ-ONLY / :READ-WRITE STATES (97%+ browser support)
+// Visual distinction for editable vs static/readonly content
+// =============================================================================
+
+// Read-only inputs - visual distinction for non-editable content
+input:read-only
+textarea:read-only
+select:read-only
+  background $lighter
+  border-color $light
+  color $light
+  cursor not-allowed
+  opacity 0.8
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Read-only with explicit class (for manual control)
+input.readonly
+textarea.readonly
+select.readonly
+  background $lighter
+  border-color $light
+  color $light
+  cursor not-allowed
+  opacity 0.8
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Read-only with placeholder - style placeholder differently
+input:read-only::placeholder
+textarea:read-only::placeholder
+  color $light
+
+// Read-write (editable) inputs - default styling reinforced
+input:read-write
+textarea:read-write
+select:read-write
+  background $base
+  border-color $border
+  color $text
+  cursor text
+  transition border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Read-write with explicit class
+input.editable
+textarea.editable
+select.editable
+  background $base
+  border-color $border
+  color $text
+  cursor text
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Read-only fieldsets - style entire sections as readonly
+fieldset:read-only
+  background $lighter
+  opacity 0.9
+
+  legend
+    color $light
+    font-style italic
+
+// ContentEditable areas that are read-only
+[contenteditable="false"]:read-write
+  background $lighter
+  border 1px dashed $light
+  cursor default
+
+// Form sections with all inputs readonly - container styling
+.form-readonly
+  background $lighter
+  border-radius 4px
+  padding 1em
+
+  input:read-only
+  textarea:read-only
+  select:read-only
+    background lighten($lighter, 2%)
+
+  > legend
+    color $light
+    font-weight 600
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  input:read-only
+  input:read-write
+  textarea:read-only
+  textarea:read-write
+    transition none
