@@ -432,6 +432,7 @@
 | 2026-03-10 | Twenty-ninth scout | Added contrast-color() and progress() CSS functions, :open/:interest-source/:interest-target pseudo-classes, media state pseudo-classes (:seeking, :stalled, :volume-locked), ArchWiki navigation patterns (magic words, interlanguage links, category placement, related articles positioning), {{Related2}} and {{Lowercase title}} template support |
 | 2026-03-14 | ::checkmark Pseudo-element for Select Checkmarks | d2a07e1 |
 | 2026-03-14 | filter: contrast() for accessibility/readability | e1b897fc |
+| 2026-03-14 | Scrollable Table Wrapper for performance | 92cf67a |
 
 ---
 
@@ -2890,7 +2891,12 @@ Last updated: 2026-03-14 18:06
   - Sort animation
   - Header hover state
 
-- [ ] **Scrollable Table Wrapper** (CSS)
+- [x] **Scrollable Table Wrapper** (CSS)
+  - File: `src/components/tables.styl`
+  - Horizontal scroll wrapper with shadow fade indicators
+  - Sticky first column support, scroll indicators
+  - Mobile card layout for very small screens
+  - Commit: 92cf67a
   - File: `src/components/tables.styl`
   - Horizontal scroll indicator
   - Sticky first column

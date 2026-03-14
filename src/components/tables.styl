@@ -469,3 +469,171 @@ table
       &.alternate
         background-color rgba($dark, 0.5)
 
+// =============================================================================
+// SCROLLABLE TABLE WRAPPER - Performance & Mobile UX
+// =============================================================================
+// Browser support: 97%+
+// Enables horizontal scrolling for wide tables with visual affordances
+// Features: shadow fade on edges, sticky first column, scroll indicators
+
+// Wrapper for horizontally scrollable tables
+.table-scroll-wrapper
+  position relative
+  overflow-x auto
+  overflow-y visible
+  max-width 100%
+  margin 1em 0
+
+  // Enable horizontal scrolling with smooth momentum
+  -webkit-overflow-scrolling touch
+  scroll-behavior smooth
+
+  // Shadow fade indicators for scroll position
+  &::before
+  &::after
+    content ''
+    position absolute
+    top 0
+    bottom 0
+    width 20px
+    pointer-events none
+    z-index 1
+    transition opacity 0.2s ease
+
+  // Left shadow (visible when scrolled right)
+  &::before
+    left 0
+    background linear-gradient(to right, rgba($darker, 0.15), transparent)
+    opacity 0
+
+  // Right shadow (visible when scrolled left)
+  &::after
+    right 0
+    background linear-gradient(to left, rgba($darker, 0.15), transparent)
+    opacity 1
+
+  // Show left shadow when scrolled right
+  &.scrolled-right::before
+    opacity 1
+
+  // Hide right shadow when scrolled to end
+  &.scrolled-left::after
+    opacity 0
+
+// Scroll indicator badges
+.scroll-indicator
+  display flex
+  align-items center
+  gap 0.5em
+  color $muted
+  font-size 0.75em
+  padding 0.25em 0.5em
+  background rgba($darker, 0.5)
+  border-radius $border-radius-sm
+
+  &::before
+    content '↔'
+    font-size 0.9em
+
+// Sticky first column for wide tables
+.table-scroll-wrapper
+  .sticky-column
+    position sticky
+    left 0
+    z-index 2
+    background-color inherit
+
+    // Add border separator
+    &::after
+      content ''
+      position absolute
+      top 0
+      right 0
+      bottom 0
+      width 2px
+      background linear-gradient(to right, rgba($border-subtle, 0.5), transparent)
+
+  // Ensure sticky column works with different table backgrounds
+  .wikitable .sticky-column
+    background-color rgba($arch-blue, 0.1)
+
+  .infobox .sticky-column
+    background-color rgba($arch-blue, 0.08)
+
+// Enhanced scrollbar for table wrapper
+.table-scroll-wrapper
+  scrollbar-color rgba($arch-blue, 0.4) transparent
+  scrollbar-width thin
+
+  &::-webkit-scrollbar
+    height 6px
+
+  &::-webkit-scrollbar-track
+    background transparent
+
+  &::-webkit-scrollbar-thumb
+    background rgba($arch-blue, 0.3)
+    border-radius 3px
+
+    &:hover
+      background rgba($arch-blue, 0.5)
+
+// Mobile-first: always show horizontal scroll on small screens
+@media (max-width 768px)
+  .table-scroll-wrapper
+    overflow-x scroll
+
+    // Larger touch target for scrolling
+    padding-bottom 0.5em
+
+// Desktop: show scroll indicators on hover
+@media (hover hover)
+  .table-scroll-wrapper
+    &:hover::before
+      opacity 1
+
+    &:hover::after
+      opacity 1
+
+// Print: disable scrolling, show full table
+@media print
+  .table-scroll-wrapper
+    overflow visible
+    max-width none
+
+    &::before
+    &::after
+      display none
+
+// Responsive table card layout for very small screens
+@media (max-width 480px)
+  .table-scroll-wrapper
+    &.cards-mode
+      display flex
+      flex-direction column
+      gap 1em
+
+      // Convert rows to cards
+      tr
+        display flex
+        flex-direction column
+        border 1px solid $border-subtle
+        border-radius $border-radius-md
+        padding 0.75em
+        background $base
+
+        td
+          display flex
+          justify-content space-between
+          padding 0.25em 0
+          border-bottom 1px solid $border-subtle
+
+          &:last-child
+            border-bottom none
+
+          &::before
+            content attr(data-label)
+            font-weight 600
+            color $muted
+            margin-right 1em
+
