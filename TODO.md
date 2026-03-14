@@ -368,6 +368,8 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-14 | @scroll-state container queries for scroll snapping | 4233450 |
+| 2026-03-14 | :snapped pseudo-class for snapped element styling | 4233450 |
 | 2026-03-14 | Translation Extension Styling | da55c63 |
 | 2026-03-14 | font-palette for color fonts | 89012be |
 | 2026-03-14 | @font-palette-values custom palettes | 89012be |
@@ -1907,14 +1909,19 @@ Last updated: 2026-03-14 22:10
 
 ## 📜 Scroll State Containers (New)
 
-- [ ] **`@scroll-state` Container Queries** (85%+ browser support)
+- [x] **`@scroll-state` Container Queries** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Query scroll state in CSS
   - `@scroll-state (snapped: x) { ... }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 4233450
 
-- [ ] **`:snapped` Pseudo-class** (85%+ browser support)
-  - File: `src/components/navigation.styl`
+- [x] **`:snapped` Pseudo-class** (85%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Style snapped scroll items
+  - `:snapped { background: var(--accent); }`
+  - Note: Wrap in `@css{}` for Stylus
+  - Commit: 4233450
   - Style snapped scroll items
   - `:snapped { background: var(--accent); }`
   - Note: Wrap in `@css{}` for Stylus
