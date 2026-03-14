@@ -388,6 +388,7 @@
 | 2026-03-14 | :indeterminate pseudo-class for checkboxes/radios | 5b2607e |
 | 2026-03-14 | :in-range/:out-of-range for range validation | b0ce774 |
 | 2026-03-14 | Math Extension Styling for MathML and LaTeX | b0fd9da |
+| 2026-03-14 | :read-only/:read-write states for form inputs | 030eb94 |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -1251,10 +1252,11 @@ Last updated: 2026-03-14 18:06
   - Stylus: Works directly
   - Commit: 91144ca
 
-- [ ] **`:read-only` / `:read-write` States** (97%+ browser support)
+- [x] **`:read-only` / `:read-write` States** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Visual distinction for editable vs static content
   - Stylus: Works directly
+  - Commit: 030eb94
 
 ## 🔲 Logical Properties Expansion (New)
 
