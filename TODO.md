@@ -368,6 +368,8 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-14 | font-palette for color fonts | 89012be |
+| 2026-03-14 | @font-palette-values custom palettes | 89012be |
 | 2026-03-10 | Print Images enhanced styling | ae8426b |
 | 2026-03-10 | @starting-style for entry/exit animations | 6445bd7 |
 | 2026-03-10 | widows/orphans control for print typography | 2a51280 |
@@ -433,7 +435,7 @@
 
 ---
 
-Last updated: 2026-03-14 17:39
+Last updated: 2026-03-14 18:06
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1481,17 +1483,19 @@ Last updated: 2026-03-14 17:39
 
 ## 🎨 Color Font Support (New)
 
-- [ ] **`font-palette` for Color Fonts** (87%+ browser support)
+- [x] **`font-palette` for Color Fonts** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Select color font palettes
   - `font-palette: normal`, `font-palette: light`
   - Stylus: Works directly
+  - Commit: 89012be
 
-- [ ] **`@font-palette-values` Custom Palettes** (87%+ browser support)
+- [x] **`@font-palette-values` Custom Palettes** (87%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define custom color font palettes
   - Override emoji/icon font colors
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 89012be
 
 - [ ] **`font-variant-alternates` for OpenType** (87%+ browser support)
   - File: `src/components/typography.styl`
