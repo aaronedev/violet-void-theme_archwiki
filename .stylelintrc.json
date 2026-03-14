@@ -16,7 +16,11 @@
         "ignoreProperties": [
           "interpolate-size",
           "navigation",
-          "copy-button-selectors"
+          "copy-button-selectors",
+          "render-subtree",
+          "contain-intrinsic-block-size",
+          "contain-intrinsic-inline-size",
+          "stylus/render-subtree"
         ]
       }
     ],
@@ -66,7 +70,8 @@
           "not",
           "nth-child",
           "local",
-          "global"
+          "global",
+          "until-found"
         ]
       }
     ],
