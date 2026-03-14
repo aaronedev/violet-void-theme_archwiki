@@ -1,0 +1,694 @@
+// =============================================================================
+// Advanced Content Elements - Violet Void ArchWiki Theme
+// Timeline, Map, Score, and Game Diagram Styling
+// Browser support: 97%+ (timeline), 85%+ (maps), 97%+ (score)
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// TIMELINE EXTENSION STYLING
+// =============================================================================
+// Timeline event cards, date formatting, connection line styling
+// Used by MediaWiki Timeline extension
+
+// Timeline container
+.timeline
+  position relative
+  margin 1.5em 0
+  padding-inline-start 2em
+
+  // Vertical timeline line
+  &::before
+    content ''
+    position absolute
+    inset-inline-start 0.5em
+    top 0
+    bottom 0
+    width 2px
+    background linear-gradient(180deg, $arch-blue, rgba($arch-blue, 0.3))
+    border-radius 1px
+
+// Timeline event node/marker
+.timeline-event
+  position relative
+  margin-bottom 1.5em
+  padding 0.8em 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition transition-medium
+
+  // Hover state for interactivity
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+    box-shadow $shadow-subtle
+
+  // Timeline dot on the line
+  &::before
+    content ''
+    position absolute
+    inset-inline-start -1.75em
+    top 1em
+    width 12px
+    height 12px
+    background $arch-blue
+    border 2px solid $base
+    border-radius 50%
+    box-shadow 0 0 8px rgba($arch-blue, 0.5)
+
+// Timeline date/time stamp
+.timeline-date
+  display inline-block
+  font-size 0.85em
+  font-weight 600
+  color $arch-blue
+  margin-bottom 0.4em
+  font-family $font-mono
+
+  // Date formatting with tabular nums for alignment
+  font-variant-numeric tabular-nums
+
+// Timeline title
+.timeline-title
+  font-size 1.1em
+  font-weight 600
+  color $lighter
+  margin 0 0 0.3em 0
+  line-height 1.4
+
+// Timeline description/body
+.timeline-body
+  color $light
+  line-height 1.6
+  margin 0
+
+  // Nested content
+  p
+    margin 0.5em 0
+
+    &:first-child
+      margin-top 0
+
+    &:last-child
+      margin-bottom 0
+
+// Timeline event - alternating layout for more visual interest
+.timeline-event:nth-child(odd)
+  background rgba($dark, 0.8)
+
+.timeline-event:nth-child(even)
+  background rgba($arch-blue, 0.05)
+  border-color rgba($arch-blue, 0.15)
+
+// Current/active timeline event
+.timeline-event.current
+.timeline-event.active
+  border-color $arch-blue
+  box-shadow 0 0 12px rgba($arch-blue, 0.2)
+
+  &::before
+    background $green
+    box-shadow 0 0 12px rgba($green, 0.6)
+    animation timeline-pulse 2s ease-in-out infinite
+
+// Past/completed timeline event
+.timeline-event.past
+  opacity 0.75
+
+  &::before
+    background $light
+    box-shadow none
+
+// Future timeline event
+.timeline-event.future
+  border-style dashed
+
+  &::before
+    background transparent
+    border 2px dashed $arch-blue
+
+// Timeline with images
+.timeline-image
+  float inset-inline-start
+  margin-inline-end 1em
+  margin-bottom 0.5em
+  max-width 150px
+  border-radius $border-radius-sm
+  border 1px solid $border-subtle
+
+  // Clear floated images
+  & + .timeline-body
+    clear both
+
+// Horizontal timeline layout
+.timeline.horizontal
+  display flex
+  flex-direction row
+  overflow-x auto
+  padding-inline-start 0
+  padding-block-start 2em
+  gap 1.5em
+  scrollbar-width thin
+
+  &::before
+    inset-inline-start 0
+    inset-inline-end 0
+    top 0.5em
+    width auto
+    height 2px
+    background linear-gradient(90deg, $arch-blue, rgba($arch-blue, 0.3))
+
+  .timeline-event
+    flex 0 0 auto
+    min-width 200px
+    max-width 300px
+
+    &::before
+      inset-inline-start 50%
+      top -1.75em
+      transform translateX(-50%)
+
+// Timeline with custom colors
+@css {
+  @property --timeline-color {
+    syntax: '<color>';
+    initial-value: #8950c7;
+    inherits: false;
+  }
+}
+
+// CSS-only timeline with custom properties (progressive enhancement)
+.timeline-custom
+  --timeline-color #8950c7
+  --timeline-width 2px
+
+  &::before
+    background var(--timeline-color)
+
+// Animation for current timeline marker
+@keyframes timeline-pulse
+  0%
+  100%
+    transform scale(1)
+    opacity 1
+  50%
+    transform scale(1.2)
+    opacity 0.8
+
+// Reduced motion preference
+@media (prefers-reduced-motion reduce)
+  .timeline-event.current::before
+    animation none
+
+  .timeline-event
+    transition none
+
+// =============================================================================
+// MAP/GEO EXTENSION STYLING
+// =============================================================================
+// Interactive map container, marker styling, popup card theming
+
+// Map container
+.mw-map
+  margin 1.5em 0
+  border-radius $border-radius-lg
+  overflow hidden
+  border 1px solid $border-subtle
+
+  // Map controls
+  .map-controls
+    background rgba($dark, 0.9)
+    border-radius $border-radius-sm
+    padding 0.3em
+
+    button
+    .leaflet-control-zoom a
+      background $dark
+      color $lighter
+      border 1px solid $border-subtle
+
+      &:hover
+        background $arch-blue
+        color $white
+
+// Map popup card
+.leaflet-popup-content-wrapper
+.map-popup
+  background $dark
+  color $light
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+
+.leaflet-popup-tip
+.map-popup::after
+  background $dark
+
+// Map marker/custom marker
+.map-marker
+.leaflet-marker-icon
+  background $arch-blue
+  border 2px solid $lighter
+  border-radius 50%
+  box-shadow 0 2px 8px rgba(0, 0, 0, 0.4)
+
+  // Marker with custom icon
+  &.custom
+    background-size contain
+    background-repeat no-repeat
+    background-position center
+    border-radius 0
+    border none
+
+// Map popup content
+.popup-content
+  min-width 150px
+  max-width 300px
+
+  .popup-title
+    font-weight 600
+    color $lighter
+    margin-bottom 0.5em
+    padding-bottom 0.3em
+    border-bottom 1px solid $border-subtle
+
+  .popup-description
+    color $light
+    line-height 1.5
+    font-size 0.95em
+
+  .popup-link
+    display inline-block
+    margin-top 0.5em
+    color $arch-blue
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+// Map caption
+.map-caption
+  font-size 0.9em
+  color $muted
+  text-align center
+  margin-top 0.5em
+  font-style italic
+
+// =============================================================================
+// SCORE/MUSIC NOTATION STYLING
+// =============================================================================
+// Sheet music container, score background, audio player integration
+
+// Score/Music notation container
+.mw-score
+.score
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  overflow-x auto
+
+  // Score rendering area
+  .score-content
+  svg
+    display block
+    margin 0 auto
+
+  // Musical notation styling
+  path
+  rect
+  text
+    fill $light
+    stroke $light
+
+  // Staff lines
+  .staff-line
+    stroke $muted
+    stroke-width 1
+
+  // Note heads
+  .note-head
+    fill $lighter
+
+  // Accidentals
+  .accidental
+    fill $arch-blue
+
+  // Bar lines
+  .bar-line
+    stroke $light
+    stroke-width 1.5
+
+  // Clef symbols
+  .clef
+    fill $secondary-blue
+
+  // Time signature
+  .time-signature
+    fill $lighter
+    font-weight bold
+
+  // Rest symbols
+  .rest
+    fill $light
+    opacity 0.7
+
+// Audio player for score playback
+.score-audio
+.mw-score-audio
+  margin-top 1em
+  padding 0.8em
+  background rgba($base, 0.8)
+  border-radius $border-radius-md
+  display flex
+  align-items center
+  gap 1em
+
+  // Play/pause button
+  .play-button
+    width 40px
+    height 40px
+    border-radius 50%
+    background $arch-blue
+    border none
+    cursor pointer
+    display flex
+    align-items center
+    justify-content center
+    transition transition-fast
+
+    &:hover
+      background lighten($arch-blue, 10%)
+      transform scale(1.05)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  // Progress bar
+  .progress-bar
+    flex 1
+    height 6px
+    background $dark
+    border-radius 3px
+    overflow hidden
+    cursor pointer
+
+    .progress-fill
+      height 100%
+      background linear-gradient(90deg, $arch-blue, lighten($arch-blue, 15%))
+      border-radius 3px
+      width 0%
+      transition width 0.1s linear
+
+  // Time display
+  .time-display
+    font-family $font-mono
+    font-size 0.85em
+    color $light
+    font-variant-numeric tabular-nums
+    min-width 80px
+    text-align center
+
+// Score controls
+.score-controls
+  display flex
+  gap 0.5em
+  margin-top 0.8em
+
+  button
+    padding 0.4em 0.8em
+    background rgba($arch-blue, 0.15)
+    border 1px solid rgba($arch-blue, 0.3)
+    border-radius $border-radius-sm
+    color $light
+    cursor pointer
+    font-size 0.9em
+    transition transition-fast
+
+    &:hover
+      background rgba($arch-blue, 0.25)
+      border-color rgba($arch-blue, 0.5)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &.active
+      background $arch-blue
+      color $white
+
+// Score caption
+.score-caption
+  font-size 0.9em
+  color $muted
+  text-align center
+  margin-top 0.5em
+  font-style italic
+
+// =============================================================================
+// CHESS/GO DIAGRAM STYLING
+// =============================================================================
+// Game board theming, piece visibility, move highlighting
+
+// Chess diagram container
+.chess-board
+.mw-chess
+  margin 1.5em auto
+  display inline-block
+  border 3px solid $border-subtle
+  border-radius $border-radius-sm
+  background $dark
+  padding 4px
+
+  // Chess board grid
+  table.chessboard
+  .chessboard-table
+    border-collapse collapse
+    border-spacing 0
+
+    td
+      width 40px
+      height 40px
+      text-align center
+      vertical-align middle
+      font-size 28px
+      line-height 1
+
+      // Light square
+      &.light
+        background rgba(255, 255, 255, 0.08)
+
+      // Dark square
+      &.dark
+        background rgba(137, 80, 199, 0.15)
+
+      // Highlighted move
+      &.highlight
+      &.selected
+        background rgba($arch-blue, 0.4)
+
+      // Last move highlight
+      &.last-move
+        background rgba($green, 0.3)
+
+      // Check highlight
+      &.in-check
+        background rgba($red, 0.3)
+
+      // Possible move indicator
+      &.possible-move::after
+        content ''
+        display block
+        width 12px
+        height 12px
+        background rgba($arch-blue, 0.5)
+        border-radius 50%
+        margin 0 auto
+
+// Chess piece styling
+.chess-piece
+  &.white
+    color $white
+    text-shadow 0 1px 2px rgba(0, 0, 0, 0.5)
+
+  &.black
+    color $dark
+    text-shadow 0 0 2px rgba(255, 255, 255, 0.3)
+
+// Chess coordinate labels
+.chess-coordinates
+  font-size 0.7em
+  color $muted
+  font-family $font-mono
+
+  .rank
+    display table-cell
+    vertical-align middle
+    padding 0 4px
+
+  .file
+    display table-row
+    text-align center
+    padding 4px 0
+
+// Move list / PGN display
+.chess-moves
+.pgn-display
+  margin 1em 0
+  padding 0.8em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.8
+  overflow-x auto
+  white-space pre-wrap
+
+  .move-number
+    color $muted
+    margin-inline-end 0.5em
+
+  .move-white
+  .move-black
+    color $light
+
+  .move-white
+    color $white
+
+  .current-move
+    background rgba($arch-blue, 0.3)
+    padding 0.1em 0.3em
+    border-radius 2px
+
+  .comment
+    color $comment
+    font-style italic
+
+// Go diagram container
+.go-board
+.mw-go
+  margin 1.5em auto
+  display inline-block
+  background rgba($dark, 0.6)
+  padding 8px
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+
+  // Go board grid
+  table.goban
+    border-collapse collapse
+    background transparent
+
+    td
+      width 24px
+      height 24px
+      text-align center
+      vertical-align middle
+      position relative
+
+      // Grid intersection
+      &::before
+        content ''
+        position absolute
+        inset 0
+        background-image linear-gradient($light 1px, transparent 1px),
+          linear-gradient(90deg, $light 1px, transparent 1px)
+        background-size 24px 24px
+        background-position center
+        opacity 0.3
+
+      // Star point (hoshi)
+      &.hoshi::after
+        content ''
+        position absolute
+        width 6px
+        height 6px
+        background $dark
+        border-radius 50%
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+
+// Go stone styling
+.go-stone
+  width 20px
+  height 20px
+  border-radius 50%
+  position relative
+  z-index 1
+  box-shadow 0 2px 4px rgba(0, 0, 0, 0.4)
+
+  &.black
+    background radial-gradient(circle at 30% 30%, #505050, #0a0a0a)
+
+  &.white
+    background radial-gradient(circle at 30% 30%, #ffffff, #d0d0d0)
+
+// Go move markers
+.go-move
+  position absolute
+  font-size 10px
+  font-weight bold
+  z-index 2
+
+  &.black-stone .go-stone ~ &
+    color $white
+
+  &.white-stone .go-stone ~ &
+    color $dark
+
+// Game diagram caption
+.diagram-caption
+  font-size 0.9em
+  color $muted
+  text-align center
+  margin-top 0.5em
+  font-style italic
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width 768px)
+  .timeline
+    padding-inline-start 1.5em
+
+    &::before
+      inset-inline-start 0.25em
+
+  .timeline-event
+    padding 0.6em 0.8em
+
+    &::before
+      inset-inline-start -1.25em
+      width 10px
+      height 10px
+
+  .timeline.horizontal
+    padding-block-start 1.5em
+    gap 1em
+
+    .timeline-event
+      min-width 160px
+      max-width 220px
+
+      &::before
+        top -1.25em
+
+  .chess-board td
+  .mw-chess td
+    width 32px
+    height 32px
+    font-size 22px
+
+  .go-board td
+    width 20px
+    height 20px
+
+  .go-stone
+    width 16px
+    height 16px
