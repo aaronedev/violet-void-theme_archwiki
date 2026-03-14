@@ -368,6 +368,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-14 | Translation Extension Styling | da55c63 |
 | 2026-03-14 | font-palette for color fonts | 89012be |
 | 2026-03-14 | @font-palette-values custom palettes | 89012be |
 | 2026-03-10 | Print Images enhanced styling | ae8426b |
@@ -867,11 +868,12 @@ Last updated: 2026-03-14 21:57
   - Non-Latin script line-height
   - Commit: e6b15ff
 
-- [ ] **Translation Extension Styling** (CSS)
+- [x] **Translation Extension Styling** (CSS)
   - File: `src/components/extensions.styl`
   - Translation banner styling
   - Language selector dropdown
   - Outdated translation indicator
+  - Commit: da55c63
 
 ## 🔧 Extension Compatibility (New)
 

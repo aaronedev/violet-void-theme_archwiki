@@ -896,3 +896,205 @@ cite
   .citation-needed
   .references-backlink
     transition none
+
+// =============================================================================
+// TRANSLATION EXTENSION STYLING
+// =============================================================================
+
+// Translation banner styling
+// For ContentTranslation, Translate, and other translation extensions
+
+.translation-details
+  // Translation banner container
+  &.translation-notice
+    background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.05))
+    border 1px solid rgba($arch-blue, 0.2)
+    border-radius $border-radius-md
+    padding 1em
+    margin-bottom 1em
+
+  // Translation progress indicator
+  .translation-progress
+    background rgba($arch-blue, 0.1)
+    border-radius $border-radius-sm
+    height 8px
+    overflow hidden
+
+    .progress-fill
+      background linear-gradient(90deg, $arch-blue, $secondary-blue)
+      height 100%
+      transition width 0.3s ease
+
+// Language selector dropdown
+.language-selector
+  // Dropdown container
+  &.mw-translation-editor-language-selector
+  &.mw-ui-construct
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em
+
+    &:focus-within
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  // Language option
+  .language-option
+    padding 0.5em 0.75em
+    border-radius $border-radius-sm
+    cursor pointer
+    transition background 0.2s
+
+    &:hover
+      background rgba($arch-blue, 0.1)
+
+    // Selected language
+    &.selected
+      background rgba($arch-blue, 0.15)
+      color $arch-blue
+
+// Outdated translation indicator
+.translation-outdated
+  // Warning banner for outdated translations
+  &.outdated-translation
+    background rgba($orange, 0.1)
+    border 1px solid rgba($orange, 0.3)
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    margin-bottom 1em
+    display flex
+    align-items center
+    gap 0.5em
+
+    // Warning icon
+    .outdated-icon
+      color $orange
+      font-size 1.2em
+
+    // Message text
+    .outdated-message
+      color rgba($light, 0.9)
+      font-size 0.95em
+
+    // Link to original
+    .view-original
+      color $arch-blue
+      text-decoration underline
+      cursor pointer
+
+      &:hover
+        color $secondary-blue
+
+// Translation status badges
+.translation-status-badge
+  // Completed translation
+  &.translated
+    background rgba($green, 0.15)
+    color $green
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 600
+
+  // In-progress translation
+  &.in-progress
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 600
+
+  // Needs review
+  &.needs-review
+    background rgba($orange, 0.15)
+    color $orange
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 600
+
+// Translation editor surface
+.translation-editor
+  // Editor container
+  &.mw-translation-editor
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-lg
+    padding 1em
+
+  // Source text panel
+  .source-text-panel
+    background rgba($dark, 0.5)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+
+    .source-label
+      color rgba($light, 0.6)
+      font-size 0.85em
+      margin-bottom 0.5em
+
+    .source-text
+      color rgba($light, 0.9)
+      line-height 1.6
+
+  // Target text panel
+  .target-text-panel
+    background rgba($dark, 0.5)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+
+    .target-label
+      color rgba($light, 0.6)
+      font-size 0.85em
+      margin-bottom 0.5em
+
+    .target-text
+      color rgba($light, 0.9)
+      line-height 1.6
+
+// Translation toolbar
+.translation-toolbar
+  // Toolbar container
+  &.mw-translation-toolbar
+    background linear-gradient(180deg, rgba($arch-blue, 0.08), transparent)
+    border-bottom 1px solid $border-subtle
+    padding 0.5em
+    display flex
+    gap 0.5em
+
+  // Tool button
+  .translation-tool-button
+    background rgba($arch-blue, 0.1)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.4em 0.75em
+    color rgba($light, 0.9)
+    cursor pointer
+    transition all 0.2s
+
+    &:hover
+      background rgba($arch-blue, 0.2)
+      border-color $arch-blue
+
+    &:active
+      background rgba($arch-blue, 0.25)
+
+    // Disabled state
+    &:disabled
+      opacity 0.5
+      cursor not-allowed
+
+// Reduced motion for translation interactions
+@media (prefers-reduced-motion reduce)
+  .translation-details .translation-progress .progress-fill
+    transition none
+
+  .translation-status-badge
+    transition none
+
+  .translation-toolbar .translation-tool-button
+    transition none
