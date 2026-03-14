@@ -386,6 +386,7 @@
 | 2026-03-14 | :autofill pseudo-class for autofilled inputs | 5b2607e |
 | 2026-03-14 | :user-valid/:user-invalid for post-interaction validation | ea9ec42 |
 | 2026-03-14 | :indeterminate pseudo-class for checkboxes/radios | 5b2607e |
+| 2026-03-14 | :in-range/:out-of-range for range validation | b0ce774 |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -1628,11 +1629,12 @@ Last updated: 2026-03-14 18:06
   - Stylus: Works directly
   - Commit: 5b2607e
 
-- [ ] **`:in-range` / `:out-of-range`** (97%+ browser support)
+- [x] **`:in-range` / `:out-of-range`** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style inputs based on min/max range
   - Visual feedback for valid/invalid range
   - Stylus: Works directly
+  - Commit: b0ce774
 
 - [ ] **`:default` Pseudo-class** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`

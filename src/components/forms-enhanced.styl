@@ -1984,3 +1984,63 @@ input:placeholder-shown ~ .required-indicator
 input:not(:placeholder-shown)[required] + label .required-indicator
 input:not(:placeholder-shown) ~ .required-indicator
   display inline
+
+// =============================================================================
+// :in-range / :out-of-range - Range Validation Styling
+// =============================================================================
+
+// Note: 97%+ browser support
+// Style inputs based on min/max range constraints
+// Applies to number, range, date, time, datetime-local inputs with min/max
+
+// In-range: value is within min/max bounds
+input:in-range
+textarea:in-range
+  border-color $arch-blue
+  background lighten($base, 0.5%)
+  transition border-color 0.2s ease, background-color 0.2s ease
+
+// Add subtle glow for in-range state
+input:in-range:focus
+textarea:in-range:focus
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Out-of-range: value is outside min/max bounds
+input:out-of-range
+textarea:out-of-range
+  border-color $secondary-red
+  background rgba($secondary-red, 0.05)
+  transition border-color 0.2s ease, background-color 0.2s ease
+
+// Add warning glow for out-of-range state
+input:out-of-range:focus
+textarea:out-of-range:focus
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.2)
+
+// Range input specific styling for in-range (thumb color)
+input[type="range"]:in-range
+  &::-webkit-slider-thumb
+    background $arch-blue
+
+  &::-moz-range-thumb
+    background $arch-blue
+
+// Range input specific styling for out-of-range (warning thumb)
+input[type="range"]:out-of-range
+  &::-webkit-slider-thumb
+    background $secondary-red
+
+  &::-moz-range-thumb
+    background $secondary-red
+
+// Combined with :valid/:invalid for extra feedback
+input:in-range:valid
+input:out-of-range:invalid
+  // Additional styling if needed
+  // Most browsers handle this automatically
+
+// Reduced motion support for range inputs
+@media (prefers-reduced-motion reduce)
+  input:in-range
+  input:out-of-range
+    transition none
