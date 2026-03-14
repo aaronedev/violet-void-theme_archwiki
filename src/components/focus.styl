@@ -1,0 +1,142 @@
+// Focus Styles
+// Enhanced focus indicators for accessibility
+// Browser support: 97%+ for outline-style: auto
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// PLATFORM NATIVE FOCUS RING
+// =============================================================================
+
+// outline-style: auto provides platform-native focus ring
+// - Windows: dotted/dashed ring (Windows High Contrast Mode compatible)
+// - macOS: native focus ring
+// - Linux: depends on GTK theme
+
+// Apply to all interactive elements
+a
+button
+input
+select
+textarea
+[tabindex]
+  &:focus
+    outline-style auto
+    outline-width 2px
+    outline-color var(--accent-color, $arch-blue)
+
+// Focus visible polyfill for older browsers
+:focus:not(:focus-visible)
+  outline none
+
+:focus-visible
+  outline-style auto
+  outline-width 2px
+  outline-color var(--accent-color, $arch-blue)
+  outline-offset 2px
+
+// =============================================================================
+// OUTLINE OFFSET ENHANCEMENT
+// =============================================================================
+
+// Additional spacing between element and focus ring
+// Improves visibility without interfering with layout
+
+a
+button
+input[type="checkbox"]
+input[type="radio"]
+  &:focus-visible
+    outline-offset 3px
+
+// Links need more offset for better visibility
+.mw-parser-output a
+  &:focus-visible
+    outline-offset 4px
+
+// =============================================================================
+// CUSTOM FOCUS STYLES FOR SPECIFIC ELEMENTS
+// =============================================================================
+
+// Form inputs - stronger focus indicator
+input
+select
+textarea
+  &:focus-visible
+    border-color var(--accent-color, $arch-blue)
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Buttons - clear focus indication
+button
+.mw-ui-button
+  &:focus-visible
+    outline-width 3px
+    outline-offset 2px
+
+// Links in content - subtle but visible
+.mw-body-content a
+  &:focus-visible
+    outline-width 2px
+    outline-style auto
+    outline-color var(--accent-color, $arch-blue)
+    background-color rgba($arch-blue, 0.1)
+
+// Table headers with sorting - focus indicator
+table.sortable th
+  &:focus-visible
+    outline-style auto
+    outline-width 2px
+    outline-offset -2px
+    background-color rgba($arch-blue, 0.1)
+
+// Edit buttons and action links
+.mw-editsection a
+  &:focus-visible
+    outline-offset 3px
+
+// Skip link - make visible on focus
+#skip-link
+  &:focus
+    position absolute
+    top 0
+    left 0
+    z-index 10000
+    padding 0.5em 1em
+    background $arch-blue
+    color white
+    font-weight bold
+
+// =============================================================================
+// REDUCED MOTION RESPECT
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  a
+  button
+  input
+  select
+  textarea
+    &:focus
+      outline-style auto
+      animation none
+      transition none
+
+// =============================================================================
+// HIGH CONTRAST MODE SUPPORT
+// =============================================================================
+
+// Ensure focus is visible in forced colors mode
+@media (forced-colors active)
+  a
+  button
+  input
+  select
+  textarea
+    &:focus
+      outline-style auto
+      outline-width 2px
+
+  // Use system highlight color
+  :focus-visible
+    outline-color Highlight

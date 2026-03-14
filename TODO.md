@@ -2438,10 +2438,11 @@ Last updated: 2026-03-14 22:18
   - `outline-offset: 2px;`
   - Stylus: Works directly
 
-- [ ] **`outline-style: auto` for Platform Focus** (97%+ browser support)
+- [x] **`outline-style: auto` for Platform Focus** (97%+ browser support)
   - File: `src/components/focus.styl`
   - Platform-native focus ring
   - Stylus: Works directly
+  - Commit: 054df20
 
 - [ ] **`outline` Shorthand** (97%+ browser support)
   - File: `src/components/focus.styl`
