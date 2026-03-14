@@ -1534,11 +1534,12 @@ Last updated: 2026-03-10 13:30
 
 ## 🖨️ Print Enhancements (New)
 
-- [ ] **`page-orientation` Descriptor** (87%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`page-orientation` Descriptor** (87%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Control page orientation in `@page`
   - `@page { page-orientation: landscape; }`
   - Stylus: Works directly
+  - Commit: 04799e9
 
 - [x] **`print-color-adjust: exact`** (97%+ browser support)
   - File: `src/components/print-enhanced.styl`
@@ -7337,3 +7338,4 @@ Last updated: 2026-03-10 13:30
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
 | 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | 552d96c |
+| 2026-03-14 | page-orientation for print | Added page-orientation descriptor support for controlling portrait/landscape orientation in print styles | 04799e9 |
