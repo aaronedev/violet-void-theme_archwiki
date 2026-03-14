@@ -700,6 +700,60 @@ h2::after
           contain-intrinsic-size 0 50px
 
 // =============================================================================
+// CONTENT-VISIBILITY: HIDDEN=UNTIL-FOUND
+// =============================================================================
+
+// Hidden until found - collapsible content that's searchable
+// Browser support: 97%+ (Chrome 123+, Edge 123+, Opera 109+)
+// Use cases: Collapsible sections, hidden content that should be findable via Ctrl+F
+// Note: Must use @css{} wrapper as Stylus doesn't fully support this attribute value
+
+@css {
+  /* Hidden until found - content hidden but searchable */
+  .mw-collapsible-content[hidden="until-found"],
+  .hidden-until-found {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 150px;
+  }
+
+  /* When found via browser search, reveal content */
+  .mw-collapsible-content[hidden="until-found"]:has(+ *),
+  .hidden-until-found:has(+ *) {
+    /* Browser handles reveal automatically */
+  }
+
+  /* Details/summary with hidden=until-found */
+  details > .mw-collapsible-content[hidden="until-found"],
+  details > .hidden-until-found {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 200px;
+  }
+
+  /* Support for nested hidden content */
+  .mw-collapsible-content[hidden="until-found"] .mw-collapsible-content {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 50px;
+  }
+}
+
+// Class-based fallback for browsers without hidden=until-found support
+.hidden-until-found-fallback
+  content-visibility hidden
+  contain-intrinsic-size 0 150px
+
+// Combined with existing content-visibility patterns
+// Hidden until found takes priority for searchability
+.mw-collapsible[data-hidden-until-found]
+  .mw-collapsible-content
+    content-visibility hidden
+    contain-intrinsic-size 0 200px
+
+// Ensure hidden until found elements have proper intrinsic size hints
+// These help avoid layout shift when content is revealed
+[hidden="until-found"]
+  contain-intrinsic-size 0 150px
+
+// =============================================================================
 // HYPHENATION FOR NARROW CONTAINERS
 // =============================================================================
 
