@@ -959,11 +959,12 @@ Last updated: 2026-03-14 23:59
   - Result grouping headers
   - Commit: 13cbee3
 
-- [ ] **Related Pages Suggestion** (CSS)
+- [x] **Related Pages Suggestion** (CSS)
   - File: `src/components/search.styl`
   - Related article cards
   - Relevance indicator
   - Read more expansion
+  - Commit: e0fda6a
 
 ## 🎨 Skin Customization (New)
 
