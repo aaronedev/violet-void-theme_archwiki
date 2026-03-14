@@ -1539,11 +1539,13 @@ Last updated: 2026-03-10 13:30
   - `@page { page-orientation: landscape; }`
   - Stylus: Works directly
 
-- [ ] **`print-color-adjust: exact`** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`print-color-adjust: exact`** (97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Preserve theme colors in print
   - Force exact color reproduction
-  - Stylus: Works directly
+  - Apply to body, code blocks, message boxes, tables
+  - Includes -webkit-prefix for broader support
+  - Commit: 4f65eb2
 
 - [x] **`widows` / `orphans` Control** (97%+ browser support)
   - File: `src/components/print-enhanced.styl`
