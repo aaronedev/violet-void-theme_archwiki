@@ -34,6 +34,69 @@ select:invalid
   &:focus-visible
     box-shadow 0 0 0 3px rgba($secondary-red, 0.3)
 
+// =============================================================================
+// USER-VALID / USER-INVALID (Validation after user interaction)
+// Better UX - only shows validation after user has interacted with the field
+// Browser support: 89%+
+// =============================================================================
+
+input:user-valid
+textarea:user-valid
+select:user-valid
+  border-color $green
+  box-shadow 0 0 0 3px rgba($green, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($green, 0.35)
+
+  // Add a subtle checkmark indicator for valid fields
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234bfe9b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 1em
+  padding-right 2.5em
+
+input:user-invalid
+textarea:user-invalid
+select:user-invalid
+  border-color $secondary-red
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($secondary-red, 0.35)
+
+  // Add an error indicator for invalid fields
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ff1a67' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='15' y1='9' x2='9' y2='15'%3E%3C/line%3E%3Cline x1='9' y1='9' x2='15' y2='15'%3E%3C/line%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 1em
+  padding-right 2.5em
+
+// User-valid/invalid with explicit classes (for manual control)
+input.valid:user-valid
+input:valid:user-valid
+textarea.valid:user-valid
+textarea:valid:user-valid
+select.valid:user-valid
+select:valid:user-valid
+  border-color $green
+  box-shadow 0 0 0 3px rgba($green, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($green, 0.35)
+
+input.invalid:user-invalid
+input:invalid:user-invalid
+textarea.invalid:user-invalid
+textarea:invalid:user-invalid
+select.invalid:user-invalid
+select:invalid:user-invalid
+  border-color $secondary-red
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($secondary-red, 0.35)
+
 // Warning state
 input.warning
 textarea.warning
