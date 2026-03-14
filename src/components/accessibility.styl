@@ -57,6 +57,205 @@ textarea:focus-visible
   box-shadow 0 0 0 4px rgba($arch-blue, 0.2)
 
 // =============================================================================
+// FOCUS VISIBLE ENHANCEMENT
+// =============================================================================
+
+// Enhanced focus-visible styling with custom focus rings
+// Browser support: 97%+
+
+// Custom focus ring - animated ring effect
+.focus-ring
+  &:focus-visible
+    outline none
+    box-shadow 0 0 0 3px $bg, 0 0 0 5px $arch-blue
+    border-radius $border-radius-md
+    transition box-shadow 0.2s ease
+
+// Focus ring with inset effect
+.focus-ring-inset
+  &:focus-visible
+    outline none
+    box-shadow inset 0 0 0 2px $arch-blue
+    border-radius $border-radius-sm
+
+// Focus visible offset variations
+.focus-offset-sm
+  &:focus-visible
+    outline-offset 1px
+
+.focus-offset-lg
+  &:focus-visible
+    outline-offset 4px
+
+.focus-offset-none
+  &:focus-visible
+    outline-offset 0
+
+// Keyboard navigation indicator
+// Shows keyboard focus is active
+.keyboard-navigation
+  &:focus-visible::after
+    content ''
+    position absolute
+    inset -2px
+    border 2px dashed $arch-blue
+    border-radius calc($border-radius-sm + 2px)
+    pointer-events none
+    opacity 0.5
+
+// Strong focus indicator for critical elements
+// Used for form submits, danger buttons, etc.
+.strong-focus
+  &:focus-visible
+    outline 3px solid $arch-blue
+    outline-offset 2px
+    box-shadow 0 0 0 6px rgba($arch-blue, 0.3)
+    z-index 1
+
+// Focus within - when child element has focus
+.focus-within-indicator
+  &:focus-within
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    border-radius $border-radius-md
+
+// Focus visible for specific element types
+// Links - subtle but visible
+.mw-parser-output
+  a:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    background-color rgba($arch-blue, 0.1)
+
+// Buttons - more prominent focus
+.mw-ui-button:focus-visible
+.mw-ui-button-secondary:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.25)
+
+button:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.25)
+
+// Form inputs - clear focus state
+input:focus-visible
+select:focus-visible
+textarea:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Checkbox/Radio - custom focus
+input[type="checkbox"]:focus-visible + label::before
+input[type="radio"]:focus-visible + label::before
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Edit form inputs - focus state
+#wpName:focus-visible
+#wpPassword:focus-visible
+#wpEmail:focus-visible
+#wpRealName:focus-visible
+#searchInput:focus-visible
+.mw-ui-input:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Wiki editor focus
+#wpTextbox1:focus-visible
+textarea.mw-editfont-monospace:focus-visible
+textarea.mw-editfont-sans-serif:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+
+// Navigation focus states
+.mw-portlet
+  .vector-sticky-pinnable-header:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+  .mw-ui-icon-button:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Tab focus states
+.vector-sticky-pills-container .mw-ui-icon-button:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.25)
+
+// Table sorting headers focus
+th.sortable:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset -2px
+  background-color rgba($arch-blue, 0.1)
+
+// Thumbnail focus
+.thumb:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius $border-radius-md
+
+// Modal/Dialog focus trap indicator
+.ui-dialog:focus-visible
+.cdx-dialog:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 6px rgba($arch-blue, 0.3)
+
+// Menu items focus
+.mw-menu-checkbox-label:focus-visible
+.oo-ui-inputWidget:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+
+// Tooltip focus
+.tooltip:focus-visible
+[role="tooltip"]:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Dropdown focus
+select:focus-visible
+.mw-select-focus:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+
+// Collapsible sections focus
+details > summary:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius $border-radius-sm
+  list-style square
+
+// High contrast mode support
+@media (prefers-contrast more)
+  :focus-visible
+    outline 3px solid currentColor
+    outline-offset 3px
+
+  a
+  button:focus-visible
+    outline-width 3px
+
+// Forced colors mode support
+@media (forced-colors active)
+  :focus-visible
+    outline ButtonText solid 3px
+    outline-offset 2px
+
+  a
+  button:focus-visible
+    outline-width 3px
+
+// =============================================================================
 // ERROR/WARNING MESSAGE STYLING
 // =============================================================================
 

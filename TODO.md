@@ -3952,12 +3952,13 @@ Last updated: 2026-03-10 13:30
   - System color keywords
   - Border emphasis
 
-- [ ] **Focus Visible Enhancement** (CSS, 97%+ browser support)
-  - File: `src/accessibility.styl`
+- [x] **Focus Visible Enhancement** (CSS, 97%+ browser support)
+  - File: `src/components/accessibility.styl`
   - :focus-visible styling
   - Custom focus rings
   - Focus outline offset
   - Keyboard navigation hints
+  - Commit: 93fe09e6
 
 - [ ] **Screen Reader Optimizations** (CSS, 100% browser support)
   - File: `src/accessibility.styl`
