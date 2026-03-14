@@ -1332,6 +1332,258 @@ em
   clear both
 
 
+// =============================================================================
+// RELATED PAGES SUGGESTION
+// =============================================================================
+// Related article cards, relevance indicator, read more expansion
+
+// Related pages container
+.related-pages
+.related-suggestions
+.mw-related-pages
+  margin 1.5em 0
+  display flex
+  flex-direction column
+  gap 1em
+
+// Related pages header
+.related-pages-header
+.related-suggestions-header
+  font-size 0.9em
+  font-weight 600
+  color $muted
+  text-transform uppercase
+  letter-spacing 0.05em
+  margin-bottom 0.25em
+
+// Related pages grid
+.related-pages-grid
+.related-articles-grid
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(250px, 1fr))
+  gap 1em
+
+// Related page card
+.related-page-card
+.related-article-card
+  display flex
+  flex-direction column
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  text-decoration none
+  transition transition-medium
+  position relative
+  overflow hidden
+
+  // Hover state - lift effect
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+    transform translateY(-2px)
+    box-shadow $shadow-subtle
+
+  // Focus visible for keyboard navigation
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Related page thumbnail
+.related-page-thumbnail
+.related-article-thumbnail
+  width 100%
+  height 120px
+  margin-bottom 0.75em
+  border-radius $border-radius-sm
+  overflow hidden
+  background $darker
+
+  img
+    width 100%
+    height 100%
+    object-fit cover
+    transition transition-medium
+
+  // Zoom on hover
+  .related-page-card:hover & img
+    transform scale(1.05)
+
+// Related page title
+.related-page-title
+.related-article-title
+  font-size 1em
+  font-weight 600
+  color $lighter
+  margin-bottom 0.4em
+  line-height 1.4
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Related page snippet
+.related-page-snippet
+.related-article-snippet
+  font-size 0.85em
+  color $light
+  line-height 1.5
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+  flex 1
+
+// Related page relevance indicator
+.related-page-relevance
+.related-article-relevance
+  display flex
+  align-items center
+  gap 0.5em
+  margin-top 0.75em
+  padding-top 0.5em
+  border-top 1px solid rgba($border-subtle, 0.5)
+
+  // Relevance bar
+  .relevance-bar
+    flex 1
+    height 4px
+    background rgba($dark, 0.8)
+    border-radius 2px
+    overflow hidden
+
+    .relevance-fill
+      height 100%
+      background linear-gradient(90deg, $arch-blue, lighten($arch-blue, 15%))
+      border-radius 2px
+      transition transition-fast
+
+  // Relevance percentage
+  .relevance-score
+    font-size 0.75em
+    font-family $font-mono
+    color $muted
+    font-variant-numeric tabular-nums
+    min-width 35px
+    text-align end
+
+  // High relevance
+  &.high-relevance .relevance-fill
+    background linear-gradient(90deg, $green, lighten($green, 10%))
+
+  // Medium relevance
+  &.medium-relevance .relevance-fill
+    background linear-gradient(90deg, $arch-blue, lighten($arch-blue, 15%))
+
+  // Low relevance
+  &.low-relevance .relevance-fill
+    background linear-gradient(90deg, $muted, lighten($muted, 10%))
+
+// Related page category/tag
+.related-page-category
+.related-article-category
+  display inline-block
+  font-size 0.7em
+  color $arch-blue
+  background rgba($arch-blue, 0.1)
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  margin-top 0.5em
+  align-self flex-start
+
+// Read more expansion link
+.related-pages-more
+.related-suggestions-more
+  display flex
+  align-items center
+  justify-content center
+  gap 0.5em
+  padding 0.75em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  color $arch-blue
+  text-decoration none
+  font-weight 500
+  transition transition-fast
+  margin-top 0.5em
+
+  // Arrow icon
+  &::after
+    content '→'
+    transition transition-fast
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+
+    &::after
+      transform translateX(4px)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Related pages loading state
+.related-pages-loading
+.related-suggestions-loading
+  display flex
+  align-items center
+  justify-content center
+  padding 2em
+  color $muted
+
+  // Loading spinner
+  .loading-spinner
+    width 24px
+    height 24px
+    border 2px solid rgba($arch-blue, 0.2)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 0.8s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// Related pages empty state
+.related-pages-empty
+.related-suggestions-empty
+  padding 1.5em
+  text-align center
+  color $muted
+  font-style italic
+  background rgba($dark, 0.4)
+  border-radius $border-radius-md
+  border 1px dashed $border-subtle
+
+// Related pages compact mode (for sidebar)
+.related-pages-compact
+.related-suggestions-compact
+  .related-pages-grid
+    grid-template-columns 1fr
+
+  .related-page-card
+    flex-direction row
+    padding 0.75em
+    gap 0.75em
+
+  .related-page-thumbnail
+    width 60px
+    height 60px
+    margin-bottom 0
+    flex-shrink 0
+
+  .related-page-title
+    font-size 0.9em
+    -webkit-line-clamp 1
+
+  .related-page-snippet
+    display none
+
+  .related-page-relevance
+    display none
+
+
 // Reduced motion
 @media (prefers-reduced-motion reduce)
   .suggestions-result
