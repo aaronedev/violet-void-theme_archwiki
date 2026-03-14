@@ -1,0 +1,346 @@
+// =============================================================================
+// Internationalization & Localization (i18n)
+// =============================================================================
+// RTL Language Full Support
+// Logical Properties for RTL languages
+// Bidirectional text handling
+
+// =============================================================================
+// RTL Base Styles
+// =============================================================================
+
+[dir="rtl"]
+  // ---------------------------------------------------------------------------
+  // Direction and Text Flow
+  // ---------------------------------------------------------------------------
+  direction rtl
+
+  // Logical text alignment (replaces text-align)
+  text-align start
+
+  // Ensure proper bidi text handling
+  unicode-bidi plaintext
+
+  // ---------------------------------------------------------------------------
+  // Logical Margin Properties
+  // ---------------------------------------------------------------------------
+  // Replace margin-left/right with logical properties
+  .mw-body
+  .mw-body-content
+    margin-inline-start 0
+    margin-inline-end 0
+
+  // List margins - margin-start and margin-end handle RTL automatically
+  ul
+  ol
+    margin-block-start 0
+    margin-block-end 0
+    margin-inline-start 0
+    margin-inline-end 1.5em
+
+  dl
+    margin-inline-start 0
+    margin-inline-end 0
+
+  // ---------------------------------------------------------------------------
+  // Logical Padding Properties
+  // ---------------------------------------------------------------------------
+  // Replace padding-left/right with logical properties
+  .mw-body
+  .mw-body-content
+    padding-inline-start 0
+    padding-inline-end 0
+
+  // ---------------------------------------------------------------------------
+  // Logical Border Properties
+  // ---------------------------------------------------------------------------
+  // Replace border-left/right with logical properties
+  .mw-body
+    border-inline-start none
+    border-inline-end none
+
+  // ---------------------------------------------------------------------------
+  // Floating Elements
+  // ---------------------------------------------------------------------------
+  // Float start/end automatically handles RTL
+  .float-left
+    float inline-start
+
+  .float-right
+    float inline-end
+
+  .float-start
+    float inline-start
+
+  .float-end
+    float inline-end
+
+  // ---------------------------------------------------------------------------
+  // Clearfix
+  // ---------------------------------------------------------------------------
+  // Clear start/end handles RTL automatically
+  .mw-body::after
+    clear inline-start
+
+// =============================================================================
+// Text Direction-Specific Utilities
+// =============================================================================
+
+// Bold text alignment helpers
+[dir="ltr"] .textrtl
+[dir="rtl"] .textltr
+  unicode-bidi embed
+
+// Direction-neutral text
+[dir="rtl"] .text-dgn
+[dir="ltr"] .text-dgn
+  unicode-bidi bidi-override
+
+// ============================================================================
+// :dir() Pseudo-class Support (Modern browsers)
+// ============================================================================
+// Style based on text direction without needing dir attribute
+
+// Use :where() for low-specificity overrides
+:where(:dir(rtl))
+  text-align start
+
+:where(:dir(ltr))
+  text-align start
+
+// ============================================================================
+// Bidirectional Text Handling
+// ============================================================================
+
+// Handle mixed-direction content
+bdo[dir="ltr"]
+bdo[dir="rtl"]
+  unicode-bidi bidi-override
+
+// Ensure proper display of embedded RTL in LTR
+.mw-content-ltr
+  direction ltr
+  text-align left
+
+// Ensure proper display of embedded LTR in RTL
+.mw-content-rtl
+  direction rtl
+  text-align right
+
+// ============================================================================
+// Logical Position Properties
+// =============================================================================
+// Replace top/right/bottom/left with inset properties
+
+[dir="rtl"]
+  .mw-portlet
+    inset-inline-start 0
+    inset-inline-end auto
+
+  // Position absolute elements
+  .mw-first-heading
+    inset-inline-start 0
+
+// ============================================================================
+// Navigation RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  // Sidebar positioning
+  .mw-sidebar
+    inset-inline-start 0
+    inset-inline-end auto
+
+  // Menu items
+  .mw-menu-item
+    padding-inline-start 0
+    padding-inline-end 1em
+
+  // Back links
+  .mw-backlink
+  .mw-relatedlink
+    padding-inline-start 0
+    padding-inline-end 0.5em
+
+// ============================================================================
+// Table RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  table
+    text-align start
+
+  th[scope="row"]
+    text-align start
+
+  // Table caption
+  caption
+    text-align start
+
+  // Cell alignment
+  .mw-rcfilters-ui-tableCellContainer
+    text-align start
+
+// ============================================================================
+// Form RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  // Form labels
+  .mw-label
+    text-align start
+
+  // Input direction
+  input
+  textarea
+  select
+    text-align start
+    direction rtl
+
+  // Help text
+  .mw-help-field
+    text-align start
+
+  // Fieldset
+  legend
+    text-align start
+
+// ============================================================================
+// Image and Media RTL
+// =============================================================================
+
+[dir="rtl"]
+  // Thumbnails
+  .thumbinner
+    margin-inline-start 1em
+    margin-inline-end 0
+
+  // Gallery
+  .gallery
+    margin-inline-start 0
+
+  .galleryitem
+    margin-inline-start 0.5em
+    margin-inline-end 0
+
+  // File history
+  .mw-filepage-resolutioninfo
+    text-align start
+
+// ============================================================================
+// Code and Pre RTL
+// =============================================================================
+
+[dir="rtl"]
+  // Code blocks
+  pre
+  code
+  .mw-code
+    direction ltr
+    text-align left
+
+  // Keep code LTR even in RTL context
+  *[dir="rtl"] pre
+  *[dir="rtl"] code
+  *[dir="rtl"] .mw-code
+    direction ltr
+    text-align left
+
+// ============================================================================
+// Category Links RTL
+// =============================================================================
+
+[dir="rtl"]
+  #catlinks
+    text-align start
+
+  .mw-category
+    text-align start
+
+  .mw-category-generated
+    text-align start
+
+// ============================================================================
+// Search RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  .mw-search-input
+    direction rtl
+
+  // Search results
+  .mw-search-results
+    text-align start
+
+  .mw-search-result
+    text-align start
+
+  // Search suggestions
+  .mw-search-suggestions
+    text-align start
+
+// ============================================================================
+// TOC RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  .toc
+    text-align start
+
+  .tocnumber
+    margin-inline-start 0.5em
+    margin-inline-end 0
+
+// ============================================================================
+// Message Boxes RTL
+// =============================================================================
+
+[dir="rtl"]
+  .messagebox
+  .mbox-small
+    text-align start
+
+  // Ambox types
+  .ambox
+    text-align start
+
+    .ambox-image
+      margin-inline-start 0
+      margin-inline-end 1em
+
+    .ambox-text
+      margin-inline-start 0
+      margin-inline-end 0
+
+// ============================================================================
+// Print RTL (for RTL language print output)
+// =============================================================================
+
+@media print
+  [dir="rtl"]
+    direction rtl
+    text-align right
+
+    // Keep code LTR in print
+    pre
+    code
+    .mw-code
+      direction ltr
+      text-align left
+
+// ============================================================================
+// Reduced Motion with RTL
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  [dir="rtl"]
+    // Disable RTL-specific animations if needed
+
+// ============================================================================
+// High Contrast Mode RTL
+// =============================================================================
+
+@media (forced-colors active)
+  [dir="rtl"]
+    // Ensure proper direction in high contrast
+    direction rtl
