@@ -2884,12 +2884,15 @@ Last updated: 2026-03-14 18:06
 
 ## 📋 Advanced Table Features (New)
 
-- [ ] **Sortable Table Enhancement** (CSS)
+- [x] **Sortable Table Enhancement** (CSS)
   - File: `src/components/tables.styl`
-  - Sort indicator arrows
-  - Sorted column highlight
-  - Sort animation
-  - Header hover state
+  - Sort indicator arrows with ascending/descending states
+  - Sorted column highlight with indicator bar
+  - Sort animation with keyframe transitions
+  - Header hover state with gradient backgrounds
+  - Focus-visible support for keyboard navigation
+  - Reduced motion support for accessibility
+  - Commit: dd09519
 
 - [x] **Scrollable Table Wrapper** (CSS)
   - File: `src/components/tables.styl`
