@@ -881,3 +881,16 @@ table
             color $muted
             margin-right 1em
 
+// =============================================================================
+// PERFORMANCE: table-layout: fixed
+// Use fixed table layout for faster rendering on large tables
+// Browser support: 97%+
+// =============================================================================
+
+// Apply to large data tables for performance
+table.mw-datatable
+table.large-data
+table[data-fixed-layout="true"]
+  table-layout fixed
+  width 100%
+
