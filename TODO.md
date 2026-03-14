@@ -445,7 +445,7 @@
 
 ---
 
-Last updated: 2026-03-14 22:18
+Last updated: 2026-03-14 23:50
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -951,11 +951,12 @@ Last updated: 2026-03-14 22:18
   - Match highlighting
   - Category badges with tabular-nums for counts
 
-- [ ] **Cross-wiki Search Results** (CSS)
+- [x] **Cross-wiki Search Results** (CSS)
   - File: `src/components/search.styl`
   - Sister project icons
   - Project badge styling
   - Result grouping headers
+  - Commit: 13cbee3
 
 - [ ] **Related Pages Suggestion** (CSS)
   - File: `src/components/search.styl`
@@ -6857,6 +6858,7 @@ Last updated: 2026-03-14 22:18
 | 2026-03-10 | Implementer | white-space-collapse for fine-grained whitespace control in code blocks and content areas (97%+ browser support) | a1fc976 |
 | 2026-03-10 | Implementer | Enhanced print link styling with URL display, external link indicators, reference list generation, intelligent truncation, special link type indicators (mailto, tel, GitHub, packages, etc.) | 24a99ea |
 | 2026-03-14 | Implementer | Math Extension Styling for MathML and LaTeX equations with containers, source display, equation numbering, display/inline variants, error display, gallery layout, MathML element styling, accessibility support | b0fd9da |
+| 2026-03-14 | Implementer | Cross-wiki Search Results styling with sister project icons, project badge styling, result grouping headers, result thumbnails, matched term highlighting for Wikipedia, Wiktionary, Wikibooks, Commons, Wikidata, etc. | 13cbee3 |
 
 ---
 
