@@ -49,6 +49,56 @@
       color $print-text !important
 
   // =============================================================================
+  // COLOR ADJUSTMENT FOR PRINT
+  // =============================================================================
+
+  // Preserve theme colors in print instead of converting to grayscale
+  // Browser support: 97%+
+  // Use cases: colored code blocks, message boxes, syntax highlighting, links
+  // Note: May not work in all browsers - fallback is grayscale
+
+  body
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Preserve colors for specific elements that benefit from visible colors in print
+  pre
+  code
+  .mw-highlight
+  .highlight
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Message boxes and advisory content
+  .mbox
+  .ambox
+  .ombox
+  .cmbox
+  .tmbox
+  .imbox
+  .dmbox
+  .notice
+  .warning
+  .error
+  .success
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Table headers and important table data
+  table.wikitable
+    th
+      print-color-adjust exact
+      -webkit-print-color-adjust exact
+
+  // Code syntax highlighting
+  .mw-highlight .c
+  .mw-highlight .k
+  .mw-highlight .o
+  .mw-highlight .s
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // =============================================================================
   // TYPOGRAPHY FOR PRINT
   // =============================================================================
 

@@ -301,12 +301,13 @@
   - File: `src/components/base.styl`, `src/components/utilities.styl`
   - Stylus: Works directly
 
-- [ ] **`:open` Pseudo-class for Open State Styling**
+- [x] **`:open` Pseudo-class for Open State Styling**
   - Browser support: 85%+
   - Target elements in open state: details, dialog, select dropdowns
   - Apply different styles when dropdowns/accordions are expanded
-  - File: `src/components/navigation.styl`, `src/components/forms-enhanced.styl`
+  - File: `src/components/ui-components.styl`
   - Stylus: Works directly (Chrome 120+, Firefox 124+, Safari 17.5+)
+  - Commit: a0104ee
 
 ## 📰 Multi-Column Layouts
 
