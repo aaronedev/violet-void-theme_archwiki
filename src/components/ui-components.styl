@@ -351,6 +351,35 @@ dialog
     opacity 1
     transform scale(1)
 
+// :modal pseudo-class for modal dialogs (opened with dialog.showModal())
+// Browser support: 90%+ (Chrome 119+, Firefox 121+, Safari 17.4+)
+dialog:modal
+  // Modal dialogs get a more prominent styling
+  border 2px solid $arch-blue
+  box-shadow $shadow-elevated, 0 0 0 9999px rgba(0, 0, 0, 0.75)
+
+  // Modal backdrop gets enhanced treatment
+  &::backdrop
+    background-color rgba(0, 0, 0, 0.85)
+    backdrop-filter blur(4px)
+
+  // Modal-specific animations
+  &[open]
+    animation dialog-modal-fade-in 0.25s ease-out
+
+@keyframes dialog-modal-fade-in
+  from
+    opacity 0
+    transform scale(0.9) translateY(-10px)
+  to
+    opacity 1
+    transform scale(1) translateY(0)
+
+// Modeless dialogs (opened with dialog.show())
+dialog:not(:modal)
+  &::backdrop
+    background-color rgba(0, 0, 0, 0.4)
+
 // Modals and Overlays
 .modal
 .overlay
