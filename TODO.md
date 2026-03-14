@@ -377,6 +377,8 @@
 | 2026-03-10 | attr() with type() function | c6dedd5 |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
 | 2026-03-14 | ::checkmark pseudo-element for select checkmarks | d2a07e1 |
+| 2026-03-14 | :blank pseudo-class for empty form fields | b21b472 |
+| 2026-03-14 | :nth-child(of S) selector for tables | b21b472 |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -1338,17 +1340,19 @@ Last updated: 2026-03-10 13:30
 
 ## 🎭 Advanced Pseudo-Classes (New)
 
-- [ ] **`:nth-child(of S)` Selector** (89%+ browser support)
+- [x] **`:nth-child(of S)` Selector** (89%+ browser support)
   - File: `src/components/tables.styl`, `src/components/content.styl`
   - nth-child with selector argument
   - Example: `tr:nth-child(of :not(.header))`
   - Stylus: Works directly
+  - Commit: b21b472
 
-- [ ] **`:blank` for Empty Form Fields** (87%+ browser support)
+- [x] **`:blank` for Empty Form Fields** (87%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style truly empty inputs (no whitespace)
   - More specific than `:placeholder-shown`
   - Stylus: Works directly
+  - Commit: b21b472
 
 - [ ] **`:dir()` for Direction Styling** (90%+ browser support)
   - File: `src/components/i18n.styl`
