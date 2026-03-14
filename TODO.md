@@ -968,11 +968,12 @@ Last updated: 2026-03-14 23:59
 
 ## 🎨 Skin Customization (New)
 
-- [ ] **User Preference Overrides** (CSS)
+- [x] **User Preference Overrides** (CSS)
   - File: `src/components/preferences.styl` (new file)
   - Preference toggle styling
   - Saved preferences indicator
   - Reset to default button
+  - Commit: 6cd840b
 
 - [ ] **Gadget Integration** (CSS)
   - File: `src/components/gadgets.styl` (new file)

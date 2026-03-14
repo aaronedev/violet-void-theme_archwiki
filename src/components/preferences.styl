@@ -1,0 +1,566 @@
+// =============================================================================
+// User Preference Overrides - Violet Void ArchWiki Theme
+// Preference toggle styling, saved preferences indicator, reset to default button
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// PREFERENCE PANEL CONTAINER
+// =============================================================================
+
+// Main preferences container
+.mw-preferences
+  margin 1.5em 0
+
+  // Preferences form
+  .mw-prefs-form
+    background rgba($dark, 0.6)
+    border 1px solid $border-subtle
+    border-radius $border-radius-lg
+    padding 1.5em
+
+  // Preferences fieldset
+  fieldset.mw-prefs-fieldset
+    margin-bottom 1.5em
+    padding 1em
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+
+    &:last-child
+      margin-bottom 0
+
+    // Legend styling
+    legend
+      font-weight 600
+      color $lighter
+      padding 0 0.5em
+      font-size 1.1em
+
+// =============================================================================
+// PREFERENCE TOGGLE SWITCHES
+// =============================================================================
+
+// Toggle switch container
+.mw-prefs-toggle
+  display flex
+  align-items center
+  justify-content space-between
+  padding 0.75em 0
+  border-bottom 1px solid rgba($border-subtle, 0.5)
+
+  &:last-child
+    border-bottom none
+
+  // Toggle label
+  .toggle-label
+    color $light
+    font-size 0.95em
+    line-height 1.4
+
+  // Toggle description
+  .toggle-description
+    color $muted
+    font-size 0.85em
+    margin-top 0.25em
+
+// Checkbox-based toggles (legacy)
+input[type="checkbox"].mw-prefs-checkbox
+  appearance none
+  -webkit-appearance none
+  width 44px
+  height 24px
+  background rgba($dark, 0.8)
+  border 2px solid $border-subtle
+  border-radius 12px
+  cursor pointer
+  position relative
+  transition transition-medium
+
+  // Toggle knob
+  &::after
+    content ''
+    position absolute
+    top 2px
+    left 2px
+    width 16px
+    height 16px
+    background $light
+    border-radius 50%
+    transition transition-medium
+    box-shadow 0 2px 4px rgba(0, 0, 0, 0.3)
+
+  // Checked state
+  &:checked
+    background $arch-blue
+    border-color $arch-blue
+
+    &::after
+      left 22px
+      background $white
+
+  // Focus state
+  &:focus-visible
+    outline none
+    box-shadow $shadow-focus
+
+  // Hover state
+  &:hover
+    border-color rgba($arch-blue, 0.5)
+
+// =============================================================================
+// RADIO BUTTON PREFERENCES
+// =============================================================================
+
+// Radio preference group
+.mw-prefs-radio-group
+  display flex
+  flex-direction column
+  gap 0.5em
+
+  // Radio option
+  .radio-option
+    display flex
+    align-items center
+    padding 0.75em
+    background rgba($dark, 0.4)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    cursor pointer
+    transition transition-fast
+
+    &:hover
+      border-color rgba($arch-blue, 0.3)
+      background rgba($arch-blue, 0.05)
+
+    // Selected state
+    &.selected
+      border-color $arch-blue
+      background rgba($arch-blue, 0.1)
+
+  // Radio input
+  input[type="radio"]
+    appearance none
+    -webkit-appearance none
+    width 18px
+    height 18px
+    border 2px solid $border-subtle
+    border-radius 50%
+    margin-inline-end 0.75em
+    cursor pointer
+    position relative
+    transition transition-fast
+
+    // Selected dot
+    &::after
+      content ''
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%) scale(0)
+      width 8px
+      height 8px
+      background $arch-blue
+      border-radius 50%
+      transition transition-fast
+
+    &:checked
+      border-color $arch-blue
+
+      &::after
+        transform translate(-50%, -50%) scale(1)
+
+    &:focus-visible
+      outline none
+      box-shadow $shadow-focus
+
+  // Radio label
+  .radio-label
+    color $light
+    font-size 0.95em
+
+// =============================================================================
+// DROPDOWN SELECT PREFERENCES
+// =============================================================================
+
+// Select dropdown for preferences
+select.mw-prefs-select
+  appearance none
+  -webkit-appearance none
+  width 100%
+  max-width 300px
+  padding 0.75em 2.5em 0.75em 1em
+  background rgba($dark, 0.8)
+  color $light
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-family $font-sans
+  font-size 0.95em
+  cursor pointer
+  transition transition-fast
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23bfbfbf' d='M6 8L2 4h8z'/%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 1em center
+
+  &:hover
+    border-color rgba($arch-blue, 0.5)
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow $shadow-focus
+
+  // Option styling
+  option
+    background $dark
+    color $light
+    padding 0.5em
+
+// =============================================================================
+// PREFERENCE INPUT FIELDS
+// =============================================================================
+
+// Text input for preferences
+input[type="text"].mw-prefs-input
+input[type="number"].mw-prefs-input
+  width 100%
+  max-width 400px
+  padding 0.75em 1em
+  background rgba($dark, 0.8)
+  color $light
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-family $font-sans
+  font-size 0.95em
+  transition transition-fast
+
+  &::placeholder
+    color $muted
+
+  &:hover
+    border-color rgba($arch-blue, 0.5)
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow $shadow-focus
+
+// Textarea for preferences
+textarea.mw-prefs-textarea
+  width 100%
+  max-width 600px
+  min-height 100px
+  padding 0.75em 1em
+  background rgba($dark, 0.8)
+  color $light
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-family $font-sans
+  font-size 0.95em
+  resize vertical
+  transition transition-fast
+
+  &::placeholder
+    color $muted
+
+  &:hover
+    border-color rgba($arch-blue, 0.5)
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow $shadow-focus
+
+// =============================================================================
+// SAVED PREFERENCES INDICATOR
+// =============================================================================
+
+// Saved indicator
+.saved-indicator
+  display inline-flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 1em
+  background rgba($green, 0.15)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-md
+  color $green
+  font-size 0.85em
+  margin-bottom 1em
+  animation fade-in 0.3s ease
+
+  // Check icon
+  &::before
+    content '✓'
+    font-weight bold
+
+  // Success animation
+  &.success
+    animation saved-pulse 0.5s ease
+
+// Auto-save indicator
+.autosave-indicator
+  display inline-flex
+  align-items center
+  gap 0.5em
+  padding 0.4em 0.8em
+  background rgba($arch-blue, 0.15)
+  border-radius $border-radius-sm
+  color $arch-blue
+  font-size 0.8em
+
+  // Pulsing dot
+  &::before
+    content ''
+    width 8px
+    height 8px
+    background $arch-blue
+    border-radius 50%
+    animation autosave-pulse 2s ease-in-out infinite
+
+// =============================================================================
+// RESET TO DEFAULT BUTTON
+// =============================================================================
+
+// Reset button
+button.mw-prefs-reset
+  display inline-flex
+  align-items center
+  gap 0.5em
+  padding 0.75em 1.25em
+  background rgba($red, 0.15)
+  color $red
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+  font-family $font-sans
+  font-size 0.9em
+  cursor pointer
+  transition transition-fast
+
+  // Reset icon
+  &::before
+    content '↺'
+    font-size 1.1em
+
+  &:hover
+    background rgba($red, 0.25)
+    border-color rgba($red, 0.5)
+
+  &:focus-visible
+    outline none
+    box-shadow 0 0 0 3px rgba($red, 0.25)
+
+  // Confirmation state
+  &.confirming
+    background $red
+    color $white
+    border-color $red
+    animation reset-shake 0.5s ease
+
+// Reset all button (destructive)
+button.mw-prefs-reset-all
+  display inline-flex
+  align-items center
+  gap 0.5em
+  padding 0.75em 1.25em
+  background transparent
+  color $red
+  border 2px solid $red
+  border-radius $border-radius-md
+  font-family $font-sans
+  font-size 0.9em
+  font-weight 600
+  cursor pointer
+  transition transition-fast
+
+  &:hover
+    background $red
+    color $white
+
+  &:focus-visible
+    outline none
+    box-shadow 0 0 0 3px rgba($red, 0.25)
+
+// =============================================================================
+// PREFERENCE CATEGORIES
+// =============================================================================
+
+// Category tabs
+.mw-prefs-tabs
+  display flex
+  gap 0.25em
+  margin-bottom 1.5em
+  border-bottom 1px solid $border-subtle
+  padding-bottom 0.5em
+  overflow-x auto
+
+  // Tab button
+  .prefs-tab
+    padding 0.75em 1.25em
+    background transparent
+    color $muted
+    border none
+    border-radius $border-radius-md $border-radius-md 0 0
+    font-family $font-sans
+    font-size 0.9em
+    cursor pointer
+    transition transition-fast
+    white-space nowrap
+
+    &:hover
+      color $light
+      background rgba($arch-blue, 0.1)
+
+    // Active tab
+    &.active
+      color $arch-blue
+      background rgba($arch-blue, 0.15)
+      font-weight 600
+
+    &:focus-visible
+      outline none
+      box-shadow $shadow-focus
+
+// =============================================================================
+// PREFERENCE SEARCH
+// =============================================================================
+
+// Search input
+.mw-prefs-search
+  position relative
+  margin-bottom 1.5em
+
+  // Search icon
+  &::before
+    content '🔍'
+    position absolute
+    left 1em
+    top 50%
+    transform translateY(-50%)
+    font-size 0.9em
+    opacity 0.5
+
+  input
+    width 100%
+    padding 0.75em 1em 0.75em 2.5em
+    background rgba($dark, 0.8)
+    color $light
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    font-family $font-sans
+    font-size 0.95em
+
+    &::placeholder
+      color $muted
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow $shadow-focus
+
+// =============================================================================
+// KEYBOARD SHORTCUTS PREFERENCES
+// =============================================================================
+
+// Shortcut input
+.mw-prefs-shortcut
+  display flex
+  align-items center
+  gap 0.75em
+
+  .shortcut-key
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 36px
+    height 32px
+    padding 0 0.75em
+    background rgba($dark, 0.8)
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    font-family $font-mono
+    font-size 0.85em
+
+  .shortcut-clear
+    background transparent
+    border none
+    color $muted
+    cursor pointer
+    padding 0.25em
+
+    &:hover
+      color $red
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+@keyframes fade-in
+  from
+    opacity 0
+    transform translateY(-5px)
+  to
+    opacity 1
+    transform translateY(0)
+
+@keyframes saved-pulse
+  0%
+    transform scale(1)
+  50%
+    transform scale(1.05)
+  100%
+    transform scale(1)
+
+@keyframes autosave-pulse
+  0%
+  100%
+    opacity 1
+  50%
+    opacity 0.4
+
+@keyframes reset-shake
+  0%
+  100%
+    transform translateX(0)
+  25%
+    transform translateX(-5px)
+  75%
+    transform translateX(5px)
+
+// Reduced motion preference
+@media (prefers-reduced-motion reduce)
+  .saved-indicator
+    animation none
+
+  .autosave-indicator::before
+    animation none
+
+  button.mw-prefs-reset.confirming
+    animation none
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width 768px)
+  .mw-preferences
+    .mw-prefs-form
+      padding 1em
+
+  .mw-prefs-toggle
+    flex-direction column
+    align-items flex-start
+    gap 0.5em
+
+  select.mw-prefs-select
+    max-width 100%
+
+  .mw-prefs-tabs
+    gap 0.15em
+
+    .prefs-tab
+      padding 0.5em 0.75em
+      font-size 0.85em
