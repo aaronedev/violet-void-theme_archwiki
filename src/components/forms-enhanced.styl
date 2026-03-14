@@ -1814,3 +1814,90 @@ progress:not([value]):indeterminate
         height 2px
         background $light
         border-radius 1px
+
+// =============================================================================
+// :placeholder-shown Detection (97%+ browser support)
+// =============================================================================
+// Style inputs based on empty state - more specific than :empty
+// Useful for floating label patterns, empty state indicators
+// Browser support: Chrome/Edge 99+, Firefox 119+, Safari 16.5+
+
+// Input with placeholder visible (empty state)
+input:placeholder-shown
+textarea:placeholder-shown
+select:placeholder-shown
+  border-color $border-subtle
+  color $muted
+
+  // Subtle indication that field is empty
+  & + label
+  & ~ .field-label
+    color $muted
+
+// Input without placeholder (has content)
+input:not(:placeholder-shown)
+textarea:not(:placeholder-shown)
+select:not(:placeholder-shown)
+  border-color $arch-blue
+  color $light
+
+  & + label
+  & ~ .field-label
+    color $arch-blue
+
+// Floating label pattern - label moves when placeholder is not shown
+.form-field.floating-label
+  position relative
+
+  input
+  textarea
+    &::placeholder
+      opacity 0
+
+  // When placeholder is shown (input empty), position label as placeholder
+  input:placeholder-shown + label
+  textarea:placeholder-shown + label
+    position absolute
+    top 50%
+    left 1em
+    transform translateY(-50%)
+    font-size 1em
+    color $muted
+    pointer-events none
+    transition all 0.2s ease
+
+  // When placeholder not shown (input has content), move label up
+  input:not(:placeholder-shown) + label
+  textarea:not(:placeholder-shown) + label
+    top -0.75em
+    left 0.5em
+    font-size 0.75em
+    color $arch-blue
+    background $base
+    padding 0 0.25em
+    border-radius $border-radius-sm
+
+// Placeholder-shown with :focus for better UX
+input:placeholder-shown:focus
+textarea:placeholder-shown:focus
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  & + label
+    color $arch-blue
+
+// Optional field styling with placeholder-shown
+input:placeholder-shown[optional]
+textarea:placeholder-shown[optional]
+select:placeholder-shown[optional]::after
+  border-style dashed
+  border-color $border-subtle
+
+// Required field - hide "required" indicator when placeholder is shown
+input:placeholder-shown[required] + label .required-indicator
+input:placeholder-shown ~ .required-indicator
+  display none
+
+input:not(:placeholder-shown)[required] + label .required-indicator
+input:not(:placeholder-shown) ~ .required-indicator
+  display inline

@@ -1228,11 +1228,12 @@ Last updated: 2026-03-10 13:30
   - Stylus: Works directly
   - Commit: ea9ec42
 
-- [ ] **`:placeholder-shown` Detection** (97%+ browser support)
+- [x] **`:placeholder-shown` Detection** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style inputs based on empty state
   - Floating label patterns
   - Stylus: Works directly
+  - Commit: 91144ca
 
 - [ ] **`:read-only` / `:read-write` States** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
