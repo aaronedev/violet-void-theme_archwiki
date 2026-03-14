@@ -618,3 +618,281 @@ mspace
 @media (prefers-reduced-motion reduce)
   .mw-math-element
     transition none
+
+// =============================================================================
+// CITE EXTENSION ENHANCEMENTS
+// =============================================================================
+
+// Reference list (the bibliography section at bottom)
+.references
+  list-style none
+  padding-left 0
+  margin 1.5em 0
+
+// Individual reference item
+.reference
+  padding 0.5em 0
+  border-bottom 1px solid rgba($border-subtle, 0.5)
+  font-size 0.95em
+  line-height 1.6
+
+  &:last-child
+    border-bottom none
+
+  // Reference number - tabular-nums for alignment
+  sup
+  .reference-accessibility
+    font-variant-numeric tabular-nums
+    font-weight 600
+    color $arch-blue
+    margin-right 0.25em
+
+// Reference link styling
+.reference a
+  color $arch-blue
+  text-decoration none
+  border-bottom 1px dotted rgba($arch-blue, 0.4)
+  transition all $transition-fast
+
+  &:hover
+    color $secondary-blue
+    border-bottom-style solid
+
+// Reference anchor (the [1] link in text)
+.referenceAnchor
+  color $arch-blue
+  font-weight 600
+  font-variant-numeric tabular-nums
+  text-decoration none
+  padding 0 0.2em
+
+  &:hover
+    color $secondary-blue
+    text-decoration underline
+
+// Reference tooltip on hover
+.reference-tooltip
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.5em 0.75em
+  font-size 0.85em
+  color $light
+  max-width 300px
+  z-index $z-dropdown
+
+  // Tooltip citation
+  .reference-name
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.25em
+
+  // Tooltip content preview
+  .reference-text
+    color rgba($light, 0.85)
+    line-height 1.5
+
+// Reference list with numbers - using CSS counters
+.references-numbered
+  counter-reset ref-counter
+
+  .reference
+    counter-increment ref-counter
+
+    &::before
+      content "[" counter(ref-counter) "] "
+      font-variant-numeric tabular-nums
+      font-weight 600
+      color $arch-blue
+      float left
+      margin-right 0.5em
+      min-width 2em
+
+// Reference group styling (multiple reference lists)
+.reference-group
+  background rgba($arch-blue, 0.03)
+  border 1px solid rgba($border-subtle, 0.3)
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1em 0
+
+  // Group header
+  .reference-group-title
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+
+// Backlinks from references to citation
+.references-backlink
+  display inline-flex
+  align-items center
+  gap 0.25em
+  font-size 0.85em
+  color rgba($light, 0.6)
+  margin-left 0.5em
+
+  // Backlink arrow icon
+  &::before
+    content "←"
+    font-size 0.9em
+
+  &:hover
+    color $arch-blue
+
+// Citation needed styling in article text
+.citation-needed
+.citation-needed-etc
+  background rgba($arch-blue, 0.08)
+  border-bottom 2px dotted $arch-blue
+  color rgba($light, 0.8)
+  padding 0 0.15em
+  border-radius 2px
+  cursor help
+  position relative
+
+  // Hover tooltip showing source request
+  &:hover::after
+    content attr(data-content)
+    position absolute
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+    font-size 0.8em
+    white-space nowrap
+    box-shadow $shadow-elevated
+    z-index $z-dropdown
+
+// Cite error styling
+.mw-cite-error
+.cite-error
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  color $red
+  font-size 0.9em
+  display inline-block
+  margin 0.25em 0
+
+// Reference list columns for many references
+.references-many
+  column-count 2
+  column-gap 2em
+  column-rule 1px solid rgba($border-subtle, 0.3)
+
+  @media (max-width 768px)
+    column-count 1
+
+// Reference hover preview card
+.reference-hover-card
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.75em 1em
+  max-width 350px
+  z-index $z-dropdown
+
+  // Card title
+  .reference-hover-title
+    font-weight 600
+    color $light
+    margin-bottom 0.5em
+
+  // Card content
+  .reference-hover-content
+    font-size 0.9em
+    color rgba($light, 0.8)
+    line-height 1.5
+
+  // Card footer with link
+  .reference-hover-footer
+    margin-top 0.75em
+    padding-top 0.5em
+    border-top 1px solid rgba($border-subtle, 0.3)
+    font-size 0.85em
+
+    a
+      color $arch-blue
+
+// External reference styling
+.externalReference
+  display inline-flex
+  align-items center
+  gap 0.3em
+  color $arch-blue
+
+  // External link icon
+  &::after
+    content "↗"
+    font-size 0.85em
+    opacity 0.6
+
+// Bibliography (works cited) styling
+.bibliography
+  background rgba($arch-blue, 0.03)
+  border 1px solid rgba($border-subtle, 0.3)
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1.5em 0
+
+  // Bibliography header
+  .bibliography-header
+    font-weight 600
+    color $arch-blue
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+
+// Reflist template styling
+.reflist
+  // Reference list template container
+  &.references-small
+    font-size 0.9em
+
+  &.references-large
+    font-size 1.1em
+
+// Citation template support
+cite
+  font-style normal
+
+  // Wiki citation templates
+  &.citation
+    color $light
+
+    // Author
+    .citation-author
+      font-weight 600
+      color $light
+
+    // Title
+    .citation-title
+      font-style italic
+      color rgba($light, 0.9)
+
+    // Date/publisher
+    .citation-date
+    .citation-publisher
+      color rgba($light, 0.6)
+      font-size 0.9em
+
+// Focus-visible support for reference links
+.reference a:focus-visible
+.referenceAnchor:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion for reference interactions
+@media (prefers-reduced-motion reduce)
+  .reference a
+  .citation-needed
+  .references-backlink
+    transition none

@@ -436,10 +436,11 @@
 | 2026-03-14 | ::checkmark Pseudo-element for Select Checkmarks | d2a07e1 |
 | 2026-03-14 | filter: contrast() for accessibility/readability | e1b897fc |
 | 2026-03-14 | Scrollable Table Wrapper for performance | 92cf67a |
+| 2026-03-14 | Cite Extension Enhancements | 80822e6 |
 
 ---
 
-Last updated: 2026-03-14 18:06
+Last updated: 2026-03-14 21:57
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -887,11 +888,12 @@ Last updated: 2026-03-14 18:06
   - Data quality badges
   - Identifier formatting
 
-- [ ] **Cite Extension Enhancements** (97%+ browser support)
+- [x] **Cite Extension Enhancements** (97%+ browser support)
   - File: `src/components/extensions.styl`
   - Cite backlink styling with tabular-nums
   - Reference list numbering
   - Citation hover tooltips
+  - Commit: 80822e6
 
 - [x] **Math Extension Styling** (CSS)
   - File: `src/components/extensions.styl`
