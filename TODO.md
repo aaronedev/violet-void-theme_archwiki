@@ -1440,11 +1440,12 @@ Last updated: 2026-03-14 18:06
   - Stylus: Works directly
   - Commit: d80061c
 
-- [ ] **`content-visibility: hidden` with `hidden=until-found`** (97%+ browser support)
+- [x] **`content-visibility: hidden` with `hidden=until-found`** (97%+ browser support)
   - File: `src/components/content.styl`
   - Collapsible content that's searchable
   - Pair with `content-visibility: hidden`
   - Stylus: Works directly
+  - Commit: d91ce4e
 
 ## 🎨 Visual Effects (New)
 
