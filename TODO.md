@@ -3966,12 +3966,14 @@ Last updated: 2026-03-14 17:39
   - Keyboard navigation hints
   - Commit: 93fe09e6
 
-- [ ] **Screen Reader Optimizations** (CSS, 100% browser support)
-  - File: `src/accessibility.styl`
-  - sr-only utility class
-  - aria-label support
-  - Skip to content links
-  - Landmark regions
+- [x] **Screen Reader Optimizations** (CSS, 100% browser support)
+  - File: `src/components/accessibility.styl`
+  - sr-only utility class (multiple naming conventions)
+  - Focusable sr-only for keyboard-accessible hidden elements
+  - Skip to main content link enhancement
+  - Landmark region role attributes styling
+  - Accessible animation controls with animation-play-state
+  - Commit: 24a25fc
 
 | 2026-03-01 | Twenty-first scout | Added language & localization (language selector, RTL support, translation indicators, multilingual content), maintenance tools (maintenance templates, quality assessment, protection indicators, revision management), analytics & metrics (page statistics, traffic analytics, editor activity, content metrics), modern CSS features (@property, @layer, :has(), :is()/:where()), accessibility deep cuts (reduced motion, high contrast, focus-visible, screen reader optimizations) |
 

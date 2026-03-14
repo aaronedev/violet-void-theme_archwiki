@@ -429,3 +429,104 @@ details > summary:focus-visible
   table
   pre
     border-color rgba(currentColor, 0.7) !important
+
+// =============================================================================
+// SCREEN READER ONLY UTILITIES
+// =============================================================================
+
+// sr-only - Visually hidden but available to screen readers
+// Browser support: 100%
+// Use case: Skip links, aria-labels, supplementary info for AT
+
+.sr-only
+.sr-only-focusable
+.visually-hidden
+.screen-reader-only
+  position absolute
+  width 1px
+  height 1px
+  padding 0
+  margin -1px
+  overflow hidden
+  clip rect(0, 0, 0, 0)
+  white-space nowrap
+  border 0
+
+// Focusable sr-only - visible on focus for keyboard users
+// Use case: Skip to content links that become visible on focus
+.sr-only-focusable
+  &:focus
+  &:focus-visible
+    position static
+    width auto
+    height auto
+    padding inherit
+    margin inherit
+    overflow visible
+    clip auto
+    white-space normal
+
+// =============================================================================
+// LANDMARK REGION STYLING
+// =============================================================================
+
+// Ensure landmark regions are clearly defined for assistive technology
+// Browser support: 100%
+
+[role="banner"]
+[role="navigation"]
+[role="main"]
+[role="complementary"]
+[role="contentinfo"]
+[role="region"]
+[role="search"]
+  // Landmarks are semantic - minimal styling needed
+  // Focus indicators already covered by global :focus-visible
+
+// Skip to main content link enhancement
+// Provides obvious target for keyboard users
+.skip-to-main
+  position absolute
+  top -1000px
+  left 50%
+  transform translateX(-50%)
+  padding 1rem 2rem
+  background-color $arch-blue
+  color $darker
+  font-weight 600
+  border-radius 0 0 $border-radius-md $border-radius-md
+  z-index 10000
+  transition top 0.3s ease
+
+  &:focus
+    top 0
+
+// =============================================================================
+// ACCESSIBLE ANIMATION CONTROLS
+// =============================================================================
+
+// Respect user's motion preferences
+// Browser support: 95%+
+
+// Check if user prefers reduced motion and animations are allowed
+@media (prefers-reduced-motion no-preference)
+  // Enable animations only when user hasn't requested reduced motion
+  .animate-when-preferred
+    animation-play-state running
+
+  // Pause animations when requested
+  .pause-animations
+    animation-play-state paused
+
+// Completely disable animations for reduced motion preference
+@media (prefers-reduced-motion reduce)
+  // Stop all animations
+  *
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+
+  // Except for essential visual feedback
+  .animate-reduced-motion-safe
+    animation-duration auto
+    transition-duration auto
