@@ -422,6 +422,360 @@ table.mw-html-magic-mw-data-interface
     cursor pointer
 
 // =============================================================================
+// MOBILE NAVIGATION PATTERNS
+// =============================================================================
+
+// Bottom Navigation Bar
+// Fixed bottom navigation for mobile devices
+.mobile-bottom-nav
+  position fixed
+  bottom 0
+  left 0
+  right 0
+  height 56px
+  background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
+  border-top 1px solid rgba($arch-blue, 0.25)
+  display flex
+  justify-content space-around
+  align-items center
+  padding 0 0.5em
+  padding-bottom env(safe-area-inset-bottom, 0)
+  z-index 1000
+  box-shadow 0 -2px 10px rgba(0, 0, 0, 0.3)
+
+  // Navigation items
+  .mobile-nav-item
+    flex 1
+    display flex
+    flex-direction column
+    align-items center
+    justify-content center
+    padding 0.5em
+    color $light
+    text-decoration none
+    font-size 0.75em
+    min-width 48px
+    min-height 48px
+    transition all $transition-fast
+
+    // Icon styling
+    .nav-icon
+      font-size 1.25em
+      margin-bottom 0.15em
+
+    // Label
+    .nav-label
+      font-weight 500
+
+    &:hover
+      color $lighter
+      background-color rgba($arch-blue, 0.15)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset -2px
+      border-radius 4px
+
+    // Active state
+    &.active
+      color $arch-blue
+      background-color rgba($arch-blue, 0.1)
+
+      .nav-icon
+        transform scale(1.1)
+
+// Slide-out Menu (Drawer)
+// Mobile navigation drawer from left/right
+.mobile-slide-menu
+  position fixed
+  top 0
+  bottom 0
+  width 280px
+  max-width 85vw
+  background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
+  border-right 1px solid rgba($arch-blue, 0.25)
+  z-index 1001
+  overflow-y auto
+  padding 1em 0
+  padding-bottom calc(1em + env(safe-area-inset-bottom, 0))
+  box-shadow 4px 0 15px rgba(0, 0, 0, 0.4)
+
+  // Slide from left by default
+  left -100%
+  transition left $transition-medium
+
+  // Open state
+  &.open
+    left 0
+
+  // Right-aligned variant
+  &.slide-right
+    left auto
+    right -100%
+    border-right none
+    border-left 1px solid rgba($arch-blue, 0.25)
+    box-shadow -4px 0 15px rgba(0, 0, 0, 0.4)
+
+    &.open
+      left auto
+      right 0
+
+  // Menu header
+  .menu-header
+    padding 1em 1.25em
+    font-size 1.1em
+    font-weight 600
+    color $lighter
+    border-bottom 1px solid rgba($arch-blue, 0.15)
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.05))
+
+  // Menu sections
+  .menu-section
+    padding 0.5em 0
+
+    .section-title
+      padding 0.5em 1.25em
+      font-size 0.8em
+      font-weight 600
+      color $muted
+      text-transform uppercase
+      letter-spacing 0.05em
+
+  // Menu items
+  .menu-item
+    display flex
+    align-items center
+    padding 0.75em 1.25em
+    color $light
+    text-decoration none
+    transition all $transition-fast
+    border-left 3px solid transparent
+
+    .item-icon
+      margin-right 0.75em
+      font-size 1.1em
+      width 24px
+      text-align center
+
+    .item-label
+      flex 1
+
+    .item-badge
+      font-size 0.75em
+      padding 0.15em 0.5em
+      border-radius 10px
+      background rgba($arch-blue, 0.2)
+      color $secondary-blue
+
+    &:hover
+      color $lighter
+      background-color rgba($arch-blue, 0.1)
+      border-left-color $arch-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset -2px
+
+    // Active/current page
+    &.active
+      color $arch-blue
+      background-color rgba($arch-blue, 0.15)
+      border-left-color $arch-blue
+
+  // Menu divider
+  .menu-divider
+    height 1px
+    background rgba($arch-blue, 0.15)
+    margin 0.5em 1.25em
+
+// Mobile menu toggle button
+.mobile-menu-toggle
+  display none // Hidden on desktop
+  position fixed
+  top 0.5em
+  left 0.5em
+  width 44px
+  height 44px
+  background linear-gradient(135deg, rgba($darker, 0.9), rgba($dark, 0.9))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  color $light
+  font-size 1.25em
+  cursor pointer
+  z-index 1002
+  align-items center
+  justify-content center
+  transition all $transition-fast
+  padding-bottom env(safe-area-inset-top, 0)
+  padding-left env(safe-area-inset-left, 0)
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  @media (max-width 768px)
+    display flex
+
+// Menu overlay/backdrop
+.mobile-menu-overlay
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background rgba(0, 0, 0, 0.6)
+  z-index 1000
+  opacity 0
+  visibility hidden
+  transition all $transition-medium
+
+  &.active
+    opacity 1
+    visibility visible
+
+// Quick Access Shortcuts
+// Floating action button with quick actions
+.mobile-quick-access
+  position fixed
+  bottom 1em
+  right 1em
+  z-index 999
+
+  // Main FAB button
+  .fab-main
+    width 56px
+    height 56px
+    border-radius 50%
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+    border none
+    color $white
+    font-size 1.5em
+    cursor pointer
+    box-shadow 0 4px 15px rgba($arch-blue, 0.4)
+    display flex
+    align-items center
+    justify-content center
+    transition all $transition-fast
+
+    &:hover
+      transform scale(1.1)
+      box-shadow 0 6px 20px rgba($arch-blue, 0.5)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    // Rotate icon when expanded
+    &.expanded
+      transform rotate(45deg)
+
+  // Quick action items
+  .fab-items
+    position absolute
+    bottom 70px
+    right 0
+    display flex
+    flex-direction column-reverse
+    gap 0.75em
+    opacity 0
+    visibility hidden
+    transform translateY(20px) scale(0.9)
+    transition all $transition-medium
+
+    &.expanded
+      opacity 1
+      visibility visible
+      transform translateY(0) scale(1)
+
+    .fab-item
+      width 48px
+      height 48px
+      border-radius 50%
+      background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+      border 1px solid rgba($arch-blue, 0.25)
+      color $light
+      font-size 1.1em
+      cursor pointer
+      display flex
+      align-items center
+      justify-content center
+      transition all $transition-fast
+      text-decoration none
+
+      &:hover
+        background rgba($arch-blue, 0.2)
+        color $lighter
+        transform scale(1.1)
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+      .fab-tooltip
+        position absolute
+        right 60px
+        background rgba($darker, 0.95)
+        padding 0.4em 0.75em
+        border-radius $border-radius-sm
+        font-size 0.75em
+        color $light
+        white-space nowrap
+        opacity 0
+        visibility hidden
+        transition all $transition-fast
+
+        &::after
+          content ''
+          position absolute
+          right -6px
+          top 50%
+          transform translateY(-50%)
+          border 6px solid transparent
+          border-left-color rgba($darker, 0.95)
+
+      &:hover .fab-tooltip
+        opacity 1
+        visibility visible
+
+// Ensure body doesn't scroll when menu is open
+body.menu-open
+  overflow hidden
+
+  @media (max-width 768px)
+    &
+    .mw-body
+    #content
+      overflow hidden
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .mobile-slide-menu
+    transition none
+
+  .mobile-menu-overlay
+    transition none
+
+  .mobile-quick-access
+    .fab-main
+    .fab-items
+    .fab-item
+      transition none
+
+      &:hover
+        transform none
+
+// High contrast mode
+@media (forced-colors active)
+  .mobile-bottom-nav
+  .mobile-slide-menu
+  .mobile-quick-access .fab-main
+    border 2px solid CanvasText
+
+// =============================================================================
 // REDUCED MOTION FOR TOUCH ANIMATIONS
 // =============================================================================
 

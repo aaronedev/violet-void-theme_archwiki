@@ -857,11 +857,12 @@ Last updated: 2026-03-14 18:06
   - Bidirectional text handling
   - Commit: 23a15db
 
-- [ ] **Language Variant Styling** (CSS)
+- [x] **Language Variant Styling** (CSS)
   - File: `src/components/i18n.styl`
   - Language-specific font stacks
   - CJK font sizing adjustments
   - Non-Latin script line-height
+  - Commit: e6b15ff
 
 - [ ] **Translation Extension Styling** (CSS)
   - File: `src/components/extensions.styl`
@@ -1059,7 +1060,8 @@ Last updated: 2026-03-14 18:06
   - Card-based transformation for very narrow viewports
   - Commit: f4af63c
 
-- [ ] **Mobile Navigation Patterns** (CSS)
+- [x] **Mobile Navigation Patterns** (CSS)
+  Commit: e6b15ff
   - File: `src/components/mobile.styl`
   - Bottom navigation bar
   - Slide-out menu

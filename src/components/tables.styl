@@ -9,117 +9,117 @@
 // Ultra-specific selectors that will win over ArchWiki defaults
 // These target every possible combination of selectors
 :root
-  --vv-table-bg: #181818
-  --vv-table-header-bg: #0f0f0f
-  --vv-table-border: rgba(200, 184, 255, 0.08)
-  --vv-table-text: #bfbfbf
-  --vv-table-header-text: #e7e7e7
+  --vv-table-bg #181818
+  --vv-table-header-bg #0f0f0f
+  --vv-table-border rgba(200, 184, 255, 0.08)
+  --vv-table-text #bfbfbf
+  --vv-table-header-text #e7e7e7
 
 // Target all tables in the main content area
-body .mw-body .mw-body-content table,
-body .mw-body-content table,
-.mw-body .mw-parser-output table,
-#content table,
-.mw-body table,
-.mw-body-content table,
-.mw-parser-output table,
-article table,
-main table,
-#mw-content-text table,
-#mw-content-text .wikitable,
-.mw-body .wikitable,
-.mw-body-content .wikitable,
-.mw-parser-output .wikitable,
-div.mw-content-ltr table,
-div.mw-content-ltr .wikitable,
-html body div#content div.mw-body-content.mw-body table,
-html body div#content div.mw-body-content.mw-body table.wikitable,
-html body .mw-body .mw-parser-output table.wikitable,
-html body .mw-body .mw-parser-output table,
-html body .mw-body table,
-.mw-body-content .mw-parser-output table.wikitable,
-body.page-Main_Page .mw-parser-output table,
+body .mw-body .mw-body-content table
+body .mw-body-content table
+.mw-body .mw-parser-output table
+#content table
+.mw-body table
+.mw-body-content table
+.mw-parser-output table
+article table
+main table
+#mw-content-text table
+#mw-content-text .wikitable
+.mw-body .wikitable
+.mw-body-content .wikitable
+.mw-parser-output .wikitable
+div.mw-content-ltr table
+div.mw-content-ltr .wikitable
+html body div#content div.mw-body-content.mw-body table
+html body div#content div.mw-body-content.mw-body table.wikitable
+html body .mw-body .mw-parser-output table.wikitable
+html body .mw-body .mw-parser-output table
+html body .mw-body table
+.mw-body-content .mw-parser-output table.wikitable
+body.page-Main_Page .mw-parser-output table
 body.page-Main_Page #content table
   background-color var(--vv-table-bg) !important
-  color: var(--vv-table-text) !important
-  border-color: var(--vv-table-border) !important
+  color var(--vv-table-text) !important
+  border-color var(--vv-table-border) !important
 
 // Table headers
-body .mw-body .mw-body-content table th,
-body .mw-body-content table th,
-.mw-body .mw-parser-output table th,
-#content table th,
-.mw-body table th,
-.mw-body-content table th,
-.mw-parser-output table th,
-article table th,
-main table th,
-#mw-content-text table th,
-#mw-content-text .wikitable th,
-.mw-body .wikitable th,
-.mw-body-content .wikitable th,
-.mw-parser-output .wikitable th,
-div.mw-content-ltr table th,
-div.mw-content-ltr .wikitable th,
-html body .mw-body .mw-parser-output table.wikitable th,
-html body .mw-body table th,
-.mw-body-content .mw-parser-output table.wikitable th,
-table.wikitable > thead > tr > th,
-table.wikitable > tr > th,
-table.wikitable th,
+body .mw-body .mw-body-content table th
+body .mw-body-content table th
+.mw-body .mw-parser-output table th
+#content table th
+.mw-body table th
+.mw-body-content table th
+.mw-parser-output table th
+article table th
+main table th
+#mw-content-text table th
+#mw-content-text .wikitable th
+.mw-body .wikitable th
+.mw-body-content .wikitable th
+.mw-parser-output .wikitable th
+div.mw-content-ltr table th
+div.mw-content-ltr .wikitable th
+html body .mw-body .mw-parser-output table.wikitable th
+html body .mw-body table th
+.mw-body-content .mw-parser-output table.wikitable th
+table.wikitable > thead > tr > th
+table.wikitable > tr > th
+table.wikitable th
 .wikitable th
-  background-color: var(--vv-table-header-bg) !important
-  color: var(--vv-table-header-text) !important
-  font-weight: 600 !important
-  border-color: var(--vv-table-border) !important
+  background-color var(--vv-table-header-bg) !important
+  color var(--vv-table-header-text) !important
+  font-weight 600 !important
+  border-color var(--vv-table-border) !important
 
-// Table cells  
-body .mw-body .mw-body-content table td,
-body .mw-body-content table td,
-.mw-body .mw-parser-output table td,
-#content table td,
-.mw-body table td,
-.mw-body-content table td,
-.mw-parser-output table td,
-article table td,
-main table td,
-#mw-content-text table td,
-#mw-content-text .wikitable td,
-.mw-body .wikitable td,
-.mw-body-content .wikitable td,
-.mw-parser-output .wikitable td,
-div.mw-content-ltr table td,
-div.mw-content-ltr .wikitable td,
-html body .mw-body .mw-parser-output table.wikitable td,
-html body .mw-body table td,
-.mw-body-content .mw-parser-output table.wikitable td,
-table.wikitable > tbody > tr > td,
-table.wikitable > tr > td,
-table.wikitable td,
+// Table cells
+body .mw-body .mw-body-content table td
+body .mw-body-content table td
+.mw-body .mw-parser-output table td
+#content table td
+.mw-body table td
+.mw-body-content table td
+.mw-parser-output table td
+article table td
+main table td
+#mw-content-text table td
+#mw-content-text .wikitable td
+.mw-body .wikitable td
+.mw-body-content .wikitable td
+.mw-parser-output .wikitable td
+div.mw-content-ltr table td
+div.mw-content-ltr .wikitable td
+html body .mw-body .mw-parser-output table.wikitable td
+html body .mw-body table td
+.mw-body-content .mw-parser-output table.wikitable td
+table.wikitable > tbody > tr > td
+table.wikitable > tr > td
+table.wikitable td
 .wikitable td
-  background-color: var(--vv-table-bg) !important
-  color: var(--vv-table-text) !important
-  border-color: var(--vv-table-border) !important
+  background-color var(--vv-table-bg) !important
+  color var(--vv-table-text) !important
+  border-color var(--vv-table-border) !important
 
 // Even rows
-table.wikitable tr:nth-child(even) td,
-table.wikitable tr:nth-child(even),
-.wikitable tr:nth-child(even) td,
-.wikitable tr:nth-child(even),
-body .mw-body table tr:nth-child(even),
+table.wikitable tr:nth-child(even) td
+table.wikitable tr:nth-child(even)
+.wikitable tr:nth-child(even) td
+.wikitable tr:nth-child(even)
+body .mw-body table tr:nth-child(even)
 .mw-parser-output table tr:nth-child(even)
-  background-color: rgba(255, 255, 255, 0.02) !important
+  background-color rgba(255, 255, 255, 0.02) !important
 
 // Hover state
-table.wikitable tr:hover td,
-table.wikitable tr:hover,
-.wikitable tr:hover td,
-.wikitable tr:hover,
-body .mw-body table tr:hover,
-body .mw-body table tr:hover td,
-.mw-parser-output table tr:hover,
+table.wikitable tr:hover td
+table.wikitable tr:hover
+.wikitable tr:hover td
+.wikitable tr:hover
+body .mw-body table tr:hover
+body .mw-body table tr:hover td
+.mw-parser-output table tr:hover
 .mw-parser-output table tr:hover td
-  background-color: rgba(137, 80, 199, 0.08) !important
+  background-color rgba(137, 80, 199, 0.08) !important
 
 // Wiki tables
 .wikitable
