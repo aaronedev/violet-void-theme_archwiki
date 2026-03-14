@@ -624,6 +624,56 @@ progress
 
 
 // =============================================================================
+// ::picker(select) Pseudo-element for Dropdown Styling
+// Browser support: 60%+ (Chrome 135+, Edge 135+)
+// =============================================================================
+
+// Enable base-select appearance on select elements
+@supports (appearance: base-select)
+  select
+    appearance base-select
+    -webkit-appearance base-select
+
+  // Style the dropdown picker container
+  select::picker(select)
+    background-color $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.4)
+    padding 0.25em
+
+    // Dropdown options container
+    &::picker-dropdown
+      background-color $dark
+      border 1px solid $border-subtle
+
+    // Option styling within the picker
+    &::picker-option
+      padding 0.5em 0.75em
+      color $lighter
+      cursor pointer
+      transition background-color 0.15s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.2)
+
+      &:checked
+        background-color rgba($arch-blue, 0.3)
+        color $lighter
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset -2px
+
+    // Option with checkbox (multiple select)
+    &::picker-option-checkbox
+      width 1em
+      height 1em
+      margin-right 0.5em
+      accent-color $arch-blue
+
+
+// =============================================================================
 // EDIT FORM ENHANCEMENTS (MediaWiki)
 // =============================================================================
 
