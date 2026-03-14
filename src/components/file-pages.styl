@@ -494,3 +494,63 @@ video::-webkit-media-controls-volume-slider
 
     &::before
       border-width 12px 0 12px 20px
+
+// =============================================================================
+// ::CUE PSEUDO-ELEMENT FOR VIDEO CAPTIONS
+// Browser support: 97%+
+// =============================================================================
+// Style WebVTT captions/subtitles displayed via <track> element
+// Usage: <video><track kind="captions" src="captions.vtt"></video>
+
+video::cue
+  // Caption text color
+  color $lighter
+
+  // Background for better readability
+  background-color rgba(0, 0, 0, 0.75)
+
+  // Padding around text
+  padding 0.2em 0.4em
+
+  // Font styling
+  font-size 1em
+  line-height 1.4
+
+  // Ensure contrast
+  text-shadow 0 1px 2px rgba(0, 0, 0, 0.8)
+
+// ::cue(:past) - Style captions that have already been displayed
+video::cue:past
+  color rgba($lighter, 0.6)
+
+// ::cue(:future) - Style upcoming captions
+video::cue:future
+  color $lighter
+  background-color rgba(0, 0, 0, 0.85)
+
+// ::cue(.highlight) - Style highlighted cue regions (when using ::cue-region)
+video::cue(.highlight)
+  background-color rgba($arch-blue, 0.4)
+  color $white
+
+// Voice/cue speaker identification - WebVTT voice classes
+video::cue(.speaker1)
+  color $secondary-blue
+
+video::cue(.speaker2)
+  color $arch-blue
+
+// Timestamped comments or notes within cues
+video::cue::part(.timestamp)
+  color $orange
+  font-size 0.85em
+  font-weight 500
+
+// Language-specific cue styling (use with [lang] attribute on video)
+video[lang="en"]::cue
+  font-family -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+
+video[lang="ja"]::cue
+video[lang="ko"]::cue
+video[lang="zh"]::cue
+  font-family 'Noto Sans', 'Noto Sans CJK', sans-serif

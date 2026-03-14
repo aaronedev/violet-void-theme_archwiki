@@ -1608,11 +1608,12 @@ Last updated: 2026-03-14 23:59
 
 ## 🎬 Media & Video Enhancements (New - 2026-02-28 Scout 10)
 
-- [ ] **`::cue` for Video Captions** (97%+ browser support)
+- [x] **`::cue` for Video Captions** (97%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style WebVTT captions/subtitles
   - `::cue { color: var(--text-color); background: rgba(0,0,0,0.8); }`
   - Stylus: Works directly
+  - Commit: 592d1e5
 
 - [ ] **`:fullscreen` Pseudo-class** (97%+ browser support)
   - File: `src/components/ui-components.styl`
@@ -6865,6 +6866,7 @@ Last updated: 2026-03-14 23:59
 | 2026-03-10 | Implementer | Enhanced print link styling with URL display, external link indicators, reference list generation, intelligent truncation, special link type indicators (mailto, tel, GitHub, packages, etc.) | 24a99ea |
 | 2026-03-14 | Implementer | Math Extension Styling for MathML and LaTeX equations with containers, source display, equation numbering, display/inline variants, error display, gallery layout, MathML element styling, accessibility support | b0fd9da |
 | 2026-03-14 | Implementer | Cross-wiki Search Results styling with sister project icons, project badge styling, result grouping headers, result thumbnails, matched term highlighting for Wikipedia, Wiktionary, Wikibooks, Commons, Wikidata, etc. | 13cbee3 |
+| 2026-03-15 | Implementer | ::cue pseudo-element for Video Captions with past/future states, speaker identification, language-specific styling (97%+ browser support) | 592d1e5 |
 
 ---
 
