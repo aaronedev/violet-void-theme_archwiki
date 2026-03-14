@@ -2509,11 +2509,12 @@ Last updated: 2026-03-14 22:10
   - Example: `@media (hover: hover) { .mw-ui-button:hover { ... } }`
   - Stylus: Works directly
 
-- [ ] **`@media (hover: none)` for Touch-Only Devices** (97%+ browser support)
+- [x] **`@media (hover: none)` for Touch-Only Devices** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Touch-specific UI enhancements
   - Larger touch targets, no hover-dependent UI
   - Stylus: Works directly
+  - Commit: 45dddce
 
 - [x] **`@media (pointer: fine)` for Precise Input** (97%+ browser support)
   - File: `src/components/modern-css.styl`
