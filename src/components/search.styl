@@ -1126,6 +1126,212 @@ em
   padding-left 0.5em
   border-left 2px solid rgba($arch-blue, 0.3)
 
+// =============================================================================
+// CROSS-WIKI SEARCH RESULTS
+// =============================================================================
+// Sister project icons, project badge styling, result grouping headers
+// Cross-wiki search results from different Wikimedia projects
+
+// Cross-wiki results container
+.mw-crosswiki-results
+.search-results-crosswiki
+  margin 1em 0
+
+// Cross-wiki result group
+.crosswiki-result-group
+  margin-bottom 1.5em
+  padding 1em
+  background rgba($dark, 0.5)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  // Group header with project icon
+  .result-group-header
+    display flex
+    align-items center
+    gap 0.75em
+    margin-bottom 1em
+    padding-bottom 0.75em
+    border-bottom 1px solid $border-subtle
+
+    // Sister project icon
+    .project-icon
+      width 24px
+      height 24px
+      display flex
+      align-items center
+      justify-content center
+
+      // SVG icons for sister projects
+      svg
+        width 20px
+        height 20px
+        fill currentColor
+
+    // Project name
+    .project-name
+      font-weight 600
+      color $lighter
+      font-size 1em
+
+    // Result count badge
+    .result-count
+      margin-inline-start auto
+      padding 0.2em 0.6em
+      background rgba($arch-blue, 0.2)
+      border-radius $border-radius-sm
+      font-size 0.8em
+      color $arch-blue
+      font-variant-numeric tabular-nums
+
+// Cross-wiki project badges
+.wiki-project-badge
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.75em
+  font-weight 500
+  text-transform uppercase
+  letter-spacing 0.5px
+
+  // Wikipedia
+  &.wikipedia
+    background rgba(255, 255, 255, 0.1)
+    color $lighter
+
+  // Wiktionary
+  &.wiktionary
+    background rgba(0, 96, 170, 0.2)
+    color #0060aa
+
+  // Wikibooks
+  &.wikibooks
+    background rgba(161, 188, 51, 0.2)
+    color #a1bc33
+
+  // Wikiquote
+  &.wikiquote
+    background rgba(161, 188, 51, 0.2)
+    color #a1bc33
+
+  // Wikisource
+  &.wikisource
+    background rgba(0, 91, 129, 0.2)
+    color #005b81
+
+  // Wikiversity
+  &.wikiversity
+    background rgba(63, 145, 26, 0.2)
+    color #3f911a
+
+  // Wikinews
+  &.wikinews
+    background rgba(144, 36, 36, 0.2)
+    color #902424
+
+  // Wikivoyage
+  &.wikivoyage
+    background rgba(0, 105, 180, 0.2)
+    color #0069b4
+
+  // Commons
+  &.commons
+    background rgba(0, 97, 157, 0.2)
+    color #00619d
+
+  // Wikidata
+  &.wikidata
+    background rgba(66, 133, 244, 0.2)
+    color #4285f4
+
+  // Meta-Wiki
+  &.meta
+    background rgba(190, 190, 190, 0.15)
+    color #bebebe
+
+// Cross-wiki result item
+.crosswiki-result-item
+  padding 0.75em
+  margin-bottom 0.5em
+  background rgba($base, 0.5)
+  border-radius $border-radius-sm
+  border 1px solid transparent
+  transition transition-fast
+
+  &:hover
+    background rgba($dark, 0.6)
+    border-color rgba($arch-blue, 0.3)
+
+  &:last-child
+    margin-bottom 0
+
+  // Result title
+  .result-title
+    font-weight 600
+    color $lighter
+    margin-bottom 0.3em
+
+    a
+      color inherit
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+
+  // Result snippet
+  .result-snippet
+    font-size 0.9em
+    color $light
+    line-height 1.5
+    margin-bottom 0.5em
+
+    // Highlight matched terms
+    .search-match
+      background rgba($arch-blue, 0.3)
+      color $lighter
+      padding 0.1em 0.2em
+      border-radius 2px
+
+  // Result metadata
+  .result-meta
+    display flex
+    align-items center
+    gap 1em
+    font-size 0.8em
+    color $muted
+
+    .result-size
+      font-variant-numeric tabular-nums
+
+    .result-date
+      font-variant-numeric tabular-nums
+
+// Cross-wiki result thumbnails
+.crosswiki-thumbnail
+  float inset-inline-start
+  width 80px
+  height 60px
+  margin-inline-end 0.75em
+  margin-bottom 0.5em
+  border-radius $border-radius-sm
+  overflow hidden
+  background $dark
+  border 1px solid $border-subtle
+
+  img
+    width 100%
+    height 100%
+    object-fit cover
+
+// Clear cross-wiki thumbnails
+.crosswiki-result-item::after
+  content ''
+  display table
+  clear both
+
+
 // Reduced motion
 @media (prefers-reduced-motion reduce)
   .suggestions-result
