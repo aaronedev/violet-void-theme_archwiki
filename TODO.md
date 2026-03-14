@@ -387,6 +387,7 @@
 | 2026-03-14 | :user-valid/:user-invalid for post-interaction validation | ea9ec42 |
 | 2026-03-14 | :indeterminate pseudo-class for checkboxes/radios | 5b2607e |
 | 2026-03-14 | :in-range/:out-of-range for range validation | b0ce774 |
+| 2026-03-14 | Math Extension Styling for MathML and LaTeX | b0fd9da |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -889,11 +890,12 @@ Last updated: 2026-03-14 18:06
   - Reference list numbering
   - Citation hover tooltips
 
-- [ ] **Math Extension Styling** (CSS)
+- [x] **Math Extension Styling** (CSS)
   - File: `src/components/extensions.styl`
   - MathML theming
   - LaTeX rendering background
   - Equation numbering
+  - Commit: b0fd9da
 
 ## 📊 Advanced Content Elements (New)
 
@@ -6818,6 +6820,7 @@ Last updated: 2026-03-14 18:06
 | 2026-03-10 | Implementer | Search Suggestions Dropdown with suggestion item styling, match highlighting, category badges with tabular-nums, search input enhancements, filters, pagination, accessibility | 9a16660 |
 | 2026-03-10 | Implementer | white-space-collapse for fine-grained whitespace control in code blocks and content areas (97%+ browser support) | a1fc976 |
 | 2026-03-10 | Implementer | Enhanced print link styling with URL display, external link indicators, reference list generation, intelligent truncation, special link type indicators (mailto, tel, GitHub, packages, etc.) | 24a99ea |
+| 2026-03-14 | Implementer | Math Extension Styling for MathML and LaTeX equations with containers, source display, equation numbering, display/inline variants, error display, gallery layout, MathML element styling, accessibility support | b0fd9da |
 
 ---
 
