@@ -1048,11 +1048,13 @@ Last updated: 2026-03-14 18:06
   - `touch-action: manipulation`
   - Swipe gesture indicators
 
-- [ ] **Mobile Table Responsiveness** (CSS)
+- [x] **Mobile Table Responsiveness** (CSS)
   - File: `src/components/mobile.styl`
-  - Horizontal scroll wrapper
-  - Sticky first column
-  - Priority-based column hiding
+  - Horizontal scroll wrapper with fade indicators
+  - Sticky first column support
+  - Priority-based column hiding for small screens
+  - Card-based transformation for very narrow viewports
+  - Commit: f4af63c
 
 - [ ] **Mobile Navigation Patterns** (CSS)
   - File: `src/components/mobile.styl`
