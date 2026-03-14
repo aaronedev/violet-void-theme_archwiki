@@ -3413,12 +3413,13 @@ Last updated: 2026-03-14 23:59
 
 ## 🖨️ Print Enhancements (New)
 
-- [ ] **Print Header** (CSS)
-  - File: `src/components/print.styl`
+- [x] **Print Header** (CSS)
+  - File: `src/components/print-enhanced.styl`
   - Article title in print
   - URL display
   - Date printed
   - ArchWiki logo
+  - Commit: e6406f5
 
 - [x] **Print TOC** (CSS)
   - File: `src/components/print-enhanced.styl`
