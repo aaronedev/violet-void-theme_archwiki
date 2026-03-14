@@ -1284,3 +1284,449 @@ cite
 
   .translation-toolbar .translation-tool-button
     transition none
+
+// =============================================================================
+// PAGEFORMS EXTENSION STYLING
+// =============================================================================
+// Styling for PageForms - MediaWiki extension for creating and managing forms
+
+// PageForms form container
+.pf-form-container
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin-bottom 1em
+
+// Form title
+.pf-form-title
+  font-size 1.5em
+  font-weight 600
+  color $lighter
+  margin-bottom 1em
+  padding-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+
+// Form field container
+.pf-field
+  margin-bottom 1.25em
+
+  // Field label
+  .pf-field-label
+    display block
+    font-weight 500
+    color $light
+    margin-bottom 0.5em
+    font-size 0.95em
+
+    // Required field indicator
+    .pf-required-indicator
+      color $red
+      margin-left 0.25em
+
+  // Field description
+  .pf-field-description
+    font-size 0.85em
+    color $muted
+    margin-top 0.25em
+    margin-bottom 0.5em
+
+  // Field input styling
+  input[type="text"]
+  input[type="email"]
+  input[type="url"]
+  input[type="number"]
+  input[type="tel"]
+  input[type="search"]
+  input[type="password"]
+  textarea.pf-textarea
+  select.pf-select
+    width 100%
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    color $lighter
+    font-size 1em
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &::placeholder
+      color $muted
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:hover:not(:focus)
+      border-color rgba($arch-blue, 0.5)
+
+// Multi-line textarea
+textarea.pf-textarea
+  min-height 120px
+  resize vertical
+  line-height 1.5
+
+// PF date picker styling
+input.pf-date-picker
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  color $lighter
+  font-size 1em
+  cursor pointer
+  transition border-color 0.2s, box-shadow 0.2s
+
+  &::-webkit-calendar-picker-indicator
+    filter invert(1)
+    opacity 0.6
+    cursor pointer
+
+    &:hover
+      opacity 1
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Date with time picker
+input.pf-datetime-picker
+  @extend input.pf-date-picker
+
+// Combo box / autocomplete styling
+.pf-combo-box
+  position relative
+
+  .pf-combo-box-input
+    width 100%
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    padding-right 2.5em
+    color $lighter
+    font-size 1em
+    cursor pointer
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  .pf-combo-box-arrow
+    position absolute
+    right 1em
+    top 50%
+    transform translateY(-50%)
+    pointer-events none
+    color $muted
+
+  // Dropdown menu
+  .pf-combo-box-menu
+    position absolute
+    top 100%
+    left 0
+    right 0
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    margin-top 0.25em
+    max-height 250px
+    overflow-y auto
+    z-index 1000
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.3)
+
+    .pf-combo-box-option
+      padding 0.75em 1em
+      cursor pointer
+      transition background 0.15s
+
+      &:hover
+        background rgba($arch-blue, 0.15)
+
+      &.selected
+        background rgba($arch-blue, 0.25)
+        color $lighter
+
+// Multi-select styling
+.pf-multi-select
+  .pf-multi-select-container
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em
+    min-height 44px
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    cursor pointer
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &:focus-within
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:hover
+      border-color rgba($arch-blue, 0.5)
+
+  // Selected item tag
+  .pf-multi-select-tag
+    display inline-flex
+    align-items center
+    background rgba($arch-blue, 0.2)
+    border 1px solid rgba($arch-blue, 0.4)
+    border-radius $border-radius-sm
+    padding 0.25em 0.5em
+    font-size 0.9em
+    color $lighter
+
+    .pf-tag-remove
+      margin-left 0.5em
+      cursor pointer
+      color $muted
+      transition color 0.15s
+
+      &:hover
+        color $secondary-red
+
+  // Placeholder
+  .pf-multi-select-placeholder
+    color $muted
+    padding 0.25em 0.5em
+
+  // Dropdown
+  .pf-multi-select-dropdown
+    position absolute
+    top 100%
+    left 0
+    right 0
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    margin-top 0.25em
+    max-height 200px
+    overflow-y auto
+    z-index 1000
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.3)
+
+    .pf-multi-select-option
+      padding 0.5em 0.75em
+      cursor pointer
+      transition background 0.15s
+
+      &:hover
+        background rgba($arch-blue, 0.15)
+
+      &.selected
+        background rgba($arch-blue, 0.25)
+        color $lighter
+
+// Checkbox and radio within PageForms
+.pf-checkbox
+.pf-radio
+  display flex
+  align-items center
+  gap 0.5em
+  margin-bottom 0.5em
+  cursor pointer
+
+  input[type="checkbox"]
+  input[type="radio"]
+    appearance none
+    -webkit-appearance none
+    width 18px
+    height 18px
+    background $dark
+    border 2px solid $border-subtle
+    border-radius $border-radius-sm
+    cursor pointer
+    transition all 0.15s
+    position relative
+
+    &:checked
+      background $arch-blue
+      border-color $arch-blue
+
+    &:checked::after
+      content ''
+      position absolute
+      top 2px
+      left 6px
+      width 5px
+      height 9px
+      border solid $white
+      border-width 0 2px 2px 0
+      transform rotate(45deg)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  &:hover input:not(:checked)
+    border-color $arch-blue
+
+// Form submit button
+.pf-submit-button
+  background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+  color $white
+  border none
+  border-radius $border-radius-md
+  padding 0.75em 1.5em
+  font-size 1em
+  font-weight 600
+  cursor pointer
+  transition all 0.2s
+  margin-top 1em
+
+  &:hover
+    background linear-gradient(135deg, $secondary-blue, $arch-blue)
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &:active
+    transform translateY(0)
+
+  &:disabled
+    opacity 0.5
+    cursor not-allowed
+    transform none
+
+// Form validation error
+.pf-form-error
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-sm
+  padding 0.75em
+  margin-top 0.5em
+  color $secondary-red
+  font-size 0.9em
+
+  .pf-error-message
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content '⚠'
+      font-size 1.1em
+
+// Form section headers
+.pf-section-header
+  font-size 1.1em
+  font-weight 600
+  color $lighter
+  margin-top 1.5em
+  margin-bottom 0.75em
+  padding-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+
+// Section collapsed state
+.pf-section-collapsed
+  .pf-section-header::before
+    content '▶'
+    margin-right 0.5em
+    font-size 0.8em
+    color $muted
+
+.pf-section-expanded
+  .pf-section-header::before
+    content '▼'
+    margin-right 0.5em
+    font-size 0.8em
+    color $muted
+
+// File upload in forms
+.pf-file-upload
+  .pf-file-upload-input
+    background $dark
+    border 2px dashed $border-subtle
+    border-radius $border-radius-md
+    padding 2em
+    text-align center
+    cursor pointer
+    transition all 0.2s
+
+    &:hover
+      border-color $arch-blue
+      background rgba($arch-blue, 0.05)
+
+    &:focus-within
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  .pf-file-upload-icon
+    font-size 2em
+    color $muted
+    margin-bottom 0.5em
+
+  .pf-file-upload-text
+    color $light
+    font-size 0.95em
+
+  .pf-file-upload-hint
+    color $muted
+    font-size 0.85em
+    margin-top 0.25em
+
+// Embed markup textarea
+.pf-embed-markup
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  font-family $font-mono
+  font-size 0.9em
+  color $lighter
+  min-height 200px
+  resize vertical
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Form loading state
+.pf-form-loading
+  opacity 0.7
+  pointer-events none
+
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    width 24px
+    height 24px
+    margin -12px 0 0 -12px
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation pf-spin 0.8s linear infinite
+
+@keyframes pf-spin
+  to
+    transform rotate(360deg)
+
+// Focus-visible for accessibility
+.pf-form-container input:focus-visible
+.pf-form-container textarea:focus-visible
+.pf-form-container select:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion for PageForms
+@media (prefers-reduced-motion reduce)
+  .pf-form-container
+    transition none
+
+  .pf-submit-button
+  .pf-multi-select-tag
+  .pf-combo-box-option
+  .pf-multi-select-option
+    transition none
+
+  @keyframes pf-spin
+    animation none
