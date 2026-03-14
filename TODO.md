@@ -320,10 +320,11 @@
 
 ## 🔮 Future (Low Priority)
 
-- [ ] **Add `anchor()` positioning API**
+- [x] **Add `anchor()` positioning API**
   - Better tooltips positioning
-  - Wait for: Safari stable support
-  - File: `src/components/navigation.styl`
+  - Implemented in `src/components/ui-components.styl`
+  - Added position-anchor property support for tooltips with multiple positioning options
+  - Commit: 608efd9
 
 - [ ] **Native CSS nesting migration path**
   - Long-term consideration for dropping Stylus

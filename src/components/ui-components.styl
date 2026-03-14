@@ -526,3 +526,56 @@ dialog:open
   &:focus-visible
     outline 2px solid $arch-blue
     outline-offset 2px
+
+// ============================================
+// Anchor Positioning API (85%+ browser support)
+// Better tooltips and popover positioning
+// ============================================
+
+// Anchor reference for positioned elements
+// Usage: Add data-anchor attribute to link trigger to tooltip
+[data-anchor]
+  position-anchor anchor-el
+
+// Tooltip with anchor positioning - positions relative to anchor element
+// Usage: Add .tooltip-anchor class and data-tooltip to trigger element
+.tooltip-anchor[data-tooltip]
+  position-anchor tooltip-anchor
+
+  &::after
+    position absolute
+    // Position below anchor by default
+    top anchor(bottom)
+    left anchor(center)
+    transform translateX(-50%)
+    margin-top 8px
+
+// Tooltip positioned above anchor
+.tooltip-anchor-above[data-tooltip]
+  &::after
+    top anchor(top)
+    margin-top 0
+    margin-bottom 8px
+    transform translateX(-50%) translateY(-100%)
+
+// Tooltip positioned to the right of anchor
+.tooltip-anchor-right[data-tooltip]
+  &::after
+    left anchor(right)
+    top anchor(center)
+    transform translateY(-50%)
+    margin-left 8px
+
+// Tooltip positioned to the left of anchor
+.tooltip-anchor-left[data-tooltip]
+  &::after
+    left anchor(left)
+    top anchor(center)
+    transform translateY(-50%) translateX(-100%)
+    margin-left 0
+    margin-right 8px
+
+// Focus-visible for anchor-positioned elements
+.tooltip-anchor[data-tooltip]:focus-visible::after
+  outline 2px solid $arch-blue
+  outline-offset 2px
