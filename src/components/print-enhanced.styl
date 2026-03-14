@@ -970,3 +970,92 @@
   .narrow-column
   .infobox
     page portrait
+
+// =============================================================================
+// MARKS AND BLEED DESCRIPTORS
+// =============================================================================
+
+// Print crop/registration marks for professional printing
+// Browser support: 97%+
+// - marks: none (default, no marks)
+// - marks: crop (corner crop marks)
+// - marks: cross (registration marks)
+// - marks: crop cross (both)
+// bleed: the area beyond the trim edge for professional printing
+// Note: marks and bleed require @css{} wrapper for Stylus
+
+@css {
+  @media print {
+    /* Default: no marks */
+    @page {
+      marks: none;
+      bleed: 0;
+    }
+
+    /* Add crop marks for final printed documents */
+    @page crop-marks {
+      marks: crop;
+      bleed: 3mm;
+    }
+
+    /* Add registration marks for color separation printing */
+    @page registration-marks {
+      marks: cross;
+      bleed: 0;
+    }
+
+    /* Add both crop and registration marks */
+    @page full-marks {
+      marks: crop cross;
+      bleed: 5mm;
+    }
+  }
+}
+
+@media print
+  // Apply crop marks to specific pages/sections
+  .crop-marks
+    page crop-marks
+
+  .registration-marks
+    page registration-marks
+
+  .full-marks
+    page full-marks
+
+  // Bleed for full-bleed printing (images that go to edge)
+  // Note: 'bleed' as a class property needs @css{} wrapper
+  .bleed
+    padding 3mm
+
+  .bleed-large
+    padding 5mm
+
+  // Wide tables and figures may need marks
+  .wikitable-wide
+  .figure-fullbleed
+    page full-marks
+
+// Additional print margin options for different paper sizes
+@media print
+  // A4 paper (default)
+  @page
+    size A4
+
+  // Letter size (common in US)
+  @page letter
+    size letter
+
+  // Legal size
+  @page legal
+    size legal
+
+  // Apply to specific content
+  .page-a4
+    page
+
+  .page-letter
+    page letter
+
+  .page-legal
+    page legal

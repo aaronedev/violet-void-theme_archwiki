@@ -2266,15 +2266,17 @@ Last updated: 2026-03-14 18:06
   - `@page { size: A4; }`
   - Stylus: Works directly
 
-- [ ] **`marks` Descriptor in @page** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`marks` Descriptor in @page** (97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Print crop/registration marks
-  - Stylus: Works directly
+  - Stylus: Works directly (requires @css{} wrapper for marks/bleed)
+  - Commit: 3cbbf77
 
-- [ ] **`bleed` Descriptor in @page** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`bleed` Descriptor in @page** (97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Print bleed area
-  - Stylus: Works directly
+  - Stylus: Works directly (requires @css{} wrapper for marks/bleed)
+  - Commit: 3cbbf77
 
 
 ## 📐 Sizing Keywords (New - 2026-03-01 Scout 3)
