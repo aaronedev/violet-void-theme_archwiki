@@ -106,3 +106,184 @@
   // Simplify gradients
   .complex-gradient
     background var(--bg-secondary)
+
+// =============================================================================
+// ANIMATION PERFORMANCE
+// =============================================================================
+
+// Transform-only animations for GPU acceleration
+// Browser support: 97%+
+// Using transform and opacity ensures animations run on the GPU
+// Avoid animating: width, height, margin, padding, top, left, border
+
+// Transform-only slide animation (GPU accelerated)
+@keyframes slide-in-right
+  from
+    transform translateX(100%)
+    opacity 0
+  to
+    transform translateX(0)
+    opacity 1
+
+@keyframes slide-in-left
+  from
+    transform translateX(-100%)
+    opacity 0
+  to
+    transform translateX(0)
+    opacity 1
+
+@keyframes slide-in-up
+  from
+    transform translateY(20px)
+    opacity 0
+  to
+    transform translateY(0)
+    opacity 1
+
+@keyframes slide-in-down
+  from
+    transform translateY(-20px)
+    opacity 0
+  to
+    transform translateY(0)
+    opacity 1
+
+@keyframes scale-in
+  from
+    transform scale(0.9)
+    opacity 0
+  to
+    transform scale(1)
+    opacity 1
+
+@keyframes rotate-in
+  from
+    transform rotate(-10deg) scale(0.95)
+    opacity 0
+  to
+    transform rotate(0) scale(1)
+    opacity 1
+
+// Transform-only utility classes
+.animate-slide-right
+  animation-name slide-in-right
+
+.animate-slide-left
+  animation-name slide-in-left
+
+.animate-slide-up
+  animation-name slide-in-up
+
+.animate-slide-down
+  animation-name slide-in-down
+
+.animate-scale-in
+  animation-name scale-in
+
+.animate-rotate-in
+  animation-name rotate-in
+
+// Common animation properties for performance
+.animate-transform
+  transform translateZ(0)
+  backface-visibility hidden
+  perspective 1000px
+
+// Opacity transitions (GPU accelerated)
+// opacity is one of the cheapest properties to animate
+.animate-fade-in
+  animation-name fade-in
+
+.animate-fade-out
+  animation-name fade-out
+
+@keyframes fade-in
+  from
+    opacity 0
+  to
+    opacity 1
+
+@keyframes fade-out
+  from
+    opacity 1
+  to
+    opacity 0
+
+// will-change hints for browser optimization
+// Use sparingly - too many will-change can hurt performance
+// Use before animation starts, remove after animation completes
+
+// Hint transform for sliding elements
+.will-change-transform
+  will-change transform
+
+// Hint opacity for fading elements
+.will-change-opacity
+  will-change opacity
+
+// Hint scroll-position for scrolling containers
+.will-change-scroll
+  will-change scroll-position
+
+// Hint for multiple properties
+.will-change-composite
+  will-change transform, opacity
+
+// Best practice: remove will-change after animation
+// This class can be added via JS, then removed on animationend
+.remove-will-change
+  will-change auto
+
+// GPU acceleration compositing
+// Use translate3d as shortcut for translateZ(0) with GPU
+.gpu-layer
+  transform translate3d(0, 0, 0)
+  backface-visibility hidden
+
+.gpu-layer-strong
+  transform translate3d(0, 0, 0) scale(1.01)
+  backface-visibility hidden
+  perspective 2000px
+
+// Composite animations with transform and opacity
+// These are the only properties that don't trigger layout/paint
+.composite-animate
+  transform translateZ(0)
+  opacity 1
+  transition transform 0.3s ease, opacity 0.3s ease
+
+// Animation with hardware acceleration
+.hw-accelerated
+  transform translateZ(0)
+  will-change transform
+  backface-visibility hidden
+  perspective 1000px
+  -webkit-transform translateZ(0)
+
+// Optimize animations for reduced motion preference
+@media (prefers-reduced-motion reduce)
+  // Disable all animations
+  .animate-slide-right
+  .animate-slide-left
+  .animate-slide-up
+  .animate-slide-down
+  .animate-scale-in
+  .animate-rotate-in
+  .animate-fade-in
+  .animate-fade-out
+    animation none
+    transform none
+    opacity 1
+
+  // Remove will-change hints when animations disabled
+  .will-change-transform
+  .will-change-opacity
+  .will-change-scroll
+  .will-change-composite
+  .hw-accelerated
+    will-change auto
+
+  // Instant transitions
+  .composite-animate
+    transition none
