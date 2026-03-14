@@ -379,6 +379,8 @@
 | 2026-03-14 | ::checkmark pseudo-element for select checkmarks | d2a07e1 |
 | 2026-03-14 | :blank pseudo-class for empty form fields | b21b472 |
 | 2026-03-14 | :nth-child(of S) selector for tables | b21b472 |
+| 2026-03-14 | :autofill pseudo-class for autofilled inputs | 5b2607e |
+| 2026-03-14 | :indeterminate pseudo-class for checkboxes/radios | 5b2607e |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -1590,17 +1592,19 @@ Last updated: 2026-03-10 13:30
   - Stylus: Works directly
   - Commit: a56b1c8
 
-- [ ] **`:autofill` Pseudo-class** (85%+ browser support)
+- [x] **`:autofill` Pseudo-class** (85%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style autofilled inputs
   - Different background for autofilled fields
   - Stylus: Works directly
+  - Commit: 5b2607e
 
-- [ ] **`:indeterminate` Pseudo-class** (97%+ browser support)
+- [x] **`:indeterminate` Pseudo-class** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style indeterminate checkboxes/radios
   - Progress bars without value
   - Stylus: Works directly
+  - Commit: 5b2607e
 
 - [ ] **`:in-range` / `:out-of-range`** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
