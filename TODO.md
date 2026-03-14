@@ -259,13 +259,14 @@
   - File: `src/components/forms-enhanced.styl`
   - Stylus: Works directly (Chrome 135+, Edge 135+)
 
-- [ ] **`::picker(select)` Pseudo-element for Dropdown Styling**
+- [x] **`::picker(select)` Pseudo-element for Dropdown Styling**
   - Browser support: 60%+ (rising rapidly)
   - Style the dropdown picker container of select elements
   - Custom borders, backgrounds, shadows for dropdowns
   - Requires: `appearance: base-select` on select element
   - File: `src/components/forms-enhanced.styl`
   - Stylus: Works directly (Chrome 135+, Edge 135+)
+  - Commit: 00a5af9
 
 ## 📐 Fluid Sizing
 
