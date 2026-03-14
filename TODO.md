@@ -4585,12 +4585,13 @@ Last updated: 2026-03-14 18:06
   - Placeholder styling
   - Fade-in transitions
 
-- [ ] **Animation Performance** (CSS, 97%+ browser support)
-  - File: `src/performance/animation.styl`
-  - Transform-only animations
-  - Opacity transitions
-  - will-change hints
-  - GPU acceleration
+- [x] **Animation Performance** (CSS, 97%+ browser support)
+  - File: `src/components/performance.styl`
+  - Transform-only animations (slide, scale, rotate)
+  - Opacity transitions (fade-in, fade-out)
+  - will-change hints for transform/opacity/scroll
+  - GPU acceleration with translate3d compositing
+  - Commit: 6eec6f2
 
 | 2026-03-01 | Twenty-fifth scout | Added visual design patterns (glassmorphism, neumorphism accents, gradient borders, depth & layering), advanced layout patterns (holy grail, masonry, split panels, aspect ratio containers), interaction patterns (drag & drop, sort & filter, bulk selection, inline editing), data presentation (data tables, timelines, card grids, metric displays), utility classes (spacing, typography, color, visibility), performance optimizations (critical CSS, containment, lazy loading hints, animation performance) |
 
