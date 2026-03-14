@@ -3419,12 +3419,13 @@ Last updated: 2026-03-14 23:59
   - Date printed
   - ArchWiki logo
 
-- [ ] **Print TOC** (CSS)
-  - File: `src/components/print.styl`
+- [x] **Print TOC** (CSS)
+  - File: `src/components/print-enhanced.styl`
   - Simple list format
   - Page numbers
   - Section links
   - Optional inclusion
+  - Commit: b177636
 
 - [ ] **Print Infobox** (CSS)
   - File: `src/components/print.styl`

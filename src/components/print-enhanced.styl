@@ -1057,5 +1057,151 @@
   .page-letter
     page letter
 
-  .page-legal
-    page legal
+// =============================================================================
+// PRINT TABLE OF CONTENTS
+// =============================================================================
+
+// Simple list format for printing
+// Browser support: 97%+
+
+@media print
+  // Print TOC container
+  .print-toc
+    display block
+    margin 1em 0
+    padding 1em
+    border 1px solid $print-border-light
+
+  // TOC title
+  .print-toc-title
+    font-size 14pt
+    font-weight bold
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 2px solid $print-black
+    page-break-after avoid
+
+  // TOC entries
+  .print-toc-entry
+    display flex
+    align-items baseline
+    margin 0.5em 0
+    page-break-inside avoid
+
+  // TOC link (the section title)
+  .print-toc-link
+    color $print-text
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+  // TOC leader (dots)
+  .print-toc-leader
+    flex-grow 1
+    border-bottom 1px dotted $print-border-dark
+    margin 0 0.5em
+    min-width 20px
+
+  // TOC page number
+  .print-toc-page
+    font-variant-numeric tabular-nums
+    color $print-text
+
+  // TOC nesting levels
+  .print-toc-level-1
+    font-weight bold
+    margin-top 0.75em
+
+  .print-toc-level-2
+    margin-inline-start 1em
+
+  .print-toc-level-3
+    margin-inline-start 2em
+    font-size 0.95em
+
+  // Hide interactive TOC elements in print
+  .toc
+  .tocnumber
+  .toctoggle
+  .mw-editsection
+    display none
+
+  // Convert interactive TOC to print-friendly format
+  .toc
+    display block
+    border 1px solid $print-border-light
+    padding 1em
+    background $print-bg
+
+    // Show only links and numbers
+    a
+      color $print-text
+
+    // Section numbers
+    .tocnumber
+      display inline
+      margin-inline-end 0.5em
+
+    // Indent nested items
+    .toclevel-1
+      margin-top 0.5em
+
+    .toclevel-2
+      margin-inline-start 1em
+
+    .toclevel-3
+      margin-inline-start 2em
+
+  // If TOC is empty/hidden, show print-toc
+  .print-toc:empty
+    display none
+
+  // Page break before TOC if it's long
+  .toc
+    page-break-before auto
+
+// =============================================================================
+// PRINT PAGE NUMBERS
+// =============================================================================
+
+// Page numbering styles
+// Browser support: 97%+
+
+@media print
+  // Page counter - shown in header/footer
+  .print-page-number
+    font-variant-numeric tabular-nums
+
+  // Show page numbers in TOC
+  .toc .tocnumber::after
+    content leader(" . ") target-counter(attr(href), page)
+
+  // Alternative: manual page numbers for TOC
+  .toc-page-manual .tocline
+    display flex
+
+  .toc-page-manual .tocnumber
+    order 1
+
+// =============================================================================
+// LEGACY PAGE SIZE SUPPORT
+// =============================================================================
+
+@media print
+  // Letter size (common in US)
+  @page :left
+    margin 1in 1.25in 1in 1in
+
+  @page :right
+    margin 1in 1in 1in 1.25in
+
+  @page :first
+    margin 1.5in 1.25in 1in 1.25in
+
+  // Named pages
+  @page landscape
+    size landscape
+
+  @page portrait
+    size portrait
