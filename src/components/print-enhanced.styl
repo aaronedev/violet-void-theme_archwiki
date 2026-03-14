@@ -925,3 +925,48 @@
     position running(page-footer)
     font-size 0.8em
     color $muted
+
+// =============================================================================
+// PAGE ORIENTATION
+// =============================================================================
+
+// Control page orientation for different content types
+// Browser support: 87%+
+// Allows forcing portrait or landscape orientation for specific pages/elements
+
+@media print
+  // Default portrait orientation
+  @page
+    page-orientation portrait
+
+  // Landscape orientation for wide content
+  @page landscape
+    page-orientation landscape
+
+  // Apply landscape orientation to wide tables
+  .wikitable-wide
+  .table-wide
+  .wide-content
+    page landscape
+
+  // Apply landscape to code blocks that are too wide
+  pre.code-block-wide
+    page landscape
+
+  // Landscape for diff views and large code comparisons
+  .diff
+  .mw-diff
+    page landscape
+
+  // Ensure landscape pages have proper margins
+  @page landscape
+    margin 1.5cm
+
+  // Portrait for narrow content like infoboxes
+  @page portrait
+    page-orientation portrait
+
+  // Apply to narrow columns
+  .narrow-column
+  .infobox
+    page portrait
