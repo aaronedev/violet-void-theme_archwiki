@@ -790,3 +790,105 @@ body.menu-open
     @media (pointer coarse)
       scroll-behavior auto
       overflow-x auto
+
+// =============================================================================
+// SAFE AREA SUPPORT (iOS Notched Devices)
+// =============================================================================
+// Support for iPhone X and later devices with notches and home indicator
+// Browser support: 87%+ (iOS Safari 11+)
+// Requires viewport-fit=cover in HTML meta viewport
+
+// Wrap in @supports for browsers that don't support env()
+@supports (padding-top: env(safe-area-inset-top))
+  // Global body padding for safe areas
+  body
+    padding-top env(safe-area-inset-top)
+    padding-bottom env(safe-area-inset-bottom)
+    padding-left env(safe-area-inset-left)
+    padding-right env(safe-area-inset-right)
+
+  // Content area safe insets
+  #content
+    padding-top calc(1em + env(safe-area-inset-top))
+    padding-bottom calc(1em + env(safe-area-inset-bottom))
+
+  // Fixed header adjustments
+  .mw-header
+  .vector-header
+  .vector-sticky-header
+    top env(safe-area-inset-top)
+
+  // Fixed footer / bottom navigation
+  .mobile-bottom-nav
+  .mw-footer
+    bottom env(safe-area-inset-bottom)
+
+  // Sidebar safe insets
+  #mw-sidebar
+  .mw-sidebar
+    padding-top env(safe-area-inset-top)
+
+  // Edit form - prevent keyboard from covering input
+  .mw-editform
+    padding-bottom env(safe-area-inset-bottom)
+
+  // Fixed position elements
+  .fixed-top
+    top env(safe-area-inset-top)
+
+  .fixed-bottom
+    bottom env(safe-area-inset-bottom)
+
+  // Mobile slide menu
+  .mobile-slide-menu
+    padding-top calc(1em + env(safe-area-inset-top))
+    padding-bottom calc(1em + env(safe-area-inset-bottom))
+
+  // Quick access FAB - above home indicator
+  .mobile-quick-access
+    bottom calc(1em + env(safe-area-inset-bottom))
+    right calc(1em + env(safe-area-inset-right))
+
+  // Content padding for safe areas on all edges
+  .mw-parser-output
+    padding-left: unquote("max(1em, env(safe-area-inset-left))")
+    padding-right: unquote("max(1em, env(safe-area-inset-right))")
+
+  // TOC mobile - avoid notch
+  #toc
+  .toc
+    @media (max-width 768px)
+      padding-top env(safe-area-inset-top)
+      padding-left: unquote("max(0.5em, env(safe-area-inset-left))")
+      padding-right: unquote("max(0.5em, env(safe-area-inset-right))")
+
+  // Search bar on mobile
+  .mw-search-input
+    @media (max-width 768px)
+      padding-left: unquote("max(1em, env(safe-area-inset-left))")
+      padding-right: unquote("max(1em, env(safe-area-inset-right))")
+
+  // Talk/new message banner
+  .usermessage
+  #mw-notice-area
+    padding-top calc(0.5em + env(safe-area-inset-top))
+    padding-left: unquote("max(1em, env(safe-area-inset-left))")
+    padding-right: unquote("max(1em, env(safe-area-inset-right))")
+
+  // Personal tools / user menu
+  .mw-portlet
+  #p-personal
+    @media (max-width 768px)
+      padding-top env(safe-area-inset-top)
+
+  // Page actions / tabs
+  .mw-ui-tabs
+  .vector-page-toolbar
+    @media (max-width 768px)
+      padding-left: unquote("max(0.5em, env(safe-area-inset-left))")
+      padding-right: unquote("max(0.5em, env(safe-area-inset-right))")
+
+  // Categories at bottom of page
+  #catlinks
+  .catlinks
+    padding-bottom calc(1em + env(safe-area-inset-bottom))

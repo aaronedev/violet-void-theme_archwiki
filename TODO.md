@@ -438,10 +438,11 @@
 | 2026-03-14 | filter: contrast() for accessibility/readability | e1b897fc |
 | 2026-03-14 | Scrollable Table Wrapper for performance | 92cf67a |
 | 2026-03-14 | Cite Extension Enhancements | 80822e6 |
+| 2026-03-14 | Safe Area Support for mobile (iOS notch/home indicator) | 80bb105 |
 
 ---
 
-Last updated: 2026-03-14 21:57
+Last updated: 2026-03-14 22:10
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1073,11 +1074,12 @@ Last updated: 2026-03-14 21:57
   - Slide-out menu
   - Quick access shortcuts
 
-- [ ] **Safe Area Support** (CSS)
+- [x] **Safe Area Support** (CSS)
   - File: `src/components/mobile.styl`
   - `safe-area-inset-*` for notched devices
   - Content scroll adjustment
   - Fixed element positioning
+  - Commit: 80bb105
 
 ## ⚡ Performance Monitoring (New)
 
