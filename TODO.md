@@ -1396,11 +1396,12 @@ Last updated: 2026-03-10 13:30
 
 ## ⚡ Performance Patterns (New)
 
-- [ ] **`render-subtree` for Visibility** (87%+ browser support)
+- [x] **`render-subtree` for Visibility** (87%+ browser support)
   - File: `src/components/performance.styl`
   - Control rendering of subtrees
   - `render-subtree: invisible` for hidden content
   - Stylus: Works directly
+  - Commit: d80061c
 
 - [ ] **`content-visibility: hidden` with `hidden=until-found`** (97%+ browser support)
   - File: `src/components/content.styl`
