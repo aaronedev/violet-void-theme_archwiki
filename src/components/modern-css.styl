@@ -1948,3 +1948,31 @@ h4[id]
 
 // JavaScript can set these custom properties as fallback
 // Example JS: element.style.setProperty('--card-width', '400px')
+
+
+// =============================================================================
+// @FONT-PALETTE-VALUES - Custom Color Font Palettes (87%+ browser support)
+// =============================================================================
+
+// Define custom palettes for emoji and color fonts
+// Usage: font-palette: --emoji-void;
+@css{}
+
+@font-palette-values --emoji-void
+  --font-color-1 #8950c7
+  --font-color-2 #c7b8ff
+  --font-color-3 #fd7cff
+
+@font-palette-values --emoji-archive
+  --font-color-1 #29adff
+  --font-color-2 #00a8a4
+  --font-color-3 #42ff97
+
+@font-palette-values --emoji-contrast
+  --font-color-1 #ffffff
+  --font-color-2 #bfbfbf
+  --font-color-3 #e7e7e7
+
+// CSS custom property for JS-based palette selection
+:root
+  --custom-palette normal

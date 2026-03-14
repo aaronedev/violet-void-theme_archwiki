@@ -966,6 +966,44 @@ ol.nested-counter
 
 
 // =============================================================================
+// COLOR FONT SUPPORT (font-palette)
+// =============================================================================
+
+// Control color font palettes (emoji, icon fonts)
+// Browser support: 87%+ (Chrome 80+, Firefox 107+, Safari 15.4+)
+
+// Use default font palette (system emoji)
+.font-palette-normal
+  font-palette normal
+
+// Use light variant if available
+.font-palette-light
+  font-palette light
+
+// Use dark variant if available
+.font-palette-dark
+  font-palette dark
+
+// Use minimal palette (monochrome)
+.font-palette-monochrome
+  font-palette monochrome
+
+// Custom palette override via @font-palette-values (see modern-css.styl)
+.font-palette-custom
+  font-palette var(--custom-palette, normal)
+
+// Emoji text styling
+// Use system emoji with proper color
+.emoji-text
+  font-family "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif
+  font-palette light-dark(normal, dark)
+
+// Force grayscale emoji (accessibility)
+.emoji-grayscale
+  font-palette monochrome
+
+
+// =============================================================================
 // MATHML STYLING
 // =============================================================================
 
