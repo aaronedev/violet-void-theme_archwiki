@@ -1294,6 +1294,63 @@ h4[id]
       background linear-gradient(135deg, var(--arch-blue-p3), var(--secondary-blue-p3))
 
 // =============================================================================
+// OKLCH COLOR SPACE
+// =============================================================================
+// Perceptually uniform color space with better L/C/H control than HSL
+// Browser support: 90%+ (Chrome 111+, Safari 15.4+, Firefox 113+)
+// Format: oklch(L% C H)
+//   - L: lightness (0-100%)
+//   - C: chroma (saturation intensity)
+//   - H: hue (0-360 degrees)
+
+// OKLCH provides consistent perceived brightness across hues
+// Use for smooth color transitions and better gradient interpolation
+
+// Example: Smooth color transitions using OKLCH
+@supports (color: oklch(0 0 0))
+  .color-transition
+    transition color 0.3s ease
+
+  // Interactive element states with OKLCH
+  .oklch-link
+    color $arch-blue
+    transition color 0.2s ease
+
+    &:hover
+      color oklch(65% 0.22 280)
+
+    &:active
+      color oklch(45% 0.25 280)
+
+// OKLCH gradients - smoother than HSL
+// Note: gradient interpolation in oklch is supported in modern browsers
+// Using direct oklch values for gradient colors
+.gradient-oklch
+  background linear-gradient(135deg, oklch(55% 0.2 280), oklch(80% 0.1 280))
+
+.gradient-surface-oklch
+  background linear-gradient(135deg, oklch(15% 0.025 280), oklch(12% 0.02 280))
+
+// P3 gamut enhancement using OKLCH
+@supports (color: oklch(0 0 0)) and (color: oklch(0 0.3 0))
+  @media (color-gamut p3)
+    :root
+      // More saturated colors for P3 displays
+      --oklch-arch-blue oklch(55% 0.25 280)
+      --oklch-green oklch(70% 0.28 150)
+      --oklch-orange oklch(70% 0.28 320)
+
+    // Use OKLCH variants on P3 displays
+    .oklch-enhanced
+      color var(--oklch-arch-blue)
+
+      &.accent-green
+        color var(--oklch-green)
+
+      &.accent-orange
+        color var(--oklch-orange)
+
+// =============================================================================
 // :IS() FOR SELECTOR GROUPING
 // =============================================================================
 

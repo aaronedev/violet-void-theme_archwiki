@@ -46,3 +46,58 @@ $print-text = #666666
 $print-black = #000000
 $print-button-bg = #333333
 $print-white = #ffffff
+
+// =============================================================================
+// OKLCH Color Space - Perceptually uniform colors
+// Browser support: 90%+ (Chrome 111+, Safari 15.4+, Firefox 113+)
+// =============================================================================
+// OKLCH provides better lightness/chroma/hue control than HSL
+// Format: oklch(L C H) where:
+//   - L: lightness (0-1, or 0%-100%)
+//   - C: chroma (0-0.37 for sRGB, can be higher for P3)
+//   - H: hue (0-360 degrees)
+
+// OKLCH dark theme variants
+$oklch-darker = oklch(8% 0.015 280)
+$oklch-dark = oklch(12% 0.02 280)
+$oklch-base = oklch(15% 0.025 280)
+$oklch-light = oklch(75% 0.03 280)
+$oklch-lighter = oklch(92% 0.02 280)
+$oklch-white = oklch(100% 0 0)
+
+// OKLCH accent colors - more vibrant alternatives
+$oklch-arch-blue = oklch(55% 0.2 280)
+$oklch-secondary-blue = oklch(80% 0.1 280)
+$oklch-red = oklch(50% 0.2 340)
+$oklch-secondary-red = oklch(60% 0.25 340)
+$oklch-green = oklch(70% 0.2 150)
+$oklch-orange = oklch(70% 0.2 320)
+
+// OKLCH UI colors
+$oklch-comment = oklch(50% 0.02 280)
+$oklch-muted = oklch(55% 0.015 280)
+$oklch-cell-delim = oklch(15% 0.02 280)
+
+// OKLCH terminal colors
+$oklch-term-black = oklch(8% 0.015 280)
+$oklch-term-red = oklch(60% 0.25 340)
+$oklch-term-green = oklch(75% 0.2 150)
+$oklch-term-yellow = oklch(65% 0.15 270)
+$oklch-term-blue = oklch(65% 0.15 210)
+$oklch-term-magenta = oklch(65% 0.2 320)
+$oklch-term-cyan = oklch(70% 0.15 180)
+$oklch-term-white = oklch(40% 0.02 280)
+
+$oklch-term-bright-black = oklch(15% 0.02 280)
+$oklch-term-bright-red = oklch(60% 0.3 340)
+$oklch-term-bright-green = oklch(80% 0.2 150)
+$oklch-term-bright-yellow = oklch(80% 0.2 320)
+$oklch-term-bright-blue = oklch(80% 0.12 270)
+$oklch-term-bright-magenta = oklch(70% 0.25 320)
+$oklch-term-bright-cyan = oklch(85% 0.15 180)
+$oklch-term-bright-white = oklch(92% 0.02 280)
+
+// P3 gamut colors for wide-gamut displays
+$oklch-p3-arch-blue = oklch(55% 0.25 280)
+$oklch-p3-green = oklch(70% 0.28 150)
+$oklch-p3-orange = oklch(70% 0.28 320)
