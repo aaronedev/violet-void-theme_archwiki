@@ -344,3 +344,203 @@ bdo[dir="rtl"]
   [dir="rtl"]
     // Ensure proper direction in high contrast
     direction rtl
+
+// ============================================================================
+// Language Variant Styling
+// ============================================================================
+// Language-specific font stacks, CJK adjustments, non-Latin script support
+
+// -----------------------------------------------------------------------------
+// CJK (Chinese, Japanese, Korean) Support
+// -----------------------------------------------------------------------------
+// CJK characters need different font sizing and line-height adjustments
+
+:lang(zh)
+:lang(zh-Hans)
+:lang(zh-Hant)
+:lang(zh-CN)
+:lang(zh-TW)
+:lang(zh-HK)
+  // CJK-optimized font stack
+  font-family "Noto Sans SC", "Noto Sans TC", "PingFang SC", "PingFang TC", "Microsoft YaHei", "Microsoft JhengHei", "WenQuanYi Micro Hei", sans-serif
+  // Slightly increased line-height for CJK characters
+  line-height 1.8
+
+:lang(ja)
+  // Japanese-optimized font stack
+  font-family "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif
+  // Adjusted line-height for Japanese
+  line-height 1.85
+
+:lang(ko)
+  // Korean-optimized font stack
+  font-family "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif
+  // Slightly increased line-height for Korean
+  line-height 1.75
+
+// CJK heading adjustments
+:lang(zh)
+:lang(zh-Hans)
+:lang(zh-Hant)
+:lang(ja)
+:lang(ko)
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    line-height 1.5
+
+// -----------------------------------------------------------------------------
+// Arabic Script Support
+// -----------------------------------------------------------------------------
+// Arabic needs specific typography adjustments
+
+:lang(ar)
+  // Arabic-optimized font stack
+  font-family "Noto Sans Arabic", "Amiri", "Traditional Arabic", "Arial", sans-serif
+  // Increased line-height for Arabic
+  line-height 2
+  // Enable typographic features for Arabic
+  font-feature-settings "calt" 1, "liga" 1
+
+  // Arabic headings need more breathing room
+  h1
+  h2
+  h3
+    line-height 1.6
+
+// Arabic-specific text adjustments
+:lang(ar)
+  // Improve Arabic text justification
+  text-align start
+  text-justify inter-word
+
+  // Tashkeel (diacritical marks) positioning
+  text-spacing-trim allow-end
+
+// -----------------------------------------------------------------------------
+// Hebrew Script Support
+// -----------------------------------------------------------------------------
+
+:lang(he)
+  // Hebrew-optimized font stack
+  font-family "Noto Sans Hebrew", "Arial", sans-serif
+  // Adjusted line-height for Hebrew
+  line-height 1.8
+
+  // Hebrew headings
+  h1
+  h2
+  h3
+    line-height 1.5
+
+// -----------------------------------------------------------------------------
+// Devanagari Script Support
+// -----------------------------------------------------------------------------
+// Hindi and related languages
+
+:lang(hi)
+:lang(sa)
+:lang(ne)
+  // Devanagari-optimized font stack
+  font-family "Noto Sans Devanagari", "Mangal", "Kokila", sans-serif
+  // Devanagari needs increased line-height
+  line-height 2
+
+  h1
+  h2
+  h3
+    line-height 1.6
+
+// -----------------------------------------------------------------------------
+// Thai Script Support
+// -----------------------------------------------------------------------------
+
+:lang(th)
+  // Thai-optimized font stack
+  font-family "Noto Sans Thai", "Tahoma", "Arial", sans-serif
+  // Thai needs increased line-height
+  line-height 2
+
+// -----------------------------------------------------------------------------
+// Vietnamese Support
+// -----------------------------------------------------------------------------
+// Vietnamese uses diacritical marks that need extra space
+
+:lang(vi)
+  // Vietnamese-optimized font stack
+  font-family "Noto Sans", "Roboto", "Open Sans", sans-serif
+  // Extra line-height for diacritical marks
+  line-height 1.9
+
+  // Ensure proper display of special characters
+  .mw-content-vietnamese
+    line-height 2
+
+// -----------------------------------------------------------------------------
+// Greek Script Support
+// -----------------------------------------------------------------------------
+
+:lang(el)
+  // Greek-optimized font stack
+  font-family "Noto Sans", "Gentium", "Arial", sans-serif
+
+// -----------------------------------------------------------------------------
+// Cyrillic Script Support
+// -----------------------------------------------------------------------------
+// Russian, Ukrainian, Bulgarian, etc.
+
+:lang(ru)
+:lang(uk)
+:lang(bg)
+:lang(sr)
+:lang(mk)
+  // Cyrillic-optimized font stack
+  font-family "Noto Sans", "Roboto", "Arial", sans-serif
+
+// -----------------------------------------------------------------------------
+// Font Size Adjustments for CJK
+// -----------------------------------------------------------------------------
+// CJK text often needs smaller base font sizes for readability
+
+@media (max-width 768px)
+  :lang(zh)
+  :lang(zh-Hans)
+  :lang(zh-Hant)
+  :lang(ja)
+  :lang(ko)
+    // Increase line-height on mobile for CJK
+    line-height 2
+
+    p
+    li
+    td
+    th
+      line-height 2
+
+// -----------------------------------------------------------------------------
+// Mixed Language Content
+// -----------------------------------------------------------------------------
+// Handle content with multiple languages
+
+.mw-contentMixedLang
+  // Ensure proper line-height for mixed content
+  line-height 1.9
+
+  // Code in mixed content
+  code
+    line-height 1.5
+
+// -----------------------------------------------------------------------------
+// Vertical Writing Mode (for CJK)
+// -----------------------------------------------------------------------------
+// Support for vertical text in traditional Chinese and Japanese
+
+:lang(zh-Hant)
+:lang(ja)
+  &[style*="writing-mode: vertical"]
+    // Vertical text adjustments
+    text-combine-upright all
+    text-orientation mixed
