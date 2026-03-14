@@ -1508,11 +1508,12 @@ Last updated: 2026-03-14 18:06
   - Note: Wrap in `@css{}` for Stylus
   - Commit: 89012be
 
-- [ ] **`font-variant-alternates` for OpenType** (87%+ browser support)
+- [x] **`font-variant-alternates` for OpenType** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Access alternate glyphs
   - `font-variant-alternates: historical-forms`
   - Stylus: Works directly
+  - Commit: f0fe3e3
 
 ## 🖼️ Image Enhancements (New)
 

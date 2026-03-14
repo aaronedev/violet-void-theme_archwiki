@@ -958,6 +958,45 @@ ol.nested-counter
 .sub
   font-variant-position sub
 
+// font-variant-alternates for OpenType features
+// Browser support: 87%+
+// Access alternate glyphs provided by fonts (historical forms, swash, ornaments, etc.)
+
+.historical-forms
+  font-variant-alternates historical-forms
+
+.swash
+  font-variant-alternates swash
+
+.no-swash
+  font-variant-alternates swash 0
+
+.ornaments
+  font-variant-alternates ornaments
+
+.no-ornaments
+  font-variant-alternates ornaments 0
+
+.annotation-circles
+  font-variant-alternates annotation(circles)
+
+.annotation-squares
+  font-variant-alternates annotation(squares)
+
+// Stylistic sets (font-specific, common ranges 01-20)
+.stylistic-set-1
+  font-variant-alternates stylistic(user-font-1)
+
+.stylistic-set-2
+  font-variant-alternates stylistic(user-font-2)
+
+// Character variants (font-specific, common ranges 01-20)
+.character-variant-1
+  font-variant-alternates character-variant(user-char-1)
+
+.character-variant-2
+  font-variant-alternates character-variant(user-char-2)
+
 // font-optical-sizing
 // Browser support: 97%+
 
