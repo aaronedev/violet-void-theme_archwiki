@@ -183,26 +183,26 @@ textarea
 // =============================================================================
 
 // Safe area inset for modern mobile devices
-@supports (padding: max(0px))
+@supports (padding: unquote("max(0px)"))
   // Respect notched devices
   .mw-body
   #content
   .mw-editform
     @media (max-width 768px)
-      padding-left max(1em, env(safe-area-inset-left))
-      padding-right max(1em, env(safe-area-inset-right))
+      padding-left unquote("max(1em, env(safe-area-inset-left))")
+      padding-right unquote("max(1em, env(safe-area-inset-right))")
 
   // Fixed bottom elements need bottom safe area
   .mw-footer
     @media (max-width 768px)
-      padding-bottom max(0.5em, env(safe-area-inset-bottom))
+      padding-bottom unquote("max(0.5em, env(safe-area-inset-bottom))")
 
 // =============================================================================
 // MOBILE KEYBOARD SUPPORT
 // =============================================================================
 
 // Adjust layout when virtual keyboard is visible
-@supports (padding: env(keyboard-inset-bottom))
+@supports (padding: unquote("env(keyboard-inset-bottom)"))
   .mw-editform
     @media (max-width 768px)
       padding-bottom calc(1em + env(keyboard-inset-bottom))
@@ -210,6 +210,49 @@ textarea
 // =============================================================================
 // HORIZONTAL SCROLL ON TOUCH DEVICES
 // =============================================================================
+
+// Mobile table container - provides horizontal scroll with visual feedback
+.table-scroll-wrapper
+  @media (max-width 768px)
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+    scroll-behavior smooth
+    position relative
+    margin 1em 0
+
+    // Fade indicators on scroll edges
+    &::before
+      content ''
+      position absolute
+      left 0
+      top 0
+      bottom 0
+      width 15px
+      background linear-gradient(to right, rgba($base, 0.7), transparent)
+      pointer-events none
+      z-index 1
+      opacity 0
+
+    &::after
+      content ''
+      position absolute
+      right 0
+      top 0
+      bottom 0
+      width 15px
+      background linear-gradient(to left, rgba($base, 0.7), transparent)
+      pointer-events none
+      z-index 1
+      opacity 0
+
+    // Show indicators when there's overflow
+    &.scrollable::after
+      opacity 1
+
+    @media (pointer coarse)
+      // Always show right indicator on touch devices
+      &::after
+        opacity 1
 
 // Smooth horizontal scrolling for code blocks and tables on touch
 pre
@@ -220,26 +263,148 @@ code
     -webkit-overflow-scrolling touch
     scroll-behavior smooth
 
-// Tables on mobile - horizontal scroll with visual hint
+// Tables on mobile - horizontal scroll with enhanced styling
 table.wikitable
+table.mwMetadata
+table.mw-html-magic-mw-data-interface
   @media (max-width 768px)
     display block
     overflow-x auto
     -webkit-overflow-scrolling touch
+    scroll-behavior smooth
 
-    // Fade indicator for scrollable content
-    position relative
+    // Prevent layout breaks
+    max-width 100vw
+    width auto
+    min-width 100%
 
-    &::after
-      content ''
-      position absolute
-      right 0
-      top 0
-      bottom 0
-      width 20px
-      background linear-gradient(to right, transparent, rgba($base, 0.6))
-      pointer-events none
-      display none // Only show when actually scrollable via JS
+// Sticky first column for horizontal scroll tables
+// Helps users maintain context while scrolling
+@supports (position: sticky)
+  table.wikitable
+  table.mwMetadata
+  table.mw-html-magic-mw-data-interface
+    @media (max-width 768px) and (pointer fine)
+      // Set up the scroll container
+      display block
+      overflow-x auto
+      scroll-behavior smooth
+      position relative
+
+      // Make first column sticky
+      thead th:first-child
+      tbody th:first-child
+      td:first-child
+        position sticky
+        left 0
+        z-index 2
+        background $base
+
+        // Add subtle border to separate from scrolling content
+        &::after
+          content ''
+          position absolute
+          right 0
+          top 0
+          bottom 0
+          width 2px
+          background $border-subtle
+
+      // Header cells need higher z-index
+      thead th:first-child
+        z-index 3
+        background $base-secondary
+
+// Priority-based column hiding for very small screens
+// Uses data-priority attribute for column importance
+// Priority 1 = always shown, 2 = tablet+, 3 = desktop only
+@media (max-width 480px)
+  table.wikitable
+  table.mwMetadata
+  table.mw-html-magic-mw-data-interface
+    // Hide priority-3 columns (desktop only)
+    th[data-priority="3"]
+    td[data-priority="3"]
+    .priority-3
+      display none
+
+    // Show priority-2 on small screens too
+    th[data-priority="2"]
+    td[data-priority="2"]
+    .priority-2
+      // Reduce padding to save space
+      padding 0.25em 0.5em
+      font-size 0.9em
+
+@media (max-width 360px)
+  table.wikitable
+  table.mwMetadata
+  table.mw-html-magic-mw-data-interface
+    // Even more aggressive: hide priority-2 on very small screens
+    th[data-priority="2"]
+    td[data-priority="2"]
+    .priority-2
+      display none
+
+    // Keep only priority-1 columns visible
+    th:not([data-priority])
+    td:not([data-priority])
+    th[data-priority="1"]
+    td[data-priority="1"]
+    .priority-1
+      display table-cell
+
+// Card-based mobile table transformation
+// For extremely narrow viewports or user preference
+@media (max-width 320px), (horizontal-viewport-segments 1)
+  table.wikitable
+  table.mwMetadata
+    @media (pointer coarse)
+      display flex
+      flex-direction column
+
+      tbody
+        display flex
+        flex-direction column
+        gap 0.5em
+
+      tr
+        display flex
+        flex-direction column
+        border 1px solid $border-subtle
+        border-radius 4px
+        padding 0.5em
+        background $base-secondary
+
+      th
+      td
+        display flex
+        justify-content space-between
+        align-items baseline
+        padding 0.25em 0.5em
+        border none
+
+        // Add label before content
+        &::before
+          content attr(data-label)
+          font-weight 600
+          color $text-muted
+          margin-right 0.5em
+          font-size 0.85em
+
+// Scroll position indicator - shows current scroll position
+.table-scroll-indicator
+  @media (max-width 768px)
+    display flex
+    justify-content space-between
+    padding 0.25em 0.5em
+    font-size 0.75em
+    color $text-muted
+    background $base-secondary
+    border-radius 4px 4px 0 0
+
+    .scroll-position
+      font-variant-numeric tabular-nums
 
 // =============================================================================
 // TOUCH CURSOR INDICATORS
