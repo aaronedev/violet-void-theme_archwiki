@@ -888,11 +888,12 @@ Last updated: 2026-03-14 22:10
   - Diff highlight colors
   - Commit: addee2c
 
-- [ ] **Wikidata Integration** (CSS)
+- [x] **Wikidata Integration** (CSS)
   - File: `src/components/extensions.styl`
   - Wikidata item link styling
   - Data quality badges
   - Identifier formatting
+  - Commit: e26cbc4
 
 - [x] **Cite Extension Enhancements** (97%+ browser support)
   - File: `src/components/extensions.styl`

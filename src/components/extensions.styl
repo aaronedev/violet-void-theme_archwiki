@@ -1088,6 +1088,192 @@ cite
       opacity 0.5
       cursor not-allowed
 
+// =============================================================================
+// WIKIDATA INTEGRATION STYLING
+// =============================================================================
+
+// Wikidata item link styling
+.wikidata-link
+  color $arch-blue
+  text-decoration none
+  border-bottom 1px dotted rgba($arch-blue, 0.5)
+  transition all 0.2s
+
+  &:hover
+    color $secondary-blue
+    border-bottom-color $secondary-blue
+
+// Wikidata badge styling
+.wikidata-badge
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.8em
+  font-weight 600
+
+  // Quality badges
+  &.quality-good
+    background rgba($green, 0.15)
+    color $green
+
+  &.quality-medium
+    background rgba($orange, 0.15)
+    color $orange
+
+  &.quality-poor
+    background rgba($red, 0.15)
+    color $red
+
+// Wikidata property/value pairs
+.wikidata-property
+  color rgba($light, 0.7)
+  font-size 0.9em
+  font-weight 500
+  margin-right 0.5em
+
+.wikidata-value
+  color $lighter
+  font-size 0.95em
+
+// Wikidata identifier formatting
+.wikidata-entity-id
+  font-family $font-mono
+  font-size 0.85em
+  background rgba($arch-blue, 0.1)
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  color $secondary-blue
+
+// Wikidata item display card
+.wikidata-item
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+
+  // Item label
+  .item-label
+    color $lighter
+    font-size 1.1em
+    font-weight 600
+    margin-bottom 0.75em
+
+  // Property list
+  .property-list
+    display flex
+    flex-direction column
+    gap 0.5em
+
+  // Property row
+  .property-row
+    display flex
+    align-items baseline
+    gap 0.75em
+    padding 0.25em 0
+
+    &:hover
+      background rgba($arch-blue, 0.05)
+      border-radius $border-radius-sm
+
+// Wikidata reference links
+.wikidata-reference
+  color rgba($light, 0.6)
+  font-size 0.85em
+  font-style italic
+
+  a
+    color $arch-blue
+
+    &:hover
+      color $secondary-blue
+
+// Wikidata statement container
+.wikidata-statement
+  background rgba($dark, 0.5)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em
+  margin-bottom 0.5em
+
+  // Statement rank indicator
+  .statement-rank
+    display inline-block
+    width 8px
+    height 8px
+    border-radius 50%
+    margin-right 0.5em
+
+    &.preferred
+      background $green
+
+    &.normal
+      background $orange
+
+    &.deprecated
+      background rgba($light, 0.4)
+
+// Wikidata quick statement input
+.wikidata-quickstatement
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  font-family $font-mono
+  font-size 0.9em
+
+  textarea
+    width 100%
+    min-height 120px
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    padding 0.75em
+    font-family inherit
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+  // Execute button
+  .qs-execute
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+    color $white
+    border none
+    border-radius $border-radius-sm
+    padding 0.5em 1em
+    font-weight 600
+    cursor pointer
+    margin-top 0.5em
+    transition all 0.2s
+
+    &:hover
+      background linear-gradient(135deg, $secondary-blue, $arch-blue)
+
+    &:disabled
+      opacity 0.5
+      cursor not-allowed
+
+// Focus-visible support for Wikidata interactions
+.wikidata-link:focus-visible
+.wikidata-item:focus-visible
+.wikidata-quickstatement textarea:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion for Wikidata animations
+@media (prefers-reduced-motion reduce)
+  .wikidata-link
+    transition none
+
+  .wikidata-badge
+    transition none
+
+  .wikidata-item
+    transition none
+
 // Reduced motion for translation interactions
 @media (prefers-reduced-motion reduce)
   .translation-details .translation-progress .progress-fill
