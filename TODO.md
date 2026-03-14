@@ -368,6 +368,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-14 | animation-timeline: scroll() for scroll-driven animations | 610bf0a |
 | 2026-03-14 | Timeline Extension Styling | 04e068d5 |
 | 2026-03-14 | @scroll-state container queries for scroll snapping | 4233450 |
 | 2026-03-14 | :snapped pseudo-class for snapped element styling | 4233450 |
@@ -445,7 +446,7 @@
 
 ---
 
-Last updated: 2026-03-14 23:50
+Last updated: 2026-03-14 23:59
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1205,11 +1206,12 @@ Last updated: 2026-03-14 23:50
 
 ## 🔄 Scroll-Driven Animations (New)
 
-- [ ] **`animation-timeline: scroll()`** (85%+ browser support)
+- [x] **`animation-timeline: scroll()`** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Progress-linked animations based on scroll position
   - Apply to article reading progress
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 610bf0a
 
 - [ ] **`animation-timeline: view()`** (85%+ browser support)
   - File: `src/components/modern-css.styl`
