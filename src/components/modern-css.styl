@@ -2088,3 +2088,58 @@ h4[id]
 // CSS custom property for JS-based palette selection
 :root
   --custom-palette normal
+
+
+// =============================================================================
+// @MEDIA (HOVER: NONE) - Touch-Only Devices (97%+ browser support)
+// =============================================================================
+
+// Touch-only devices (phones, tablets without mouse/trackpad)
+// Remove hover-dependent UI and enhance touch experience
+// Use alongside @media (hover: hover) for devices with hover capability
+
+@media (hover none) and (pointer coarse)
+  // Hide hover-dependent elements that don't work on touch
+  .tooltip
+  .mw-title .mw-editsection-like
+    visibility hidden
+
+  // Remove hover states that can stick on touch
+  a:hover
+  button:hover
+  .mw-ui-button:hover
+    background-color inherit
+
+  // Touch-friendly link targets
+  .mw-body-content a
+    padding 0.5em 0.25em // Larger tap area
+    margin -0.5em -0.25em // Maintain layout while expanding tap area
+
+  // Disable hover-based dropdowns - use tap/click instead
+  .vector-sticky-pinned-container
+  .mw-sidebar
+    &:hover .dropdown-menu
+      display none
+
+    .dropdown-menu
+      display block // Always visible on touch
+      position relative
+      opacity 1
+      visibility visible
+      pointer-events auto
+
+  // Larger touch targets for navigation
+  #mw-head .vector-sticky-pinned-container::after
+    min-height 48px
+
+  // Remove hover-based image previews
+  .mw-wiki-logo
+    opacity 1
+
+  // Touch-friendly TOC
+  #toc
+    a
+      padding 0.75em 0.5em
+
+    li
+      margin 0.25em 0
