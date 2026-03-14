@@ -101,3 +101,99 @@ $oklch-term-bright-white = oklch(92% 0.02 280)
 $oklch-p3-arch-blue = oklch(55% 0.25 280)
 $oklch-p3-green = oklch(70% 0.28 150)
 $oklch-p3-orange = oklch(70% 0.28 320)
+
+// =============================================================================
+// LAB/LCH Color Spaces - Device-independent color definitions
+// Browser support: 94%+ (Chrome 123+, Safari 15+, Firefox 113+)
+// =============================================================================
+// LAB provides perceptually uniform colors independent of display
+// LCH is the polar form of LAB (Lightness, Chroma, Hue)
+// These provide better gradient interpolation and consistent appearance
+// Format: lab(L% a b) or lch(L% C H)
+//   - LAB: L (0-100%), a (-128 to 127), b (-128 to 127)
+//   - LCH: L (0-100%), C (0-230), H (0-360 degrees)
+
+// LAB dark theme variants
+$lab-darker = lab(8% -2 -3)
+$lab-dark = lab(12% -3 -4)
+$lab-base = lab(15% -3 -5)
+$lab-light = lab(75% 2 -4)
+$lab-lighter = lab(92% 1 -2)
+$lab-white = lab(100% 0 0)
+
+// LAB accent colors
+$lab-arch-blue = lab(55% 25 -45)
+$lab-secondary-blue = lab(80% 15 -25)
+$lab-red = lab(50% 55 20)
+$lab-secondary-red = lab(60% 60 25)
+$lab-green = lab(70% -30 35)
+$lab-orange = lab(70% 40 10)
+
+// LAB UI colors
+$lab-comment = lab(50% 0 -3)
+$lab-muted = lab(55% 1 -2)
+$lab-cell-delim = lab(15% -1 -2)
+
+// LAB terminal colors
+$lab-term-black = lab(8% -2 -3)
+$lab-term-red = lab(60% 55 20)
+$lab-term-green = lab(75% -35 40)
+$lab-term-yellow = lab(65% 15 -30)
+$lab-term-blue = lab(65% 10 -45)
+$lab-term-magenta = lab(65% 45 15)
+$lab-term-cyan = lab(70% -20 5)
+$lab-term-white = lab(40% 0 -2)
+
+$lab-term-bright-black = lab(15% -1 -2)
+$lab-term-bright-red = lab(60% 60 25)
+$lab-term-bright-green = lab(80% -30 45)
+$lab-term-bright-yellow = lab(80% 35 5)
+$lab-term-bright-blue = lab(80% 15 -25)
+$lab-term-bright-magenta = lab(70% 50 20)
+$lab-term-bright-cyan = lab(85% -15 10)
+$lab-term-bright-white = lab(92% 1 -2)
+
+// LCH dark theme variants (polar form of LAB)
+$lch-darker = lch(8% 4 260)
+$lch-dark = lch(12% 5 260)
+$lch-base = lch(15% 6 260)
+$lch-light = lch(75% 5 260)
+$lch-lighter = lch(92% 3 260)
+$lch-white = lch(100% 0 0)
+
+// LCH accent colors - more control over chroma
+$lch-arch-blue = lch(55% 50 280)
+$lch-secondary-blue = lch(80% 30 270)
+$lch-red = lch(50% 60 340)
+$lch-secondary-red = lch(60% 65 345)
+$lch-green = lch(70% 45 150)
+$lch-orange = lch(70% 50 320)
+
+// LCH UI colors
+$lch-comment = lch(50% 4 260)
+$lch-muted = lch(55% 3 260)
+$lch-cell-delim = lch(15% 3 260)
+
+// LCH terminal colors
+$lch-term-black = lch(8% 4 260)
+$lch-term-red = lch(60% 60 340)
+$lch-term-green = lch(75% 55 150)
+$lch-term-yellow = lch(65% 35 265)
+$lch-term-blue = lch(65% 45 210)
+$lch-term-magenta = lch(65% 48 320)
+$lch-term-cyan = lch(70% 25 180)
+$lch-term-white = lch(40% 3 260)
+
+$lch-term-bright-black = lch(15% 3 260)
+$lch-term-bright-red = lch(60% 65 340)
+$lch-term-bright-green = lch(80% 55 150)
+$lch-term-bright-yellow = lch(80% 50 320)
+$lch-term-bright-blue = lch(80% 30 270)
+$lch-term-bright-magenta = lch(70% 55 320)
+$lch-term-bright-cyan = lch(85% 20 180)
+$lch-term-bright-white = lch(92% 3 260)
+
+// LCH P3 gamut colors for wide-gamut displays (higher chroma possible)
+$lch-p3-arch-blue = lch(55% 60 280)
+$lch-p3-green = lch(70% 55 150)
+$lch-p3-orange = lch(70% 60 320)
