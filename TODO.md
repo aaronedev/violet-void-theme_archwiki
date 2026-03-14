@@ -382,6 +382,7 @@
 | 2026-03-14 | :blank pseudo-class for empty form fields | b21b472 |
 | 2026-03-14 | :nth-child(of S) selector for tables | b21b472 |
 | 2026-03-14 | :autofill pseudo-class for autofilled inputs | 5b2607e |
+| 2026-03-14 | :user-valid/:user-invalid for post-interaction validation | ea9ec42 |
 | 2026-03-14 | :indeterminate pseudo-class for checkboxes/radios | 5b2607e |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
@@ -1220,11 +1221,12 @@ Last updated: 2026-03-10 13:30
 
 ## 📝 Form State Styling (New)
 
-- [ ] **`:user-valid` / `:user-invalid`** (89%+ browser support)
+- [x] **`:user-valid` / `:user-invalid`** (89%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Validation styling only after user interaction
   - Better UX than `:valid`/`:invalid`
   - Stylus: Works directly
+  - Commit: ea9ec42
 
 - [ ] **`:placeholder-shown` Detection** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
