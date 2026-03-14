@@ -337,3 +337,95 @@ details > summary:focus-visible
   .collapsible
   details
     transition none !important
+
+// =============================================================================
+// FILTER: CONTRAST() FOR READABILITY
+// =============================================================================
+
+// Increase contrast on demand
+// Browser support: 97%+
+// Pairs well with @media (prefers-contrast: more)
+
+@media (prefers-contrast more)
+  // Increase text contrast globally
+  body
+  .mw-body
+  .mw-content-ltr
+    filter contrast(1.25)
+
+  // Stronger contrast for body text
+  p
+  li
+  td
+  th
+    filter contrast(1.15)
+
+  // Links stand out more
+  a
+    filter contrast(1.3)
+
+  // Code blocks - higher contrast
+  pre
+  code
+  .mw-highlight
+    filter contrast(1.2)
+
+  // Images - increase contrast for diagrams
+  img
+    filter contrast(1.15)
+
+  // Tables - clearer cell boundaries
+  table.wikitable
+    filter contrast(1.1)
+
+  // Infobox - better readability
+  .infobox
+    filter contrast(1.1)
+
+  // Remove transparency for better contrast
+  .mw-notification
+  .toast
+  .popup
+    background-color $base
+    backdrop-filter none
+
+  // Borders more visible
+  table
+  th
+  td
+    border-color currentColor !important
+
+// High contrast mode - additional enhancements
+@media (prefers-contrast more) and (prefers-reduced-motion no-preference)
+  // Subtle highlight on focus for keyboard navigation
+  :focus-visible
+    filter contrast(1.4)
+
+// Custom contrast class for user override
+.high-contrast
+  filter contrast(1.35)
+
+  // Ensure backgrounds are solid
+  &
+  & *
+    background-color $base !important
+    backdrop-filter none !important
+
+  // Strong borders
+  a
+  button
+  input
+  select
+  textarea
+    border 2px solid currentColor !important
+
+// Low contrast mode - for users sensitive to high contrast
+@media (prefers-contrast less)
+  // Subtle reduction for text-heavy pages
+  .mw-body-content
+    filter contrast(0.92)
+
+  // Soften borders
+  table
+  pre
+    border-color rgba(currentColor, 0.7) !important

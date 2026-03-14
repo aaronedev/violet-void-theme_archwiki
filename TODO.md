@@ -429,10 +429,11 @@
 
 | 2026-03-10 | Twenty-ninth scout | Added contrast-color() and progress() CSS functions, :open/:interest-source/:interest-target pseudo-classes, media state pseudo-classes (:seeking, :stalled, :volume-locked), ArchWiki navigation patterns (magic words, interlanguage links, category placement, related articles positioning), {{Related2}} and {{Lowercase title}} template support |
 | 2026-03-14 | ::checkmark Pseudo-element for Select Checkmarks | d2a07e1 |
+| 2026-03-14 | filter: contrast() for accessibility/readability | e1b897fc |
 
 ---
 
-Last updated: 2026-03-10 13:30
+Last updated: 2026-03-14 17:39
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1438,11 +1439,12 @@ Last updated: 2026-03-10 13:30
   - Circle, ellipse, polygon
   - Stylus: Works directly
 
-- [ ] **`filter: contrast()` for Readability** (97%+ browser support)
+- [x] **`filter: contrast()` for Readability** (97%+ browser support)
   - File: `src/components/accessibility.styl`
   - Increase contrast on demand
   - `@media (prefers-contrast: more)` pair
   - Stylus: Works directly
+  - Commit: e1b897fc
 
 
 ## 📜 Scroll Enhancements (New - 2026-02-28 Scout 9)
