@@ -835,11 +835,12 @@ Last updated: 2026-03-14 18:06
   - Subgroup styling
   Commit: 3e89550
 
-- [ ] **Sidebar Template Styling** (CSS)
+- [x] **Sidebar Template Styling** (CSS)
   - File: `src/components/navbox.styl`
   - Related topics sidebar
   - Collapsible sections
   - Image/icon alignment
+  Commit: c75cf51
 
 - [x] **Documentation Subpage** (CSS)
   - File: `src/components/template-doc.styl`
