@@ -672,6 +672,44 @@ progress
       margin-right 0.5em
       accent-color $arch-blue
 
+// =============================================================================
+// ::checkmark Pseudo-element for Select Checkmarks
+// Browser support: 60%+ (Chrome 135+, Edge 135+)
+// =============================================================================
+
+@supports (appearance: base-select)
+  // Style the checkmark indicator for selected options
+  select::picker(select)::checkmark
+    // Checkmark color - use theme accent
+    color $arch-blue
+
+    // Checkmark size
+    width 0.75em
+    height 0.75em
+
+    // Position within the option
+    margin-right 0.25em
+
+  // Selected option with checkmark styling
+  select::picker(select)::option:checked::checkmark
+    color $arch-blue
+    background-color transparent
+
+  // Checkmark in focus state
+  select::picker(select)::option:focus-visible::checkmark
+    outline 2px solid $arch-blue
+    outline-offset 1px
+
+  // Checkmark hover state
+  select::picker(select)::option:hover::checkmark
+    color lighten($arch-blue, 10%)
+
+  // Multi-select with checkmarks
+  select[multiple]::picker(select)::option:checked::checkmark
+    // In multi-select, show checkmark for selected items
+    &::after
+      content "✓"
+
 
 // =============================================================================
 // EDIT FORM ENHANCEMENTS (MediaWiki)

@@ -251,13 +251,14 @@
   - File: `src/components/forms.styl`, `src/components/forms-enhanced.styl`
   - Stylus: Works directly
 
-- [ ] **`::checkmark` Pseudo-element for Select Checkmarks**
+- [x] **`::checkmark` Pseudo-element for Select Checkmarks**
   - Browser support: 60%+ (rising rapidly)
   - Style checkmarks in customizable select dropdowns
   - Custom icons, colors, and positioning for selected options
   - Requires: `appearance: base-select` on select and ::picker(select)
   - File: `src/components/forms-enhanced.styl`
   - Stylus: Works directly (Chrome 135+, Edge 135+)
+  - Commit: d2a07e1
 
 - [x] **`::picker(select)` Pseudo-element for Dropdown Styling**
   - Browser support: 60%+ (rising rapidly)
@@ -375,6 +376,7 @@
 | 2026-03-10 | Documentation Subpage (template-doc.styl) | 95091e6 |
 | 2026-03-10 | attr() with type() function | c6dedd5 |
 | 2026-03-10 | color-mix() function for dynamic color mixing | 84aac1c |
+| 2026-03-14 | ::checkmark pseudo-element for select checkmarks | d2a07e1 |
 | 2026-02-27 | will-change expansion for smoother animations | 32f2f71 |
 | 2026-02-27 | content-visibility for off-screen content | 98369b5 |
 | 2026-02-27 | Expand `:has()` selector usage | 8074cef |
@@ -419,6 +421,7 @@
 | 2026-03-10 | Broken/Red Links | Added links.styl with red link styling, hover create indicator, broken link distinction | 5185b7b |
 
 | 2026-03-10 | Twenty-ninth scout | Added contrast-color() and progress() CSS functions, :open/:interest-source/:interest-target pseudo-classes, media state pseudo-classes (:seeking, :stalled, :volume-locked), ArchWiki navigation patterns (magic words, interlanguage links, category placement, related articles positioning), {{Related2}} and {{Lowercase title}} template support |
+| 2026-03-14 | ::checkmark Pseudo-element for Select Checkmarks | d2a07e1 |
 
 ---
 
@@ -7067,7 +7070,7 @@ Last updated: 2026-03-10 13:30
   - Example: `.scroll-container::scroll-button(left) { content: "◀"; }`
   - Stylus: Works directly
 
-- [ ] **`::checkmark` Pseudo-element** (CSS, 87%+ browser support)
+- [x] **`::checkmark` Pseudo-element** (CSS, 87%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style checkmark in customizable select elements
   - Custom checkmark icon/color for selected options
