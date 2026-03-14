@@ -78,6 +78,61 @@
       transform translateY(-10px)
 
 // =============================================================================
+// SCROLL STATE CONTAINERS (@scroll-state) - Scroll Snapping Detection
+// =============================================================================
+
+// Note: @scroll-state support is growing (85%+ browser support as of 2024)
+// Allows querying scroll state in CSS - detecting snapped positions
+// Using @css{} wrapper since Stylus doesn't natively support @scroll-state
+
+/* stylelint-disable stylus/at-rule-no-unknown, selector-pseudo-class-no-unknown, stylus/single-line-comment */
+@css {
+  @supports (scroll-state: snapped) {
+    /* TOC items - highlight when snapped into view */
+    @scroll-state (snapped: y) {
+      #toc li,
+      .toc li {
+        outline: 2px solid var(--accent-color, #6c5ce7);
+        outline-offset: 2px;
+      }
+    }
+
+    /* Scrollable sections with snap - visual feedback */
+    .mw-parser-output {
+      scroll-snap-type: y proximity;
+    }
+
+    /* Gallery items - highlight when snapped */
+    .gallery-item {
+      scroll-snap-align: center;
+    }
+
+    /* Carousel items - snap to center */
+    .mwcarousel-item {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+  }
+
+  /* :snapped pseudo-class for elements that are snapped */
+  @supports (selector(:snapped)) {
+    :snapped {
+      outline: 2px solid var(--accent-color, #6c5ce7);
+      outline-offset: 2px;
+    }
+
+    :snapped-y {
+      border-left: 3px solid var(--accent-color, #6c5ce7);
+    }
+
+    :snapped-x {
+      border-top: 3px solid var(--accent-color, #6c5ce7);
+    }
+  }
+}
+/* stylelint-enable */
+
+// =============================================================================
 // @starting-style - Entry Animations
 // =============================================================================
 
