@@ -431,3 +431,41 @@ table.sortable
   color $muted
   font-size 0.85em
 
+// =============================================================================
+// :NTH-CHILD(OF S) SELECTOR - Advanced filtering
+// =============================================================================
+// Browser support: 89%+ (Chrome 111+, Firefox 113+, Safari 9+)
+// nth-child with selector argument for more specific targeting
+
+// Style only visible rows (exclude header-like rows)
+table
+  tr:nth-child(of :not(.header-row):not(.mw-empty-elt))
+    background-color $base
+
+// Alternate visible rows only (skip header-like rows)
+table.striped
+  tr:nth-child(of :not(.header-row):not(.mw-empty-elt))
+    &:nth-child(odd)
+      background-color rgba($darker, 0.5)
+
+    &:nth-child(even)
+      background-color $base
+
+// Highlight rows that don't have a specific class
+.wikitable
+  tr:nth-child(of :not(.highlight):not(.mw-empty-elt))
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+
+// Target only data rows (exclude header and footer)
+table
+  tbody tr:nth-child(of :not(.header):not(.footer))
+    border-bottom 1px solid $border-subtle
+
+// Exclude hidden/empty rows from counting
+.mw-parser-output
+  table
+    tr:nth-child(of :not(.mw-empty-elt):not([style*="display: none"]))
+      &.alternate
+        background-color rgba($dark, 0.5)
+

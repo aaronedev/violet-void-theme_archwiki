@@ -1543,3 +1543,62 @@ input[type="file"][accept="application/pdf"]
     button
     input[type="submit"]
       width 100%
+
+// =============================================================================
+// :BLANK PSEUDO-CLASS FOR EMPTY FORM FIELDS
+// =============================================================================
+// Browser support: 87%+ (Chrome 120+, Firefox 109+, Safari 16+)
+// Style truly empty inputs (no whitespace) - more specific than :placeholder-shown
+
+:blank
+  // Input fields that are truly blank (no content at all)
+  &
+  input:blank
+  textarea:blank
+  select:blank
+    background-color rgba($darker, 0.5)
+    border-color $border-subtle
+
+    &::placeholder
+      color $muted
+      opacity 0.7
+
+// Style focused blank inputs differently
+input:blank:focus-visible
+textarea:blank:focus-visible
+select:blank:focus-visible
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+  background-color $darker
+
+// Blank inputs with floating labels pattern
+.form-field.has-floating-label
+  input:blank
+  textarea:blank
+    & + label
+    & ~ label
+      top 50%
+      transform translateY(-50%)
+      font-size 1em
+      color $muted
+
+// Visual distinction for optional blank fields
+input:blank[optional]
+textarea:blank[optional]
+select:blank[optional]
+  background linear-gradient(135deg, rgba($darker, 0.3) 0%, rgba($dark, 0.3) 100%)
+  border-style dashed
+
+// :not(:blank) - fields with content
+// Use for reverse styling (content present)
+:not(:blank)
+  &
+  input:not(:blank)
+  textarea:not(:blank)
+  select:not(:blank)
+    background-color $darker
+    border-color $border-subtle
+
+    &::placeholder
+      color $light
+      opacity 1
