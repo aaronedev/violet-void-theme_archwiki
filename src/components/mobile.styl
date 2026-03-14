@@ -851,29 +851,29 @@ body.menu-open
 
   // Content padding for safe areas on all edges
   .mw-parser-output
-    padding-left: unquote("max(1em, env(safe-area-inset-left))")
-    padding-right: unquote("max(1em, env(safe-area-inset-right))")
+    padding-left unquote("max(1em, env(safe-area-inset-left))")
+    padding-right unquote("max(1em, env(safe-area-inset-right))")
 
   // TOC mobile - avoid notch
   #toc
   .toc
     @media (max-width 768px)
       padding-top env(safe-area-inset-top)
-      padding-left: unquote("max(0.5em, env(safe-area-inset-left))")
-      padding-right: unquote("max(0.5em, env(safe-area-inset-right))")
+      padding-left unquote("max(0.5em, env(safe-area-inset-left))")
+      padding-right unquote("max(0.5em, env(safe-area-inset-right))")
 
   // Search bar on mobile
   .mw-search-input
     @media (max-width 768px)
-      padding-left: unquote("max(1em, env(safe-area-inset-left))")
-      padding-right: unquote("max(1em, env(safe-area-inset-right))")
+      padding-left unquote("max(1em, env(safe-area-inset-left))")
+      padding-right unquote("max(1em, env(safe-area-inset-right))")
 
   // Talk/new message banner
   .usermessage
   #mw-notice-area
     padding-top calc(0.5em + env(safe-area-inset-top))
-    padding-left: unquote("max(1em, env(safe-area-inset-left))")
-    padding-right: unquote("max(1em, env(safe-area-inset-right))")
+    padding-left unquote("max(1em, env(safe-area-inset-left))")
+    padding-right unquote("max(1em, env(safe-area-inset-right))")
 
   // Personal tools / user menu
   .mw-portlet
@@ -885,8 +885,8 @@ body.menu-open
   .mw-ui-tabs
   .vector-page-toolbar
     @media (max-width 768px)
-      padding-left: unquote("max(0.5em, env(safe-area-inset-left))")
-      padding-right: unquote("max(0.5em, env(safe-area-inset-right))")
+      padding-left unquote("max(0.5em, env(safe-area-inset-left))")
+      padding-right unquote("max(0.5em, env(safe-area-inset-right))")
 
   // Categories at bottom of page
   #catlinks

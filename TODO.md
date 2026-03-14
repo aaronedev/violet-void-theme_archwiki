@@ -1428,11 +1428,12 @@ Last updated: 2026-03-14 22:10
   - Provide enhanced colors for HDR displays
   - Stylus: Works directly
 
-- [ ] **`@media (prefers-reduced-data)`** (87%+ browser support)
+- [x] **`@media (prefers-reduced-data)`** (87%+ browser support)
   - File: `src/components/performance.styl`
   - Detect data saver mode
   - Reduce image quality/animations
   - Stylus: Works directly
+  - Commit: c8d6b37
 
 - [ ] **`aspect-ratio` with attr()** (97%+ browser support for aspect-ratio)
   - File: `src/components/content.styl`
@@ -7408,3 +7409,4 @@ Last updated: 2026-03-14 22:10
 | 2026-03-14 | page-orientation for print | Added page-orientation descriptor support for controlling portrait/landscape orientation in print styles | 04799e9 |
 | 2026-03-14 | Advanced Search Form | Added advanced search form styling with field grouping, filter chips, boolean operators, namespace selector, date range inputs | ac12f84 |
 | 2026-03-14 | Definition Lists & Checklists | Added lists.styl with definition lists (dl/dt/dd), checklists with custom checkboxes, step-by-step lists for tutorials, nested list enhancements | 3451136 |
+| 2026-03-14 | prefers-reduced-data for Data Saver | Added @media (prefers-reduced-data) support to performance.styl - reduces animations, simplifies skeletons, disables decorative elements for data-conscious users | c8d6b37 |

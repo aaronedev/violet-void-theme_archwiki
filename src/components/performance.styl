@@ -274,6 +274,82 @@
     transform none
 
 // =============================================================================
+// PREFER REDUCED DATA - Data Saver Mode
+// =============================================================================
+
+// Detect data saver mode and reduce resource usage
+// Browser support: 87%+ (Chrome 113+, Firefox 121+, Safari 17.4+)
+// Reduces image quality, animations, and optional content for data-conscious users
+
+@media (prefers-reduced-data reduce)
+  // Disable skeleton loading animations
+  .skeleton
+    animation none
+    background rgba($dark, 0.2)
+
+  // Simplify blur-up loading - no blur transition needed
+  .img-loading
+    filter none
+    transform none
+    transition none
+
+    &.loaded
+      filter none
+      transform none
+
+  // Reduce lazy load fade animations
+  .lazy-load-fade
+    opacity 1
+    transform none
+    transition none
+
+  // Disable or simplify progress bar animations
+  .page-load-progress .progress-fill
+    animation none
+    background $arch-blue
+    width 100%
+
+  // No blur on placeholders
+  .img-placeholder
+    filter none
+    background-color rgba($dark, 0.15)
+
+  // Reduce or disable decorative background images
+  body
+    background-image none !important
+
+  // Simplify shadows for less rendering
+  .skeleton-card
+    box-shadow none
+    border 1px solid rgba($arch-blue, 0.1)
+
+  // Disable decorative pseudo-elements that add visual flair but not content
+  .decorative-gradient::before
+  .decorative-gradient::after
+  .glow-effect::before
+  .pulse-indicator::after
+    display none
+
+  // Reduce motion in animations
+  *:not(.no-reduce)
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+
+  // Simplify loading spinner
+  .loading-spinner
+    animation none
+    border-top-color $arch-blue
+
+  // Show lightweight alternatives to heavy components
+  .heavy-graphic
+    display none
+
+  // Prefer simpler color schemes
+  .complex-gradient
+    background simple
+
+// =============================================================================
 // HIGH CONTRAST MODE
 // =============================================================================
 
