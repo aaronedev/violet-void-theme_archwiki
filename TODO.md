@@ -2289,17 +2289,19 @@ Last updated: 2026-03-14 23:59
   - `break-inside: avoid;`
   - Stylus: Works directly
 
-- [ ] **`page` Property for Named Pages** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`page` Property for Named Pages** (97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Named page styles
   - `page: wide;`
   - Stylus: Works directly
+  - Commit: 2b8ec33
 
-- [ ] **`size` Descriptor in @page** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`size` Descriptor in @page** (97%+ browser support)
+  - File: `src/components/print-enhanced.styl`
   - Define page size
   - `@page { size: A4; }`
   - Stylus: Works directly
+  - Commit: 2b8ec33
 
 - [x] **`marks` Descriptor in @page** (97%+ browser support)
   - File: `src/components/print-enhanced.styl`
