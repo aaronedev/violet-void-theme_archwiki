@@ -1,0 +1,346 @@
+// =============================================================================
+// Logical Spacing Utilities - Violet Void ArchWiki Theme
+// Flow-relative margins and paddings for RTL and vertical writing mode support
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// =============================================================================
+// MARGIN-BLOCK - Flow-relative vertical margins
+// =============================================================================
+// margin-block-start and margin-block-end
+// Maps to margin-top/margin-bottom in horizontal writing modes
+
+// Margin block start (top in horizontal, right/left in vertical)
+.mb-start-xs
+  margin-block-start 0.25rem
+
+.mb-start-sm
+  margin-block-start 0.5rem
+
+.mb-start-md
+  margin-block-start 1rem
+
+.mb-start-lg
+  margin-block-start 1.5rem
+
+.mb-start-xl
+  margin-block-start 2rem
+
+// Margin block end (bottom in horizontal, right/left in vertical)
+.mb-end-xs
+  margin-block-end 0.25rem
+
+.mb-end-sm
+  margin-block-end 0.5rem
+
+.mb-end-md
+  margin-block-end 1rem
+
+.mb-end-lg
+  margin-block-end 1.5rem
+
+.mb-end-xl
+  margin-block-end 2rem
+
+// Margin block (both start and end)
+.mb-xs
+  margin-block 0.25rem
+
+.mb-sm
+  margin-block 0.5rem
+
+.mb-md
+  margin-block 1rem
+
+.mb-lg
+  margin-block 1.5rem
+
+.mb-xl
+  margin-block 2rem
+
+// Auto margin block
+.mb-start-auto
+  margin-block-start auto
+
+.mb-end-auto
+  margin-block-end auto
+
+// =============================================================================
+// MARGIN-INLINE - Flow-relative horizontal margins
+// =============================================================================
+// margin-inline-start and margin-inline-end
+// Maps to margin-left/margin-right in horizontal writing modes
+
+// Margin inline start (left in ltr, right in rtl)
+.mi-start-xs
+  margin-inline-start 0.25rem
+
+.mi-start-sm
+  margin-inline-start 0.5rem
+
+.mi-start-md
+  margin-inline-start 1rem
+
+.mi-start-lg
+  margin-inline-start 1.5rem
+
+.mi-start-xl
+  margin-inline-start 2rem
+
+// Margin inline end (right in ltr, left in rtl)
+.mi-end-xs
+  margin-inline-end 0.25rem
+
+.mi-end-sm
+  margin-inline-end 0.5rem
+
+.mi-end-md
+  margin-inline-end 1rem
+
+.mi-end-lg
+  margin-inline-end 1.5rem
+
+.mi-end-xl
+  margin-inline-end 2rem
+
+// Margin inline (both start and end)
+.mi-xs
+  margin-inline 0.25rem
+
+.mi-sm
+  margin-inline 0.5rem
+
+.mi-md
+  margin-inline 1rem
+
+.mi-lg
+  margin-inline 1.5rem
+
+.mi-xl
+  margin-inline 2rem
+
+// Auto margin inline
+.mi-start-auto
+  margin-inline-start auto
+
+.mi-end-auto
+  margin-inline-end auto
+
+// =============================================================================
+// PADDING-BLOCK - Flow-relative vertical padding
+// =============================================================================
+// padding-block-start and padding-block-end
+
+.pb-start-xs
+  padding-block-start 0.25rem
+
+.pb-start-sm
+  padding-block-start 0.5rem
+
+.pb-start-md
+  padding-block-start 1rem
+
+.pb-start-lg
+  padding-block-start 1.5rem
+
+.pb-start-xl
+  padding-block-start 2rem
+
+.pb-end-xs
+  padding-block-end 0.25rem
+
+.pb-end-sm
+  padding-block-end 0.5rem
+
+.pb-end-md
+  padding-block-end 1rem
+
+.pb-end-lg
+  padding-block-end 1.5rem
+
+.pb-end-xl
+  padding-block-end 2rem
+
+.pb-xs
+  padding-block 0.25rem
+
+.pb-sm
+  padding-block 0.5rem
+
+.pb-md
+  padding-block 1rem
+
+.pb-lg
+  padding-block 1.5rem
+
+.pb-xl
+  padding-block 2rem
+
+// =============================================================================
+// PADDING-INLINE - Flow-relative horizontal padding
+// =============================================================================
+// padding-inline-start and padding-inline-end
+
+.pi-start-xs
+  padding-inline-start 0.25rem
+
+.pi-start-sm
+  padding-inline-start 0.5rem
+
+.pi-start-md
+  padding-inline-start 1rem
+
+.pi-start-lg
+  padding-inline-start 1.5rem
+
+.pi-start-xl
+  padding-inline-start 2rem
+
+.pi-end-xs
+  padding-inline-end 0.25rem
+
+.pi-end-sm
+  padding-inline-end 0.5rem
+
+.pi-end-md
+  padding-inline-end 1rem
+
+.pi-end-lg
+  padding-inline-end 1.5rem
+
+.pi-end-xl
+  padding-inline-end 2rem
+
+.pi-xs
+  padding-inline 0.25rem
+
+.pi-sm
+  padding-inline 0.5rem
+
+.pi-md
+  padding-inline 1rem
+
+.pi-lg
+  padding-inline 1.5rem
+
+.pi-xl
+  padding-inline 2rem
+
+// =============================================================================
+// COMPREHENSIVE SPACING - Block and inline flow-relative
+// =============================================================================
+
+// Full flow-relative spacing (block + inline)
+.flow-space-xs
+  margin-block 0.25rem
+  padding-block 0.25rem
+  margin-inline 0.25rem
+  padding-inline 0.25rem
+
+.flow-space-sm
+  margin-block 0.5rem
+  padding-block 0.5rem
+  margin-inline 0.5rem
+  padding-inline 0.5rem
+
+.flow-space-md
+  margin-block 1rem
+  padding-block 1rem
+  margin-inline 1rem
+  padding-inline 1rem
+
+.flow-space-lg
+  margin-block 1.5rem
+  padding-block 1.5rem
+  margin-inline 1.5rem
+  padding-inline 1.5rem
+
+.flow-space-xl
+  margin-block 2rem
+  padding-block 2rem
+  margin-inline 2rem
+  padding-inline 2rem
+
+// =============================================================================
+// RTL-AWARE COMPONENT PATTERNS
+// =============================================================================
+
+// Card/panel with consistent spacing in RTL
+.logical-card
+  margin-block 1rem
+  padding 1rem
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  // Consistent padding on logical sides
+  padding-inline-start 1.5rem
+  padding-inline-end 1.5rem
+
+// List item with consistent indentation
+.logical-list-item
+  margin-block 0.5rem
+  padding-inline-start 1rem
+
+// Section divider
+.logical-divider
+  margin-block 1rem
+  border 0
+  border-block-start 1px solid $border-subtle
+
+// =============================================================================
+// ACCESSIBILITY - Focus-visible support
+// =============================================================================
+
+// Focus-visible with logical spacing for interactive elements
+a.logical-button
+  margin-block 0.5rem
+  padding 0.5rem 1rem
+  border-radius $border-radius-sm
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    margin-block 0.25rem
+    padding 0.75rem 1rem
+
+// =============================================================================
+// RESPONSIVE LOGICAL SPACING
+// =============================================================================
+
+// Smaller spacing on mobile
+@media (max-width 768px)
+  .mb-start-md
+    margin-block-start 0.5rem
+
+  .mb-end-md
+    margin-block-end 0.5rem
+
+  .mi-start-md
+    margin-inline-start 0.5rem
+
+  .mi-end-md
+    margin-inline-end 0.5rem
+
+  .mb-lg
+    margin-block 1rem
+
+  .mi-lg
+    margin-inline 1rem
+
+// Larger spacing on desktop
+@media (min-width 1200px)
+  .mb-start-lg
+    margin-block-start 2rem
+
+  .mb-end-lg
+    margin-block-end 2rem
+
+  .mi-start-lg
+    margin-inline-start 2rem
+
+  .mi-end-lg
+    margin-inline-end 2rem
