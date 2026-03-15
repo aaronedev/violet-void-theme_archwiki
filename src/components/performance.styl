@@ -210,6 +210,60 @@
   min-height 1px
 
 // =============================================================================
+// RESOURCE HINT INDICATORS
+// =============================================================================
+
+// Prefetch status badge styling
+.resource-hint
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.15em 0.5em
+  font-size 0.75em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.1)
+  color $light
+  font-family monospace
+
+  // Prefetch indicator
+  &.prefetch
+    background rgba($green, 0.1)
+    color $green
+
+  // Preload indicator
+  &.preload
+    background rgba($secondary-blue, 0.1)
+    color $secondary-blue
+
+  // DNS-prefetch indicator
+  &.dns-prefetch
+    background rgba($muted, 0.15)
+    color $muted
+
+  // Preconnect indicator
+  &.preconnect
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  // Module/preload indicator
+  &.module
+    background rgba($orange, 0.15)
+    color $orange
+
+  // Hint icon
+  .hint-icon
+    width 12px
+    height 12px
+    opacity 0.8
+
+// Resource hint container (for multiple hints)
+.resource-hints
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin 0.5em 0
+
+// =============================================================================
 // ERROR STATE STYLING
 // =============================================================================
 

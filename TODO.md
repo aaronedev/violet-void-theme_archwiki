@@ -1110,9 +1110,12 @@ Last updated: 2026-03-14 23:59
   - Blur-up animation
   - Error fallback styling
 
-- [ ] **Resource Hint Indicators** (CSS)
+- [x] **Resource Hint Indicators** (CSS)
   - File: `src/components/performance.styl`
   - Prefetch status badge
+  - Preload indicator styling
+  - DNS-prefetch and preconnect indicators
+  - Commit: 1044659
   - Preload indicator
   - Connection quality display
 
