@@ -6400,12 +6400,12 @@ Last updated: 2026-03-15 11:03
 
 ## ⚡ Performance Extended (New)
 
-- [ ] **content-visibility Patterns** (CSS, 85%+ browser support)
+- [x] **content-visibility Patterns** (CSS, 85%+ browser support)
   - File: `src/performance/content.styl`
   - Skip rendering off-screen content
   - contain-intrinsic-size pairing
   - Apply to long lists
-  - Note: Test with JS lazy loading
+  - Commit: 970b930
 
 - [x] **CSS Containment** (CSS, 97%+ browser support)
   - File: `src/components/containment.styl`
