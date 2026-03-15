@@ -1379,11 +1379,14 @@ Last updated: 2026-03-15 02:58
 
 ## 📐 Modern Layout Techniques (New - 2026-02-28 Scout 8)
 
-- [ ] **`subgrid` for Nested Grid Alignment** (90%+ browser support)
-  - File: `src/components/tables.styl`, `src/components/content.styl`
+- [x] **`subgrid` for Nested Grid Alignment** (90%+ browser support)
+  - File: `src/components/tables.styl`
   - Align nested grid items with parent grid
   - Perfect for infobox sub-tables, nested lists
   - Stylus: Works directly
+  - Added grid-template-columns: subgrid support for tables, infoboxes, and nested grids
+  - Includes responsive multi-column grid tables (3 and 4 columns)
+  - Commit: 
 
 - [ ] **`masonry` Layout for Galleries** (87%+ browser support, Firefox only behind flag)
   - File: `src/components/file-pages.styl`

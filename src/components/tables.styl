@@ -894,3 +894,93 @@ table[data-fixed-layout="true"]
   table-layout fixed
   width 100%
 
+// =============================================================================
+// SUBGRID SUPPORT FOR NESTED GRIDS
+// Align nested grid items with parent grid
+// Browser support: 90%+ (Chrome 117+, Firefox 71+, Safari 16+)
+// =============================================================================
+
+// Enable subgrid for nested tables and grid containers
+// Perfect for infobox sub-tables, nested lists, and aligned content
+.wiki-table-with-subgrid
+.infobox-subgrid
+.category-grid
+  display grid
+  grid-template-columns subgrid
+
+// Subgrid for table sections (thead, tbody, tfoot)
+table
+  &.has-subgrid
+    display grid
+    grid-template-columns subgrid
+    grid-column 1 / -1
+
+    tr
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+    th
+    td
+      display grid
+      grid-template-columns subgrid
+      grid-column span 1
+
+// Nested grids with parent alignment
+.subgrid-child
+  display grid
+  grid-template-columns subgrid
+  grid-column 1 / -1
+
+// Subgrid alignment for form-like tables
+table.form-table
+  display grid
+  grid-template-columns subgrid
+
+  tr
+    display grid
+    grid-template-columns subgrid
+
+  th
+  td
+    grid-column span 1
+
+// Infobox subgrid for better alignment
+.infobox
+  &.has-subgrid
+    display grid
+    grid-template-columns subgrid
+    gap 0.5rem
+
+    .infobox-row
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+    .infobox-label
+    .infobox-data
+      display grid
+      grid-template-columns subgrid
+
+// Multi-column subgrid for responsive grid tables
+@media (min-width 768px)
+  table.grid-columns-3
+    display grid
+    grid-template-columns repeat(3, 1fr) subgrid
+    gap 1rem
+
+    tr
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+  table.grid-columns-4
+    display grid
+    grid-template-columns repeat(4, 1fr) subgrid
+    gap 1rem
+
+    tr
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
