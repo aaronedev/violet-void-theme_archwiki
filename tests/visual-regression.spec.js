@@ -477,19 +477,24 @@ test.describe('Violet Void Theme - Visual Regression', () => {
 
     // Check for overlapping elements
     const overlaps = await page.evaluate(() => {
-      const elements = Array.from(document.querySelectorAll('*'))
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_ELEMENT
+      )
       const issues = []
+      let el
 
       // Simple check for high z-index values
-      elements.forEach((el) => {
+      while ((el = walker.nextNode())) {
         const zIndex = parseInt(getComputedStyle(el).zIndex)
         if (zIndex > 9999) {
           issues.push({
             element: el.tagName,
+            classes: el.className,
             zIndex: zIndex,
           })
         }
-      })
+      }
 
       return issues
     })
