@@ -1939,11 +1939,12 @@ Last updated: 2026-03-15 20:26
 
 ## 🖼️ Object & Box (New)
 
-- [ ] **`object-view-box` for Image Clipping** (87%+ browser support)
+- [x] **`object-view-box` for Image Clipping** (87%+ browser support)
   - File: `src/components/content.styl`
   - Clip images with CSS
   - `object-view-box: inset(10px);`
   - Stylus: Works directly
+  - Commit: a8f6926
 
 - [ ] **`corner-shape` for Corners** (87%+ browser support)
   - File: `src/components/ui-components.styl`
