@@ -448,7 +448,7 @@
 
 ---
 
-Last updated: 2026-03-15 06:24
+Last updated: 2026-03-15 08:29
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1135,11 +1135,12 @@ Last updated: 2026-03-15 06:24
 
 ## 🎯 Personalization (New)
 
-- [ ] **Reading List Styling** (CSS)
+- [x] **Reading List Styling** (CSS)
   - File: `src/components/personal.styl` (new file)
   - Saved article cards
   - Read/unread indicators
   - Category organization
+  - Commit: aa8ad9a
 
 - [ ] **Watchlist Enhancements** (97%+ browser support)
   - File: `src/components/personal.styl`
@@ -1153,11 +1154,12 @@ Last updated: 2026-03-15 06:24
   - Email digest options
   - Quiet hours settings
 
-- [ ] **Custom Quick Links** (CSS)
+- [x] **Custom Quick Links** (CSS)
   - File: `src/components/personal.styl`
   - Quick link cards
   - Reorder handles
   - Edit/delete actions
+  - Commit: aa8ad9a
 
 ## 🔬 Advanced Wiki Features (New)
 
@@ -7467,3 +7469,4 @@ Last updated: 2026-03-15 06:24
 | 2026-03-15 | linear() Timing Function | Added linear() timing function classes in animations.styl - custom easing with control points, steps() with jump keywords, transition-behavior: allow-discrete for display/visibility transitions, utility classes for various animation patterns | 1d97bf6 |
 | 2026-03-15 | :fullscreen Pseudo-class | Added fullscreen mode styling in ui-components.styl - hide non-essential UI chrome, fullscreen container/content styling, video/image/dialog enhancements, exit fullscreen button hints, reduced motion support | dfa7fd0 |
 | 2026-03-15 | CSS Containment | Added src/components/containment.styl with CSS containment utilities (layout, paint, size, style containment) for performance optimization - applied to MediaWiki components like infobox, sidebar, nav, tables, code blocks, message boxes, navbox, footer, content areas | 24b4b3f7 |
+| 2026-03-15 | Personalization Styling | Added src/components/personal.styl with Reading List Styling (cards, read/unread indicators, categories), Custom Quick Links (cards with drag handles, edit/delete), and Watchlist Enhancements (change summaries, diff previews) | aa8ad9a |
