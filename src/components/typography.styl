@@ -997,6 +997,97 @@ ol.nested-counter
 .character-variant-2
   font-variant-alternates character-variant(user-char-2)
 
+// @font-feature-values for named font feature values
+// Browser support: 97%+
+// Define named feature values that can be referenced in font-variant-alternates
+// This provides cleaner syntax for accessing font features
+
+// Define stylistic sets for a font family
+// Usage: font-variant-alternates: stylistic(my-font-1);
+// Note: Replace 'Font Family Name' with actual font name in production
+
+@css {
+  @font-feature-values "Font Family Name" {
+    @stylistic {
+      alternate: 1;
+      swash-variant: 1;
+      historic-variant: 1;
+    }
+
+    @historical-forms {
+      hist: 1;
+    }
+
+    @styleset {
+      nice-style: 1;
+      alt-glyphs: 1;
+      dashed-zero: 1;
+      diagonal-fractions: 1;
+      slashed-zero: 1;
+      titling: 1;
+      contextual: 1;
+      case-sensitive-forms: 1;
+    }
+
+    @character-variant {
+      cv01: 1;
+      cv02: 1;
+      cv03: 1;
+    }
+
+    @swash {
+      swash-1: 1;
+      contextual-swash: 1;
+      ornamental-1: 1;
+    }
+
+    @ornaments {
+      ornaments-1: 1;
+      fleurons: 1;
+    }
+
+    @annotation {
+      circles: 1;
+      squares: 1;
+      numbers: 1;
+    }
+  }
+}
+
+// Utility classes for @font-feature-values
+// These can be used when the font-family matches above
+
+.font-feature-stylistic
+  font-variant-alternates stylistic(1)
+
+.font-feature-historical
+  font-variant-alternates historical-forms
+
+.font-feature-swash
+  font-variant-alternates swash
+
+.font-feature-ornaments
+  font-variant-alternates ornaments
+
+.font-feature-annotation-circles
+  font-variant-alternates annotation(circles)
+
+.font-feature-annotation-squares
+  font-variant-alternates annotation(squares)
+
+// Common ligature controls
+.font-ligatures-common
+  font-variant-ligatures common-ligatures
+
+.font-ligatures-none
+  font-variant-ligatures none
+
+.font-ligatures-discretionary
+  font-variant-ligatures discretionary-ligatures
+
+.font-ligatures-historical
+  font-variant-ligatures historical-ligatures
+
 // font-optical-sizing
 // Browser support: 97%+
 
