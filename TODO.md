@@ -976,11 +976,12 @@ Last updated: 2026-03-15 02:58
   - Reset to default button
   - Commit: 6cd840b
 
-- [ ] **Gadget Integration** (CSS)
+- [x] **Gadget Integration** (CSS)
   - File: `src/components/gadgets.styl` (new file)
   - Gadget activation toggle
   - Gadget configuration panel
   - Conflict warning styling
+  - Commit: eaf8861
 
 - [x] **Custom CSS Snippet Support** (CSS)
   - File: `src/components/preferences.styl`
