@@ -1210,7 +1210,7 @@ Last updated: 2026-03-15 15:37
 
 ## 🌐 Cross-Wiki Features (New)
 
-- [ ] **Wikidata Item Display** (CSS)
+- [x] **Wikidata Item Display** (CSS)
   - File: `src/components/wikidata.styl` (new file)
   - Property/value pairs styling
   - Source indicator badges
