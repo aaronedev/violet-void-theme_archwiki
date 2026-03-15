@@ -2341,3 +2341,107 @@ h4[id]
 
     li
       margin 0.25em 0
+
+// =============================================================================
+// INSET SHORTHAND - Logical Positioning
+// =============================================================================
+
+// The inset property is the logical equivalent of top/right/bottom/left
+// Provides flow-relative positioning for better RTL support
+// Browser support: 97%+
+
+// Full coverage - replaces top: 0; right: 0; bottom: 0; left: 0;
+.inset-cover
+  inset 0
+
+// Center positioning
+.inset-center
+  inset 50%
+  translate -50% -50%
+
+// Inset from all sides with custom value
+.inset-space
+  &-xs
+    inset 0.25rem
+  &-sm
+    inset 0.5rem
+  &-md
+    inset 1rem
+  &-lg
+    inset 1.5rem
+  &-xl
+    inset 2rem
+
+// Vertical inset only (top/bottom)
+.inset-vertical
+  &-sm
+    inset-block 0.5rem
+  &-md
+    inset-block 1rem
+  &-lg
+    inset-block 1.5rem
+
+// Horizontal inset only (left/right)
+.inset-horizontal
+  &-sm
+    inset-inline 0.5rem
+  &-md
+    inset-inline 1rem
+  &-lg
+    inset-inline 1.5rem
+
+// Inset-start (left in LTR, right in RTL)
+.inset-start
+  &-sm
+    inset-inline-start 0.5rem
+  &-md
+    inset-inline-start 1rem
+  &-lg
+    inset-inline-start 1.5rem
+
+// Inset-end (right in LTR, left in RTL)
+.inset-end
+  &-sm
+    inset-inline-end 0.5rem
+  &-md
+    inset-inline-end 1rem
+  &-lg
+    inset-inline-end 1.5rem
+
+// Inset-block (top/bottom)
+.inset-block
+  &-sm
+    inset-block 0.5rem
+  &-md
+    inset-block 1rem
+  &-lg
+    inset-block 1.5rem
+
+// Inset-inline (left/right)
+.inset-inline
+  &-sm
+    inset-inline 0.5rem
+  &-md
+    inset-inline 1rem
+  &-lg
+    inset-inline 1.5rem
+
+// Fixed positioning with inset shorthand
+.fixed-cover
+  position fixed
+  inset 0
+
+.fixed-center
+  position fixed
+  inset 50%
+  translate -50% -50%
+
+// Absolute positioning with inset for filling container
+.absolute-cover
+  position absolute
+  inset 0
+
+// Sticky positioning improvements
+.sticky-cover
+  position sticky
+  inset-block-start 0

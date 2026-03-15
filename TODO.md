@@ -1283,11 +1283,14 @@ Last updated: 2026-03-14 23:59
 
 ## 🔲 Logical Properties Expansion (New)
 
-- [ ] **`inset` Shorthand** (97%+ browser support)
-  - File: `src/utilities/_positioning.styl` (new file)
+- [x] **`inset` Shorthand** (97%+ browser support)
+  - File: `src/components/modern-css.styl`
   - Replace `top/right/bottom/left` with `inset`
   - Example: `inset: 0;` for full coverage
   - Stylus: Works directly
+  - Added inset utilities: .inset-cover, .inset-center, .inset-space-*, .inset-vertical/horizontal, .inset-start/end, .inset-block/inline
+  - Added fixed/absolute/sticky positioning with inset
+  - Commit: 1812b4c
 
 - [ ] **`inset-block` / `inset-inline`** (97%+ browser support)
   - File: `src/utilities/_positioning.styl`
