@@ -588,3 +588,368 @@
   .lua-example-block
   .lua-module-nav
     transition none
+
+// =============================================================================
+// SCRIBUNTO CONSOLE
+// =============================================================================
+// Console output styling, error highlighting, debug log display
+
+// Main console container
+.scribunto-console
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.7)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  font-family $font-mono
+
+  // Console header
+  .console-header
+    display flex
+    align-items center
+    justify-content space-between
+    padding-bottom 0.75em
+    margin-bottom 1em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    .console-title
+      font-size 1rem
+      font-weight 600
+      color $lighter
+      display flex
+      align-items center
+      gap 0.5em
+
+      &::before
+        content '⌨'
+        font-size 1.1em
+
+    .console-actions
+      display flex
+      gap 0.5em
+
+      button
+        padding 0.35em 0.75em
+        background rgba($arch-blue, 0.2)
+        border 1px solid rgba($arch-blue, 0.3)
+        border-radius $border-radius-sm
+        color $light
+        font-size 0.8rem
+        font-family inherit
+        cursor pointer
+        transition transition-fast
+
+        &:hover
+          background rgba($arch-blue, 0.3)
+          border-color $arch-blue
+
+        &.run-btn
+          background rgba($green, 0.2)
+          border-color rgba($green, 0.3)
+          color $green
+
+          &:hover
+            background rgba($green, 0.3)
+
+// Console input area
+.console-input
+  margin-bottom 1em
+
+  .input-label
+    font-size 0.8rem
+    color $muted
+    margin-bottom 0.5em
+    display block
+
+  textarea.console-editor
+    width 100%
+    min-height 120px
+    padding 0.75em
+    background rgba($darker, 0.8)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-family $font-mono
+    font-size 0.9rem
+    line-height 1.5
+    resize vertical
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+    &::placeholder
+      color $muted
+      opacity 0.6
+
+// Console output area
+.console-output
+  background rgba($darker, 0.9)
+  border 1px solid rgba($border-subtle, 0.5)
+  border-radius $border-radius-md
+  max-height 400px
+  overflow-y auto
+
+  // Output line
+  .output-line
+    padding 0.5em 0.75em
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+    font-size 0.85rem
+    line-height 1.5
+    display flex
+    gap 0.75em
+
+    &:last-child
+      border-bottom none
+
+    // Line number
+    .line-number
+      min-width 2.5em
+      color $muted
+      opacity 0.5
+      user-select none
+      text-align right
+
+    // Output content
+    .output-content
+      flex 1
+      color $light
+
+      // Success output
+      &.success
+        color $green
+
+      // Error output
+      &.error
+        color $red
+        font-weight 500
+
+      // Warning output
+      &.warning
+        color $orange
+
+      // Info output
+      &.info
+        color $arch-blue
+
+      // Table output
+      &.table
+        display table
+        width 100%
+
+        table
+          width 100%
+          border-collapse collapse
+          font-size 0.85em
+
+          th, td
+            padding 0.35em 0.5em
+            border 1px solid rgba($border-subtle, 0.5)
+            text-align left
+
+          th
+            background rgba($arch-blue, 0.15)
+            color $arch-blue
+            font-weight 600
+
+          td
+            color $light
+
+      // Nil/null output
+      &.nil
+        color $muted
+        font-style italic
+
+      // Boolean output
+      &.boolean
+        color $purple
+
+      // Number output
+      &.number
+        color $orange
+
+      // String output
+      &.string
+        color $green
+
+      // Function output
+      &.function
+        color $arch-blue
+        font-style italic
+
+// Console error display
+.console-error
+  margin-top 0.75em
+  padding 0.75em
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+
+  .error-header
+    display flex
+    align-items center
+    gap 0.5em
+    color $red
+    font-weight 600
+    font-size 0.9rem
+    margin-bottom 0.5em
+
+    &::before
+      content '⛔'
+
+  .error-message
+    color $light
+    font-size 0.85rem
+    line-height 1.5
+    font-family $font-mono
+
+  .error-line
+    color $muted
+    font-size 0.8rem
+    margin-top 0.35em
+
+// Debug log panel
+.console-debug
+  margin-top 1em
+  padding 0.75em
+  background rgba($dark, 0.6)
+  border 1px solid rgba($border-subtle, 0.5)
+  border-radius $border-radius-md
+
+  .debug-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.4)
+
+    .debug-title
+      font-size 0.85rem
+      color $muted
+      text-transform uppercase
+      letter-spacing 0.05em
+      display flex
+      align-items center
+      gap 0.4em
+
+      &::before
+        content '🔍'
+
+    .debug-toggle
+      padding 0.25em 0.5em
+      background transparent
+      border 1px solid rgba($border-subtle, 0.5)
+      border-radius $border-radius-sm
+      color $muted
+      font-size 0.75rem
+      cursor pointer
+
+      &:hover
+        border-color $arch-blue
+        color $arch-blue
+
+  // Debug log entries
+  .debug-log
+    max-height 200px
+    overflow-y auto
+
+    .debug-entry
+      padding 0.35em 0.5em
+      margin-bottom 0.25em
+      border-radius $border-radius-sm
+      font-size 0.8rem
+      display flex
+      gap 0.5em
+      align-items flex-start
+
+      &:last-child
+        margin-bottom 0
+
+      .debug-timestamp
+        color $muted
+        font-size 0.75rem
+        min-width 5em
+
+      .debug-level
+        font-weight 600
+        min-width 3em
+
+        &.log
+          color $arch-blue
+
+        &.info
+          color $green
+
+        &.warn
+          color $orange
+
+        &.error
+          color $red
+
+      .debug-message
+        flex 1
+        color $light
+
+// Console status bar
+.console-status
+  display flex
+  align-items center
+  justify-content space-between
+  margin-top 0.75em
+  padding 0.5em 0.75em
+  background rgba($darker, 0.6)
+  border-radius $border-radius-sm
+  font-size 0.8rem
+
+  .status-left
+    display flex
+    gap 1em
+    color $muted
+
+    .status-item
+      display flex
+      align-items center
+      gap 0.35em
+
+      &.execution-time
+        &::before
+          content '⏱'
+
+      &.memory
+        &::before
+          content '💾'
+
+  .status-right
+    .status-indicator
+      display flex
+      align-items center
+      gap 0.35em
+
+      &.idle
+        color $muted
+
+      &.running
+        color $orange
+
+        &::before
+          content '●'
+          animation pulse 1s infinite
+
+      &.success
+        color $green
+
+        &::before
+          content '✓'
+
+      &.error
+        color $red
+
+        &::before
+          content '✗'
+
+@keyframes pulse
+  0%, 100%
+    opacity 1
+  50%
+    opacity 0.5
