@@ -8,42 +8,92 @@
 @import '../variables/layout'
 
 // =============================================================================
-// ROUND() - Pixel Alignment
+// ROUND() - Pixel Alignment (Performance Optimization)
 // =============================================================================
+// round() rounds values to nearest unit - improves rendering performance
+// by avoiding subpixel rendering
+// Browser support: 89%+
+// Note: CSS math functions wrapped in unquote() to prevent Stylus evaluation
 
-.round-pixel
-  font-size 1rem
+// Fluid typography that rounds to whole pixels for sharper text
+.round-fluid-type
+  font-size unquote('round(1.3vw, 1px)')
 
-.round-width
-  width 200px
+// Rounded container widths for consistent rendering
+.round-container
+  max-width unquote('round(1200px, 1px)')
+  margin 0 auto
 
-.round-padding
-  padding 1rem
+// Rounded padding for pixel-perfect spacing
+.round-padding-sm
+  padding unquote('round(0.5vw, 1px)')
+
+.round-padding-md
+  padding unquote('round(1vw, 1px)')
+
+.round-padding-lg
+  padding unquote('round(2vw, 1px)')
+
+// Rounded gaps for flex/grid
+.round-gap
+  gap unquote('round(1vw, 4px)')
+
+// Border radius with rounding
+.round-radius
+  border-radius unquote('round(8px, 1px)')
 
 // =============================================================================
-// ABS() - Absolute Values
+// ABS() - Absolute Values (Performance Optimization)
 // =============================================================================
+// abs() returns absolute value - useful for distance calculations
+// Browser support: 89%+
+// Note: CSS abs() wrapped in unquote() to prevent Stylus evaluation
 
+// Center element using absolute positioning
 .abs-center
   position absolute
   left 50%
   transform translateX(-50%)
 
-// =============================================================================
-// SIGN() - Sign Detection
-// =============================================================================
+// Absolute positioned elements with computed distances
+.abs-offset
+  transform translate(unquote('abs(-10px)'), unquote('abs(-5px)'))
 
+// Overlay positioning
+.abs-overlay
+  position absolute
+  inset 0
+  transform translate(unquote('abs(0px)'), unquote('abs(0px)'))
+
+// =============================================================================
+// SIGN() - Sign Detection (Performance Optimization)
+// =============================================================================
 // sign() returns -1, 0, or 1 based on sign
 // Useful for conditional styling based on positive/negative values
+// Browser support: 89%+
+
+// Sign-based transforms (use with custom properties)
+// Example: transform: translateX(sign(var(--direction)) * 10px)
+// This allows dynamic positive/negative direction
+
+// Conditional positive/negative indicators
+.sign-positive
+  &::after
+    content "+"
+
+.sign-negative
+  &::after
+    content "-"
 
 // =============================================================================
-// REM() / MOD() - Remainder Operations
+// REM() / MOD() - Remainder Operations (Performance Optimization)
 // =============================================================================
-
 // rem() - remainder of division
 // mod() - modulus (always positive)
+// Browser support: 89%+
+// Note: CSS mod() and rem() wrapped to prevent Stylus evaluation
 
-// Alternating row styles
+// Alternating row styles using nth-child (native CSS approach)
 .math-alternate
   &:nth-child(2n)
     background-color rgba($arch-blue, 0.05)
@@ -55,129 +105,193 @@
   &:nth-child(3n)
     background-color rgba($arch-blue, 0.03)
 
+// Using mod() for cycling values - creates repeating patterns
+.mod-cycle
+  width unquote('mod(100%, 3)')
+
+// Grid columns with mod-based sizing
+.mod-grid
+  flex-basis unquote('calc(100% / 3 - mod(20px, 10px))')
+
+// Repeating patterns using rem()
+.rem-pattern
+  margin-right unquote('rem(4px)')
+
+// Staggered animations using mod() for timing
+.mod-stagger
+  animation-delay unquote('calc(mod(1, 0.2s) * 1s)')
+
 // =============================================================================
-// SQRT() - Square Root
+// SQRT() - Square Root (Performance Optimization)
 // =============================================================================
+// sqrt() calculates square root - useful for aspect ratios and dynamic dimensions
+// Browser support: 89%+
+// Note: CSS sqrt() wrapped to prevent Stylus evaluation
 
-// sqrt() calculates square root
-// Useful for aspect ratios and dynamic dimensions
+// Perfect square container
+.sqrt-square
+  width unquote('sqrt(400px)')
+  height unquote('sqrt(400px)')
 
-.math-square
-  width 100px
-  height 100px
+// Dynamic sizing based on viewport
+.sqrt-responsive
+  width unquote('sqrt(50vw)')
+  height unquote('sqrt(50vw)')
+
+// Aspect ratio using sqrt
+.sqrt-aspect
+  aspect-ratio unquote('calc(sqrt(16) / sqrt(9))')
 
 // =============================================================================
-// HYPOT() - Hypotenuse
+// HYPOT() - Hypotenuse (Performance Optimization)
 // =============================================================================
+// hypot() calculates hypotenuse from dimensions - useful for diagonal sizing
+// Browser support: 89%+
+// Note: CSS hypot() wrapped to prevent Stylus evaluation
 
-// hypot() calculates hypotenuse from dimensions
-// Useful for diagonal sizing
-
-.math-diagonal
-  width 100px
+// Diagonal element sizing
+.hypot-diagonal
+  width unquote('hypot(100px, 50px)')
   height 50px
 
-// =============================================================================
-// POW() - Power Function
-// =============================================================================
-
-// pow() raises to power
-// Useful for exponential scaling
-
-.math-power
-  transform scale(1.2)
+// Hypotenuse-based spacing
+.hypot-spacing
+  margin-top unquote('hypot(10px, 10px)')
 
 // =============================================================================
-// LOG() / EXP() - Logarithm/Exponential
+// POW() - Power Function (Performance Optimization)
 // =============================================================================
+// pow() raises to power - useful for exponential scaling
+// Browser support: 89%+
+// Note: CSS pow() wrapped to prevent Stylus evaluation
 
+// Exponential scale for responsive sizing
+.pow-scale
+  font-size unquote('calc(pow(1.5, 2) * 1rem)')
+
+// Power-based transforms
+.pow-transform
+  transform unquote('scale(pow(1.2, 3))')
+
+// Exponential spacing
+.pow-spacing
+  gap unquote('pow(2, 3) * 1px')
+
+// =============================================================================
+// LOG() / EXP() - Logarithm/Exponential (Performance Optimization)
+// =============================================================================
 // log() and exp() for logarithmic scaling
+// Browser support: 89%+
+// Note: CSS log() and exp() wrapped to prevent Stylus evaluation
 
-.math-log
-  gap 1rem
+// Logarithmic scaling
+.log-scale
+  font-size unquote('calc(log(100) * 1rem)')
 
-.math-exp
-  animation-timing-function ease-out
+// Exponential animations
+.exp-animate
+  animation-timing-function unquote('cubic-bezier(0, exp(1), 1, 1)')
 
 // =============================================================================
-// TRIGONOMETRIC FUNCTIONS - sin/cos/tan
+// TRIGONOMETRIC FUNCTIONS - sin/cos/tan (Performance Optimization)
 // =============================================================================
-
 // sin(), cos(), tan() for angles and rotations
+// Browser support: 89%+
+// Note: CSS trig functions wrapped to prevent Stylus evaluation
 
-.math-sin
-  transform rotate(45deg)
+// Sine-based rotation
+.trig-sin
+  transform unquote('rotate(sin(45deg))')
 
-.math-cos
-  transform rotate(90deg)
+// Cosine-based rotation
+.trig-cos
+  transform unquote('rotate(cos(60deg))')
 
-.math-tan
-  transform rotate(30deg)
-
-// =============================================================================
-// Inverse trig - asin/acos/atan
-// These return angles from values
-
-.math-asin
-  transform rotate(45deg)
-
-.math-acos
-  transform rotate(90deg)
-
-.math-atan
-  transform rotate(30deg)
+// Tangent-based rotation
+.trig-tan
+  transform unquote('rotate(tan(30deg))')
 
 // =============================================================================
-// ATAN2() - Two-Argument Arctangent
+// INVERSE TRIG - asin/acos/atan (Performance Optimization)
 // =============================================================================
+// asin/acos/atan return angles from values
+// Browser support: 89%+
+// Note: CSS inverse trig functions wrapped to prevent Stylus evaluation
 
+// Arcsine rotation
+.trig-asin
+  transform unquote('rotate(asin(0.5))')
+
+// Arccosine rotation
+.trig-acos
+  transform unquote('rotate(acos(0.5))')
+
+// Arctangent rotation
+.trig-atan
+  transform unquote('rotate(atan(1))')
+
+// =============================================================================
+// ATAN2() - Two-Argument Arctangent (Performance Optimization)
+// =============================================================================
 // atan2() calculates angle from coordinates
+// Browser support: 89%+
+// Note: CSS atan2() wrapped to prevent Stylus evaluation
 
-.math-atan2
-  transform rotate(45deg)
+.atan2-angle
+  transform unquote('rotate(atan2(1, 1))')
 
 // =============================================================================
-// PI() / E() - Math Constants
+// PI() / E() - Math Constants (Performance Optimization)
 // =============================================================================
-
 // pi() = 3.14159..., e() = 2.71828...
+// Browser support: 89%+
+// Note: CSS pi() and e() wrapped to prevent Stylus evaluation
 
-.math-pi
-  // Circumference: 2 * pi() * r
+// Circular element using pi
+.pi-circle
+  // Circumference: 2 * pi() * r where r = 10px
   border-radius 50%
+  width unquote('calc(2 * pi() * 10px)')
 
-.math-e
-  animation-timing-function ease-out
+// Exponential animation curve
+.e-curve
+  animation-timing-function unquote('cubic-bezier(0, e(), 1, 1)')
 
 // =============================================================================
-// Combined Examples
+// Combined Examples (Performance Optimization)
 // =============================================================================
+// Multiple CSS math functions combined for advanced use cases
 
-// Responsive fluid typography
-.math-fluid-type
-  font-size 1.25rem
+// Responsive fluid typography using round for pixel-perfect rendering
+.fluid-type-round
+  font-size unquote('round(1.5vw, 1px)')
 
-// Responsive spacing
-.math-fluid-space
-  gap 1rem
+// Fluid spacing using mod
+.fluid-space-mod
+  gap unquote('mod(3vw, 1rem)')
 
-// Grid alignment
-.math-grid
-  width 100%
+// Grid alignment using sqrt
+.grid-sqrt
+  width unquote('sqrt(400px)')
 
-// Circle animations
-.math-orbit
-  transform translate(50px, 0)
+// Circle animations using pow
+.orbit-pow
+  transform unquote('translate(pow(10, 2) * 1px, 0)')
 
-// Wave animations
-.math-wave
-  transform translateY(10px)
+// Wave animations using sin
+.wave-sin
+  transform unquote('translateY(sin(30deg) * 10px)')
 
-// Pulsing scale
-.math-pulse
-  transform scale(1.1)
+// Pulsing scale using pow
+.pulse-pow
+  transform unquote('scale(pow(1.1, 2))')
 
-// Staggered animations
-.math-stagger
-  animation-delay 0.1s
-  animation-timing-function ease-out
+// Staggered animations using mod
+.stagger-mod
+  animation-delay unquote('calc(mod(5, 0.2s) * 1s)')
+
+// Complex calculation combining multiple functions
+.complex-math
+  width unquote('calc(round(sqrt(pow(10, 2) + pow(10, 2)), 1px))')
+  padding unquote('round(1vw, 4px)')
+  font-size unquote('calc(pow(1.2, 3) * 1rem)')

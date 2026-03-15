@@ -368,6 +368,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-15 | CSS Math Functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, trig) | 65f896f |
 | 2026-03-15 | Collapsible sections print styles for details/summary | 053dd41 |
 | 2026-03-14 | animation-timeline: scroll() for scroll-driven animations | 610bf0a |
 | 2026-03-14 | Timeline Extension Styling | 04e068d5 |
@@ -1265,23 +1266,26 @@ Last updated: 2026-03-15 08:29
 
 ## 🧮 CSS Math Functions (New)
 
-- [ ] **`round()` for Pixel Alignment** (89%+ browser support)
-  - File: `src/variables/layout.styl`
+- [x] **`round()` for Pixel Alignment** (89%+ browser support)
+  - File: `src/utilities/math.styl`
   - Round values to nearest unit
   - Example: `font-size: round(1.3vw, 1px);`
   - Stylus: Works directly
+  - Commit: 65f896f
 
-- [ ] **`abs()` / `sign()` for Calculations** (89%+ browser support)
-  - File: `src/utilities/_math.styl` (new file)
+- [x] **`abs()` / `sign()` for Calculations** (89%+ browser support)
+  - File: `src/utilities/math.styl`
   - Absolute values for spacing
   - Sign-based conditional styling
   - Stylus: Works directly
+  - Commit: 65f896f
 
-- [ ] **`rem()` / `mod()` for Remainders** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
+- [x] **`rem()` / `mod()` for Remainders** (89%+ browser support)
+  - File: `src/utilities/math.styl`
   - Alternating table row styles
   - Grid alignment
   - Stylus: Works directly
+  - Commit: 65f896f
 
 ## 📝 Form State Styling (New)
 
