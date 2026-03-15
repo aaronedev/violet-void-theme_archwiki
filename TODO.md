@@ -4734,12 +4734,13 @@ Last updated: 2026-03-15 02:58
   - Orphan/widow control
   - Commit: 538a183
 
-- [ ] **Print Typography** (CSS, 100% browser support)
-  - File: `src/print/typography.styl`
+- [x] **Print Typography** (CSS, 100% browser support)
+  - File: `src/components/print-enhanced.styl`
   - Print-optimized fonts
   - Line height for print
   - Font size for print
   - Serif font stack
+  - Commit: 2bf451e
 
 - [x] **Print Links** (CSS, 97%+ browser support)
   - File: `src/components/print-enhanced.styl`
