@@ -1303,11 +1303,12 @@ Last updated: 2026-03-15 02:58
   - Added fixed/absolute/sticky positioning with inset
   - Commit: 1812b4c
 
-- [ ] **`inset-block` / `inset-inline`** (97%+ browser support)
-  - File: `src/utilities/_positioning.styl`
+- [x] **`inset-block` / `inset-inline`** (97%+ browser support)
+  - File: `src/utilities/positioning.styl` (new file)
   - Logical positioning for RTL support
   - `inset-inline-start` instead of `left`
   - Stylus: Works directly
+  - Commit: 414670c
 
 - [x] **`margin-block` / `margin-inline`** (97%+ browser support)
   - File: `src/utilities/spacing.styl` (new file)
