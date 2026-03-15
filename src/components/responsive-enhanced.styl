@@ -497,6 +497,164 @@ img[loading="lazy"]
     column-count 3
 
 // =============================================================================
+// ASPECT RATIO QUERIES
+// =============================================================================
+// Detect viewport aspect ratio and adjust layouts accordingly
+// Browser support: 97%+
+
+// Ultra-wide displays (21:9 and wider)
+@media (aspect-ratio 21/9)
+  // Wider content area for ultra-wide
+  #content
+    max-width 90%
+    margin-left auto
+    margin-right auto
+
+  // More columns for ultra-wide
+  .mw-parser-output .columns-3
+    column-count 4
+
+  .mw-parser-output .columns-4
+    column-count 5
+
+  // Side-by-side layout benefits
+  .infobox
+    max-width 40%
+
+  // TOC can be wider
+  #toc
+    max-width 300px
+
+// Standard wide displays (16:9, 16:10)
+@media (aspect-ratio 16/9)
+  // Standard wide layout adjustments
+  #content
+    max-width 95%
+
+  .mw-parser-output .columns-2
+    column-count 2
+
+// Squarish displays (4/3 to 1/1)
+@media (aspect-ratio 4/3)
+  // Reduce columns for squarish viewports
+  .mw-parser-output .columns-3
+    column-count 2
+
+  .mw-parser-output .columns-2
+    column-count 2
+
+  // Adjust infobox
+  .infobox
+    width 45%
+
+@media (aspect-ratio 1/1)
+  // Even fewer columns for square
+  .mw-parser-output .columns-3
+    column-count 2
+
+  .mw-parser-output .columns-2
+    column-count 1
+
+  // Full-width content
+  #content
+    max-width 100%
+    padding-left 1em
+    padding-right 1em
+
+  // Stack infobox
+  .infobox
+    width 100%
+    float none
+    margin-left 0
+    margin-right 0
+
+// Tall displays (9:16, portrait mobile/tablet)
+@media (aspect-ratio 9/16)
+  // Single column for tall aspect ratios
+  .mw-parser-output .multicol
+    columns 1 !important
+
+  .mw-parser-output .columns-2
+    column-count 1
+
+  .mw-parser-output .columns-3
+    column-count 1
+
+  // Full width everything
+  #content
+    max-width 100%
+    padding 0.5em
+
+  .infobox
+    width 100%
+    float none
+
+  .mw-sidebar
+    width 100%
+    max-width none
+
+  // Smaller typography
+  body
+    font-size 14px
+
+  h1
+    font-size 1.4em
+
+  h2
+    font-size 1.2em
+
+// Very tall (mobile portrait)
+@media (aspect-ratio 9/21)
+  // Minimal padding
+  #content
+    padding 0.25em
+
+  // Compact navigation
+  .vector-header
+    padding 0.25em
+
+  // Stack everything
+  .mw-parser-output .multicol
+    columns 1 !important
+
+// Wide but not too wide (between 16:9 and 21:9)
+@media (aspect-ratio 16/10)
+  // Slight column adjustment
+  .mw-parser-output .columns-3
+    column-count 3
+
+// Extremely wide displays
+@media (aspect-ratio 32/9)
+  // Maximum width content
+  #content
+    max-width 80%
+    margin-left auto
+    margin-right auto
+
+  // Multi-column for ultra-wide
+  .mw-parser-output .columns-3
+    column-count 5
+
+  .mw-parser-output .columns-4
+    column-count 6
+
+  // Three-column infobox layout possible
+  .infobox
+    width 30%
+
+// Minimum aspect ratio - anything wider than specified
+@media (min-aspect-ratio 1/1)
+  // Anything square or wider
+  .mw-parser-output > .columns-2
+    column-count 2
+
+// Maximum aspect ratio - anything narrower than specified
+@media (max-aspect-ratio 1/1)
+  // Anything taller than square
+  .mw-parser-output .multicol
+    columns 1 !important
+
+// =============================================================================
 // DARK MODE PRINT (OPTIONAL)
 // =============================================================================
 
