@@ -650,6 +650,264 @@
   font-style italic
 
 // =============================================================================
+// SCORE/MUSIC NOTATION STYLING
+// =============================================================================
+// Sheet music container, score background, audio player integration
+// Used by MediaWiki Score extension for rendered music notation
+
+// Score/Music notation container
+.mw-score
+  position relative
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow-x auto
+
+  // Rendered score (SVG/Canvas)
+  .score-svg
+  svg.mw-score-score
+    display block
+    margin 0 auto
+    max-width 100%
+    height auto
+
+  // Musical score staff lines
+  .staff
+    stroke $light
+    stroke-width 1
+
+  // Notes and rests
+  .note
+    fill $arch-blue
+
+  .rest
+    fill $light
+
+  // Accidentals (sharp, flat, natural)
+  .accidental
+    fill $secondary-blue
+
+  // Clef symbols
+  .clef
+    fill $lighter
+
+  // Time signature
+  .timesig
+    fill $light
+    font-weight bold
+
+  // Bar lines
+  .barline
+    stroke $muted
+    stroke-width 1
+
+  // Audio player controls
+  .mw-score-ui
+    display flex
+    align-items center
+    justify-content center
+    gap 0.75em
+    margin-block-start 1em
+    padding-block-start 1em
+    border-block-start 1px solid $border-subtle
+
+  // Play/pause button
+  .mw-score-play
+  .play-button
+    display flex
+    align-items center
+    justify-content center
+    width 40px
+    height 40px
+    background rgba($arch-blue, 0.2)
+    border 1px solid rgba($arch-blue, 0.4)
+    border-radius 50%
+    cursor pointer
+    transition transition-medium
+
+    &:hover
+      background rgba($arch-blue, 0.3)
+      border-color $arch-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    // Play icon
+    &::before
+      content ''
+      width 0
+      height 0
+      border-style solid
+      border-width 6px 0 6px 10px
+      border-color transparent transparent transparent $arch-blue
+
+    // Pause icon state
+    &.playing::before
+      border-width 4px 0 4px 6px
+      border-color transparent transparent transparent $arch-blue
+
+  // Progress slider
+  .mw-score-progress
+  .progress-slider
+    flex 1
+    max-width 200px
+    height 4px
+    background $border-subtle
+    border-radius 2px
+    appearance none
+    cursor pointer
+
+    &::-webkit-slider-thumb
+      appearance none
+      width 12px
+      height 12px
+      background $arch-blue
+      border-radius 50%
+      cursor pointer
+      transition transform 0.15s
+
+      &:hover
+        transform scale(1.2)
+
+    &::-moz-range-thumb
+      width 12px
+      height 12px
+      background $arch-blue
+      border-radius 50%
+      border none
+      cursor pointer
+
+  // Time display
+  .mw-score-time
+  .time-display
+    font-size 0.85em
+    color $muted
+    font-variant-numeric tabular-nums
+    min-width 80px
+    text-align center
+
+  // Tempo/meter controls
+  .mw-score-settings
+  .settings-button
+    display flex
+    align-items center
+    justify-content center
+    width 32px
+    height 32px
+    background transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $light
+    cursor pointer
+    transition transition-medium
+
+    &:hover
+      background rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+      color $arch-blue
+
+  // Download/Export button
+  .mw-score-download
+  .download-button
+    display inline-flex
+    align-items center
+    gap 0.5em
+    padding 0.5em 1em
+    background rgba($arch-blue, 0.15)
+    border 1px solid rgba($arch-blue, 0.3)
+    border-radius $border-radius-sm
+    color $arch-blue
+    font-size 0.9em
+    text-decoration none
+    transition transition-medium
+
+    &:hover
+      background rgba($arch-blue, 0.25)
+      border-color $arch-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    // Download icon
+    svg
+      width 16px
+      height 16px
+
+// MIDI audio fallback
+.mw-score-audio
+  margin-block-start 1em
+
+  audio
+    width 100%
+    height 40px
+    background rgba($dark, 0.8)
+    border-radius $border-radius-md
+
+    &::-webkit-media-controls-panel
+      background rgba($dark, 0.9)
+
+    &::-webkit-media-controls-play-button
+      background $arch-blue
+      border-radius 50%
+
+// LilyPond source code display
+.mw-score-source
+  margin-block-start 1em
+  padding 1em
+  background rgba($dark, 0.8)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  font-family $font-mono
+  font-size 0.85em
+  color $light
+  overflow-x auto
+  white-space pre-wrap
+
+  .comment
+    color $muted
+    font-style italic
+
+  .keyword
+    color $arch-blue
+
+  .string
+    color $green
+
+// Score error state
+.mw-score-error
+  padding 1.5em
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+  text-align center
+
+  .error-icon
+    font-size 2em
+    margin-bottom 0.5em
+
+  .error-message
+    color $secondary-red
+    font-weight 500
+
+  .error-hint
+    color $muted
+    font-size 0.9em
+    margin-top 0.5em
+
+// Reduced motion for score animations
+@media (prefers-reduced-motion reduce)
+  .mw-score-ui
+    .mw-score-play
+      transition none
+
+    .progress-slider::-webkit-slider-thumb
+      transition none
+
+// =============================================================================
 // MAP/GEO EXTENSION STYLING
 // =============================================================================
 // Interactive map container, marker styling, popup card theming

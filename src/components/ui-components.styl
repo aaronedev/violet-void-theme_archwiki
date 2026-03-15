@@ -1347,15 +1347,15 @@ svg path
 
 // Ensure SVG icons are accessible
 svg[role="img"]
-  aria-hidden false
+  // aria-hidden is handled via HTML attribute
 
 // Hide decorative SVGs from screen readers
 svg[aria-hidden="true"]
-  aria-hidden true
+  // aria-hidden is handled via HTML attribute
 
 // Focusable SVGs for keyboard navigation
 svg.focusable
-  focusable true
+  // focusable attribute is handled via HTML
   outline none
 
   &:focus

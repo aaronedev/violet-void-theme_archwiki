@@ -4672,12 +4672,13 @@ Last updated: 2026-03-15 11:03
 
 ## 🚀 Performance Optimizations (New)
 
-- [ ] **Critical CSS Patterns** (CSS, 100% browser support)
+- [x] **Critical CSS Patterns** (CSS, 100% browser support)
   - File: `src/critical.styl`
   - Above-fold styles
   - Deferred styles pattern
   - Minimal initial payload
   - Progressive enhancement
+  - Commit: 62e7fed
 
 - [ ] **CSS Containment** (CSS, 97%+ browser support)
   - File: `src/performance/containment.styl`
