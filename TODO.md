@@ -2032,10 +2032,11 @@ Last updated: 2026-03-15 15:37
   - Style axis-specific snapped items
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`scroll-start` / `scroll-end` Properties** (85%+ browser support)
+- [x] **`scroll-start` / `scroll-end` Properties** (85%+ browser support)
   - File: `src/components/navigation.styl`
   - Define scroll snap boundaries
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: `dc90e5d`
 
 ## 🔖 Scroll Markers (New)
 
