@@ -242,13 +242,15 @@ header.vector-header
 .vector-header a:visited
   // Disable gradient-underline background used by the global link styling
   background-image none !important
-  background-size auto !important
-  background-repeat initial !important
-  background-position initial !important
+  background-size 0 0 !important
+  background-repeat no-repeat !important
   text-decoration none !important
 
   &:hover
+  &:active
+  &:focus
     background-image none !important
+    background-size 0 0 !important
     text-decoration none !important
 
 // Make header icons immune to text-decoration metrics and center them properly
