@@ -3430,12 +3430,13 @@ Last updated: 2026-03-14 23:59
   - Optional inclusion
   - Commit: b177636
 
-- [ ] **Print Infobox** (CSS)
-  - File: `src/components/print.styl`
-  - Compact format
-  - Key facts only
-  - Grayscale option
-  - Border styling
+- [x] **Print Infobox** (CSS)
+  - File: `src/components/print-enhanced.styl`
+  - Compact format with reduced padding/margins
+  - Key facts only - hides non-essential elements
+  - Grayscale option with .grayscale class
+  - Border styling with print-color-adjust
+  - Commit: 07b2eaf
 
 - [x] **Print Footer** (CSS)
   - File: `src/components/print-enhanced.styl`

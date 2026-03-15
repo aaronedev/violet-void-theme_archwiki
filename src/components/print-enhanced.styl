@@ -355,6 +355,92 @@
       max-width 200px
       margin 0 auto
 
+  // =============================================================================
+  // PRINT INFobox - Compact Format for Print Output
+  // =============================================================================
+
+  // Compact infobox format for print - key facts only
+  .infobox
+    // Compact styling for print
+    width 100% !important
+    max-width 250px !important
+    float right !important
+    margin 0 0 1em 1em !important
+    padding 0.5em !important
+    border 1px solid $print-border !important
+    background $print-bg !important
+    color $print-text !important
+    font-size 10pt !important
+    line-height 1.3 !important
+    page-break-inside avoid !important
+    break-inside avoid !important
+
+    // Compact header
+    .infobox-title
+    .infobox-header
+      font-size 12pt !important
+      font-weight bold !important
+      text-align center !important
+      padding 0.25em 0.5em !important
+      background darken($print-bg, 8%) !important
+      border-bottom 1px solid $print-border !important
+
+    // Compact image
+    .infobox-image
+      padding 0.5em !important
+      text-align center !important
+
+      img
+        max-width 150px !important
+        max-height 100px !important
+        page-break-inside avoid !important
+
+    // Compact data rows - reduce spacing
+    .infobox-row
+    .infobox-data
+      padding 0.15em 0.5em !important
+      font-size 9pt !important
+      line-height 1.2 !important
+
+    // Label/value pairs - inline for compactness
+    .infobox-label
+    .infobox-data
+      display inline !important
+
+    .infobox-label
+      font-weight 600 !important
+      margin-right 0.25em !important
+
+    // Reduce vertical spacing between rows
+    .infobox-row
+      margin 0 !important
+      padding 0.1em 0.5em !important
+
+    // Remove decorative elements
+    .infobox-subheader
+    .infobox-subtitle
+      font-size 9pt !important
+      padding 0.15em 0.5em !important
+
+    // Hide non-essential elements in print
+    .infobox-full-data
+    .infobox-below
+    .infobox-above
+      display none !important
+
+    // Grayscale option - force grayscale for print
+    &.grayscale
+      filter grayscale(100%) !important
+      background white !important
+
+    // Ensure border prints with color
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Mobile-friendly collapsible infobox for print
+  .infobox-mobile
+    display block !important
+
   // Math images (rendered LaTeX)
   img.mwe-math-fallback-image
     max-width 100%
