@@ -1,0 +1,135 @@
+// Heading Pseudo-Classes
+// :heading matches any heading element (<h1>-<h6>)
+// Browser support: 88%+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/:heading
+// Note: The :heading() functional pseudo-class uses An+B notation
+// e.g., :heading(1), :heading(2n+1) - browser support is 88%+
+// These are future-compatible selectors that work alongside traditional h1-h6
+
+// Base heading styles using :heading
+:heading
+  font-weight 600
+  line-height 1.3
+  color var(--text-color)
+
+// Level-based heading styles
+h1
+  font-size clamp(1.75rem, 4vw + 1rem, 2.5rem)
+  margin-bottom 0.75em
+  border-bottom 1px solid var(--border-color)
+  padding-bottom 0.3em
+
+h2
+  font-size clamp(1.5rem, 3vw + 1rem, 2rem)
+  margin-top 1.5em
+  margin-bottom 0.5em
+
+h3
+  font-size clamp(1.25rem, 2vw + 1rem, 1.5rem)
+  margin-top 1.25em
+  margin-bottom 0.5em
+
+h4
+  font-size 1.125rem
+  margin-top 1em
+  margin-bottom 0.4em
+  font-weight 700
+
+h5
+  font-size 1rem
+  margin-top 0.75em
+  margin-bottom 0.3em
+  font-weight 700
+  text-transform uppercase
+  letter-spacing 0.05em
+
+h6
+  font-size 0.875rem
+  margin-top 0.5em
+  margin-bottom 0.25em
+  font-weight 700
+  text-transform uppercase
+  letter-spacing 0.05em
+  color var(--text-color-muted)
+
+// Alternating heading styles (fallback for :heading(odd)/:heading(even))
+h1
+h3
+h5
+  color var(--heading-color)
+
+h2
+h4
+h6
+  color var(--heading-color-secondary)
+
+// First three headings get more prominence
+h1
+h2
+h3
+  margin-top 1em
+
+// Deep nesting - h4 and below in navbox/infobox context
+.navbox h1
+.navbox h2
+.navbox h3
+.navbox h4
+.infobox h1
+.infobox h2
+.infobox h3
+.infobox h4
+.related-articles h1
+.related-articles h2
+.related-articles h3
+.related-articles h4
+  font-size 0.9em
+  margin 0.5em 0
+
+// Headings in collapsed sections
+.mw-collapsed h1
+.mw-collapsed h2
+.mw-collapsed h3
+.mw-collapsed h4
+.mw-collapsed h5
+.mw-collapsed h6
+  opacity 0.7
+
+// Print heading styles
+@media print
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-after avoid
+    page-break-after avoid
+
+  h1
+    font-size 1.75rem
+
+  h2
+    font-size 1.5rem
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    transition none
+
+// Dark mode heading adjustments
+@media (prefers-color-scheme dark)
+  h5
+  h6
+    color var(--text-color-muted)
+
+// Future: When browser support improves, these can be used:
+// :heading(1) { ... } - equivalent to h1
+// :heading(2n) { ... } - even headings
+// :heading(odd) { ... } - odd headings
+// :heading(even) { ... } - even headings
+// :heading(-n+3) { ... } - first three headings
