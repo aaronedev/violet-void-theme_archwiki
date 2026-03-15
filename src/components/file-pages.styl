@@ -812,3 +812,197 @@ video:picture-in-picture
 
   video:picture-in-picture::before
     display none
+
+
+// ===========================================
+// :paused / :playing Pseudo-classes (87%+)
+// Style video based on playback state
+// ===========================================
+
+// Video in paused state - show play indicator overlay
+video:paused
+audio:paused
+  // Paused state indicator - could show replay icon
+  &::after
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 0
+    height 0
+    border-style solid
+    border-width 20px 0 20px 35px
+    border-color transparent transparent transparent $arch-blue
+    opacity 0.8
+    pointer-events none
+    // Only show on hover
+    opacity 0
+
+// Show play indicator on hover when paused
+video:paused:hover::after
+audio:paused:hover::after
+  opacity 0.8
+
+// Container for paused video with overlay
+.mw-parser-output video:paused
+.mw-parser-output audio:paused
+  position relative
+
+// Video in playing state - hide controls or show minimal
+video:playing
+audio:playing
+  // Playing state - optionally minimize controls appearance
+  &::-webkit-media-controls
+    opacity 0.5
+    transition opacity 0.3s ease
+
+  &:hover::-webkit-media-controls
+    opacity 1
+
+// Pause indicator for playing video on hover
+video:playing::before
+audio:playing::before
+  content ""
+  position absolute
+  top 10px
+  right 10px
+  width 8px
+  height 8px
+  background $green
+  border-radius 50%
+  opacity 0
+  transition opacity 0.3s ease
+
+video:playing:hover::before
+audio:playing:hover::before
+  opacity 1
+
+// ===========================================
+// :buffering Pseudo-class (87%+)
+// Style video when buffering/loading
+// ===========================================
+
+video:buffering
+audio:buffering
+  // Buffering state - show loading indicator
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 40px
+    height 40px
+    border 3px solid rgba($arch-blue, 0.3)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+    pointer-events none
+
+  // Dim the video during buffering
+  filter brightness(0.7)
+
+// Animation for buffering spinner
+@keyframes spin
+  from
+    transform translate(-50%, -50%) rotate(0deg)
+  to
+    transform translate(-50%, -50%) rotate(360deg)
+
+// Video element wrapper for buffering
+.mw-parser-output video:buffering
+.mw-parser-output audio:buffering
+  position relative
+
+// ===========================================
+// :muted Pseudo-class (87%+)
+// Style video based on mute state
+// ===========================================
+
+video:muted
+audio:muted
+  // Muted state styling
+  &::-webkit-media-controls-mute-button
+    background rgba($red, 0.2)
+    border-radius 4px
+
+  // Show muted indicator
+  &::before
+    content "🔇"
+    position absolute
+    top 10px
+    left 10px
+    font-size 14px
+    opacity 0
+    transition opacity 0.3s ease
+
+video:muted:hover::before
+audio:muted:hover::before
+  opacity 1
+
+// Unmuted (sound on) state
+video:not(:muted)
+audio:not(:muted)
+  // Sound on indicator
+  &::before
+    content "🔊"
+    position absolute
+    top 10px
+    left 10px
+    font-size 14px
+    opacity 0
+    transition opacity 0.3s ease
+
+video:not(:muted):hover::before
+audio:not(:muted):hover::before
+  opacity 1
+
+// Volume slider visibility based on mute state
+video:muted::-webkit-media-controls-volume-slider
+audio:muted::-webkit-media-controls-volume-slider
+  display none
+
+// ===========================================
+// Combined states for complex interactions
+// ===========================================
+
+// Playing and unmuted - full controls
+video:playing:not(:muted)
+audio:playing:not(:muted)
+  &::-webkit-media-controls
+    opacity 1
+
+// Paused and muted
+video:paused:muted
+audio:paused:muted
+  &::after
+    // Show replay icon for muted paused videos
+    border-color transparent transparent transparent $arch-blue
+
+// Buffering with sound
+video:buffering:not(:muted)
+audio:buffering:not(:muted)
+  &::before
+    // Show both buffering and volume indicators
+    background transparent
+    border none
+    width auto
+    height auto
+    content "⏳ 🔊"
+    font-size 16px
+    animation none
+
+// Reduced motion - simplify state indicators
+@media (prefers-reduced-motion reduce)
+  video:paused::after
+  audio:paused::after
+  video:buffering::before
+  audio:buffering::before
+  video:playing::before
+  audio:playing::before
+  video:muted::before
+  audio:muted::before
+  video:not(:muted)::before
+  audio:not(:muted)::before
+    display none
