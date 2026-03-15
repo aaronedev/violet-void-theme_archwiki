@@ -368,6 +368,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-15 | Page break control (break-before/after/inside) for print | 3c76788 |
 | 2026-03-15 | CSS Math Functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, trig) | 65f896f |
 | 2026-03-15 | Collapsible sections print styles for details/summary | 053dd41 |
 | 2026-03-14 | animation-timeline: scroll() for scroll-driven animations | 610bf0a |
@@ -2295,11 +2296,12 @@ Last updated: 2026-03-15 11:03
 
 ## 🖨️ Print Enhancements (New)
 
-- [ ] **`break-before` / `break-after` / `break-inside`** (97%+ browser support)
+- [x] **`break-before` / `break-after` / `break-inside`** (97%+ browser support)
   - File: `src/components/print.styl`
   - Control page/column breaks
   - `break-inside: avoid;`
   - Stylus: Works directly
+  - Commit: 3c76788
 
 - [x] **`page` Property for Named Pages** (97%+ browser support)
   - File: `src/components/print-enhanced.styl`
