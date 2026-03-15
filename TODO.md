@@ -1184,11 +1184,12 @@ Last updated: 2026-03-15 14:30
   - Example code formatting
   - Commit: 94c837d
 
-- [ ] **Template Data Styling** (CSS)
+- [x] **Template Data Styling** (CSS)
   - File: `src/components/templates.styl` (new file)
   - Template parameter cards
   - Required/optional indicators
   - Default value display
+  - Commit: 391b8fa
 
 - [ ] **Scribunto Console** (CSS)
   - File: `src/components/lua.styl`
