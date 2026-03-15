@@ -1417,11 +1417,12 @@ Last updated: 2026-03-15 08:29
   - Image gallery, category pages
   - Note: Limited support, use as progressive enhancement
 
-- [ ] **`gap` in Flexbox** (97%+ browser support)
+- [x] **`gap` in Flexbox** (97%+ browser support)
   - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
   - Use gap instead of margins in flex containers
   - Cleaner spacing between flex items
   - Stylus: Works directly
+  - Commit: 56063ce
 
 ## 🎭 Advanced Pseudo-Classes (New)
 

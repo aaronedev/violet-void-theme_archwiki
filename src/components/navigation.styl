@@ -1360,3 +1360,95 @@ h6:hover .mw-editsection
   .mw-categorytree-count
     border 1px solid CanvasText
 
+// -----------------------------------------------------------------------------
+// Gap in Flexbox
+// Use gap instead of margins in flex containers for cleaner spacing between
+// flex items. This is widely supported (97%+ browser support) and provides
+// more predictable spacing than margins in flex layouts.
+
+// Flex gap utilities - use instead of margin between flex items
+.flex-gap-xs
+  gap 0.25em
+
+.flex-gap-sm
+  gap 0.5em
+
+.flex-gap-md
+  gap 1em
+
+.flex-gap-lg
+  gap 1.5em
+
+.flex-gap-xl
+  gap 2em
+
+// Row gap only
+.flex-row-gap-xs
+  row-gap 0.25em
+
+.flex-row-gap-sm
+  row-gap 0.5em
+
+.flex-row-gap-md
+  row-gap 1em
+
+// Column gap only
+.flex-col-gap-xs
+  column-gap 0.25em
+
+.flex-col-gap-sm
+  column-gap 0.5em
+
+.flex-col-gap-md
+  column-gap 1em
+
+// Apply gap to key flex containers in navigation
+// Arch navbar
+#archnavbar
+  gap 0.5em
+
+// TOC list items
+.toc li
+  // gap replaces margin for cleaner spacing
+  gap 0.25em
+
+// Vector TOC landmarks
+.vector-toc-landmark
+  gap 0.5em
+
+.vector-page-titlebar-toc
+  gap 0.25em
+
+// Search form flex container
+.cdx-search-input
+.cdx-search-input--has-end-button
+  gap 0.25em
+
+// Menu toggle buttons
+.vector-main-menu-pagination-container
+  gap 0.5em
+
+// Dropdown content flex containers
+.vector-dropdown-content
+  gap 0
+
+// User menu items
+.vector-user-menu
+  gap 0.25em
+
+// Language selector dropdown
+.vector-languageSelector-dropdown
+  gap 0.5em
+
+// Pinnable header
+.vector-pinnable-header
+  gap 0.5em
+
+// Sidebar portal content
+.mw-portlet
+  gap 0
+
+// Footer links
+#footer
+  gap 1em
+
