@@ -1058,6 +1058,45 @@
     page portrait
 
 // =============================================================================
+// NAMED PAGES AND SIZE DESCRIPTORS
+// =============================================================================
+
+// Named pages for different content types
+// Browser support: 97%+
+// Allows assigning named page templates to specific content
+
+@media print
+  // Default page size - A4
+  @page
+    size A4
+
+  // Default page size - US Letter (uncomment to use as default)
+  // @page
+  //   size: Letter
+
+  // Wide pages for tables, code blocks, and wide content
+  @page wide
+    size A4 landscape
+    page-orientation landscape
+
+  // Compact pages for narrow content
+  @page compact
+    size A5
+    page-orientation portrait
+    margin 1cm
+
+  // Apply wide page to very wide tables
+  .wikitable-very-wide
+  .table-very-wide
+  .content-wide
+    page wide
+
+  // Apply compact page to focused/narrow content
+  .content-compact
+  .summary-box
+    page compact
+
+// =============================================================================
 // MARKS AND BLEED DESCRIPTORS
 // =============================================================================
 
