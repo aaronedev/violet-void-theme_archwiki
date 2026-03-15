@@ -2638,11 +2638,12 @@ Last updated: 2026-03-15 02:58
   - Example: `@media (aspect-ratio: 21/9) { ... }`
   - Stylus: Works directly
 
-- [ ] **`@media (orientation: portrait/landscape)`** (100% browser support)
+- [x] **`@media (orientation: portrait/landscape)`** (100% browser support)
   - File: `src/components/responsive-enhanced.styl`
   - Explicit orientation detection
   - Adjust table, infobox layout
   - Stylus: Works directly
+  - Commit: 46b7c99
 
 ## 🔧 Scripting & Capabilities (New)
 

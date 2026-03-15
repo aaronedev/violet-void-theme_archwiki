@@ -434,6 +434,69 @@ img[loading="lazy"]
   aspect-ratio 1 / 1
 
 // =============================================================================
+// ORIENTATION-BASED LAYOUT
+// =============================================================================
+
+// Portrait orientation adjustments
+@media (orientation portrait)
+  // Stack elements vertically in portrait
+  .mw-parser-output > .multicol
+    columns 1 !important
+
+  // Table wrapper for horizontal scroll in portrait
+  .mw-parser-output .wikitable
+  .mw-parser-output .infobox
+    display block
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+
+  // Adjust infobox for portrait
+  .infobox
+    width 100% !important
+    margin-left 0 !important
+    margin-right 0 !important
+
+  // Sidebar adjustments
+  .mw-sidebar
+    width 100%
+    max-width none
+
+  // Navigation
+  .vector-header
+    flex-direction column
+    gap 0.5em
+
+  // Code blocks
+  #content pre:not([class*="codemirror"])
+    padding-top 2.5em !important
+
+// Landscape orientation adjustments
+@media (orientation landscape)
+  // Allow side-by-side in landscape
+  .mw-parser-output > .multicol
+    columns 2
+
+  // Better use of horizontal space
+  .infobox
+    float right
+    margin-left 1em
+    margin-bottom 0.5em
+    width auto
+    max-width 50%
+
+  // Wider content area
+  #content
+    padding-left 1.5em
+    padding-right 1.5em
+
+  // Multi-column layouts can use more columns
+  .mw-parser-output .columns-2
+    column-count 2
+
+  .mw-parser-output .columns-3
+    column-count 3
+
+// =============================================================================
 // DARK MODE PRINT (OPTIONAL)
 // =============================================================================
 
