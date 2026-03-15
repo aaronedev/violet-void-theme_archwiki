@@ -326,9 +326,12 @@
   - Added position-anchor property support for tooltips with multiple positioning options
   - Commit: 608efd9
 
-- [ ] **Native CSS nesting migration path**
+- [x] **Native CSS nesting migration path**
   - Long-term consideration for dropping Stylus
-  - Status: Research phase only
+  - Created comprehensive migration guide (CSS-NESTING-MIGRATION.md)
+  - Documents Stylus patterns and native CSS equivalents
+  - Hybrid approach recommended (keep Stylus for vars/mixins)
+  - Commit: 6c0812c
 
 - [x] **Expand `interpolate-size` for auto transitions**
   Commit: a411b8d
