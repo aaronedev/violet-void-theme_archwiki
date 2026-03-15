@@ -1355,17 +1355,19 @@ Last updated: 2026-03-15 08:29
 
 ## 🔄 Discrete Property Transitions (New - 2026-02-28 Scout 7)
 
-- [ ] **`transition-behavior: allow-discrete`** (85%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`transition-behavior: allow-discrete`** (85%+ browser support)
+  - File: `src/components/discrete-transitions.styl`
   - Enable transitions on discrete properties (display, visibility)
   - Example: `transition: display 0.3s; transition-behavior: allow-discrete;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 7f2e29a
 
-- [ ] **Expand `@starting-style` Usage** (85%+ browser support)
-  - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
-  - Entry animations for collapsible sections, dropdowns
+- [x] **Expand `@starting-style` Usage** (85%+ browser support)
+  - File: `src/components/discrete-transitions.styl`, `src/components/animations.styl`
+  - Entry animations for collapsible sections, dropdowns, dialogs
   - Pair with `transition-behavior: allow-discrete`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 7f2e29a
 
 ## 🎯 MediaWiki 1.43+ Features (New)
 
@@ -6972,12 +6974,13 @@ Last updated: 2026-03-15 08:29
 
 ## 🆕 CSS Transitions Extended (New - 2026-03-10 Scout 35)
 
-- [ ] **`transition-behavior: allow-discrete`** (CSS, 85%+ browser support)
-  - File: `src/animation/discrete-transitions.styl`
+- [x] **`transition-behavior: allow-discrete`** (CSS, 85%+ browser support)
+  - File: `src/components/discrete-transitions.styl`
   - Enable smooth transitions for `display: none` ↔ block
   - Enable transitions for `content-visibility`
   - Pair with `@starting-style` for entry animations
   - Stylus: Works directly
+  - Commit: 7f2e29a
 
 ## 🆕 Text Typography Extended (New - 2026-03-10 Scout 35)
 
@@ -7477,3 +7480,4 @@ Last updated: 2026-03-15 08:29
 | 2026-03-15 | :fullscreen Pseudo-class | Added fullscreen mode styling in ui-components.styl - hide non-essential UI chrome, fullscreen container/content styling, video/image/dialog enhancements, exit fullscreen button hints, reduced motion support | dfa7fd0 |
 | 2026-03-15 | CSS Containment | Added src/components/containment.styl with CSS containment utilities (layout, paint, size, style containment) for performance optimization - applied to MediaWiki components like infobox, sidebar, nav, tables, code blocks, message boxes, navbox, footer, content areas | 24b4b3f7 |
 | 2026-03-15 | Personalization Styling | Added src/components/personal.styl with Reading List Styling (cards, read/unread indicators, categories), Custom Quick Links (cards with drag handles, edit/delete), and Watchlist Enhancements (change summaries, diff previews) | aa8ad9a |
+| 2026-03-15 | Discrete Property Transitions | Added src/components/discrete-transitions.styl with transition-behavior: allow-discrete for smooth display/visibility transitions, @starting-style for entry animations, and height auto transitions (interpolate-size, calc-size) | 7f2e29a |
