@@ -1196,11 +1196,10 @@ Last updated: 2026-03-15 15:37
   - Default value display
   - Commit: 391b8fa
 
-- [ ] **Scribunto Console** (CSS)
+- [x] **Scribunto Console** (CSS)
   - File: `src/components/lua.styl`
-  - Console output styling
-  - Error highlighting
-  - Debug log display
+  - Console output styling, error highlighting, debug log display
+  - Commit: 14480d7
 
 - [x] **Cargo Query Interface** (CSS)
   - File: `src/components/cargo.styl` (new file)
