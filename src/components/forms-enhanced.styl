@@ -2149,3 +2149,61 @@ fieldset:read-only
   textarea:read-only
   textarea:read-write
     transition none
+
+// =============================================================================
+// :DEFAULT PSEUDO-CLASS
+// Style default form elements for better UX and accessibility
+// Browser support: 97%+
+// =============================================================================
+
+// Default submit button styling
+input[type="submit"]:default
+input[type="image"]:default
+button[type="submit"]:default
+button.default
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+  &:hover
+    background $secondary-blue
+    box-shadow 0 0 0 4px rgba($arch-blue, 0.4)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.5)
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Default radio button in a group
+input[type="radio"]:default
+  border-color $arch-blue
+
+  &:checked
+    background $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// Default checkbox in a group
+input[type="checkbox"]:default
+  border-color $arch-blue
+
+  &:checked
+    background $arch-blue
+    box-shadow  0 0 0 3px rgba($arch-blue, 0.3)
+
+// Default option in a select
+select:default
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.4)
+
+// Default button in button group
+.button-group
+  button:default
+    background $arch-blue
+    color $darker
+    font-weight 600
+
+    &::before
+      content "✓ "
+      opacity 0.7

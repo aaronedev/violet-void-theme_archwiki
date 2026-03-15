@@ -1676,11 +1676,12 @@ Last updated: 2026-03-14 23:59
   - Stylus: Works directly
   - Commit: b0ce774
 
-- [ ] **`:default` Pseudo-class** (97%+ browser support)
+- [x] **`:default` Pseudo-class** (97%+ browser support)
   - File: `src/components/forms-enhanced.styl`
   - Style default form elements
   - Default submit button, checked radio
   - Stylus: Works directly
+  - Commit: c2aacf9
 
 ## 🔤 Typography Deep Cuts (New)
 
