@@ -2700,11 +2700,12 @@ Last updated: 2026-03-15 02:58
   - Access language-specific alternates
   - Stylus: Works directly
 
-- [ ] **`@font-feature-values` for Named Features** (97%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`@font-feature-values` for Named Features** (97%+ browser support)
+  - File: `src/components/typography.styl`
   - Define named font feature values
   - `@font-feature-values Font Name { @styleset { nice-style: 1; } }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
 ## 📖 Ruby Text Support (New)
 
@@ -2808,43 +2809,50 @@ Last updated: 2026-03-15 02:58
 
 ## 🔤 Advanced @font-feature-values (New)
 
-- [ ] **`@stylistic` Feature Definitions** (97%+ browser support)
+- [x] **`@stylistic` Feature Definitions** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Define stylistic alternate names
   - `@font-feature-values Font { @stylistic { alternate: 1; } }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
-- [ ] **`@historical-forms` Feature** (97%+ browser support)
+- [x] **`@historical-forms` Feature** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Historical glyph variants
   - `@font-feature-values Font { @historical-forms { hist: 1; } }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
-- [ ] **`@styleset` Feature Definitions** (97%+ browser support)
+- [x] **`@styleset` Feature Definitions** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Define style set names
   - `@font-feature-values Font { @styleset { set1: 1; } }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
-- [ ] **`@character-variant` Feature** (97%+ browser support)
+- [x] **`@character-variant` Feature** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Character variant definitions
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
-- [ ] **`@swash` Feature Definitions** (97%+ browser support)
+- [x] **`@swash` Feature Definitions** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Swash character variants
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
-- [ ] **`@ornaments` Feature Definitions** (97%+ browser support)
+- [x] **`@ornaments` Feature Definitions** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Ornamental characters
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
-- [ ] **`@annotation` Feature Definitions** (97%+ browser support)
+- [x] **`@annotation` Feature Definitions** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Annotation characters (circles, squares)
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: d132c6a
 
 ## 📜 Scroll Timeline Animations (New)
 
@@ -6913,6 +6921,7 @@ Last updated: 2026-03-15 02:58
 | 2026-03-14 | Implementer | Math Extension Styling for MathML and LaTeX equations with containers, source display, equation numbering, display/inline variants, error display, gallery layout, MathML element styling, accessibility support | b0fd9da |
 | 2026-03-14 | Implementer | Cross-wiki Search Results styling with sister project icons, project badge styling, result grouping headers, result thumbnails, matched term highlighting for Wikipedia, Wiktionary, Wikibooks, Commons, Wikidata, etc. | 13cbee3 |
 | 2026-03-15 | Implementer | ::cue pseudo-element for Video Captions with past/future states, speaker identification, language-specific styling (97%+ browser support) | 592d1e5 |
+| 2026-03-15 | Implementer | @font-feature-values for named font feature values with @stylistic, @historical-forms, @styleset, @character-variant, @swash, @ornaments, @annotation, plus utility classes for common ligature controls (97%+ browser support) | d132c6a |
 
 ---
 
