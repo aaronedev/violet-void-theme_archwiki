@@ -1,0 +1,234 @@
+// =============================================================================
+// DYNAMIC VIEWPORT UNITS - Performance Optimization
+// =============================================================================
+// Dynamic viewport units provide better mobile viewport handling by accounting
+// for mobile browser chrome (address bar, navigation).
+// Browser support: 92%+
+// - dvh: Dynamic viewport height - adapts to browser chrome
+// - svh: Smallest viewport height - minimum stable value
+// - lvh: Largest viewport height - maximum value without chrome
+// Usage: @import or reference in components
+// =============================================================================
+
+@import '../variables/layout'
+@import '../variables/colors'
+
+// =============================================================================
+// VIEWPORT UNIT UTILITIES
+// =============================================================================
+
+// Full viewport heights with fallbacks
+.viewport-full-dvh
+  height 100dvh
+  height 100vh // Fallback
+
+.viewport-full-svh
+  height 100svh
+
+.viewport-full-lvh
+  height 100lvh
+
+// Min-height viewport utilities for sticky elements
+.min-h-viewport
+  min-height 100dvh
+  min-height 100vh // Fallback
+
+.min-h-viewport-stable
+  // Use smallest for stability - won't jump when chrome shows/hides
+  min-height 100svh
+
+// Fixed positioning with dynamic viewport
+.fixed-top-dvh
+  position fixed
+  top 0
+  left 0
+  right 0
+  height 100dvh
+  height 100vh // Fallback
+
+.fixed-bottom-dvh
+  position fixed
+  bottom 0
+  left 0
+  right 0
+  height 100dvh
+  height 100vh // Fallback
+
+// =============================================================================
+// RESPONSIVE VIEWPORT HERO SECTIONS
+// =============================================================================
+
+// Hero sections that fill viewport on mobile
+.hero-viewport-height
+  min-height 100dvh
+  min-height 100vh
+  min-height 100svh // Ultimate fallback for stable height
+
+  // Ensure content doesn't overflow
+  overflow hidden
+  display flex
+  flex-direction column
+  justify-content center
+
+// Landing page sections
+.landing-section
+  min-height 100svh // Stable height - no jumping
+  padding 2rem
+  box-sizing border-box
+
+// =============================================================================
+// MOBILE KEYBOARD HANDLING
+// =============================================================================
+
+// When virtual keyboard appears, use smaller viewport
+// Note: This requires JavaScript to toggle class or CSS container queries
+
+// Form containers that need to adapt to keyboard
+.form-viewport-adaptive
+  min-height 100svh // Start with smallest
+
+  // When keyboard is visible (container query)
+  @container (max-height: 300px)
+    min-height auto
+    max-height 100%
+
+// Edit form optimization
+.mw-editform
+  min-height 100svh
+
+  // Tablet/desktop: use dynamic
+  @media (min-width 768px)
+    min-height 100dvh
+    min-height 100vh
+
+// =============================================================================
+// SCROLLABLE AREAS
+// =============================================================================
+
+// Main content area - use svh for stability
+.main-content-scroll
+  height 100svh
+  height calc(100vh - var(--header-height, 60px))
+  overflow-y auto
+  -webkit-overflow-scrolling touch
+
+// Sidebar scrollable area
+.sidebar-scroll
+  height 100lvh // Use largest for sidebars
+  overflow-y auto
+
+// =============================================================================
+// STICKY FOOTER PATTERN
+// =============================================================================
+
+// Sticky footer using dynamic viewport
+.sticky-footer-container
+  display flex
+  flex-direction column
+  min-height 100dvh
+  min-height 100vh // Fallback
+  min-height 100svh // Ultimate fallback
+
+.sticky-footer-content
+  flex 1
+
+.sticky-footer-footer
+  flex-shrink 0
+
+// =============================================================================
+// MODAL/DIALOG VIEWPORT
+// =============================================================================
+
+// Full-screen modals on mobile
+.dialog-fullscreen-mobile
+  position fixed
+  inset 0
+  width 100%
+  height 100dvh
+  height 100vh // Fallback
+
+  @media (min-width 768px)
+    height auto
+    max-height 90vh
+    width auto
+    max-width 560px
+    margin auto
+
+// =============================================================================
+// IMAGE/VIDEO VIEWPORT
+// =============================================================================
+
+// Full-bleed media on mobile
+.media-fullbleed-mobile
+  width 100vw
+  width 100dvw
+  width 100lvw // Fallback
+
+  margin-left 50%
+  transform translateX(-50%)
+
+// Aspect ratio containers with viewport
+.video-container-16x9
+  width 100vw
+  width 100dvw
+  aspect-ratio 16/9
+  position relative
+
+  @media (min-width 768px)
+    width 100%
+    max-width 1200px
+
+// =============================================================================
+// OVERLAY POSITIONING
+// =============================================================================
+
+// Dropdown positioning relative to viewport
+.dropdown-viewport-top
+  position fixed
+  top env(safe-area-inset-top, 0)
+  max-height calc(100dvh - env(safe-area-inset-top, 0) - 10px)
+  max-height calc(100vh - env(safe-area-inset-top, 0) - 10px)
+  overflow-y auto
+
+.dropdown-viewport-bottom
+  position fixed
+  bottom env(safe-area-inset-bottom, 0)
+  max-height calc(100dvh - env(safe-area-inset-bottom, 0) - 10px)
+  max-height calc(100vh - env(safe-area-inset-bottom, 0) - 10px)
+  overflow-y auto
+
+// =============================================================================
+// ACCESSIBILITY CONSIDERATIONS
+// =============================================================================
+
+// Reduced motion: use smallest stable viewport
+@media (prefers-reduced-motion reduce)
+  .hero-viewport-height
+    min-height 100svh
+
+  .sticky-footer-container
+    min-height 100svh
+
+  .dialog-fullscreen-mobile
+    height 100svh
+
+// High contrast mode adjustments
+@media (forced-colors active)
+  .hero-viewport-height
+    min-height 100svh
+
+  .main-content-scroll
+    height calc(100svh - 1px)
+
+// =============================================================================
+// PRINT VIEWPORT (for reference)
+// =============================================================================
+
+@media print
+  .hero-viewport-height
+    min-height auto
+    height auto
+
+  .main-content-scroll
+    height auto
+    overflow visible
