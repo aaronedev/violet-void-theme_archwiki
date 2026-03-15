@@ -1698,11 +1698,12 @@ Last updated: 2026-03-15 15:37
   - Stylus: Works directly
   - Commit: dfa7fd0
 
-- [ ] **`:picture-in-picture` Pseudo-class** (92%+ browser support)
+- [x] **`:picture-in-picture` Pseudo-class** (92%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style PiP video container
   - PiP indicator styling
   - Stylus: Works directly
+  - Commit: 152bf34
 
 - [ ] **`:paused` / `:playing` Pseudo-classes** (87%+ browser support)
   - File: `src/components/file-pages.styl`
