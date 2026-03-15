@@ -2662,11 +2662,12 @@ Last updated: 2026-03-15 09:55
   - Control code font ligatures
   - Stylus: Works directly
 
-- [ ] **`font-variant-east-asian` for CJK Typography** (97%+ browser support)
+- [x] **`font-variant-east-asian` for CJK Typography** (97%+ browser support)
   - File: `src/components/typography.styl`
   - `jis78`, `jis83`, `jis90`, `jis04`, `simplified`, `traditional`
   - Better CJK font rendering
   - Stylus: Works directly
+  - Commit: 2525f7c
 
 - [ ] **`font-variant-position` for Super/Subscript** (97%+ browser support)
   - File: `src/components/content.styl`
@@ -2674,17 +2675,19 @@ Last updated: 2026-03-15 09:55
   - Better than `<sup>`/`<sub>` for typography
   - Stylus: Works directly
 
-- [ ] **`font-variant-emoji` for Emoji Presentation** (87%+ browser support)
+- [x] **`font-variant-emoji` for Emoji Presentation** (87%+ browser support)
   - File: `src/components/typography.styl`
   - `text`, `emoji`, `unicode` to control emoji rendering
   - Ensure consistent emoji appearance
   - Stylus: Works directly
+  - Commit: 2525f7c
 
-- [ ] **`font-language-override` for Language-Specific Glyphs** (97%+ browser support)
+- [x] **`font-language-override` for Language-Specific Glyphs** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Override language for font feature selection
   - Access language-specific alternates
   - Stylus: Works directly
+  - Commit: 2525f7c
 
 - [x] **`@font-feature-values` for Named Features** (97%+ browser support)
   - File: `src/components/typography.styl`

@@ -1000,6 +1000,75 @@ ol.nested-counter
 .sub
   font-variant-position sub
 
+// font-variant-east-asian for CJK Typography
+// Browser support: 97%+
+// Control East Asian glyphs (Japanese kanji, simplified/traditional Chinese, Korean hanja)
+// Values: normal, jis78, jis83, jis90, jis04, simplified, traditional, hojo, nlc, expert, nosei, tenpro, p袋uit
+
+.east-asian-normal
+  font-variant-east-asian normal
+
+.east-asian-simplified
+  font-variant-east-asian simplified
+
+.east-asian-traditional
+  font-variant-east-asian traditional
+
+.east-asian-jis78
+  font-variant-east-asian jis78
+
+.east-asian-jis83
+  font-variant-east-asian jis83
+
+.east-asian-jis90
+  font-variant-east-asian jis90
+
+.east-asian-jis04
+  font-variant-east-asian jis04
+
+.east-asian-expert
+  font-variant-east-asian expert
+
+.east-asian-nlc
+  font-variant-east-asian nlc
+
+// font-variant-emoji for Emoji Presentation
+// Browser support: 87%+
+// Control emoji rendering style
+// Values: text (use text glyphs), emoji (use emoji glyphs), unicode (use platform default)
+
+.emoji-text
+  font-variant-emoji text
+
+.emoji-emoji
+  font-variant-emoji emoji
+
+.emoji-unicode
+  font-variant-emoji unicode
+
+// font-language-override for Language-Specific Glyphs
+// Browser support: 97%+
+// Override the language-sensitive font features for a piece of text
+// Use three-letter OpenType language tag (e.g., "ENG", "JAN", "KOR", "ZHS", "ZHT")
+
+.language-override-normal
+  font-language-override normal
+
+.language-override-eng
+  font-language-override "ENG"
+
+.language-override-jan
+  font-language-override "JAN"
+
+.language-override-kor
+  font-language-override "KOR"
+
+.language-override-zhs
+  font-language-override "ZHS"
+
+.language-override-zht
+  font-language-override "ZHT"
+
 // font-size-adjust for fallback font normalization
 // Browser support: 90%+
 // Normalize visual size across different fallback fonts
