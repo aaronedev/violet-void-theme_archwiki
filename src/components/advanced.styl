@@ -908,6 +908,286 @@
       transition none
 
 // =============================================================================
+// CHESS/GAME DIAGRAM STYLING
+// =============================================================================
+// Game board theming, piece visibility, move highlighting
+// Used by MediaWiki Chess.com integration or similar game diagram extensions
+
+// Chess/Game diagram container
+.mw-chess
+.mw-game-diagram
+.chess-board
+.game-diagram
+  position relative
+  margin 1.5em auto
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  display inline-block
+  max-width 100%
+
+  // Board container
+  .board
+    display block
+    margin 0 auto
+
+  // Chess board squares
+  .square
+    width 100%
+    height 100%
+
+    // Light/dark square coloring
+    &.light
+    &.white
+      fill rgba($arch-blue, 0.15)
+
+    &.dark
+    &.black
+      fill rgba($arch-blue, 0.35)
+
+    // Hover state for move selection
+    &:hover
+      outline 2px solid rgba($arch-blue, 0.6)
+      outline-offset -2px
+
+    // Highlighted move squares
+    &.highlight
+    &.possible-move
+      background rgba($arch-blue, 0.2)
+
+    // Last move highlight
+    &.last-move
+    &.from
+    &.to
+      background rgba($secondary-blue, 0.3)
+
+    // Check highlight
+    &.in-check
+      background rgba($red, 0.3)
+
+  // Chess pieces
+  .piece
+    cursor pointer
+    transition transform 0.15s ease
+
+    // Piece colors
+    &.white
+    &.light
+      fill $lighter
+
+    &.black
+    &.dark
+      fill $dark
+
+    // Hover state
+    &:hover
+      transform scale(1.1)
+
+    // Captured piece styling
+    &.captured
+      opacity 0.4
+
+    // Selected piece highlight
+    &.selected
+      filter drop-shadow(0 0 4px $arch-blue)
+
+  // Move notation/navigation
+  .moves
+  .move-list
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    margin-block-start 1em
+    padding-block-start 0.75em
+    border-block-start 1px solid $border-subtle
+    font-family $font-mono
+    font-size 0.9em
+
+  // Individual move
+  .move
+    padding 0.25em 0.5em
+    background rgba($dark, 0.4)
+    border-radius $border-radius-sm
+    color $light
+    cursor pointer
+    transition transition-fast
+
+    // Move number
+    &.move-number
+      color $muted
+      font-weight 600
+
+    // Current move highlight
+    &.current
+    &.active
+      background rgba($arch-blue, 0.3)
+      color $arch-blue
+
+    // White move
+    &.white-move
+      border-inline-start 3px solid $lighter
+
+    // Black move
+    &.black-move
+      border-inline-start 3px solid $dark
+
+    // Hover state
+    &:hover
+      background rgba($arch-blue, 0.2)
+
+// =============================================================================
+// GO/WEIQI DIAGRAM STYLING
+// =============================================================================
+// Go board theming, stone visibility, territory markers
+
+// Go/Weiqi board
+.mw-go
+.go-board
+  // Board background (wood texture feel)
+  .go-board-grid
+    fill rgba($dark, 0.8)
+
+  // Grid lines
+  .go-line
+    stroke $muted
+    stroke-width 1
+
+  // Star points (hoshi)
+  .go-star
+    fill $muted
+
+  // Go stones
+  .go-stone
+    cursor pointer
+    transition transform 0.15s ease
+
+    &.black
+      fill $dark
+      stroke $border-subtle
+      stroke-width 1
+
+    &.white
+      fill $light
+      stroke $border-subtle
+      stroke-width 1
+
+    // Hover effect
+    &:hover
+      transform scale(1.05)
+
+    // Dead stone indication
+    &.dead
+      opacity 0.6
+
+    // Captured stone
+    &.captured
+      opacity 0.3
+      stroke-width 2
+
+  // Territory markers
+  .go-territory
+    &.black-territory
+      fill rgba($dark, 0.5)
+
+    &.white-territory
+      fill rgba($light, 0.3)
+
+  // Move numbers
+  .go-move-number
+    font-family $font-mono
+    font-size 10px
+    fill $light
+    pointer-events none
+
+    &.on-black
+      fill $dark
+
+// Game diagram controls
+.game-controls
+  display flex
+  justify-content center
+  gap 0.75em
+  margin-block-start 1em
+  padding-block-start 0.75em
+  border-block-start 1px solid $border-subtle
+
+  // Control buttons
+  .control-btn
+    display flex
+    align-items center
+    justify-content center
+    width 36px
+    height 36px
+    background rgba($arch-blue, 0.2)
+    border 1px solid rgba($arch-blue, 0.4)
+    border-radius $border-radius-sm
+    cursor pointer
+    transition transition-medium
+    color $light
+
+    // Icons (first/last, prev/next, play/pause)
+    &::before
+      font-size 1.1em
+
+    &:hover
+      background rgba($arch-blue, 0.35)
+      border-color $arch-blue
+
+    &:disabled
+      opacity 0.4
+      cursor not-allowed
+
+    // First move
+    &.first::before
+      content '⏮'
+
+    // Previous move
+    &.prev::before
+      content '◀'
+
+    // Play/pause
+    &.play::before
+      content '▶'
+
+    &.pause::before
+      content '⏸'
+
+    // Next move
+    &.next::before
+      content '▶'
+
+    // Last move
+    &.last::before
+      content '⏭'
+
+// Game diagram - responsive sizing
+@media (max-width 480px)
+  .mw-chess
+  .mw-game-diagram
+  .chess-board
+    padding 0.5em
+
+    .board
+      width 100%
+      height auto
+
+  .moves
+  .move-list
+    font-size 0.8em
+
+  .game-controls
+    .control-btn
+      width 32px
+      height 32px
+
+// Reduced motion for game piece animations
+@media (prefers-reduced-motion reduce)
+  .piece
+  .go-stone
+    transition none
+
+// =============================================================================
 // MAP/GEO EXTENSION STYLING
 // =============================================================================
 // Interactive map container, marker styling, popup card theming
