@@ -733,3 +733,82 @@ audio:stalled::after
   audio:stalled::before
     animation none
     content none
+
+// =============================================================================
+// PICTURE-IN-PICTURE PSEUDO-CLASS
+// =============================================================================
+// Browser support: 92%+
+// Style video container when in picture-in-picture mode
+// See: https://developer.mozilla.org/en-US/docs/Web/CSS/:picture-in-picture
+
+video:picture-in-picture
+  // PiP window styling - typically a small floating window
+  border 2px solid $arch-blue
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  background-color $darker
+
+  // Ensure video fills the PiP window
+  width 100% !important
+  height 100% !important
+  object-fit contain
+
+// PiP indicator - subtle glow effect when in PiP mode
+video:picture-in-picture::before
+  content "Picture-in-Picture"
+  position absolute
+  top 8px
+  right 8px
+  padding 4px 8px
+  background rgba($arch-blue, 0.9)
+  color $base
+  font-size 10px
+  font-weight 600
+  border-radius 4px
+  text-transform uppercase
+  letter-spacing 0.5px
+  z-index 9999
+  pointer-events none
+
+// Audio in PiP mode (less common but possible)
+audio:picture-in-picture
+  border 2px solid $arch-blue
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  background-color $darker
+  border-radius 8px
+
+// PiP controls overlay styling (when video supports custom controls)
+video:picture-in-picture::-webkit-media-controls
+  background linear-gradient(transparent, rgba(0, 0, 0, 0.7))
+
+// Fullscreen + PiP combination - when video is fullscreen but also in PiP
+video:fullscreen:picture-in-picture
+  border-color $green
+  box-shadow 0 8px 32px rgba($green, 0.3)
+
+// Animation for PiP enter/exit
+@keyframes pip-enter
+  from
+    transform scale(0.8)
+    opacity 0
+  to
+    transform scale(1)
+    opacity 1
+
+@keyframes pip-exit
+  from
+    transform scale(1)
+    opacity 1
+  to
+    transform scale(0.8)
+    opacity 0
+
+video:picture-in-picture
+  animation pip-enter 0.2s ease-out
+
+// Reduced motion for PiP animations
+@media (prefers-reduced-motion reduce)
+  video:picture-in-picture
+    animation none
+
+  video:picture-in-picture::before
+    display none
