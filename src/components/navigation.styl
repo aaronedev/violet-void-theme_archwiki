@@ -599,14 +599,14 @@ header.vector-header
   border-radius $border-radius-sm
 
   // FIX: compact button, snug next to input
-  margin-inline-start 0
-  padding 0.3em 0.6em
+  margin-inline-start -2px
+  padding 0.25em 0.5em
   font-size 0.8em
   line-height 1
   white-space nowrap
 
   // Ensure it doesn't float away in flex layouts
-  flex 0 0 auto
+  flex 0 1 auto
   // Performance: hint browser for hover transitions
   will-change background-color, border-color, color
 
