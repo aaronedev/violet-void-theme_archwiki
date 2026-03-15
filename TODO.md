@@ -449,7 +449,7 @@
 
 ---
 
-Last updated: 2026-03-15 09:55
+Last updated: 2026-03-15 10:49
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1474,11 +1474,12 @@ Last updated: 2026-03-15 09:55
 
 ## 🖼️ Media Enhancements (New)
 
-- [ ] **`@media (video-dynamic-range)`** (92%+ browser support)
-  - File: `src/variables/colors.styl`
+- [x] **`@media (video-dynamic-range)`** (92%+ browser support)
+  - File: `src/components/modern-css.styl`
   - Detect HDR video capability
   - Provide enhanced colors for HDR displays
   - Stylus: Works directly
+  - Commit: e3c5a45
 
 - [x] **`@media (prefers-reduced-data)`** (87%+ browser support)
   - File: `src/components/performance.styl`
@@ -7491,3 +7492,4 @@ Last updated: 2026-03-15 09:55
 | 2026-03-15 | Discrete Property Transitions | Added src/components/discrete-transitions.styl with transition-behavior: allow-discrete for smooth display/visibility transitions, @starting-style for entry animations, and height auto transitions (interpolate-size, calc-size) | 7f2e29a |
 | 2026-03-15 | text-group-align for Block Alignment | Added text-group-align styling in typography.styl for block-level text alignment control (87%+ browser support) | ddf5ff4 |
 | 2026-03-15 | font-size-adjust Property | Added font-size-adjust utility classes and base body styling in typography.styl to normalize visual size across fallback fonts and prevent layout shifts when web fonts load | fa1ebe5 |
+| 2026-03-15 | @media (video-dynamic-range) | Added HDR video display support in modern-css.styl - enhanced video player colors, contrast and saturation filters, progress bar gradients, controls styling for HDR-capable displays, with standard dynamic range fallback | e3c5a45 |
