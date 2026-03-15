@@ -1561,11 +1561,14 @@ Last updated: 2026-03-15 14:30
   - Stylus: Works directly
   - Commit: 48b85d9
 
-- [ ] **`scroll-timeline` for Custom Animations** (87%+ browser support)
+- [x] **`scroll-timeline` for Custom Animations** (87%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define named scroll timelines
   - More control than `animation-timeline: scroll()`
-  - Note: Wrap in `@css{}` for Stylus
+  - Note: Wrap in `@supports` for Stylus
+  - Added scroll-timeline-name, scroll-timeline-axis, view-timeline-name, view-timeline-inset, timeline-scope utilities
+  - Added animation-range utilities for entry/exit/cross/contain animations
+  - Commit: c035cb0
 
 ## 🔤 Text Enhancements (New)
 

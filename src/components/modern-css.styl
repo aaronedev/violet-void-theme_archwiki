@@ -2399,6 +2399,92 @@ h4[id]
   }
 }
 
+/* Scroll Timeline Named Timelines - Performance optimization for scroll-driven animations
+ * Browser support: 85%+ (Chrome 115+, Edge 115+)
+ * Allows creating named scroll timelines for reusable scroll-driven animations
+ */
+
+@supports (scroll-timeline-name: none) or (scroll-timeline-axis: block)
+  // Named scroll timeline utilities
+  .timeline-page
+    scroll-timeline-name --page-scroll
+    scroll-timeline-axis block
+
+  .timeline-page-inline
+    scroll-timeline-name --page-scroll
+    scroll-timeline-axis inline
+
+  .timeline-vertical
+    scroll-timeline-name --vertical-scroll
+    scroll-timeline-axis block
+
+  .timeline-horizontal
+    scroll-timeline-name --horizontal-scroll
+    scroll-timeline-axis inline
+
+  // View timeline for enter/exit animations
+  .view-timeline-main
+    view-timeline-name --main
+    view-timeline-axis block
+
+  .view-timeline-inline
+    view-timeline-name --inline
+    view-timeline-axis inline
+
+  // Timeline scope - define reusable named timelines
+  .timeline-scope-page
+    timeline-scope --page-scroll
+
+  .timeline-scope-vertical
+    timeline-scope --vertical-scroll
+
+  .timeline-scope-horizontal
+    timeline-scope --horizontal-scroll
+
+  // View timeline insets - adjust when view animations start/end
+  .view-inset-start
+    view-timeline-inset start 0%
+
+  .view-inset-end
+    view-timeline-inset end 0%
+
+  .view-inset-both
+    view-timeline-inset start 10% end 10%
+
+/* Animation range utilities for fine-tuning scroll-driven animations */
+
+@supports (animation-range: 0%)
+  // Entry animations - element entering viewport
+  .range-entry-cover
+    animation-range entry 0% cover 100%
+
+  .range-entry-25
+    animation-range entry 0% cover 25%
+
+  .range-entry-50
+    animation-range entry 0% cover 50%
+
+  .range-entry-75
+    animation-range entry 0% cover 75%
+
+  // Exit animations - element leaving viewport
+  .range-exit-cover
+    animation-range exit 0% cover 100%
+
+  .range-exit-25
+    animation-range exit 0% cover 25%
+
+  .range-exit-50
+    animation-range exit 0% cover 50%
+
+  // Cross animations - element crossing through viewport
+  .range-cross-cover
+    animation-range crossfade 0% cover 100%
+
+  // Contain animations - element contained in viewport
+  .range-contain-cover
+    animation-range contain 0% contain 100%
+
 /* Disable scroll-driven animations for users who prefer reduced motion */
 @media (prefers-reduced-motion reduce)
   .mw-parser-output > *
