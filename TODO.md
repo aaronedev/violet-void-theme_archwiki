@@ -458,10 +458,11 @@
 | 2026-03-15 | @media (update) for e-ink display optimization | 2f583a4 |
 | 2026-03-15 | conic-gradient for Patterns & cross-fade() for Transitions | 1a4da94 |
 | 2026-03-15 | :dir() pseudo-class for direction-based styling | 0821863 |
+| 2026-03-16 | Chess/Go Diagram Styling | 86f4b20 |
 
 ---
 
-Last updated: 2026-03-15 22:05
+Last updated: 2026-03-16 00:26
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -955,11 +956,12 @@ Last updated: 2026-03-15 22:05
   - Audio player integration
   - Commit: ba55f4e
 
-- [ ] **Chess/Go Diagram Styling** (CSS)
+- [x] **Chess/Go Diagram Styling** (CSS)
   - File: `src/components/advanced.styl`
   - Game board theming
   - Piece visibility
   - Move highlighting
+  - Commit: 86f4b20
 
 ## 🔍 Search & Navigation Enhancements (New)
 
