@@ -332,12 +332,109 @@
       border 1px solid $border-subtle
       border-radius $border-radius-sm
       color $lighter
-      cursor pointer
-      transition all 0.2s ease
 
-      &:hover
-        background-color rgba($arch-blue, 0.1)
-        border-color rgba($arch-blue, 0.3)
+// =============================================================================
+// MASONRY GALLERY LAYOUT (Progressive Enhancement)
+// =============================================================================
+// Browser support: 87%+ (Chrome 129+, Firefox behind flag)
+// Falls back to standard grid on unsupported browsers
+
+// Masonry gallery container
+// Uses CSS masonry layout - items pack vertically like a masonry wall
+@supports (grid-template-rows: masonry)
+  .mw-gallery-masonry
+  .gallery-masonry
+    display grid
+    grid-template-rows masonry
+    grid-template-columns repeat(auto-fill, minmax(180px, 1fr))
+    gap 1em
+    margin 1em 0
+    align-content start
+
+    .gallery-item
+      break-inside avoid
+      margin-bottom 0
+
+    // Masonry-specific caption adjustments
+    .gallery-caption
+      background linear-gradient(to top, rgba($base, 0.95), rgba($base, 0.8))
+      backdrop-filter blur(4px)
+      border-radius 0 0 $border-radius-sm $border-radius-sm
+
+// Fallback: CSS columns masonry (wider support)
+// Works on all modern browsers
+.mw-gallery-masonry-fallback
+.gallery-masonry-fallback
+  column-count auto
+  column-width 180px
+  column-gap 1em
+  margin 1em 0
+
+  .gallery-item
+    break-inside avoid
+    margin-bottom 1em
+    display inline-block
+    width 100%
+
+// Grid-based masonry simulation with varying heights
+// Uses grid-row-end: span for variable heights (fallback)
+.mw-gallery-masonry-grid
+.gallery-masonry-grid
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(180px, 1fr))
+  gap 1em
+  margin 1em 0
+
+  .gallery-item
+    // Variable height based on content
+    // Can be overridden with inline styles or data attributes
+    &[data-rows="1"]
+      grid-row span 1
+    &[data-rows="2"]
+      grid-row span 2
+    &[data-rows="3"]
+      grid-row span 3
+    &[data-rows="4"]
+      grid-row span 4
+
+// Responsive masonry adjustments
+@media (max-width 768px)
+  .mw-gallery-masonry
+  .gallery-masonry
+  .mw-gallery-masonry-fallback
+  .gallery-masonry-fallback
+  .mw-gallery-masonry-grid
+  .gallery-masonry-grid
+    column-width 140px
+    grid-template-columns repeat(auto-fill, minmax(140px, 1fr))
+
+@media (max-width 480px)
+  .mw-gallery-masonry
+  .gallery-masonry
+  .mw-gallery-masonry-fallback
+  .gallery-masonry-fallback
+  .mw-gallery-masonry-grid
+  .gallery-masonry-grid
+    column-width 100%
+    grid-template-columns 1fr
+
+// Dense packing for masonry-like effect without true masonry
+.mw-gallery-packed-dense
+.gallery-packed-dense
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+  grid-auto-rows 10px
+  gap 1em
+  margin 1em 0
+
+  .gallery-item
+    grid-row-end span 5 // Default span, adjust per item
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
 
   .slideshow-counter
     text-align center
