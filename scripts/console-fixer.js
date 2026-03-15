@@ -247,8 +247,10 @@ class ConsoleFixer {
     return fixes
   }
 
-  findInSourceFiles(property) {
-    const results = []
+  loadSourceCache() {
+    if (this.sourceCache) return
+
+    this.sourceCache = []
     const files = fs.readdirSync(SRC_DIR, { recursive: true })
 
     for (const file of files) {
@@ -258,10 +260,19 @@ class ConsoleFixer {
       const content = fs.readFileSync(filePath, 'utf-8')
       const lines = content.split('\n')
 
-      lines.forEach((line, idx) => {
+      this.sourceCache.push({ file: filePath, lines })
+    }
+  }
+
+  findInSourceFiles(property) {
+    this.loadSourceCache()
+    const results = []
+
+    for (const cached of this.sourceCache) {
+      cached.lines.forEach((line, idx) => {
         if (line.includes(property)) {
           results.push({
-            file: filePath,
+            file: cached.file,
             line: idx + 1,
             content: line.trim(),
           })
