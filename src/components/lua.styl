@@ -1,0 +1,590 @@
+// =============================================================================
+// Lua Module Documentation - Violet Void ArchWiki Theme
+// Function signature display, parameter table styling, example code formatting
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// LUA MODULE CONTAINER
+// =============================================================================
+// Container for Lua module documentation pages
+
+.lua-module
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+
+// Module header
+.lua-module-header
+  display flex
+  align-items center
+  gap 1em
+  padding-bottom 1em
+  margin-bottom 1em
+  border-bottom 1px solid $border-subtle
+
+  .module-icon
+    width 48px
+    height 48px
+    display flex
+    align-items center
+    justify-content center
+    background rgba($arch-blue, 0.2)
+    border-radius $border-radius-md
+    font-size 1.5em
+
+  .module-title
+    flex 1
+
+    h2
+      margin 0
+      font-size 1.25rem
+      color $lighter
+
+    .module-description
+      color $light
+      font-size 0.9em
+      margin-top 0.25em
+
+  .module-badge
+    padding 0.25em 0.75em
+    background rgba($arch-blue, 0.15)
+    border 1px solid rgba($arch-blue, 0.3)
+    border-radius $border-radius-pill
+    font-size 0.8em
+    color $arch-blue
+    font-family $font-mono
+
+// =============================================================================
+// FUNCTION SIGNATURE DISPLAY
+// =============================================================================
+// Styling for Lua function signatures and definitions
+
+.lua-function
+  margin 1em 0
+  padding 1em
+  background rgba($dark, 0.4)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  border-left 3px solid $arch-blue
+
+  // Function name and parameters
+  .function-signature
+    font-family $font-mono
+    font-size 0.95em
+    color $lighter
+    margin-bottom 0.5em
+
+    .function-name
+      color $secondary-blue
+      font-weight 600
+
+    .function-params
+      color $light
+
+      .param
+        color $green
+
+      .param-type
+        color $comment
+        font-style italic
+
+    .return-type
+      color $arch-blue
+      margin-inline-start 0.5em
+
+  // Function description
+  .function-description
+    color $light
+    line-height 1.6
+    margin 0.5em 0
+
+  // Function example
+  .function-example
+    margin-top 0.75em
+    padding 0.75em
+    background rgba($dark, 0.8)
+    border-radius $border-radius-sm
+    font-family $font-mono
+    font-size 0.85em
+
+    .example-label
+      display block
+      color $muted
+      font-size 0.75em
+      margin-bottom 0.5em
+      text-transform uppercase
+      letter-spacing 0.05em
+
+    code
+      color $light
+      white-space pre-wrap
+      word-break break-all
+
+// Function with multiple return values
+.lua-function.returns-multi
+  .return-values
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    margin-top 0.5em
+
+    .return-value
+      padding 0.2em 0.5em
+      background rgba($arch-blue, 0.1)
+      border-radius $border-radius-sm
+      font-family $font-mono
+      font-size 0.85em
+      color $arch-blue
+
+// Function with optional parameters
+.lua-function.has-optional
+  .optional-param
+    color $comment
+    font-style italic
+
+// =============================================================================
+// PARAMETER TABLE STYLING
+// =============================================================================
+// Table styling for function parameters and their details
+
+.lua-params-table
+  width 100%
+  margin 1em 0
+  border-collapse collapse
+  font-size 0.9em
+
+  thead
+    tr
+      background rgba($dark, 0.6)
+
+    th
+      padding 0.75em 1em
+      text-align start
+      color $lighter
+      font-weight 600
+      border-bottom 2px solid $arch-blue
+
+      &:first-child
+        border-radius $border-radius-md 0 0 0
+
+      &:last-child
+        border-radius 0 $border-radius-md 0 0
+
+  tbody
+    tr
+      border-bottom 1px solid $border-subtle
+      transition transition-fast
+
+      &:hover
+        background rgba($arch-blue, 0.05)
+
+      &:last-child
+        border-bottom none
+
+  td
+    padding 0.75em 1em
+    color $light
+    vertical-align top
+
+    &:first-child
+      font-family $font-mono
+      color $secondary-blue
+      font-weight 500
+      white-space nowrap
+
+    &:nth-child(2)
+      font-family $font-mono
+      color $green
+      max-width 120px
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
+
+    &:nth-child(3)
+      color $light
+      line-height 1.5
+      white-space normal
+
+    &:nth-child(4)
+      color $muted
+      font-size 0.85em
+      font-style italic
+
+// Required vs optional parameter styling
+.param-required
+  color $red
+  font-size 0.75em
+  font-weight 600
+  margin-inline-start 0.3em
+  text-transform uppercase
+
+.param-optional
+  color $comment
+  font-size 0.75em
+  margin-inline-start 0.3em
+
+// =============================================================================
+// EXAMPLE CODE FORMATTING
+// =============================================================================
+// Code blocks showing Lua usage examples
+
+.lua-example-block
+  margin 1.5em 0
+  position relative
+
+  // Example header
+  .example-header
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.5em 1em
+    background rgba($arch-blue, 0.15)
+    border-radius $border-radius-md $border-radius-md 0 0
+    border 1px solid rgba($arch-blue, 0.3)
+    border-bottom none
+
+    .example-title
+      color $lighter
+      font-size 0.85em
+      font-weight 600
+
+    .example-actions
+      display flex
+      gap 0.5em
+
+      button
+        padding 0.2em 0.5em
+        background transparent
+        border 1px solid rgba($arch-blue, 0.3)
+        border-radius $border-radius-sm
+        color $light
+        font-size 0.75em
+        cursor pointer
+        transition transition-fast
+
+        &:hover
+          background rgba($arch-blue, 0.2)
+          border-color $arch-blue
+
+        &:focus-visible
+          outline 2px solid $arch-blue
+          outline-offset 2px
+
+  // Code content
+  .example-code
+    margin 0
+    padding 1em
+    background rgba($dark, 0.8)
+    border 1px solid $border-subtle
+    border-top 1px solid rgba($arch-blue, 0.2)
+    border-radius 0 0 $border-radius-md $border-radius-md
+    overflow-x auto
+
+    code
+      font-family $font-mono
+      font-size 0.85em
+      line-height 1.6
+      color $light
+      white-space pre
+
+// Lua syntax highlighting within code blocks
+.lua-code
+  .keyword
+    color $purple
+    font-weight 600
+
+  .string
+    color $green
+
+  .number
+    color $orange
+
+  .comment
+    color $comment
+    font-style italic
+
+  .function
+    color $secondary-blue
+
+  .operator
+    color $lighter
+
+  .variable
+    color $light
+
+  .boolean
+    color $arch-blue
+
+  .nil
+    color $muted
+
+// =============================================================================
+// MODULE NAVIGATION
+// =============================================================================
+// Navigation between functions within a module
+
+.lua-module-nav
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.4)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  .nav-title
+    font-size 0.85em
+    color $muted
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin-bottom 0.75em
+
+  .nav-list
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    list-style none
+    padding 0
+    margin 0
+
+  .nav-item
+    a
+      display inline-block
+      padding 0.4em 0.75em
+      background rgba($arch-blue, 0.1)
+      border 1px solid rgba($arch-blue, 0.2)
+      border-radius $border-radius-sm
+      color $light
+      font-family $font-mono
+      font-size 0.85em
+      text-decoration none
+      transition transition-fast
+
+      &:hover
+        background rgba($arch-blue, 0.2)
+        border-color rgba($arch-blue, 0.4)
+        color $lighter
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+    &.active a
+      background $arch-blue
+      border-color $arch-blue
+      color $white
+
+// =============================================================================
+// SEE ALSO LINKS
+// =============================================================================
+// Links to related modules and functions
+
+.lua-see-also
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.4)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  .see-also-title
+    font-size 0.85em
+    color $muted
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin-bottom 0.75em
+
+  .see-also-list
+    display flex
+    flex-wrap wrap
+    gap 0.75em
+
+  .see-also-link
+    a
+      display inline-flex
+      align-items center
+      gap 0.4em
+      padding 0.4em 0.75em
+      background rgba($arch-blue, 0.1)
+      border 1px solid rgba($arch-blue, 0.2)
+      border-radius $border-radius-pill
+      color $light
+      font-family $font-mono
+      font-size 0.85em
+      text-decoration none
+      transition transition-fast
+
+      &::before
+        content '→'
+        color $arch-blue
+
+      &:hover
+        background rgba($arch-blue, 0.2)
+        border-color rgba($arch-blue, 0.4)
+        color $lighter
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+// =============================================================================
+// ERROR HANDLING SECTION
+// =============================================================================
+// Documentation for error conditions and exceptions
+
+.lua-errors
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.4)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+
+  .errors-title
+    font-size 0.9em
+    font-weight 600
+    color $secondary-red
+    margin-bottom 0.75em
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content '⚠'
+      font-size 1.1em
+
+  .error-item
+    margin 0.75em 0
+    padding 0.5em 0
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    &:last-child
+      border-bottom none
+      margin-bottom 0
+      padding-bottom 0
+
+  .error-type
+    font-family $font-mono
+    font-size 0.85em
+    color $red
+    font-weight 600
+
+  .error-condition
+    color $light
+    font-size 0.9em
+    margin-top 0.25em
+
+// =============================================================================
+// USAGE NOTES
+// =============================================================================
+// Additional usage information and tips
+
+.lua-notes
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.4)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  border-left 3px solid $green
+
+  .notes-title
+    font-size 0.85em
+    color $muted
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin-bottom 0.75em
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content '💡'
+      font-size 1em
+
+  .note-item
+    color $light
+    line-height 1.6
+    margin 0.5em 0
+
+    &:first-child
+      margin-top 0
+
+    &:last-child
+      margin-bottom 0
+
+// =============================================================================
+// VERSION INFORMATION
+// =============================================================================
+// Version history and changelog for the module
+
+.lua-version-info
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.4)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  .version-badge
+    display inline-block
+    padding 0.25em 0.75em
+    background rgba($arch-blue, 0.2)
+    border-radius $border-radius-pill
+    font-family $font-mono
+    font-size 0.85em
+    color $arch-blue
+    margin-bottom 0.5em
+
+  .version-note
+    color $light
+    font-size 0.9em
+    line-height 1.5
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width 768px)
+  .lua-module-header
+    flex-direction column
+    align-items flex-start
+
+    .module-badge
+      margin-top 0.5em
+
+  .lua-function
+    padding 0.75em
+
+  .lua-params-table
+    font-size 0.85em
+
+    td
+      padding 0.5em 0.75em
+
+      &:nth-child(2)
+        max-width 80px
+
+  .lua-example-block
+    .example-header
+      flex-direction column
+      gap 0.5em
+      align-items flex-start
+
+  .lua-module-nav
+    .nav-list
+      flex-direction column
+
+    .nav-item
+      width 100%
+
+      a
+        display block
+        text-align center
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .lua-function
+  .lua-example-block
+  .lua-module-nav
+    transition none
