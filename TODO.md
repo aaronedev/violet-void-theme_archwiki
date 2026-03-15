@@ -460,7 +460,7 @@
 
 ---
 
-Last updated: 2026-03-15 14:27
+Last updated: 2026-03-15 15:37
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1910,11 +1910,12 @@ Last updated: 2026-03-15 14:27
   - Stylus: Works directly
   - Commit: 9dc54ab
 
-- [ ] **`text-wrap-style` Property** (92%+ browser support)
+- [x] **`text-wrap-style` Property** (92%+ browser support)
   - File: `src/components/typography.styl`
   - Control wrapping style
   - `text-wrap-style: balance;` or `pretty;`
   - Stylus: Works directly
+  - Commit: 2f290ca
 
 - [ ] **`hanging-punctuation` Expansion** (95%+ browser support)
   - File: `src/components/typography.styl`
@@ -7528,3 +7529,4 @@ Last updated: 2026-03-15 14:27
 | 2026-03-15 | text-group-align for Block Alignment | Added text-group-align styling in typography.styl for block-level text alignment control (87%+ browser support) | ddf5ff4 |
 | 2026-03-15 | font-size-adjust Property | Added font-size-adjust utility classes and base body styling in typography.styl to normalize visual size across fallback fonts and prevent layout shifts when web fonts load | fa1ebe5 |
 | 2026-03-15 | @media (video-dynamic-range) | Added HDR video display support in modern-css.styl - enhanced video player colors, contrast and saturation filters, progress bar gradients, controls styling for HDR-capable displays, with standard dynamic range fallback | e3c5a45 |
+| 2026-03-15 | text-wrap-style Property | Added text-wrap-style utilities in typography.styl - balance for headings, pretty for paragraphs (92%+ browser support) | 2f290ca |
