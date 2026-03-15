@@ -6800,12 +6800,13 @@ Last updated: 2026-03-15 06:24
 
 ## ⚡ Performance Patterns (New)
 
-- [ ] **Layout Containment Optimization** (CSS, 97%+ browser support)
+- [x] **Layout Containment Optimization** (CSS, 97%+ browser support)
   - File: `src/performance/layout.styl`
   - contain: layout for sidebars
   - contain: layout for infoboxes
   - Improved reflow performance
   - Stylus: Works directly
+  - Commit: 0c178d5
 
 - [ ] **Paint Containment Optimization** (CSS, 97%+ browser support)
   - File: `src/performance/paint.styl`
