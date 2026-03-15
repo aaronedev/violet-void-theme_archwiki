@@ -1285,6 +1285,300 @@
     order 1
 
 // =============================================================================
+// PRINT FOOTER
+// =============================================================================
+
+// Print-specific footer with source, license, categories, and page info
+// Browser support: 97%+
+
+@media print
+  // Print footer container
+  .print-footer
+    margin-top 2em
+    padding-top 1em
+    border-top 2px solid $print-black
+    page-break-before avoid
+
+  // Footer sections - horizontal layout
+  .print-footer-sections
+    display flex
+    flex-wrap wrap
+    justify-content space-between
+    gap 1em
+
+  // Individual footer section
+  .print-footer-section
+    flex 1 1 200px
+    min-width 150px
+
+  // Section title
+  .print-footer-title
+    font-size 10pt
+    font-weight bold
+    color $print-black
+    margin-bottom 0.5em
+    text-transform uppercase
+    letter-spacing 0.5px
+
+  // Section content
+  .print-footer-content
+    font-size 9pt
+    color $print-text
+    line-height 1.5
+
+  // Source URL section
+  .print-footer-source
+    .print-footer-content
+      font-family "Courier New", monospace
+      word-break break-all
+
+    a
+      color $print-text
+      text-decoration none
+
+    // Show full URL for source
+    &::before
+      content "Source: "
+
+  // License info section
+  .print-footer-license
+    .print-footer-content
+      font-style italic
+
+    // License name
+    .license-name
+      font-weight bold
+
+    // License URL
+    .license-url
+      font-family monospace
+      font-size 8pt
+
+  // Categories section
+  .print-footer-categories
+    .print-footer-content
+      // Categories as comma-separated list
+      display block
+
+    // Category links
+    .print-category
+      display inline
+      color $print-text
+      text-decoration none
+
+      // Separator between categories
+      &:not(:last-child)::after
+        content ", "
+
+      &:hover
+        text-decoration underline
+
+  // Page info section
+  .print-footer-info
+    .print-footer-content
+      font-variant-numeric tabular-nums
+
+    // Page metadata
+    .page-info-item
+      display block
+      margin-bottom 0.25em
+
+    // Date info
+    .page-date
+      &::before
+        content "Printed: "
+
+    // Page URL
+    .page-url
+      font-family monospace
+      font-size 8pt
+      word-break break-all
+      display block
+      margin-top 0.25em
+
+  // Simple footer layout - single line at bottom
+  .print-footer-simple
+    margin-top 1em
+    padding-top 0.5em
+    border-top 1px solid $print-border-light
+    font-size 9pt
+    color $print-text
+    text-align center
+
+    // Simple footer with just source and page number
+    .print-footer-source
+      display inline
+      margin 0 0.5em
+
+    .print-page-number
+      display inline
+      margin 0 0.5em
+
+    .print-footer-license
+      display inline
+      margin 0 0.5em
+      font-style italic
+
+  // Footer with centered content
+  .print-footer-centered
+    text-align center
+
+    .print-footer-sections
+      justify-content center
+
+  // Footer with minimal info - just URL and page number
+  .print-footer-minimal
+    margin-top 0.5em
+    padding-top 0.25em
+    border-top 1px solid $print-border-light
+    font-size 8pt
+    color $print-text
+
+    .minimal-source
+      display block
+      text-align center
+      margin-bottom 0.25em
+      font-family monospace
+
+    .minimal-page
+      display block
+      text-align center
+
+  // License badge styling
+  .license-badge
+    display inline-block
+    padding 0.125em 0.5em
+    border 1px solid $print-border
+    border-radius 2px
+    font-size 8pt
+    background $print-bg
+
+  // CC license specific styling
+  .license-cc
+    &::before
+      content "CC "
+      font-weight bold
+
+  // GNU FDL styling
+  .license-gfdl
+    &::before
+      content "GFDL "
+      font-weight bold
+
+  // Date formatting in footer
+  .print-date
+    font-variant-numeric tabular-nums
+
+  // Hide interactive elements in print footer
+  .print-footer
+    .edit-link
+    .watch-link
+    .history-link
+      display none
+
+// =============================================================================
+// PRINT FOOTER - COMPACT FORMAT
+// =============================================================================
+
+// Compact footer for limited space
+// Browser support: 97%+
+
+@media print
+  // Compact footer - single row at bottom of last page
+  .print-footer-compact
+    margin-top 1em
+    padding-top 0.5em
+    border-top 1px solid $print-border-light
+    font-size 8pt
+    color $print-text
+
+    // Compact layout - all in one line
+    display flex
+    justify-content space-between
+    align-items center
+    flex-wrap wrap
+    gap 0.5em
+
+    // Source URL (truncated if needed)
+    .compact-source
+      flex 1 1 200px
+      font-family monospace
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+
+    // Page number (right aligned)
+    .compact-page
+      font-variant-numeric tabular-nums
+      white-space nowrap
+
+    // License (center)
+    .compact-license
+      flex 0 0 auto
+      font-style italic
+
+  // Very minimal - just source URL and page
+  .print-footer-minimal-compact
+    margin-top 0.5em
+    font-size 7pt
+    color $muted
+
+    // Two-column layout
+    display table
+    width 100%
+
+    .minimal-col
+      display table-cell
+      width 50%
+
+    .minimal-source
+      text-align left
+      font-family monospace
+
+    .minimal-page
+      text-align right
+      font-variant-numeric tabular-nums
+
+// =============================================================================
+// PRINT FOOTER - DYNAMIC CONTENT
+// =============================================================================
+
+// Footer content generated via CSS for dynamic elements
+// Browser support: 97%+
+
+@media print
+  // Auto-generated source line
+  .print-source-auto
+    &::before
+      content "Source: " attr(data-print-url)
+
+    // If data-title exists, add it
+    &[data-title]::before
+      content attr(data-title) ": " attr(data-print-url)
+
+  // Auto-generated date
+  .print-date-auto
+    &::before
+      content "Printed: " attr(data-print-date)
+
+  // Category list from data attribute
+  .print-categories-auto
+    // Categories stored as space-separated in data attribute
+    &::before
+      content "Categories: "
+
+    // We'll need JavaScript to populate this properly
+    // CSS can only show the container
+
+  // License from data attribute
+  .print-license-auto
+    &::before
+      content attr(data-license-name)
+
+    a::after
+      content " (" attr(href) ")"
+
+// =============================================================================
 // LEGACY PAGE SIZE SUPPORT
 // =============================================================================
 

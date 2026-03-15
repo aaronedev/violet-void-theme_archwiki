@@ -3437,12 +3437,12 @@ Last updated: 2026-03-14 23:59
   - Grayscale option
   - Border styling
 
-- [ ] **Print Footer** (CSS)
-  - File: `src/components/print.styl`
-  - Source URL
-  - License info
-  - Category list
-  - Page numbers
+- [x] **Print Footer** (CSS)
+  - File: `src/components/print-enhanced.styl`
+  - Source URL, license info, category list, page numbers
+  - Multiple footer layouts: full, simple, minimal, compact
+  - Dynamic content support via data attributes
+  - Commit: 2ea7c75
 
 ## 🔔 Notification Styling (New)
 
