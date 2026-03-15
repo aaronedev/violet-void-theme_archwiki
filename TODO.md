@@ -5105,20 +5105,22 @@ Last updated: 2026-03-15 15:37
 
 ## 🎯 Heading Pseudo-Classes (New - 2026-03-10 Scout 30)
 
-- [ ] **`:heading` Pseudo-Class** (88%+ browser support)
+- [x] **`:heading` Pseudo-Class** (88%+ browser support)
   - File: `src/components/headings.styl`
   - Matches any heading element (<h1>-<h6>)
   - Example: `:heading { font-weight: 600; }`
   - Unified heading base styling without repeating selectors
   - Stylus: Works directly
+  - Commit: 3fc418a
 
-- [ ] **`:heading()` Functional Pseudo-Class** (88%+ browser support)
+- [x] **`:heading()` Functional Pseudo-Class** (88%+ browser support)
   - File: `src/components/headings.styl`
   - Uses An+B notation to select heading elements
   - Example: `:heading(2n+1) { color: var(--accent); }`
   - Alternating heading styles
   - Level-based heading patterns
   - Stylus: Works directly
+  - Commit: 3fc418a
 
 ## 🎭 Shadow DOM Pseudo-Classes (New)
 
@@ -6947,6 +6949,7 @@ Last updated: 2026-03-15 15:37
 | 2026-03-02 | Thirty-third scout | Added MediaWiki 1.44+ features (Vector 2022 updates, Parsoid output, RESTBase API UI), new CSS features (field-sizing, scrollbar-color expansion, text-wrap-mode), performance patterns (layout/paint containment), accessibility (forced-colors, inverted-colors), ArchWiki-specific (package templates, command blocks, config files, status indicators) |
 | 2026-03-10 | Implementer | Lead section styling with first paragraph emphasis, bold first occurrence, disambiguation hatnote variants | f1bc9f2 |
 | 2026-03-10 | Implementer | Reference list styling with tabular-nums, tooltips, backlinks, reference groups, accessibility, print styles | e664fa2 |
+| 2026-03-15 | Implementer | Heading pseudo-classes (:heading, :heading()) with fluid typography, print/dark mode/reduced motion support | 3fc418a |
 | 2026-03-10 | Implementer | Category Tree styling with expandable tree, subcategory indicators, page count badges, active category highlight, depth indicators, sidebar support, accessibility | a4c12a2 |
 | 2026-03-10 | Implementer | Command prompt styling with user/root prompts, user@host patterns, directory paths, command output states, copy prompt button, continuation prompts | 7f9876e |
 | 2026-03-10 | Implementer | Search Suggestions Dropdown with suggestion item styling, match highlighting, category badges with tabular-nums, search input enhancements, filters, pagination, accessibility | 9a16660 |
