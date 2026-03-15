@@ -997,3 +997,134 @@ tr.collapsed
   display flex
   place-items stretch stretch
 
+// =============================================================================
+// CONIC-GRADIENT PATTERNS
+// =============================================================================
+// conic-gradient for creating pie charts, color wheels, loading spinners
+// Browser support: 97%+
+// Note: Use @supports for broader compatibility if needed
+
+// Pie chart segments using conic-gradient
+.conic-pie-chart
+  border-radius 50%
+  background conic-gradient(
+    $arch-blue 0deg 120deg,
+    $secondary-blue 120deg 240deg,
+    $green 240deg 360deg
+  )
+
+// Loading spinner using conic-gradient
+.conic-spinner
+  width 24px
+  height 24px
+  border-radius 50%
+  background conic-gradient(
+    from 0deg,
+    $secondary-blue 0deg 90deg,
+    transparent 90deg 360deg
+  )
+  animation spin 1s linear infinite
+
+// Rainbow gradient for decorative purposes
+.conic-rainbow
+  background conic-gradient(
+    $red 0deg 60deg,
+    $orange 60deg 120deg,
+    $green 120deg 180deg,
+    $arch-blue 180deg 240deg,
+    $secondary-blue 240deg 300deg,
+    $term-magenta 300deg 360deg
+  )
+
+// Neutral gradient for UI elements
+.conic-neutral
+  background conic-gradient(
+    $dark 0deg 180deg,
+    $base 180deg 360deg
+  )
+
+// Progress indicator conic gradient
+.conic-progress
+  border-radius 50%
+  background conic-gradient(
+    $arch-blue var(--progress, 50%),
+    $dark var(--progress, 50%)
+  )
+
+// =============================================================================
+// CROSS-FADE TRANSITIONS
+// =============================================================================
+// cross-fade() for smooth image transitions
+// Browser support: 97%+
+// Format: cross-fade(from-image, to-image, percentage)
+// Percentage: 0% = fully from-image, 100% = fully to-image
+
+// Image cross-fade utility
+.cross-fade-overlay
+  position relative
+  width 100%
+  height 100%
+
+.cross-fade-overlay::before
+.cross-fade-overlay::after
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-size cover
+  background-position center
+
+.cross-fade-overlay::before
+  z-index 1
+  opacity 1
+  transition opacity 0.5s ease-in-out
+
+.cross-fade-overlay::after
+  z-index 2
+  opacity 0
+  transition opacity 0.5s ease-in-out
+
+.cross-fade-overlay:hover::before
+  opacity 0
+
+.cross-fade-overlay:hover::after
+  opacity 1
+
+// Blur-up image loading effect using cross-fade pattern
+.image-blur-up
+  position relative
+  overflow hidden
+  background $dark
+
+.image-blur-up::before
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-size cover
+  background-position center
+  filter blur(20px)
+  transform scale(1.1)
+  transition opacity 0.5s ease-out
+
+.image-blur-up.loaded::before
+  opacity 0
+
+.image-blur-up::after
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-size cover
+  background-position center
+  transition opacity 0.5s ease-out
+
+.image-blur-up.loaded::after
+  opacity 1
+

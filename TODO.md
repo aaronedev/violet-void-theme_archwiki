@@ -446,10 +446,11 @@
 | 2026-03-14 | Cite Extension Enhancements | 80822e6 |
 | 2026-03-14 | Safe Area Support for mobile (iOS notch/home indicator) | 80bb105 |
 | 2026-03-15 | @media (update) for e-ink display optimization | 2f583a4 |
+| 2026-03-15 | conic-gradient for Patterns & cross-fade() for Transitions | 1a4da94 |
 
 ---
 
-Last updated: 2026-03-15 10:49
+Last updated: 2026-03-15 11:03
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1595,17 +1596,21 @@ Last updated: 2026-03-15 10:49
   - `background-image: image-set("img.png" 1x, "img@2x.png" 2x);`
   - Stylus: Works directly
 
-- [ ] **`cross-fade()` for Transitions** (97%+ browser support)
-  - File: `src/components/ui-components.styl`
+- [x] **`cross-fade()` for Transitions** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Blend two images together
   - Smooth image transitions
   - Stylus: Works directly
+  - Added cross-fade-overlay and image-blur-up utilities
+  - Commit: 1a4da94
 
-- [ ] **`conic-gradient` for Patterns** (97%+ browser support)
-  - File: `src/components/ui-components.styl`
+- [x] **`conic-gradient` for Patterns** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Conic gradient backgrounds
   - Pie charts, color wheels
   - Stylus: Works directly
+  - Added conic-pie-chart, conic-spinner, conic-rainbow, conic-neutral, conic-progress utilities
+  - Commit: 1a4da94
 
 ## 📐 Grid Shorthands (New)
 
