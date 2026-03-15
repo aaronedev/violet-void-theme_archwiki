@@ -1738,7 +1738,7 @@ Last updated: 2026-03-15 02:58
   - Blend background layers
   - `background-blend-mode: multiply;`
   - Stylus: Works directly
-  - Commit: c73534a5
+  - Commit: 91913db
 
 - [ ] **`isolation: isolate` Stacking Contexts** (97%+ browser support)
   - File: `src/components/ui-components.styl`
