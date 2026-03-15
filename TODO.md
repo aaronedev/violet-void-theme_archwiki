@@ -1864,29 +1864,33 @@ Last updated: 2026-03-15 22:05
 
 ## 🎨 SVG & Vector Enhancements (New - 2026-02-28 Scout 11)
 
-- [ ] **`paint-order` for SVG Text** (97%+ browser support)
+- [x] **`paint-order` for SVG Text** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Control paint order for SVG text elements
   - `paint-order: stroke fill;` for outlined text
   - Stylus: Works directly
+  - Commit: a7e641fa
 
-- [ ] **`stroke-*` Properties for SVG** (97%+ browser support)
+- [x] **`stroke-*` Properties for SVG** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - `stroke-width`, `stroke-linecap`, `stroke-linejoin`, `stroke-dasharray`
   - Style SVG icons consistently
   - Stylus: Works directly
+  - Commit: a7e641fa
 
-- [ ] **`vector-effect: non-scaling-stroke`** (97%+ browser support)
+- [x] **`vector-effect: non-scaling-stroke`** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Prevent stroke scaling on SVG resize
   - Consistent icon borders at any size
   - Stylus: Works directly
+  - Commit: a7e641fa
 
-- [ ] **`shape-rendering` for SVG** (97%+ browser support)
+- [x] **`shape-rendering` for SVG** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Control SVG rendering quality
   - `shape-rendering: crispEdges;` for pixel-perfect icons
   - Stylus: Works directly
+  - Commit: a7e641fa
 
 ## 🎯 Custom Highlight API (New)
 

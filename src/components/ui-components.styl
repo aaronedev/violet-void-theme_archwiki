@@ -1412,3 +1412,102 @@ svg.animate-transform
     animation none
     transition none
     will-change auto
+
+// =============================================================================
+// PAINT-ORDER FOR SVG TEXT (97%+ browser support)
+// =============================================================================
+// Control paint order for SVG text elements
+// Useful for outlined text effects: stroke drawn after fill
+// Values: normal | [fill || stroke || markers]
+
+// Stroke drawn after fill (outlined text effect)
+.svg-text-outlined
+  paint-order stroke fill
+
+// Stroke drawn before fill (reverse outlined)
+.svg-text-reversed
+  paint-order fill stroke
+
+// Markers drawn first
+.svg-text-with-markers
+  paint-order markers stroke fill
+
+// Normal paint order
+.svg-text-normal
+  paint-order normal
+
+// =============================================================================
+// STROKE-* PROPERTIES FOR SVG (97%+ browser support)
+// =============================================================================
+// Control SVG stroke appearance
+
+// Stroke width variants
+.svg-stroke-thin
+  stroke-width 1px
+
+.svg-stroke-medium
+  stroke-width 2px
+
+.svg-stroke-thick
+  stroke-width 3px
+
+// Stroke linecap
+.svg-linecap-round
+  stroke-linecap round
+
+.svg-linecap-square
+  stroke-linecap square
+
+.svg-linecap-butt
+  stroke-linecap butt
+
+// Stroke linejoin
+.svg-linejoin-round
+  stroke-linejoin round
+
+.svg-linejoin-bevel
+  stroke-linejoin bevel
+
+.svg-linejoin-miter
+  stroke-linejoin miter
+
+// Dashed stroke patterns
+.svg-dash-small
+  stroke-dasharray 4 4
+
+.svg-dash-medium
+  stroke-dasharray 8 4
+
+.svg-dash-large
+  stroke-dasharray 12 6
+
+// =============================================================================
+// VECTOR-EFFECT FOR NON-SCALING STROKE (97%+ browser support)
+// =============================================================================
+// Prevent stroke scaling when SVG is resized
+// Useful for icons and borders that should maintain consistent width
+
+// Non-scaling stroke - maintains constant stroke-width regardless of transform
+.vector-effect-none-scaling
+  vector-effect non-scaling-stroke
+
+// =============================================================================
+// SHAPE-RENDERING FOR SVG (97%+ browser support)
+// =============================================================================
+// Control SVG rendering quality
+
+// Optimize for speed
+.svg-render-speed
+  shape-rendering optimizeSpeed
+
+// Optimize for crisp edges (pixel art, diagrams)
+.svg-render-crisp
+  shape-rendering crispEdges
+
+// Geometric precision
+.svg-render-geometric
+  shape-rendering geometricPrecision
+
+// Auto (browser default)
+.svg-render-auto
+  shape-rendering auto
