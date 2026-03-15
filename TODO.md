@@ -2759,11 +2759,13 @@ Last updated: 2026-03-15 02:58
 
 ## 🎨 Animation Timing Functions (New - 2026-03-01 Scout 15)
 
-- [ ] **`linear()` Timing Function** (92%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`linear()` Timing Function** (92%+ browser support)
+  - File: `src/components/animations.styl`
   - Custom linear timing with control points
   - Example: `animation-timing-function: linear(0, 0.25 50%, 1);`
-  - Stylus: Works directly
+  - Stylus: Uses @css{} wrapper
+  - Also added steps() with jump keywords and transition-behavior: allow-discrete
+  - Commit: 1d97bf6
 
 - [ ] **`steps()` with Jump Keywords** (97%+ browser support)
   - File: `src/components/modern-css.styl`
@@ -7476,3 +7478,4 @@ Last updated: 2026-03-15 02:58
 | 2026-03-15 | Grid Shorthands | Added place-items, place-content, place-self utility classes in utilities.styl for cleaner grid alignment code (97%+ browser support) | bd96a30 |
 | 2026-03-15 | Display Capability Queries | Added @media (resolution), @media (min-resolution: 2dppx), @media (color-index), @media (monochrome) in modern-css.styl for retina display detection, color depth detection, and monochrome e-ink display support | c688a5a |
 | 2026-03-15 | PWA Styling | Added PWA components in pwa.styl - offline banner, cached content indicator, sync pending/complete status, install prompt with action buttons, standalone install button, service worker status indicator, animations, reduced motion support | a8be333 |
+| 2026-03-15 | linear() Timing Function | Added linear() timing function classes in animations.styl - custom easing with control points, steps() with jump keywords, transition-behavior: allow-discrete for display/visibility transitions, utility classes for various animation patterns | 1d97bf6 |
