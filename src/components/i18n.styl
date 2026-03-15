@@ -544,3 +544,128 @@ bdo[dir="rtl"]
     // Vertical text adjustments
     text-combine-upright all
     text-orientation mixed
+
+// -----------------------------------------------------------------------------
+// :dir() Pseudo-class for Direction Styling
+// -----------------------------------------------------------------------------
+// Style elements based on their text direction (ltr/rtl)
+// Better than [dir] attribute selectors as it uses the CSS :dir() pseudo-class
+// Browser support: 90%+ (Firefox 113+, Chrome 114+, Safari 17.4+)
+
+// Direction-aware base styling
+:dir(ltr)
+  // Left-to-right specific styles
+  text-align left
+  unicode-bidi plaintext
+
+  // Logical border radius adjustments for LTR
+  .infobox
+    border-radius 0 $border-radius-lg $border-radius-lg 0
+
+  // Code block alignment for LTR
+  pre
+    text-align left
+
+:dir(rtl)
+  // Right-to-left specific styles
+  text-align right
+  unicode-bidi plaintext
+
+  // Logical border radius adjustments for RTL (flipped)
+  .infobox
+    border-radius $border-radius-lg 0 0 $border-radius-lg
+
+  // Code block alignment for RTL
+  pre
+    text-align right
+
+  // Reverse list marker alignment in RTL
+  ul
+    list-style-position inside
+    padding-inline-start 0
+    padding-inline-end 1em
+
+// Direction-aware navigation
+:dir(ltr)
+  .mw-portlet
+    .mw-ui-icon
+      margin-right 0.5em
+      margin-left 0
+
+:dir(rtl)
+  .mw-portlet
+    .mw-ui-icon
+      margin-left 0.5em
+      margin-right 0
+
+// Direction-aware button icons
+:dir(ltr)
+  .mw-ui-button
+    .mw-ui-icon-start::before
+      margin-right 0.5em
+
+:dir(rtl)
+  .mw-ui-button
+    .mw-ui-icon-start::before
+      margin-left 0.5em
+
+// Direction-aware form inputs
+:dir(ltr)
+  input
+    text-align left
+
+:dir(rtl)
+  input
+    text-align right
+
+  // Flip select arrow in RTL
+  select
+    background-position left center
+    padding-left 2em
+    padding-right 1em
+
+// Direction-aware table cells
+:dir(ltr)
+  table.wikitable
+    th
+      text-align left
+
+:dir(rtl)
+  table.wikitable
+    th
+      text-align right
+
+// Direction-aware blockquotes
+:dir(ltr)
+  blockquote
+    border-left 4px solid $arch-blue
+    border-right none
+    padding-left 1em
+    padding-right 0
+
+:dir(rtl)
+  blockquote
+    border-right 4px solid $arch-blue
+    border-left none
+    padding-right 1em
+    padding-left 0
+
+// Direction-aware message boxes
+:dir(ltr)
+  .messagebox
+    border-left 4px solid
+    border-right none
+
+:dir(rtl)
+  .messagebox
+    border-right 4px solid
+    border-left none
+
+// Direction-aware tooltips
+:dir(ltr)
+  .mw-tooltip
+    text-align left
+
+:dir(rtl)
+  .mw-tooltip
+    text-align right

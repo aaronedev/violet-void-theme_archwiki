@@ -455,10 +455,11 @@
 | 2026-03-14 | Safe Area Support for mobile (iOS notch/home indicator) | 80bb105 |
 | 2026-03-15 | @media (update) for e-ink display optimization | 2f583a4 |
 | 2026-03-15 | conic-gradient for Patterns & cross-fade() for Transitions | 1a4da94 |
+| 2026-03-15 | :dir() pseudo-class for direction-based styling | 0821863 |
 
 ---
 
-Last updated: 2026-03-15 14:30
+Last updated: 2026-03-15 14:45
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1456,11 +1457,12 @@ Last updated: 2026-03-15 14:30
   - Stylus: Works directly
   - Commit: b21b472
 
-- [ ] **`:dir()` for Direction Styling** (90%+ browser support)
+- [x] **`:dir()` for Direction Styling** (90%+ browser support)
   - File: `src/components/i18n.styl`
   - Style based on text direction (ltr/rtl)
   - Better than [dir] attribute selectors
   - Stylus: Works directly
+  - Commit: 0821863
 
 ## 🔤 Text & Typography (New)
 
