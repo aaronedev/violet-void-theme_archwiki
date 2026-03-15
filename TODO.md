@@ -1165,11 +1165,12 @@ Last updated: 2026-03-15 08:29
 
 ## 🔬 Advanced Wiki Features (New)
 
-- [ ] **Lua Module Documentation** (CSS)
+- [x] **Lua Module Documentation** (CSS)
   - File: `src/components/lua.styl` (new file)
   - Function signature display
   - Parameter table styling
   - Example code formatting
+  - Commit: 94c837d
 
 - [ ] **Template Data Styling** (CSS)
   - File: `src/components/templates.styl` (new file)
