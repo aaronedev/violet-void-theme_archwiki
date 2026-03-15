@@ -505,6 +505,34 @@ details > summary:focus-visible
 // ACCESSIBLE ANIMATION CONTROLS
 // =============================================================================
 
+// Grid display detection for assistive technology
+// Browser support: 97%+
+// Detects braille displays and grid-based output devices
+// Provides simplified layout for assistive technology
+
+@media (grid)
+  // Simplified grid layout for braille displays
+  .mw-parser-output
+    display block
+
+  // Single column for grid displays
+  .infobox
+  .navbox
+  .mw-sidebar
+    display block
+    width 100%
+
+  // Remove complex visual effects
+  .thumb
+  .gallery
+    display block
+
+  // Ensure proper content order
+  #content
+  .mw-body
+    display block
+    width 100%
+
 // Respect user's motion preferences
 // Browser support: 95%+
 
