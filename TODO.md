@@ -1705,17 +1705,19 @@ Last updated: 2026-03-15 15:37
   - Stylus: Works directly
   - Commit: 152bf34
 
-- [ ] **`:paused` / `:playing` Pseudo-classes** (87%+ browser support)
+- [x] **`:paused` / `:playing` Pseudo-classes** (87%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style video based on playback state
   - Play/pause button indicators
   - Stylus: Works directly
+  - Commit: 5c3455d
 
-- [ ] **`:buffering` / `:muted` Pseudo-classes** (87%+ browser support)
+- [x] **`:buffering` / `:muted` Pseudo-classes** (87%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style video based on buffer/mute state
   - Loading indicators, mute icons
   - Stylus: Works directly
+  - Commit: 5c3455d
 
 ## 📝 Form Enhancements (New)
 
