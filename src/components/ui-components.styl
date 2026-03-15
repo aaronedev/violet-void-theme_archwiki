@@ -1224,3 +1224,191 @@ table:fullscreen
 
 .inline-flex-gap-md
   gap 1em
+
+// =============================================================================
+// SVG ENHANCEMENTS
+// =============================================================================
+// Browser support: 97%+
+// Improved SVG rendering for icons, diagrams, and embedded graphics
+
+// =============================================================================
+// PAINT-ORDER FOR SVG TEXT
+// =============================================================================
+// Control the paint order of stroke and fill for SVG text
+// Useful for outlined text effects - draws stroke before fill for cleaner look
+
+// Paint stroke before fill (outlined text effect)
+svg text
+  paint-order stroke fill
+
+// Bold text with outline - stroke draws first, then fill
+svg .text-bold
+  paint-order stroke fill
+  font-weight bold
+
+// Themed text with outline
+svg .text-outlined
+  paint-order stroke fill
+  stroke-width 0.5px
+
+// Icon text variants
+.svg-icon-text
+  paint-order fill stroke
+
+// =============================================================================
+// STROKE PROPERTIES FOR SVG
+// =============================================================================
+// Fine-tune stroke appearance for SVG elements
+
+// SVG icon stroke width
+.svg-icon
+  stroke-width 2
+
+// SVG icon stroke linecap
+.svg-icon-linecap
+  stroke-linecap round
+  stroke-linejoin round
+
+// SVG icon dash array (dashed lines)
+.svg-icon-dashed
+  stroke-dasharray 4 2
+
+// SVG diagram stroke styling
+svg path
+  stroke-linecap round
+  stroke-linejoin round
+
+// SVG connectors (flowcharts, diagrams)
+.svg-connector
+  stroke-width 2
+  fill none
+  stroke-linecap round
+
+// SVG highlight paths
+.svg-highlight
+  stroke-width 3
+  stroke $arch-blue
+
+// SVG boundary paths
+.svg-boundary
+  stroke-width 1
+  stroke $border-color
+  fill none
+  stroke-dasharray 3 3
+
+// =============================================================================
+// VECTOR-EFFECT: NON-SCALING-STROKE
+// =============================================================================
+// Keep stroke width constant regardless of SVG transform/scale
+// Essential for responsive icons and scalable graphics
+
+// Non-scaling stroke icons
+.svg-icon-noscale
+  vector-effect non-scaling-stroke
+
+// Diagrams that maintain stroke width
+.svg-diagram-noscale
+  vector-effect non-scaling-stroke
+  stroke-width 2
+
+// Responsive icons
+.icon-responsive
+  vector-effect non-scaling-stroke
+
+// Pixel-perfect icons at any size
+.icon-pixel-perfect
+  vector-effect non-scaling-stroke
+  image-rendering crisp-edges
+
+// =============================================================================
+// SHAPE-RENDERING FOR SVG
+// =============================================================================
+// Control SVG rendering quality vs speed tradeoff
+
+// Optimize for speed (default)
+.svg-render-speed
+  shape-rendering optimizeSpeed
+
+// Optimize for crisp edges (pixel art, diagrams)
+.svg-render-crisp
+  shape-rendering crispEdges
+
+// Geometric precision
+.svg-render-geometric
+  shape-rendering geometricPrecision
+
+// Auto (browser default)
+.svg-render-auto
+  shape-rendering auto
+
+// =============================================================================
+// SVG ACCESSIBILITY
+// =============================================================================
+
+// Ensure SVG icons are accessible
+svg[role="img"]
+  aria-hidden false
+
+// Hide decorative SVGs from screen readers
+svg[aria-hidden="true"]
+  aria-hidden true
+
+// Focusable SVGs for keyboard navigation
+svg.focusable
+  focusable true
+  outline none
+
+  &:focus
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// =============================================================================
+// SVG CONTAINMENT FOR PERFORMANCE
+// =============================================================================
+// Isolate SVG rendering for better performance
+
+svg
+  contain strict
+
+// Complex SVGs (charts, diagrams)
+svg.chart
+svg.diagram
+  contain layout paint
+
+// =============================================================================
+// SVG COLOR INHERITANCE
+// =============================================================================
+// Allow SVG strokes/fills to inherit from CSS color
+
+// Icon color from current text color
+.svg-icon-color
+  stroke currentColor
+  fill currentColor
+
+// Stroke-only icons
+.svg-stroke-only
+  fill none
+  stroke currentColor
+
+// Fill-only icons
+.svg-fill-only
+  fill currentColor
+  stroke none
+
+// =============================================================================
+// SVG ANIMATION OPTIMIZATIONS
+// =============================================================================
+// Performance hints for animated SVGs
+
+svg.animate-path
+  will-change stroke-dashoffset
+
+svg.animate-transform
+  will-change transform
+
+// Reduce motion for SVGs
+@media (prefers-reduced-motion reduce)
+  svg *
+    animation none
+    transition none
+    will-change auto
