@@ -1033,11 +1033,12 @@ Last updated: 2026-03-15 08:29
   - Archive notice display
   - Commit: 599e1b7
 
-- [ ] **Edit Conflict Resolution UI** (CSS)
-  - File: `src/components/community.styl`
+- [x] **Edit Conflict Resolution UI** (CSS)
+  - File: `src/components/mediawiki-edit.styl`
   - Conflict diff display
   - Merge tool styling
   - Resolution options
+  - Commit: c0b7d33
 
 - [ ] **Collaborative Editing Indicators** (CSS)
   - File: `src/components/community.styl`

@@ -566,3 +566,251 @@ table.diff
   text-align center
   color $lighter
   font-weight 600
+
+// =============================================================================
+// EDIT CONFLICT RESOLUTION UI
+// =============================================================================
+// Conflict diff display, merge tool styling, resolution options
+// Handles the edit conflict interface when two users edit the same page
+
+// Edit conflict container
+.mw-editconflict
+  background linear-gradient(135deg, $base, rgba($orange, 0.04))
+  border 2px solid $orange
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin 1.5em 0
+
+// Conflict header/warning
+.mw-conflict-header
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.08))
+  border 1px solid rgba($orange, 0.4)
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin-bottom 1.5em
+  display flex
+  align-items center
+  gap 0.75em
+
+  .conflict-icon
+    font-size 1.5em
+    flex-shrink 0
+
+  .conflict-title
+    font-size 1.1em
+    font-weight 600
+    color $lighter
+    margin 0
+
+  .conflict-description
+    color $light
+    font-size 0.9em
+    margin 0.25em 0 0
+
+// Conflict panels container
+.mw-conflict-panels
+  display grid
+  grid-template-columns 1fr 1fr
+  gap 1em
+  margin 1em 0
+
+  @media (max-width 768px)
+    grid-template-columns 1fr
+
+// Individual conflict panel (your edit vs stored version)
+.mw-conflict-panel
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  .panel-header
+    background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($arch-blue, 0.06))
+    border-bottom 1px solid $border-subtle
+    padding 0.75em 1em
+    display flex
+    align-items center
+    justify-content space-between
+
+    .panel-title
+      font-weight 600
+      color $lighter
+      font-size 0.95em
+
+    .panel-badge
+      font-size 0.75em
+      padding 0.2em 0.5em
+      border-radius $border-radius-sm
+      background rgba($arch-blue, 0.2)
+      color $secondary-blue
+
+  .panel-content
+    padding 1em
+    font-family $font-mono
+    font-size 0.85em
+    line-height 1.6
+    max-height 400px
+    overflow-y auto
+    color $light
+
+    // Line-by-line diff styling
+    .diff-line
+      padding 0.15em 0.5em
+      margin 0 -0.5em
+
+      &.diff-added
+        background rgba($green, 0.15)
+        border-inline-start 3px solid $green
+
+      &.diff-removed
+        background rgba($red, 0.15)
+        border-inline-start 3px solid $red
+
+      &.diff-changed
+        background rgba($orange, 0.1)
+
+      &.diff-context
+        color $muted
+
+// Your edit panel specific
+.mw-conflict-panel-your-edit
+  .panel-header
+    background linear-gradient(135deg, rgba($secondary-blue, 0.15), rgba($secondary-blue, 0.08))
+
+    .panel-badge
+      background rgba($secondary-blue, 0.2)
+      color $secondary-blue
+
+// Stored version panel
+.mw-conflict-panel-stored
+  .panel-header
+    background linear-gradient(135deg, rgba($muted, 0.12), rgba($muted, 0.06))
+
+    .panel-badge
+      background rgba($muted, 0.2)
+      color $muted
+
+// Conflict resolution options
+.mw-conflict-resolution
+  margin-top 1.5em
+  padding-top 1.5em
+  border-top 1px solid $border-subtle
+
+  .resolution-title
+    font-weight 600
+    color $lighter
+    margin-bottom 1em
+
+  .resolution-options
+    display flex
+    flex-wrap wrap
+    gap 0.75em
+
+// Resolution buttons
+.mw-conflict-btn
+  background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 0.75em 1.25em
+  color $light
+  font-size 0.95em
+  cursor pointer
+  transition all $transition-fast
+  display flex
+  align-items center
+  gap 0.5em
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
+    border-color rgba($arch-blue, 0.5)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &.btn-use-yours
+    background linear-gradient(135deg, rgba($secondary-blue, 0.15), rgba($secondary-blue, 0.08))
+    border-color rgba($secondary-blue, 0.4)
+
+    &:hover
+      background linear-gradient(135deg, rgba($secondary-blue, 0.25), rgba($secondary-blue, 0.12))
+
+  &.btn-use-theirs
+    background linear-gradient(135deg, rgba($muted, 0.15), rgba($muted, 0.08))
+    border-color rgba($muted, 0.4)
+
+    &:hover
+      background linear-gradient(135deg, rgba($muted, 0.25), rgba($muted, 0.12))
+
+  &.btn-merge
+    background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+    border-color rgba($green, 0.4)
+
+    &:hover
+      background linear-gradient(135deg, rgba($green, 0.25), rgba($green, 0.12))
+
+// Merge editor textarea
+.mw-merge-editor
+  margin-top 1.5em
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+
+  .merge-header
+    font-weight 600
+    color $lighter
+    margin-bottom 0.75em
+    display flex
+    align-items center
+    gap 0.5em
+
+  textarea
+    width 100%
+    min-height 300px
+    background $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 1em
+    font-family $font-mono
+    font-size 0.9em
+    line-height 1.6
+    resize vertical
+
+    &:focus-visible
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+// Conflict helpful tips
+.mw-conflict-tips
+  margin-top 1.5em
+  padding 1em
+  background rgba($darker, 0.5)
+  border 1px dashed $border-subtle
+  border-radius $border-radius-md
+
+  .tips-title
+    font-weight 600
+    color $lighter
+    font-size 0.9em
+    margin-bottom 0.5em
+
+  ul
+    margin 0
+    padding-inline-start 1.25em
+    color $light
+    font-size 0.85em
+    line-height 1.6
+
+    li
+      margin-bottom 0.25em
+
+// Reduced motion for conflict animations
+@media (prefers-reduced-motion reduce)
+  .mw-editconflict
+  .mw-conflict-panels
+  .mw-conflict-resolution
+    transition none
+    animation none
