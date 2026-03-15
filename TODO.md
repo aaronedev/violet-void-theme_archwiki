@@ -2452,10 +2452,11 @@ Last updated: 2026-03-15 11:03
   - Apply before and after
   - Stylus: Works directly
 
-- [ ] **`animation-play-state: paused` Toggle** (97%+ browser support)
+- [x] **`animation-play-state: paused` Toggle** (97%+ browser support)
   - File: `src/components/animations.styl`
   - Pause/resume animations
   - Stylus: Works directly
+  - Commit: bd7afa3
 
 ## 🔲 Outline Enhancements (New)
 
