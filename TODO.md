@@ -1733,11 +1733,12 @@ Last updated: 2026-03-15 02:58
 
 ## 🎨 Blend & Composite (New)
 
-- [ ] **`background-blend-mode`** (97%+ browser support)
+- [x] **`background-blend-mode`** (97%+ browser support)
   - File: `src/components/content.styl`
   - Blend background layers
   - `background-blend-mode: multiply;`
   - Stylus: Works directly
+  - Commit: c73534a5
 
 - [ ] **`isolation: isolate` Stacking Contexts** (97%+ browser support)
   - File: `src/components/ui-components.styl`

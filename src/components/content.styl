@@ -1637,3 +1637,183 @@ dd
 .mw-normal-catlinks
 .mw-hidden-catlinks
   white-space-collapse collapse
+
+// ===========================================
+// Background Blend Mode
+// For visual effects and performance optimization
+// Allows combining background layers without extra images
+// Browser support: 97%+
+// ===========================================
+
+// Background blend mode utilities - use with background-color
+// These provide visual effects when layered with a background-color
+
+.background-blend-multiply
+  background-blend-mode multiply
+
+.background-blend-screen
+  background-blend-mode screen
+
+.background-blend-overlay
+  background-blend-mode overlay
+
+.background-blend-darken
+  background-blend-mode darken
+
+.background-blend-lighten
+  background-blend-mode lighten
+
+.background-blend-color-dodge
+  background-blend-mode color-dodge
+
+.background-blend-color-burn
+  background-blend-mode color-burn
+
+.background-blend-hard-light
+  background-blend-mode hard-light
+
+.background-blend-soft-light
+  background-blend-mode soft-light
+
+.background-blend-difference
+  background-blend-mode difference
+
+.background-blend-exclusion
+  background-blend-mode exclusion
+
+.background-blend-hue
+  background-blend-mode hue
+
+.background-blend-saturation
+  background-blend-mode saturation
+
+.background-blend-color
+  background-blend-mode color
+
+.background-blend-luminosity
+  background-blend-mode luminosity
+
+// ===== Background Blend Mode with Normal Fallback =====
+// Use with background-color for simple tinting effects
+.background-tint
+  background-color rgba($arch-blue, 0.1)
+  background-blend-mode multiply
+
+.background-tint-subtle
+  background-color rgba($arch-blue, 0.05)
+  background-blend-mode multiply
+
+.background-tint-strong
+  background-color rgba($arch-blue, 0.2)
+  background-blend-mode multiply
+
+// ===== Background Blend Mode for Textures =====
+// Light texture overlay
+.background-texture-light
+  background-image linear-gradient(180deg, transparent 0%, rgba(255,255,255 0.03) 100%)
+  background-blend-mode overlay
+
+// Dark texture overlay
+.background-texture-dark
+  background-image linear-gradient(180deg, transparent 0%, rgba(0,0,0, 0.05) 100%)
+  background-blend-mode multiply
+
+// ===== Background Blend Mode for Gradients =====
+// Gradient with texture blend
+.background-gradient-texture
+  background-image linear-gradient(135deg, $base 0%, darken($base, 5%) 100%)
+  background-blend-mode normal, overlay
+  background-color $base
+
+// ===== Background Blend Mode for Cards =====
+// Card with subtle texture effect
+.card-background-blend
+  background-color $surface
+  background-image radial-gradient(circle at 50% 0%, rgba($arch-blue, 0.08) 0%, transparent 70%)
+  background-blend-mode normal, screen
+  background-position center top
+  background-repeat no-repeat
+
+// ===== Background Blend Mode for Hero Sections =====
+// Hero with layered backgrounds
+.hero-background-blend
+  background-color $base
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%238950c7' stroke-width='0.5' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23grid)' width='100' height='100'/%3E%3C/svg%3E")
+  background-blend-mode multiply, normal
+  background-repeat repeat, no-repeat
+  background-size auto, cover
+  background-position center
+
+// ===== Background Blend Mode for Info Boxes =====
+// Info box with subtle gradient blend
+.infobox-background-blend
+  background linear-gradient(135deg, $surface 0%, rgba($arch-blue, 0.03) 100%)
+  background-blend-mode normal, overlay
+  background-color $surface
+
+// ===== Background Blend Mode for Navigation =====
+// Nav with background blend
+.nav-background-blend
+  background-color $nav-bg
+  background-image linear-gradient(180deg, rgba($arch-blue, 0.05) 0%, transparent 20%)
+  background-blend-mode normal, screen
+
+// ===== Responsive Background Blend =====
+// Disable blend modes on low-power devices if needed
+@media (prefers-reduced-motion reduce)
+  .background-blend-multiply
+  .background-blend-screen
+  .background-blend-overlay
+  .background-blend-darken
+  .background-blend-lighten
+  .background-blend-color-dodge
+  .background-blend-color-burn
+  .background-blend-hard-light
+  .background-blend-soft-light
+  .background-blend-difference
+  .background-blend-exclusion
+  .background-blend-hue
+  .background-blend-saturation
+  .background-blend-color
+  .background-blend-luminosity
+  .background-tint
+  .background-tint-subtle
+  .background-tint-strong
+  .background-texture-light
+  .background-texture-dark
+  .background-gradient-texture
+  .card-background-blend
+  .hero-background-blend
+  .infobox-background-blend
+  .nav-background-blend
+    background-blend-mode normal
+
+// ===== Print: Disable blend modes =====
+@media print
+  .background-blend-multiply
+  .background-blend-screen
+  .background-blend-overlay
+  .background-blend-darken
+  .background-blend-lighten
+  .background-blend-color-dodge
+  .background-blend-color-burn
+  .background-blend-hard-light
+  .background-blend-soft-light
+  .background-blend-difference
+  .background-blend-exclusion
+  .background-blend-hue
+  .background-blend-saturation
+  .background-blend-color
+  .background-blend-luminosity
+  .background-tint
+  .background-tint-subtle
+  .background-tint-strong
+  .background-texture-light
+  .background-texture-dark
+  .background-gradient-texture
+  .card-background-blend
+  .hero-background-blend
+  .infobox-background-blend
+  .nav-background-blend
+    background-blend-mode normal
+    background-image none
