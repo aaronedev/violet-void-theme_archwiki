@@ -4526,8 +4526,8 @@ Last updated: 2026-03-15 09:55
   - Highlight/shadow balance
   - Subtle 3D effects
 
-- [ ] **Gradient Borders** (CSS, 97%+ browser support)
-  - File: `src/components/gradients.styl`
+- [x] **Gradient Borders** (CSS, 97%+ browser support) — commit 53f544b
+  - File: `src/components/gradient-borders.styl`
   - Border-image gradients
   - Pseudo-element borders
   - Animated gradient borders
