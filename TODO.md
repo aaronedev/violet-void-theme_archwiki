@@ -1712,11 +1712,12 @@ Last updated: 2026-03-14 23:59
   - `text-justify: inter-word;` or `inter-ideograph;`
   - Stylus: Works directly
 
-- [ ] **`word-break: break-all` for URLs** (97%+ browser support)
+- [x] **`word-break: break-all` for URLs** (97%+ browser support)
   - File: `src/components/code.styl`
   - Break long URLs at any character
   - Different from `overflow-wrap`
   - Stylus: Works directly
+  - Commit: d6f1c9c
 
 ## 🎨 Blend & Composite (New)
 

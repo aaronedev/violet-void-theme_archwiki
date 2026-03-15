@@ -437,3 +437,37 @@ for selector, index in copy-button-selectors
 .multi-line-command
 .command-continuation
   white-space-collapse preserve-breaks
+
+// -----------------------------------------------------------------------------
+// Word Break for Long URLs and Code Paths
+// Break long URLs at any character - different from overflow-wrap
+// Browser support: 97%+
+
+// Break long URLs and file paths in code blocks at any character
+// Useful for: URLs, file paths, long package names, UUIDs, hashes
+.code-break-all
+.url-break
+  word-break break-all
+  overflow-wrap break-word
+
+// Apply to specific code contexts where long URLs commonly appear
+// Links within code blocks
+#content pre code a
+#content pre:not([class*="codemirror"]) a
+  word-break break-all
+  overflow-wrap break-word
+
+// Long file paths in configuration examples
+.config-path
+.file-path
+  word-break break-all
+  overflow-wrap anywhere
+
+// Package names and repository URLs in PKGBUILD examples
+#content pre[data-lang="PKGBUILD"]
+#content pre[data-lang="bash"]
+  .url
+  .package-name
+  .repository-url
+    word-break break-all
+    overflow-wrap anywhere
