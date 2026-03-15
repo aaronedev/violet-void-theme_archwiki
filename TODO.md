@@ -454,6 +454,7 @@
 | 2026-03-14 | Scrollable Table Wrapper for performance | 92cf67a |
 | 2026-03-14 | Cite Extension Enhancements | 80822e6 |
 | 2026-03-14 | Safe Area Support for mobile (iOS notch/home indicator) | 80bb105 |
+| 2026-03-15 | Package Templates (Pkg, AUR, Grp) | 5754579 |
 | 2026-03-15 | @media (update) for e-ink display optimization | 2f583a4 |
 | 2026-03-15 | conic-gradient for Patterns & cross-fade() for Transitions | 1a4da94 |
 | 2026-03-15 | :dir() pseudo-class for direction-based styling | 0821863 |
@@ -3044,12 +3045,13 @@ Last updated: 2026-03-15 15:37
 
 ## 🏷️ ArchWiki-Specific Elements (New)
 
-- [ ] **Package Templates** (CSS)
-  - File: `src/components/archwiki.styl`
+- [x] **Package Templates** (CSS)
+  - File: `src/components/archwiki-templates.styl`
   - {{Pkg}} template styling
   - {{AUR}} template styling
   - {{Grp}} template styling
   - Package status indicators
+  - Commit: 5754579
 
 - [ ] **Command Line Blocks** (CSS)
   - File: `src/components/archwiki.styl`
