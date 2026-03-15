@@ -1591,11 +1591,12 @@ Last updated: 2026-03-15 11:03
 
 ## 🖼️ Image Enhancements (New)
 
-- [ ] **`image-set()` for Responsive Images** (97%+ browser support)
+- [x] **`image-set()` for Responsive Images** (97%+ browser support)
   - File: `src/components/content.styl`
   - Serve different images for different DPR
   - `background-image: image-set("img.png" 1x, "img@2x.png" 2x);`
   - Stylus: Works directly
+  - Commit: ffe3ca7
 
 - [x] **`cross-fade()` for Transitions** (97%+ browser support)
   - File: `src/components/utilities.styl`

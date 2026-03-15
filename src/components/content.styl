@@ -1870,3 +1870,63 @@ video:not([width]):not([height])
   img
     max-width 100%
     height auto
+
+// =============================================================================
+// IMAGE-SET() - Responsive Images based on Device Pixel Ratio (97%+ browser support)
+// =============================================================================
+
+// Performance: Serve appropriate resolution based on screen DPR
+// Reduces bandwidth on lower-DPR devices while providing sharp images on HiDPI
+// Works directly in Stylus without @css wrapper
+
+// Utility classes for image-set backgrounds
+.image-set-std
+  background-image image-set("img.png" 1x, "img@2x.png" 2x, "img@3x.png" 3x)
+
+.image-set-1x2
+  background-image image-set("img.png" 1x, "img@2x.png" 2x)
+
+.image-set-2x
+  background-image image-set("img-2x.png" 2x)
+
+.image-set-auto
+  background-image image-set("img.png" 1x, "img@1.5x.png" 1.5x, "img@2x.png" 2x)
+
+// image-set for standard resolution displays (1x)
+@media (resolution 1dppx), (resolution 96dpi)
+  .image-set-responsive
+    background-image image-set("img.png" 1x)
+
+// image-set for high resolution displays (1.5x)
+@media (min-resolution 144dpi), (min-resolution 1.5dppx)
+  .image-set-responsive
+    background-image image-set("img@1.5x.png" 1.5x)
+
+// image-set for retina displays (2x)
+@media (min-resolution 192dpi), (min-resolution 2dppx)
+  .image-set-responsive
+    background-image image-set("img@2x.png" 2x)
+
+// image-set for high-DPI displays (3x)
+@media (min-resolution 288dpi), (min-resolution 3dppx)
+  .image-set-responsive
+    background-image image-set("img@3x.png" 3x)
+
+// For img elements - use -webkit-image-set for broader compatibility
+img.image-set-std
+  background-image -webkit-image-set("img.png" 1x, "img@2x.png" 2x)
+  background-image image-set("img.png" 1x, "img@2x.png" 2x)
+
+img.image-set-responsive
+  background-image -webkit-image-set("img.png" 1x, "img@2x.png" 2x)
+  background-image image-set("img.png" 1x, "img@2x.png" 2x)
+
+// avatar image-set for user images
+img.avatar.image-set-responsive
+  background-image -webkit-image-set("avatar.png" 1x, "avatar@2x.png" 2x)
+  background-image image-set("avatar.png" 1x, "avatar@2x.png" 2x)
+
+// Thumbnail image-set
+div.thumb img.image-set-responsive
+  background-image -webkit-image-set("thumb.png" 1x, "thumb@2x.png" 2x)
+  background-image image-set("thumb.png" 1x, "thumb@2x.png" 2x)
