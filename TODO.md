@@ -377,6 +377,7 @@
 | 2026-03-15 | Page break control (break-before/after/inside) for print | 3c76788 |
 | 2026-03-15 | CSS Math Functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, trig) | 65f896f |
 | 2026-03-15 | Collapsible sections print styles for details/summary | 053dd41 |
+| 2026-03-15 | Notification Preferences Panel (CSS) | fbf4cbba |
 | 2026-03-14 | animation-timeline: scroll() for scroll-driven animations | 610bf0a |
 | 2026-03-14 | Timeline Extension Styling | 04e068d5 |
 | 2026-03-14 | @scroll-state container queries for scroll snapping | 4233450 |
@@ -1160,11 +1161,12 @@ Last updated: 2026-03-15 14:30
   - Diff preview cards
   - Timestamp display with tabular-nums
 
-- [ ] **Notification Preferences Panel** (CSS)
+- [x] **Notification Preferences Panel** (CSS)
   - File: `src/components/personal.styl`
   - Toggle switches for notification types
   - Email digest options
   - Quiet hours settings
+  - Commit: fbf4cbba
 
 - [x] **Custom Quick Links** (CSS)
   - File: `src/components/personal.styl`
