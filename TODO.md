@@ -2555,11 +2555,12 @@ Last updated: 2026-03-15 02:58
   - Mouse/trackpad - can use smaller targets
   - Stylus: Works directly
 
-- [ ] **`@media (pointer: coarse)` for Touch Input** (97%+ browser support)
+- [x] **`@media (pointer: coarse)` for Touch Input** (97%+ browser support)
   - File: `src/components/mobile.styl`
   - Finger input - increase touch target sizes
   - Minimum 44px touch targets
   - Stylus: Works directly
+  - Commit: 6a44dbf
 
 - [x] **`@media (any-hover)` for Hybrid Devices** (97%+ browser support)
   - File: `src/components/modern-css.styl`
