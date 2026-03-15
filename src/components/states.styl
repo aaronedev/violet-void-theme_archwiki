@@ -424,3 +424,403 @@
   .mw-progress-circular circle.mw-progress-fill
     animation none
     stroke-dashoffset 75
+
+// =============================================================================
+// EMPTY STATES
+// =============================================================================
+
+// Empty state container
+.mw-empty-state
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  padding 3rem 1.5rem
+  text-align center
+  color $light
+
+// Empty state icon
+.mw-empty-state-icon
+  width 64px
+  height 64px
+  margin-bottom 1rem
+  color $muted
+  opacity 0.7
+
+  // Size variants
+  &.mw-empty-state-icon-sm
+    width 40px
+    height 40px
+
+  &.mw-empty-state-icon-lg
+    width 80px
+    height 80px
+
+// Empty state title
+.mw-empty-state-title
+  font-size 1.25rem
+  font-weight 600
+  color $lighter
+  margin-bottom 0.5rem
+
+// Empty state description
+.mw-empty-state-description
+  font-size 0.95rem
+  color $light
+  max-width 400px
+  margin-bottom 1.5rem
+  line-height 1.6
+
+// Empty state actions
+.mw-empty-state-actions
+  display flex
+  gap 0.75rem
+  flex-wrap wrap
+  justify-content center
+
+// Empty state with illustration
+.mw-empty-state-illustration
+  width 200px
+  height 150px
+  margin-bottom 1.5rem
+  border-radius $border-radius-md
+  background linear-gradient(135deg, rgba($arch-blue, 0.05), rgba($arch-blue, 0.02))
+  display flex
+  align-items center
+  justify-content center
+
+// Empty list state
+.mw-empty-list
+  padding 2rem
+  text-align center
+  color $muted
+
+  &::before
+    content "—"
+    display block
+    font-size 1.5rem
+    margin-bottom 0.5rem
+    opacity 0.5
+
+// Empty search results
+.mw-empty-search-results
+  padding 2.5rem 1.5rem
+
+  .mw-empty-state-icon
+    margin-bottom 1rem
+
+  .mw-empty-state-title
+    font-size 1.1rem
+
+// Empty category
+.mw-empty-category
+  padding 1.5rem
+  background rgba($arch-blue, 0.03)
+  border-radius $border-radius-md
+  border 1px dashed rgba($arch-blue, 0.2)
+
+// Empty table
+.mw-empty-table
+  padding 2rem
+
+  td
+    text-align center
+    color $muted
+    padding 2rem
+
+// Empty notifications
+.mw-empty-notifications
+  display flex
+  flex-direction column
+  align-items center
+  padding 2rem
+  color $muted
+
+// =============================================================================
+// ERROR STATES
+// =============================================================================
+
+// Error message container
+.mw-error
+  padding 1rem 1.25rem
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+  color $lighter
+  display flex
+  align-items flex-start
+  gap 0.75rem
+
+// Error icon
+.mw-error-icon
+  width 20px
+  height 20px
+  flex-shrink 0
+  color $red
+  margin-top 0.1rem
+
+// Error content
+.mw-error-content
+  flex 1
+  min-width 0
+
+// Error title
+.mw-error-title
+  font-weight 600
+  font-size 0.95rem
+  color $lighter
+  margin-bottom 0.25rem
+
+// Error message
+.mw-error-message
+  font-size 0.875rem
+  color $light
+  line-height 1.5
+
+// Error actions
+.mw-error-actions
+  display flex
+  gap 0.5rem
+  margin-top 0.75rem
+
+// Error alert (full width)
+.mw-error-alert
+  padding 1rem
+  background rgba($red, 0.08)
+  border-left 3px solid $red
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  .mw-error-icon
+    width 24px
+    height 24px
+
+// Error box (compact)
+.mw-error-box
+  padding 0.75rem 1rem
+  background rgba($red, 0.06)
+  border-radius $border-radius-sm
+  font-size 0.875rem
+  color $light
+  display flex
+  align-items center
+  gap 0.5rem
+
+// Error inline
+.mw-error-inline
+  color $red
+  font-size 0.875rem
+
+  &::before
+    content "⚠"
+    margin-right 0.35rem
+    font-size 0.75rem
+
+// Error page
+.mw-error-page
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  padding 4rem 2rem
+  text-align center
+  min-height 300px
+
+  .mw-error-icon
+    width 80px
+    height 80px
+    color $red
+    opacity 0.8
+    margin-bottom 1.5rem
+
+  .mw-error-title
+    font-size 1.75rem
+    margin-bottom 0.75rem
+
+  .mw-error-message
+    font-size 1rem
+    max-width 500px
+    margin-bottom 2rem
+
+// Form error
+.mw-form-error
+  display block
+  color $red
+  font-size 0.8rem
+  margin-top 0.35rem
+
+// Input error state
+.mw-input-error
+  border-color rgba($red, 0.5) !important
+
+  &:focus
+    box-shadow 0 0 0 3px rgba($red, 0.15) !important
+
+// API error
+.mw-api-error
+  padding 1rem
+  background rgba($red, 0.05)
+  border 1px solid rgba($red, 0.2)
+  border-radius $border-radius-sm
+  font-family $font-mono
+  font-size 0.85rem
+  color $light
+  white-space pre-wrap
+  overflow-x auto
+
+// =============================================================================
+// SUCCESS STATES
+// =============================================================================
+
+// Success message container
+.mw-success
+  padding 1rem 1.25rem
+  background rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-md
+  color $lighter
+  display flex
+  align-items flex-start
+  gap 0.75rem
+
+// Success icon
+.mw-success-icon
+  width 20px
+  height 20px
+  flex-shrink 0
+  color $green
+  margin-top 0.1rem
+
+// Success content
+.mw-success-content
+  flex 1
+  min-width 0
+
+// Success title
+.mw-success-title
+  font-weight 600
+  font-size 0.95rem
+  color $lighter
+  margin-bottom 0.25rem
+
+// Success message
+.mw-success-message
+  font-size 0.875rem
+  color $light
+  line-height 1.5
+
+// Success actions
+.mw-success-actions
+  display flex
+  gap 0.5rem
+  margin-top 0.75rem
+
+// Success alert (full width)
+.mw-success-alert
+  padding 1rem
+  background rgba($green, 0.08)
+  border-left 3px solid $green
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  .mw-success-icon
+    width 24px
+    height 24px
+
+// Success box (compact)
+.mw-success-box
+  padding 0.75rem 1rem
+  background rgba($green, 0.06)
+  border-radius $border-radius-sm
+  font-size 0.875rem
+  color $light
+  display flex
+  align-items center
+  gap 0.5rem
+
+// Success inline
+.mw-success-inline
+  color $green
+  font-size 0.875rem
+
+  &::before
+    content "✓"
+    margin-right 0.35rem
+    font-size 0.75rem
+    font-weight bold
+
+// Success page
+.mw-success-page
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  padding 4rem 2rem
+  text-align center
+  min-height 300px
+
+  .mw-success-icon
+    width 80px
+    height 80px
+    color $green
+    opacity 0.8
+    margin-bottom 1.5rem
+
+  .mw-success-title
+    font-size 1.75rem
+    margin-bottom 0.75rem
+
+  .mw-success-message
+    font-size 1rem
+    max-width 500px
+    margin-bottom 2rem
+
+// Form success
+.mw-form-success
+  display block
+  color $green
+  font-size 0.8rem
+  margin-top 0.35rem
+
+// Input success state
+.mw-input-success
+  border-color rgba($green, 0.5) !important
+
+  &:focus
+    box-shadow 0 0 0 3px rgba($green, 0.15) !important
+
+// Success toast
+.mw-toast-success
+  padding 0.75rem 1rem
+  background rgba($green, 0.9)
+  color $darker
+  border-radius $border-radius-sm
+  font-size 0.875rem
+  font-weight 500
+  display flex
+  align-items center
+  gap 0.5rem
+  box-shadow $shadow-elevated
+  animation toast-slide-in 0.3s ease
+
+@keyframes toast-slide-in
+  from
+    transform translateY(-100%)
+    opacity 0
+  to
+    transform translateY(0)
+    opacity 1
+
+// =============================================================================
+// FOCUS VISIBLE FOR STATE ELEMENTS
+// =============================================================================
+
+// Focus visible for interactive state elements
+.mw-error a
+.mw-success a
+.mw-empty-state a
+.mw-error button
+.mw-success button
+.mw-empty-state button
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
