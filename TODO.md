@@ -6382,12 +6382,13 @@ Last updated: 2026-03-15 06:24
   - Apply to long lists
   - Note: Test with JS lazy loading
 
-- [ ] **CSS Containment** (CSS, 97%+ browser support)
-  - File: `src/performance/containment.styl`
+- [x] **CSS Containment** (CSS, 97%+ browser support)
+  - File: `src/components/containment.styl`
   - Layout containment
   - Paint containment
   - Size containment
   - Style containment
+  - Commit: 24b4b3f7
 
 - [ ] **will-change Optimization** (CSS, 95%+ browser support)
   - File: `src/performance/willchange.styl`
@@ -7462,4 +7463,4 @@ Last updated: 2026-03-15 06:24
 | 2026-03-15 | PWA Styling | Added PWA components in pwa.styl - offline banner, cached content indicator, sync pending/complete status, install prompt with action buttons, standalone install button, service worker status indicator, animations, reduced motion support | a8be333 |
 | 2026-03-15 | linear() Timing Function | Added linear() timing function classes in animations.styl - custom easing with control points, steps() with jump keywords, transition-behavior: allow-discrete for display/visibility transitions, utility classes for various animation patterns | 1d97bf6 |
 | 2026-03-15 | :fullscreen Pseudo-class | Added fullscreen mode styling in ui-components.styl - hide non-essential UI chrome, fullscreen container/content styling, video/image/dialog enhancements, exit fullscreen button hints, reduced motion support | dfa7fd0 |
-| 2026-03-15 | CSS Math Functions Utilities | Added src/utilities/math.styl with utility classes for CSS math functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, sin, cos, tan, asin, acos, atan, atan2, pi, e) - demonstrates usage patterns for responsive layouts and animations | a785992 |
+| 2026-03-15 | CSS Containment | Added src/components/containment.styl with CSS containment utilities (layout, paint, size, style containment) for performance optimization - applied to MediaWiki components like infobox, sidebar, nav, tables, code blocks, message boxes, navbox, footer, content areas | 24b4b3f7 |

@@ -1,0 +1,205 @@
+// CSS Containment for Performance Optimization
+// Browser support: 97%+
+// The contain property allows you to isolate an element's rendering from the rest of the page
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CONTAINMENT UTILITIES
+// =============================================================================
+
+// =============================================================================
+// LAYOUT CONTAINMENT
+// =============================================================================
+// layout: The element's layout is isolated from its descendants.
+// Changes to the element's ancestors cannot affect the element's layout,
+// and changes to the element's descendants cannot affect ancestors.
+
+// Basic layout containment
+.contain-layout
+  contain layout
+
+// Layout containment with paint (common combination)
+.contain-layout-paint
+  contain layout paint
+
+// Layout containment with strict isolation
+.contain-layout-strict
+  contain layout
+
+// =============================================================================
+// PAINT CONTAINMENT
+// =============================================================================
+// paint: The element is painted independently of its ancestors.
+// If the element is off-screen, none of its descendants are painted.
+
+// Basic paint containment
+.contain-paint
+  contain paint
+
+// Paint with layout containment
+.contain-paint-layout
+  contain paint layout
+
+// =============================================================================
+// SIZE CONTAINMENT
+// =============================================================================
+// size: The element's size is calculated independently of its descendants.
+// The element's layout does not depend on its contents.
+
+// Basic size containment
+.contain-size
+  contain size
+
+// Size with layout containment
+.contain-size-layout
+  contain size layout
+
+// =============================================================================
+// STYLE CONTAINMENT
+// =============================================================================
+// style: The element's style properties (counters, quotes) are isolated.
+// Changes to CSS counters/quotes in descendants don't affect ancestors.
+
+// Basic style containment
+.contain-style
+  contain style
+
+// Style with layout containment
+.contain-style-layout
+  contain style layout
+
+// =============================================================================
+// COMBINED CONTAINMENT VALUES
+// =============================================================================
+
+// content: layout + paint + style (but NOT size)
+.contain-content
+  contain content
+
+// strict: layout + paint + size + style
+.contain-strict
+  contain strict
+
+// =============================================================================
+// COMPONENT-SPECIFIC CONTAINMENT
+// =============================================================================
+
+// Infobox containment - layout doesn't affect article flow
+.infobox
+  contain layout paint
+
+// Sidebar containment
+.sidebar
+  contain layout paint
+
+// Navigation containment
+.mw-nav
+  contain layout paint
+
+// Table containment for large tables
+.wikitable
+  contain layout paint
+
+// Code block containment
+.mw-highlight
+  contain layout paint
+
+// Message box containment
+.messagebox
+  contain layout paint
+
+// Navbox containment
+.navbox
+  contain layout paint
+
+// Footer containment
+#footer
+  contain layout paint style
+
+// =============================================================================
+// MEDIAWIKI-SPECIFIC CONTAINMENT
+// =============================================================================
+
+// Content area containment
+#content
+  contain layout paint style
+
+// Body content
+.mw-body
+  contain layout paint
+
+// Article text container
+.mw-body-content
+  contain layout
+
+// Parser output wrapper
+.mw-parser-output
+  contain layout paint
+
+// =============================================================================
+// PERFORMANCE-CRITICAL AREAS
+// =============================================================================
+
+// Contain long lists (special:allpages, category members, etc.)
+.mw-content
+  contain layout
+
+// Search results
+.search-results
+  contain layout paint
+
+// Recent changes
+.mw-changes-list
+  contain layout
+
+// History list
+.mw-history-list
+  contain layout
+
+// =============================================================================
+// CONTAINMENT WITH WILL-CHANGE
+// =============================================================================
+
+// For elements that will animate
+.contain-animate
+  contain layout paint
+  will-change transform, opacity
+
+// For scrollable containers
+.contain-scroll
+  contain layout paint
+  overflow-anchor auto
+
+// =============================================================================
+// RESPONSIVE CONTAINMENT
+// =============================================================================
+
+// Only apply strict containment on desktop
+@media (min-width 1024px)
+  .contain-desktop-strict
+    contain strict
+
+// Reduce containment on mobile to save memory
+@media (max-width 768px)
+  .contain-mobile-relaxed
+    contain layout
+
+// =============================================================================
+// DEBUG CONTAINMENT (optional visual indicator)
+// =============================================================================
+
+// For development/testing - shows containment boundaries
+.contain-debug
+  outline 1px dashed rgba($arch-blue, 0.5)
+
+// =============================================================================
+// REDUCED MOTION WITH CONTAINMENT
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .contain-animate
+    will-change auto
+    transition none
+    animation none
