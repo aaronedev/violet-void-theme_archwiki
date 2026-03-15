@@ -447,7 +447,7 @@
 
 ---
 
-Last updated: 2026-03-15 02:58
+Last updated: 2026-03-15 06:24
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2591,12 +2591,13 @@ Last updated: 2026-03-15 02:58
 
 ## 📐 Viewport & Aspect Queries (New)
 
-- [ ] **`@media (aspect-ratio)` for Aspect Ratio Detection** (97%+ browser support)
+- [x] **`@media (aspect-ratio)` for Aspect Ratio Detection** (97%+ browser support)
   - File: `src/components/responsive-enhanced.styl`
   - Detect viewport aspect ratio
   - Adjust infobox, sidebar layout for ultra-wide or portrait
   - Example: `@media (aspect-ratio: 21/9) { ... }`
   - Stylus: Works directly
+  - Commit: fc89714
 
 - [x] **`@media (orientation: portrait/landscape)`** (100% browser support)
   - File: `src/components/responsive-enhanced.styl`
@@ -6881,6 +6882,7 @@ Last updated: 2026-03-15 02:58
 | 2026-03-14 | Implementer | Cross-wiki Search Results styling with sister project icons, project badge styling, result grouping headers, result thumbnails, matched term highlighting for Wikipedia, Wiktionary, Wikibooks, Commons, Wikidata, etc. | 13cbee3 |
 | 2026-03-15 | Implementer | ::cue pseudo-element for Video Captions with past/future states, speaker identification, language-specific styling (97%+ browser support) | 592d1e5 |
 | 2026-03-15 | Implementer | @font-feature-values for named font feature values with @stylistic, @historical-forms, @styleset, @character-variant, @swash, @ornaments, @annotation, plus utility classes for common ligature controls (97%+ browser support) | d132c6a |
+| 2026-03-15 | Implementer | @media (aspect-ratio) for viewport aspect ratio detection to adjust layouts for ultra-wide (21/9), standard (16/9), square (1/1), and tall (9/16) displays (97%+ browser support) | fc89714 |
 
 ---
 
