@@ -5079,29 +5079,32 @@ Last updated: 2026-03-14 23:59
 
 ## 📺 Media State Pseudo-Classes (New)
 
-- [ ] **`:playing` and `:paused` Pseudo-Classes** (87%+ browser support)
-  - File: `src/components/media.styl`
+- [x] **`:playing` and `:paused` Pseudo-Classes** (87%+ browser support)
+  - File: `src/components/file-pages.styl`
   - Style playable elements based on playback state
   - Example: `video:playing { outline: 2px solid var(--accent); }`
   - Play/pause button state indicators
   - Media player active state styling
   - Stylus: Works directly
+  - Commit: 4e7bc5d
 
-- [ ] **`:buffering` and `:stalled` Pseudo-Classes** (85%+ browser support)
-  - File: `src/components/media.styl`
+- [x] **`:buffering` and `:stalled` Pseudo-Classes** (85%+ browser support)
+  - File: `src/components/file-pages.styl`
   - Style media elements during buffering/stalled states
   - Example: `video:buffering { opacity: 0.7; }`
   - Loading spinner overlay
   - Network status indicators
   - Stylus: Works directly
+  - Commit: 4e7bc5d
 
-- [ ] **`:muted` and `:volume-locked` Pseudo-Classes** (87%+ browser support)
-  - File: `src/components/media.styl`
+- [x] **`:muted` and `:volume-locked` Pseudo-Classes** (87%+ browser support)
+  - File: `src/components/file-pages.styl`
   - Style sound-producing elements based on audio state
   - Example: `audio:muted .mute-icon { display: block; }`
   - Mute button state styling
   - Volume control indicators
   - Stylus: Works directly
+  - Commit: 4e7bc5d
 
 
 ## 🔲 Logical Overflow Properties (New - 2026-03-10 Scout 29)
