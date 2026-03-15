@@ -449,7 +449,7 @@
 
 ---
 
-Last updated: 2026-03-15 08:29
+Last updated: 2026-03-15 09:55
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -7447,13 +7447,14 @@ Last updated: 2026-03-15 08:29
   - Example: `align-content: center;`
   - Stylus: Works directly
 
-- [ ] **`font-size-adjust` Property** (CSS, 90%+ browser support)
-  - File: `src/typography/fonts.styl`
+- [x] **`font-size-adjust` Property** (CSS, 90%+ browser support)
+  - File: `src/components/typography.styl`
   - Normalize visual size across different fallback fonts
   - Base sizing on `ex-height` or `cap-height`
   - Prevent layout shifts when web fonts load
   - Example: `font-size-adjust: 0.5;`
   - Stylus: Works directly
+  - Commit: fa1ebe5
 
 ## 🆕 MediaWiki Codex Integration (New - 2026-03-10 Scout 42)
 
@@ -7484,3 +7485,4 @@ Last updated: 2026-03-15 08:29
 | 2026-03-15 | Personalization Styling | Added src/components/personal.styl with Reading List Styling (cards, read/unread indicators, categories), Custom Quick Links (cards with drag handles, edit/delete), and Watchlist Enhancements (change summaries, diff previews) | aa8ad9a |
 | 2026-03-15 | Discrete Property Transitions | Added src/components/discrete-transitions.styl with transition-behavior: allow-discrete for smooth display/visibility transitions, @starting-style for entry animations, and height auto transitions (interpolate-size, calc-size) | 7f2e29a |
 | 2026-03-15 | text-group-align for Block Alignment | Added text-group-align styling in typography.styl for block-level text alignment control (87%+ browser support) | ddf5ff4 |
+| 2026-03-15 | font-size-adjust Property | Added font-size-adjust utility classes and base body styling in typography.styl to normalize visual size across fallback fonts and prevent layout shifts when web fonts load | fa1ebe5 |

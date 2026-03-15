@@ -1000,6 +1000,25 @@ ol.nested-counter
 .sub
   font-variant-position sub
 
+// font-size-adjust for fallback font normalization
+// Browser support: 90%+
+// Normalize visual size across different fallback fonts
+// Base sizing on x-height (ex) or cap-height (cap) to prevent layout shifts
+
+.font-size-adjust-ex
+  font-size-adjust 0.5
+
+.font-size-adjust-cap
+  font-size-adjust from-font
+
+.font-size-adjust-auto
+  font-size-adjust auto
+
+// Base font-size-adjust for body text to improve readability
+// Uses the font's x-height ratio for consistent sizing across fonts
+body
+  font-size-adjust 0.5
+
 // font-variant-alternates for OpenType features
 // Browser support: 87%+
 // Access alternate glyphs provided by fonts (historical forms, swash, ornaments, etc.)
