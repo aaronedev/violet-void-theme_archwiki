@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { execSync } = require('child_process')
+const { execFileSync } = require('child_process')
 const stylus = require('stylus')
 const autoprefixer = require('autoprefixer-stylus')
 const pkg = require('../package.json')
@@ -24,12 +24,12 @@ const tryAddFile = (filePath, { forceIfIgnored = false } = {}) => {
   }
 
   try {
-    execSync(`git add ${filePath}`, { stdio: 'inherit' })
+    execFileSync('git', ['add', filePath], { stdio: 'inherit' })
     return true
   } catch (error) {
     if (forceIfIgnored) {
       try {
-        execSync(`git add -f ${filePath}`, { stdio: 'inherit' })
+        execFileSync('git', ['add', '-f', filePath], { stdio: 'inherit' })
         console.log(`Added ignored file: ${filePath}`)
         return true
       } catch (forceError) {
@@ -56,13 +56,15 @@ const tryAutoCommit = (newVersion) => {
   }
 
   try {
-    execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore' })
+    execFileSync('git', ['rev-parse', '--is-inside-work-tree'], {
+      stdio: 'ignore',
+    })
   } catch {
     console.log('Skipping auto-commit: not a git repo')
     return
   }
 
-  const staged = execSync('git diff --cached --name-only', {
+  const staged = execFileSync('git', ['diff', '--cached', '--name-only'], {
     encoding: 'utf8',
   }).trim()
   if (staged) {
@@ -70,7 +72,9 @@ const tryAutoCommit = (newVersion) => {
     return
   }
 
-  const status = execSync('git status --porcelain', { encoding: 'utf8' }).trim()
+  const status = execFileSync('git', ['status', '--porcelain'], {
+    encoding: 'utf8',
+  }).trim()
   if (!status) {
     console.log('Skipping auto-commit: working tree clean')
     return
@@ -97,18 +101,25 @@ const tryAutoCommit = (newVersion) => {
   // dist/main.css is gitignored - don't force add
   // tryAddFile('dist/main.css', { forceIfIgnored: true })
 
-  const stagedAfterAdd = execSync('git diff --cached --name-only', {
-    encoding: 'utf8',
-  }).trim()
+  const stagedAfterAdd = execFileSync(
+    'git',
+    ['diff', '--cached', '--name-only'],
+    {
+      encoding: 'utf8',
+    }
+  ).trim()
   if (!stagedAfterAdd) {
     console.log('Skipping auto-commit: nothing staged after add')
     return
   }
 
   const message = `chore: verbump ${newVersion}`
-  const noVerifyFlag = runGitHooks ? '' : ' --no-verify'
   try {
-    execSync(`git commit -m "${message}"${noVerifyFlag}`, { stdio: 'inherit' })
+    execFileSync(
+      'git',
+      ['commit', '-m', message].concat(runGitHooks ? [] : ['--no-verify']),
+      { stdio: 'inherit' }
+    )
   } catch (error) {
     const errorMessage = error && error.message ? error.message : String(error)
     console.log(`Skipping auto-commit: git commit failed (${errorMessage})`)

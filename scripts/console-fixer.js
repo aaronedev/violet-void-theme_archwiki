@@ -12,7 +12,7 @@
 const { chromium, firefox } = require('playwright')
 const fs = require('fs')
 const path = require('path')
-const { execSync } = require('child_process')
+const { execFileSync } = require('child_process')
 
 const THEME_PATH = path.join(__dirname, '..', 'dist', 'main.css')
 const SRC_DIR = path.join(__dirname, '..', 'src')
@@ -71,7 +71,7 @@ class ConsoleFixer {
       console.log('📥 Downloading Stylus extension for Firefox...')
       const xpiUrl =
         'https://addons.mozilla.org/firefox/downloads/latest/styl-us/addon-styl-us-latest.xpi'
-      execSync(`curl -L -o "${firefoxExtPath}" "${xpiUrl}"`, {
+      execFileSync('curl', ['-L', '-o', firefoxExtPath, xpiUrl], {
         stdio: 'inherit',
       })
     }
