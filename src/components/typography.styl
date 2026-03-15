@@ -568,6 +568,89 @@ samp
     margin-right 0.05em
 
 // =============================================================================
+// INITIAL-LETTER DROP CAPS (CSS Level 4)
+// Browser support: 87%+ (Chrome 110+, Safari 17.5+)
+// Enhanced drop caps with precise control over size and sink
+// =============================================================================
+
+// Initial-letter utility classes for enhanced drop caps
+.initial-letter-1
+  initial-letter 1
+
+.initial-letter-2
+  initial-letter 2
+
+.initial-letter-3
+  initial-letter 3
+
+.initial-letter-4
+  initial-letter 4
+
+// Initial-letter with specific sink values (sink = how many lines the letter drops)
+.initial-letter-2-1
+  initial-letter 2 1
+
+.initial-letter-3-2
+  initial-letter 3 2
+
+.initial-letter-4-3
+  initial-letter 4 3
+
+// Initial-letter with alignment options
+.initial-letter-auto
+  initial-letter auto
+
+.initial-letter-alphabetic
+  initial-letter alphabetic
+
+.initial-letter-hanging
+  initial-letter hanging
+
+.initial-letter-ideographic
+  initial-letter ideographic
+
+// Full drop cap using initial-letter (replaces float-based drop caps)
+// Works with @css{} wrapper for broader compatibility
+.initial-letter-drop
+  @css {
+    initial-letter: 3 2
+  }
+
+// Wrap control for initial-letter
+.initial-letter-wrap-auto
+  initial-letter-wrap auto
+
+.initial-letter-wrap-first
+  initial-letter-wrap first
+
+.initial-letter-wrap-all
+  initial-letter-wrap all
+
+// Progressive enhancement: Use initial-letter when supported
+.drop-cap-enhanced
+  // Fallback to traditional ::first-letter
+  &::first-letter
+    float left
+    font-size 3em
+    line-height 0.85
+    padding-right 0.1em
+    margin-top 0.1em
+    font-weight 600
+    color $arch-blue
+    // Fallback for older browsers
+    @supports not (initial-letter: 1)
+      float left
+      font-size 3em
+
+  // Enhanced with initial-letter when supported
+  @supports (initial-letter: 3) or (initial-letter: 3 2)
+    &::first-letter
+      initial-letter 3 2
+      float none
+      padding-right 0
+      margin-top 0
+
+// =============================================================================
 // AUTO DROP CAP FOR ARTICLE FIRST PARAGRAPHS
 // Using @css{} for sibling selectors that conflict with Stylus built-ins
 // =============================================================================

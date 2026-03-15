@@ -368,6 +368,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-15 | initial-letter Drop Caps, Align, Wrap | 59c7703 |
 | 2026-03-15 | Admin Dashboard Styling (CSS) | ba55f4e |
 | 2026-03-15 | User Rights Management (CSS) | ba55f4e |
 | 2026-03-15 | Block/Protect UI (CSS) | ba55f4e |
@@ -459,7 +460,7 @@
 
 ---
 
-Last updated: 2026-03-15 14:45
+Last updated: 2026-03-15 14:27
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2095,21 +2096,24 @@ Last updated: 2026-03-15 14:45
 
 ## 🔤 Initial Letter (New)
 
-- [ ] **`initial-letter` Drop Caps** (87%+ browser support)
+- [x] **`initial-letter` Drop Caps** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Enhanced drop caps control
   - `initial-letter: 3 2;` (3 lines, sink 2)
   - Stylus: Works directly
+  - Commit: 59c7703
 
-- [ ] **`initial-letter-align` Alignment** (87%+ browser support)
+- [x] **`initial-letter-align` Alignment** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Align initial letters
   - Stylus: Works directly
+  - Commit: 59c7703
 
-- [ ] **`initial-letter-wrap` Wrapping** (87%+ browser support)
+- [x] **`initial-letter-wrap` Wrapping** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Control initial letter wrapping
   - Stylus: Works directly
+  - Commit: 59c7703
 
 ## 📐 Line Grid (New)
 
