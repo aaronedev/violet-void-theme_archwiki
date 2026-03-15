@@ -227,18 +227,21 @@ class ConsoleFixer {
             property: error.property,
             fix: `@supports (${error.property}: auto) { ... }`,
             autoFixable: true,
+            type: error.type,
           })
         } else if (error.type === 'wrap_supports_selector') {
           fixes.push({
             property: error.property,
             fix: `@supports selector(${error.property}) { ... }`,
             autoFixable: true,
+            type: error.type,
           })
         } else if (error.type === 'investigate') {
           fixes.push({
             property: error.property,
             fix: 'Manual review required',
             autoFixable: false,
+            type: error.type,
           })
         }
       }
@@ -270,6 +273,55 @@ class ConsoleFixer {
     }
 
     return results
+  }
+
+  async applyFixes(fixes) {
+    const autoFixable = fixes.filter((f) => f.autoFixable)
+    if (autoFixable.length === 0) return
+
+    console.log('\n⚡ Applying auto-fixes...')
+
+    const modificationsByFile = {}
+
+    for (const fix of autoFixable) {
+      const locations = this.findInSourceFiles(fix.property)
+      for (const loc of locations) {
+        if (!modificationsByFile[loc.file]) {
+          modificationsByFile[loc.file] = []
+        }
+        modificationsByFile[loc.file].push({
+          lineIdx: loc.line - 1,
+          fix: fix,
+          originalContent: loc.content,
+        })
+      }
+    }
+
+    for (const [file, modifications] of Object.entries(modificationsByFile)) {
+      let content = fs.readFileSync(file, 'utf-8')
+      let lines = content.split('\n')
+
+      for (const mod of modifications) {
+        const idx = mod.lineIdx
+        const line = lines[idx]
+
+        if (!line) continue
+        if (line.includes('@supports')) continue
+        if (!line.includes(mod.fix.property)) continue
+
+        const indentMatch = line.match(/^(\s*)/)
+        const indent = indentMatch ? indentMatch[1] : ''
+
+        if (mod.fix.type === 'wrap_supports') {
+          lines[idx] = `${indent}@supports (${mod.fix.property}: auto)\n${indent}  ${line.trim()}`
+        } else if (mod.fix.type === 'wrap_supports_selector') {
+          lines[idx] = `${indent}@supports selector(${mod.fix.property})\n${indent}  ${line.trim()}`
+        }
+      }
+
+      fs.writeFileSync(file, lines.join('\n'))
+      console.log(`   Updated ${path.relative(SRC_DIR, file)}`)
+    }
   }
 
   printReport(errors, fixes) {
@@ -335,10 +387,7 @@ class ConsoleFixer {
       this.printReport(errors, fixes)
 
       if (this.autoFix && fixes.some((f) => f.autoFixable)) {
-        console.log(
-          '\n⚡ Auto-fixing not implemented yet - use dry-run to see what needs fixing'
-        )
-        // TODO: Implement actual auto-fixing
+        await this.applyFixes(fixes)
       }
 
       return { errors, fixes }
