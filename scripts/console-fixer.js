@@ -373,4 +373,8 @@ async function main() {
   await fixer.run()
 }
 
-main().catch(console.error)
+if (require.main === module) {
+  main().catch(console.error)
+} else {
+  module.exports = { ConsoleFixer }
+}
