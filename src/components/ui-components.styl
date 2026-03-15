@@ -380,7 +380,72 @@ dialog:not(:modal)
   &::backdrop
     background-color rgba(0, 0, 0, 0.4)
 
-// Modals and Overlays
+// ===========================================
+// Enhanced ::backdrop Styling
+// Browser support: 97%+
+// ===========================================
+
+// Base backdrop animation keyframes
+@keyframes backdrop-fade-in
+  from
+    opacity 0
+  to
+    backdrop-filter blur(4px)
+
+// Backdrop variants by context
+
+// Warning/danger modal backdrop
+dialog.warning:modal::backdrop
+dialog.danger:modal::backdrop
+  background-color rgba(127, 29, 29, 0.85)
+
+// Success modal backdrop
+dialog.success:modal::backdrop
+  background-color rgba(21, 128, 61, 0.85)
+
+// Info modal backdrop
+dialog.info:modal::backdrop
+  background-color rgba(29, 78, 216, 0.85)
+
+// Custom backdrop with theme accent
+@supports (backdrop-filter: blur(4px))
+  dialog.themed:modal::backdrop
+    background-color rgba($arch-blue, 0.7)
+    backdrop-filter blur(8px) saturate(180%)
+
+// Full-screen backdrop for image viewers
+dialog.fullscreen:modal::backdrop
+  background-color rgba(0, 0, 0, 0.95)
+
+// Animated backdrop entry
+dialog.animated-backdrop:modal::backdrop
+  animation backdrop-fade-in 0.3s ease-out
+
+// High contrast backdrop for accessibility
+@media (prefers-contrast more)
+  dialog:modal::backdrop
+    background-color rgba(0, 0, 0, 0.95)
+
+// Reduced motion alternative
+@media (prefers-reduced-motion reduce)
+  dialog::backdrop
+    transition none
+
+// Light mode adjustments
+@media (prefers-color-scheme light)
+  dialog:modal::backdrop
+    background-color rgba(255, 255, 255, 0.8)
+    backdrop-filter blur(4px)
+
+  dialog:not(:modal)::backdrop
+    background-color rgba(255, 255, 255, 0.5)
+
+// Backdrop focus trap indicator (accessibility)
+dialog:modal::backdrop:focus-within
+  outline 2px dashed $arch-blue
+  outline-offset -4px
+
+// .modal/.overlay
 .modal
 .overlay
   position fixed

@@ -1248,10 +1248,12 @@ Last updated: 2026-03-15 06:24
   - Added base [popover] styling, :popover-open animation, tooltip/menu/form popover variants
   - Commit: db6be27
 
-- [ ] **`::backdrop` for Modal Overlays** (97%+ browser support)
+- [x] **`::backdrop` for Modal Overlays** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Theme backdrop behind dialogs/modals
   - Example: `dialog::backdrop { background: rgba(0,0,0,0.7); }`
+  - Added: Warning/danger/success/info backdrop variants, themed backdrops with blur, fullscreen backdrops, animated entries, high contrast and reduced motion support, light mode adjustments
+  - Commit: 6e17a6d
 
 - [x] **`:modal` Pseudo-class** (90%+ browser support)
   - File: `src/components/ui-components.styl`
@@ -6896,6 +6898,7 @@ Last updated: 2026-03-15 06:24
 | 2026-03-15 | Implementer | ::cue pseudo-element for Video Captions with past/future states, speaker identification, language-specific styling (97%+ browser support) | 592d1e5 |
 | 2026-03-15 | Implementer | @font-feature-values for named font feature values with @stylistic, @historical-forms, @styleset, @character-variant, @swash, @ornaments, @annotation, plus utility classes for common ligature controls (97%+ browser support) | d132c6a |
 | 2026-03-15 | Implementer | @media (aspect-ratio) for viewport aspect ratio detection to adjust layouts for ultra-wide (21/9), standard (16/9), square (1/1), and tall (9/16) displays (97%+ browser support) | fc89714 |
+| 2026-03-15 | Implementer | ::backdrop for Modal Overlays - enhanced backdrop styling with warning/danger/success/info variants, themed backdrops with blur/saturate, fullscreen backdrops, animated entries, high contrast and reduced motion support, light mode adjustments (97%+ browser support) | 6e17a6d |
 
 ---
 
