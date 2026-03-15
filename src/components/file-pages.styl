@@ -554,3 +554,182 @@ video[lang="ja"]::cue
 video[lang="ko"]::cue
 video[lang="zh"]::cue
   font-family 'Noto Sans', 'Noto Sans CJK', sans-serif
+
+// =============================================================================
+// MEDIA STATE PSEUDO-CLASSES (87%+ browser support)
+// Style playable elements based on playback state
+// Browser support: Chrome 113+, Firefox 113+, Safari 16+
+// =============================================================================
+
+// :playing - Video/audio currently playing
+video:playing
+audio:playing
+  // Active playback indicator
+  .video-play-overlay
+  .audio-play-indicator
+    opacity 0
+    pointer-events none
+
+  // Show playing indicator
+  &::after
+    content ""
+    position absolute
+    top 0.5em
+    right 0.5em
+    width 8px
+    height 8px
+    background-color $arch-blue
+    border-radius 50%
+    animation pulse 1.5s infinite
+
+@keyframes pulse
+  0%
+  100%
+    opacity 1
+    transform scale(1)
+  50%
+    opacity 0.5
+    transform scale(0.8)
+
+// :paused - Video/audio currently paused
+video:paused
+audio:paused
+  // Show pause indicator overlay
+  .video-play-overlay
+    opacity 1
+
+  // Dimmed state for paused content
+  filter brightness(0.95)
+
+// :buffering - Video/audio currently buffering/loading
+video:buffering
+audio:buffering
+  // Loading indicator overlay
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    width 40px
+    height 40px
+    margin -20px 0 0 -20px
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+  // Semi-transparent overlay
+  .video-play-overlay
+    background-color rgba($base, 0.5)
+
+  // Reduced opacity during buffering
+  opacity 0.8
+
+// :stalled - Video/audio stalled (waiting for data)
+video:stalled
+audio:stalled
+  // Stalled state - similar to buffering
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    width 30px
+    height 30px
+    margin -15px 0 0 -15px
+    border 2px solid $border-subtle
+    border-top-color $orange
+    border-radius 50%
+    animation spin 1.5s linear infinite
+
+  // Visual indication of stalled state
+  filter saturate(0.8)
+
+// :muted - Audio/video is muted
+video:muted
+audio:muted
+  // Muted indicator
+  .volume-icon
+  .mute-indicator
+    opacity 0.3
+
+  // Show unmute button
+  &::after
+    content "🔇"
+    position absolute
+    top 0.5em
+    left 0.5em
+    font-size 14px
+    opacity 0.6
+
+// :volume-locked - Volume cannot be adjusted (embedded media)
+video:volume-locked
+audio:volume-locked
+  // Locked indicator
+  .volume-control
+    opacity 0.4
+    pointer-events none
+
+  &::after
+    content "🔒"
+    position absolute
+    top 0.5em
+    left 0.5em
+    font-size 12px
+    opacity 0.5
+
+// Combined state styling for better UX
+video:playing:muted
+audio:playing:muted
+  .video-play-overlay
+    opacity 0
+
+video:paused:muted
+audio:paused:muted
+  // Clearer paused state when muted
+  .video-play-overlay
+    opacity 0.7
+
+// Screen reader support for media states
+video:playing::after
+audio:playing::after
+  position absolute
+  width 1px
+  height 1px
+  padding 0
+  margin -1px
+  overflow hidden
+  clip rect(0, 0, 0, 0)
+  white-space nowrap
+  border 0
+  content "Playing"
+
+video:paused::after
+audio:paused::after
+  content "Paused"
+
+video:buffering::after
+audio:buffering::after
+  content "Buffering"
+
+video:stalled::after
+audio:stalled::after
+  content "Stalled"
+
+// Reduced motion support for media state animations
+@media (prefers-reduced-motion reduce)
+  video:playing::after
+  audio:playing::after
+    animation none
+    content none
+
+  video:buffering::before
+  video:stalled::before
+  audio:buffering::before
+  audio:stalled::before
+    animation none
+    content none
