@@ -1562,13 +1562,13 @@ h6:hover .mw-editsection
 
   // Scroll end - end of scrollable area
   .scroll-snap-boundaries
-    scroll-start 0px
-    scroll-end 100%
+    scroll-padding-block-start 0px
+    scroll-padding-block-end 100%
 
   // Container with explicit scroll boundaries
   .scroll-boundary-container
-    scroll-start 10%
-    scroll-end 90%
+    scroll-padding-block-start 10%
+    scroll-padding-block-end 90%
 
   // Element that should snap to start when scrolling forward
   .scroll-snap-proximity
@@ -1576,11 +1576,11 @@ h6:hover .mw-editsection
 
   // Force scroll to start on load
   .scroll-to-start
-    scroll-start 0px
+    scroll-padding-block-start 0px
 
   // Force scroll to end on load
   .scroll-to-end
-    scroll-start 100%
+    scroll-padding-block-start 100%
 
   // View-based scroll timeline (alternative to scroll())
   @supports (animation-timeline: view())
