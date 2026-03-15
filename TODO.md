@@ -368,6 +368,12 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-15 | Admin Dashboard Styling (CSS) | ba55f4e |
+| 2026-03-15 | User Rights Management (CSS) | ba55f4e |
+| 2026-03-15 | Block/Protect UI (CSS) | ba55f4e |
+| 2026-03-15 | Delete/Undelete Interface (CSS) | ba55f4e |
+| 2026-03-15 | Patrol Marking (CSS) | ba55f4e |
+| 2026-03-15 | Score/Music Notation Styling | ba55f4e |
 | 2026-03-15 | Page break control (break-before/after/inside) for print | 3c76788 |
 | 2026-03-15 | CSS Math Functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, trig) | 65f896f |
 | 2026-03-15 | Collapsible sections print styles for details/summary | 053dd41 |
@@ -451,7 +457,7 @@
 
 ---
 
-Last updated: 2026-03-15 11:03
+Last updated: 2026-03-15 14:30
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -938,11 +944,12 @@ Last updated: 2026-03-15 11:03
   - Popup card theming
   - Commit: 6833e6c
 
-- [ ] **Score/Music Notation** (CSS)
+- [x] **Score/Music Notation** (CSS)
   - File: `src/components/advanced.styl`
   - Sheet music container
   - Score background
   - Audio player integration
+  - Commit: ba55f4e
 
 - [ ] **Chess/Go Diagram Styling** (CSS)
   - File: `src/components/advanced.styl`
@@ -1056,11 +1063,12 @@ Last updated: 2026-03-15 11:03
 
 ## 🔧 Admin & Moderator Tools (New)
 
-- [ ] **Admin Dashboard Styling** (CSS)
+- [x] **Admin Dashboard Styling** (CSS)
   - File: `src/components/admin.styl` (new file)
   - Admin panel cards
   - Quick action buttons
   - Statistics overview
+  - Commit: ba55f4e
 
 - [ ] **User Rights Management** (CSS)
   - File: `src/components/admin.styl`
