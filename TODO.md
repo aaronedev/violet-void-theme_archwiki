@@ -2604,11 +2604,12 @@ Last updated: 2026-03-15 02:58
   - High contrast, no gradients for e-readers
   - Stylus: Works directly
 
-- [ ] **`@media (grid)` for Grid Displays** (97%+ browser support)
+- [x] **`@media (grid)` for Grid Displays** (97%+ browser support)
   - File: `src/components/accessibility.styl`
   - Detect braille, grid-based displays
   - Simplified layout for assistive tech
   - Stylus: Works directly
+  - Commit: 290bf89
 
 ## 🎨 Color Preference Queries (New)
 
