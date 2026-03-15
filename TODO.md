@@ -6668,12 +6668,13 @@ Last updated: 2026-03-15 09:55
   - System color keywords
   - Focus ring enhancement
 
-- [ ] **Print Theme** (CSS)
+- [x] **Print Theme** (CSS)
   - File: `src/theme/print.styl`
   - @media print overrides
   - Remove backgrounds
   - Optimize for B&W
   - Page break controls
+  - Commit: (pending)
 
 ## 🔗 Navigation Extended (New)
 
