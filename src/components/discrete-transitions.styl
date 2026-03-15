@@ -1,0 +1,252 @@
+// Discrete Property Transitions
+// Browser support: 85%+ (Chrome 117+, Firefox 129+, Safari 17.5+)
+// Enables smooth transitions for discrete CSS properties:
+// - display: none <-> block transitions
+// - visibility property transitions
+// - Pairs with @starting-style for entry animations
+// Note: Uses @css{} wrapper for Stylus compatibility
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// ============================================================================
+// DISCRETE TRANSITION UTILITY CLASSES
+// ============================================================================
+
+// Base class for discrete transitions - works for visibility and opacity
+.discrete-transition
+  transition-property visibility, opacity
+  transition-duration 0.3s
+  transition-timing-function ease
+
+// Hidden state
+.discrete-transition.is-hidden
+  visibility hidden
+  opacity 0
+
+// Visible state
+.discrete-transition.is-visible
+  visibility visible
+  opacity 1
+
+// ============================================================================
+// FADE TRANSITIONS
+// ============================================================================
+
+.fade-transition
+  opacity 1
+  transition opacity 0.25s ease
+
+.fade-transition.is-fading-out
+  opacity 0
+
+// ============================================================================
+// SLIDE TRANSITIONS
+// ============================================================================
+
+.slide-transition
+  transform translateX(0)
+  opacity 1
+  transition transform 0.3s ease, opacity 0.3s ease
+
+.slide-transition.is-sliding-out
+  transform translateX(-100%)
+  opacity 0
+
+// ============================================================================
+// SCALE TRANSITIONS
+// ============================================================================
+
+.scale-transition
+  transform scale(1)
+  opacity 1
+  transition transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease
+
+.scale-transition.is-scaling-out
+  transform scale(0.9)
+  opacity 0
+
+// ============================================================================
+// COLLAPSIBLE SECTIONS
+// ============================================================================
+
+.collapsible-transition
+  overflow hidden
+  max-height 0
+  opacity 0
+  transition max-height 0.3s ease, opacity 0.3s ease
+
+.collapsible-transition.is-expanded
+  max-height 1000px
+  opacity 1
+
+// ============================================================================
+// DISPLAY TRANSITIONS WITH transition-behavior
+// ============================================================================
+
+@css {
+  @supports (transition-behavior: allow-discrete) {
+
+    /* Fade + display transition */
+    .fade-display-transition {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.25s ease, display 0.25s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    .fade-display-transition.is-hidden {
+      opacity: 0;
+      display: none;
+    }
+
+    /* Slide + display transition */
+    .slide-display-transition {
+      display: block;
+      visibility: visible;
+      transform: translateX(0);
+      transition: transform 0.3s ease, opacity 0.3s ease, display 0.3s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    .slide-display-transition.is-hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+      display: none;
+    }
+
+    /* Scale + display transition */
+    .scale-display-transition {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, display 0.25s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    .scale-display-transition.is-hidden {
+      transform: scale(0.9);
+      opacity: 0;
+      display: none;
+    }
+
+    /* Collapsible with display */
+    .collapsible-display-transition {
+      display: block;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease, display 0.3s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    .collapsible-display-transition.is-expanded {
+      max-height: 1000px;
+      opacity: 1;
+    }
+  }
+}
+
+// ============================================================================
+// DIALOG/POPOVER ENTRY ANIMATIONS (@starting-style)
+// ============================================================================
+
+@css {
+  @supports (transition-behavior: allow-discrete) and (@starting-style) {
+
+    /* Dialog transitions */
+    .dialog-enter-transition {
+      display: grid;
+      place-items: center;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    @starting-style {
+      .dialog-enter-transition {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* Popover transitions */
+    .popover-enter-transition {
+      display: grid;
+      place-items: center;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    @starting-style {
+      .popover-enter-transition {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* [popover] element */
+    [popover] {
+      display: grid;
+      place-items: center;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    @starting-style {
+      [popover] {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* [role="dialog"] */
+    [role="dialog"] {
+      display: grid;
+      place-items: center;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition-behavior: allow-discrete;
+    }
+
+    @starting-style {
+      [role="dialog"] {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+// ============================================================================
+// HEIGHT AUTO TRANSITIONS (interpolate-size)
+// ============================================================================
+
+@css {
+  @supports (interpolate-size: allow-keywords) {
+
+    .height-auto-transition {
+      height: auto;
+      transition: height 0.3s ease;
+    }
+  }
+}
+
+// Alternative using calc-size()
+@css {
+  @supports (height: calc-size(auto)) {
+
+    .height-auto-transition {
+      height: calc-size(auto, 1000px);
+      transition: height 0.3s ease;
+    }
+  }
+}
