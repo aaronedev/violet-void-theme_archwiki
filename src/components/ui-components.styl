@@ -610,6 +610,44 @@ dialog:open
   outline-offset 2px
 
 // =============================================================================
+// POSITION TRY FALLBACKS FOR ANCHOR POSITIONING
+// =============================================================================
+// Note: 85%+ browser support (Chrome 131+, Edge 131+)
+// @position-try defines fallback positions when anchor would go off-screen
+// position-try-fallbacks lists the fallback positions to try
+
+// Define position-try fallbacks as custom identifiers
+// These must be declared before use
+@supports (position-try-fallbacks: flip)
+  @position-try --flip
+    top anchor(top)
+    bottom anchor(bottom)
+
+  @position-try --slide-right
+    left anchor(right)
+    top anchor(center)
+
+  @position-try --slide-left
+    left anchor(left)
+    top anchor(center)
+
+  @position-try --slide-up
+    bottom anchor(top)
+    left anchor(center)
+
+  @position-try --slide-down
+    top anchor(bottom)
+    left anchor(center)
+
+  // Apply fallbacks to tooltips
+  .tooltip-anchor[data-tooltip]::after
+    position-try-fallbacks --flip, --slide-right, --slide-left, --slide-up, --slide-down
+
+  // Popover position try fallbacks
+  [popover]
+    position-try-fallbacks --flip, --slide-right, --slide-left
+
+// =============================================================================
 // POPOVER API STYLING (:popover-open)
 // =============================================================================
 // Note: 87%+ browser support (Chrome 114+, Edge 114+, Safari 17+)
