@@ -19,7 +19,14 @@
           "quote",
           "error",
           "warning",
-          "link-found"
+          "link-found",
+          "hero",
+          "title",
+          "content",
+          "sidebar",
+          "toc",
+          "infobox",
+          "none"
         ]
       }
     ],
@@ -35,7 +42,8 @@
           "contain-intrinsic-inline-size",
           "stylus/render-subtree",
           "scroll-start",
-          "scroll-end"
+          "scroll-end",
+          "view-transition-class"
         ]
       }
     ],
