@@ -863,3 +863,95 @@
   *::after
     animation none !important
     transition none !important
+
+// =============================================================================
+// ANIMATION PLAY STATE - Pause/Resume Animations
+// =============================================================================
+// Browser support: 97%+
+// Control animation state with animation-play-state property
+
+// Pause all animations on element
+.animation-paused
+  animation-play-state paused
+
+// Resume animations (default state)
+.animation-running
+  animation-play-state running
+
+// Pause on hover - great for reducing distraction
+.pause-on-hover:hover
+.pause-on-hover:focus-within
+  animation-play-state paused
+
+// Pause on focus - accessibility friendly
+.pause-on-focus:focus
+  animation-play-state paused
+
+// Running state indicator (when paused)
+.is-paused::after
+  content " ⏸"
+  font-size 0.75em
+  opacity 0.7
+
+// Running indicator
+.is-running::after
+  content " ▶"
+  font-size 0.75em
+  opacity 0.7
+
+// Interactive elements - pause on hover for readability
+#content .mw-editsection a:hover
+#content .mw-file-description:hover
+#content .vector-sticky-pinned-container::after
+  animation-play-state paused
+
+// Loading spinners - pause when hidden
+.loading-spinner:not([hidden])
+  animation-play-state running
+
+.loading-spinner[hidden]
+  animation-play-state paused
+
+// Progress animations - useful for indication
+@keyframes progress-pulse
+  0%
+  100%
+    opacity 1
+  50%
+    opacity 0.5
+
+.progress-indicator
+  animation progress-pulse 2s ease-in-out infinite
+  animation-play-state running
+
+// Pause progress when page is not visible
+@media (visibility hidden)
+  .progress-indicator
+    animation-play-state paused
+
+@media (visibility visible)
+  .progress-indicator
+    animation-play-state running
+
+// Tab animations - pause when tab is hidden
+@media (update slow)
+  .animate-once
+    animation-iteration-count 1
+
+  .animate-infinite
+    animation-play-state paused
+
+@media (update fast)
+  .animate-once
+    animation-iteration-count 1
+
+  .animate-infinite
+    animation-play-state running
+
+// Reduced motion - ensure animations are properly stopped
+@media (prefers-reduced-motion reduce)
+  .animation-paused
+  .pause-on-hover:hover
+  .pause-on-focus:focus
+  .progress-indicator
+    animation-play-state paused !important
