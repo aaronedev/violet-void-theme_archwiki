@@ -1171,6 +1171,23 @@ ol.nested-counter
 body
   font-size-adjust 0.5
 
+// font-optical-sizing for Variable Fonts
+// Browser support: 97%+
+// Enable optical sizing for variable fonts
+// Values: auto (enable, default), none (disable)
+// Optical sizing adjusts glyph outlines based on font size for better readability
+
+.optical-sizing-auto
+  font-optical-sizing auto
+
+.optical-sizing-none
+  font-optical-sizing none
+
+// Base optical sizing for body text when using variable fonts
+// Enables automatic adjustment of glyph weight at different sizes
+body.variable-font
+  font-optical-sizing auto
+
 // font-variant-alternates for OpenType features
 // Browser support: 87%+
 // Access alternate glyphs provided by fonts (historical forms, swash, ornaments, etc.)

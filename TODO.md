@@ -1073,23 +1073,26 @@ Last updated: 2026-03-15 15:37
   - Statistics overview
   - Commit: ba55f4e
 
-- [ ] **User Rights Management** (CSS)
+- [x] **User Rights Management** (CSS)
   - File: `src/components/admin.styl`
   - User group badges
   - Permission matrix display
   - Change log styling
+  - Commit: ba55f4e
 
-- [ ] **Block/Protect UI** (CSS)
+- [x] **Block/Protect UI** (CSS)
   - File: `src/components/admin.styl`
   - Block form styling
   - Duration selector
   - Reason dropdown styling
+  - Commit: ba55f4e
 
-- [ ] **Delete/Undelete Interface** (CSS)
+- [x] **Delete/Undelete Interface** (CSS)
   - File: `src/components/admin.styl`
   - Delete confirmation dialog
   - Revision selection checkboxes
   - Bulk action toolbar
+  - Commit: ba55f4e
 
 ## 📱 Mobile-First Optimizations (New)
 
@@ -1752,11 +1755,12 @@ Last updated: 2026-03-15 15:37
 
 ## 🔤 Typography Deep Cuts (New)
 
-- [ ] **`font-optical-sizing` for Variable Fonts** (97%+ browser support)
+- [x] **`font-optical-sizing` for Variable Fonts** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Enable optical sizing for variable fonts
   - `font-optical-sizing: auto;`
   - Stylus: Works directly
+  - Commit: {hash}
 
 - [ ] **`@font-face` Descriptors** (97%+ browser support)
   - File: `src/variables/_fonts.styl` (new file)
