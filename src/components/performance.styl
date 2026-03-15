@@ -192,6 +192,204 @@
   min-height 100px
 
 // =============================================================================
+// LAZY LOAD IMAGE PLACEHOLDER
+// =============================================================================
+// Enhanced lazy loading with aspect ratio placeholders, blur-up animation, and error fallbacks
+// Browser support: 97%+ for all features
+
+// Aspect ratio placeholder for lazy loaded images
+// Maintains space before image loads to prevent layout shift
+.img-lazy-placeholder
+  position relative
+  display block
+  background-color rgba($dark, 0.25)
+  overflow hidden
+
+  // Default aspect ratio (16:9)
+  aspect-ratio 16 / 9
+
+  // Skeleton shimmer animation
+  &::before
+    content ''
+    position absolute
+    inset 0
+    background linear-gradient(90deg,
+    transparent 0%,
+    rgba($light, 0.05) 50%,
+    transparent 100%)
+    animation shimmer 1.5s ease-in-out infinite
+
+  // Different aspect ratios for common image sizes
+  &.placeholder-square
+    aspect-ratio 1 / 1
+
+  &.placeholder-4-3
+    aspect-ratio 4 / 3
+
+  &.placeholder-3-2
+    aspect-ratio 3 / 2
+
+  &.placeholder-3-1
+    aspect-ratio 3 / 1
+
+  &.placeholder-2-3
+    aspect-ratio 2 / 3
+
+  &.placeholder-3-4
+    aspect-ratio 3 / 4
+
+  // Portrait/avatar ratio
+  &.placeholder-avatar
+    aspect-ratio 1 / 1
+    border-radius 50%
+
+  // Custom aspect ratio via data attribute
+  &[data-aspect-ratio]
+    aspect-ratio attr(data-aspect-ratio)
+
+// Shimmer animation for placeholder
+@keyframes shimmer
+  0%
+    transform translateX(-100%)
+  100%
+    transform translateX(100%)
+
+// =============================================================================
+// BLUR-UP IMAGE LOADING - Enhanced
+// =============================================================================
+
+// Blur-up effect for lazy loaded images
+.img-loading
+  filter blur(10px)
+  transform scale(1.05)
+  transition filter 0.3s ease, transform 0.3s ease
+  will-change filter, transform
+
+  &.loaded
+    filter blur(0)
+    transform scale(1)
+
+// Progressive blur-up with low-quality image placeholder
+// The .loaded class is added when the high-quality image loads
+.img-blur-up
+  // Start with very blurred version (or use a tiny placeholder)
+  filter blur(20px)
+  transform scale(1.1)
+  transition filter 0.5s ease-out, transform 0.5s ease-out
+  will-change filter, transform
+
+  // Loaded state - clear image
+  &.loaded
+    filter blur(0)
+    transform scale(1)
+
+// Reduce blur for data saver mode
+@media (prefers-reduced-data reduce)
+  .img-loading
+  .img-blur-up
+    filter blur(5px)
+    transform scale(1.02)
+    transition none
+
+    &.loaded
+      filter none
+      transform none
+
+// Placeholder for images
+.img-placeholder
+  background-color rgba($dark, 0.3)
+  aspect-ratio 16 / 9
+  min-height 100px
+  position relative
+  overflow hidden
+
+  // Placeholder icon
+  &::before
+    content '\f03e' // Font Awesome image icon fallback
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    font-size 2rem
+    opacity  0.3
+    color $light
+
+// =============================================================================
+// ERROR FALLBACK STYLING
+// =============================================================================
+
+// Image load error state
+.img-error
+  position relative
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.2)
+  aspect-ratio 16 / 9
+  min-height 120px
+  display flex
+  align-items center
+  justify-content center
+
+  // Error icon
+  &::before
+    content ''
+    width 48px
+    height 48px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+    opacity 0.6
+
+  // Error message (hidden by default, shown on hover or via aria)
+  .error-message
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    padding 0.5em
+    background rgba($darker, 0.9)
+    color $light
+    font-size 0.85em
+    text-align center
+    opacity 0
+    transition opacity 0.2s
+
+  &:hover .error-message
+    opacity 1
+
+// Broken image fallback with retry option
+.img-broken
+  background-color rgba($orange, 0.1)
+  border 1px dashed rgba($orange, 0.3)
+
+  &::before
+    content '\21BB' // Retry arrow symbol
+    font-size 1.5rem
+    color $orange
+    opacity 0.5
+
+// Retry button for failed images
+.img-retry-btn
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.4em 0.8em
+  background rgba($arch-blue, 0.2)
+  color $secondary-blue
+  border-radius $border-radius-sm
+  font-size 0.85em
+  cursor pointer
+  transition all 0.2s
+  margin-top 0.5em
+
+  &:hover
+    background rgba($arch-blue, 0.3)
+    color $white
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// =============================================================================
 // LAZY LOAD FADE-IN
 // =============================================================================
 
