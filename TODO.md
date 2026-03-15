@@ -461,7 +461,7 @@
 
 ---
 
-Last updated: 2026-03-15 15:37
+Last updated: 2026-03-15 20:26
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1819,17 +1819,19 @@ Last updated: 2026-03-15 15:37
 
 ## 🌏 Vertical Writing (New)
 
-- [ ] **`writing-mode` for Vertical Text** (97%+ browser support)
+- [x] **`writing-mode` for Vertical Text** (97%+ browser support)
   - File: `src/components/i18n.styl`
   - Support vertical writing modes
   - `writing-mode: vertical-rl;` for CJK
   - Stylus: Works directly
+  - Commit: 81111f8
 
-- [ ] **`text-orientation` for Mixed Scripts** (97%+ browser support)
+- [x] **`text-orientation` for Mixed Scripts** (97%+ browser support)
   - File: `src/components/i18n.styl`
   - Control text orientation in vertical mode
   - `text-orientation: mixed;` or `upright;`
   - Stylus: Works directly
+  - Commit: 81111f8
 
 - [ ] **`text-combine-upright` for Tate-chu-yoko** (97%+ browser support)
   - File: `src/components/i18n.styl`
@@ -7550,3 +7552,4 @@ Last updated: 2026-03-15 15:37
 | 2026-03-15 | @media (video-dynamic-range) | Added HDR video display support in modern-css.styl - enhanced video player colors, contrast and saturation filters, progress bar gradients, controls styling for HDR-capable displays, with standard dynamic range fallback | e3c5a45 |
 | 2026-03-15 | text-wrap-style Property | Added text-wrap-style utilities in typography.styl - balance for headings, pretty for paragraphs (92%+ browser support) | 2f290ca |
 | 2026-03-15 | Cargo Query Interface | Added src/components/cargo.styl with query builder styling, result table formatting with sorting/pagination, export options (CSV/JSON/XML/print), map view for spatial queries, error states and loading indicators | 7ec28b8 |
+| 2026-03-15 | Vertical Writing Mode | Added full vertical writing support in i18n.styl - .vertical-rl/.vertical-lr classes, text-orientation variants, CJK defaults, vertical list/table styling (97%+ browser support) | 81111f8 |
