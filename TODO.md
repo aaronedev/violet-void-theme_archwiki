@@ -928,11 +928,12 @@ Last updated: 2026-03-15 06:24
   - Connection line styling
   - Commit: 04e068d5
 
-- [ ] **Map/Geo Extension Styling** (CSS)
+- [x] **Map/Geo Extension Styling** (CSS)
   - File: `src/components/advanced.styl`
   - Interactive map container
   - Marker styling
   - Popup card theming
+  - Commit: 6833e6c
 
 - [ ] **Score/Music Notation** (CSS)
   - File: `src/components/advanced.styl`

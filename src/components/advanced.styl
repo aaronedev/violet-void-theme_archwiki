@@ -650,6 +650,350 @@
   font-style italic
 
 // =============================================================================
+// MAP/GEO EXTENSION STYLING
+// =============================================================================
+// Interactive map container, marker styling, popup card theming
+// Used by MediaWiki Kartographer extension and similar mapping tools
+
+// Map container
+.mw-kartographer
+  position relative
+  margin 1.5em 0
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+  background $dark
+
+  // Map container with fallback
+  .kartographer-container
+  .map
+  .leaflet-container
+    min-height 300px
+    background $dark
+
+  // Full-width map option
+  &.fullwidth
+    margin-inline 0
+    border-radius 0
+    border-inline none
+
+// Map with sidebar
+.mw-kartographer-with-sidebar
+  display flex
+  flex-wrap wrap
+  gap 0
+
+  .kartographer-map
+  .leaflet-container
+    flex 1
+    min-width 300px
+    min-height 400px
+
+  .kartographer-sidebar
+    width 280px
+    min-width 280px
+    background $base
+    border-inline-start 1px solid $border-subtle
+    padding 1em
+    overflow-y auto
+    max-height 500px
+
+// Map markers
+.leaflet-marker-icon
+  transition transform 200ms ease, filter 200ms ease
+  filter drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))
+
+  &:hover
+    transform scale(1.15)
+    filter drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4))
+
+  // Marker shadow
+  &.marker-cluster
+    background $arch-blue
+    border 2px solid $secondary-blue
+    border-radius 50%
+
+    div
+      color $lighter
+      font-weight 600
+
+// Popup cards
+.leaflet-popup-content-wrapper
+  background $base
+  color $lighter
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0
+
+.leaflet-popup-content
+  margin 0
+  padding 0
+  min-width 200px
+  max-width 320px
+
+  // Popup header
+  .popup-title
+    font-weight 600
+    font-size 1.1em
+    padding 0.75em 1em
+    border-bottom 1px solid $border-subtle
+    color $lighter
+
+  // Popup body
+  .popup-body
+    padding 0.75em 1em
+    font-size 0.9em
+    line-height 1.5
+
+  // Popup footer/link
+  .popup-footer
+    padding 0.5em 1em
+    border-top 1px solid $border-subtle
+    text-align end
+
+    a
+      color $arch-blue
+      text-decoration none
+      font-size 0.85em
+
+      &:hover
+        text-decoration underline
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+        border-radius 2px
+
+// Map controls
+.leaflet-control-zoom
+  border none !important
+  box-shadow $shadow-subtle !important
+
+  a
+    background $base !important
+    color $lighter !important
+    border 1px solid $border-subtle !important
+    transition transition-medium
+
+    &:hover
+      background $dark !important
+      border-color $arch-blue !important
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+.leaflet-control-attribution
+  background rgba($dark, 0.8) !important
+  color $muted !important
+  font-size 0.7em !important
+  padding 2px 6px !important
+
+  a
+    color $arch-blue !important
+
+// Scale control
+.leaflet-control-scale-line
+  background rgba($dark, 0.7) !important
+  border-color $border-subtle !important
+  color $light !important
+  font-size 0.7em
+
+// Fullscreen control
+.leaflet-control-fullscreen
+  background $base !important
+  border 1px solid $border-subtle !important
+  border-radius $border-radius-sm !important
+
+  &:hover
+    background $dark !important
+
+// Geolocation control
+.leaflet-control-locate
+  background $base !important
+  border 1px solid $border-subtle !important
+
+  &:hover
+    background $dark !important
+
+  &.active
+    background $arch-blue !important
+    border-color $arch-blue !important
+
+    a
+      color $lighter !important
+
+// Map legend
+.kartographer-legend
+.leaflet-legend
+  background rgba($base, 0.95)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.75em
+  font-size 0.85em
+  color $light
+
+  h4
+  .legend-title
+    font-size 1em
+    font-weight 600
+    margin 0 0 0.5em
+    color $lighter
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+  li
+    display flex
+    align-items center
+    gap 0.5em
+    margin-bottom 0.25em
+    color $light
+
+  // Legend items
+  .legend-item
+    display flex
+    align-items center
+    gap 0.5em
+
+  .legend-color
+    width 16px
+    height 16px
+    border-radius 3px
+    border 1px solid $border-subtle
+    flex-shrink 0
+
+  .legend-line
+    width 24px
+    height 3px
+    border-radius 1px
+
+  .legend-icon
+    width 20px
+    height 20px
+    display flex
+    align-items center
+    justify-content center
+
+// Marker cluster styling
+.marker-cluster
+  background rgba($arch-blue, 0.3)
+  border-radius 50%
+
+  div
+    background $arch-blue
+    color $lighter
+    font-weight 600
+    border-radius 50%
+    display flex
+    align-items center
+    justify-content center
+
+  &.marker-cluster-small
+    div
+      width 30px
+      height 30px
+      font-size 12px
+
+  &.marker-cluster-medium
+    div
+      width 36px
+      height 36px
+      font-size 13px
+
+  &.marker-cluster-large
+    div
+      width 44px
+      height 44px
+      font-size 14px
+
+// Map tooltip (alternative to popup for small content)
+.leaflet-tooltip
+  background $base
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  box-shadow $shadow-subtle
+  font-size 0.85em
+  padding 4px 8px
+
+  &.leaflet-tooltip-top::before
+    border-top-color $border-subtle
+
+  &.leaflet-tooltip-bottom::before
+    border-bottom-color $border-subtle
+
+  &.leaflet-tooltip-left::before
+    border-left-color $border-subtle
+
+  &.leaflet-tooltip-right::before
+    border-right-color $border-subtle
+
+// Minimap control
+.leaflet-control-minimap
+  border 1px solid $border-subtle !important
+  border-radius $border-radius-sm !important
+
+  .leaflet-control-minimap-container
+    background $dark
+
+// Map loading state
+.kartographer-loading
+.leaflet-loading
+  position relative
+  min-height 300px
+  background $dark
+
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    width 40px
+    height 40px
+    margin -20px 0 0 -20px
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// Map error state
+.kartographer-error
+.leaflet-error
+  min-height 200px
+  display flex
+  align-items center
+  justify-content center
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+  padding 2em
+  text-align center
+
+  .error-message
+    color $secondary-red
+    font-weight 500
+
+  .error-hint
+    color $muted
+    font-size 0.9em
+    margin-top 0.5em
+
+// Reduced motion for map animations
+@media (prefers-reduced-motion reduce)
+  .leaflet-marker-icon
+  .leaflet-popup-content-wrapper
+  .leaflet-control-zoom a
+    transition none
+    animation none
+
+// =============================================================================
 // RESPONSIVE ADJUSTMENTS
 // =============================================================================
 
