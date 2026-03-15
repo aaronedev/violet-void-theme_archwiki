@@ -1730,3 +1730,263 @@ input.pf-datetime-picker
 
   @keyframes pf-spin
     animation none
+
+
+// =============================================================================
+// CODEMIRROR STYLING
+// =============================================================================
+
+// CodeMirror editor container
+.CodeMirror
+  background $dark
+  color $lighter
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.5
+  height auto
+  min-height 150px
+
+// CodeMirror scrollbars
+.CodeMirror-vscrollbar
+.CodeMirror-hscrollbar
+  scrollbar-color $arch-blue $darker
+  scrollbar-width thin
+
+// CodeMirror gutters (line numbers)
+.CodeMirror-gutters
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.05))
+  border-right 1px solid $border-subtle
+  padding-right 0.5em
+
+.CodeMirror-linenumber
+  color $muted
+  font-size 0.85em
+  padding 0 0.5em
+  min-width 2em
+  text-align right
+
+// Active line highlight
+.CodeMirror-activeline-background
+  background rgba($arch-blue, 0.08)
+
+.CodeMirror-selected
+  background rgba($arch-blue, 0.2)
+
+.CodeMirror-focused .CodeMirror-selected
+  background rgba($arch-blue, 0.25)
+
+// Cursor and current line
+.CodeMirror-cursor
+  border-left 2px solid $arch-blue
+
+.CodeMirror-matchingbracket
+  color $green
+  background rgba($green, 0.15)
+  font-weight bold
+
+.CodeMirror-nonmatchingbracket
+  color $secondary-red
+  background rgba($secondary-red, 0.15)
+
+// Search/replace highlights
+.CodeMirror-searching
+  background rgba($orange, 0.3)
+  color $orange
+
+.CodeMirror-search-match
+  background rgba($arch-blue, 0.3)
+  border-radius 2px
+
+// Syntax highlighting theme
+.cm-s-default
+
+  // Keywords
+  .cm-keyword
+    color $secondary-red
+
+  // Comments
+  .cm-comment
+    color $muted
+    font-style italic
+
+  // Strings
+  .cm-string
+    color $green
+
+  // Numbers
+  .cm-number
+    color $orange
+
+  // Variables
+  .cm-variable
+    color $light
+
+  // Functions
+  .cm-variable-2
+    color $secondary-blue
+
+  // Operators
+  .cm-operator
+    color $light
+
+  // Property names
+  .cm-property
+    color $secondary-blue
+
+  // Qualifiers
+  .cm-qualifier
+    color $secondary-blue
+
+  // Tags (HTML/XML)
+  .cm-tag
+    color $secondary-red
+
+  // Attributes
+  .cm-attribute
+    color $orange
+
+  // Built-in values
+  .cm-atom
+    color $orange
+
+  // Meta
+  .cm-meta
+    color $muted
+
+  // Link/URL
+  .cm-link
+    color $secondary-blue
+    text-decoration underline
+
+  // Heading
+  .cm-header
+    color $secondary-blue
+    font-weight bold
+
+  // Quote
+  .cm-quote
+    color $green
+    font-style italic
+
+  // Format
+  .cm-formatting
+    color $muted
+
+  // Bracket matching highlight
+  .cm-bracket
+    color $lighter
+
+  // Active line focus
+  &.CodeMirror-focused
+    .CodeMirror-activeline-background
+      background rgba($arch-blue, 0.1)
+
+    .CodeMirror-cursor
+      border-left 2px solid $secondary-blue
+
+// CodeMirror fold gutters
+.CodeMirror-foldgutter
+  width 1em
+
+.CodeMirror-foldgutter-open
+.CodeMirror-foldgutter-folded
+  cursor pointer
+  color $muted
+  text-align center
+
+  &:after
+    content "›"
+    display inline-block
+    transition transform 0.2s
+
+  &:hover
+    color $arch-blue
+
+.CodeMirror-foldgutter-folded:after
+  transform rotate(90deg)
+
+// CodeMirror hint/autocomplete dropdown
+.CodeMirror-hints
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+  max-height 200px
+  overflow-y auto
+
+.CodeMirror-hint
+  color $light
+  padding 0.25em 0.5em
+  border-radius $border-radius-sm
+  cursor pointer
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  &.CodeMirror-hint-active
+    background rgba($arch-blue, 0.2)
+    color $secondary-blue
+
+// CodeMirror dialogs
+.CodeMirror-dialog
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+  border-bottom 1px solid $border-subtle
+  padding 0.5em 1em
+  color $light
+
+.CodeMirror-dialog input
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $lighter
+  padding 0.25em 0.5em
+  font-family $font-mono
+
+  &:focus
+    outline none
+    border-color $arch-blue
+
+.CodeMirror-dialog button
+  background rgba($arch-blue, 0.2)
+  border 1px solid $arch-blue
+  border-radius $border-radius-sm
+  color $secondary-blue
+  padding 0.25em 0.75em
+  cursor pointer
+
+  &:hover
+    background rgba($arch-blue, 0.3)
+
+// CodeMirror selection match
+.CodeMirror-selection-background
+  background rgba($arch-blue, 0.25)
+
+// CodeMirror line widget (added by plugins)
+.CodeMirror-linewidget
+  background rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-sm
+  padding 0.5em
+
+// CodeMirror readonly
+.CodeMirror-readonly
+  background rgba($muted, 0.1)
+  color $muted
+
+// CodeMirror placeholder
+.CodeMirror-placeholder
+  color $muted
+  font-style italic
+
+// Focus-visible for accessibility
+.CodeMirror textarea:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  .CodeMirror-foldgutter-open:after
+  .CodeMirror-foldgutter-folded:after
+    transition none
