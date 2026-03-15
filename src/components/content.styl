@@ -1817,3 +1817,55 @@ dd
   .nav-background-blend
     background-blend-mode normal
     background-image none
+
+// =============================================================================
+// ASPECT-RATIO FOR PERFORMANCE (CLS Optimization)
+// =============================================================================
+// Browser support: 97%+ for aspect-ratio
+// Setting aspect-ratio on images prevents layout shift when they load
+// This improves Core Web Vitals (CLS) score
+
+// Images without explicit dimensions get a reasonable default
+// This prevents layout shift for lazy-loaded or dimension-less images
+img:not([width]):not([height])
+  aspect-ratio 16 / 9
+  height auto
+
+// Override for specific image types
+// Thumbnails should maintain their natural aspect ratio
+img.thumbimage
+img.mw-file-element
+  aspect-ratio unset
+  height auto
+
+// Gallery images - grid-friendly aspect ratios
+.gallery .gallerybox img
+  aspect-ratio 1
+  object-fit cover
+
+// File history and upload images
+.mw-filepage-reset img
+  aspect-ratio 16 / 9
+
+// Avatar images - square aspect ratio
+img.avatar
+img.useravatar
+  aspect-ratio 1
+  border-radius 50%
+
+// Icon images
+img.mw-wiki-logo
+img.mw-ui-icon
+  aspect-ratio 1
+  width inherit
+  height inherit
+
+// Video thumbnails - default 16:9 for videos without dimensions
+video:not([width]):not([height])
+  aspect-ratio 16 / 9
+
+// Ensure responsive images don't overflow
+@media (max-width 768px)
+  img
+    max-width 100%
+    height auto

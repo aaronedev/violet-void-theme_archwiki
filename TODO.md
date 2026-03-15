@@ -1463,11 +1463,12 @@ Last updated: 2026-03-15 02:58
   - Stylus: Works directly
   - Commit: c8d6b37
 
-- [ ] **`aspect-ratio` with attr()** (97%+ browser support for aspect-ratio)
+- [x] **`aspect-ratio` for CLS Optimization** (97%+ browser support for aspect-ratio)
   - File: `src/components/content.styl`
-  - Use width/height attributes for ratio
+  - Set default aspect ratios for images without dimensions
   - Prevent layout shift on image load
-  - Example: `aspect-ratio: attr(width) / attr(height);`
+  - Default 16:9 for images/videos, 1:1 for avatars and gallery images
+  - Commit: 11d8667
 
 ## ⚡ Performance Patterns (New)
 
