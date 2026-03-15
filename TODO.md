@@ -1888,11 +1888,12 @@ Last updated: 2026-03-15 20:26
 
 ## 🎯 Custom Highlight API (New)
 
-- [ ] **`::highlight()` Pseudo-element** (85%+ browser support)
+- [x] **`::highlight()` Pseudo-element** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style custom text highlights
   - `::highlight(search-results) { background: yellow; }`
   - Note: Requires JS API pairing, wrap in `@css{}` for Stylus
+  - Commit: 9a98043
 
 - [ ] **`highlight()` CSSOM Integration** (85%+ browser support)
   - File: `src/components/modern-css.styl`
@@ -7554,3 +7555,4 @@ Last updated: 2026-03-15 20:26
 | 2026-03-15 | text-wrap-style Property | Added text-wrap-style utilities in typography.styl - balance for headings, pretty for paragraphs (92%+ browser support) | 2f290ca |
 | 2026-03-15 | Cargo Query Interface | Added src/components/cargo.styl with query builder styling, result table formatting with sorting/pagination, export options (CSV/JSON/XML/print), map view for spatial queries, error states and loading indicators | 7ec28b8 |
 | 2026-03-15 | Vertical Writing Mode | Added full vertical writing support in i18n.styl - .vertical-rl/.vertical-lr classes, text-orientation variants, CJK defaults, vertical list/table styling (97%+ browser support) | 81111f8 |
+| 2026-03-15 | ::highlight() Pseudo-element | Added ::highlight() pseudo-element styles in modern-css.styl for CSS Custom Highlight API - supports search-results, search-current, annotation, custom-selection, quote, error, warning, link-found highlight types (85%+ browser support) | 9a98043 |
