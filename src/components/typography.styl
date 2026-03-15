@@ -1523,6 +1523,47 @@ button
   text-wrap-mode nowrap
 
 // =============================================================================
+// TEXT WRAP STYLE - Control Text Wrapping Style
+// =============================================================================
+// text-wrap-style controls the style of text wrapping
+// Values: auto (browser default), balance (even line distribution), pretty (prevent orphans)
+// Browser support: 92%+ (Chrome 123+, Safari 17.5+)
+// Note: Works with text-wrap: wrap or text-wrap: nowrap
+
+// Auto style - browser default wrapping behavior
+.text-wrap-style-auto
+  text-wrap-style auto
+
+// Balance style - distributes text more evenly across lines
+// Best for short headlines and titles where even line lengths matter
+.text-wrap-style-balance
+  text-wrap-style balance
+
+// Pretty style - optimizes line breaks to avoid orphans
+// Best for longer paragraphs where typographic quality matters
+.text-wrap-style-pretty
+  text-wrap-style pretty
+
+// Apply balance style to headings
+h1
+h2
+h3
+h4
+  text-wrap-style balance
+
+// Apply pretty style to article body paragraphs
+.article-body
+.wiki-article
+  p
+    text-wrap-style pretty
+
+// Card titles get balance
+.card-title
+.info-box-title
+.navbox-title
+  text-wrap-style balance
+
+// =============================================================================
 // TEXT GROUP ALIGN - Block Level Text Alignment
 // =============================================================================
 // text-group-align controls alignment of text groups within blocks
