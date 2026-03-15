@@ -2526,3 +2526,60 @@ h4[id]
 .sticky-cover
   position sticky
   inset-block-start 0
+
+// =============================================================================
+// UPDATE MEDIA QUERY - Display Refresh Capability
+// =============================================================================
+
+// Detect display refresh capability
+// Browser support: 92%+
+// Useful for e-ink displays (slow update) or high-refresh displays (fast)
+// @media (update: slow) - display updates slowly (e-ink)
+// @media (update: none) - no updates possible (printed)
+// @media (update: fast) - frequent updates (typical screens)
+
+// E-ink / slow display optimization
+@media (update slow)
+  // Disable smooth animations for e-ink displays
+  *
+  *::before
+  *::after
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+    scroll-behavior auto !important
+
+  // Keep essential transitions but make them instant
+  a
+  button
+  .mw-ui-button
+    transition-duration 0.01ms !important
+
+  // Disable motion-heavy effects
+  .vector-sticky-pinned-container
+  .mw-parser-output
+  #content
+    // Reduce or disable parallax effects
+    transform none !important
+
+  // Simplify shadows for e-ink
+  .mbox
+  .ambox
+  .infobox
+  .thumb
+    box-shadow none !important
+
+// No update possible (printed output)
+@media (update none)
+  // Additional print-like restrictions
+  .vector-sticky-pinned-container
+  .mw-sidebar
+  #vector-main-menu
+    display none !important
+
+  // Ensure all content is visible
+  body
+    overflow visible !important
+
+// Fast update (typical screens) - no restrictions needed
+// This is the default and needs no special handling
