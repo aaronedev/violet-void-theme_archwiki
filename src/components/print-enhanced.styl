@@ -1724,3 +1724,185 @@
 
   @page portrait
     size portrait
+
+// =============================================================================
+// PRINT PAGE BREAKS
+// =============================================================================
+// Comprehensive page break controls for print media
+// Browser support: 97%+
+// =============================================================================
+
+@media print
+  // ---------------------------------------------------------------------------
+  // ORPHAN/WIDOW CONTROL
+  // ---------------------------------------------------------------------------
+  // Prevent lonely lines at the top or bottom of a page
+
+  p
+  li
+  td
+  th
+    orphans 3
+    widows 3
+
+  // Headings should have at least 2 lines of following content
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    orphans 2
+    widows 2
+
+  // ---------------------------------------------------------------------------
+  // BREAK-INSIDE: AVOID
+  // ---------------------------------------------------------------------------
+  // Prevent elements from being split across pages
+
+  .infobox
+  .thumb
+  .thumbinner
+  table
+  tr
+  td
+  th
+  pre
+  code
+  .mw-highlight
+  blockquote
+  .navbox
+  .toc
+  .gallery
+  .mw-parser-output
+    break-inside avoid
+    page-break-inside avoid
+    -webkit-column-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // BREAK-BEFORE CONTROLS
+  // ---------------------------------------------------------------------------
+  // Ensure major sections start on a new page
+
+  h1
+    break-before page
+    page-break-before auto
+
+  h2
+    break-before auto
+    page-break-before auto
+
+  // ---------------------------------------------------------------------------
+  // BREAK-AFTER CONTROLS
+  // ---------------------------------------------------------------------------
+  // Ensure headings don't appear alone at bottom of page
+
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-after avoid
+    page-break-after avoid
+
+  // ---------------------------------------------------------------------------
+  // TABLE SPECIFIC BREAKS
+  // ---------------------------------------------------------------------------
+
+  table.wikitable
+    break-inside avoid
+    page-break-inside avoid
+
+    thead
+      break-after avoid
+      page-break-after avoid
+
+    tbody
+      tr
+        break-inside avoid
+        page-break-inside avoid
+
+    tfoot
+      break-before avoid
+      page-break-before avoid
+
+  // ---------------------------------------------------------------------------
+  // CODE BLOCK BREAKS
+  // ---------------------------------------------------------------------------
+
+  pre
+    break-inside avoid
+    page-break-inside avoid
+    white-space pre-wrap
+    word-wrap break-word
+
+  // ---------------------------------------------------------------------------
+  // LIST BREAKS
+  // ---------------------------------------------------------------------------
+
+  ul
+  ol
+    li
+      break-inside avoid
+      page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // FIGURE AND CAPTION BREAKS
+  // ---------------------------------------------------------------------------
+
+  figure
+    break-inside avoid
+    page-break-inside avoid
+
+    figcaption
+      break-after avoid
+      page-break-after avoid
+
+  // ---------------------------------------------------------------------------
+  // REFERENCE LIST BREAKS
+  // ------------------------------------------------------------------------===
+
+  .references
+    li
+      break-inside avoid
+      page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // MESSAGE BOX BREAKS
+  // ---------------------------------------------------------------------------
+
+  .mbox
+  .ambox
+  .ombox
+  .cmbox
+  .tmbox
+  .imbox
+  .dmbox
+    break-inside avoid
+    page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // NAVBOX BREAKS
+  // ---------------------------------------------------------------------------
+
+  .navbox
+    break-before auto
+    break-after auto
+    break-inside avoid
+    page-break-before auto
+    page-break-after auto
+    page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // HEADING AVOIDANCE - Keep headings with following content
+  // ---------------------------------------------------------------------------
+
+  h1 + p
+  h2 + p
+  h3 + p
+  h4 + p
+  h5 + p
+  h6 + p
+    break-after avoid
+    page-break-after avoid
