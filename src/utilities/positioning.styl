@@ -1,0 +1,322 @@
+// =============================================================================
+// Logical Positioning Utilities - Violet Void ArchWiki Theme
+// inset-block and inset-inline for RTL and vertical writing mode support
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// =============================================================================
+// INSET-BLOCK - Flow-relative vertical positioning
+// =============================================================================
+// inset-block-start and inset-block-end
+// Maps to top/bottom in horizontal writing modes
+
+// Inset block start (top in horizontal)
+.inset-block-start-xs
+  inset-block-start 0.25rem
+
+.inset-block-start-sm
+  inset-block-start 0.5rem
+
+.inset-block-start-md
+  inset-block-start 1rem
+
+.inset-block-start-lg
+  inset-block-start 1.5rem
+
+.inset-block-start-xl
+  inset-block-start 2rem
+
+.inset-block-start-auto
+  inset-block-start auto
+
+.inset-block-start-0
+  inset-block-start 0
+
+// Inset block end (bottom in horizontal)
+.inset-block-end-xs
+  inset-block-end 0.25rem
+
+.inset-block-end-sm
+  inset-block-end 0.5rem
+
+.inset-block-end-md
+  inset-block-end 1rem
+
+.inset-block-end-lg
+  inset-block-end 1.5rem
+
+.inset-block-end-xl
+  inset-block-end 2rem
+
+.inset-block-end-auto
+  inset-block-end auto
+
+.inset-block-end-0
+  inset-block-end 0
+
+// Inset block (both start and end)
+.inset-block-xs
+  inset-block 0.25rem
+
+.inset-block-sm
+  inset-block 0.5rem
+
+.inset-block-md
+  inset-block 1rem
+
+.inset-block-lg
+  inset-block 1.5rem
+
+.inset-block-xl
+  inset-block 2rem
+
+.inset-block-auto
+  inset-block auto
+
+.inset-block-0
+  inset-block 0
+
+// Full inset (all sides) with block
+.inset-block-full
+  inset-block 0
+
+// =============================================================================
+// INSET-INLINE - Flow-relative horizontal positioning
+// =============================================================================
+// inset-inline-start and inset-inline-end
+// Maps to left/right in horizontal writing modes (auto-flip in RTL)
+
+// Inset inline start (left in ltr, right in rtl)
+.inset-inline-start-xs
+  inset-inline-start 0.25rem
+
+.inset-inline-start-sm
+  inset-inline-start 0.5rem
+
+.inset-inline-start-md
+  inset-inline-start 1rem
+
+.inset-inline-start-lg
+  inset-inline-start 1.5rem
+
+.inset-inline-start-xl
+  inset-inline-start 2rem
+
+.inset-inline-start-auto
+  inset-inline-start auto
+
+.inset-inline-start-0
+  inset-inline-start 0
+
+// Inset inline end (right in ltr, left in rtl)
+.inset-inline-end-xs
+  inset-inline-end 0.25rem
+
+.inset-inline-end-sm
+  inset-inline-end 0.5rem
+
+.inset-inline-end-md
+  inset-inline-end 1rem
+
+.inset-inline-end-lg
+  inset-inline-end 1.5rem
+
+.inset-inline-end-xl
+  inset-inline-end 2rem
+
+.inset-inline-end-auto
+  inset-inline-end auto
+
+.inset-inline-end-0
+  inset-inline-end 0
+
+// Inset inline (both start and end)
+.inset-inline-xs
+  inset-inline 0.25rem
+
+.inset-inline-sm
+  inset-inline 0.5rem
+
+.inset-inline-md
+  inset-inline 1rem
+
+.inset-inline-lg
+  inset-inline 1.5rem
+
+.inset-inline-xl
+  inset-inline 2rem
+
+.inset-inline-auto
+  inset-inline auto
+
+.inset-inline-0
+  inset-inline 0
+
+// =============================================================================
+// COMBINED INSET PATTERNS - Full positioning with logical properties
+// =============================================================================
+
+// Full inset (all four sides) - equivalent to "inset: 0"
+.inset-0
+  inset 0
+
+.inset-xs
+  inset 0.25rem
+
+.inset-sm
+  inset 0.5rem
+
+.inset-md
+  inset 1rem
+
+.inset-lg
+  inset 1.5rem
+
+.inset-xl
+  inset 2rem
+
+// Center positioned element (using logical properties)
+.inset-center
+  inset-block-start 50%
+  inset-inline-start 50%
+  transform translate(-50%, -50%)
+
+// Cover element (full coverage)
+.inset-cover
+  inset 0
+
+// =============================================================================
+// POSITIONING WITH INSET LOGICAL PROPERTIES
+// =============================================================================
+
+// Absolute positioned with inset-block
+.absolute-block
+  position absolute
+  inset-block 0
+  inset-inline 0
+
+// Fixed positioned with inset-block
+.fixed-block
+  position fixed
+  inset-block 0
+  inset-inline 0
+
+// Sticky positioned with inset-block
+.sticky-block
+  position sticky
+  inset-block 0
+
+// =============================================================================
+// COMPONENT PATTERNS WITH LOGICAL POSITIONING
+// =============================================================================
+
+// Floating panel - positioned from logical start
+.floating-panel-start
+  position absolute
+  inset-block-start 1rem
+  inset-inline-start 1rem
+
+.floating-panel-end
+  position absolute
+  inset-block-end 1rem
+  inset-inline-end 1rem
+
+// Sidebar with inset-inline
+.sidebar-logical
+  position fixed
+  inset-block 0
+  inset-inline-start 0
+  width 280px
+  overflow-y auto
+
+// Modal with logical positioning
+.modal-logical
+  position fixed
+  inset 0
+  display flex
+  align-items center
+  justify-content center
+  background rgba(0, 0, 0, 0.5)
+
+  dialog
+    inset-block-auto
+    inset-inline-auto
+    max-width 90vw
+    max-height 90vh
+
+// Toast notification at logical bottom
+.toast-logical
+  position fixed
+  inset-block-end 1rem
+  inset-inline-end 1rem
+
+// Tooltip with logical positioning
+.tooltip-logical
+  position absolute
+  inset-block-start 100%
+  inset-inline-start 0
+  margin-block-start 0.5rem
+
+// =============================================================================
+// RTL-AWARE POSITIONING PATTERNS
+// =============================================================================
+
+// Arrow pointing to the logical start
+.arrow-start::before
+  content ''
+  position absolute
+  inset-block-start 50%
+  inset-inline-start -6px
+  transform translateY(-50%)
+  border-width 6px
+  border-style solid
+  border-color transparent $arch-blue transparent transparent
+
+// Arrow pointing to the logical end
+.arrow-end::before
+  content ''
+  position absolute
+  inset-block-start 50%
+  inset-inline-end -6px
+  transform translateY(-50%)
+  border-width 6px
+  border-style solid
+  border-color transparent transparent transparent $arch-blue
+
+// =============================================================================
+// RESPONSIVE INSET POSITIONING
+// =============================================================================
+
+// Smaller insets on mobile
+@media (max-width 768px)
+  .inset-block-md
+    inset-block 0.5rem
+
+  .inset-inline-md
+    inset-inline 0.5rem
+
+  .inset-lg
+    inset 1rem
+
+  .sidebar-logical
+    width 100%
+    inset-block-start auto
+    inset-inline 0
+
+// Larger insets on desktop
+@media (min-width 1200px)
+  .inset-block-lg
+    inset-block 2rem
+
+  .inset-inline-lg
+    inset-inline 2rem
+
+  .inset-xl
+    inset 3rem
+
+  .sidebar-logical
+    width 320px
