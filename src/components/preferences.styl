@@ -542,6 +542,237 @@ button.mw-prefs-reset-all
     animation none
 
 // =============================================================================
+// CUSTOM CSS SNIPPET SUPPORT
+// =============================================================================
+// CSS editor textarea styling, syntax highlighting, validation error display
+
+// CSS snippet editor container
+.mw-css-editor
+  position relative
+  margin 1em 0
+
+  // Editor label
+  .mw-css-editor-label
+    display block
+    font-weight 600
+    color $lighter
+    margin-bottom 0.5em
+    font-size 0.95em
+
+  // Textarea for custom CSS
+  textarea.mw-custom-css
+    width 100%
+    min-height 300px
+    font-family $font-mono
+    font-size 0.9em
+    line-height 1.5
+    background rgba($dark, 0.8)
+    color $light
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+    resize vertical
+    tab-size 2
+
+    // Focus state
+    &:focus
+      outline none
+      border-color rgba($arch-blue, 0.5)
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    // Placeholder styling
+    &::placeholder
+      color rgba($light, 0.4)
+      font-style italic
+
+    // Line numbers gutter (requires JS to add line numbers)
+    &.with-line-numbers
+      padding-inline-start 3.5em
+      background-image repeating-linear-gradient(
+        transparent,
+        transparent 1.5em,
+        rgba($border-subtle, 0.3) 1.5em,
+        rgba($border-subtle, 0.3) 1.6em
+      )
+      background-position 0 0.85em
+
+  // Syntax highlighting classes (applied by JS)
+  .css-selector
+    color $cyan
+
+  .css-property
+    color $yellow
+
+  .css-value
+    color $green
+
+  .css-comment
+    color rgba($light, 0.4)
+    font-style italic
+
+  .css-string
+    color $orange
+
+  .css-number
+    color $magenta
+
+// Validation error display
+.css-validation-errors
+  margin-top 0.75em
+  padding 0.75em 1em
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-sm
+  border-inline-start 3px solid $red
+
+  // Error header
+  .error-header
+    display flex
+    align-items center
+    gap 0.5em
+    font-weight 600
+    color $red
+    margin-bottom 0.5em
+
+    // Error icon
+    &::before
+      content '⚠'
+      font-size 1.1em
+
+  // Individual error
+  .css-error
+    font-family $font-mono
+    font-size 0.85em
+    color rgba($light, 0.8)
+    padding 0.25em 0
+    display block
+
+    // Error line number
+    .error-line
+      color $arch-blue
+      font-weight 600
+      margin-inline-end 0.5em
+
+// Validation success indicator
+.css-validation-success
+  margin-top 0.75em
+  padding 0.5em 1em
+  background rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-sm
+  border-inline-start 3px solid $green
+  color $green
+  font-size 0.9em
+  display flex
+  align-items center
+  gap 0.5em
+
+  // Success icon
+  &::before
+    content '✓'
+    font-weight bold
+
+// CSS preview pane
+.css-preview-pane
+  margin-top 1em
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  min-height 100px
+
+  // Preview header
+  .preview-header
+    font-size 0.85em
+    color rgba($light, 0.6)
+    margin-bottom 0.75em
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  // Preview iframe/container for live CSS
+  .preview-content
+    background $base
+    border-radius $border-radius-sm
+    padding 1em
+    color $light
+    font-size 0.9em
+
+    // Placeholder when empty
+    &:empty::before
+      content 'CSS preview will appear here'
+      color rgba($light, 0.4)
+      font-style italic
+
+// CSS snippet help/tips
+.css-editor-help
+  margin-top 0.75em
+  padding 0.75em
+  background rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+  font-size 0.85em
+  color rgba($light, 0.7)
+
+  // Help header
+  .help-header
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.5em
+
+  // Help links
+  a
+    color $arch-blue
+    text-decoration underline
+
+    &:hover
+      color lighten($arch-blue, 10%)
+
+// Apply button for custom CSS
+button.mw-apply-css
+  margin-top 0.75em
+  padding 0.5em 1.25em
+  background linear-gradient(135deg, $arch-blue, darken($arch-blue, 10%))
+  color $lighter
+  border none
+  border-radius $border-radius-md
+  font-weight 600
+  cursor pointer
+  transition transition-medium
+
+  &:hover
+    background linear-gradient(135deg, lighten($arch-blue, 5%), $arch-blue)
+    box-shadow 0 2px 8px rgba($arch-blue, 0.3)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &:disabled
+    opacity 0.5
+    cursor not-allowed
+
+// Reset custom CSS button
+button.mw-reset-css
+  margin-top 0.75em
+  margin-inline-start 0.5em
+  padding 0.5em 1.25em
+  background transparent
+  color $light
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-weight 500
+  cursor pointer
+  transition transition-medium
+
+  &:hover
+    border-color rgba($red, 0.5)
+    color $red
+
+  &:focus-visible
+    outline 2px solid $red
+    outline-offset 2px
+
+// =============================================================================
 // RESPONSIVE ADJUSTMENTS
 // =============================================================================
 
