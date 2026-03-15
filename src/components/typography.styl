@@ -1396,6 +1396,50 @@ h3
   text-wrap balance
 
 // =============================================================================
+// TEXT WRAP MODE - Control Text Wrapping Behavior
+// =============================================================================
+// text-wrap-mode controls whether text wraps or displays without wrapping
+// Browser support: 97%+
+// Useful for preventing unwanted line breaks in specific contexts
+
+// Normal wrapping (default)
+.text-wrap
+  text-wrap-mode wrap
+
+// No wrapping - display text on single line
+// Use for short labels, buttons, or where wrapping is undesirable
+.text-nowrap
+  text-wrap-mode nowrap
+
+// Apply nowrap to specific elements
+// Navigation labels
+.mw-ui-button
+.mw-ui-quiet
+  text-wrap-mode nowrap
+
+// Table headers
+th
+  text-wrap-mode nowrap
+
+// Code and preformatted text
+pre
+.code
+.mw-highlight
+  text-wrap-mode nowrap
+
+// Short labels and badges
+.label
+.badge
+.tag
+  text-wrap-mode nowrap
+
+// Button text
+input[type="submit"]
+input[type="button"]
+button
+  text-wrap-mode nowrap
+
+// =============================================================================
 // TEXT GROUP ALIGN - Block Level Text Alignment
 // =============================================================================
 // text-group-align controls alignment of text groups within blocks
