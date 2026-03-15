@@ -1447,11 +1447,12 @@ Last updated: 2026-03-15 08:29
 
 ## 🔤 Text & Typography (New)
 
-- [ ] **`text-spacing-trim` for CJK** (87%+ browser support)
+- [x] **`text-spacing-trim` for CJK** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Control spacing around CJK punctuation
   - Better typography for Asian languages
   - Stylus: Works directly
+  - Commit: adbcbaa
 
 - [x] **`white-space-collapse` Control** (97%+ browser support)
   - File: `src/components/code.styl`, `src/components/content.styl`

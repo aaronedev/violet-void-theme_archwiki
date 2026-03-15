@@ -904,6 +904,48 @@ h6
 
 
 // =============================================================================
+// CJK TYPOGRAPHY - TEXT SPACING TRIM
+// =============================================================================
+
+// text-spacing-trim - Control spacing around CJK punctuation
+// Browser support: 87%+ (Chrome 114+, Safari 17.2+)
+// Enables proper text trimming for Asian languages
+// Values: auto, none, trim-start, trim-end, trim-both, space-first
+
+// CJK content with proper spacing
+.cjk-content
+.text-cjk
+  text-spacing-trim auto
+
+// No text spacing trim
+.no-spacing-trim
+  text-spacing-trim none
+
+// Trim both sides for centered text
+.trim-both
+  text-spacing-trim trim-both
+
+// Trim start only
+.trim-start
+  text-spacing-trim trim-start
+
+// Trim end only
+.trim-end
+  text-spacing-trim trim-end
+
+// Keep space before CJK characters
+.space-first
+  text-spacing-trim space-first
+
+// Combine with writing-mode for vertical text
+[lang^="ja"]
+[lang^="zh"]
+[lang^="ko"]
+  &.cjk-content
+    text-spacing-trim auto
+
+
+// =============================================================================
 // COUNTER ENHANCEMENTS
 // =============================================================================
 
