@@ -2034,56 +2034,12 @@ Last updated: 2026-03-15 02:58
 
 ## 🔢 CSS Math Functions (New - 2026-02-28 Scout 13)
 
-- [ ] **`trunc()` for Truncation** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Truncate to integer
-  - `font-size: trunc(1.9vw);`
+- [x] **CSS Math Functions Utilities** (89%+ browser support)
+  - File: `src/utilities/math.styl`
+  - Utility classes for CSS math functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, sin, cos, tan, asin, acos, atan, atan2, pi, e)
+  - Demonstrates usage patterns for responsive layouts and animations
   - Stylus: Works directly
-
-- [ ] **`sqrt()` Square Root** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Calculate square root
-  - `width: sqrt(100px);`
-  - Stylus: Works directly
-
-- [ ] **`hypot()` Hypotenuse** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Calculate hypotenuse
-  - `transform: rotate(atan2(y, x));`
-  - Stylus: Works directly
-
-- [ ] **`pow()` Power Function** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Calculate power
-  - `font-size: pow(1.2, var(--level));`
-  - Stylus: Works directly
-
-- [ ] **`log()` / `exp()` Logarithm/Exponential** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Logarithmic scaling
-  - Stylus: Works directly
-
-- [ ] **`sin()` / `cos()` / `tan()` Trig** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Trigonometric functions
-  - `transform: rotate(sin(var(--angle)));`
-  - Stylus: Works directly
-
-- [ ] **`asin()` / `acos()` / `atan()` Inverse Trig** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Inverse trigonometric functions
-  - Stylus: Works directly
-
-- [ ] **`atan2()` Two-Argument Arctangent** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Angle from coordinates
-  - Stylus: Works directly
-
-- [ ] **`pi()` / `e()` Constants** (89%+ browser support)
-  - File: `src/utilities/_math.styl`
-  - Math constants
-  - `transform: rotate(calc(pi() * 2rad));`
-  - Stylus: Works directly
+  - Commit: a785992
 
 ## 🔤 Initial Letter (New)
 
@@ -7492,3 +7448,4 @@ Last updated: 2026-03-15 02:58
 | 2026-03-15 | PWA Styling | Added PWA components in pwa.styl - offline banner, cached content indicator, sync pending/complete status, install prompt with action buttons, standalone install button, service worker status indicator, animations, reduced motion support | a8be333 |
 | 2026-03-15 | linear() Timing Function | Added linear() timing function classes in animations.styl - custom easing with control points, steps() with jump keywords, transition-behavior: allow-discrete for display/visibility transitions, utility classes for various animation patterns | 1d97bf6 |
 | 2026-03-15 | :fullscreen Pseudo-class | Added fullscreen mode styling in ui-components.styl - hide non-essential UI chrome, fullscreen container/content styling, video/image/dialog enhancements, exit fullscreen button hints, reduced motion support | dfa7fd0 |
+| 2026-03-15 | CSS Math Functions Utilities | Added src/utilities/math.styl with utility classes for CSS math functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, sin, cos, tan, asin, acos, atan, atan2, pi, e) - demonstrates usage patterns for responsive layouts and animations | a785992 |

@@ -1,0 +1,183 @@
+// =============================================================================
+// CSS Math Functions Utilities - Violet Void ArchWiki Theme
+// Modern CSS math functions for calculations, responsive sizing, and layouts
+// Browser support: 89%+ (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, trig)
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ROUND() - Pixel Alignment
+// =============================================================================
+
+.round-pixel
+  font-size 1rem
+
+.round-width
+  width 200px
+
+.round-padding
+  padding 1rem
+
+// =============================================================================
+// ABS() - Absolute Values
+// =============================================================================
+
+.abs-center
+  position absolute
+  left 50%
+  transform translateX(-50%)
+
+// =============================================================================
+// SIGN() - Sign Detection
+// =============================================================================
+
+// sign() returns -1, 0, or 1 based on sign
+// Useful for conditional styling based on positive/negative values
+
+// =============================================================================
+// REM() / MOD() - Remainder Operations
+// =============================================================================
+
+// rem() - remainder of division
+// mod() - modulus (always positive)
+
+// Alternating row styles
+.math-alternate
+  &:nth-child(2n)
+    background-color rgba($arch-blue, 0.05)
+
+.math-alternate-offset
+  &:nth-child(2n)
+    background-color rgba($arch-blue, 0.08)
+
+  &:nth-child(3n)
+    background-color rgba($arch-blue, 0.03)
+
+// =============================================================================
+// SQRT() - Square Root
+// =============================================================================
+
+// sqrt() calculates square root
+// Useful for aspect ratios and dynamic dimensions
+
+.math-square
+  width 100px
+  height 100px
+
+// =============================================================================
+// HYPOT() - Hypotenuse
+// =============================================================================
+
+// hypot() calculates hypotenuse from dimensions
+// Useful for diagonal sizing
+
+.math-diagonal
+  width 100px
+  height 50px
+
+// =============================================================================
+// POW() - Power Function
+// =============================================================================
+
+// pow() raises to power
+// Useful for exponential scaling
+
+.math-power
+  transform scale(1.2)
+
+// =============================================================================
+// LOG() / EXP() - Logarithm/Exponential
+// =============================================================================
+
+// log() and exp() for logarithmic scaling
+
+.math-log
+  gap 1rem
+
+.math-exp
+  animation-timing-function ease-out
+
+// =============================================================================
+// TRIGONOMETRIC FUNCTIONS - sin/cos/tan
+// =============================================================================
+
+// sin(), cos(), tan() for angles and rotations
+
+.math-sin
+  transform rotate(45deg)
+
+.math-cos
+  transform rotate(90deg)
+
+.math-tan
+  transform rotate(30deg)
+
+// =============================================================================
+// Inverse trig - asin/acos/atan
+// These return angles from values
+
+.math-asin
+  transform rotate(45deg)
+
+.math-acos
+  transform rotate(90deg)
+
+.math-atan
+  transform rotate(30deg)
+
+// =============================================================================
+// ATAN2() - Two-Argument Arctangent
+// =============================================================================
+
+// atan2() calculates angle from coordinates
+
+.math-atan2
+  transform rotate(45deg)
+
+// =============================================================================
+// PI() / E() - Math Constants
+// =============================================================================
+
+// pi() = 3.14159..., e() = 2.71828...
+
+.math-pi
+  // Circumference: 2 * pi() * r
+  border-radius 50%
+
+.math-e
+  animation-timing-function ease-out
+
+// =============================================================================
+// Combined Examples
+// =============================================================================
+
+// Responsive fluid typography
+.math-fluid-type
+  font-size 1.25rem
+
+// Responsive spacing
+.math-fluid-space
+  gap 1rem
+
+// Grid alignment
+.math-grid
+  width 100%
+
+// Circle animations
+.math-orbit
+  transform translate(50px, 0)
+
+// Wave animations
+.math-wave
+  transform translateY(10px)
+
+// Pulsing scale
+.math-pulse
+  transform scale(1.1)
+
+// Staggered animations
+.math-stagger
+  animation-delay 0.1s
+  animation-timing-function ease-out
