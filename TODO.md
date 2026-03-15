@@ -2930,12 +2930,13 @@ Last updated: 2026-03-15 11:03
 
 ## 🔧 MediaWiki Extensions Styling (New - 2026-03-01 Scout 16)
 
-- [ ] **Extension:CodeMirror Styling** (CSS)
+- [x] **Extension:CodeMirror Styling** (CSS)
   - File: `src/components/extensions.styl`
   - Syntax highlighting in edit mode
   - Line number styling
   - Active line highlight
   - Bracket matching indicator
+  - Commit: d6a40e0
 
 - [x] **Extension:VisualEditor Styling** (CSS)
   - File: `src/components/extensions.styl` (new file)
