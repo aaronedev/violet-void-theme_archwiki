@@ -1,4 +1,4 @@
-const { execSync } = require('child_process')
+const { execFileSync } = require('child_process')
 const fs = require('fs')
 const path = require('path')
 
@@ -18,7 +18,7 @@ async function setup() {
   // Download ZIP
   console.log(`Downloading Stylus from ${STYLUS_DOWNLOAD_URL}...`)
   try {
-    execSync(`curl -L -o ${TEMP_ZIP} ${STYLUS_DOWNLOAD_URL}`)
+    execFileSync('curl', ['-L', '-o', TEMP_ZIP, STYLUS_DOWNLOAD_URL])
   } catch (error) {
     console.error('Failed to download Stylus:', error)
     process.exit(1)
@@ -27,7 +27,7 @@ async function setup() {
   // Extract ZIP
   console.log(`Extracting to ${EXT_DIR}...`)
   try {
-    execSync(`unzip -o ${TEMP_ZIP} -d ${EXT_DIR}`)
+    execFileSync('unzip', ['-o', TEMP_ZIP, '-d', EXT_DIR])
   } catch (error) {
     console.error('Failed to extract Stylus:', error)
     process.exit(1)
