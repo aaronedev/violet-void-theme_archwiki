@@ -991,11 +991,12 @@ Last updated: 2026-03-15 02:58
 
 ## 📱 Progressive Web App (New)
 
-- [ ] **PWA Manifest Colors** (100% browser support)
+- [x] **PWA Manifest Colors** (100% browser support)
   - File: `src/manifest.styl` (new file)
   - `theme-color` meta tag support
   - `apple-mobile-web-app-status-bar-style`
   - Splash screen background
+  - Commit: ebff13c
 
 - [x] **Offline Mode Indicator** (CSS)
   - File: `src/components/pwa.styl` (new file)
@@ -1386,7 +1387,7 @@ Last updated: 2026-03-15 02:58
   - Stylus: Works directly
   - Added grid-template-columns: subgrid support for tables, infoboxes, and nested grids
   - Includes responsive multi-column grid tables (3 and 4 columns)
-  - Commit: 
+  - Commit: 3c1e38a
 
 - [ ] **`masonry` Layout for Galleries** (87%+ browser support, Firefox only behind flag)
   - File: `src/components/file-pages.styl`
