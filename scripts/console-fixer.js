@@ -224,18 +224,21 @@ class ConsoleFixer {
 
         if (error.type === 'wrap_supports') {
           fixes.push({
+            action: error.type,
             property: error.property,
-            fix: `@supports (${error.property}: auto) { ... }`,
+            fix: `@supports (${error.property}: auto)`,
             autoFixable: true,
           })
         } else if (error.type === 'wrap_supports_selector') {
           fixes.push({
+            action: error.type,
             property: error.property,
-            fix: `@supports selector(${error.property}) { ... }`,
+            fix: `@supports selector(${error.property})`,
             autoFixable: true,
           })
         } else if (error.type === 'investigate') {
           fixes.push({
+            action: error.type,
             property: error.property,
             fix: 'Manual review required',
             autoFixable: false,
@@ -270,6 +273,92 @@ class ConsoleFixer {
     }
 
     return results
+  }
+
+  applyFixes(fixes) {
+    const autoFixable = fixes.filter((f) => f.autoFixable)
+    if (autoFixable.length === 0) return
+
+    console.log('\n⚡ Applying auto-fixes...')
+
+    // Group fixes by file
+    const fileModifications = {}
+
+    for (const fix of autoFixable) {
+      const locations = this.findInSourceFiles(fix.property)
+
+      for (const loc of locations) {
+        if (!fileModifications[loc.file]) {
+          fileModifications[loc.file] = []
+        }
+        fileModifications[loc.file].push({
+          line: loc.line,
+          originalContent: loc.content,
+          property: fix.property,
+          fix: fix.fix,
+          action: fix.action,
+        })
+      }
+    }
+
+    let filesFixed = 0
+    let linesFixed = 0
+
+    for (const [file, mods] of Object.entries(fileModifications)) {
+      const fileContent = fs.readFileSync(file, 'utf-8')
+      const lines = fileContent.split('\n')
+
+      // Sort modifications by line number descending
+      mods.sort((a, b) => b.line - a.line)
+
+      let modified = false
+      for (const mod of mods) {
+        const lineIdx = mod.line - 1
+        const originalLine = lines[lineIdx]
+
+        // Safety check
+        if (!originalLine.includes(mod.property)) {
+          console.warn(
+            `⚠️  Warning: Property ${mod.property} not found on line ${mod.line} in ${file}`
+          )
+          continue
+        }
+
+        const indentMatch = originalLine.match(/^(\s*)/)
+        const indent = indentMatch ? indentMatch[1] : ''
+
+        // Apply the fix based on the action type
+        if (
+          mod.action === 'wrap_supports' ||
+          mod.action === 'wrap_supports_selector'
+        ) {
+          // For Stylus, we just indent the original line under the wrapper
+          lines.splice(
+            lineIdx,
+            1,
+            `${indent}${mod.fix}`,
+            `${indent}  ${originalLine.trim()}`
+          )
+        } else {
+          // Fallback or other actions not auto-fixable
+          console.warn(
+            `⚠️  Warning: Unknown action ${mod.action} for ${mod.property}`
+          )
+          continue
+        }
+
+        linesFixed++
+        modified = true
+      }
+
+      if (modified) {
+        fs.writeFileSync(file, lines.join('\n'))
+        console.log(`  ✅ Fixed ${file}`)
+        filesFixed++
+      }
+    }
+
+    console.log(`\n🎉 Applied ${linesFixed} fixes across ${filesFixed} files.`)
   }
 
   printReport(errors, fixes) {
@@ -335,10 +424,13 @@ class ConsoleFixer {
       this.printReport(errors, fixes)
 
       if (this.autoFix && fixes.some((f) => f.autoFixable)) {
-        console.log(
-          '\n⚡ Auto-fixing not implemented yet - use dry-run to see what needs fixing'
-        )
-        // TODO: Implement actual auto-fixing
+        if (this.dryRun) {
+          console.log(
+            '\n⚡ Auto-fixing available - run without --dry-run to apply'
+          )
+        } else {
+          this.applyFixes(fixes)
+        }
       }
 
       return { errors, fixes }
