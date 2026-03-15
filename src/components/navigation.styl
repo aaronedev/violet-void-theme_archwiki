@@ -1452,3 +1452,100 @@ h6:hover .mw-editsection
 #footer
   gap 1em
 
+// ===========================================
+// Scroll Markers (New - 2026-03-15)
+// File: navigation.styl
+// Style scroll position markers like carousel pagination dots
+// Browser support: 85%+
+// Note: Wrap in @css{} for Stylus
+// ===========================================
+
+@css
+  // Base scroll marker container styling
+  .scroll-marker-group
+    display flex
+    gap 8px
+    justify-content center
+    padding 16px 0
+
+
+  // Scroll marker individual dot styling
+  ::scroll-marker
+    width 10px
+    height 10px
+    border-radius 50%
+    background-color rgba(128, 128, 128, 0.4)
+    transition background-color 0.3s ease, transform 0.3s ease
+
+
+  // Active/current scroll marker
+  ::scroll-marker:focus
+  ::scroll-marker:active
+  .scroll-marker-group:has(::scroll-marker:focus) ::scroll-marker
+  .scroll-marker-group:has(::scroll-marker:active) ::scroll-marker
+    background-color var(--accent, #7c4dff)
+    transform scale(1.2)
+
+
+  // Scroll marker group focus within
+  ::scroll-marker-group:has(::scroll-marker:focus) ::scroll-marker
+    opacity 0.6
+
+
+  // Hover state for scroll markers
+  @media (hover hover)
+    ::scroll-marker:hover
+      background-color rgba(128, 128, 128, 0.7)
+      transform scale(1.1)
+      cursor pointer
+
+
+
+  // Reduced motion support
+  @media (prefers-reduced-motion reduce)
+    ::scroll-marker
+      transition none
+
+    ::scroll-marker:hover
+    ::scroll-marker:focus
+    ::scroll-marker:active
+      transform none
+
+
+
+  // Vertical scroll marker group
+  .scroll-marker-group--vertical
+    flex-direction column
+    gap 12px
+
+
+  // Horizontal scroll marker group (default)
+  .scroll-marker-group--horizontal
+    flex-direction row
+    gap 8px
+
+
+  // Custom scroll marker colors for different sections
+  .scroll-marker-group--toc ::scroll-marker
+    background-color rgba(124, 77, 255, 0.3)
+    width 8px
+    height 8px
+
+
+  .scroll-marker-group--toc ::scroll-marker:focus
+  .scroll-marker-group--toc ::scroll-marker:active
+    background-color var(--accent, #7c4dff)
+
+
+  .scroll-marker-group--gallery ::scroll-marker
+    background-color rgba(255, 255, 255, 0.4)
+    width 12px
+    height 12px
+
+
+  .scroll-marker-group--gallery ::scroll-marker:focus
+  .scroll-marker-group--gallery ::scroll-marker:active
+    background-color #fff
+
+
+

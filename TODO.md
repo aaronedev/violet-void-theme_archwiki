@@ -2002,11 +2002,12 @@ Last updated: 2026-03-15 09:55
 
 ## 🔖 Scroll Markers (New)
 
-- [ ] **`::scroll-marker` Pseudo-element** (85%+ browser support)
+- [x] **`::scroll-marker` Pseudo-element** (85%+ browser support)
   - File: `src/components/navigation.styl`
   - Style scroll position markers
   - Carousel pagination dots
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: f69c620
 
 - [ ] **`::scroll-marker-group` Pseudo-element** (85%+ browser support)
   - File: `src/components/navigation.styl`
