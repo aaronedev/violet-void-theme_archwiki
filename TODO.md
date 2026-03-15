@@ -997,17 +997,19 @@ Last updated: 2026-03-15 02:58
   - `apple-mobile-web-app-status-bar-style`
   - Splash screen background
 
-- [ ] **Offline Mode Indicator** (CSS)
+- [x] **Offline Mode Indicator** (CSS)
   - File: `src/components/pwa.styl` (new file)
   - Offline banner styling
   - Cached content indicator
   - Sync pending status
+  - Commit: a8be333
 
-- [ ] **Install Prompt Styling** (CSS)
+- [x] **Install Prompt Styling** (CSS)
   - File: `src/components/pwa.styl`
   - Add to home screen prompt
   - Install button styling
   - Dismiss option
+  - Commit: a8be333
 
 
 ## 👥 Community & Collaboration (New)
@@ -7460,3 +7462,4 @@ Last updated: 2026-03-15 02:58
 | 2026-03-15 | Systemd Unit Styling | Added comprehensive systemd unit styling in archwiki-templates.styl - service, timer, socket, path, device, mount, automount, slice, scope units, journal entries, unit file preview, action buttons | 3fea0b8 |
 | 2026-03-15 | Grid Shorthands | Added place-items, place-content, place-self utility classes in utilities.styl for cleaner grid alignment code (97%+ browser support) | bd96a30 |
 | 2026-03-15 | Display Capability Queries | Added @media (resolution), @media (min-resolution: 2dppx), @media (color-index), @media (monochrome) in modern-css.styl for retina display detection, color depth detection, and monochrome e-ink display support | c688a5a |
+| 2026-03-15 | PWA Styling | Added PWA components in pwa.styl - offline banner, cached content indicator, sync pending/complete status, install prompt with action buttons, standalone install button, service worker status indicator, animations, reduced motion support | a8be333 |
