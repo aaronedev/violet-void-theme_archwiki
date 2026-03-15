@@ -546,6 +546,76 @@ bdo[dir="rtl"]
     text-orientation mixed
 
 // -----------------------------------------------------------------------------
+// Full Vertical Writing Mode Support
+// -----------------------------------------------------------------------------
+// CSS-native vertical writing mode support for CJK languages
+// Browser support: 97%+
+
+// Vertical writing mode classes - can be applied to any container
+.vertical-rl
+[data-writing-mode="vertical-rl"]
+  writing-mode vertical-rl
+  text-orientation mixed
+  unicode-bidi plaintext
+
+.vertical-lr
+[data-writing-mode="vertical-lr"]
+  writing-mode vertical-lr
+  text-orientation mixed
+  unicode-bidi plaintext
+
+// Sideways text - rotates text 90deg for vertical
+.vertical-sideways
+[data-orientation="sideways"]
+  text-orientation sideways
+  writing-mode vertical-rl
+
+// Upright text - displays each character upright in vertical text
+.vertical-upright
+[data-orientation="upright"]
+  text-orientation upright
+  text-combine-upright all
+
+// Vertical text in articles - for spans within vertical containers
+.vertical-text
+article.vertical-rl
+article.vertical-lr
+  text-orientation mixed
+
+// CJK vertical text defaults
+:lang(zh)
+:lang(zh-CN)
+:lang(zh-TW)
+:lang(zh-Hans)
+:lang(zh-Hant)
+:lang(ja)
+:lang(ko)
+  // Default vertical text styling when writing-mode is set
+  &[style*="writing-mode: vertical"]
+    text-orientation mixed
+    text-combine-upright all
+    unicode-bidi plaintext
+
+  // Add vertical-rl as common class for CJK languages
+  &.vertical
+    writing-mode vertical-rl
+    text-orientation mixed
+    unicode-bidi plaintext
+
+// Vertical list markers
+.vertical-lists
+.vertical-rl ul
+.vertical-lr ul
+  list-style-position inside
+
+// Vertical table headers
+.vertical-table-headers
+.vertical-rl table th
+.vertical-lr table th
+  writing-mode vertical-rl
+  text-orientation mixed
+
+// -----------------------------------------------------------------------------
 // :dir() Pseudo-class for Direction Styling
 // -----------------------------------------------------------------------------
 // Style elements based on their text direction (ltr/rtl)
