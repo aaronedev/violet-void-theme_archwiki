@@ -257,3 +257,566 @@
     // exception for specific parts that should remain uppercase if nested
     .title-exception
       text-transform none
+
+// =============================================================================
+// SYSTEMD UNIT STYLING
+// =============================================================================
+// Service unit boxes commonly used in ArchWiki systemd articles
+
+.systemd-service
+.systemd-unit-service
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .service-name
+    font-family $font-mono
+    font-weight 600
+    color $arch-blue
+    font-size 0.95em
+
+  .service-description
+    color $light
+    margin-top 0.5em
+
+  .service-status
+    display inline-flex
+    align-items center
+    gap 0.5em
+    margin-top 0.75em
+    padding 0.25em 0.75em
+    border-radius $border-radius-sm
+    font-size 0.875em
+    font-weight 500
+
+    &.active
+      background rgba($green, 0.15)
+      color $green
+      border 1px solid rgba($green, 0.3)
+
+    &.inactive
+      background rgba($muted, 0.15)
+      color $light
+      border 1px solid rgba($muted, 0.3)
+
+    &.failed
+      background rgba($secondary-red, 0.15)
+      color $secondary-red
+      border 1px solid rgba($secondary-red, 0.3)
+
+    &.activating
+    &.deactivating
+      background rgba($orange, 0.15)
+      color $orange
+      border 1px solid rgba($orange, 0.3)
+      animation pulse 2s infinite
+
+  .service-enabled
+    font-size 0.75em
+    color $muted
+    margin-left 0.5em
+
+    &.enabled::before
+      content "enabled"
+      color $green
+
+    &.disabled::before
+      content "disabled"
+      color $muted
+
+    &.masked::before
+      content "masked"
+      color $secondary-red
+
+// =============================================================================
+// SYSTEMD TIMER UNITS
+// =============================================================================
+
+.systemd-timer
+.systemd-unit-timer
+  background linear-gradient(135deg, rgba($secondary-blue, 0.1), rgba($secondary-blue, 0.05))
+  border 1px solid rgba($secondary-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .timer-name
+    font-family $font-mono
+    font-weight 600
+    color $secondary-blue
+    font-size 0.95em
+
+  .timer-schedule
+    margin-top 0.75em
+    color $light
+    font-size 0.9em
+
+    .schedule-type
+      font-weight 600
+      color $lighter
+
+    &.on-calendar .schedule-detail
+      font-family $font-mono
+      background rgba($secondary-blue, 0.1)
+      padding 0.2em 0.4em
+      border-radius 3px
+
+    &.on-boot .schedule-detail
+      color $arch-blue
+
+    &.on-unit .schedule-detail
+      color $orange
+
+  .timer-next-run
+  .timer-last-run
+    margin-top 0.5em
+    font-size 0.85em
+    color $muted
+
+    .label
+      color $light
+
+// =============================================================================
+// SYSTEMD SOCKET UNITS
+// =============================================================================
+
+.systemd-socket
+.systemd-unit-socket
+  background linear-gradient(135deg, rgba($term-cyan, 0.1), rgba($term-cyan, 0.05))
+  border 1px solid rgba($term-cyan, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .socket-name
+    font-family $font-mono
+    font-weight 600
+    color $term-cyan
+    font-size 0.95em
+
+  .socket-listen-stream
+    margin-top 0.75em
+
+    .stream-label
+      font-weight 600
+      color $light
+      font-size 0.9em
+
+    .stream-value
+      font-family $font-mono
+      font-size 0.9em
+      color $lighter
+      background rgba($term-cyan, 0.1)
+      padding 0.2em 0.5em
+      border-radius 3px
+      display inline-block
+      margin-top 0.25em
+
+  .socket-status
+    margin-top 0.75em
+    font-size 0.85em
+    color $muted
+
+    .listening
+      color $green
+      font-weight 500
+
+    .bound
+      color $orange
+
+// =============================================================================
+// SYSTEMD PATH UNITS
+// =============================================================================
+
+.systemd-path
+.systemd-unit-path
+  background linear-gradient(135deg, rgba($term-cyan, 0.1), rgba($term-cyan, 0.05))
+  border 1px solid rgba($term-cyan, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .path-name
+    font-family $font-mono
+    font-weight 600
+    color $term-cyan
+    font-size 0.95em
+
+  .path-watch
+    margin-top 0.75em
+    color $light
+    font-size 0.9em
+
+    .path-item
+      font-family $font-mono
+      background rgba($term-cyan, 0.1)
+      padding 0.2em 0.4em
+      border-radius 3px
+      display inline-block
+      margin 0.25em 0.25em 0 0
+
+// =============================================================================
+// SYSTEMD DEVICE UNITS
+// =============================================================================
+
+.systemd-device
+.systemd-unit-device
+  background linear-gradient(135deg, rgba($dark, 0.1), rgba($dark, 0.05))
+  border 1px solid rgba($dark, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .device-name
+    font-family $font-mono
+    font-weight 600
+    color $dark
+    font-size 0.95em
+
+  .device-device-path
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.85em
+    color $light
+
+  .device-state
+    margin-top 0.5em
+    font-size 0.85em
+
+    .state-plugged
+      color $green
+    .state-unplugged
+      color $secondary-red
+    .state-stub
+      color $orange
+
+// =============================================================================
+// SYSTEMD MOUNT UNITS
+// =============================================================================
+
+.systemd-mount
+.systemd-unit-mount
+  background linear-gradient(135deg, rgba($muted, 0.1), rgba($muted, 0.05))
+  border 1px solid rgba($muted, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .mount-name
+    font-family $font-mono
+    font-weight 600
+    color $muted
+    font-size 0.95em
+
+  .mount-what
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.9em
+    color $light
+    word-break break-all
+
+  .mount-options
+    margin-top 0.75em
+    font-size 0.85em
+
+    .options-label
+      color $muted
+    .options-value
+      font-family $font-mono
+      color $lighter
+      background rgba($muted, 0.1)
+      padding 0.2em 0.4em
+      border-radius 3px
+
+// =============================================================================
+// SYSTEMD AUTOMOUNT UNITS
+// =============================================================================
+
+.systemd-automount
+.systemd-unit-automount
+  background linear-gradient(135deg, rgba($term-magenta, 0.1), rgba($term-magenta, 0.05))
+  border 1px solid rgba($term-magenta, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .automount-name
+    font-family $font-mono
+    font-weight 600
+    color $term-magenta
+    font-size 0.95em
+
+  .automount-where
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.9em
+    color $light
+
+  .automount-timeout
+    margin-top 0.5em
+    font-size 0.85em
+    color $muted
+
+// =============================================================================
+// SYSTEMD SLICE UNITS
+// =============================================================================
+
+.systemd-slice
+.systemd-unit-slice
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .slice-name
+    font-family $font-mono
+    font-weight 600
+    color $orange
+    font-size 0.95em
+
+  .slice-resources
+    margin-top 0.75em
+    font-size 0.9em
+    color $light
+
+    .resource-item
+      display flex
+      justify-content space-between
+      padding 0.25em 0
+      border-bottom 1px solid rgba($orange, 0.1)
+
+      &:last-child
+        border-bottom none
+
+    .resource-limit
+      color $lighter
+      font-family $font-mono
+      font-size 0.9em
+
+// =============================================================================
+// SYSTEMD SCOPE UNITS
+// =============================================================================
+
+.systemd-scope
+.systemd-unit-scope
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .scope-name
+    font-family $font-mono
+    font-weight 600
+    color $orange
+    font-size 0.95em
+
+  .scope-pid
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.9em
+    color $light
+
+  .scope-state
+    margin-top 0.5em
+    font-size 0.85em
+    color $muted
+
+// =============================================================================
+// SYSTEMD UNIT ACTIONS
+// =============================================================================
+
+.systemd-actions
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 1em
+  padding-top 1em
+  border-top 1px solid rgba($arch-blue, 0.2)
+
+  .action-button
+    display inline-flex
+    align-items center
+    gap 0.4em
+    padding 0.4em 0.75em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 500
+    cursor pointer
+    transition all $transition-fast
+    border 1px solid transparent
+
+    &:hover
+      transform translateY(-1px)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &.start
+      background rgba($green, 0.15)
+      color $green
+      border-color rgba($green, 0.3)
+
+      &:hover
+        background rgba($green, 0.25)
+
+    &.stop
+      background rgba($secondary-red, 0.15)
+      color $secondary-red
+      border-color rgba($secondary-red, 0.3)
+
+      &:hover
+        background rgba($secondary-red, 0.25)
+
+    &.restart
+      background rgba($orange, 0.15)
+      color $orange
+      border-color rgba($orange, 0.3)
+
+      &:hover
+        background rgba($orange, 0.25)
+
+    &.enable
+      background rgba($arch-blue, 0.15)
+      color $arch-blue
+      border-color rgba($arch-blue, 0.3)
+
+      &:hover
+        background rgba($arch-blue, 0.25)
+
+    &.disable
+      background rgba($muted, 0.15)
+      color $light
+      border-color rgba($muted, 0.3)
+
+      &:hover
+        background rgba($muted, 0.25)
+
+    &.status
+      background rgba($secondary-blue, 0.15)
+      color $secondary-blue
+      border-color rgba($secondary-blue, 0.3)
+
+      &:hover
+        background rgba($secondary-blue, 0.25)
+
+// =============================================================================
+// SYSTEMD JOURNAL ENTRIES
+// =============================================================================
+
+.systemd-journal
+  background rgba($darker, 0.5)
+  border 1px solid rgba($muted, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-family $font-mono
+  font-size 0.85em
+  overflow-x auto
+
+  .journal-timestamp
+    color $muted
+
+  .journal-priority
+    font-weight 600
+    margin 0 0.5em
+
+    &.emerg
+      color $secondary-red
+    &.alert
+      color $secondary-red
+    &.crit
+      color $orange
+    &.err
+      color $secondary-red
+    &.warning
+      color $orange
+    &.notice
+      color $arch-blue
+    &.info
+      color $light
+    &.debug
+      color $muted
+
+  .journal-message
+    color $lighter
+
+  .journal-unit
+    color $secondary-blue
+
+  .journal-host
+    color $term-cyan
+
+// =============================================================================
+// SYSTEMD UNIT FILE PREVIEW
+// =============================================================================
+
+.systemd-unit-file
+  background rgba($darker, 0.5)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .file-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 0.75em
+    padding-bottom 0.75em
+    border-bottom 1px solid rgba($arch-blue, 0.2)
+
+    .file-path
+      font-family $font-mono
+      font-weight 600
+      color $arch-blue
+
+    .file-type-badge
+      font-size 0.75em
+      padding 0.2em 0.5em
+      border-radius 3px
+      background rgba($arch-blue, 0.15)
+      color $arch-blue
+      font-weight 500
+
+  .file-section
+    margin-bottom 1em
+
+    &:last-child
+      margin-bottom 0
+
+    .section-header
+      font-weight 600
+      color $lighter
+      margin-bottom 0.5em
+      font-size 0.9em
+      text-transform uppercase
+      letter-spacing 0.05em
+
+    .section-key
+      font-family $font-mono
+      color $arch-blue
+
+    .section-value
+      font-family $font-mono
+      color $light
+      margin-left 0.5em
+
+    .section-comment
+      color $muted
+      font-style italic
+      font-size 0.9em
+      display block
+      margin-top 0.25em
+
+// Pulse animation for activating/deactivating states
+@keyframes pulse
+  0%
+  100%
+    opacity 1
+  50%
+    opacity 0.6

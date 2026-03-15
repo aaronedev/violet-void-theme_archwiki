@@ -3001,7 +3001,7 @@ Last updated: 2026-03-14 23:59
   - Blacklist indicators
   - Load at boot styling
 
-- [ ] **Systemd Unit Styling** (CSS)
+- [x] **Systemd Unit Styling** (CSS)
   - File: `src/components/archwiki.styl`
   - Service box styling
   - Timer styling
@@ -7428,3 +7428,4 @@ Last updated: 2026-03-14 23:59
 | 2026-03-14 | Definition Lists & Checklists | Added lists.styl with definition lists (dl/dt/dd), checklists with custom checkboxes, step-by-step lists for tutorials, nested list enhancements | 3451136 |
 | 2026-03-14 | prefers-reduced-data for Data Saver | Added @media (prefers-reduced-data) support to performance.styl - reduces animations, simplifies skeletons, disables decorative elements for data-conscious users | c8d6b37 |
 | 2026-03-14 | PageForms Extension Styling | Added Extension:PageForms styling in extensions.styl - form container, fields, inputs, date picker, combo box, multi-select, checkboxes/radios, submit buttons, validation errors, file upload, reduced motion support | ef718a8 |
+| 2026-03-15 | Systemd Unit Styling | Added comprehensive systemd unit styling in archwiki-templates.styl - service, timer, socket, path, device, mount, automount, slice, scope units, journal entries, unit file preview, action buttons | 3fea0b8 |
