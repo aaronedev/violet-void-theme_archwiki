@@ -1933,17 +1933,19 @@ Last updated: 2026-03-15 06:24
   - `width: anchor-size(width);`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`@position-try` Fallbacks** (85%+ browser support)
+- [x] **`@position-try` Fallbacks** (85%+ browser support)
   - File: `src/components/ui-components.styl`
   - Define fallback positions
   - `@position-try --fallback { top: anchor(top); }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: b333f6f
 
-- [ ] **`position-try-fallbacks` Property** (85%+ browser support)
+- [x] **`position-try-fallbacks` Property** (85%+ browser support)
   - File: `src/components/ui-components.styl`
   - List fallback positions
   - `position-try-fallbacks: --flip, --slide;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: b333f6f
 
 ## 📜 Scroll State Containers (New)
 
