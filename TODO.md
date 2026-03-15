@@ -1568,23 +1568,26 @@ Last updated: 2026-03-14 23:59
 
 ## 📐 Grid Shorthands (New)
 
-- [ ] **`place-items` Shorthand** (97%+ browser support)
-  - File: `src/utilities/_grid.styl` (new file)
+- [x] **`place-items` Shorthand** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - `place-items: center` = `align-items` + `justify-items`
   - Cleaner grid alignment code
   - Stylus: Works directly
+  - Commit: bd96a30
 
-- [ ] **`place-content` Shorthand** (97%+ browser support)
-  - File: `src/utilities/_grid.styl`
+- [x] **`place-content` Shorthand** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - `place-content: center` = `align-content` + `justify-content`
   - Cleaner grid content alignment
   - Stylus: Works directly
+  - Commit: bd96a30
 
-- [ ] **`place-self` Shorthand** (97%+ browser support)
-  - File: `src/utilities/_grid.styl`
+- [x] **`place-self` Shorthand** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - `place-self: center` = `align-self` + `justify-self`
   - Cleaner grid item alignment
   - Stylus: Works directly
+  - Commit: bd96a30
 
 ## 🖨️ Print Enhancements (New)
 
@@ -7438,3 +7441,4 @@ Last updated: 2026-03-14 23:59
 | 2026-03-14 | prefers-reduced-data for Data Saver | Added @media (prefers-reduced-data) support to performance.styl - reduces animations, simplifies skeletons, disables decorative elements for data-conscious users | c8d6b37 |
 | 2026-03-14 | PageForms Extension Styling | Added Extension:PageForms styling in extensions.styl - form container, fields, inputs, date picker, combo box, multi-select, checkboxes/radios, submit buttons, validation errors, file upload, reduced motion support | ef718a8 |
 | 2026-03-15 | Systemd Unit Styling | Added comprehensive systemd unit styling in archwiki-templates.styl - service, timer, socket, path, device, mount, automount, slice, scope units, journal entries, unit file preview, action buttons | 3fea0b8 |
+| 2026-03-15 | Grid Shorthands | Added place-items, place-content, place-self utility classes in utilities.styl for cleaner grid alignment code (97%+ browser support) | bd96a30 |

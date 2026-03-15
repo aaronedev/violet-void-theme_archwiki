@@ -915,3 +915,85 @@ tr.collapsed
   width -webkit-fill-available
   width stretch
 
+// =============================================================================
+// GRID SHORTHANDS
+// =============================================================================
+// place-items, place-content, place-self shorthands
+// Browser support: 97%+
+// These combine align/justify properties into single properties
+
+// place-items - shorthand for align-items + justify-items
+// Example: place-items: center = align-items: center + justify-items: center
+.place-items-start
+  place-items start start
+
+.place-items-end
+  place-items end end
+
+.place-items-center
+  place-items center center
+
+.place-items-stretch
+  place-items stretch stretch
+
+.place-items-baseline
+  place-items baseline baseline
+
+// place-content - shorthand for align-content + justify-content
+// Example: place-content: center = align-content: center + justify-content: center
+.place-content-start
+  place-content start start
+
+.place-content-end
+  place-content end end
+
+.place-content-center
+  place-content center center
+
+.place-content-stretch
+  place-content stretch stretch
+
+.place-content-space-between
+  place-content space-between space-between
+
+.place-content-space-around
+  place-content space-around space-around
+
+.place-content-space-evenly
+  place-content space-evenly space-evenly
+
+// place-self - shorthand for align-self + justify-self
+// Example: place-self: center = align-self: center + justify-self: center
+.place-self-start
+  place-self start start
+
+.place-self-end
+  place-self end end
+
+.place-self-center
+  place-self center center
+
+.place-self-stretch
+  place-self stretch stretch
+
+.place-self-baseline
+  place-self baseline baseline
+
+// Flexbox equivalents using place-items for flex containers
+// These work in flex containers where align-items/justify-items apply to align-content
+.flex-place-items-center
+  display flex
+  place-items center center
+
+.flex-place-items-start
+  display flex
+  place-items flex-start flex-start
+
+.flex-place-items-end
+  display flex
+  place-items flex-end flex-end
+
+.flex-place-items-stretch
+  display flex
+  place-items stretch stretch
+
