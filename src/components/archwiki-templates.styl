@@ -820,3 +820,198 @@
     opacity 1
   50%
     opacity 0.6
+
+// =============================================================================
+// PACKAGE TEMPLATES
+// Styling for {{Pkg}}, {{AUR}}, {{Grp}} templates commonly used in ArchWiki
+// =============================================================================
+
+// Package link base styling
+.pkg
+.pkg-template
+.pkglink
+  display inline
+  font-family $font-mono
+  font-size 0.95em
+  font-weight 500
+  color $arch-blue
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  transition all $transition-fast
+  white-space nowrap
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+    text-decoration none
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Official repository packages (core, extra, community)
+.pkg-repo-core
+.pkgrepo-core
+  background rgba($arch-blue, 0.12)
+  border-color rgba($arch-blue, 0.25)
+  color $arch-blue
+
+.pkg-repo-extra
+.pkgrepo-extra
+  background rgba($secondary-blue, 0.12)
+  border-color rgba($secondary-blue, 0.25)
+  color $secondary-blue
+
+.pkg-repo-community
+.pkgrepo-community
+  background rgba($green, 0.12)
+  border-color rgba($green, 0.25)
+  color $green
+
+// AUR packages
+.aur
+.aur-template
+.aurlink
+  display inline
+  font-family $font-mono
+  font-size 0.95em
+  font-weight 500
+  color $term-magenta
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  background rgba($term-magenta, 0.1)
+  border 1px solid rgba($term-magenta, 0.2)
+  transition all $transition-fast
+  white-space nowrap
+
+  &::before
+    content "AUR"
+    font-size 0.7em
+    font-weight 700
+    margin-right 0.35em
+    padding 0.1em 0.3em
+    border-radius 3px
+    background rgba($term-magenta, 0.25)
+    color $base
+
+  &:hover
+    background rgba($term-magenta, 0.2)
+    border-color rgba($term-magenta, 0.4)
+    color $lighter
+    text-decoration none
+
+  &:focus-visible
+    outline 2px solid $term-magenta
+    outline-offset 2px
+
+// Package groups
+.grp
+.grp-template
+.grplink
+  display inline
+  font-family $font-mono
+  font-size 0.95em
+  font-weight 500
+  color $term-cyan
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  background rgba($term-cyan, 0.1)
+  border 1px solid rgba($term-cyan, 0.2)
+  transition all $transition-fast
+  white-space nowrap
+
+  &::before
+    content "Group"
+    font-size 0.7em
+    font-weight 700
+    margin-right 0.35em
+    padding 0.1em 0.3em
+    border-radius 3px
+    background rgba($term-cyan, 0.25)
+    color $base
+
+  &:hover
+    background rgba($term-cyan, 0.2)
+    border-color rgba($term-cyan, 0.4)
+    color $lighter
+    text-decoration none
+
+  &:focus-visible
+    outline 2px solid $term-cyan
+    outline-offset 2px
+
+// Package version indicator
+.pkg-version
+.pkgver
+  font-size 0.85em
+  color $muted
+  font-weight 400
+  margin-left 0.25em
+
+// Package status indicators
+.pkg-status
+  display inline-flex
+  align-items center
+  gap 0.25em
+  font-size 0.8em
+  font-weight 500
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  margin-left 0.5em
+
+  &.installed
+    background rgba($green, 0.15)
+    color $green
+    border 1px solid rgba($green, 0.3)
+
+    &::before
+      content "✓"
+      font-weight 700
+
+  &.available
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+    border 1px solid rgba($arch-blue, 0.3)
+
+  &.outdated
+    background rgba($orange, 0.15)
+    color $orange
+    border 1px solid rgba($orange, 0.3)
+
+  &.orphan
+    background rgba($secondary-red, 0.15)
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.3)
+
+    &::before
+      content "⚠"
+      font-weight 700
+
+// Package inline (smaller, for use in running text)
+.pkg-inline
+  font-size 0.9em
+  padding 0.1em 0.3em
+
+  &.aur::before
+  &.grp::before
+    font-size 0.75em
+
+// Package list (multiple packages)
+.pkg-list
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin 0.5em 0
+
+// Package in table cell
+td .pkg
+td .aur
+td .grp
+  font-size 0.9em
+  padding 0.1em 0.3em
