@@ -1906,3 +1906,84 @@
   h6 + p
     break-after avoid
     page-break-after avoid
+
+  // =============================================================================
+  // PRINT TYPOGRAPHY
+  // =============================================================================
+  // Print-optimized typography for better readability in printed output
+  // Browser support: 100%
+
+  // Print font stack - serif for better readability in print
+  @media print
+    body
+    .mw-body
+    #content
+    article
+      font-family Georgia, 'Times New Roman', Times, serif
+      line-height 1.4
+      font-size 11pt
+
+    // Headings with serif and slightly larger for print
+    h1
+      font-size 22pt
+      line-height 1.2
+
+    h2
+      font-size 18pt
+      line-height 1.25
+
+    h3
+      font-size 14pt
+      line-height 1.3
+
+    h4
+      font-size 12pt
+      line-height 1.35
+
+    h5
+      font-size 11pt
+      line-height 1.4
+
+    h6
+      font-size 10pt
+      line-height 1.4
+      font-weight bold
+
+    // Code/tech content - monospace for print clarity
+    pre
+    code
+    .mw-highlight
+      font-family 'Courier New', Courier, monospace
+      font-size 9pt
+      line-height 1.3
+
+    // Links - ensure readability
+    a
+      font-size 10pt
+      font-weight normal
+
+    // Tables - optimized for print
+    table
+      font-size 9pt
+
+      th
+        font-size 8pt
+        text-transform uppercase
+        letter-spacing 0.5pt
+
+    // Lists - tighter spacing for print
+    ul
+    ol
+      font-size 10pt
+
+      li
+        line-height 1.3
+        margin-bottom 0.25em
+
+    // Blockquotes - italic for print
+    blockquote
+      font-style italic
+      font-size 10pt
+      margin-left 1em
+      padding-left 1em
+      border-left 2px solid #333
