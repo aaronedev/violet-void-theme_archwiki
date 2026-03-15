@@ -6429,12 +6429,13 @@ Last updated: 2026-03-15 11:03
   - Remove after animation
   - Performance monitoring
 
-- [ ] **Dynamic Viewport Units** (CSS, 92%+ browser support)
+- [x] **Dynamic Viewport Units** (CSS, 92%+ browser support)
   - File: `src/performance/viewport.styl`
   - dvh for mobile
   - svh for fixed elements
   - lvh for full-height
   - Fallback patterns
+  - Commit: 64b1e2e
 
 ## 🎬 Animation Extended (New)
 
