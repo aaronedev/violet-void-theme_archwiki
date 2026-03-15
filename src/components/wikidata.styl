@@ -275,7 +275,7 @@ table.wikidata-table
 
 // RESPONSIVE ADJUSTMENTS
 // =============================================================================
-@media (max-width: 768px)
+@media (max-width 768px)
   .wikidata-property
     flex-direction column
     gap 0.25em
@@ -288,7 +288,7 @@ table.wikidata-table
 
 // DARK MODE ADJUSTMENTS
 // =============================================================================
-@media (prefers-color-scheme: dark)
+@media (prefers-color-scheme dark)
   .wikidata-item
     background rgba($dark, 0.8)
 
@@ -297,7 +297,7 @@ table.wikidata-table
 
 // ACCESSIBILITY
 // =============================================================================
-@media (prefers-contrast: more)
+@media (prefers-contrast more)
   .wikidata-item
     border-width 2px
 
@@ -306,8 +306,8 @@ table.wikidata-table
 
 // REDUCED MOTION
 // =============================================================================
-@media (prefers-reduced-motion: reduce)
-  .wikidata-item,
-  .wikidata-property,
+@media (prefers-reduced-motion reduce)
+  .wikidata-item
+  .wikidata-property
   .source-badge
     transition none

@@ -1652,3 +1652,103 @@ label
   li
     text-group-align start
 
+// =============================================================================
+// text-justify for Asian Languages
+// =============================================================================
+
+// Browser support: 97%+
+// Control the justification algorithm for text
+// Values: auto (browser-determined), inter-word (WordPress-like), inter-character (CJK optimal), distribute (equiv to inter-character for CJK)
+
+// Default justified text behavior - let browser decide based on language
+.text-justify-auto
+  text-wrap justify
+  text-justify auto
+
+// Inter-word justification - spaces between words
+.text-justify-inter-word
+  text-wrap justify
+  text-justify inter-word
+
+// Inter-character justification - spaces between characters (ideal for CJK)
+.text-justify-inter-character
+  text-wrap justify
+  text-justify inter-character
+
+// Distribute justification - distributes space equally (best for CJK)
+.text-justify-distribute
+  text-wrap justify
+  text-justify distribute
+
+// None - disable justification
+.text-justify-none
+  text-justify none
+
+// CJK-specific text wrapping
+// Use on paragraphs containing mixed CJK and Latin text
+.cjk-text
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+
+// Japanese-specific text spacing
+// For Japanese text with proper line height adjustment
+.japanese-text
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+  line-height 1.8
+
+// Chinese-specific text
+.chinese-text
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+
+// Korean-specific text
+.korean-text
+  text-justify inter-word
+  line-height 1.6
+
+// Mixed content paragraphs with CJK and Latin
+// Better spacing and justification for multilingual content
+.mixed-content
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+
+// Apply inter-character justification to CJK elements
+// This provides better visual alignment for Asian text
+:lang(zh)
+  text-justify inter-character
+  text-spacing trimallow
+
+:lang(ja)
+  text-justify inter-character
+  text-spacing trimallow
+
+:lang(ko)
+  text-justify inter-word
+
+// =============================================================================
+// font-variant-caps for Capital Styles
+// =============================================================================
+
+// Browser support: 97%+
+// Control capital glyph variants
+// Values: normal, small-caps, all-small-caps, petite-caps, all-petite-caps, unicase, titling-caps
+
+.small-caps
+  font-variant-caps small-caps
+
+.all-small-caps
+  font-variant-caps all-small-caps
+
+.petite-caps
+  font-variant-caps petite-caps
+
+.all-petite-caps
+  font-variant-caps all-petite-caps
+
+.unicase
+  font-variant-caps unicase
+
+.titling-caps
+  font-variant-caps titling-caps
+

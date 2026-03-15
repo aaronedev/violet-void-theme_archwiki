@@ -1774,11 +1774,15 @@ Last updated: 2026-03-15 15:37
   - `text-emphasis: filled circle;`
   - Stylus: Works directly
 
-- [ ] **`text-justify` for Asian Languages** (97%+ browser support)
+- [x] **`text-justify` for Asian Languages** (97%+ browser support)
   - File: `src/components/typography.styl`
   - Control justification algorithm
-  - `text-justify: inter-word;` or `inter-ideograph;`
+  - `text-justify: inter-word;` or `inter-character;`
   - Stylus: Works directly
+  - Added text-justify utilities (auto, inter-word, inter-character, distribute, none)
+  - Added CJK-specific text wrapping (.cjk-text, .japanese-text, .chinese-text, .korean-text, .mixed-content)
+  - Added :lang() selectors for Chinese, Japanese, Korean
+  - Commit: d14fbf7
 
 - [x] **`word-break: break-all` for URLs** (97%+ browser support)
   - File: `src/components/code.styl`
@@ -2687,11 +2691,13 @@ Last updated: 2026-03-15 15:37
 
 ## 🔤 Advanced Font Variants (New)
 
-- [ ] **`font-variant-caps` for Capital Styles** (97%+ browser support)
+- [x] **`font-variant-caps` for Capital Styles** (97%+ browser support)
   - File: `src/components/typography.styl`
   - `small-caps`, `all-small-caps`, `petite-caps`, `all-petite-caps`
   - Stylistic option for headings, labels
   - Stylus: Works directly
+  - Added utility classes: .small-caps, .all-small-caps, .petite-caps, .all-petite-caps, .unicase, .titling-caps
+  - Commit: d14fbf7
 
 - [ ] **`font-variant-ligatures` for Ligatures** (97%+ browser support)
   - File: `src/variables/colors.styl`, `src/components/code.styl`
