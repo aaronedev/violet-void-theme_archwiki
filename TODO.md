@@ -1217,11 +1217,12 @@ Last updated: 2026-03-15 22:05
   - Source indicator badges
   - Language selector
 
-- [ ] **Interwiki Link Preview** (CSS)
+- [x] **Interwiki Link Preview** (CSS)
   - File: `src/components/interwiki.styl` (new file)
   - Hover preview card
   - Project favicon display
   - Article snippet styling
+  - Commit: 0e29137
 
 - [ ] **Translation Dashboard** (CSS)
   - File: `src/components/translation.styl` (new file)
