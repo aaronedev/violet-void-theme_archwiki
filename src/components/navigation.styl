@@ -1548,4 +1548,53 @@ h6:hover .mw-editsection
     background-color #fff
 
 
+// =============================================================================
+// SCROLL START/END PROPERTIES
+// =============================================================================
+// Define scroll snap boundaries with scroll-start and scroll-end
+// Browser support: 85%+
+// Note: Wrap in @supports for Stylus
+
+@supports (scroll-start: 0px)
+  // Scroll start - beginning of scrollable area
+  .scroll-snap-start
+    scroll-snap-align start
+
+  // Scroll end - end of scrollable area
+  .scroll-snap-boundaries
+    scroll-start 0px
+    scroll-end 100%
+
+  // Container with explicit scroll boundaries
+  .scroll-boundary-container
+    scroll-start 10%
+    scroll-end 90%
+
+  // Element that should snap to start when scrolling forward
+  .scroll-snap-proximity
+    scroll-snap-type y proximity
+
+  // Force scroll to start on load
+  .scroll-to-start
+    scroll-start 0px
+
+  // Force scroll to end on load
+  .scroll-to-end
+    scroll-start 100%
+
+  // View-based scroll timeline (alternative to scroll())
+  @supports (animation-timeline: view())
+    .animate-on-entry
+      animation-timeline view()
+      animation-range entry 0% cover 50%
+
+    .animate-on-exit
+      animation-timeline view()
+      animation-range cover 50% exit 100%
+
+    .animate-on-cross
+      animation-timeline view()
+      animation-range cross 0% cross 100%
+
+
 

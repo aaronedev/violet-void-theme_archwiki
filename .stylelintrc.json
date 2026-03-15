@@ -20,7 +20,9 @@
           "render-subtree",
           "contain-intrinsic-block-size",
           "contain-intrinsic-inline-size",
-          "stylus/render-subtree"
+          "stylus/render-subtree",
+          "scroll-start",
+          "scroll-end"
         ]
       }
     ],
