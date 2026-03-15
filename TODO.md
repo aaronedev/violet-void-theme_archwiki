@@ -981,11 +981,12 @@ Last updated: 2026-03-14 23:59
   - Gadget configuration panel
   - Conflict warning styling
 
-- [ ] **Custom CSS Snippet Support** (CSS)
+- [x] **Custom CSS Snippet Support** (CSS)
   - File: `src/components/preferences.styl`
   - CSS editor textarea styling
   - Syntax highlighting for custom CSS
   - Validation error display
+  - Commit: 463017f
 
 ## 📱 Progressive Web App (New)
 
