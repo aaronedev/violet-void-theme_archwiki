@@ -471,3 +471,157 @@ for selector, index in copy-button-selectors
   .repository-url
     word-break break-all
     overflow-wrap anywhere
+
+// =============================================================================
+// INTERACTIVE HINTS FOR CODE BLOCKS
+// =============================================================================
+// Interactive hints for command examples - show on hover
+// Browser support: 97%+
+
+// Container for interactive hints
+.code-hints
+  position absolute
+  top 0.5em
+  inset-inline-end 0.5em
+  display flex
+  gap 0.35em
+  opacity 0
+  transition opacity 0.2s ease
+
+  // Show hints on code block hover
+  #content pre:not([class*="codemirror"]):hover &
+    opacity 1
+
+// Individual hint button
+.code-hint
+  display inline-flex
+  align-items center
+  justify-content center
+  width 24px
+  height 24px
+  background rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-sm
+  color $arch-blue
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($arch-blue, 0.25)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+    transform scale(1.1)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  // Hint icons (use CSS shapes or emoji fallback)
+  &.hint-copy::before
+    content "📋"
+
+  &.hint-run::before
+    content "▶"
+
+  &.hint-explain::before
+    content "?"
+
+  &.hint-edit::before
+    content "✏️"
+
+// Copy success indicator
+.code-hint.copied
+  background rgba($green, 0.2)
+  border-color rgba($green, 0.4)
+  color $green
+
+  &::before
+    content "✓"
+
+// Command explanation toggle
+.command-explanation
+  margin-top 0.75em
+  padding 0.75em
+  background rgba($muted, 0.08)
+  border-inline-start 3px solid $arch-blue
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+  font-size 0.9em
+  color $light
+  display none
+
+  // Show explanation when toggled
+  &.expanded
+    display block
+    animation fade-in 0.3s ease
+
+// Explanation toggle button
+.explain-toggle
+  display inline-flex
+  align-items center
+  gap 0.35em
+  padding 0.25em 0.5em
+  margin-top 0.5em
+  background transparent
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $muted
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.3)
+    color $arch-blue
+
+  &::before
+    content "▶"
+    font-size 0.7em
+    transition transform 0.2s ease
+
+  &.expanded::before
+    transform rotate(90deg)
+
+// Editable command indicator
+.editable-command
+  position relative
+
+  &::after
+    content "✏️"
+    position absolute
+    top -8px
+    inset-inline-end -8px
+    font-size 0.75em
+    opacity 0.6
+
+// Run in terminal hint
+.run-in-terminal
+  display inline-flex
+  align-items center
+  gap 0.35em
+  padding 0.2em 0.5em
+  margin-inline-start 0.5em
+  background rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-sm
+  color $green
+  font-size 0.75em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($green, 0.2)
+    border-color rgba($green, 0.5)
+
+  &::before
+    content "▶"
+    font-size 0.7em
+
+@keyframes fade-in
+  from
+    opacity 0
+    transform translateY(-5px)
+  to
+    opacity 1
+    transform translateY(0)
