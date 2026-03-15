@@ -1465,11 +1465,12 @@ Last updated: 2026-03-15 08:29
   - Stylus: Works directly
   - Commit: a1fc976
 
-- [ ] **`text-group-align` for Block Alignment** (87%+ browser support)
+- [x] **`text-group-align` for Block Alignment** (87%+ browser support)
   - File: `src/components/typography.styl`
   - Align text groups within blocks
   - Better than text-align for complex layouts
   - Stylus: Works directly
+  - Commit: ddf5ff4
 
 ## 🖼️ Media Enhancements (New)
 
@@ -7482,3 +7483,4 @@ Last updated: 2026-03-15 08:29
 | 2026-03-15 | CSS Containment | Added src/components/containment.styl with CSS containment utilities (layout, paint, size, style containment) for performance optimization - applied to MediaWiki components like infobox, sidebar, nav, tables, code blocks, message boxes, navbox, footer, content areas | 24b4b3f7 |
 | 2026-03-15 | Personalization Styling | Added src/components/personal.styl with Reading List Styling (cards, read/unread indicators, categories), Custom Quick Links (cards with drag handles, edit/delete), and Watchlist Enhancements (change summaries, diff previews) | aa8ad9a |
 | 2026-03-15 | Discrete Property Transitions | Added src/components/discrete-transitions.styl with transition-behavior: allow-discrete for smooth display/visibility transitions, @starting-style for entry animations, and height auto transitions (interpolate-size, calc-size) | 7f2e29a |
+| 2026-03-15 | text-group-align for Block Alignment | Added text-group-align styling in typography.styl for block-level text alignment control (87%+ browser support) | ddf5ff4 |
