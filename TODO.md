@@ -1638,11 +1638,12 @@ Last updated: 2026-03-15 02:58
   - Stylus: Works directly
   - Commit: 592d1e5
 
-- [ ] **`:fullscreen` Pseudo-class** (97%+ browser support)
+- [x] **`:fullscreen` Pseudo-class** (97%+ browser support)
   - File: `src/components/ui-components.styl`
   - Style fullscreen mode elements
   - Hide UI chrome in fullscreen
   - Stylus: Works directly
+  - Commit: dfa7fd0
 
 - [ ] **`:picture-in-picture` Pseudo-class** (92%+ browser support)
   - File: `src/components/file-pages.styl`
@@ -7490,3 +7491,4 @@ Last updated: 2026-03-15 02:58
 | 2026-03-15 | Display Capability Queries | Added @media (resolution), @media (min-resolution: 2dppx), @media (color-index), @media (monochrome) in modern-css.styl for retina display detection, color depth detection, and monochrome e-ink display support | c688a5a |
 | 2026-03-15 | PWA Styling | Added PWA components in pwa.styl - offline banner, cached content indicator, sync pending/complete status, install prompt with action buttons, standalone install button, service worker status indicator, animations, reduced motion support | a8be333 |
 | 2026-03-15 | linear() Timing Function | Added linear() timing function classes in animations.styl - custom easing with control points, steps() with jump keywords, transition-behavior: allow-discrete for display/visibility transitions, utility classes for various animation patterns | 1d97bf6 |
+| 2026-03-15 | :fullscreen Pseudo-class | Added fullscreen mode styling in ui-components.styl - hide non-essential UI chrome, fullscreen container/content styling, video/image/dialog enhancements, exit fullscreen button hints, reduced motion support | dfa7fd0 |
