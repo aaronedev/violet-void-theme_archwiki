@@ -859,6 +859,53 @@ pre
   hyphens auto
 
 // =============================================================================
+// HYPHENATION CONTROL
+// =============================================================================
+
+// Browser support: 85%+
+// Control how text is hyphenated
+
+// Minimal characters before hyphen (default: browser dependent, usually 2/2)
+// hyphenate-limit-chars: [before] [after] [minimum]
+.hyphenate-limit-chars-6-3
+  hyphenate-limit-chars 6 3
+
+.hyphenate-limit-chars-5-3
+  hyphenate-limit-chars 5 3
+
+.hyphenate-limit-chars-4-2
+  hyphenate-limit-chars 4 2
+
+// Maximum consecutive hyphenated lines
+.hyphenate-limit-lines-2
+  hyphenate-limit-lines 2
+
+.hyphenate-limit-lines-3
+  hyphenate-limit-lines 3
+
+// Hyphenation zone limit (percentage of line width)
+.hyphenate-limit-zone-10
+  hyphenate-limit-zone 10%
+
+.hyphenate-limit-zone-15
+  hyphenate-limit-zone 15%
+
+// Combined hyphenation control
+.hyphenate-balanced
+  hyphenate-limit-chars 6 3
+  hyphenate-limit-lines 2
+  hyphenate-limit-zone 10%
+
+.hyphenate-aggressive
+  hyphenate-limit-chars 4 2
+  hyphenate-limit-lines 3
+  hyphenate-limit-zone 15%
+
+// Disable hyphenation
+.hyphens-none
+  hyphens none
+
+// =============================================================================
 // FLUID TYPOGRAPHY WITH CLAMP()
 // =============================================================================
 
