@@ -7,7 +7,20 @@
     "stylus/selector-type-no-unknown": [
       true,
       {
-        "ignoreTypes": ["page-content", "root", "caption-side", "bottom"]
+        "ignoreTypes": [
+          "page-content",
+          "root",
+          "caption-side",
+          "bottom",
+          "search-results",
+          "search-current",
+          "annotation",
+          "custom-selection",
+          "quote",
+          "error",
+          "warning",
+          "link-found"
+        ]
       }
     ],
     "property-no-unknown": [

@@ -2776,6 +2776,70 @@ h4[id]
   100%
     background-color transparent
 
+// =============================================================================
+// ::HIGHLIGHT() PSEUDO-ELEMENT - CSS Custom Highlight API
+// =============================================================================
+// Browser support: 85%+ (Chrome 105+, Edge 105+, Safari pending)
+// Requires JavaScript API: CSS.highlights.set('name', range)
+// This provides native text highlighting without modifying DOM
+// stylelint-disable-next-line selector-type-no-unknown
+@css {
+  /* Search results highlight - found text in page search */
+  ::highlight(search-results) {
+    background-color: rgba(130, 100, 255, 0.35);
+    color: inherit;
+    border-radius: 2px;
+  }
+
+  /* Current/active search match highlight */
+  ::highlight(search-current) {
+    background-color: rgba(255, 150, 50, 0.5);
+    color: inherit;
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px rgba(255, 150, 50, 0.3);
+  }
+
+  /* Annotation highlight - user-added notes/marks */
+  ::highlight(annotation) {
+    background-color: rgba(130, 100, 255, 0.25);
+    border-bottom: 2px solid #824cff;
+  }
+
+  /* Selection-like highlight for custom selections */
+  ::highlight(custom-selection) {
+    background-color: rgba(100, 200, 150, 0.3);
+  }
+
+  /* Quote highlight - for citation/reference highlighting */
+  ::highlight(quote) {
+    background-color: rgba(80, 180, 120, 0.2);
+    border-inline-start: 3px solid #50b878;
+  }
+
+  /* Error highlight for validation errors */
+  ::highlight(error) {
+    background-color: rgba(255, 80, 80, 0.25);
+    text-decoration: underline wavy #ff5050;
+  }
+
+  /* Warning highlight for caution items */
+  ::highlight(warning) {
+    background-color: rgba(255, 180, 50, 0.3);
+    border-bottom: 2px dashed #ffb432;
+  }
+
+  /* Link highlight - for discovered links within content */
+  ::highlight(link-found) {
+    background-color: rgba(80, 140, 255, 0.2);
+    text-decoration: underline;
+  }
+}
+
+// Utility class to work with JS highlight API
+.highlight-range
+  background-color rgba($arch-blue, 0.25)
+  color inherit
+
 // Reduced motion for highlights
 @media (prefers-reduced-motion reduce)
   .highlight-pulse
