@@ -443,10 +443,11 @@
 | 2026-03-14 | Scrollable Table Wrapper for performance | 92cf67a |
 | 2026-03-14 | Cite Extension Enhancements | 80822e6 |
 | 2026-03-14 | Safe Area Support for mobile (iOS notch/home indicator) | 80bb105 |
+| 2026-03-15 | @media (update) for e-ink display optimization | 2f583a4 |
 
 ---
 
-Last updated: 2026-03-14 23:59
+Last updated: 2026-03-15 02:58
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2639,11 +2640,12 @@ Last updated: 2026-03-14 23:59
   - Show/hide JS-dependent UI (collapsibles, etc.)
   - Stylus: Works directly
 
-- [ ] **`@media (update: slow/none/fast)`** (92%+ browser support)
+- [x] **`@media (update: slow/none/fast)`** (92%+ browser support)
   - File: `src/components/modern-css.styl`
   - Detect display refresh capability
   - Simplify animations for e-ink (slow update)
   - Stylus: Works directly
+  - Commit: 2f583a4
 
 ## 🔤 Advanced Font Variants (New)
 
