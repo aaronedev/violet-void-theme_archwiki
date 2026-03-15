@@ -1309,11 +1309,12 @@ Last updated: 2026-03-15 02:58
   - `inset-inline-start` instead of `left`
   - Stylus: Works directly
 
-- [ ] **`margin-block` / `margin-inline`** (97%+ browser support)
-  - File: `src/utilities/_spacing.styl` (new file)
+- [x] **`margin-block` / `margin-inline`** (97%+ browser support)
+  - File: `src/utilities/spacing.styl` (new file)
   - Flow-relative margins
   - Better for vertical writing modes
   - Stylus: Works directly
+  - Commit: f581084
 
 ## ⚡ Performance Isolation (New)
 
