@@ -864,6 +864,46 @@ img.hq
 
 
 // =============================================================================
+// OBJECT-VIEW-BOX FOR IMAGE CLIPPING
+// =============================================================================
+
+// Clip images with CSS - create custom crop regions without JavaScript
+// Browser support: 87%+ (Chrome 104+, Firefox: behind flag, Safari 16.4+)
+
+// Inset clipping - crop from all sides
+.object-clip-inset
+  object-view-box inset(10%)
+
+// Top crop - show bottom portion
+.object-clip-top
+  object-view-box inset(0 0 50% 0)
+
+// Bottom crop - show top portion
+.object-clip-bottom
+  object-view-box inset(50% 0 0 0)
+
+// Left crop - show right portion
+.object-clip-left
+  object-view-box inset(0 50% 0 0)
+
+// Right crop - show left portion
+.object-clip-right
+  object-view-box inset(0 0 0 50%)
+
+// Circular clip using view-box
+.object-clip-circle
+  object-view-box inset(15%)
+
+// Thumbnail zoom effect - clip to center portion on hover
+.mw-file-element.thumbnail
+  transition object-position 0.3s ease
+
+  &:hover
+    object-view-box inset(10%)
+    object-fit cover
+
+
+// =============================================================================
 // MULTI-COLUMN LAYOUT
 // =============================================================================
 
