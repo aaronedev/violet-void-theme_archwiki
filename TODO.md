@@ -2153,10 +2153,23 @@ Last updated: 2026-03-15 20:26
 
 ## 🔤 Hyphenation Control (New)
 
-- [ ] **`hyphenate-limit-chars`** (85%+ browser support)
+- [x] **`hyphenate-limit-chars`** (85%+ browser support)
   - File: `src/components/typography.styl`
   - Minimum chars before/after hyphen
   - `hyphenate-limit-chars: 6 3;`
+  - Commit: 16eac85
+
+- [x] **`hyphenate-limit-lines`** (85%+ browser support)
+  - File: `src/components/typography.styl`
+  - Max consecutive hyphenated lines
+  - Stylus: Works directly
+  - Commit: 16eac85
+
+- [x] **`hyphenate-limit-zone`** (85%+ browser support)
+  - File: `src/components/typography.styl`
+  - Hyphenation zone limit
+  - Stylus: Works directly
+  - Commit: 16eac85
   - Stylus: Works directly
 
 - [ ] **`hyphenate-limit-lines`** (85%+ browser support)
