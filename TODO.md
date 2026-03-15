@@ -461,7 +461,7 @@
 
 ---
 
-Last updated: 2026-03-15 20:26
+Last updated: 2026-03-15 22:05
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1433,11 +1433,12 @@ Last updated: 2026-03-15 20:26
   - Includes responsive multi-column grid tables (3 and 4 columns)
   - Commit: 3c1e38a
 
-- [ ] **`masonry` Layout for Galleries** (87%+ browser support, Firefox only behind flag)
+- [x] **`masonry` Layout for Galleries** (87%+ browser support, Firefox only behind flag)
   - File: `src/components/file-pages.styl`
   - Masonry layout without JavaScript
   - Image gallery, category pages
   - Note: Limited support, use as progressive enhancement
+  - Commit: bd0937b
 
 - [x] **`gap` in Flexbox** (97%+ browser support)
   - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
@@ -7569,3 +7570,4 @@ Last updated: 2026-03-15 20:26
 | 2026-03-15 | Cargo Query Interface | Added src/components/cargo.styl with query builder styling, result table formatting with sorting/pagination, export options (CSV/JSON/XML/print), map view for spatial queries, error states and loading indicators | 7ec28b8 |
 | 2026-03-15 | Vertical Writing Mode | Added full vertical writing support in i18n.styl - .vertical-rl/.vertical-lr classes, text-orientation variants, CJK defaults, vertical list/table styling (97%+ browser support) | 81111f8 |
 | 2026-03-15 | ::highlight() Pseudo-element | Added ::highlight() pseudo-element styles in modern-css.styl for CSS Custom Highlight API - supports search-results, search-current, annotation, custom-selection, quote, error, warning, link-found highlight types (85%+ browser support) | 9a98043 |
+| 2026-03-15 | Masonry Layout for Galleries | Added masonry gallery layouts in file-pages.styl - native CSS masonry with @supports, CSS columns fallback, grid-based simulation with variable spans, dense packing, responsive breakpoints | bd0937b |
