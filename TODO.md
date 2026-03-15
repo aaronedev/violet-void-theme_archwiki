@@ -1227,10 +1227,12 @@ Last updated: 2026-03-15 02:58
 
 ## 🎭 Popover & Dialog Styling (New)
 
-- [ ] **`:popover-open` Pseudo-class** (87%+ browser support)
+- [x] **`:popover-open` Pseudo-class** (87%+ browser support)
   - File: `src/components/ui-components.styl`
   - Style open popover states
   - Reference tooltip theming
+  - Added base [popover] styling, :popover-open animation, tooltip/menu/form popover variants
+  - Commit: db6be27
 
 - [ ] **`::backdrop` for Modal Overlays** (97%+ browser support)
   - File: `src/components/ui-components.styl`
