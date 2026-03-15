@@ -368,6 +368,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-15 | Collapsible sections print styles for details/summary | 053dd41 |
 | 2026-03-14 | animation-timeline: scroll() for scroll-driven animations | 610bf0a |
 | 2026-03-14 | Timeline Extension Styling | 04e068d5 |
 | 2026-03-14 | @scroll-state container queries for scroll snapping | 4233450 |
@@ -615,6 +616,13 @@ Last updated: 2026-03-15 06:24
   - `@page` with margin adjustments
   - Article title in header
   - Page numbers in footer
+
+- [x] **Collapsible Sections Print Styles** (details/summary)
+  Commit: 053dd41
+  - File: `src/components/print-enhanced.styl`
+  - `<details>` and `<summary>` show all content when printing
+  - MediaWiki `.mw-collapsible` elements expanded in print
+  - Visual indicators (▶/▼) for collapsed sections
 
 
 ## 📋 Special Pages Styling (New)
