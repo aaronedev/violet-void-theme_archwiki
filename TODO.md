@@ -2945,10 +2945,13 @@ Last updated: 2026-03-15 22:05
 
 ## 🎬 View Transition Classes (New)
 
-- [ ] **`view-transition-class` Property** (85%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`view-transition-class` Property** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
   - Add classes to view transitions for styling
+  - Added hero, title, content, sidebar, toc, infobox transition groups
+  - Includes zoom, slide, fade animation effects
   - Stylus: Works directly
+  - Commit: 956c72e
 
 ## 🌈 System Color Keywords (New)
 
