@@ -4745,26 +4745,29 @@ Last updated: 2026-03-14 23:59
   - Reduced motion support included
   - Commit: 113d336
 
-- [ ] **Empty States** (CSS, 97%+ browser support)
-  - File: `src/states/empty.styl`
+- [x] **Empty States** (CSS, 97%+ browser support)
+  - File: `src/components/states.styl`
   - Empty list message
   - Empty search results
   - No permission state
   - First-time user state
+  - Commit: c164d3a
 
-- [ ] **Error States** (CSS, 97%+ browser support)
-  - File: `src/states/error.styl`
+- [x] **Error States** (CSS, 97%+ browser support)
+  - File: `src/components/states.styl`
   - Error message styling
   - Error icon display
   - Recovery suggestions
   - Contact support link
+  - Commit: c164d3a
 
-- [ ] **Success States** (CSS, 97%+ browser support)
-  - File: `src/states/success.styl`
+- [x] **Success States** (CSS, 97%+ browser support)
+  - File: `src/components/states.styl`
   - Success message styling
   - Success animation
   - Auto-dismiss timing
   - Undo action button
+  - Commit: c164d3a
 
 ## 🔤 Code & Syntax Extended (New)
 
