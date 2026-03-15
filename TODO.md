@@ -3832,12 +3832,13 @@ Last updated: 2026-03-15 11:03
   - Variable highlighting
   - Placeholder styling
 
-- [ ] **Interactive Hints** (CSS)
+- [x] **Interactive Hints** (CSS)
   - File: `src/components/code.styl`
   - Editable command indicator
   - Run in terminal hint
   - Copy command button
   - Command explanation toggle
+  - Commit: 73f4c72
 
 ## 📋 Lists & Outlines (New)
 
