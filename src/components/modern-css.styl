@@ -1714,6 +1714,87 @@ h4[id]
     animation none !important
     transition none !important
 
+// =============================================================================
+// DISPLAY CAPABILITY QUERIES
+// =============================================================================
+
+// Resolution / Pixel Density Detection
+// Browser support: 97%+
+// Detect screen DPI/Pixel density to serve higher-res assets for retina displays
+
+// Standard resolution (1dppx)
+@media (resolution 1dppx)
+  .retina-ready
+    // Standard resolution - load normal images
+
+// High resolution (2dppx and above - Retina/HiDPI displays)
+@media (min-resolution 2dppx)
+  .retina-ready
+    // High resolution display - serve @2x images
+    background-image -webkit-image-set(
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+    background-image image-set(
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+
+// Very high resolution (3dppx and above)
+@media (min-resolution 3dppx)
+  .ultra-hi-res
+    background-image -webkit-image-set(
+      url("../images/logo@3x.png") 3x,
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+    background-image image-set(
+      url("../images/logo@3x.png") 3x,
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+
+// Low resolution fallback
+@media (max-resolution 0.9dppx)
+  .low-res-fallback
+    // Simplify gradients for low bandwidth
+    background-image linear-gradient($base, $darker)
+
+// Color Index Detection
+// Browser support: 97%+
+// Detect indexed color displays to simplify gradients for limited color devices
+
+@media (color-index 0)
+  // True color (no index)
+  .color-adapt
+    gradient-surface()
+
+@media (color-index 256)
+  // 256 colors or less - simplify styling
+  .color-adapt
+    // Reduce gradient complexity
+    background $base
+    border 1px solid $border-subtle
+
+// Monochrome Display Detection
+// Browser support: 97%+
+// Detect e-ink, monochrome screens for high contrast styling
+@media (monochrome)
+  .mono-adapt
+    // High contrast for monochrome
+    color black
+    background white
+    border 2px solid black
+
+  img
+    filter grayscale(100%)
+
+@media (monochrome 0)
+  // Not monochrome - full color
+  .mono-adapt
+    color $text
+    background $base
+
 
 // =============================================================================
 // WEB COMPONENTS / SHADOW DOM

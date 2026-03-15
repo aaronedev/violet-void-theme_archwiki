@@ -2569,22 +2569,27 @@ Last updated: 2026-03-14 23:59
 
 ## 🖥️ Display Capability Queries (New)
 
-- [ ] **`@media (resolution)` and `min-resolution` / `max-resolution`** (97%+ browser support)
+- [x] **`@media (resolution)` and `min-resolution` / `max-resolution`** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Detect screen DPI/Pixel density
   - Serve higher-res assets for retina displays
   - Example: `@media (min-resolution: 2dppx) { ... }`
   - Stylus: Works directly
+  - Commit: c688a5a
 
-- [ ] **`@media (color-index)` for Color Depth** (97%+ browser support)
+- [x] **`@media (color-index)` for Color Depth** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Detect indexed color displays
   - Simplify gradients for limited color devices
   - Stylus: Works directly
+  - Commit: c688a5a
 
-- [ ] **`@media (monochrome)` for B&W Displays** (97%+ browser support)
-  - File: `src/components/print.styl`
+- [x] **`@media (monochrome)` for B&W Displays** (97%+ browser support)
+  - File: `src/components/modern-css.styl`
   - Detect e-ink, monochrome screens
+  - High contrast styling for monochrome
+  - Stylus: Works directly
+  - Commit: c688a5a
   - High contrast, no gradients for e-readers
   - Stylus: Works directly
 
@@ -7448,3 +7453,4 @@ Last updated: 2026-03-14 23:59
 | 2026-03-14 | PageForms Extension Styling | Added Extension:PageForms styling in extensions.styl - form container, fields, inputs, date picker, combo box, multi-select, checkboxes/radios, submit buttons, validation errors, file upload, reduced motion support | ef718a8 |
 | 2026-03-15 | Systemd Unit Styling | Added comprehensive systemd unit styling in archwiki-templates.styl - service, timer, socket, path, device, mount, automount, slice, scope units, journal entries, unit file preview, action buttons | 3fea0b8 |
 | 2026-03-15 | Grid Shorthands | Added place-items, place-content, place-self utility classes in utilities.styl for cleaner grid alignment code (97%+ browser support) | bd96a30 |
+| 2026-03-15 | Display Capability Queries | Added @media (resolution), @media (min-resolution: 2dppx), @media (color-index), @media (monochrome) in modern-css.styl for retina display detection, color depth detection, and monochrome e-ink display support | c688a5a |
