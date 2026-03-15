@@ -4727,12 +4727,11 @@ Last updated: 2026-03-14 23:59
 
 ## 🎭 State Patterns (New)
 
-- [ ] **Loading States** (CSS, 97%+ browser support)
-  - File: `src/states/loading.styl`
-  - Spinner animation
-  - Skeleton screens
-  - Progress indicators
-  - Loading overlays
+- [x] **Loading States** (CSS, 97%+ browser support)
+  - File: `src/components/states.styl`
+  - Spinner animation, skeleton screens, progress indicators, loading overlays
+  - Reduced motion support included
+  - Commit: 113d336
 
 - [ ] **Empty States** (CSS, 97%+ browser support)
   - File: `src/states/empty.styl`
