@@ -1,0 +1,209 @@
+// =============================================================================
+// Interwiki Link Preview Styling
+// =============================================================================
+// Hover preview card for interwiki links, project favicon display, article snippet
+// Browser support: 97%+
+// =============================================================================
+
+// Interwiki link container
+.mw-interwiki
+  position relative
+
+  // Project favicon display
+  .interwiki-favicon
+    display inline-block
+    width 16px
+    height 16px
+    vertical-align text-bottom
+    margin-right 4px
+
+    img
+      width 100%
+      height 100%
+      object-fit contain
+
+// Interwiki link preview card
+.interwiki-preview
+  position absolute
+  z-index 1000
+  width 320px
+  max-width 90vw
+  padding 12px
+  background rgba($dark, 0.95)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow 0 8px 32px rgba(0, 0, 0, 0.4)
+  opacity 0
+  visibility hidden
+  transform translateY(8px)
+  transition opacity 0.2s ease, transform 0.2s ease, visibility 0.2s
+  pointer-events none
+  backdrop-filter blur(8px)
+
+  // Show on hover
+  .mw-interwiki-link:hover &
+    opacity 1
+    visibility visible
+    transform translateY(0)
+
+  // Arrow/pointer
+  &::before
+    content ''
+    position absolute
+    top -6px
+    left 20px
+    width 12px
+    height 12px
+    background rgba($dark, 0.95)
+    border-left 1px solid $border-subtle
+    border-top 1px solid $border-subtle
+    transform rotate(45deg)
+
+  // Preview content
+  .preview-header
+    display flex
+    align-items center
+    gap 8px
+    margin-bottom 8px
+    padding-bottom 8px
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    .preview-favicon
+      width 20px
+      height 20px
+
+      img
+        width 100%
+        height 100%
+
+    .preview-title
+      font-weight 600
+      font-size 0.9rem
+      color $text
+      flex 1
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
+
+  .preview-snippet
+    font-size 0.8rem
+    color $muted
+    line-height 1.5
+    max-height 60px
+    overflow hidden
+    display -webkit-box
+    -webkit-line-clamp 3
+    -webkit-box-orient vertical
+
+    // Highlight search terms
+    .searchmatch
+      background rgba($arch-blue, 0.3)
+      color $arch-blue
+      padding 0 2px
+      border-radius 2px
+
+  .preview-footer
+    display flex
+    align-items center
+    justify-content space-between
+    margin-top 8px
+    padding-top 8px
+    border-top 1px solid rgba($border-subtle, 0.5)
+    font-size 0.7rem
+    color $muted
+
+    .preview-lang
+      display flex
+      align-items center
+      gap 4px
+
+    .preview-license
+      opacity 0.7
+
+// Interwiki link hover state
+a.external.text
+  &.interwiki-wikipedia
+    &::before
+      content ''
+      display inline-block
+      width 12px
+      height 12px
+      margin-right 4px
+      vertical-align text-bottom
+      background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%92%F0%9F%8C%8D%3C/text%3E%3C/svg%3E")
+      background-size contain
+      background-repeat no-repeat
+
+  &.interwiki-wikidata
+    &::before
+      content ''
+      display inline-block
+      width 12px
+      height 12px
+      margin-right 4px
+      vertical-align text-bottom
+      background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%AD%3C/text%3E%3C/svg%3E")
+      background-size contain
+      background-repeat no-repeat
+
+// Different project colors
+.interwiki-preview
+  &.wikipedia
+    border-left 3px solid $arch-blue
+
+  &.wiktionary
+    border-left 3px solid $orange
+
+  &.wikibooks
+    border-left 3px solid $green
+
+  &.wikiversity
+    border-left 3px solid $secondary-red
+
+  &.wikinews
+    border-left 3px solid $purple
+
+  &.wikisource
+    border-left 3px solid $yellow
+
+  &.wikiquote
+    border-left 3px solid $cyan
+
+  &.wikimedia-commons
+    border-left 3px solid $arch-blue
+
+// Mobile adjustments
+@media (max-width $breakpoint-sm)
+  .interwiki-preview
+    width calc(100vw - 32px)
+    max-width calc(100vw - 32px)
+    left 8px !important
+    right 8px !important
+
+    &::before
+      left 30px
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .interwiki-preview
+    transition opacity 0.1s ease, visibility 0.1s
+    transform none
+
+// Touch device - show on tap instead
+@media (pointer coarse)
+  .interwiki-preview
+    opacity 1
+    visibility visible
+    transform translateY(0)
+    pointer-events auto
+
+    // But hide initially on mobile for cleaner UI
+    .mw-interwiki-link:not(.is-tapped) &
+      opacity 0
+      visibility hidden
+      pointer-events none
+
+    .mw-interwiki-link.is-tapped &
+      opacity 1
+      visibility visible
+      pointer-events auto
