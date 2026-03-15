@@ -27,7 +27,8 @@
     "setup:stylus": "node scripts/setup-stylus.js",
     "test:integration": "playwright test tests/integration/stylus-integration.spec.js --project=chromium",
     "console-check": "node scripts/console-fixer.js --browser=firefox --dry-run",
-    "console-fix": "node scripts/console-fixer.js --browser=firefox --fix"
+    "console-fix": "node scripts/console-fixer.js --browser=firefox --fix",
+    "test:unit": "node --test tests/unit/**/*.test.js"
   },
   "overrides": {
     "autoprefixer-stylus": {

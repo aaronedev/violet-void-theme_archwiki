@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { execSync } = require('child_process')
+const child_process = require('child_process')
 const stylus = require('stylus')
 const autoprefixer = require('autoprefixer-stylus')
 const pkg = require('../package.json')
@@ -24,12 +24,12 @@ const tryAddFile = (filePath, { forceIfIgnored = false } = {}) => {
   }
 
   try {
-    execSync(`git add ${filePath}`, { stdio: 'inherit' })
+    child_process.execSync(`git add ${filePath}`, { stdio: 'inherit' })
     return true
   } catch (error) {
     if (forceIfIgnored) {
       try {
-        execSync(`git add -f ${filePath}`, { stdio: 'inherit' })
+        child_process.execSync(`git add -f ${filePath}`, { stdio: 'inherit' })
         console.log(`Added ignored file: ${filePath}`)
         return true
       } catch (forceError) {
@@ -56,21 +56,27 @@ const tryAutoCommit = (newVersion) => {
   }
 
   try {
-    execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore' })
+    child_process.execSync('git rev-parse --is-inside-work-tree', {
+      stdio: 'ignore',
+    })
   } catch {
     console.log('Skipping auto-commit: not a git repo')
     return
   }
 
-  const staged = execSync('git diff --cached --name-only', {
-    encoding: 'utf8',
-  }).trim()
+  const staged = child_process
+    .execSync('git diff --cached --name-only', {
+      encoding: 'utf8',
+    })
+    .trim()
   if (staged) {
     console.log('Skipping auto-commit: staged changes present')
     return
   }
 
-  const status = execSync('git status --porcelain', { encoding: 'utf8' }).trim()
+  const status = child_process
+    .execSync('git status --porcelain', { encoding: 'utf8' })
+    .trim()
   if (!status) {
     console.log('Skipping auto-commit: working tree clean')
     return
@@ -97,9 +103,11 @@ const tryAutoCommit = (newVersion) => {
   // dist/main.css is gitignored - don't force add
   // tryAddFile('dist/main.css', { forceIfIgnored: true })
 
-  const stagedAfterAdd = execSync('git diff --cached --name-only', {
-    encoding: 'utf8',
-  }).trim()
+  const stagedAfterAdd = child_process
+    .execSync('git diff --cached --name-only', {
+      encoding: 'utf8',
+    })
+    .trim()
   if (!stagedAfterAdd) {
     console.log('Skipping auto-commit: nothing staged after add')
     return
@@ -108,29 +116,32 @@ const tryAutoCommit = (newVersion) => {
   const message = `chore: verbump ${newVersion}`
   const noVerifyFlag = runGitHooks ? '' : ' --no-verify'
   try {
-    execSync(`git commit -m "${message}"${noVerifyFlag}`, { stdio: 'inherit' })
+    child_process.execSync(`git commit -m "${message}"${noVerifyFlag}`, {
+      stdio: 'inherit',
+    })
   } catch (error) {
     const errorMessage = error && error.message ? error.message : String(error)
     console.log(`Skipping auto-commit: git commit failed (${errorMessage})`)
   }
 }
 
-// Bump version
-const now = new Date()
-const pad = (n) => n.toString().padStart(2, '0')
-const version = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}.${pad(now.getHours())}.${pad(now.getMinutes())}`
+const build = () => {
+  // Bump version
+  const now = new Date()
+  const pad = (n) => n.toString().padStart(2, '0')
+  const version = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}.${pad(now.getHours())}.${pad(now.getMinutes())}`
 
-pkg.userStyle.version = version
-fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2) + '\n')
-console.log(`Bumped version to ${version}`)
+  pkg.userStyle.version = version
+  fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2) + '\n')
+  console.log(`Bumped version to ${version}`)
 
-// Create dist dir if not exists
-if (!fs.existsSync(distDir)) {
-  fs.mkdirSync(distDir, { recursive: true })
-}
+  // Create dist dir if not exists
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true })
+  }
 
-// Generate UserStyle header
-const header = `/* ==UserStyle==
+  // Generate UserStyle header
+  const header = `/* ==UserStyle==
 @name         ${pkg.name}
 @version      ${version}
 @namespace    ${pkg.userStyle.namespace}
@@ -143,26 +154,33 @@ const header = `/* ==UserStyle==
 
 `
 
-const stylContent = fs.readFileSync(inputFile, 'utf8')
+  const stylContent = fs.readFileSync(inputFile, 'utf8')
 
-console.log('Building CSS...')
+  console.log('Building CSS...')
 
-stylus(stylContent)
-  .set('filename', inputFile)
-  .set('compress', true)
-  .use(autoprefixer())
-  .render((err, css) => {
-    if (err) {
-      console.error('Error building CSS:', err)
-      process.exit(1)
-    }
+  stylus(stylContent)
+    .set('filename', inputFile)
+    .set('compress', true)
+    .use(autoprefixer())
+    .render((err, css) => {
+      if (err) {
+        console.error('Error building CSS:', err)
+        process.exit(1)
+      }
 
-    // Check if the original @document block was preserved (Stylus usually handles it)
-    // If we want to move the @document block *after* the UserStyle header (which we do),
-    // we just prepend the header.
+      // Check if the original @document block was preserved (Stylus usually handles it)
+      // If we want to move the @document block *after* the UserStyle header (which we do),
+      // we just prepend the header.
 
-    const finalCss = header + css
-    fs.writeFileSync(outputFile, finalCss)
-    console.log(`Build complete: ${outputFile}`)
-    tryAutoCommit(version)
-  })
+      const finalCss = header + css
+      fs.writeFileSync(outputFile, finalCss)
+      console.log(`Build complete: ${outputFile}`)
+      tryAutoCommit(version)
+    })
+}
+
+if (require.main === module) {
+  build()
+}
+
+module.exports = { tryAddFile, tryAutoCommit, build }
