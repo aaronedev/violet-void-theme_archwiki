@@ -603,6 +603,50 @@
     border 1px solid $print-border !important
 
   // =============================================================================
+  // COLLAPSIBLE SECTIONS (details/summary) - Show all content when printing
+  // =============================================================================
+
+  // Show all details elements expanded when printing
+  // This ensures hidden content is visible in printed output
+  details
+    display block !important
+
+    summary
+      display list-item
+      list-style disclosure-closed inside
+
+      &::marker
+        content "▶ "
+        color $print-text !important
+
+    // Show the expanded content
+    &[open] summary
+      list-style disclosure-open inside
+
+      &::marker
+        content "▼ "
+        color $print-text !important
+
+    // Ensure content doesn't break across pages
+    break-inside avoid
+    page-break-inside avoid
+
+  // Collapsible templates in MediaWiki
+  .mw-collapsible
+    display block !important
+
+    .mw-collapsible-toggle
+      display none !important
+
+    // Show all content
+    .mw-collapsible-content
+      display block !important
+
+  // Hidden-by-default sections (hidden=until-found)
+  details[hidden="until-found"]
+    display block !important
+
+  // =============================================================================
   // PAGE BREAKS
   // =============================================================================
 

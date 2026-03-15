@@ -2583,3 +2583,74 @@ h4[id]
 
 // Fast update (typical screens) - no restrictions needed
 // This is the default and needs no special handling
+
+// =============================================================================
+// CUSTOM HIGHLIGHT API - JavaScript-Driven Highlights
+// =============================================================================
+
+// Note: ::highlight pseudo-element support is 85%+ (Chrome 105+, Edge 105+)
+// Requires JavaScript API pairing for custom highlights
+// Below are styles using data attributes that work with JS highlight APIs
+
+// Search results highlight - purple theme for found text
+[data-highlight="search"]
+  background rgba($arch-blue, 0.3)
+  color inherit
+  border-radius 2px
+  padding-inline 1px
+
+// Custom annotation highlight - for user-added notes
+[data-highlight="annotation"]
+  background rgba($arch-blue, 0.2)
+  border-bottom 2px solid $arch-blue
+
+// Find match highlight - in-document search
+[data-highlight="find"]
+  background rgba($orange, 0.35)
+  border-radius 2px
+
+// Current match highlight - active find result
+[data-highlight="current"]
+  background rgba($orange, 0.5)
+  border-radius 2px
+  box-shadow 0 0 0 2px rgba($orange, 0.3)
+
+// Quote highlight - for citation highlighting
+[data-highlight="quote"]
+  background rgba($green, 0.15)
+  border-inline-start 3px solid $green
+  padding-inline-start 0.5em
+
+// Code highlight - for code snippet highlighting
+[data-highlight="code"]
+  background rgba($orange, 0.15)
+  font-family $font-mono
+  font-size 0.95em
+
+// Region highlight - for highlighted regions/sections
+[data-highlight="region"]
+  background rgba($secondary-blue, 0.2)
+  outline 1px dashed $secondary-blue
+
+// Dimmed highlight - for less important matches
+[data-highlight="dimmed"]
+  background rgba($muted, 0.15)
+  color $muted
+
+// Highlight animation for attention
+.highlight-pulse
+  animation highlight-pulse 0.6s ease-out
+
+@keyframes highlight-pulse
+  0%
+    background-color rgba($arch-blue, 0.5)
+  100%
+    background-color transparent
+
+// Reduced motion for highlights
+@media (prefers-reduced-motion reduce)
+  .highlight-pulse
+    animation none
+
+  [data-highlight]
+    transition none
