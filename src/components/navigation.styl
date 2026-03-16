@@ -1597,4 +1597,150 @@ h6:hover .mw-editsection
       animation-range cross 0% cross 100%
 
 
+// =============================================================================
+// BACKDROP FILTER BRIGHTNESS - Backdrop Brightness Adjustment
+// =============================================================================
+// Adjust backdrop brightness without blur for performance-conscious designs
+// Browser support: 97%+
+// Note: Requires @supports wrapper for Stylus compatibility
+
+@supports (backdrop-filter: brightness(1.2))
+  // Brighten backdrop (lighten background behind element)
+  .backdrop-brightness-light
+    backdrop-filter brightness(1.2)
+    -webkit-backdrop-filter brightness(1.2)
+
+  .backdrop-brightness-lighter
+    backdrop-filter brightness(1.4)
+    -webkit-backdrop-filter brightness(1.4)
+
+  .backdrop-brightness-lightest
+    backdrop-filter brightness(1.6)
+    -webkit-backdrop-filter brightness(1.6)
+
+  // Darken backdrop (darken background behind element)
+  .backdrop-brightness-dark
+    backdrop-filter brightness(0.8)
+    -webkit-backdrop-filter brightness(0.8)
+
+  .backdrop-brightness-darker
+    backdrop-filter brightness(0.6)
+    -webkit-backdrop-filter brightness(0.6)
+
+  .backdrop-brightness-darkest
+    backdrop-filter brightness(0.4)
+    -webkit-backdrop-filter brightness(0.4)
+
+  // Custom brightness levels
+  .backdrop-brightness-120
+    backdrop-filter brightness(1.2)
+    -webkit-backdrop-filter brightness(1.2)
+
+  .backdrop-brightness-150
+    backdrop-filter brightness(1.5)
+    -webkit-backdrop-filter brightness(1.5)
+
+  .backdrop-brightness-200
+    backdrop-filter brightness(2)
+    -webkit-backdrop-filter brightness(2)
+
+  .backdrop-brightness-50
+    backdrop-filter brightness(0.5)
+    -webkit-backdrop-filter brightness(0.5)
+
+  .backdrop-brightness-75
+    backdrop-filter brightness(0.75)
+    -webkit-backdrop-filter brightness(0.75)
+
+
+// =============================================================================
+// BACKDROP FILTER SATURATE - Backdrop Saturation Adjustment
+// =============================================================================
+// Adjust backdrop saturation without blur for vibrant overlay effects
+// Browser support: 97%+
+// Note: Requires @supports wrapper for Stylus compatibility
+
+@supports (backdrop-filter: saturate(1.5))
+  // Increase saturation (more vibrant colors behind element)
+  .backdrop-saturate-high
+    backdrop-filter saturate(1.5)
+    -webkit-backdrop-filter saturate(1.5)
+
+  .backdrop-saturate-higher
+    backdrop-filter saturate(2)
+    -webkit-backdrop-filter saturate(2)
+
+  .backdrop-saturate-highest
+    backdrop-filter saturate(2.5)
+    -webkit-backdrop-filter saturate(2.5)
+
+  // Decrease saturation (desaturate/dull colors behind element)
+  .backdrop-saturate-low
+    backdrop-filter saturate(0.8)
+    -webkit-backdrop-filter saturate(0.8)
+
+  .backdrop-saturate-lower
+    backdrop-filter saturate(0.5)
+    -webkit-backdrop-filter saturate(0.5)
+
+  .backdrop-saturate-lowest
+    backdrop-filter saturate(0.25)
+    -webkit-backdrop-filter saturate(0.25)
+
+  // Remove saturation (grayscale behind element)
+  .backdrop-saturate-none
+    backdrop-filter saturate(0)
+    -webkit-backdrop-filter saturate(0)
+
+  // Custom saturation levels
+  .backdrop-saturate-150
+    backdrop-filter saturate(1.5)
+    -webkit-backdrop-filter saturate(1.5)
+
+  .backdrop-saturate-180
+    backdrop-filter saturate(1.8)
+    -webkit-backdrop-filter saturate(1.8)
+
+  .backdrop-saturate-200
+    backdrop-filter saturate(2)
+    -webkit-backdrop-filter saturate(2)
+
+
+// =============================================================================
+// BACKDROP FILTER BRIGHTNESS + SATURATE COMBINED
+// =============================================================================
+// Combined brightness and saturate for enhanced visual effects
+
+@supports (backdrop-filter: brightness(1.2) saturate(1.5))
+  // Bright and vibrant backdrop
+  .backdrop-bright-vibrant
+    backdrop-filter brightness(1.2) saturate(1.5)
+    -webkit-backdrop-filter brightness(1.2) saturate(1.5)
+
+  // Dark and vibrant backdrop
+  .backdrop-dark-vibrant
+    backdrop-filter brightness(0.7) saturate(1.8)
+    -webkit-backdrop-filter brightness(0.7) saturate(1.8)
+
+  // Light and muted backdrop
+  .backdrop-light-muted
+    backdrop-filter brightness(1.1) saturate(0.7)
+    -webkit-backdrop-filter brightness(1.1) saturate(0.7)
+
+  // Dark and muted backdrop
+  .backdrop-dark-muted
+    backdrop-filter brightness(0.6) saturate(0.6)
+    -webkit-backdrop-filter brightness(0.6) saturate(0.6)
+
+  // Frosted glass effect with brightness and saturation
+  .backdrop-frosted-bright
+    backdrop-filter blur(8px) brightness(1.1) saturate(1.3)
+    -webkit-backdrop-filter blur(8px) brightness(1.1) saturate(1.3)
+
+  // High contrast frosted glass
+  .backdrop-frosted-contrast
+    backdrop-filter blur(10px) brightness(1.15) saturate(1.4)
+    -webkit-backdrop-filter blur(10px) brightness(1.15) saturate(1.4)
+
+
 

@@ -2257,15 +2257,20 @@ Last updated: 2026-03-16 00:26
   - `backdrop-filter: blur(10px);`
   - Stylus: Works directly
 
-- [ ] **`backdrop-filter: brightness()`** (97%+ browser support)
+- [x] **`backdrop-filter: brightness()`** (97%+ browser support)
   - File: `src/components/navigation.styl`
   - Adjust backdrop brightness
+  - Added utility classes: .backdrop-brightness-light/dark, .backdrop-brightness-* (50-200%)
   - Stylus: Works directly
+  - Commit: 37ba9bc
 
-- [ ] **`backdrop-filter: saturate()`** (97%+ browser support)
+- [x] **`backdrop-filter: saturate()`** (97%+ browser support)
   - File: `src/components/navigation.styl`
   - Adjust backdrop saturation
+  - Added utility classes: .backdrop-saturate-high/low, .backdrop-saturate-* (150-200%)
+  - Also added combined .backdrop-bright-vibrant, .backdrop-dark-muted, .backdrop-frosted-*
   - Stylus: Works directly
+  - Commit: 37ba9bc
 
 ## 📜 Scrollbar Styling (New)
 
@@ -7586,3 +7591,4 @@ Last updated: 2026-03-16 00:26
 | 2026-03-15 | ::highlight() Pseudo-element | Added ::highlight() pseudo-element styles in modern-css.styl for CSS Custom Highlight API - supports search-results, search-current, annotation, custom-selection, quote, error, warning, link-found highlight types (85%+ browser support) | 9a98043 |
 | 2026-03-15 | Masonry Layout for Galleries | Added masonry gallery layouts in file-pages.styl - native CSS masonry with @supports, CSS columns fallback, grid-based simulation with variable spans, dense packing, responsive breakpoints | bd0937b |
 | 2026-03-16 | Command Line Blocks | Added archwiki.styl with terminal prompt styling, command/output separation, copy button positioning, root vs user prompt distinction, config file blocks (INI/JSON/YAML), installation status boxes, kernel module styling | cca8d22 |
+| 2026-03-16 | backdrop-filter brightness/saturate | Added backdrop-filter brightness() and saturate() utility classes in navigation.styl - standalone brightness (light/dark 50-200%), saturate (high/low 150-200%), and combined effects (bright-vibrant, dark-muted, frosted-*) | 37ba9bc |
