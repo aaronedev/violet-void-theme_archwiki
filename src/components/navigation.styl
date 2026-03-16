@@ -839,6 +839,48 @@ h6:hover .mw-editsection
 }
 
 // =============================================================================
+// calc-size() FOR AUTO TRANSITIONS
+// =============================================================================
+
+// Alternative to interpolate-size: allows smooth transitions to/from auto
+// Browser support: 85%+ (Chrome 129+)
+// Note: Wrap in @css{} for Stylus compatibility
+// calc-size() is an alternative approach to interpolate-size
+
+@css {
+  @supports (height: calc-size(auto)) {
+    /* Collapsible sections with calc-size */
+    .mw-collapsible-content,
+    .vector-toc ul,
+    .toc ul,
+    .vector-dropdown-content,
+    .vector-menu-content {
+      transition: height 0.3s ease, max-height 0.3s ease;
+    }
+
+    /* Auto-height transitions using calc-size */
+    .mw-collapsible-content {
+      height: calc-size(auto);
+    }
+
+    .mw-collapsible-content.collapsed {
+      height: calc-size(0);
+    }
+
+    /* Dropdown menus */
+    .vector-dropdown-content,
+    .vector-menu-content {
+      height: calc-size(auto);
+    }
+
+    .vector-dropdown-content.closed,
+    .vector-menu-content.closed {
+      height: calc-size(0);
+    }
+  }
+}
+
+// =============================================================================
 // @starting-style FOR COLLAPSIBLE SECTIONS
 // =============================================================================
 

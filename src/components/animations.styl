@@ -813,251 +813,260 @@
       overlay: none;
     }
   }
-  // =============================================================================  // INTERPOLATE-SIZE - Smooth Height/Width to Auto Transitions  // =============================================================================  // Browser support: 85%+ (Chrome 129+, Firefox ~pending, Safari ~pending)  // Enables smooth transitions to/from intrinsic sizing keywords (auto, min-content, max-content, etc.)  // Previously required JavaScript or complex max-height hacks
-  // Using @css wrapper since this is newer CSS syntax
-  @css {
-    @supports (interpolate-size: allow-keywords) {
-      /* ==========================================================================
+}
+
+// =============================================================================
+// INTERPOLATE-SIZE - Smooth Height/Width to Auto Transitions
+// =============================================================================
+
+// Browser support: 85%+ (Chrome 129+, Firefox ~pending, Safari ~pending)
+// Enables smooth transitions to/from intrinsic sizing keywords (auto, min-content, max-content, etc.)
+// Previously required JavaScript or complex max-height hacks
+// Using @css wrapper since this is newer CSS syntax
+
+@css {
+  @supports (interpolate-size: allow-keywords) {
+    /* ==========================================================================
        AUTO HEIGHT TRANSITIONS - The Holy Grail of CSS Animations
        ========================================================================== */
-      /* Now you can animate height: 0 to height: auto smoothly! */
+    /* Now you can animate height: 0 to height: auto smoothly! */
 
-      /* Base class for auto-height transitions */
-      .height-auto {
-        transition: height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Base class for auto-height transitions */
+    .height-auto {
+      transition: height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      .height-auto.collapsed {
-        height: 0;
-        overflow: hidden;
-      }
+    .height-auto.collapsed {
+      height: 0;
+      overflow: hidden;
+    }
 
-      .height-auto.expanded {
-        height: auto;
-      }
+    .height-auto.expanded {
+      height: auto;
+    }
 
-      /* Accordion-style sections */
-      .accordion-content {
-        transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        interpolate-size: allow-keywords;
-      }
+    /* Accordion-style sections */
+    .accordion-content {
+      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      interpolate-size: allow-keywords;
+    }
 
-      .accordion-content[aria-hidden="true"] {
-        height: 0;
-        overflow: hidden;
-      }
+    .accordion-content[aria-hidden="true"] {
+      height: 0;
+      overflow: hidden;
+    }
 
-      /* Dropdown menus */
-      .dropdown-menu {
-        transition: height 0.2s ease-out, opacity 0.2s ease-out;
-        interpolate-size: allow-keywords;
-      }
+    /* Dropdown menus */
+    .dropdown-menu {
+      transition: height 0.2s ease-out, opacity 0.2s ease-out;
+      interpolate-size: allow-keywords;
+    }
 
-      .dropdown-menu.closed {
-        height: 0;
-        opacity: 0;
-        overflow: hidden;
-      }
+    .dropdown-menu.closed {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
 
-      /* Collapsible details/summary */
-      details > .collapsible-content {
-        transition: height 0.25s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Collapsible details/summary */
+    details > .collapsible-content {
+      transition: height 0.25s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      details:not([open]) > .collapsible-content {
-        height: 0;
-        overflow: hidden;
-      }
+    details:not([open]) > .collapsible-content {
+      height: 0;
+      overflow: hidden;
+    }
 
-      /* Smooth expand/collapse for any element */
-      .expandable {
-        transition: height 0.3s ease, max-height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Smooth expand/collapse for any element */
+    .expandable {
+      transition: height 0.3s ease, max-height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      .expandable.collapsed {
-        height: 0;
-      }
+    .expandable.collapsed {
+      height: 0;
+    }
 
-      /* Auto-width transitions */
-      .width-auto {
-        transition: width 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Auto-width transitions */
+    .width-auto {
+      transition: width 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      /* Inline-size (logical property) */
-      .inline-size-auto {
-        transition: inline-size 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Inline-size (logical property) */
+    .inline-size-auto {
+      transition: inline-size 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      /* Block-size (logical property) */
-      .block-size-auto {
-        transition: block-size 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Block-size (logical property) */
+    .block-size-auto {
+      transition: block-size 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      /* Min/max content transitions */
-      .height-min-content {
-        transition: height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Min/max content transitions */
+    .height-min-content {
+      transition: height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      .height-max-content {
-        transition: height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    .height-max-content {
+      transition: height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      /* Grid track transitions */
-      .grid-rows-auto {
-        transition: grid-template-rows 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
+    /* Grid track transitions */
+    .grid-rows-auto {
+      transition: grid-template-rows 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      /* Flex basis transitions */
-      .flex-basis-auto {
-        transition: flex-basis 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* ==========================================================================
-       UTILITY CLASSES - Quick Apply
-       ========================================================================== */
-
-      /* Collapse/expand animations */
-      .animate-collapse {
-        height: 0;
-        overflow: hidden;
-        transition: height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      .animate-expand {
-        height: auto;
-        transition: height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* Slide toggle */
-      .slide-toggle {
-        transition: height 0.25s ease-in-out, opacity 0.25s ease-in-out;
-        interpolate-size: allow-keywords;
-      }
-
-      /* Smooth dropdown */
-      .smooth-dropdown {
-        transition: height 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s;
-        interpolate-size: allow-keywords;
-      }
-
-      /* Card expand on hover (for expandable cards) */
-      .card-expandable {
-        transition: height 0.3s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      .card-expandable:hover {
-        height: auto;
-      }
-
-      /* ==========================================================================
-       MEDIAWIKI SPECIFIC - Common Wiki Patterns
-       ========================================================================== */
-
-      /* Collapsible nav elements */
-      .mw-collapsible-content {
-        transition: height 0.25s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* Vector skin collapsible menus */
-      .vector-sticky-pinned-container-collapsible-content {
-        transition: height 0.2s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* TOC collapse */
-      #toc ul {
-        transition: height 0.2s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* Sidebar collapse */
-      .mw-sidebar {
-        transition: width 0.25s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* Personal toolbar collapse */
-      #pt-userpage,
-      #pt-preferences,
-      #pt-logout {
-        transition: inline-size 0.2s ease;
-        interpolate-size: allow-keywords;
-      }
-
-      /* ==========================================================================
-       ACCESSIBILITY - Reduced Motion Support
-       ========================================================================== */
-
-      @media (prefers-reduced-motion: reduce) {
-        .height-auto,
-        .accordion-content,
-        .dropdown-menu,
-        details > .collapsible-content,
-        .expandable,
-        .width-auto,
-        .inline-size-auto,
-        .block-size-auto,
-        .height-min-content,
-        .height-max-content,
-        .grid-rows-auto,
-        .flex-basis-auto,
-        .animate-collapse,
-        .animate-expand,
-        .slide-toggle,
-        .smooth-dropdown,
-        .card-expandable,
-        .mw-collapsible-content,
-        .vector-sticky-pinned-container-collapsible-content,
-        #toc ul,
-        .mw-sidebar {
-          transition: none;
-        }
-      }
+    /* Flex basis transitions */
+    .flex-basis-auto {
+      transition: flex-basis 0.3s ease;
+      interpolate-size: allow-keywords;
     }
 
     /* ==========================================================================
-     CALC-SIZE() - Alternative to Interpolate-Size
-     ========================================================================== */
-    /* calc-size() provides another way to animate to intrinsic sizes */
-    /* Note: calc-size has less browser support than interpolate-size */
+       UTILITY CLASSES - Quick Apply
+       ========================================================================== */
 
-    @supports (height: calc-size(auto)) {
-      .calc-size-height {
-        transition: height 0.3s ease;
-      }
+    /* Collapse/expand animations */
+    .animate-collapse {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      .calc-size-height.collapsed {
-        height: calc-size(0);
-      }
+    .animate-expand {
+      height: auto;
+      transition: height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
 
-      .calc-size-height.expanded {
-        height: calc-size(auto);
-      }
+    /* Slide toggle */
+    .slide-toggle {
+      transition: height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+      interpolate-size: allow-keywords;
+    }
 
-      .calc-size-height.min {
-        height: calc-size(min-content);
-      }
+    /* Smooth dropdown */
+    .smooth-dropdown {
+      transition: height 0.2s ease-out, opacity 0.2s ease-out, visibility 0.2s;
+      interpolate-size: allow-keywords;
+    }
 
-      .calc-size-height.max {
-        height: calc-size(max-content);
+    /* Card expand on hover (for expandable cards) */
+    .card-expandable {
+      transition: height 0.3s ease;
+      interpolate-size: allow-keywords;
+    }
+
+    .card-expandable:hover {
+      height: auto;
+    }
+
+    /* ==========================================================================
+       MEDIAWIKI SPECIFIC - Common Wiki Patterns
+       ========================================================================== */
+
+    /* Collapsible nav elements */
+    .mw-collapsible-content {
+      transition: height 0.25s ease;
+      interpolate-size: allow-keywords;
+    }
+
+    /* Vector skin collapsible menus */
+    .vector-sticky-pinned-container-collapsible-content {
+      transition: height 0.2s ease;
+      interpolate-size: allow-keywords;
+    }
+
+    /* TOC collapse */
+    #toc ul {
+      transition: height 0.2s ease;
+      interpolate-size: allow-keywords;
+    }
+
+    /* Sidebar collapse */
+    .mw-sidebar {
+      transition: width 0.25s ease;
+      interpolate-size: allow-keywords;
+    }
+
+    /* Personal toolbar collapse */
+    #pt-userpage,
+    #pt-preferences,
+    #pt-logout {
+      transition: inline-size 0.2s ease;
+      interpolate-size: allow-keywords;
+    }
+
+    /* ==========================================================================
+       ACCESSIBILITY - Reduced Motion Support
+       ========================================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+      .height-auto,
+      .accordion-content,
+      .dropdown-menu,
+      details > .collapsible-content,
+      .expandable,
+      .width-auto,
+      .inline-size-auto,
+      .block-size-auto,
+      .height-min-content,
+      .height-max-content,
+      .grid-rows-auto,
+      .flex-basis-auto,
+      .animate-collapse,
+      .animate-expand,
+      .slide-toggle,
+      .smooth-dropdown,
+      .card-expandable,
+      .mw-collapsible-content,
+      .vector-sticky-pinned-container-collapsible-content,
+      #toc ul,
+      .mw-sidebar {
+        transition: none;
       }
     }
   }
+
+  /* ==========================================================================
+     CALC-SIZE() - Alternative to Interpolate-Size
+     ========================================================================== */
+  /* calc-size() provides another way to animate to intrinsic sizes */
+  /* Note: calc-size has less browser support than interpolate-size */
+
+  @supports (height: calc-size(auto)) {
+    .calc-size-height {
+      transition: height 0.3s ease;
+    }
+
+    .calc-size-height.collapsed {
+      height: calc-size(0);
+    }
+
+    .calc-size-height.expanded {
+      height: calc-size(auto);
+    }
+
+    .calc-size-height.min {
+      height: calc-size(min-content);
+    }
+
+    .calc-size-height.max {
+      height: calc-size(max-content);
+    }
+  }
 }
+
 
 
 // =============================================================================
