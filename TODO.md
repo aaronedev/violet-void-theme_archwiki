@@ -1071,11 +1071,12 @@ Last updated: 2026-03-16 06:36
   - Real-time presence dots
   - Commit: 8543a8e
 
-- [ ] **WikiProject Tagging** (CSS)
+- [x] **WikiProject Tagging** (CSS)
   - File: `src/components/community.styl`
   - WikiProject badges
   - Quality scale indicators
   - Importance rating display
+  - Commit: d30dea5
 
 ## 🔧 Admin & Moderator Tools (New)
 
