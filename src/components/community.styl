@@ -1022,6 +1022,291 @@
         outline-offset 2px
 
 // =============================================================================
+// COLLABORATIVE EDITING INDICATORS
+// =============================================================================
+// Active editor badges, edit lock indicator, real-time presence dots
+// Browser support: 85%+ (Chrome 109+, Firefox 120+, Safari 16.4+)
+
+// Active editor indicator container
+.collaborative-editors
+  display flex
+  align-items center
+  gap 0.75em
+  padding 0.5em 0.75em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-size 0.875em
+
+// Editor presence list
+.editor-presence-list
+  display flex
+  align-items center
+  gap 0.25em
+
+// Individual editor avatar/badge
+.editor-badge
+  position relative
+  width 28px
+  height 28px
+  border-radius 50%
+  background $arch-blue
+  border 2px solid $bg-primary
+  display flex
+  align-items center
+  justify-content center
+  font-size 0.7em
+  font-weight 600
+  color white
+  cursor pointer
+  transition transform 0.2s ease, box-shadow 0.2s ease
+
+  &:hover
+    transform scale(1.1)
+    box-shadow 0 0 0 2px $arch-blue
+
+  // Online/active indicator dot
+  &::after
+    content ''
+    position absolute
+    bottom -1px
+    right -1px
+    width 8px
+    height 8px
+    background $green
+    border 2px solid $bg-primary
+    border-radius 50%
+
+  // Idle state
+  &.idle::after
+    background $orange
+
+  // Editing state
+  &.editing::after
+    background $arch-blue
+    animation pulse 1.5s ease-in-out infinite
+
+  // Editor tooltip on hover
+  &[title]:hover::before
+    content attr(title)
+    position absolute
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    padding 0.25em 0.5em
+    background rgba($dark, 0.95)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    font-size 0.85em
+    white-space nowrap
+    margin-bottom 0.5em
+    z-index 100
+
+// Editor count overflow indicator
+.editors-overflow
+  width 28px
+  height 28px
+  border-radius 50%
+  background rgba($arch-blue, 0.2)
+  border 2px solid $border-subtle
+  display flex
+  align-items center
+  justify-content center
+  font-size 0.75em
+  font-weight 600
+  color $arch-blue
+  cursor pointer
+
+// Edit lock indicator
+.edit-lock-indicator
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.4em 0.75em
+  background rgba($orange, 0.15)
+  border 1px solid rgba($orange, 0.4)
+  border-radius $border-radius-sm
+  font-size 0.8em
+  color $orange
+
+  .lock-icon
+    width 14px
+    height 14px
+    fill currentColor
+
+  &.locked
+    background rgba($green, 0.15)
+    border-color rgba($green, 0.4)
+    color $green
+
+  &.warning
+    background rgba($red, 0.15)
+    border-color rgba($red, 0.4)
+    color $red
+
+// Real-time presence indicator
+.presence-indicator
+  display flex
+  align-items center
+  gap 0.35em
+  padding 0.25em 0.5em
+  background rgba($dark, 0.5)
+  border-radius $border-radius-sm
+  font-size 0.75em
+  color $light
+
+  .presence-dot
+    width 6px
+    height 6px
+    border-radius 50%
+    background $green
+    animation pulse 2s ease-in-out infinite
+
+    &.connecting
+      background $orange
+      animation blink 1s ease-in-out infinite
+
+    &.disconnected
+      background $red
+
+// Typing indicator for real-time editing
+.typing-indicator
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.35em 0.6em
+  font-size 0.8em
+  color $light
+
+  .typing-dots
+    display flex
+    gap 0.2em
+
+    span
+      width 4px
+      height 4px
+      border-radius 50%
+      background $arch-blue
+      animation typing-bounce 1.4s ease-in-out infinite
+
+      &:nth-child(2)
+        animation-delay 0.2s
+
+      &:nth-child(3)
+        animation-delay 0.4s
+
+@keyframes pulse
+  0%
+  100%
+    opacity 1
+  50%
+    opacity 0.5
+
+@keyframes blink
+  0%
+  100%
+    opacity 1
+  50%
+    opacity 0.3
+
+@keyframes typing-bounce
+  0%
+  60%
+  100%
+    transform translateY(0)
+  30%
+    transform translateY(-4px)
+
+// Collaborative cursor (when viewing others' edits)
+.collaborative-cursor
+  position absolute
+  width 2px
+  height 1.2em
+  background rgba($arch-blue, 0.7)
+  pointer-events none
+  z-index 50
+
+  .cursor-label
+    position absolute
+    top -1.2em
+    left 0
+    padding 0.15em 0.35em
+    background $arch-blue
+    border-radius $border-radius-sm
+    font-size 0.65em
+    font-weight 600
+    color white
+    white-space nowrap
+
+// Conflict warning during collaborative edit
+.collaborative-conflict
+  display flex
+  align-items flex-start
+  gap 0.75em
+  padding 0.75em 1em
+  background rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.4)
+  border-radius $border-radius-md
+  margin 1em 0
+
+  .conflict-icon
+    flex-shrink 0
+    width 20px
+    height 20px
+    fill $orange
+
+  .conflict-content
+    flex 1
+
+    .conflict-title
+      font-weight 600
+      color $orange
+      margin-bottom 0.25em
+
+    .conflict-message
+      font-size 0.9em
+      color $light
+
+    .conflict-actions
+      display flex
+      gap 0.5em
+      margin-top 0.75em
+
+      button
+        padding 0.35em 0.75em
+        border-radius $border-radius-sm
+        font-size 0.85em
+        cursor pointer
+        transition background 0.2s ease
+
+        &.save-mine
+          background rgba($arch-blue, 0.2)
+          border 1px solid rgba($arch-blue, 0.4)
+          color $arch-blue
+
+          &:hover
+            background rgba($arch-blue, 0.3)
+
+        &.view-theirs
+          background rgba($dark, 0.4)
+          border 1px solid $border-subtle
+          color $light
+
+          &:hover
+            background rgba($dark, 0.6)
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .editor-badge::after
+    animation none
+
+  .presence-dot
+    animation none
+
+  .typing-indicator .typing-dots span
+    animation none
+
+// =============================================================================
 // RESPONSIVE ADJUSTMENTS
 // =============================================================================
 
