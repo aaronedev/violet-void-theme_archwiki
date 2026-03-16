@@ -1,7 +1,7 @@
 const { firefox } = require('playwright')
 const fs = require('fs')
 const css = fs.readFileSync(
-  '/home/d2/dev/violet-void-monorepo/themes/archwiki/dist/main.css',
+  '/home/d2/dev/violet-void-theme/violet-void-theme_archwiki/dist/main.css',
   'utf-8'
 )
 
