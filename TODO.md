@@ -468,7 +468,9 @@
 | 2026-03-16 | :host pseudo-class for Shadow DOM | Added :host base styling, :hover/:focus/:focus-visible states, attribute selectors for variants/sizes, full-width/rounded modifiers | 1eee197 |
 | 2026-03-16 | calc-size() for Auto Transitions | Added calc-size() alternative to interpolate-size for smooth height transitions in collapsible sections | 1e2b980 |
 
-Last updated: 2026-03-16 06:14
+| 2026-03-16 | Multi-column layout utilities (column-rule, column-span, column-fill, columns) | 2c29491 |
+
+Last updated: 2026-03-16 06:36
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2456,21 +2458,33 @@ Last updated: 2026-03-16 06:14
 
 ## 📋 Multi-Column Layout (New)
 
-- [ ] **`column-rule` Shorthand** (97%+ browser support)
-  - File: `src/components/content.styl`
-  - Column divider style
-  - `column-rule: 1px solid var(--border);`
+- [x] **`column-rule` Shorthand** (97%+ browser support)
+  - File: `src/components/utilities.styl`
+  - Column divider style utilities
+  - Added thin/medium/thick/dashed/dotted/double/none variants
   - Stylus: Works directly
+  - Commit: 2c29491
 
-- [ ] **`column-span: all`** (97%+ browser support)
-  - File: `src/components/content.styl`
+- [x] **`column-span: all`** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Span all columns
+  - Added .column-span-all utility
   - Stylus: Works directly
+  - Commit: 2c29491
 
-- [ ] **`column-fill: balance`** (97%+ browser support)
-  - File: `src/components/content.styl`
+- [x] **`column-fill: balance`** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Balance column content
+  - Added .column-fill-balance and .column-fill-auto utilities
   - Stylus: Works directly
+  - Commit: 2c29491
+
+- [x] **`columns` Shorthand** (97%+ browser support)
+  - File: `src/components/utilities.styl`
+  - Column count + width
+  - Added columns-2, columns-3, columns-auto utilities
+  - Stylus: Works directly
+  - Commit: 2c29491
 
 - [ ] **`columns` Shorthand** (97%+ browser support)
   - File: `src/components/content.styl`
