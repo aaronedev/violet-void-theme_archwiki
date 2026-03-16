@@ -2156,21 +2156,24 @@ Last updated: 2026-03-16 06:36
 
 ## 📐 Line Grid (New)
 
-- [ ] **`line-grid` Property** (85%+ browser support)
+- [x] **`line-grid` Property** (85%+ browser support)
   - File: `src/components/typography.styl`
   - Align text to grid
   - `line-grid: match-parent;`
   - Stylus: Works directly
+  - Commit: f1818b2
 
-- [ ] **`line-snap` Property** (85%+ browser support)
+- [x] **`line-snap` Property** (85%+ browser support)
   - File: `src/components/typography.styl`
   - Snap lines to grid
   - Stylus: Works directly
+  - Commit: f1818b2
 
-- [ ] **`box-snap` Property** (85%+ browser support)
+- [x] **`box-snap` Property** (85%+ browser support)
   - File: `src/components/typography.styl`
   - Snap boxes to line grid
   - Stylus: Works directly
+  - Commit: f1818b2
 
 ## 🔤 Hyphenation Control (New)
 
