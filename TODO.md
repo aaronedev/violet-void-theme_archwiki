@@ -466,8 +466,9 @@
 ---
 
 | 2026-03-16 | :host pseudo-class for Shadow DOM | Added :host base styling, :hover/:focus/:focus-visible states, attribute selectors for variants/sizes, full-width/rounded modifiers | 1eee197 |
+| 2026-03-16 | calc-size() for Auto Transitions | Added calc-size() alternative to interpolate-size for smooth height transitions in collapsible sections | 1e2b980 |
 
-Last updated: 2026-03-16 02:52
+Last updated: 2026-03-16 05:53
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1925,11 +1926,12 @@ Last updated: 2026-03-16 02:52
   - Note: Wrap in `@css{}` for Stylus
   - Commit: e5a92b8
 
-- [ ] **`calc-size()` for Auto Transitions** (85%+ browser support)
+- [x] **`calc-size()` for Auto Transitions** (85%+ browser support)
   - File: `src/components/navigation.styl`
   - Alternative to interpolate-size
   - `height: calc-size(auto);`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 1e2b980
 
 ## 🔤 Advanced Text (New)
 
