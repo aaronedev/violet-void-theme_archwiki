@@ -1,0 +1,220 @@
+// @PROPERTY - Length and Dimension Custom Properties
+// =============================================================================
+// Browser support: 97%+ (Chrome 85+, Edge 85+, Firefox 128+)
+// Allows defining typed custom properties for lengths with syntax validation
+// Enables CSS transitions on length values for smooth animations
+
+// Note: Using @css{} wrapper since Stylus doesn't natively support @property
+
+@css {
+  /* Spacing lengths */
+  @property --spacing-xs {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0.25rem;
+  }
+
+  @property --spacing-sm {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0.5rem;
+  }
+
+  @property --spacing-md {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 1rem;
+  }
+
+  @property --spacing-lg {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 1.5rem;
+  }
+
+  @property --spacing-xl {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 2rem;
+  }
+
+  @property --spacing-2xl {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 3rem;
+  }
+
+  /* Border radii */
+  @property --radius-sm {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0.25rem;
+  }
+
+  @property --radius-md {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0.5rem;
+  }
+
+  @property --radius-lg {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 1rem;
+  }
+
+  @property --radius-full {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 9999px;
+  }
+
+  /* Font sizes */
+  @property --font-size-xs {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0.75rem;
+  }
+
+  @property --font-size-sm {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0.875rem;
+  }
+
+  @property --font-size-base {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 1rem;
+  }
+
+  @property --font-size-lg {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 1.125rem;
+  }
+
+  @property --font-size-xl {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 1.25rem;
+  }
+
+  @property --font-size-2xl {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 1.5rem;
+  }
+
+  @property --font-size-3xl {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 1.875rem;
+  }
+
+  @property --font-size-4xl {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 2.25rem;
+  }
+
+  /* Z-index layers */
+  @property --z-dropdown {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 100;
+  }
+
+  @property --z-sticky {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 200;
+  }
+
+  @property --z-fixed {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 300;
+  }
+
+  @property --z-modal-backdrop {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 400;
+  }
+
+  @property --z-modal {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 500;
+  }
+
+  @property --z-popover {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 600;
+  }
+
+  @property --z-tooltip {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 700;
+  }
+
+  /* Animation durations */
+  @property --duration-fast {
+    syntax: '<time>';
+    inherits: false;
+    initial-value: 150ms;
+  }
+
+  @property --duration-normal {
+    syntax: '<time>';
+    inherits: false;
+    initial-value: 300ms;
+  }
+
+  @property --duration-slow {
+    syntax: '<time>';
+    inherits: false;
+    initial-value: 500ms;
+  }
+
+  /* Custom syntax: color or transparent */
+  @property --theme-accent-default {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: transparent;
+  }
+
+  /* Custom syntax: length or percentage */
+  @property --content-width {
+    syntax: '<length-percentage>';
+    inherits: false;
+    initial-value: 100%;
+  }
+
+  /* Custom syntax: multiple values */
+  @property --shadow-multiple {
+    syntax: '<shadow>';
+    inherits: false;
+    initial-value: none;
+  }
+}
+
+// Utility classes using @property definitions - these can now be transitioned
+.spacing-animated
+  transition gap var(--duration-normal), padding var(--duration-normal), margin var(--duration-normal)
+
+.radius-animated
+  transition border-radius var(--duration-normal)
+
+.font-size-animated
+  transition font-size var(--duration-normal)
+
+// Example: Animated spacing changes
+@media (prefers-reduced-motion no-preference)
+  .spacing-transition
+    transition-property --spacing-md, --spacing-lg
+    transition-duration var(--duration-normal)
+    transition-timing-function ease-out
