@@ -1860,5 +1860,108 @@ h6:hover .mw-editsection
     backdrop-filter blur(10px) brightness(1.15) saturate(1.4)
     -webkit-backdrop-filter blur(10px) brightness(1.15) saturate(1.4)
 
+// =============================================================================
+// INTEREST PSEUDO-CLASSES (:interest-source, :interest-target)
+// Browser support: 85%+ (Chrome 123+, Firefox not yet supported)
+// =============================================================================
+// :interest-source - targets an element receiving user interest (hover/focus)
+// :interest-target - targets an element that is the target of an interest source
+// These enable enhanced dropdown menu interactions and progressive disclosure
+
+// Note: Wrap in @supports for browser compatibility - using @css{} for Stylus
+// stylelint-disable stylus/at-rule-no-unknown,selector-pseudo-class-no-unknown
+@css {
+  @supports selector(:interest-source) {
+    .vector-dropdown-content .vector-menu-content {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s ease, visibility 0.2s, transform 0.2s ease;
+    }
+
+    .vector-dropdown-content:interest-source .vector-menu-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .vector-menu-content li:interest-source {
+      background: rgba(108, 92, 231, 0.15);
+    }
+
+    .mw-parser-output a.external,
+    .mw-parser-output .link {
+      position: relative;
+    }
+
+    .mw-parser-output a.external::after,
+    .mw-parser-output .link::after {
+      content: attr(title);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.5em 0.75em;
+      background: #1a1a2e;
+      border: 1px solid rgba(108, 92, 231, 0.3);
+      border-radius: 4px;
+      font-size: 0.875em;
+      white-space: nowrap;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .mw-parser-output a.external:interest-source::after,
+    .mw-parser-output .link:interest-source::after,
+    .mw-parser-output a.external:interest-target::after,
+    .mw-parser-output .link:interest-target::after {
+      opacity: 1;
+    }
+
+    .mw-collapsible .mw-collapsible-content {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.25s ease, max-height 0.25s ease;
+    }
+
+    .mw-related-summary .related-links {
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .mw-related-summary:interest-source .related-links {
+      opacity: 1;
+    }
+
+    .mw-headline-number {
+      opacity: 0.3;
+      transition: opacity 0.15s ease;
+    }
+
+    .mw-headline-number:interest-source {
+      opacity: 1;
+      color: #1799d5;
+    }
+
+    .mw-ui-input:interest-source {
+      border-color: rgba(108, 92, 231, 0.6);
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+    }
+  }
+}
+// stylelint-enable
+
+// Mobile touch-friendly alternatives
+// Since :interest-source isn't well supported on mobile, use hover as fallback
+@media (pointer coarse)
+  .vector-dropdown-content .vector-menu-content
+    opacity 1
+    visibility visible
+    transform none
+    transition none
+
 
 
