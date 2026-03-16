@@ -468,7 +468,7 @@
 | 2026-03-16 | :host pseudo-class for Shadow DOM | Added :host base styling, :hover/:focus/:focus-visible states, attribute selectors for variants/sizes, full-width/rounded modifiers | 1eee197 |
 | 2026-03-16 | calc-size() for Auto Transitions | Added calc-size() alternative to interpolate-size for smooth height transitions in collapsible sections | 1e2b980 |
 
-Last updated: 2026-03-16 05:53
+Last updated: 2026-03-16 06:14
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2816,10 +2816,12 @@ Last updated: 2026-03-16 05:53
   - Stylus: Works directly
   - Commit: 1eee197
 
-- [ ] **`:host-context()` for Contextual Styling** (97%+ browser support)
+- [x] **`:host-context()` for Contextual Styling** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style based on shadow host ancestors
+  - Added theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling
   - Stylus: Works directly
+  - Commit: 269b3b2
 
 - [x] **`::slotted()` for Slotted Content** (97%+ browser support)
   - File: `src/components/modern-css.styl`
@@ -7606,3 +7608,4 @@ Last updated: 2026-03-16 05:53
 | 2026-03-16 | backdrop-filter brightness/saturate | Added backdrop-filter brightness() and saturate() utility classes in navigation.styl - standalone brightness (light/dark 50-200%), saturate (high/low 150-200%), and combined effects (bright-vibrant, dark-muted, frosted-*) | 37ba9bc |
 | 2026-03-16 | interpolate-size: allow-keywords | Added smooth auto-height transitions in animations.styl - enables height: 0 to height: auto animations without JavaScript, includes utility classes for accordions/dropdowns/collapsibles, MediaWiki patterns, reduced motion support, calc-size() alternative | e5a92b8 |
 | 2026-03-16 | Glassmorphism Effects | Added glass.styl with backdrop-filter based frosted glass styling - glass variants (light, dark, accent, success, warning, danger), glass components (card, nav, sidebar, dropdown, tooltip, button, input), responsive adjustments, forced colors and reduced motion support | c4f64ce |
+| 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
