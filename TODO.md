@@ -2637,10 +2637,11 @@ Last updated: 2026-03-16 02:52
   - Tablets with mice, touch laptops
   - Stylus: Works directly
 
-- [ ] **`@media (any-pointer)` for Multi-Input** (97%+ browser support)
+- [x] **`@media (any-pointer)` for Multi-Input** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Detect best available pointer precision
   - Stylus: Works directly
+  - Commit: cb6456a
 
 ## 📱 Mobile Environment Variables (New)
 
@@ -2755,11 +2756,12 @@ Last updated: 2026-03-16 02:52
   - Stylus: Works directly
   - Commit: 2525f7c
 
-- [ ] **`font-variant-position` for Super/Subscript** (97%+ browser support)
-  - File: `src/components/content.styl`
+- [x] **`font-variant-position` for Super/Subscript** (97%+ browser support)
+  - File: `src/components/typography.styl`
   - `super`, `sub` for proper super/subscript glyphs
   - Better than `<sup>`/`<sub>` for typography
   - Stylus: Works directly
+  - Commit: cb6456a
 
 - [x] **`font-variant-emoji` for Emoji Presentation** (87%+ browser support)
   - File: `src/components/typography.styl`
