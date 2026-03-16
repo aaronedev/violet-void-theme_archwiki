@@ -1,0 +1,1066 @@
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// HIGH SPECIFICITY TABLE OVERRIDES
+// Force dark theme on all wiki tables
+// =============================================================================
+
+// Ultra-specific selectors that will win over ArchWiki defaults
+// These target every possible combination of selectors
+:root
+  --vv-table-bg #181818
+  --vv-table-header-bg #0f0f0f
+  --vv-table-border rgba(200, 184, 255, 0.08)
+  --vv-table-text #bfbfbf
+  --vv-table-header-text #e7e7e7
+
+// Target all tables in the main content area
+body .mw-body .mw-body-content table
+body .mw-body-content table
+.mw-body .mw-parser-output table
+#content table
+.mw-body table
+.mw-body-content table
+.mw-parser-output table
+article table
+main table
+#mw-content-text table
+#mw-content-text .wikitable
+.mw-body .wikitable
+.mw-body-content .wikitable
+.mw-parser-output .wikitable
+div.mw-content-ltr table
+div.mw-content-ltr .wikitable
+html body div#content div.mw-body-content.mw-body table
+html body div#content div.mw-body-content.mw-body table.wikitable
+html body .mw-body .mw-parser-output table.wikitable
+html body .mw-body .mw-parser-output table
+html body .mw-body table
+.mw-body-content .mw-parser-output table.wikitable
+body.page-Main_Page .mw-parser-output table
+body.page-Main_Page #content table
+  background-color var(--vv-table-bg) !important
+  color var(--vv-table-text) !important
+  border-color var(--vv-table-border) !important
+
+// Table headers
+body .mw-body .mw-body-content table th
+body .mw-body-content table th
+.mw-body .mw-parser-output table th
+#content table th
+.mw-body table th
+.mw-body-content table th
+.mw-parser-output table th
+article table th
+main table th
+#mw-content-text table th
+#mw-content-text .wikitable th
+.mw-body .wikitable th
+.mw-body-content .wikitable th
+.mw-parser-output .wikitable th
+div.mw-content-ltr table th
+div.mw-content-ltr .wikitable th
+html body .mw-body .mw-parser-output table.wikitable th
+html body .mw-body table th
+.mw-body-content .mw-parser-output table.wikitable th
+table.wikitable > thead > tr > th
+table.wikitable > tr > th
+table.wikitable th
+.wikitable th
+  background-color var(--vv-table-header-bg) !important
+  color var(--vv-table-header-text) !important
+  font-weight 600 !important
+  border-color var(--vv-table-border) !important
+
+// Table cells
+body .mw-body .mw-body-content table td
+body .mw-body-content table td
+.mw-body .mw-parser-output table td
+#content table td
+.mw-body table td
+.mw-body-content table td
+.mw-parser-output table td
+article table td
+main table td
+#mw-content-text table td
+#mw-content-text .wikitable td
+.mw-body .wikitable td
+.mw-body-content .wikitable td
+.mw-parser-output .wikitable td
+div.mw-content-ltr table td
+div.mw-content-ltr .wikitable td
+html body .mw-body .mw-parser-output table.wikitable td
+html body .mw-body table td
+.mw-body-content .mw-parser-output table.wikitable td
+table.wikitable > tbody > tr > td
+table.wikitable > tr > td
+table.wikitable td
+.wikitable td
+  background-color var(--vv-table-bg) !important
+  color var(--vv-table-text) !important
+  border-color var(--vv-table-border) !important
+
+// Even rows
+table.wikitable tr:nth-child(even) td
+table.wikitable tr:nth-child(even)
+.wikitable tr:nth-child(even) td
+.wikitable tr:nth-child(even)
+body .mw-body table tr:nth-child(even)
+.mw-parser-output table tr:nth-child(even)
+  background-color rgba(255, 255, 255, 0.02) !important
+
+// Hover state
+table.wikitable tr:hover td
+table.wikitable tr:hover
+.wikitable tr:hover td
+.wikitable tr:hover
+body .mw-body table tr:hover
+body .mw-body table tr:hover td
+.mw-parser-output table tr:hover
+.mw-parser-output table tr:hover td
+  background-color rgba(137, 80, 199, 0.08) !important
+
+// Wiki tables
+.wikitable
+  background-color $base
+  color $light
+  margin 1em 0
+  border none
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100% // Ensure full width responsiveness
+  table-layout auto
+
+  > tr > th
+  > * > tr > th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+    text-align left // Better readability
+    font-weight 600
+    font-size 0.9em
+    letter-spacing 0.02em
+    color $lighter
+    padding 0.6em 0.75em
+
+  > tr > th
+  > tr > td
+  > * > tr > th
+  > * > tr > td
+    border 1px solid $border-subtle
+    padding 0.5em 0.7em
+    font-size 0.9em
+    transition background-color $transition-fast
+    word-break normal
+    overflow-wrap normal
+    white-space normal
+
+  tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01) // Zebra striping
+
+  tr:hover td
+    background-color rgba($arch-blue, 0.05)
+
+// Infobox tables
+.infobox
+  background-color $base
+  color $light
+  margin 1em 0
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100%
+  max-width 100%
+
+  th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+    text-align left
+    font-weight 600
+    font-size 0.9em
+    letter-spacing 0.02em
+    color $lighter
+    padding 0.6em 0.75em
+
+  th
+  td
+    border 1px solid $border-subtle
+    padding 0.5em 0.7em
+    font-size 0.9em
+    vertical-align top
+
+  caption
+    padding 0.5em 0.75em
+    font-size 0.9em
+    color $lighter
+    text-align left
+
+  img
+    max-width 100%
+    height auto
+    display block
+    border-radius $border-radius-sm
+
+// Generic tables used by the Arch Linux security tracker
+// Use table.styled-table to increase specificity over site defaults
+table.styled-table
+  background-color $base !important
+  color $light !important
+  margin 1em 0
+  border none !important
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100%
+
+  // Header styling
+  th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04)) !important
+    text-align left
+    font-weight 600
+    font-size 0.9em
+    letter-spacing 0.02em
+    color $lighter !important
+    padding 0.6em 0.75em
+
+  // Cell styling
+  th
+  td
+    border 1px solid $border-subtle !important
+    padding 0.5em 0.7em
+    font-size 0.9em
+    transition background-color $transition-fast
+
+  // Zebra striping
+  tbody tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01)
+
+  // Row hover effect
+  tbody tr:hover td
+    background-color rgba($arch-blue, 0.05)
+
+  // Override upstream row backgrounds and hover effects.  The default
+  // Arch security stylesheet sets `table tr:hover` to a pale gray and
+  // applies alternating row backgrounds via `.styled-table` defaults.
+  // These rules apply to all rows, including headers, so use the `tr`
+  // element directly and include `!important` to ensure our theme
+  // colours prevail.  Header rows will still pick up our gradient via
+  // the `th` definition above, but on hover they’ll get a subtle
+  // violet tint instead of a white flash.
+  tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01) !important
+
+  tr:nth-child(odd)
+    background-color transparent !important
+
+  tr:hover
+  tr:hover td
+    background-color rgba($arch-blue, 0.06) !important
+
+  // Center alignment helper
+  .center
+    text-align center
+
+// Colour-coded statuses used on the security tracker
+span.purple
+  color $arch-blue !important
+
+span.orange
+  color $orange !important
+
+span.light_orange
+  color lighten($orange, 20%) !important
+
+span.green
+  color $green !important
+
+span.red
+  color $secondary-red !important
+
+// -----------------------------------------------------------------------------
+// AUR (archlinux.org) custom styling
+// The Arch User Repository (AUR) web interface uses generic `.box` and `.widget`
+// containers for content blocks and sidebars. These default to light
+// backgrounds in the upstream CSS, which clashes badly with the dark violet
+// palette of the Violet‑Void theme. The rules below re‑theme those boxes,
+// headlines and tables to match the rest of the dark ArchWiki skin. A high
+// specificity selector (`#content-left-wrapper .box`, etc.) is used alongside
+// the base class selectors to ensure our styles override the site defaults. The
+// `!important` flags are applied sparingly where the upstream CSS declares
+// strong colours.
+
+// General box and widget styling
+#content-left-wrapper .box
+#content-left .box
+#content-right .widget
+#content-right .box
+.box
+.widget
+  background-color $base !important
+  border 1px solid $border-subtle !important
+  border-radius $border-radius-md
+  color $light
+  box-shadow $shadow-subtle
+  padding 0.75em
+
+// Headings within the AUR news sections
+#news h3
+#news h4
+  color $lighter
+  font-weight 600
+
+// Article content blocks in the news area
+#news .article-content
+  margin 0.5em 0
+  padding 0.5em 1em
+  background-color rgba($arch-blue, 0.02)
+  border-left 3px solid $secondary-blue
+  border-radius $border-radius-md
+
+// Package search label and input styling
+#pkgsearch label
+  color $lighter
+
+#pkgsearch input[type="text"]
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.5em
+
+// Recent updates table styling in the sidebar
+#pkg-updates table
+  width 100%
+  border-collapse collapse
+
+#pkg-updates table tr
+  border-bottom 1px solid $border-subtle
+
+#pkg-updates table tr:hover
+  background-color rgba($arch-blue, 0.05)
+
+#pkg-updates table td
+  padding 0.25em 0.5em
+  color $light
+
+#pkg-updates table td.pkg-date
+  color $secondary-blue
+  text-align right
+  white-space nowrap
+
+// Ensure that cells with the `.wrap` class (used on Archweb for long
+// descriptions) inherit the row’s background and text colour. Without this,
+// these cells default to a light background and dark text.
+table.results td.wrap
+#pkglist-results table td.wrap
+  background-color inherit !important
+  color $light !important
+
+// -----------------------------------------------------------------------------
+// Arch Packages search page styling (archlinux.org/packages)
+// The official Arch package database uses a `table.results` inside the search
+// results listing. Without overrides, these tables have a light background and
+// borders that clash with our dark violet aesthetic. The rules below re-theme
+// the results table and its header/cells to match the Violet‑Void palette. The
+// selectors include both `.results` and `#pkglist-results table` to capture
+// variations across templates. If additional specificity is needed, feel free
+// to duplicate the selector with the page’s parent container.
+
+table.results
+#pkglist-results table
+  background-color $base !important
+  color $light !important
+  border none !important
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow $shadow-subtle
+  border-collapse separate
+  border-spacing 0
+  width 100%
+
+  // Header cells (both <th> and <td> in case the template uses <td> in the header)
+  thead
+    th
+    td
+      background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04)) !important
+    color $lighter !important
+    font-weight 600
+    border 1px solid $border-subtle !important
+    padding 0.75em 1em
+
+  tbody td
+    border 1px solid $border-subtle !important
+    padding 0.5em 1em
+
+  tbody tr:nth-child(even)
+    // Apply a subtle zebra striping. Use !important on the cell to override
+    // upstream .wrap backgrounds defined in Archweb.
+    background-color rgba(255, 255, 255, 0.01)
+
+  // Override row striping at the cell level to ensure `.wrap` cells inherit
+  // the same background instead of the upstream light colour. Without this,
+  // the description column remains light due to its `.wrap` class.
+  tbody tr:nth-child(even) td
+    background-color rgba(255, 255, 255, 0.01) !important
+
+  tbody tr:nth-child(odd) td
+    background-color transparent !important
+
+  tbody tr:hover td
+    background-color rgba($arch-blue, 0.05)
+
+  // Override ArchWeb’s row striping and hover rules.  The upstream stylesheet
+  // uses `nth-child(even of :not([hidden]))` on `<tr>` elements to apply
+  // light backgrounds (#e4eeff/#fff) and `#pkglist-results tr:hover` to
+  // highlight rows in yellow.  These rules leak through to our dark theme
+  // because they operate at the row level rather than individual cells.  To
+  // neutralize them, explicitly set the row background colours here with
+  // `!important`, including a fallback without the `of` syntax for older
+  // browsers.  Then override the hover background to our subtle blue tint.
+  tr:nth-child(even of :not([hidden]))
+  tr:nth-child(even)
+    background-color rgba(255, 255, 255, 0.01) !important
+
+  tr:nth-child(odd of :not([hidden]))
+  tr:nth-child(odd)
+    background-color transparent !important
+
+  tr:hover
+  tr:hover td
+    background-color rgba($arch-blue, 0.05) !important
+
+  // Colour for flagged versions in the package list.  Upstream uses plain red,
+  // but we align it with the theme’s secondary red accent.
+  .flagged
+    color $secondary-red !important
+
+// -----------------------------------------------------------------------------
+// Package search form elements (Arch package database)
+// The default ArchWeb styles leave the multi-select lists for architecture,
+// repository and other criteria with a white background.  When applying our
+// dark theme those lists inherit the browser’s dark styling which makes the
+// options hard to distinguish.  The rules below explicitly style these
+// `<select>` elements and their `<option>` children so they integrate with
+// the Violet‑Void palette while maintaining contrast.  A subtle blue tint
+// indicates selected options.  Use high specificity selectors tied to
+// `#pkglist-search` to avoid affecting other select boxes across the wiki.
+
+#pkglist-search select
+#pkglist-search select[multiple]
+  background-color $darker !important
+  color $lighter !important
+  border 1px solid $border-subtle !important
+  border-radius $border-radius-md
+  padding 0.4em
+
+#pkglist-search select option
+  background-color $darker !important
+  color $lighter !important
+
+#pkglist-search select option:hover
+#pkglist-search select option:checked
+  background-color rgba($arch-blue, 0.2) !important
+  color $lighter !important
+
+// =============================================================================
+// HYPHENATION FOR NARROW COLUMNS
+// =============================================================================
+
+// Better text wrapping in infoboxes and narrow table cells
+// Browser support: 95%+
+.infobox
+.wikitable
+  th
+  td
+    // Enable hyphenation with lang attribute support
+    hyphens auto
+    // Ensure proper word breaking for long content
+    overflow-wrap break-word
+
+// Narrow table cells benefit from hyphenation
+.wikitable
+  td
+    max-width 300px
+    hyphens auto
+
+// =============================================================================
+// FONT-VARIANT-NUMERIC FOR TABLE NUMBERS
+// =============================================================================
+
+// Tabular numbers for better alignment in tables
+// Browser support: 97%+
+
+// Apply tabular-nums to wikitable and infobox cells
+.wikitable
+.infobox
+  // Numeric columns benefit from fixed-width digits
+  td
+    font-variant-numeric tabular-nums
+
+  // Header cells also get tabular numbers for consistency
+  th
+    font-variant-numeric tabular-nums
+
+// Sortable tables - numbers should align
+table.sortable
+  td
+  th
+    font-variant-numeric tabular-nums
+
+// =============================================================================
+// SORTABLE TABLE ENHANCEMENTS
+// =============================================================================
+// Sort indicator arrows, sorted column highlight, sort animation, header hover state
+// Browser support: 97%+
+
+// Header cell styling for sortable tables
+table.sortable
+  th
+    // Header hover state
+    // Browser support: 97%+
+    transition background-color $transition-fast, color $transition-fast
+    cursor pointer
+    user-select none
+    position relative
+
+    // Hover state for sortable headers
+    &:hover
+      background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.1))
+      color $lighter
+
+    // Focus visible for keyboard navigation
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset -2px
+      background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.1))
+
+    // Sort indicator arrows using pseudo-elements
+    &.sortable-header
+      // Arrow indicators
+      &::after
+        content ""
+        display inline-block
+        width 0
+        height 0
+        margin-left 0.5em
+        vertical-align middle
+        border-left 5px solid transparent
+        border-right 5px solid transparent
+        border-top 6px solid $muted
+        opacity 0.4
+        transition transform $transition-fast, opacity $transition-fast
+
+      // Hover: show arrow
+      &:hover::after
+        opacity 0.8
+        border-top-color $light
+
+    // Ascending sort indicator
+    &.mw-asc
+      &::after
+        border-top none
+        border-bottom 6px solid $arch-blue
+        opacity 1
+        transform translateY(2px)
+
+      &:hover::after
+        border-bottom-color $orange
+
+    // Descending sort indicator
+    &.mw-desc
+      &::after
+        border-top 6px solid $arch-blue
+        opacity 1
+        transform translateY(-2px)
+
+      &:hover::after
+        border-top-color $orange
+
+// Sorted column highlight
+// Browser support: 97%+
+table.sortable
+  // Highlight the sorted column header
+  th.mw-asc
+  th.mw-desc
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($secondary-blue, 0.15))
+    color $lighter
+
+    // Add a subtle indicator bar
+    &::before
+      content ""
+      position absolute
+      left 0
+      top 0
+      bottom 0
+      width 3px
+      background $arch-blue
+      opacity 0.8
+
+  // Alternating row coloring in sorted column
+  td.sortable-sorted-cell
+  th.sortable-sorted-cell
+    background-color rgba($arch-blue, 0.08)
+
+// Sort animation
+// Browser support: 85%+
+// Subtle transition when sort changes
+table.sortable
+  &.sorting
+    // Animate rows during sort
+    tr
+      animation sort-row-animation 0.3s ease-out
+
+// Keyframe for sort animation
+@keyframes sort-row-animation
+  0%
+    opacity 0.5
+    transform translateY(-5px)
+  100%
+    opacity 1
+    transform translateY(0)
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  table.sortable
+    th
+      transition none
+
+      &::after
+        transition none
+
+    &.sorting tr
+      animation none
+
+// Tables with counts, dates, versions - use tabular-nums
+.mw-parser-output
+  table
+    td
+      font-variant-numeric tabular-nums
+
+// =============================================================================
+// TABLE ENHANCEMENTS
+// =============================================================================
+
+// Empty cells visibility control
+// Browser support: 97%+
+.wikitable
+.infobox
+  empty-cells show
+
+// Hide empty cells for cleaner tables
+.hide-empty-cells
+  empty-cells hide
+
+// Caption position control
+// Browser support: 97%+
+.wikitable
+.infobox
+  caption
+    caption-side top
+    text-align left
+    padding 0.5em 0.75em
+    color $lighter
+    font-weight 600
+
+// Bottom caption variant
+.caption-bottom
+  caption-side bottom
+  text-align center
+  color $muted
+  font-size 0.85em
+
+// =============================================================================
+// :NTH-CHILD(OF S) SELECTOR - Advanced filtering
+// =============================================================================
+// Browser support: 89%+ (Chrome 111+, Firefox 113+, Safari 9+)
+// nth-child with selector argument for more specific targeting
+
+// Style only visible rows (exclude header-like rows)
+table
+  tr:nth-child(of :not(.header-row):not(.mw-empty-elt))
+    background-color $base
+
+// Alternate visible rows only (skip header-like rows)
+table.striped
+  tr:nth-child(of :not(.header-row):not(.mw-empty-elt))
+    &:nth-child(odd)
+      background-color rgba($darker, 0.5)
+
+    &:nth-child(even)
+      background-color $base
+
+// Highlight rows that don't have a specific class
+.wikitable
+  tr:nth-child(of :not(.highlight):not(.mw-empty-elt))
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+
+// Target only data rows (exclude header and footer)
+table
+  tbody tr:nth-child(of :not(.header):not(.footer))
+    border-bottom 1px solid $border-subtle
+
+// Exclude hidden/empty rows from counting
+.mw-parser-output
+  table
+    tr:nth-child(of :not(.mw-empty-elt):not([style*="display: none"]))
+      &.alternate
+        background-color rgba($dark, 0.5)
+
+// =============================================================================
+// SCROLLABLE TABLE WRAPPER - Performance & Mobile UX
+// =============================================================================
+// Browser support: 97%+
+// Enables horizontal scrolling for wide tables with visual affordances
+// Features: shadow fade on edges, sticky first column, scroll indicators
+
+// Wrapper for horizontally scrollable tables
+.table-scroll-wrapper
+  position relative
+  overflow-x auto
+  overflow-y visible
+  max-width 100%
+  margin 1em 0
+
+  // Enable horizontal scrolling with smooth momentum
+  -webkit-overflow-scrolling touch
+  scroll-behavior smooth
+
+  // Shadow fade indicators for scroll position
+  &::before
+  &::after
+    content ''
+    position absolute
+    top 0
+    bottom 0
+    width 20px
+    pointer-events none
+    z-index 1
+    transition opacity 0.2s ease
+
+  // Left shadow (visible when scrolled right)
+  &::before
+    left 0
+    background linear-gradient(to right, rgba($darker, 0.15), transparent)
+    opacity 0
+
+  // Right shadow (visible when scrolled left)
+  &::after
+    right 0
+    background linear-gradient(to left, rgba($darker, 0.15), transparent)
+    opacity 1
+
+  // Show left shadow when scrolled right
+  &.scrolled-right::before
+    opacity 1
+
+  // Hide right shadow when scrolled to end
+  &.scrolled-left::after
+    opacity 0
+
+// Scroll indicator badges
+.scroll-indicator
+  display flex
+  align-items center
+  gap 0.5em
+  color $muted
+  font-size 0.75em
+  padding 0.25em 0.5em
+  background rgba($darker, 0.5)
+  border-radius $border-radius-sm
+
+  &::before
+    content '↔'
+    font-size 0.9em
+
+// Sticky first column for wide tables
+.table-scroll-wrapper
+  .sticky-column
+    position sticky
+    left 0
+    z-index 2
+    background-color inherit
+
+    // Add border separator
+    &::after
+      content ''
+      position absolute
+      top 0
+      right 0
+      bottom 0
+      width 2px
+      background linear-gradient(to right, rgba($border-subtle, 0.5), transparent)
+
+  // Ensure sticky column works with different table backgrounds
+  .wikitable .sticky-column
+    background-color rgba($arch-blue, 0.1)
+
+  .infobox .sticky-column
+    background-color rgba($arch-blue, 0.08)
+
+// Enhanced scrollbar for table wrapper
+.table-scroll-wrapper
+  scrollbar-color rgba($arch-blue, 0.4) transparent
+  scrollbar-width thin
+
+  &::-webkit-scrollbar
+    height 6px
+
+  &::-webkit-scrollbar-track
+    background transparent
+
+  &::-webkit-scrollbar-thumb
+    background rgba($arch-blue, 0.3)
+    border-radius 3px
+
+    &:hover
+      background rgba($arch-blue, 0.5)
+
+// Mobile-first: always show horizontal scroll on small screens
+@media (max-width 768px)
+  .table-scroll-wrapper
+    overflow-x scroll
+
+    // Larger touch target for scrolling
+    padding-bottom 0.5em
+
+// Desktop: show scroll indicators on hover
+@media (hover hover)
+  .table-scroll-wrapper
+    &:hover::before
+      opacity 1
+
+    &:hover::after
+      opacity 1
+
+// Print: disable scrolling, show full table
+@media print
+  .table-scroll-wrapper
+    overflow visible
+    max-width none
+
+    &::before
+    &::after
+      display none
+
+// Responsive table card layout for very small screens
+@media (max-width 480px)
+  .table-scroll-wrapper
+    &.cards-mode
+      display flex
+      flex-direction column
+      gap 1em
+
+      // Convert rows to cards
+      tr
+        display flex
+        flex-direction column
+        border 1px solid $border-subtle
+        border-radius $border-radius-md
+        padding 0.75em
+        background $base
+
+        td
+          display flex
+          justify-content space-between
+          padding 0.25em 0
+          border-bottom 1px solid $border-subtle
+
+          &:last-child
+            border-bottom none
+
+          &::before
+            content attr(data-label)
+            font-weight 600
+            color $muted
+            margin-right 1em
+
+// =============================================================================
+// PERFORMANCE: table-layout: fixed
+// Use fixed table layout for faster rendering on large tables
+// Browser support: 97%+
+// =============================================================================
+
+// Apply to large data tables for performance
+table.mw-datatable
+table.large-data
+table[data-fixed-layout="true"]
+  table-layout fixed
+  width 100%
+
+// =============================================================================
+// SUBGRID SUPPORT FOR NESTED GRIDS
+// Align nested grid items with parent grid
+// Browser support: 90%+ (Chrome 117+, Firefox 71+, Safari 16+)
+// =============================================================================
+
+// Enable subgrid for nested tables and grid containers
+// Perfect for infobox sub-tables, nested lists, and aligned content
+.wiki-table-with-subgrid
+.infobox-subgrid
+.category-grid
+  display grid
+  grid-template-columns subgrid
+
+// Subgrid for table sections (thead, tbody, tfoot)
+table
+  &.has-subgrid
+    display grid
+    grid-template-columns subgrid
+    grid-column 1 / -1
+
+    tr
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+    th
+    td
+      display grid
+      grid-template-columns subgrid
+      grid-column span 1
+
+// Nested grids with parent alignment
+.subgrid-child
+  display grid
+  grid-template-columns subgrid
+  grid-column 1 / -1
+
+// Subgrid alignment for form-like tables
+table.form-table
+  display grid
+  grid-template-columns subgrid
+
+  tr
+    display grid
+    grid-template-columns subgrid
+
+  th
+  td
+    grid-column span 1
+
+// Infobox subgrid for better alignment
+.infobox
+  &.has-subgrid
+    display grid
+    grid-template-columns subgrid
+    gap 0.5rem
+
+    .infobox-row
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+    .infobox-label
+    .infobox-data
+      display grid
+      grid-template-columns subgrid
+
+// Multi-column subgrid for responsive grid tables
+@media (min-width 768px)
+  table.grid-columns-3
+    display grid
+    grid-template-columns repeat(3, 1fr) subgrid
+    gap 1rem
+
+    tr
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+  table.grid-columns-4
+    display grid
+    grid-template-columns repeat(4, 1fr) subgrid
+    gap 1rem
+
+    tr
+      display grid
+      grid-template-columns subgrid
+      grid-column 1 / -1
+
+// border-spacing for gaps between cells
+// Used with border-collapse: separate to create space between table cells
+table
+  &.spacing-none
+    border-spacing 0
+    border-collapse separate
+
+  &.spacing-xs
+    border-spacing 0.125rem
+    border-collapse separate
+
+  &.spacing-sm
+    border-spacing 0.25rem
+    border-collapse separate
+
+  &.spacing-md
+    border-spacing 0.5rem
+    border-collapse separate
+
+  &.spacing-lg
+    border-spacing 1rem
+    border-collapse separate
+
+  &.spacing-xl
+    border-spacing 1.5rem
+    border-collapse separate
+
+// Vertical spacing only
+&.spacing-y-xs
+  border-spacing 0 0.125rem
+  border-collapse separate
+
+&.spacing-y-sm
+  border-spacing 0 0.25rem
+  border-collapse separate
+
+&.spacing-y-md
+  border-spacing 0 0.5rem
+  border-collapse separate
+
+&.spacing-y-lg
+  border-spacing 0 1rem
+  border-collapse separate
+
+// Horizontal spacing only
+&.spacing-x-xs
+  border-spacing 0.125rem 0
+  border-collapse separate
+
+&.spacing-x-sm
+  border-spacing 0.25rem 0
+  border-collapse separate
+
+&.spacing-x-md
+  border-spacing 0.5rem 0
+  border-collapse separate
+
+&.spacing-x-lg
+  border-spacing 1rem 0
+  border-collapse separate
+
+// Responsive border-spacing based on viewport
+@media (max-width 480px)
+  table
+    &.spacing-responsive
+      border-spacing 0
+      border-collapse separate
+
+@media (min-width 481px) and (max-width 768px)
+  table
+    &.spacing-responsive
+      border-spacing 0.25rem
+      border-collapse separate
+
+@media (min-width 769px)
+  table
+    &.spacing-responsive
+      border-spacing 0.5rem
+      border-collapse separate
+

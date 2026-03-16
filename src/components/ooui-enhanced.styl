@@ -1,0 +1,611 @@
+// Enhanced OOUI (MediaWiki OOUI Library) component styling
+// Comprehensive styling for all OOUI widgets used in MediaWiki
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// OOUI BUTTONS (Enhanced)
+// =============================================================================
+
+// Primary action buttons
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive
+  > .oo-ui-buttonElement-button
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    color $darker
+    border 1px solid $arch-blue
+    font-weight 700
+
+    &:hover
+      background linear-gradient(135deg, lighten($arch-blue, 12%), $secondary-blue)
+      transform translateY(-1px)
+      box-shadow $shadow-elevated
+
+    &:active
+      transform translateY(0)
+
+// Destructive buttons
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-destructive
+  > .oo-ui-buttonElement-button
+    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.3)
+
+    &:hover
+      background linear-gradient(135deg, rgba($secondary-red, 0.25), rgba($secondary-red, 0.15))
+      border-color rgba($secondary-red, 0.5)
+
+// Disabled buttons
+.oo-ui-buttonElement-framed.oo-ui-widget-disabled
+  > .oo-ui-buttonElement-button
+    background-color $dark
+    color $light
+    border-color $cell-delim
+    opacity 0.5
+    cursor not-allowed
+
+// =============================================================================
+// OOUI CHECKBOXES & RADIOS
+// =============================================================================
+
+.oo-ui-checkboxInputWidget
+.oo-ui-radioInputWidget
+  input[type="checkbox"]
+  input[type="radio"]
+    appearance none
+    -webkit-appearance none
+    width 18px
+    height 18px
+    background-color $darker
+    border 2px solid $border-subtle
+    border-radius $border-radius-sm
+    cursor pointer
+    transition all $transition-fast
+    position relative
+
+    &:checked
+      background-color $arch-blue
+      border-color $arch-blue
+
+    &:hover
+      border-color $secondary-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+
+    &:focus-visible
+      outline none
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// Radio buttons are round
+.oo-ui-radioInputWidget input[type="radio"]
+  border-radius 50%
+
+// Checkmark for checkboxes
+.oo-ui-checkboxInputWidget input[type="checkbox"]:checked
+  &::after
+    content "✓"
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    color $darker
+    font-size 12px
+    font-weight bold
+
+// Dot for radios
+.oo-ui-radioInputWidget input[type="radio"]:checked
+  &::after
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 8px
+    height 8px
+    background-color $darker
+    border-radius 50%
+
+// =============================================================================
+// OOUI TOGGLE SWITCHES
+// =============================================================================
+
+.oo-ui-toggleSwitchWidget
+  background-color $darker
+  border 2px solid $border-subtle
+  border-radius 20px
+  width 48px
+  height 24px
+  position relative
+  cursor pointer
+  transition all $transition-medium
+
+  &.oo-ui-widget-enabled
+    &:hover
+      border-color $arch-blue
+
+  // Toggle grip
+  &::before
+    content ""
+    position absolute
+    top 2px
+    left 2px
+    width 16px
+    height 16px
+    background-color $light
+    border-radius 50%
+    transition all $transition-medium
+
+  // Active state
+  &.oo-ui-toggleWidget-on
+    background-color rgba($arch-blue, 0.3)
+    border-color $arch-blue
+
+    &::before
+      left calc(100% - 18px)
+      background-color $secondary-blue
+
+// =============================================================================
+// OOUI DROPDOWNS (Enhanced)
+// =============================================================================
+
+.oo-ui-dropdownWidget
+  .oo-ui-dropdownWidget-handle
+    background linear-gradient(135deg, $dark, $darker)
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em 2em 0.5em 0.75em
+    font-size 0.9em
+    cursor pointer
+    transition all $transition-fast
+    position relative
+
+    &:hover
+      border-color $arch-blue
+      box-shadow 0 2px 4px rgba(0, 0, 0, 0.1)
+
+    &:focus-visible
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+    // Dropdown arrow
+    .oo-ui-indicatorElement-indicator.oo-ui-indicator-down
+      position absolute
+      right 0.75em
+      top 50%
+      transform translateY(-50%)
+      opacity 0.7
+
+  // Dropdown menu
+  .oo-ui-dropdownWidget-menu
+    background linear-gradient(135deg, $dark, $darker)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    box-shadow $shadow-elevated
+    margin-top 0.25em
+    max-height 300px
+    overflow-y auto
+
+    .oo-ui-optionWidget
+      padding 0.5em 0.75em
+      color $light
+      cursor pointer
+      transition all $transition-fast
+
+      &:hover
+        background-color rgba($arch-blue, 0.15)
+        color $lighter
+
+      &.oo-ui-optionWidget-selected
+        background-color rgba($arch-blue, 0.2)
+        color $secondary-blue
+        font-weight 600
+
+      &.oo-ui-optionWidget-highlighted
+        background-color rgba($arch-blue, 0.1)
+
+// =============================================================================
+// OOUI TEXT INPUTS (Enhanced)
+// =============================================================================
+
+.oo-ui-textInputWidget
+  .oo-ui-inputWidget-input
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+    font-size 0.9em
+    transition all $transition-fast
+
+    &:focus-visible
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+    &::placeholder
+      color rgba($light, 0.5)
+
+  // Icon inside input
+  .oo-ui-iconElement-icon
+    opacity 0.6
+
+  // Input with icon
+  &.oo-ui-textInputWidget-type-text
+  &.oo-ui-textInputWidget-type-search
+    .oo-ui-inputWidget-input
+      padding-left 2.5em
+
+  // Search input
+  &.oo-ui-textInputWidget-type-search
+    .oo-ui-inputWidget-input
+      padding-right 2.5em
+
+// Multiline textarea
+.oo-ui-textInputWidget-multiline
+  .oo-ui-inputWidget-input
+    min-height 100px
+    resize vertical
+    line-height 1.6
+
+// =============================================================================
+// OOUI LABELS
+// =============================================================================
+
+.oo-ui-labelWidget
+.oo-ui-labelElement-label
+  color $lighter
+  font-size 0.95em
+
+.oo-ui-labelElement
+  .oo-ui-labelElement-label
+    font-weight 600
+
+// Help text
+.oo-ui-fieldLayout-help
+  color $light
+  font-size 0.85em
+  opacity 0.8
+
+// =============================================================================
+// OOUI FIELD LAYOUTS
+// =============================================================================
+
+.oo-ui-fieldLayout
+  margin 1em 0
+
+  .oo-ui-fieldLayout-body
+    display flex
+    gap 0.5em
+    align-items flex-start
+
+  .oo-ui-fieldLayout-field
+    flex 1
+
+  .oo-ui-fieldLayout-header
+    color $lighter
+    font-weight 600
+    font-size 0.95em
+
+  // Error message
+  &.oo-ui-fieldLayout-messages-error
+    .oo-ui-fieldLayout-messages
+      color $secondary-red
+      font-size 0.85em
+      margin-top 0.3em
+
+  // Success message
+  &.oo-ui-fieldLayout-messages-success
+    .oo-ui-fieldLayout-messages
+      color $green
+      font-size 0.85em
+      margin-top 0.3em
+
+// =============================================================================
+// OOUI ACTION FIELD LAYOUT
+// =============================================================================
+
+.oo-ui-actionFieldLayout
+  display flex
+  gap 0.5em
+  align-items stretch
+
+  .oo-ui-actionFieldLayout-input
+    flex 1
+
+  .oo-ui-actionFieldLayout-button
+    flex-shrink 0
+
+// =============================================================================
+// OOUI DIALOGS & WINDOWS
+// =============================================================================
+
+.oo-ui-windowManager
+  // Overlay background
+  &.oo-ui-windowManager-modal
+    > .oo-ui-dialog
+      background-color rgba(0, 0, 0, 0.75)
+
+.oo-ui-dialog
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  box-shadow $shadow-elevated
+  max-width 90vw
+  max-height 90vh
+
+  // Dialog header
+  .oo-ui-dialog-header
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+    border-bottom 1px solid $border-subtle
+    padding 1em 1.5em
+    border-radius $border-radius-lg $border-radius-lg 0 0
+
+    .oo-ui-dialog-title
+      color $lighter
+      font-weight 700
+      font-size 1.1em
+
+  // Dialog body
+  .oo-ui-dialog-body
+    padding 1.5em
+    color $light
+    overflow-y auto
+
+  // Dialog footer
+  .oo-ui-dialog-footer
+    border-top 1px solid $border-subtle
+    padding 1em 1.5em
+    display flex
+    gap 0.5em
+    justify-content flex-end
+
+// Message dialog
+.oo-ui-messageDialog
+  .oo-ui-messageDialog-content
+    > p
+      color $light
+      line-height 1.6
+
+// Process dialog (with progress)
+.oo-ui-processDialog
+  .oo-ui-processDialog-location
+    color $lighter
+    font-weight 600
+
+  // Error in process
+  &.oo-ui-processDialog-error
+    .oo-ui-processDialog-errors
+      background-color rgba($secondary-red, 0.1)
+      border 1px solid rgba($secondary-red, 0.3)
+      border-radius $border-radius-sm
+      padding 1em
+      color $secondary-red
+
+// =============================================================================
+// OOUI MENUS (Popup Menus)
+// =============================================================================
+
+.oo-ui-menuSelectWidget
+  background linear-gradient(135deg, $dark, $darker)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+  min-width 150px
+
+  .oo-ui-menuOptionWidget
+    padding 0.5em 0.75em
+    color $light
+    cursor pointer
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      color $lighter
+
+    &.oo-ui-menuOptionWidget-selected
+      background-color rgba($arch-blue, 0.2)
+      color $secondary-blue
+      font-weight 600
+
+    &.oo-ui-menuOptionWidget-highlighted
+      background-color rgba($arch-blue, 0.1)
+
+    // Checkmark for selected items
+    &.oo-ui-menuOptionWidget-selected::before
+      content "✓"
+      margin-right 0.5em
+      color $secondary-blue
+
+// =============================================================================
+// OOUI TOOLBARS
+// =============================================================================
+
+.oo-ui-toolbar
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em
+  display flex
+  flex-wrap wrap
+  gap 0.25em
+
+  .oo-ui-toolGroup
+    display flex
+    gap 0.25em
+    padding 0.25em
+
+    // Separator between groups
+    & + .oo-ui-toolGroup
+      border-left 1px solid $border-subtle
+      margin-left 0.25em
+      padding-left 0.5em
+
+  .oo-ui-tool
+    background-color transparent
+    border 1px solid transparent
+    padding 0.4em 0.6em
+    color $light
+    cursor pointer
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+    &.oo-ui-tool-active
+      background-color rgba($arch-blue, 0.2)
+      color $secondary-blue
+
+    &.oo-ui-widget-disabled
+      opacity 0.4
+      cursor not-allowed
+
+// =============================================================================
+// OOUI PROGRESS BAR
+// =============================================================================
+
+.oo-ui-progressBarWidget
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  height 8px
+  overflow hidden
+
+  .oo-ui-progressBarWidget-bar
+    height 100%
+    background linear-gradient(90deg, $arch-blue, $secondary-blue)
+    border-radius $border-radius-sm
+    transition width $transition-medium
+
+  // Indeterminate state
+  &.oo-ui-progressBarWidget-indeterminate
+    .oo-ui-progressBarWidget-bar
+      animation ooui-progress-indeterminate 1.5s linear infinite
+
+@keyframes ooui-progress-indeterminate
+  0%
+    transform translateX(-100%)
+  100%
+    transform translateX(100%)
+
+// =============================================================================
+// OOUI POPUP WIDGET
+// =============================================================================
+
+.oo-ui-popupWidget
+  background linear-gradient(135deg, $dark, $darker)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 1em
+
+  // Popup arrow
+  &.oo-ui-popupWidget-anchored
+    .oo-ui-popupWidget-anchor
+      border-color $border-subtle
+
+  // Popup content
+  .oo-ui-popupWidget-head
+    color $lighter
+    font-weight 600
+    margin-bottom 0.5em
+
+  .oo-ui-popupWidget-body
+    color $light
+    font-size 0.9em
+    line-height 1.5
+
+// =============================================================================
+// OOUI TAB SELECT Widget
+// =============================================================================
+
+.oo-ui-tabSelectWidget
+  display flex
+  border-bottom 2px solid $border-subtle
+  margin-bottom 1em
+
+  .oo-ui-tabOptionWidget
+    padding 0.5em 1em
+    color $light
+    cursor pointer
+    border-bottom 2px solid transparent
+    margin-bottom -2px
+    transition all $transition-fast
+
+    &:hover
+      color $secondary-blue
+      background-color rgba($arch-blue, 0.05)
+
+    &.oo-ui-optionWidget-selected
+      color $secondary-blue
+      border-bottom-color $secondary-blue
+      font-weight 600
+
+// Framed tabs
+&.oo-ui-tabSelectWidget-framed
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.25em
+
+  .oo-ui-tabOptionWidget
+    border-radius $border-radius-sm
+
+    &.oo-ui-optionWidget-selected
+      background linear-gradient(135deg, $arch-blue, $secondary-blue)
+      color $darker
+
+// =============================================================================
+// OOUI INDEX LAYOUT
+// =============================================================================
+
+.oo-ui-indexLayout
+  display flex
+  flex-direction column
+
+  .oo-ui-indexLayout-stackLayout
+    flex 1
+
+// =============================================================================
+// OOUI BOOKLET LAYOUT
+// =============================================================================
+
+.oo-ui-bookletLayout
+  display flex
+  gap 1em
+
+  .oo-ui-bookletLayout-outlinePanel
+    width 200px
+    flex-shrink 0
+
+  .oo-ui-bookletLayout-stackLayout
+    flex 1
+
+// =============================================================================
+// OOUI FLOATABLE ELEMENT
+// =============================================================================
+
+.oo-ui-floatableElement
+  position absolute
+  z-index 100
+
+// =============================================================================
+// OOUI CLONE ELEMENT (Drag & Drop)
+// =============================================================================
+
+.oo-ui-draggableElement
+  cursor move
+
+  &.oo-ui-draggableElement-dragging
+    opacity 0.5
+
+.oo-ui-draggableGroupElement
+  .oo-ui-draggableElement
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)

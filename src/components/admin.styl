@@ -1,0 +1,869 @@
+// =============================================================================
+// Admin & Moderation - Violet Void ArchWiki Theme
+// Admin Dashboard, User Rights, Block/Protect, Delete Interface Styling
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ADMIN DASHBOARD STYLING
+// =============================================================================
+// Admin panel cards, quick action buttons, statistics overview
+
+// Admin dashboard container
+.admin-dashboard
+  margin 1.5em 0
+  padding 1.5em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+
+  // Dashboard header
+  .dashboard-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 1.5em
+    padding-bottom 1em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    h2
+      margin 0
+      font-size 1.4em
+      color $lighter
+      font-weight 600
+
+    .dashboard-actions
+      display flex
+      gap 0.75em
+
+      button
+        padding 0.5em 1em
+        background rgba($arch-blue, 0.15)
+        border 1px solid rgba($arch-blue, 0.3)
+        border-radius $border-radius-sm
+        color $lighter
+        font-size 0.9em
+        cursor pointer
+        transition transition-medium
+
+        &:hover
+          background rgba($arch-blue, 0.25)
+          border-color rgba($arch-blue, 0.5)
+
+        &:focus-visible
+          outline 2px solid $arch-blue
+          outline-offset 2px
+
+// Statistics cards grid
+.admin-stats-grid
+  display grid
+  grid-template-columns repeat(auto-fit, minmax(200px, 1fr))
+  gap 1em
+  margin-bottom 1.5em
+
+// Individual stat card
+.admin-stat-card
+  padding 1.25em
+  background rgba($base, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  text-align center
+  transition transition-medium
+
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+    box-shadow $shadow-subtle
+
+  .stat-icon
+    font-size 2em
+    margin-bottom 0.5em
+    color $arch-blue
+
+  .stat-value
+    font-size 2em
+    font-weight 700
+    color $lighter
+    font-family $font-mono
+    font-variant-numeric tabular-nums
+
+  .stat-label
+    font-size 0.85em
+    color $muted
+    margin-top 0.25em
+
+  .stat-trend
+    display inline-flex
+    align-items center
+    gap 0.25rem
+    font-size 0.8em
+    margin-top 0.5em
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+
+    &.positive
+      background rgba($green, 0.15)
+      color $green
+
+    &.negative
+      background rgba($secondary-red, 0.15)
+      color $secondary-red
+
+// Quick actions section
+.admin-quick-actions
+  margin-bottom 1.5em
+
+  h3
+    font-size 1.1em
+    color $lighter
+    margin 0 0 1em 0
+
+  .actions-grid
+    display grid
+    grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+    gap 0.75em
+
+// Quick action button
+.admin-action-btn
+  display flex
+  flex-direction column
+  align-items center
+  gap 0.5em
+  padding 1em
+  background rgba($base, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $light
+  text-decoration none
+  cursor pointer
+  transition transition-medium
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  .action-icon
+    font-size 1.5em
+    color $arch-blue
+
+  .action-label
+    font-size 0.85em
+    text-align center
+
+// Recent activity section
+.admin-recent-activity
+  h3
+    font-size 1.1em
+    color $lighter
+    margin 0 0 1em 0
+
+  .activity-list
+    display flex
+    flex-direction column
+    gap 0.5em
+
+// Activity item
+.admin-activity-item
+  display flex
+  align-items center
+  gap 1em
+  padding 0.75em 1em
+  background rgba($base, 0.4)
+  border 1px solid rgba($border-subtle, 0.5)
+  border-radius $border-radius-sm
+
+  .activity-icon
+    width 32px
+    height 32px
+    border-radius 50%
+    background rgba($arch-blue, 0.15)
+    display flex
+    align-items center
+    justify-content center
+    color $arch-blue
+    font-size 0.9em
+    flex-shrink 0
+
+  .activity-content
+    flex 1
+    min-width 0
+
+    .activity-title
+      font-size 0.9em
+      color $lighter
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+
+    .activity-meta
+      font-size 0.75em
+      color $muted
+      display flex
+      gap 0.75em
+      margin-top 0.2em
+
+      .activity-time
+        font-variant-numeric tabular-nums
+
+  .activity-action
+    flex-shrink 0
+
+    a
+      color $arch-blue
+      text-decoration none
+      font-size 0.85em
+
+      &:hover
+        text-decoration underline
+
+// =============================================================================
+// USER RIGHTS MANAGEMENT
+// =============================================================================
+// User group badges, permission matrix display, change log styling
+
+// User rights container
+.user-rights-container
+  margin 1.5em 0
+  padding 1.5em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+
+  h3
+    font-size 1.2em
+    color $lighter
+    margin 0 0 1em 0
+
+// User group badges
+.user-group-badges
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-bottom 1em
+
+// User group badge
+.user-group-badge
+  display inline-flex
+  align-items center
+  gap 0.35em
+  padding 0.35em 0.75em
+  background rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-pill
+  font-size 0.85em
+  color $lighter
+
+  &.admin
+    background rgba($orange, 0.15)
+    border-color rgba($orange, 0.3)
+    color $orange
+
+  &.bot
+    background rgba($green, 0.15)
+    border-color rgba($green, 0.3)
+    color $green
+
+  &.rollback
+    background rgba($secondary-blue, 0.15)
+    border-color rgba($secondary-blue, 0.3)
+    color $secondary-blue
+
+  &.sysop
+    background rgba($secondary-red, 0.15)
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+  &.bureaucrat
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+    color lighten($arch-blue, 20%)
+
+  .badge-icon
+    font-size 0.9em
+
+// Permission matrix
+.permission-matrix
+  margin-top 1.5em
+  overflow-x auto
+
+  table
+    width 100%
+    border-collapse collapse
+    font-size 0.9em
+
+    th
+    td
+      padding 0.75em 1em
+      text-align start
+      border 1px solid $border-subtle
+
+    th
+      background rgba($dark, 0.8)
+      color $lighter
+      font-weight 600
+
+    td
+      background rgba($base, 0.4)
+      color $light
+
+    tr:hover td
+      background rgba($arch-blue, 0.1)
+
+    .permission-yes
+      color $green
+      text-align center
+
+    .permission-no
+      color $muted
+      text-align center
+
+    .permission-limited
+      color $orange
+      text-align center
+
+// Rights change log
+.rights-changelog
+  margin-top 1.5em
+  padding 1em
+  background rgba($base, 0.4)
+  border 1px solid rgba($border-subtle, 0.5)
+  border-radius $border-radius-md
+
+  h4
+    font-size 1em
+    color $lighter
+    margin 0 0 0.75em 0
+
+  .log-entry
+    display flex
+    align-items center
+    gap 1em
+    padding 0.5em 0
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+
+    &:last-child
+      border-bottom none
+
+    .log-date
+      font-size 0.8em
+      color $muted
+      font-variant-numeric tabular-nums
+      min-width 120px
+
+    .log-action
+      font-size 0.85em
+      color $light
+
+    .log-user
+      color $arch-blue
+      font-size 0.85em
+
+// =============================================================================
+// BLOCK/PROTECT UI
+// =============================================================================
+// Block form styling, duration selector, reason dropdown
+
+// Block interface container
+.block-interface
+  margin 1.5em 0
+  padding 1.5em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+
+  h3
+    font-size 1.2em
+    color $lighter
+    margin 0 0 1.25em 0
+
+// Block form
+.block-form
+  display flex
+  flex-direction column
+  gap 1.25em
+
+// Form group
+.block-form-group
+  display flex
+  flex-direction column
+  gap 0.5em
+
+  label
+    font-size 0.9em
+    color $lighter
+    font-weight 500
+
+  input
+  select
+  textarea
+    padding 0.75em 1em
+    background rgba($base, 0.8)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    transition transition-medium
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+    &::placeholder
+      color $muted
+
+  select
+    cursor pointer
+    appearance none
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a7a7a' d='M6 8L1 3h10z'/%3E%3C/svg%3E")
+    background-repeat no-repeat
+    background-position right 1em center
+    padding-right 2.5em
+
+  textarea
+    min-height 100px
+    resize vertical
+
+// Duration selector
+.block-duration
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(100px, 1fr))
+  gap 0.5em
+
+  .duration-option
+    padding 0.75em
+    background rgba($base, 0.6)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    text-align center
+    cursor pointer
+    transition transition-medium
+    color $light
+    font-size 0.9em
+
+    &:hover
+      border-color rgba($arch-blue, 0.4)
+      background rgba($arch-blue, 0.1)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &.selected
+      background rgba($arch-blue, 0.2)
+      border-color $arch-blue
+      color $lighter
+
+    &.indefinite
+      grid-column span 2
+
+// Block options checkboxes
+.block-options
+  display flex
+  flex-direction column
+  gap 0.75em
+
+  .block-option
+    display flex
+    align-items center
+    gap 0.75em
+    cursor pointer
+
+    input[type="checkbox"]
+      width 18px
+      height 18px
+      accent-color $arch-blue
+      cursor pointer
+
+    label
+      font-size 0.9em
+      color $light
+      cursor pointer
+
+// Block form actions
+.block-form-actions
+  display flex
+  gap 0.75em
+  justify-content flex-end
+  margin-top 0.5em
+  padding-top 1em
+  border-top 1px solid rgba($border-subtle, 0.5)
+
+  button
+    padding 0.75em 1.5em
+    border-radius $border-radius-sm
+    font-size 0.95em
+    font-weight 500
+    cursor pointer
+    transition transition-medium
+
+    &.submit-block
+      background $secondary-red
+      border none
+      color $white
+
+      &:hover
+        background lighten($secondary-red, 5%)
+
+      &:focus-visible
+        outline 2px solid $secondary-red
+        outline-offset 2px
+
+    &.cancel
+      background transparent
+      border 1px solid $border-subtle
+      color $light
+
+      &:hover
+        border-color $arch-blue
+
+// Protect interface
+.protect-interface
+  @extend .block-interface
+
+  .protection-levels
+    display flex
+    gap 0.75em
+    margin-bottom 1em
+
+    .protection-level
+      flex 1
+      padding 1em
+      background rgba($base, 0.6)
+      border 1px solid $border-subtle
+      border-radius $border-radius-md
+      text-align center
+      cursor pointer
+      transition transition-medium
+
+      &:hover
+        border-color rgba($arch-blue, 0.4)
+
+      &.selected
+        background rgba($arch-blue, 0.2)
+        border-color $arch-blue
+
+      &.autoconfirmed
+        .level-icon
+          color $green
+
+      &.sysop
+        .level-icon
+          color $secondary-red
+
+      .level-icon
+        font-size 1.5em
+        margin-bottom 0.5em
+
+      .level-label
+        font-size 0.9em
+        color $lighter
+        font-weight 500
+
+      .level-desc
+        font-size 0.75em
+        color $muted
+        margin-top 0.25em
+
+// =============================================================================
+// DELETE/UNDELETE INTERFACE
+// =============================================================================
+// Delete confirmation dialog, revision selection, bulk actions
+
+// Delete interface
+.delete-interface
+  margin 1.5em 0
+  padding 1.5em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+
+  h3
+    font-size 1.2em
+    color $lighter
+    margin 0 0 1em 0
+
+// Delete warning banner
+.delete-warning
+  display flex
+  align-items flex-start
+  gap 1em
+  padding 1em
+  background rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1.25em
+
+  .warning-icon
+    font-size 1.5em
+    color $secondary-red
+    flex-shrink 0
+
+  .warning-content
+    flex 1
+
+    .warning-title
+      font-weight 600
+      color $secondary-red
+      margin-bottom 0.25em
+
+    .warning-text
+      font-size 0.9em
+      color $light
+
+// Revision selection
+.revision-select
+  margin-bottom 1.25em
+
+  h4
+    font-size 1em
+    color $lighter
+    margin 0 0 0.75em 0
+
+  .revision-list
+    max-height 300px
+    overflow-y auto
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    background rgba($base, 0.4)
+
+  .revision-item
+    display flex
+    align-items center
+    gap 0.75em
+    padding 0.75em 1em
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+    transition transition-fast
+
+    &:last-child
+      border-bottom none
+
+    &:hover
+      background rgba($arch-blue, 0.1)
+
+    input[type="checkbox"]
+      width 16px
+      height 16px
+      accent-color $arch-blue
+
+    .revision-info
+      flex 1
+
+      .revision-title
+        font-size 0.9em
+        color $lighter
+
+      .revision-meta
+        font-size 0.75em
+        color $muted
+        display flex
+        gap 0.75em
+        margin-top 0.2em
+
+// Bulk action toolbar
+.bulk-actions-toolbar
+  display flex
+  align-items center
+  gap 1em
+  padding 0.75em 1em
+  background rgba($base, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  margin-bottom 1em
+
+  .bulk-select-all
+    display flex
+    align-items center
+    gap 0.5em
+
+    input[type="checkbox"]
+      width 16px
+      height 16px
+      accent-color $arch-blue
+
+    label
+      font-size 0.85em
+      color $light
+
+  .bulk-actions
+    display flex
+    gap 0.5em
+    margin-inline-start auto
+
+    button
+      padding 0.4em 0.75em
+      background rgba($arch-blue, 0.15)
+      border 1px solid rgba($arch-blue, 0.3)
+      border-radius $border-radius-sm
+      color $light
+      font-size 0.8em
+      cursor pointer
+      transition transition-fast
+
+      &:hover
+        background rgba($arch-blue, 0.25)
+        border-color $arch-blue
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+      &.danger
+        background rgba($secondary-red, 0.15)
+        border-color rgba($secondary-red, 0.3)
+
+        &:hover
+          background rgba($secondary-red, 0.25)
+          border-color $secondary-red
+
+// Undelete interface
+.undelete-interface
+  @extend .delete-interface
+
+  .undelete-preview
+    padding 1em
+    background rgba($base, 0.4)
+    border 1px solid rgba($border-subtle, 0.5)
+    border-radius $border-radius-md
+    margin-bottom 1em
+
+    .preview-header
+      font-size 0.85em
+      color $muted
+      margin-bottom 0.5em
+
+    .preview-content
+      color $light
+      font-size 0.9em
+      line-height 1.5
+
+  .content-to-restore
+    margin-bottom 1em
+
+    h4
+      font-size 1em
+      color $lighter
+      margin 0 0 0.5em 0
+
+    .restore-options
+      display flex
+      flex-direction column
+      gap 0.5em
+
+      .restore-option
+        display flex
+        align-items center
+        gap 0.5em
+
+        input[type="checkbox"]
+          accent-color $arch-blue
+
+        label
+          font-size 0.9em
+          color $light
+
+// =============================================================================
+// PATROL MARKING
+// =============================================================================
+// Patrol link styling, patrolled indicator, patrol log
+
+// Patrol link
+.patrol-link
+  display inline-flex
+  align-items center
+  gap 0.35em
+  padding 0.3em 0.6em
+  background rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-sm
+  color $green
+  font-size 0.8em
+  text-decoration none
+  cursor pointer
+  transition transition-fast
+
+  &:hover
+    background rgba($green, 0.2)
+    border-color $green
+
+  &:focus-visible
+    outline 2px solid $green
+    outline-offset 2px
+
+// Patrolled indicator
+.patrolled-indicator
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.2em 0.5em
+  background rgba($green, 0.15)
+  border-radius $border-radius-sm
+  color $green
+  font-size 0.75em
+
+  &::before
+    content '✓'
+    font-weight bold
+
+// Unpatrolled indicator
+.unpatrolled-indicator
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.2em 0.5em
+  background rgba($orange, 0.15)
+  border-radius $border-radius-sm
+  color $orange
+  font-size 0.75em
+
+// Recent changes patrol
+.rc-patrolled
+  .patrol-checkbox
+    display none
+
+  .patrol-icon
+    display inline-block
+    width 16px
+    height 16px
+    border 2px solid $green
+    border-radius 3px
+    cursor pointer
+    transition transition-fast
+
+    &:hover
+      background rgba($green, 0.2)
+
+.rc-unpatrolled
+  .patrol-checkbox
+    display inline-block
+    width 16px
+    height 16px
+    border 2px solid $muted
+    border-radius 3px
+    cursor pointer
+    transition transition-fast
+
+    &:hover
+      border-color $green
+
+// =============================================================================
+// REDUCED MOTION SUPPORT
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .admin-stat-card
+  .admin-action-btn
+  .user-group-badge
+  .block-duration .duration-option
+  .protection-level
+    transition none
+
+  .admin-stat-card:hover
+    box-shadow none

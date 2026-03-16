@@ -1,0 +1,1105 @@
+// File and Media Pages Styling
+// File description, image galleries, video players
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// FILE DESCRIPTION PAGE
+// =============================================================================
+
+// File page container
+.mw-filepage
+.file-page
+  margin 1em 0
+
+// File info box
+.mw-filepage-info
+.file-info-box
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 1.5em
+
+  h2
+    color $lighter
+    font-size 1.2em
+    margin 0 0 1em 0
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+// File preview area
+.mw-filepage-preview
+.file-preview
+  display flex
+  justify-content center
+  align-items center
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1em
+  min-height 200px
+
+  img
+    max-width 100%
+    max-height 600px
+    border-radius $border-radius-sm
+
+// MIME type badge
+.mime-type-badge
+.file-type-badge
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.3em 0.7em
+  background-color rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius 1em
+  color $secondary-blue
+  font-size 0.8em
+  font-weight 500
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &.image
+    background-color rgba($green, 0.15)
+    border-color rgba($green, 0.3)
+    color $green
+
+  &.video
+    background-color rgba($orange, 0.15)
+    border-color rgba($orange, 0.3)
+    color $orange
+
+  &.audio
+    background-color rgba($secondary-red, 0.15)
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+  &.document
+    background-color rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+// File metadata grid
+.file-metadata
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+  gap 1em
+  margin-top 1em
+
+  .metadata-item
+    padding 0.75em
+    background-color $darker
+    border-radius $border-radius-sm
+
+    .metadata-label
+      color $muted
+      font-size 0.75em
+      text-transform uppercase
+      letter-spacing 0.05em
+      margin-bottom 0.3em
+
+    .metadata-value
+      color $lighter
+      font-size 0.95em
+      font-variant-numeric tabular-nums
+
+// File history table styling
+.mw-filehistory
+.file-history-table
+  width 100%
+  border-collapse collapse
+  margin 1em 0
+
+  th
+    padding 0.6em 0.8em
+    background-color $darker
+    border 1px solid $border-subtle
+    color $lighter
+    font-size 0.85em
+    text-align left
+    font-weight 600
+
+  td
+    padding 0.5em 0.8em
+    border 1px solid $border-subtle
+    color $light
+    font-size 0.9em
+
+  tr:hover td
+    background-color rgba($arch-blue, 0.03)
+
+  // Date/time column
+  .filehistory-timestamp
+    font-variant-numeric tabular-nums
+    color $muted
+    white-space nowrap
+
+  // Dimensions column
+  .filehistory-dimensions
+    font-variant-numeric tabular-nums
+
+  // User column
+  .filehistory-user a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+  // File size
+  .filehistory-size
+    font-variant-numeric tabular-nums
+    color $muted
+
+  // Comment column
+  .filehistory-comment
+    font-style italic
+    color $light
+
+// File usage list
+.mw-fileusage
+.file-usage-list
+  list-style none
+  padding 0
+  margin 1em 0
+
+  li
+  .usage-item
+    padding 0.5em 0.75em
+    border-bottom 1px solid $border-subtle
+    transition background-color 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.03)
+
+    &:last-child
+      border-bottom none
+
+    a
+      color $secondary-blue
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+
+    .usage-meta
+      font-size 0.8em
+      color $muted
+      margin-top 0.2em
+
+// File usage section header
+.file-usage-header
+  display flex
+  align-items center
+  justify-content space-between
+  padding 0.75em 0
+  border-bottom 1px solid $border-subtle
+  margin-bottom 0.75em
+
+  h3
+    color $lighter
+    font-size 1em
+    margin 0
+
+  .usage-count
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.85em
+
+// =============================================================================
+// IMAGE GALLERY LAYOUT
+// =============================================================================
+
+// Gallery container
+.mw-gallery
+.image-gallery
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+  gap 1em
+  margin 1em 0
+
+// Gallery item
+.mw-gallery-item
+.gallery-item
+  position relative
+  padding 0.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border-color rgba($arch-blue, 0.3)
+    transform translateY(-2px)
+    box-shadow $shadow-subtle
+
+// Gallery image wrapper with aspect-ratio
+.gallery-image-wrapper
+  position relative
+  width 100%
+  padding-bottom 100% // Square aspect ratio
+  overflow hidden
+  border-radius $border-radius-sm
+  background-color $darker
+
+  img
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    object-fit cover
+    transition transform 0.3s ease
+
+// Hover zoom effect
+.gallery-item:hover .gallery-image-wrapper img
+  transform scale(1.05)
+
+// Gallery caption
+.gallery-caption
+  padding 0.5em 0.25em
+  text-align center
+
+  p
+    margin 0
+    color $light
+    font-size 0.85em
+    line-height 1.3
+
+    // Caption truncation with line-clamp
+    display -webkit-box
+    -webkit-line-clamp 2
+    -webkit-box-orient vertical
+    overflow hidden
+
+// Gallery caption link
+.gallery-caption a
+  color $secondary-blue
+  text-decoration none
+
+  &:hover
+    color $arch-blue
+
+// Traditional table gallery (legacy support)
+.mw-gallery-traditional
+  table.gallery
+    border-collapse collapse
+
+    td.gallery
+      padding 0.5em
+      vertical-align top
+
+// Packed gallery (tighter spacing)
+.mw-gallery-packed
+.gallery-packed
+  grid-template-columns repeat(auto-fill, minmax(120px, 1fr))
+  gap 0.5em
+
+  .gallery-item
+    padding 0.25em
+
+// Slideshow gallery
+.mw-gallery-slideshow
+.gallery-slideshow
+  position relative
+  display block
+
+  .slideshow-container
+    position relative
+    overflow hidden
+    border-radius $border-radius-lg
+
+  .slideshow-image
+    width 100%
+    max-height 500px
+    object-fit contain
+
+  .slideshow-nav
+    display flex
+    justify-content center
+    gap 1em
+    margin-top 1em
+
+    button
+      padding 0.5em 1em
+      background-color $darker
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $lighter
+
+// =============================================================================
+// MASONRY GALLERY LAYOUT (Progressive Enhancement)
+// =============================================================================
+// Browser support: 87%+ (Chrome 129+, Firefox behind flag)
+// Falls back to standard grid on unsupported browsers
+
+// Masonry gallery container
+// Uses CSS masonry layout - items pack vertically like a masonry wall
+@supports (grid-template-rows: masonry)
+  .mw-gallery-masonry
+  .gallery-masonry
+    display grid
+    grid-template-rows masonry
+    grid-template-columns repeat(auto-fill, minmax(180px, 1fr))
+    gap 1em
+    margin 1em 0
+    align-content start
+
+    .gallery-item
+      break-inside avoid
+      margin-bottom 0
+
+    // Masonry-specific caption adjustments
+    .gallery-caption
+      background linear-gradient(to top, rgba($base, 0.95), rgba($base, 0.8))
+      backdrop-filter blur(4px)
+      border-radius 0 0 $border-radius-sm $border-radius-sm
+
+// Fallback: CSS columns masonry (wider support)
+// Works on all modern browsers
+.mw-gallery-masonry-fallback
+.gallery-masonry-fallback
+  column-count auto
+  column-width 180px
+  column-gap 1em
+  margin 1em 0
+
+  .gallery-item
+    break-inside avoid
+    margin-bottom 1em
+    display inline-block
+    width 100%
+
+// Grid-based masonry simulation with varying heights
+// Uses grid-row-end: span for variable heights (fallback)
+.mw-gallery-masonry-grid
+.gallery-masonry-grid
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(180px, 1fr))
+  gap 1em
+  margin 1em 0
+
+  .gallery-item
+    // Variable height based on content
+    // Can be overridden with inline styles or data attributes
+    &[data-rows="1"]
+      grid-row span 1
+    &[data-rows="2"]
+      grid-row span 2
+    &[data-rows="3"]
+      grid-row span 3
+    &[data-rows="4"]
+      grid-row span 4
+
+// Responsive masonry adjustments
+@media (max-width 768px)
+  .mw-gallery-masonry
+  .gallery-masonry
+  .mw-gallery-masonry-fallback
+  .gallery-masonry-fallback
+  .mw-gallery-masonry-grid
+  .gallery-masonry-grid
+    column-width 140px
+    grid-template-columns repeat(auto-fill, minmax(140px, 1fr))
+
+@media (max-width 480px)
+  .mw-gallery-masonry
+  .gallery-masonry
+  .mw-gallery-masonry-fallback
+  .gallery-masonry-fallback
+  .mw-gallery-masonry-grid
+  .gallery-masonry-grid
+    column-width 100%
+    grid-template-columns 1fr
+
+// Dense packing for masonry-like effect without true masonry
+.mw-gallery-packed-dense
+.gallery-packed-dense
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+  grid-auto-rows 10px
+  gap 1em
+  margin 1em 0
+
+  .gallery-item
+    grid-row-end span 5 // Default span, adjust per item
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+  .slideshow-counter
+    text-align center
+    color $muted
+    font-size 0.85em
+    margin-top 0.5em
+    font-variant-numeric tabular-nums
+
+// =============================================================================
+// VIDEO PLAYER STYLING
+// =============================================================================
+
+// Video container
+.mw-video
+.video-player-container
+  position relative
+  display inline-block
+  max-width 100%
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  video
+    display block
+    max-width 100%
+    border-radius $border-radius-md
+
+// Custom play button overlay
+.video-play-overlay
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  display flex
+  align-items center
+  justify-content center
+  background-color rgba($base, 0.5)
+  cursor pointer
+  transition background-color 0.2s ease
+
+  &:hover
+    background-color rgba($base, 0.3)
+
+  .play-button
+    width 80px
+    height 80px
+    display flex
+    align-items center
+    justify-content center
+    background-color $arch-blue
+    border-radius 50%
+    transition all 0.2s ease
+
+    &::before
+      content ""
+      width 0
+      height 0
+      margin-left 8px
+      border-style solid
+      border-width 15px 0 15px 25px
+      border-color transparent transparent transparent $darker
+
+  &:hover .play-button
+    transform scale(1.1)
+    box-shadow 0 0 30px rgba($arch-blue, 0.5)
+
+// Hide overlay when playing
+.mw-video.playing .video-play-overlay
+  opacity 0
+  pointer-events none
+
+// Progress bar theming
+video::-webkit-media-controls{}
+// Custom styling for WebKit browsers
+
+video::-webkit-media-controls-panel
+  background linear-gradient(transparent, rgba($base, 0.8))
+
+video::-webkit-media-controls-play-button
+video::-webkit-media-controls-mute-button
+video::-webkit-media-controls-fullscreen-button
+  filter invert(0.8)
+
+video::-webkit-media-controls-current-time-display
+video::-webkit-media-controls-time-remaining-display
+  color $lighter
+  font-variant-numeric tabular-nums
+
+// Timeline/seek bar
+video::-webkit-media-controls-timeline
+  background-color rgba($arch-blue, 0.3)
+  border-radius 4px
+  height 4px
+
+video::-webkit-media-controls-timeline::-webkit-slider-thumb
+  background-color $arch-blue
+
+// Volume slider
+video::-webkit-media-controls-volume-slider
+  background-color rgba($arch-blue, 0.3)
+  border-radius 4px
+
+// Video info bar
+.video-info-bar
+  display flex
+  align-items center
+  gap 1em
+  padding 0.75em 1em
+  background-color $darker
+  border-top 1px solid $border-subtle
+
+  .video-title
+    flex 1
+    color $lighter
+    font-size 0.95em
+
+  .video-duration
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.85em
+
+// Video thumbnail
+.video-thumbnail
+  position relative
+  cursor pointer
+
+  img
+    display block
+    width 100%
+    border-radius $border-radius-md
+
+  .duration-badge
+    position absolute
+    bottom 0.5em
+    right 0.5em
+    padding 0.2em 0.5em
+    background-color rgba($base, 0.9)
+    border-radius 3px
+    color $lighter
+    font-size 0.75em
+    font-variant-numeric tabular-nums
+
+// Responsive video
+@media (max-width 768px)
+  .mw-gallery
+  .image-gallery
+    grid-template-columns repeat(auto-fill, minmax(100px, 1fr))
+
+  .video-play-overlay .play-button
+    width 60px
+    height 60px
+
+    &::before
+      border-width 12px 0 12px 20px
+
+// =============================================================================
+// ::CUE PSEUDO-ELEMENT FOR VIDEO CAPTIONS
+// Browser support: 97%+
+// =============================================================================
+// Style WebVTT captions/subtitles displayed via <track> element
+// Usage: <video><track kind="captions" src="captions.vtt"></video>
+
+video::cue
+  // Caption text color
+  color $lighter
+
+  // Background for better readability
+  background-color rgba(0, 0, 0, 0.75)
+
+  // Padding around text
+  padding 0.2em 0.4em
+
+  // Font styling
+  font-size 1em
+  line-height 1.4
+
+  // Ensure contrast
+  text-shadow 0 1px 2px rgba(0, 0, 0, 0.8)
+
+// ::cue(:past) - Style captions that have already been displayed
+video::cue:past
+  color rgba($lighter, 0.6)
+
+// ::cue(:future) - Style upcoming captions
+video::cue:future
+  color $lighter
+  background-color rgba(0, 0, 0, 0.85)
+
+// ::cue(.highlight) - Style highlighted cue regions (when using ::cue-region)
+video::cue(.highlight)
+  background-color rgba($arch-blue, 0.4)
+  color $white
+
+// Voice/cue speaker identification - WebVTT voice classes
+video::cue(.speaker1)
+  color $secondary-blue
+
+video::cue(.speaker2)
+  color $arch-blue
+
+// Timestamped comments or notes within cues
+video::cue::part(.timestamp)
+  color $orange
+  font-size 0.85em
+  font-weight 500
+
+// Language-specific cue styling (use with [lang] attribute on video)
+video[lang="en"]::cue
+  font-family -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+
+video[lang="ja"]::cue
+video[lang="ko"]::cue
+video[lang="zh"]::cue
+  font-family 'Noto Sans', 'Noto Sans CJK', sans-serif
+
+// =============================================================================
+// MEDIA STATE PSEUDO-CLASSES (87%+ browser support)
+// Style playable elements based on playback state
+// Browser support: Chrome 113+, Firefox 113+, Safari 16+
+// =============================================================================
+
+// :playing - Video/audio currently playing
+video:playing
+audio:playing
+  // Active playback indicator
+  .video-play-overlay
+  .audio-play-indicator
+    opacity 0
+    pointer-events none
+
+  // Show playing indicator
+  &::after
+    content ""
+    position absolute
+    top 0.5em
+    right 0.5em
+    width 8px
+    height 8px
+    background-color $arch-blue
+    border-radius 50%
+    animation pulse 1.5s infinite
+
+@keyframes pulse
+  0%
+  100%
+    opacity 1
+    transform scale(1)
+  50%
+    opacity 0.5
+    transform scale(0.8)
+
+// :paused - Video/audio currently paused
+video:paused
+audio:paused
+  // Show pause indicator overlay
+  .video-play-overlay
+    opacity 1
+
+  // Dimmed state for paused content
+  filter brightness(0.95)
+
+// :buffering - Video/audio currently buffering/loading
+video:buffering
+audio:buffering
+  // Loading indicator overlay
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    width 40px
+    height 40px
+    margin -20px 0 0 -20px
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+  // Semi-transparent overlay
+  .video-play-overlay
+    background-color rgba($base, 0.5)
+
+  // Reduced opacity during buffering
+  opacity 0.8
+
+// :stalled - Video/audio stalled (waiting for data)
+video:stalled
+audio:stalled
+  // Stalled state - similar to buffering
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    width 30px
+    height 30px
+    margin -15px 0 0 -15px
+    border 2px solid $border-subtle
+    border-top-color $orange
+    border-radius 50%
+    animation spin 1.5s linear infinite
+
+  // Visual indication of stalled state
+  filter saturate(0.8)
+
+// :muted - Audio/video is muted
+video:muted
+audio:muted
+  // Muted indicator
+  .volume-icon
+  .mute-indicator
+    opacity 0.3
+
+  // Show unmute button
+  &::after
+    content "🔇"
+    position absolute
+    top 0.5em
+    left 0.5em
+    font-size 14px
+    opacity 0.6
+
+// :volume-locked - Volume cannot be adjusted (embedded media)
+video:volume-locked
+audio:volume-locked
+  // Locked indicator
+  .volume-control
+    opacity 0.4
+    pointer-events none
+
+  &::after
+    content "🔒"
+    position absolute
+    top 0.5em
+    left 0.5em
+    font-size 12px
+    opacity 0.5
+
+// Combined state styling for better UX
+video:playing:muted
+audio:playing:muted
+  .video-play-overlay
+    opacity 0
+
+video:paused:muted
+audio:paused:muted
+  // Clearer paused state when muted
+  .video-play-overlay
+    opacity 0.7
+
+// Screen reader support for media states
+video:playing::after
+audio:playing::after
+  position absolute
+  width 1px
+  height 1px
+  padding 0
+  margin -1px
+  overflow hidden
+  clip rect(0, 0, 0, 0)
+  white-space nowrap
+  border 0
+  content "Playing"
+
+video:paused::after
+audio:paused::after
+  content "Paused"
+
+video:buffering::after
+audio:buffering::after
+  content "Buffering"
+
+video:stalled::after
+audio:stalled::after
+  content "Stalled"
+
+// Reduced motion support for media state animations
+@media (prefers-reduced-motion reduce)
+  video:playing::after
+  audio:playing::after
+    animation none
+    content none
+
+  video:buffering::before
+  video:stalled::before
+  audio:buffering::before
+  audio:stalled::before
+    animation none
+    content none
+
+// =============================================================================
+// PICTURE-IN-PICTURE PSEUDO-CLASS
+// =============================================================================
+// Browser support: 92%+
+// Style video container when in picture-in-picture mode
+// See: https://developer.mozilla.org/en-US/docs/Web/CSS/:picture-in-picture
+
+video:picture-in-picture
+  // PiP window styling - typically a small floating window
+  border 2px solid $arch-blue
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  background-color $darker
+
+  // Ensure video fills the PiP window
+  width 100% !important
+  height 100% !important
+  object-fit contain
+
+// PiP indicator - subtle glow effect when in PiP mode
+video:picture-in-picture::before
+  content "Picture-in-Picture"
+  position absolute
+  top 8px
+  right 8px
+  padding 4px 8px
+  background rgba($arch-blue, 0.9)
+  color $base
+  font-size 10px
+  font-weight 600
+  border-radius 4px
+  text-transform uppercase
+  letter-spacing 0.5px
+  z-index 9999
+  pointer-events none
+
+// Audio in PiP mode (less common but possible)
+audio:picture-in-picture
+  border 2px solid $arch-blue
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  background-color $darker
+  border-radius 8px
+
+// PiP controls overlay styling (when video supports custom controls)
+video:picture-in-picture::-webkit-media-controls
+  background linear-gradient(transparent, rgba(0, 0, 0, 0.7))
+
+// Fullscreen + PiP combination - when video is fullscreen but also in PiP
+video:fullscreen:picture-in-picture
+  border-color $green
+  box-shadow 0 8px 32px rgba($green, 0.3)
+
+// Animation for PiP enter/exit
+@keyframes pip-enter
+  from
+    transform scale(0.8)
+    opacity 0
+  to
+    transform scale(1)
+    opacity 1
+
+@keyframes pip-exit
+  from
+    transform scale(1)
+    opacity 1
+  to
+    transform scale(0.8)
+    opacity 0
+
+video:picture-in-picture
+  animation pip-enter 0.2s ease-out
+
+// Reduced motion for PiP animations
+@media (prefers-reduced-motion reduce)
+  video:picture-in-picture
+    animation none
+
+  video:picture-in-picture::before
+    display none
+
+
+// ===========================================
+// :paused / :playing Pseudo-classes (87%+)
+// Style video based on playback state
+// ===========================================
+
+// Video in paused state - show play indicator overlay
+video:paused
+audio:paused
+  // Paused state indicator - could show replay icon
+  &::after
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 0
+    height 0
+    border-style solid
+    border-width 20px 0 20px 35px
+    border-color transparent transparent transparent $arch-blue
+    opacity 0.8
+    pointer-events none
+    // Only show on hover
+    opacity 0
+
+// Show play indicator on hover when paused
+video:paused:hover::after
+audio:paused:hover::after
+  opacity 0.8
+
+// Container for paused video with overlay
+.mw-parser-output video:paused
+.mw-parser-output audio:paused
+  position relative
+
+// Video in playing state - hide controls or show minimal
+video:playing
+audio:playing
+  // Playing state - optionally minimize controls appearance
+  &::-webkit-media-controls
+    opacity 0.5
+    transition opacity 0.3s ease
+
+  &:hover::-webkit-media-controls
+    opacity 1
+
+// Pause indicator for playing video on hover
+video:playing::before
+audio:playing::before
+  content ""
+  position absolute
+  top 10px
+  right 10px
+  width 8px
+  height 8px
+  background $green
+  border-radius 50%
+  opacity 0
+  transition opacity 0.3s ease
+
+video:playing:hover::before
+audio:playing:hover::before
+  opacity 1
+
+// ===========================================
+// :buffering Pseudo-class (87%+)
+// Style video when buffering/loading
+// ===========================================
+
+video:buffering
+audio:buffering
+  // Buffering state - show loading indicator
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 40px
+    height 40px
+    border 3px solid rgba($arch-blue, 0.3)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+    pointer-events none
+
+  // Dim the video during buffering
+  filter brightness(0.7)
+
+// Animation for buffering spinner
+@keyframes spin
+  from
+    transform translate(-50%, -50%) rotate(0deg)
+  to
+    transform translate(-50%, -50%) rotate(360deg)
+
+// Video element wrapper for buffering
+.mw-parser-output video:buffering
+.mw-parser-output audio:buffering
+  position relative
+
+// ===========================================
+// :muted Pseudo-class (87%+)
+// Style video based on mute state
+// ===========================================
+
+video:muted
+audio:muted
+  // Muted state styling
+  &::-webkit-media-controls-mute-button
+    background rgba($red, 0.2)
+    border-radius 4px
+
+  // Show muted indicator
+  &::before
+    content "🔇"
+    position absolute
+    top 10px
+    left 10px
+    font-size 14px
+    opacity 0
+    transition opacity 0.3s ease
+
+video:muted:hover::before
+audio:muted:hover::before
+  opacity 1
+
+// Unmuted (sound on) state
+video:not(:muted)
+audio:not(:muted)
+  // Sound on indicator
+  &::before
+    content "🔊"
+    position absolute
+    top 10px
+    left 10px
+    font-size 14px
+    opacity 0
+    transition opacity 0.3s ease
+
+video:not(:muted):hover::before
+audio:not(:muted):hover::before
+  opacity 1
+
+// Volume slider visibility based on mute state
+video:muted::-webkit-media-controls-volume-slider
+audio:muted::-webkit-media-controls-volume-slider
+  display none
+
+// ===========================================
+// Combined states for complex interactions
+// ===========================================
+
+// Playing and unmuted - full controls
+video:playing:not(:muted)
+audio:playing:not(:muted)
+  &::-webkit-media-controls
+    opacity 1
+
+// Paused and muted
+video:paused:muted
+audio:paused:muted
+  &::after
+    // Show replay icon for muted paused videos
+    border-color transparent transparent transparent $arch-blue
+
+// Buffering with sound
+video:buffering:not(:muted)
+audio:buffering:not(:muted)
+  &::before
+    // Show both buffering and volume indicators
+    background transparent
+    border none
+    width auto
+    height auto
+    content "⏳ 🔊"
+    font-size 16px
+    animation none
+
+// Reduced motion - simplify state indicators
+@media (prefers-reduced-motion reduce)
+  video:paused::after
+  audio:paused::after
+  video:buffering::before
+  audio:buffering::before
+  video:playing::before
+  audio:playing::before
+  video:muted::before
+  audio:muted::before
+  video:not(:muted)::before
+  audio:not(:muted)::before
+    display none

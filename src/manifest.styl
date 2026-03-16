@@ -1,0 +1,177 @@
+// =============================================================================
+// PWA Manifest Colors - Violet Void ArchWiki Theme
+// CSS custom properties for Progressive Web App theming
+// Used for theme-color meta tag, apple-mobile-web-app-status-bar-style,
+// and splash screen background colors
+// Browser support: 100%
+// =============================================================================
+
+@import 'variables/colors'
+
+// =============================================================================
+// PWA THEME COLORS
+// =============================================================================
+
+// Root CSS custom properties for PWA theming
+// These can be referenced in HTML via CSS custom properties
+// Usage in HTML: <meta name="theme-color" content="var(--pwa-theme-color)">
+
+:root
+  // Primary theme color for PWA elements
+  --pwa-theme-color $arch-blue
+
+  // Dark theme variant for PWA
+  --pwa-theme-color-dark #1a1a2e
+
+  // Light theme variant for PWA
+  --pwa-theme-color-light #f0f0ff
+
+  // Background colors for splash screens
+  --pwa-splash-background $dark
+
+  // Status bar style for iOS
+  // Options: default, black, black-translucent
+  --pwa-status-bar-style black
+
+  // Dark mode status bar for iOS
+  --pwa-status-bar-style-dark black-translucent
+
+  // Icon background colors
+  --pwa-icon-background $arch-blue
+
+  // Badge/notification colors
+  --pwa-badge-color $orange
+
+  // Splash screen text color
+  --pwa-splash-text-color $lighter
+
+  // Edge/Chrome status bar color
+  --pwa-edge-status-bar $dark
+
+// =============================================================================
+// DARK MODE PWA COLORS
+// =============================================================================
+
+@media (prefers-color-scheme dark)
+  :root
+    --pwa-theme-color $arch-blue
+    --pwa-splash-background $base
+    --pwa-status-bar-style black-translucent
+    --pwa-edge-status-bar $base
+
+// =============================================================================
+// HIGH CONTRAST MODE PWA COLORS
+// =============================================================================
+
+@media (prefers-contrast more)
+  :root
+    --pwa-theme-color $arch-blue
+    --pwa-splash-background $dark
+    --pwa-splash-text-color white
+    --pwa-edge-status-bar black
+
+// =============================================================================
+// PWA BACKGROUND GRADIENTS
+// =============================================================================
+
+// Splash screen gradient backgrounds for different PWA states
+
+.pwa-splash-gradient
+  background linear-gradient(135deg, var(--pwa-splash-background), darken($arch-blue, 20%))
+
+// Loading state gradient
+.pwa-loading-gradient
+  background linear-gradient(90deg, $dark, lighten($arch-blue, 10%), $dark)
+
+// =============================================================================
+// THEME COLOR META TAG FALLBACK STYLES
+// =============================================================================
+
+// These styles help ensure the theme color is visible on various platforms
+
+// Ensure html has correct background for theme-color
+html
+  background-color var(--pwa-splash-background)
+
+// Body respects splash background
+body
+  background-color var(--pwa-splash-background)
+
+// =============================================================================
+// APPLE MOBILE WEB APP STYLES
+// =============================================================================
+
+// iOS standalone mode styles
+@supports (-webkit-touch-callout: none)
+  // Standalone mode body styles
+  .html-standalone
+    background-color var(--pwa-splash-background)
+
+  // Hide browser chrome in standalone mode
+  .html-standalone body
+    -webkit-overflow-scrolling touch
+
+// =============================================================================
+// PWA NOTIFICATION BADGE STYLES
+// =============================================================================
+
+// Badge colors for PWA notifications
+
+.pwa-badge
+  background-color var(--pwa-badge-color)
+  color white
+
+// Notification dot on app icon
+.pwa-notification-dot
+  background-color var(--pwa-badge-color)
+  box-shadow 0 0 0 2px var(--pwa-splash-background)
+
+// =============================================================================
+// SPLASH SCREEN STYLES (CSS-ONLY INDICATORS)
+// =============================================================================
+
+// These classes can be used to style splash screen placeholders
+
+.splash-screen-placeholder
+  background-color var(--pwa-splash-background)
+  color var(--pwa-splash-text-color)
+
+// =============================================================================
+// PWA SAFE AREA INSETS (for notched devices)
+// =============================================================================
+
+// Safe area padding for PWA install banner
+
+.pwa-safe-area
+  padding-top env(safe-area-inset-top, 0)
+  padding-bottom env(safe-area-inset-bottom, 0)
+  padding-inline-start env(safe-area-inset-start, 0)
+  padding-inline-end env(safe-area-inset-end, 0)
+
+// =============================================================================
+// PWA ANIMATIONS
+// =============================================================================
+
+// Fade in for PWA install prompt
+
+@keyframes pwa-fade-in
+  from
+    opacity 0
+    transform translateY(10px)
+  to
+    opacity 1
+    transform translateY(0)
+
+.pwa-fade-in
+  animation pwa-fade-in 0.3s ease-out
+
+// =============================================================================
+// REDUCED MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .pwa-fade-in
+    animation none
+
+  .pwa-loading-gradient
+    animation none

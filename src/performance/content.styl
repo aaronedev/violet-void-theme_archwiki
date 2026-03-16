@@ -1,0 +1,230 @@
+// =============================================================================
+// CONTENT-VISIBILITY PATTERNS
+// =============================================================================
+// Browser support: 85%+
+// content-visibility: auto allows the browser to skip rendering work for
+// content that is off-screen, significantly improving performance for
+// long pages. Must pair with contain-intrinsic-size for best results.
+
+// =============================================================================
+// BASE CONTENT-VISIBILITY PATTERNS
+// =============================================================================
+
+// Apply content-visibility: auto to off-screen content containers
+// The browser will skip rendering until the content is near the viewport
+
+// Long article sections - skip rendering when scrolled away
+.mw-parser-output
+  > section
+  > h2
+  > h3
+  > h4
+    content-visibility auto
+    contain-intrinsic-size 100px 50px
+
+// Discussion and talk pages with many comments
+#talk
+.talk-page
+.discussion-page
+  .comment
+  .reply
+    content-visibility auto
+    contain-intrinsic-size auto 80px
+
+// History pages with many revisions
+#history
+.mw-history
+  .mw-history-line
+    content-visibility auto
+    contain-intrinsic-size auto 40px
+
+// Category pages with many items
+#mw-category
+.mw-category
+.mw-category-generated
+  .mw-category-group
+    content-visibility auto
+    contain-intrinsic-size auto 60px
+
+// =============================================================================
+// LONG LISTS OPTIMIZATION
+// =============================================================================
+
+// Apply to long lists that benefit from virtual scrolling behavior
+
+// Search results - often long lists
+.search-results
+.mw-search-results
+  li
+    content-visibility auto
+    contain-intrinsic-size auto 50px
+
+// Backlinks and whatlinkshere
+#whatlinkshere
+.mw-whatlinkshere
+  .mw-whatlinkshere-list
+    li
+      content-visibility auto
+      contain-intrinsic-size auto 30px
+
+// Recent changes (can be very long)
+#recentchanges
+.mw-recentchanges
+  .mw-recentchanges-ul
+    li
+      content-visibility auto
+      contain-intrinsic-size auto 40px
+
+// =============================================================================
+// WIKIPEDIA-SPECIFIC PATTERNS
+// =============================================================================
+
+// Infobox - important but often off-screen on mobile
+.infobox
+.mw-infobox
+table.infobox
+  content-visibility auto
+  contain-intrinsic-size 300px 400px
+
+// Navbox at bottom - skip when not visible
+.navbox
+.mw-navbox
+  content-visibility auto
+  contain-intrinsic-size 100% 50px
+
+// References section - can be very long
+#References
+#footnotes
+.references
+.reference-list
+  content-visibility auto
+  contain-intrinsic-size 100% 30px
+
+// Individual references
+.reference
+cite
+  content-visibility auto
+  contain-intrinsic-size auto 20px
+
+// =============================================================================
+// MEDIAWIKI EXTENSION PATTERNS
+// =============================================================================
+
+// Gallery items
+.mw-gallery
+.mw-gallery-traditional
+  .gallery-item
+    content-visibility auto
+    contain-intrinsic-size 150px 150px
+
+// Code blocks in documentation
+.mw-highlight
+.syntaxhighlight
+  content-visibility auto
+  contain-intrinsic-size auto 20px
+
+// =============================================================================
+// CONTAIN-INTRINSIC-SIZE PAIRING
+// =============================================================================
+// content-visibility requires contain-intrinsic-size to work properly
+// The browser uses this to calculate scrollbar positions
+
+// Dynamic contain-intrinsic-size based on content type
+// Section headings
+h1
+h2
+h3
+h4
+  contain-intrinsic-size 100%
+
+// Paragraphs in main content
+.mw-parser-output
+  > p
+    contain-intrinsic-size 100% 1.5em
+
+// List items
+li
+  contain-intrinsic-size 100% 1.5em
+
+// Table rows
+tr
+  contain-intrinsic-size 100% 1.5em
+
+// =============================================================================
+// HIDDEN=UNTIL-FOUND PATTERN
+// =============================================================================
+// content-visibility: hidden with hidden=until-found makes content
+// searchable but not rendered until found via browser search
+
+// Collapsible sections that should be searchable
+details.mw-collapsible
+  content-visibility hidden
+  contain-intrinsic-size auto 40px
+
+details.mw-collapsible[open]
+  content-visibility visible
+
+// Hidden comments or revisions that are searched
+.hidden-comment
+.deleted-comment
+  content-visibility hidden
+  contain-intrinsic-size auto 20px
+
+// =============================================================================
+// RESPONSIVE PATTERNS
+// =============================================================================
+
+// Desktop: full content-visibility benefits
+@media (min-width 1024px)
+  .mw-parser-output
+    > section
+    > h2
+    > h3
+      content-visibility auto
+
+// Mobile: be more conservative with small screens
+@media (max-width 768px)
+  .infobox
+    content-visibility auto
+    contain-intrinsic-size 300px 200px
+
+// =============================================================================
+// ACCESSIBILITY CONSIDERATIONS
+// =============================================================================
+// content-visibility: auto hides content from assistive tech when not visible
+// Use aria-hidden carefully or ensure content is discoverable
+
+// Ensure screen readers can still access hidden content
+@media (prefers-reduced-motion no-preference)
+  // When animations are OK, content-visibility works normally
+  .mw-parser-output
+    > section
+      content-visibility auto
+
+// For users who need all content visible (reduced motion = no hiding)
+@media (prefers-reduced-motion reduce)
+  *
+    content-visibility visible !important
+    contain-intrinsic-size none !important
+
+// =============================================================================
+// REDUCED DATA MODE
+// =============================================================================
+// content-visibility can also help with reduced data mode
+
+@media (prefers-reduced-data reduce)
+  // Skip rendering decorative/secondary content
+  .navbox
+  .sidebar
+  .related-pages
+    content-visibility hidden
+
+// =============================================================================
+// DEBUGGING HELPERS
+// =============================================================================
+// Uncomment to visualize content-visibility regions during development
+
+// .content-visibility-debug
+//   contain-intrinsic-size 100% 100px
+//   background-color rgba(255, 0, 0, 0.1)
+//   border 1px dashed red

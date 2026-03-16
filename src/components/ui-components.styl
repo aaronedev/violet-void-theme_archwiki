@@ -1,0 +1,1513 @@
+// Additional form elements and UI components
+// Checkboxes, radios, selects, alerts, badges, etc.
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// Checkboxes and Radio buttons
+input[type="checkbox"]
+input[type="radio"]
+  appearance none
+  -webkit-appearance none
+  width 16px
+  height 16px
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  cursor pointer
+  transition all $transition-fast
+  vertical-align middle
+  position relative
+
+  &:checked
+    background-color $arch-blue
+    border-color $arch-blue
+
+    &::after
+      content "✓"
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      color $darker
+      font-size 12px
+      font-weight bold
+
+  &:hover
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  &:focus-visible
+    outline none
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+input[type="radio"]
+  border-radius 50%
+
+  &:checked::after
+    content ""
+    width 6px
+    height 6px
+    background-color $darker
+    border-radius 50%
+
+// Select dropdowns
+select
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em 2em 0.5em 0.75em
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+  appearance none
+  -webkit-appearance none
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c7b8ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 12px
+
+  &:hover
+    border-color $arch-blue
+
+  &:focus-visible
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+    outline none
+
+  option
+    background-color $darker
+    color $lighter
+    padding 0.5em
+
+// File inputs
+input[type="file"]
+  background-color transparent
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em
+  cursor pointer
+
+  &:hover
+    border-color $arch-blue
+
+  &::file-selector-button
+    gradient-surface()
+
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.4em 1em
+    margin-right 0.75em
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+// Range sliders
+input[type="range"]
+  -webkit-appearance none
+  appearance none
+  width 100%
+  height 6px
+  background-color $darker
+  border-radius $border-radius-sm
+  outline none
+
+  &::-webkit-slider-thumb
+    -webkit-appearance none
+    appearance none
+    width 18px
+    height 18px
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-radius 50%
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      transform scale(1.1)
+
+  &::-moz-range-thumb
+    width 18px
+    height 18px
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-radius 50%
+    cursor pointer
+    border none
+
+// Badges and Tags
+.badge
+.tag
+.label
+  display inline-block
+  padding 0.2em 0.6em
+  font-size 0.85em
+  font-weight 600
+  border-radius $border-radius-sm
+  background-color rgba($arch-blue, 0.15)
+  color $secondary-blue
+  border 1px solid rgba($arch-blue, 0.25)
+
+  &.badge-primary
+  &.tag-primary
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    color $darker
+    border none
+
+  &.badge-success
+  &.tag-success
+    background-color rgba($green, 0.15)
+    color $green
+    border-color rgba($green, 0.25)
+
+  &.badge-warning
+  &.tag-warning
+    background-color rgba($orange, 0.15)
+    color $orange
+    border-color rgba($orange, 0.25)
+
+  &.badge-danger
+  &.tag-danger
+    background-color rgba($secondary-red, 0.15)
+    color $secondary-red
+    border-color rgba($secondary-red, 0.25)
+
+// Alerts and Notifications
+.alert
+.notification
+.flash-message
+  padding 1em 1.5em
+  border-radius $border-radius-md
+  margin 1em 0
+  box-shadow $shadow-subtle
+  border-left 4px solid
+
+  &.alert-info
+  &.notification-info
+    background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+    border-color $secondary-blue
+    color $lighter
+
+  &.alert-success
+  &.notification-success
+    background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.05))
+    border-color $green
+    color $lighter
+
+  &.alert-warning
+  &.notification-warning
+    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    border-color $orange
+    color $lighter
+
+  &.alert-error
+  &.notification-error
+    background linear-gradient(135deg, rgba($secondary-red, 0.1), rgba($secondary-red, 0.05))
+    border-color $secondary-red
+    color $lighter
+
+// Progress bars
+.progress
+.progress-bar
+  width 100%
+  height 8px
+  background-color $darker
+  border-radius $border-radius-sm
+  overflow hidden
+  box-shadow inset 0 1px 2px rgba(0, 0, 0, 0.1)
+
+  .progress-fill
+  .progress-inner
+    height 100%
+    background linear-gradient(90deg, $arch-blue, $secondary-blue)
+    border-radius $border-radius-sm
+    transition width $transition-medium
+
+// Tabs
+.tabs
+.tab-list
+  display flex
+  gap 0.5em
+  border-bottom 2px solid $border-subtle
+  margin-bottom 1em
+
+  .tab
+  .tab-item
+    padding 0.5em 1em
+    color $light
+    text-decoration none
+    border-bottom 2px solid transparent
+    margin-bottom -2px
+    transition all $transition-fast
+    cursor pointer
+
+    &:hover
+      color $secondary-blue
+      background-color rgba($arch-blue, 0.05)
+
+    &.active
+    &[aria-selected="true"]
+      color $secondary-blue
+      border-bottom-color $secondary-blue
+      font-weight 600
+
+// Breadcrumbs (general)
+.breadcrumbs
+.breadcrumb
+  color $light
+  font-size 0.9em
+  margin 1em 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $white
+
+  .separator
+    margin 0 0.5em
+    color $light
+
+// Tooltips
+.tooltip
+[data-tooltip]
+  position relative
+
+  &::after
+    content attr(data-tooltip)
+    position absolute
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    padding 0.5em 0.75em
+    background-color $darker
+    color $lighter
+    font-size 0.85em
+    border-radius $border-radius-sm
+    box-shadow $shadow-elevated
+    white-space nowrap
+    opacity 0
+    pointer-events none
+    transition opacity $transition-fast
+    z-index 1000
+
+  &:hover::after
+    opacity 1
+
+// Native HTML popover attribute
+[popover]
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  box-shadow $shadow-elevated
+  color $light
+
+  &:popover-open
+    animation popover-fade-in 0.15s ease-out
+
+@keyframes popover-fade-in
+  from
+    opacity 0
+    transform translateY(-5px)
+  to
+    opacity 1
+    transform translateY(0)
+
+// Backdrop for modal popovers
+[popover]::backdrop
+  background-color rgba(0, 0, 0, 0.5)
+
+// Native HTML dialog element
+dialog
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 2em
+  max-width 90vw
+  max-height 90vh
+  overflow auto
+  box-shadow $shadow-elevated
+  color $light
+
+  &::backdrop
+    background-color rgba(0, 0, 0, 0.75)
+
+  // Open state
+  &[open]
+    animation dialog-fade-in 0.2s ease-out
+
+@keyframes dialog-fade-in
+  from
+    opacity 0
+    transform scale(0.95)
+  to
+    opacity 1
+    transform scale(1)
+
+// :modal pseudo-class for modal dialogs (opened with dialog.showModal())
+// Browser support: 90%+ (Chrome 119+, Firefox 121+, Safari 17.4+)
+dialog:modal
+  // Modal dialogs get a more prominent styling
+  border 2px solid $arch-blue
+  box-shadow $shadow-elevated, 0 0 0 9999px rgba(0, 0, 0, 0.75)
+
+  // Modal backdrop gets enhanced treatment
+  &::backdrop
+    background-color rgba(0, 0, 0, 0.85)
+    backdrop-filter blur(4px)
+
+  // Modal-specific animations
+  &[open]
+    animation dialog-modal-fade-in 0.25s ease-out
+
+@keyframes dialog-modal-fade-in
+  from
+    opacity 0
+    transform scale(0.9) translateY(-10px)
+  to
+    opacity 1
+    transform scale(1) translateY(0)
+
+// Modeless dialogs (opened with dialog.show())
+dialog:not(:modal)
+  &::backdrop
+    background-color rgba(0, 0, 0, 0.4)
+
+// ===========================================
+// Enhanced ::backdrop Styling
+// Browser support: 97%+
+// ===========================================
+
+// Base backdrop animation keyframes
+@keyframes backdrop-fade-in
+  from
+    opacity 0
+  to
+    backdrop-filter blur(4px)
+
+// Backdrop variants by context
+
+// Warning/danger modal backdrop
+dialog.warning:modal::backdrop
+dialog.danger:modal::backdrop
+  background-color rgba(127, 29, 29, 0.85)
+
+// Success modal backdrop
+dialog.success:modal::backdrop
+  background-color rgba(21, 128, 61, 0.85)
+
+// Info modal backdrop
+dialog.info:modal::backdrop
+  background-color rgba(29, 78, 216, 0.85)
+
+// Custom backdrop with theme accent
+@supports (backdrop-filter: blur(4px))
+  dialog.themed:modal::backdrop
+    background-color rgba($arch-blue, 0.7)
+    backdrop-filter blur(8px) saturate(180%)
+
+// Full-screen backdrop for image viewers
+dialog.fullscreen:modal::backdrop
+  background-color rgba(0, 0, 0, 0.95)
+
+// Animated backdrop entry
+dialog.animated-backdrop:modal::backdrop
+  animation backdrop-fade-in 0.3s ease-out
+
+// High contrast backdrop for accessibility
+@media (prefers-contrast more)
+  dialog:modal::backdrop
+    background-color rgba(0, 0, 0, 0.95)
+
+// Reduced motion alternative
+@media (prefers-reduced-motion reduce)
+  dialog::backdrop
+    transition none
+
+// Light mode adjustments
+@media (prefers-color-scheme light)
+  dialog:modal::backdrop
+    background-color rgba(255, 255, 255, 0.8)
+    backdrop-filter blur(4px)
+
+  dialog:not(:modal)::backdrop
+    background-color rgba(255, 255, 255, 0.5)
+
+// Backdrop focus trap indicator (accessibility)
+dialog:modal::backdrop:focus-within
+  outline 2px dashed $arch-blue
+  outline-offset -4px
+
+// .modal/.overlay
+.modal
+.overlay
+  position fixed
+  inset 0
+  background-color rgba(0, 0, 0, 0.75)
+  display flex
+  align-items center
+  justify-content center
+  z-index 9999
+
+  .modal-content
+  .modal-body
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+    border 1px solid $border-subtle
+    border-radius $border-radius-lg
+    padding 2em
+    max-width 90%
+    max-height 90%
+    overflow auto
+    box-shadow $shadow-elevated
+
+  .modal-header
+    color $lighter
+    font-weight 600
+    font-size 1.2em
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+  .modal-footer
+    margin-top 1.5em
+    padding-top 1em
+    border-top 1px solid $border-subtle
+    display flex
+    gap 0.5em
+    justify-content flex-end
+
+// Pagination (general)
+.pagination
+  display flex
+  gap 0.25em
+  margin 1em 0
+
+  a
+  span
+    padding 0.5em 0.75em
+    color $lighter
+    text-decoration none
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover:not(.disabled, .active)
+      background-color rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.3)
+      color $white
+
+    &.active
+      background linear-gradient(135deg, $arch-blue, $secondary-blue)
+      color $darker
+      border-color $arch-blue
+      font-weight 600
+
+    &.disabled
+      opacity 0.5
+      cursor not-allowed
+
+// Loading spinners
+.spinner
+.loading
+  display inline-block
+  width 20px
+  height 20px
+  border 2px solid $border-subtle
+  border-top-color $secondary-blue
+  border-radius 50%
+  animation spin 0.8s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// Empty states
+.empty-state
+.no-results
+  text-align center
+  padding 3em 2em
+  color $light
+  font-size 1.1em
+
+  .empty-icon
+    font-size 3em
+    opacity 0.3
+    margin-bottom 0.5em
+
+// Dividers and separators
+.divider
+hr
+  border none
+  height 1px
+  background linear-gradient(90deg, transparent, $border-subtle, transparent)
+  margin 2em 0
+
+// Cards (general)
+.card
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  box-shadow $shadow-subtle
+  transition all $transition-fast
+
+  &:hover
+    box-shadow $shadow-elevated
+    border-color rgba($arch-blue, 0.2)
+
+  .card-header
+    font-weight 600
+    color $lighter
+    font-size 1.1em
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+  .card-body
+    color $light
+
+// =============================================================================
+// :open PSEUDO-CLASS - Unified Open State Styling (97%+ browser support)
+// =============================================================================
+// Note: :open pseudo-class targets elements in open state
+// Supported on: <details>, <dialog>, <select> (dropdown open), popover elements
+// Browser support: Chrome 120+, Firefox 124+, Safari 17.5+
+
+// Details/summary elements when expanded
+details:open
+  > summary
+    color $secondary-blue
+    font-weight 600
+
+    &::marker
+    &::-webkit-details-marker
+      color $secondary-blue
+
+  // Optional: Add subtle animation indicator
+  summary .details-toggle-icon
+  summary .toggle-icon
+    transform rotate(90deg)
+    transition transform $transition-fast
+
+// Dialog elements when open (complements dialog[open] above)
+dialog:open
+  border-color rgba($arch-blue, 0.3)
+  box-shadow $shadow-elevated, 0 0 30px rgba($arch-blue, 0.15)
+
+// Popover elements when open
+[popover]:open
+  border-color rgba($arch-blue, 0.3)
+  box-shadow $shadow-elevated, 0 0 20px rgba($arch-blue, 0.1)
+
+// Select dropdowns when open (Chrome 135+)
+// Style the select element itself when dropdown is expanded
+select:open
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+// Combined open state for consistency
+details:open
+dialog:open
+[popover]:open
+  // Ensure focus-visible styling is applied when open via keyboard
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// ============================================
+// Anchor Positioning API (85%+ browser support)
+// Better tooltips and popover positioning
+// ============================================
+
+// Anchor reference for positioned elements
+// Usage: Add data-anchor attribute to link trigger to tooltip
+[data-anchor]
+  position-anchor anchor-el
+
+// Tooltip with anchor positioning - positions relative to anchor element
+// Usage: Add .tooltip-anchor class and data-tooltip to trigger element
+.tooltip-anchor[data-tooltip]
+  position-anchor tooltip-anchor
+
+  &::after
+    position absolute
+    // Position below anchor by default
+    top anchor(bottom)
+    left anchor(center)
+    transform translateX(-50%)
+    margin-top 8px
+
+// Tooltip positioned above anchor
+.tooltip-anchor-above[data-tooltip]
+  &::after
+    top anchor(top)
+    margin-top 0
+    margin-bottom 8px
+    transform translateX(-50%) translateY(-100%)
+
+// Tooltip positioned to the right of anchor
+.tooltip-anchor-right[data-tooltip]
+  &::after
+    left anchor(right)
+    top anchor(center)
+    transform translateY(-50%)
+    margin-left 8px
+
+// Tooltip positioned to the left of anchor
+.tooltip-anchor-left[data-tooltip]
+  &::after
+    left anchor(left)
+    top anchor(center)
+    transform translateY(-50%) translateX(-100%)
+    margin-left 0
+    margin-right 8px
+
+// Focus-visible for anchor-positioned elements
+.tooltip-anchor[data-tooltip]:focus-visible::after
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// =============================================================================
+// POSITION TRY FALLBACKS FOR ANCHOR POSITIONING
+// =============================================================================
+// Note: 85%+ browser support (Chrome 131+, Edge 131+)
+// @position-try defines fallback positions when anchor would go off-screen
+// position-try-fallbacks lists the fallback positions to try
+
+// Define position-try fallbacks as custom identifiers
+// These must be declared before use
+@supports (position-try-fallbacks: flip)
+  @position-try --flip
+    top anchor(top)
+    bottom anchor(bottom)
+
+  @position-try --slide-right
+    left anchor(right)
+    top anchor(center)
+
+  @position-try --slide-left
+    left anchor(left)
+    top anchor(center)
+
+  @position-try --slide-up
+    bottom anchor(top)
+    left anchor(center)
+
+  @position-try --slide-down
+    top anchor(bottom)
+    left anchor(center)
+
+  // Apply fallbacks to tooltips
+  .tooltip-anchor[data-tooltip]::after
+    position-try-fallbacks --flip, --slide-right, --slide-left, --slide-up, --slide-down
+
+  // Popover position try fallbacks
+  [popover]
+    position-try-fallbacks --flip, --slide-right, --slide-left
+
+// =============================================================================
+// POPOVER API STYLING (:popover-open)
+// =============================================================================
+// Note: 87%+ browser support (Chrome 114+, Edge 114+, Safari 17+)
+// The :popover-open pseudo-class styles elements with the popover attribute
+// when they are shown. Use with <element popover> or [popover] attribute
+
+// Base popover styling
+[popover]
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.3)
+  color $lighter
+  padding 1rem
+  max-width 300px
+  z-index 1000
+
+// Popover when shown
+[popover]:popover-open
+  display block
+  animation popover-show 0.2s ease-out
+
+// Popover animation keyframes
+@keyframes popover-show
+  from
+    opacity 0
+    transform scale(0.95) translateY(-4px)
+
+  to
+    opacity 1
+    transform scale(1) translateY(0)
+
+// Popover positioning - auto (default)
+[popover]
+  position fixed
+  inset auto
+
+// Popover anchor positioning - position anchored to an element
+[popover][anchor]
+  position absolute
+
+// Popover backdrop (when using dialog or popover with backdrop)
+.popover-backdrop
+  background-color rgba(0, 0, 0, 0.5)
+  backdrop-filter blur(2px)
+  position fixed
+  inset 0
+  z-index 999
+
+// Focus-visible for popover elements
+[popover]:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Popover content styling
+[popover]
+  .popover-title
+    color $arch-blue
+    font-weight 600
+    margin-bottom 0.5rem
+    font-size 1rem
+
+  .popover-content
+    color $light
+    font-size 0.875rem
+    line-height 1.5
+
+  .popover-close
+    position absolute
+    top 0.5rem
+    right 0.5rem
+    background none
+    border none
+    color $light
+    cursor pointer
+    padding 0.25rem
+    border-radius $border-radius-sm
+
+    &:hover
+      color $arch-blue
+      background-color rgba($arch-blue, 0.1)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// Tooltip-style popover (common in wikis)
+[popover].tooltip-popover
+  max-width 250px
+  padding 0.75rem 1rem
+  font-size 0.875rem
+  line-height 1.4
+
+  &::before
+    content ""
+    position absolute
+    width 8px
+    height 8px
+    background-color $darker
+    border-left 1px solid $border-subtle
+    border-bottom 1px solid $border-subtle
+    transform rotate(45deg)
+
+  // Position above
+  &[data-position="top"]
+    inset auto auto 100% 50%
+    transform translateX(-50%)
+    margin-bottom 8px
+
+    &::before
+      bottom -5px
+      left 50%
+      margin-left -4px
+
+  // Position below
+  &[data-position="bottom"]
+    inset 100% auto auto 50%
+    transform translateX(-50%)
+    margin-top 8px
+
+    &::before
+      top -5px
+      left 50%
+      margin-left -4px
+      transform rotate(-135deg)
+
+// Menu-style popover
+[popover].menu-popover
+  padding 0.5rem
+  min-width 180px
+
+  .menu-item
+    display block
+    width 100%
+    padding 0.5rem 0.75rem
+    color $light
+    text-decoration none
+    border-radius $border-radius-sm
+    transition background-color 0.15s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      color $arch-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset -2px
+
+    // Menu item with icon
+    &.has-icon
+      display flex
+      align-items center
+      gap 0.5rem
+
+      &::before
+        content ""
+        width 16px
+        height 16px
+        flex-shrink 0
+
+  .menu-divider
+    height 1px
+    background-color $border-subtle
+    margin 0.5rem 0
+
+  .menu-header
+    color $lighter
+    font-size 0.75rem
+    font-weight 600
+    text-transform uppercase
+    letter-spacing 0.5px
+    padding 0.5rem 0.75rem 0.25rem
+    margin-bottom 0.25rem
+
+// Form popover (for filters, settings)
+[popover].form-popover
+  padding 1rem
+  min-width 240px
+
+  .form-group
+    margin-bottom 0.75rem
+
+    &:last-child
+      margin-bottom 0
+
+  label
+    display block
+    color $light
+    font-size 0.875rem
+    margin-bottom 0.25rem
+
+  input[type="text"]
+  input[type="search"]
+    width 100%
+    padding 0.5rem
+    background-color $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.875rem
+
+    &:focus
+      border-color $arch-blue
+      outline none
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  .popover-actions
+    display flex
+    gap 0.5rem
+    justify-content flex-end
+    margin-top 1rem
+    padding-top 0.75rem
+    border-top 1px solid $border-subtle
+
+    button
+      padding 0.375rem 0.75rem
+      border-radius $border-radius-sm
+      font-size 0.8125rem
+      cursor pointer
+      transition all 0.15s ease
+
+    .btn-primary
+      background-color $arch-blue
+      color $darker
+      border none
+      font-weight 500
+
+      &:hover
+        background-color lighten($arch-blue, 5%)
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+// Fullscreen mode styling
+// Style elements when they are in fullscreen mode (97%+ browser support)
+
+// Fullscreen container styling
+:fullscreen
+  background-color $base
+
+  // Hide non-essential UI chrome in fullscreen
+  .mw-footer
+  .mw-sidebar
+  .nav
+  header
+  footer:not(:fullscreen)
+    display none !important
+
+  // Fullscreen content gets priority styling
+  > *
+    max-width 100vw
+    width 100vw
+
+// Fullscreen background and overlay
+:-webkit-full-screen
+  background-color $base
+
+:-moz-full-screen
+  background-color $base
+
+// Fullscreen video player enhancements
+video:fullscreen
+  width 100vw
+  height 100vh
+  object-fit contain
+  background-color black
+
+// Fullscreen image viewer
+img:fullscreen
+  object-fit contain
+  max-width 100vw
+  max-height 100vh
+
+// Fullscreen dialogs/modals
+dialog:fullscreen
+  width 100vw
+  height 100vh
+  max-width 100vw
+  max-height 100vh
+  border none
+  border-radius 0
+  background-color $base
+  padding 0
+
+// Fullscreen custom containers
+.fullscreen-container:fullscreen
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  width 100vw
+  height 100vh
+  padding 2rem
+  background-color $base
+
+// Exit fullscreen button styling
+:fullscreen .exit-fullscreen-btn
+:fullscreen .fullscreen-exit-hint
+  display flex
+  position fixed
+  top 1rem
+  right 1rem
+  z-index 99999
+  gradient-surface()
+  padding 0.5rem 1rem
+  border-radius $border-radius-md
+  color $light
+  font-size 0.875rem
+  cursor pointer
+  opacity 0
+  transition opacity 0.2s ease
+
+  &:hover
+    background-color lighten($darker, 5%)
+
+  &:focus-visible
+    opacity 1
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Show exit button on hover in fullscreen
+:fullscreen:hover .exit-fullscreen-btn
+:fullscreen:hover .fullscreen-exit-hint
+  opacity 0.8
+
+// Fullscreen mode indicator
+.fullscreen-active:fullscreen::before
+  content "Press Esc to exit fullscreen"
+  position fixed
+  bottom 1rem
+  left 50%
+  transform translateX(-50%)
+  gradient-surface()
+  padding 0.5rem 1rem
+  border-radius $border-radius-md
+  color $light
+  font-size 0.75rem
+  z-index 99998
+  opacity 0
+  transition opacity 0.3s ease
+
+:fullscreen:hover .fullscreen-active:fullscreen::before
+  opacity 0.7
+
+// Fullscreen table enhancements
+table:fullscreen
+  font-size 1.1em
+
+  th
+  td
+    padding 0.75em 1em
+
+// Reduced motion in fullscreen
+@media (prefers-reduced-motion reduce)
+  :fullscreen
+    transition none
+
+  :-webkit-full-screen
+  :-moz-full-screen
+    animation none
+
+// -----------------------------------------------------------------------------
+// Gap in Flexbox - UI Components
+// Apply gap to flex containers in UI components for cleaner spacing
+
+// Button groups
+.mw-ui-button-group
+  gap 0.25em
+
+// Form button groups
+.formbutton行
+  gap 0.5em
+
+// OOUI Button groups
+.oo-ui-buttonGroupWidget
+  gap 0.125em
+
+// OOUI Field layout
+.oo-ui-fieldLayout
+  gap 0.5em
+
+// OOUI Action field layout
+.oo-ui-actionFieldLayout
+  gap 0.5em
+
+// Menu widgets
+.oo-ui-menuWidget
+  gap 0
+
+// Popup widgets
+.oo-ui-popupWidget-popup
+  gap 0
+
+// Dropdown widgets
+.oo-ui-dropdownWidget
+  gap 0
+
+// Input widgets
+.oo-ui-textInputWidget
+  gap 0.25em
+
+// Checkbox/Radio groups
+.oo-ui-checkboxInputWidget
+  gap 0.25em
+
+// Radio button group
+.oo-ui-radioInputWidget
+  gap 0.25em
+
+// Combobox
+.oo-ui-comboBoxWidget
+  gap 0
+
+// Multiselect
+.oo-ui-multiSelectWidget
+  gap 0.25em
+
+// Tag multiselect
+.oo-ui-tagMultiselectWidget
+  gap 0.375em
+
+// Progress bar
+.oo-ui-progressBarWidget
+  gap 0
+
+// Toast notifications
+.oo-ui-toastNotification
+  gap 0.75em
+
+// Toast manager
+.oo-ui-toastManager
+  gap 0.5em
+
+// Panel layouts
+.oo-ui-panelLayout
+  gap 1em
+
+// Stack layout
+.oo-ui-stackLayout
+  gap 0
+
+// Card layout
+.oo-ui-cardWidget
+  gap 0.5em
+
+// List layout
+.oo-ui-listToolGroup
+  gap 0
+
+// Tool group
+.oo-ui-toolGroup
+  gap 0
+
+// Tool
+.oo-ui-tool
+  gap 0
+
+// Popup button
+.oo-ui-popupButtonWidget
+  gap 0
+
+// Icon widget
+.oo-ui-iconWidget
+  gap 0
+
+// Label widget
+.oo-ui-labelElement-label
+  gap 0.25em
+
+// Help text
+.oo-ui-helpText
+  gap 0.25em
+
+// Error text
+.oo-ui-errorText
+  gap 0.25em
+
+// Hint text
+.oo-ui-hintText
+  gap 0.25em
+
+// ---------------------------------------------------------------------------
+// Flex gap utility classes (reusable)
+.flex-gap-0
+  gap 0
+
+.flex-gap-xs
+  gap 0.25em
+
+.flex-gap-sm
+  gap 0.5em
+
+.flex-gap-md
+  gap 1em
+
+.flex-gap-lg
+  gap 1.5em
+
+.flex-gap-xl
+  gap 2em
+
+// Inline flex gap (use display: inline-flex with gap)
+.inline-flex-gap-xs
+  gap 0.25em
+
+.inline-flex-gap-sm
+  gap 0.5em
+
+.inline-flex-gap-md
+  gap 1em
+
+// =============================================================================
+// SVG ENHANCEMENTS
+// =============================================================================
+// Browser support: 97%+
+// Improved SVG rendering for icons, diagrams, and embedded graphics
+
+// =============================================================================
+// PAINT-ORDER FOR SVG TEXT
+// =============================================================================
+// Control the paint order of stroke and fill for SVG text
+// Useful for outlined text effects - draws stroke before fill for cleaner look
+
+// Paint stroke before fill (outlined text effect)
+svg text
+  paint-order stroke fill
+
+// Bold text with outline - stroke draws first, then fill
+svg .text-bold
+  paint-order stroke fill
+  font-weight bold
+
+// Themed text with outline
+svg .text-outlined
+  paint-order stroke fill
+  stroke-width 0.5px
+
+// Icon text variants
+.svg-icon-text
+  paint-order fill stroke
+
+// =============================================================================
+// STROKE PROPERTIES FOR SVG
+// =============================================================================
+// Fine-tune stroke appearance for SVG elements
+
+// SVG icon stroke width
+.svg-icon
+  stroke-width 2
+
+// SVG icon stroke linecap
+.svg-icon-linecap
+  stroke-linecap round
+  stroke-linejoin round
+
+// SVG icon dash array (dashed lines)
+.svg-icon-dashed
+  stroke-dasharray 4 2
+
+// SVG diagram stroke styling
+svg path
+  stroke-linecap round
+  stroke-linejoin round
+
+// SVG connectors (flowcharts, diagrams)
+.svg-connector
+  stroke-width 2
+  fill none
+  stroke-linecap round
+
+// SVG highlight paths
+.svg-highlight
+  stroke-width 3
+  stroke $arch-blue
+
+// SVG boundary paths
+.svg-boundary
+  stroke-width 1
+  stroke $border-color
+  fill none
+  stroke-dasharray 3 3
+
+// =============================================================================
+// VECTOR-EFFECT: NON-SCALING-STROKE
+// =============================================================================
+// Keep stroke width constant regardless of SVG transform/scale
+// Essential for responsive icons and scalable graphics
+
+// Non-scaling stroke icons
+.svg-icon-noscale
+  vector-effect non-scaling-stroke
+
+// Diagrams that maintain stroke width
+.svg-diagram-noscale
+  vector-effect non-scaling-stroke
+  stroke-width 2
+
+// Responsive icons
+.icon-responsive
+  vector-effect non-scaling-stroke
+
+// Pixel-perfect icons at any size
+.icon-pixel-perfect
+  vector-effect non-scaling-stroke
+  image-rendering crisp-edges
+
+// =============================================================================
+// SHAPE-RENDERING FOR SVG
+// =============================================================================
+// Control SVG rendering quality vs speed tradeoff
+
+// Optimize for speed (default)
+.svg-render-speed
+  shape-rendering optimizeSpeed
+
+// Optimize for crisp edges (pixel art, diagrams)
+.svg-render-crisp
+  shape-rendering crispEdges
+
+// Geometric precision
+.svg-render-geometric
+  shape-rendering geometricPrecision
+
+// Auto (browser default)
+.svg-render-auto
+  shape-rendering auto
+
+// =============================================================================
+// SVG ACCESSIBILITY
+// =============================================================================
+
+// Ensure SVG icons are accessible
+svg[role="img"]
+  // aria-hidden is handled via HTML attribute
+
+// Hide decorative SVGs from screen readers
+svg[aria-hidden="true"]
+  // aria-hidden is handled via HTML attribute
+
+// Focusable SVGs for keyboard navigation
+svg.focusable
+  // focusable attribute is handled via HTML
+  outline none
+
+  &:focus
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// =============================================================================
+// SVG CONTAINMENT FOR PERFORMANCE
+// =============================================================================
+// Isolate SVG rendering for better performance
+
+svg
+  contain strict
+
+// Complex SVGs (charts, diagrams)
+svg.chart
+svg.diagram
+  contain layout paint
+
+// =============================================================================
+// SVG COLOR INHERITANCE
+// =============================================================================
+// Allow SVG strokes/fills to inherit from CSS color
+
+// Icon color from current text color
+.svg-icon-color
+  stroke currentColor
+  fill currentColor
+
+// Stroke-only icons
+.svg-stroke-only
+  fill none
+  stroke currentColor
+
+// Fill-only icons
+.svg-fill-only
+  fill currentColor
+  stroke none
+
+// =============================================================================
+// SVG ANIMATION OPTIMIZATIONS
+// =============================================================================
+// Performance hints for animated SVGs
+
+svg.animate-path
+  will-change stroke-dashoffset
+
+svg.animate-transform
+  will-change transform
+
+// Reduce motion for SVGs
+@media (prefers-reduced-motion reduce)
+  svg *
+    animation none
+    transition none
+    will-change auto
+
+// =============================================================================
+// PAINT-ORDER FOR SVG TEXT (97%+ browser support)
+// =============================================================================
+// Control paint order for SVG text elements
+// Useful for outlined text effects: stroke drawn after fill
+// Values: normal | [fill || stroke || markers]
+
+// Stroke drawn after fill (outlined text effect)
+.svg-text-outlined
+  paint-order stroke fill
+
+// Stroke drawn before fill (reverse outlined)
+.svg-text-reversed
+  paint-order fill stroke
+
+// Markers drawn first
+.svg-text-with-markers
+  paint-order markers stroke fill
+
+// Normal paint order
+.svg-text-normal
+  paint-order normal
+
+// =============================================================================
+// STROKE-* PROPERTIES FOR SVG (97%+ browser support)
+// =============================================================================
+// Control SVG stroke appearance
+
+// Stroke width variants
+.svg-stroke-thin
+  stroke-width 1px
+
+.svg-stroke-medium
+  stroke-width 2px
+
+.svg-stroke-thick
+  stroke-width 3px
+
+// Stroke linecap
+.svg-linecap-round
+  stroke-linecap round
+
+.svg-linecap-square
+  stroke-linecap square
+
+.svg-linecap-butt
+  stroke-linecap butt
+
+// Stroke linejoin
+.svg-linejoin-round
+  stroke-linejoin round
+
+.svg-linejoin-bevel
+  stroke-linejoin bevel
+
+.svg-linejoin-miter
+  stroke-linejoin miter
+
+// Dashed stroke patterns
+.svg-dash-small
+  stroke-dasharray 4 4
+
+.svg-dash-medium
+  stroke-dasharray 8 4
+
+.svg-dash-large
+  stroke-dasharray 12 6
+
+// =============================================================================
+// VECTOR-EFFECT FOR NON-SCALING STROKE (97%+ browser support)
+// =============================================================================
+// Prevent stroke scaling when SVG is resized
+// Useful for icons and borders that should maintain consistent width
+
+// Non-scaling stroke - maintains constant stroke-width regardless of transform
+.vector-effect-none-scaling
+  vector-effect non-scaling-stroke
+
+// =============================================================================
+// SHAPE-RENDERING FOR SVG (97%+ browser support)
+// =============================================================================
+// Control SVG rendering quality
+
+// Optimize for speed
+.svg-render-speed
+  shape-rendering optimizeSpeed
+
+// Optimize for crisp edges (pixel art, diagrams)
+.svg-render-crisp
+  shape-rendering crispEdges
+
+// Geometric precision
+.svg-render-geometric
+  shape-rendering geometricPrecision
+
+// Auto (browser default)
+.svg-render-auto
+  shape-rendering auto

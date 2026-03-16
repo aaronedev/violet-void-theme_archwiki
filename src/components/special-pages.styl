@@ -1,0 +1,1229 @@
+// Special Pages Styling
+// Styles for MediaWiki special pages (Search, Categories, Contributions, etc.)
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// SEARCH RESULTS PAGE ENHANCEMENTS
+// =============================================================================
+
+// Search results container
+.mw-search-results
+.search-results
+  list-style none
+  padding 0
+  margin 1em 0
+
+// Individual search result item
+.mw-search-result
+.search-result-item
+  padding 1em 1.25em
+  margin 0.5em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border-color rgba($arch-blue, 0.2)
+    box-shadow $shadow-subtle
+
+// Search result title link
+.mw-search-result-heading
+.search-result-title
+  margin-bottom 0.5em
+
+  a
+    color $secondary-blue
+    font-size 1.1em
+    font-weight 500
+    text-decoration none
+    border-bottom 1px solid transparent
+    transition all 0.2s ease
+
+    &:hover
+      color $arch-blue
+      border-bottom-color rgba($arch-blue, 0.3)
+
+    &:visited
+      color rgba($arch-blue, 0.7)
+
+// Match highlighting in snippets
+.searchmatch
+.search-highlight
+  background-color rgba($arch-blue, 0.25)
+  color $lighter
+  padding 0.1em 0.3em
+  border-radius 2px
+  font-weight 500
+
+// Search result snippet/excerpt
+.mw-search-result-data
+.search-result-excerpt
+  color $muted
+  font-size 0.9em
+  line-height 1.5
+  margin 0.5em 0
+
+  // Limit to 3 lines
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Search result metadata (size, date, word count)
+.mw-search-result-info
+.search-result-meta
+  font-size 0.8em
+  color $muted
+  margin-top 0.5em
+  display flex
+  flex-wrap wrap
+  gap 0.5em 1em
+
+  span
+    display inline-flex
+    align-items center
+    gap 0.3em
+
+// Advanced search form styling
+.mw-search-form
+.search-form
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin 1em 0
+
+// Search input field
+.mw-search-input
+.search-input
+  width 100%
+  padding 0.75em 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-size 1em
+  transition all 0.2s ease
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $muted
+
+// Search options panel
+.mw-search-options
+.search-options
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+  gap 1em
+  margin-top 1em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+
+// Search option group
+.search-option-group
+  label
+    display block
+    color $muted
+    font-size 0.85em
+    margin-bottom 0.5em
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  select
+  input[type="text"]
+    width 100%
+    padding 0.5em 0.75em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.9em
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+// Namespace filter chips
+.namespace-filter
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 0.5em
+
+.namespace-chip
+  padding 0.3em 0.7em
+  background-color rgba($arch-blue, 0.1)
+  border 1px solid transparent
+  border-radius 1em
+  color $secondary-blue
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.3)
+
+  &.active
+    background-color $arch-blue
+    color $darker
+    border-color $arch-blue
+
+// Search button
+.mw-search-button
+.search-button
+  padding 0.75em 1.5em
+  background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-size 1em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &:active
+    transform translateY(0)
+
+// "Did you mean" suggestion
+.search-suggestion
+  padding 1em
+  background-color rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin 1em 0
+  color $lighter
+
+  a
+    color $orange
+    font-weight 500
+
+    &:hover
+      text-decoration underline
+
+// No results message
+.mw-search-nonefound
+.search-no-results
+  padding 2em
+  text-align center
+  color $muted
+  font-size 1.1em
+
+  .search-suggestions
+    margin-top 1em
+    font-size 0.9em
+
+    a
+      color $secondary-blue
+
+// Search results pagination
+.mw-search-pager
+.search-pagination
+  display flex
+  justify-content center
+  align-items center
+  gap 0.5em
+  margin 2em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  a
+  span
+    padding 0.5em 0.75em
+    border-radius $border-radius-sm
+    text-decoration none
+    transition all 0.2s ease
+
+  a
+    color $secondary-blue
+    background-color transparent
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $arch-blue
+
+  .active
+  .mw-search-pager-current
+    background-color $arch-blue
+    color $darker
+    font-weight 500
+
+  .disabled
+    color $muted
+    cursor not-allowed
+    opacity 0.5
+
+// =============================================================================
+// CATEGORY PAGE GRID LAYOUT
+// =============================================================================
+
+// Category page container
+.mw-category
+.category-page
+  margin 1em 0
+
+// Category member grid
+.mw-category-members
+.category-members
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(220px, 1fr))
+  gap 1em
+  padding 0
+  margin 1em 0
+  list-style none
+
+// Grid/list toggle buttons
+.category-view-toggle
+  display flex
+  gap 0.5em
+  margin-bottom 1em
+
+  button
+  .toggle-btn
+    padding 0.5em 1em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $muted
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+    &.active
+      background-color $arch-blue
+      border-color $arch-blue
+      color $darker
+
+// Category member item (grid view)
+.mw-category-item
+.category-member
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border-color rgba($arch-blue, 0.2)
+    transform translateY(-1px)
+    box-shadow $shadow-subtle
+
+  a
+    color $secondary-blue
+    text-decoration none
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+
+// List view variant
+.category-list-view
+  .mw-category-members
+  .category-members
+    grid-template-columns 1fr
+
+  .mw-category-item
+  .category-member
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.75em 1em
+
+// Subcategory section
+.mw-category-subcategories
+.subcategories-section
+  margin 2em 0
+
+  h2
+  h3
+    color $lighter
+    font-size 1.1em
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+// Subcategory cards grid
+.subcategories-grid
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(180px, 1fr))
+  gap 0.75em
+  list-style none
+  padding 0
+  margin 0
+
+// Subcategory card
+.subcategory-item
+  padding 0.75em 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.08)
+    border-color rgba($arch-blue, 0.2)
+
+  a
+    display flex
+    align-items center
+    gap 0.5em
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $arch-blue
+
+    // Folder icon
+    &::before
+      content "📁"
+      font-size 0.9em
+      opacity 0.8
+
+// Page count badges with tabular-nums
+.page-count-badge
+.category-count
+  display inline-flex
+  align-items center
+  padding 0.2em 0.5em
+  background-color rgba($arch-blue, 0.15)
+  border-radius 1em
+  color $secondary-blue
+  font-size 0.75em
+  font-variant-numeric tabular-nums
+  font-weight 500
+  margin-left auto
+
+// Category header with description
+.mw-category-header
+.category-header
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 2em
+
+  h1
+    color $lighter
+    margin 0 0 0.5em 0
+    font-size 1.5em
+
+  .category-description
+    color $muted
+    font-size 0.95em
+    line-height 1.5
+
+// Category pagination
+.mw-category-pagination
+.category-pagination
+  display flex
+  justify-content center
+  gap 0.5em
+  margin 2em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  a
+    padding 0.5em 1em
+    background-color transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+  .current
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+    font-weight 500
+
+// "Next page" / "Previous page" links
+.mw-category-next
+.category-nav-links
+  display flex
+  justify-content space-between
+  gap 1em
+  margin 1.5em 0
+
+  a
+    display inline-flex
+    align-items center
+    gap 0.5em
+    padding 0.5em 1em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+    &.disabled
+      opacity 0.4
+      cursor not-allowed
+      pointer-events none
+
+// =============================================================================
+// SPECIAL:ALLPAGES / SPECIAL:PREFIXINDEX
+// =============================================================================
+
+// All pages container
+.mw-allpages
+.allpages-container
+  margin 1em 0
+
+// Alphabetical navigation styling
+.mw-allpages-nav
+.alphabet-nav
+  display flex
+  flex-wrap wrap
+  justify-content center
+  gap 0.25em
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 1.5em
+
+// Alphabet letter links
+.mw-allpages-nav a
+.alphabet-nav a
+.alphabet-letter
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 2em
+  padding 0.4em 0.6em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $secondary-blue
+  font-weight 500
+  text-decoration none
+  font-variant-numeric tabular-nums
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.3)
+    color $arch-blue
+    transform translateY(-1px)
+
+  &.current
+  &.active
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+    cursor default
+    transform none
+
+  &.disabled
+    opacity 0.3
+    cursor not-allowed
+    pointer-events none
+
+// Namespace selector styling
+.mw-allpages-selector
+.namespace-selector
+  display flex
+  align-items center
+  gap 0.75em
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1.5em
+
+  label
+    color $muted
+    font-size 0.9em
+    white-space nowrap
+
+  select
+    flex 1
+    max-width 300px
+    padding 0.5em 1em
+    background-color $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    cursor pointer
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Page list styling
+.mw-allpages-body
+.allpages-list
+  list-style none
+  padding 0
+  margin 0
+
+  li
+  .page-item
+    margin 0.25em 0
+    padding 0.5em 0.75em
+    border-radius $border-radius-sm
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.08)
+
+    // Group separator (letter changes)
+    &.mw-allpages-group
+    &.letter-group-header
+      margin-top 1em
+      padding 0.75em
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+      border-left 3px solid $arch-blue
+      font-weight 600
+      color $lighter
+      font-size 1.1em
+
+      &:first-child
+        margin-top 0
+
+    a
+      color $secondary-blue
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+        text-decoration underline
+
+      // Redirect indicator
+      &.mw-redirect
+        color rgba($arch-blue, 0.7)
+
+        &::after
+          content " ↪"
+          font-size 0.8em
+          opacity 0.6
+
+// Prefix filter input
+.prefix-filter
+  display flex
+  gap 0.5em
+  margin-bottom 1em
+
+  input[type="text"]
+    flex 1
+    padding 0.5em 0.75em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+    &::placeholder
+      color $muted
+
+  button
+    padding 0.5em 1em
+    background-color $arch-blue
+    border none
+    border-radius $border-radius-sm
+    color $darker
+    font-weight 500
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.8)
+
+// "From" / "To" navigation sections
+.mw-allpages-range
+.pages-range
+  display flex
+  gap 1em
+  margin 1em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  > div
+    flex 1
+
+  h3
+    color $muted
+    font-size 0.85em
+    text-transform uppercase
+    letter-spacing 0.05em
+    margin 0 0 0.5em 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $arch-blue
+
+// Chunk navigation (next X pages)
+.mw-allpages-chunk
+.chunk-navigation
+  display flex
+  justify-content space-between
+  align-items center
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+  margin-top 1.5em
+
+  .chunk-info
+    color $muted
+    font-size 0.9em
+
+  .chunk-links
+    display flex
+    gap 0.5em
+
+    a
+      padding 0.5em 1em
+      background-color transparent
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $secondary-blue
+      text-decoration none
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        border-color rgba($arch-blue, 0.3)
+
+      &.disabled
+        opacity 0.4
+        cursor not-allowed
+        pointer-events none
+
+// =============================================================================
+// USER CONTRIBUTIONS PAGE (Special:Contributions)
+// =============================================================================
+
+// Contributions container
+.mw-contributions-list
+.contributions-list
+  list-style none
+  padding 0
+  margin 1em 0
+
+// Individual contribution item
+.mw-contributions-list li
+.contribution-item
+  display flex
+  flex-wrap wrap
+  gap 0.5em 1em
+  padding 0.75em 1em
+  margin 0.25em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.01))
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+    border-color rgba($arch-blue, 0.2)
+
+// Date grouping with tabular-nums timestamps
+.mw-contributions-date
+.contribution-date
+  font-variant-numeric tabular-nums
+  color $muted
+  font-size 0.85em
+  min-width 6em
+  white-space nowrap
+
+// Time within date
+.contribution-time
+  color $muted
+  font-size 0.8em
+  font-variant-numeric tabular-nums
+
+// Page title link
+.mw-contributions-title
+.contribution-title
+  a
+    color $secondary-blue
+    text-decoration none
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+      text-decoration underline
+
+    &.new
+      color rgba($orange, 0.8)
+
+// Edit flags (minor, new page, etc.)
+.mw-contributions-flags
+.contribution-flags
+  display flex
+  gap 0.3em
+
+.flag-minor
+  background-color rgba($arch-blue, 0.2)
+  color $secondary-blue
+  padding 0.1em 0.4em
+  border-radius 2px
+  font-size 0.7em
+  text-transform uppercase
+  font-weight 600
+  letter-spacing 0.05em
+
+.flag-new
+  background-color rgba($green, 0.2)
+  color $green
+  padding 0.1em 0.4em
+  border-radius 2px
+  font-size 0.7em
+  text-transform uppercase
+  font-weight 600
+  letter-spacing 0.05em
+
+.flag-bot
+  background-color rgba($muted, 0.2)
+  color $muted
+  padding 0.1em 0.4em
+  border-radius 2px
+  font-size 0.7em
+  text-transform uppercase
+  font-weight 600
+  letter-spacing 0.05em
+
+// Edit summary highlighting
+.mw-contributions-comment
+.contribution-summary
+  flex-basis 100%
+  margin-top 0.25em
+  padding 0.5em 0.75em
+  background-color rgba($arch-blue, 0.05)
+  border-left 2px solid rgba($arch-blue, 0.3)
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+  color $lighter
+  font-size 0.9em
+  line-height 1.4
+
+  // Section link in summary
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+  // Autocomment (section references)
+  .autocomment
+    color $muted
+    font-style italic
+
+// Diff size indicator
+.mw-contributions-diff-size
+.contribution-size
+  font-variant-numeric tabular-nums
+  font-size 0.85em
+  font-weight 500
+  padding 0.15em 0.4em
+  border-radius 3px
+
+  &.positive
+    background-color rgba($green, 0.15)
+    color $green
+
+    &::before
+      content "+"
+
+  &.negative
+    background-color rgba($orange, 0.15)
+    color $orange
+
+  &.neutral
+    color $muted
+
+// Contribution actions (diff, hist, etc.)
+.mw-contributions-actions
+.contribution-actions
+  display flex
+  gap 0.75em
+  margin-left auto
+
+  a
+    color $muted
+    font-size 0.8em
+    text-decoration none
+    padding 0.2em 0.5em
+    border-radius 3px
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $secondary-blue
+
+// Date header groups
+.mw-contributions-date-group
+.contribution-date-group
+  margin 1.5em 0 0.5em
+  padding 0.5em 0
+  border-bottom 1px solid $border-subtle
+  color $lighter
+  font-weight 600
+  font-size 0.95em
+  font-variant-numeric tabular-nums
+
+  &:first-child
+    margin-top 0
+
+// Contributions pagination
+.mw-contributions-pager
+.contributions-pagination
+  display flex
+  justify-content center
+  gap 0.5em
+  margin 2em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  a
+    padding 0.5em 1em
+    background-color transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+  .current
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+
+// User contributions form (top filters)
+.mw-contributions-form
+.contributions-form
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1.5em
+
+  fieldset
+    border none
+    padding 0
+    margin 0
+
+  legend
+    color $lighter
+    font-weight 500
+    margin-bottom 0.75em
+    padding 0
+
+  label
+    display inline-flex
+    align-items center
+    gap 0.5em
+    margin-right 1em
+    color $muted
+    font-size 0.9em
+
+  input[type="text"]
+  select
+    padding 0.4em 0.6em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.9em
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+// Contribution stats summary
+.contribution-stats
+  display flex
+  flex-wrap wrap
+  gap 1em
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+  margin-bottom 1em
+
+  .stat-item
+    display flex
+    flex-direction column
+    gap 0.25em
+
+  .stat-label
+    color $muted
+    font-size 0.75em
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  .stat-value
+    color $lighter
+    font-size 1.1em
+    font-weight 600
+    font-variant-numeric tabular-nums
+
+// =============================================================================
+// SPECIAL:WHATLINKSHERE
+// =============================================================================
+
+// WhatLinksHere container
+.mw-whatlinkshere
+.whatlinkshere-container
+  margin 1em 0
+
+// Backlinks list styling
+.mw-whatlinkshere-list
+.backlinks-list
+  list-style none
+  padding 0
+  margin 1em 0
+
+  li
+  .backlink-item
+    padding 0.75em 1em
+    margin 0.25em 0
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.01))
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    display flex
+    align-items center
+    gap 0.75em
+    transition all 0.2s ease
+
+    &:hover
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+      border-color rgba($arch-blue, 0.2)
+
+// Page title link
+.mw-whatlinkshere-link
+.backlink-title
+  a
+    color $secondary-blue
+    text-decoration none
+    font-weight 500
+
+    &:hover
+      color $arch-blue
+      text-decoration underline
+
+    &.new
+      color rgba($orange, 0.8)
+
+// Redirect badge styling
+.is-redirect
+.redirect-badge
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.2em 0.5em
+  background-color rgba($arch-blue, 0.15)
+  color $secondary-blue
+  border-radius 1em
+  font-size 0.7em
+  text-transform uppercase
+  font-weight 600
+  letter-spacing 0.05em
+
+  &::before
+    content "↪"
+    font-size 1em
+
+// Edit link indicator
+.edit-link
+  font-size 0.8em
+  margin-left auto
+
+  a
+    color $muted
+    text-decoration none
+
+    &:hover
+      color $secondary-blue
+
+// Namespace filtering UI
+.mw-whatlinkshere-filter
+.namespace-filter-ui
+  display flex
+  flex-wrap wrap
+  gap 1em
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1.5em
+
+  fieldset
+    border none
+    padding 0
+    margin 0
+    flex 1
+    min-width 200px
+
+  legend
+    color $lighter
+    font-weight 500
+    margin-bottom 0.5em
+    padding 0
+    font-size 0.9em
+
+  label
+    display inline-flex
+    align-items center
+    gap 0.5em
+    margin 0.25em 0.5em 0.25em 0
+    color $muted
+    font-size 0.9em
+    cursor pointer
+
+    input[type="checkbox"]
+      accent-color $arch-blue
+
+// Filter buttons
+.filter-buttons
+  display flex
+  gap 0.5em
+  margin-top 1em
+  width 100%
+
+  button
+  input[type="submit"]
+    padding 0.5em 1em
+    background-color $arch-blue
+    border none
+    border-radius $border-radius-sm
+    color $darker
+    font-weight 500
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.8)
+      transform translateY(-1px)
+
+  .reset-btn
+    background-color transparent
+    border 1px solid $border-subtle
+    color $muted
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+// "Show/hide" transclusions toggle
+.transclusion-toggle
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 0.75em
+  background-color $darker
+  border-radius $border-radius-sm
+  margin-bottom 1em
+
+  label
+    color $muted
+    font-size 0.9em
+    cursor pointer
+    display flex
+    align-items center
+    gap 0.5em
+
+// WhatLinksHere pagination
+.mw-whatlinkshere-pagination
+.whatlinkshere-pagination
+  display flex
+  justify-content center
+  gap 0.5em
+  margin 2em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  a
+    padding 0.5em 1em
+    background-color transparent
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+
+  .current
+    background-color $arch-blue
+    border-color $arch-blue
+    color $darker
+
+// Info message
+.mw-whatlinkshere-info
+.whatlinkshere-info
+  padding 1em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  color $lighter
+  font-size 0.9em
+  margin-bottom 1em
+
+  strong
+    color $secondary-blue
+
+// No results message
+.mw-whatlinkshere-none
+.whatlinkshere-empty
+  padding 2em
+  text-align center
+  color $muted
+  font-size 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+// Entry count
+.entry-count
+  font-variant-numeric tabular-nums
+  color $muted
+  font-size 0.85em
+  margin-left auto

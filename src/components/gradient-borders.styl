@@ -1,0 +1,378 @@
+// Gradient Borders
+// Browser support: 97%+
+// Adds gradient border effects to elements
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// GRADIENT BORDER USING BORDER-IMAGE
+// =============================================================================
+
+// Base gradient border using border-image
+.gradient-border
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $arch-blue, $secondary-blue)
+  background $base
+  border-radius $border-radius-md
+
+  // Hover state with gradient shift
+  &:hover
+    border-image-source linear-gradient(135deg, $arch-blue, lighten($arch-blue, 15%))
+
+// Gradient border with custom colors
+.gradient-border-custom
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, var(--gradient-start, $arch-blue), var(--gradient-end, $secondary-blue))
+  background $base
+  border-radius $border-radius-md
+
+// =============================================================================
+// GRADIENT BORDER USING PSEUDO-ELEMENT (MORE FLEXIBLE)
+// =============================================================================
+
+.gradient-border-outer
+  position relative
+  background $base
+  border-radius $border-radius-md
+  padding 2px // Space for the gradient border
+
+  &::before
+    content ''
+    position absolute
+    inset 0
+    border-radius inherit
+    padding 2px // Border width
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    -webkit-mask linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+    -webkit-mask-composite xor
+    mask-composite exclude
+    pointer-events none
+
+  // Content wrapper
+  > .gradient-content
+  .gradient-content
+    background $base
+    border-radius calc($border-radius-md - 2px)
+    padding 1em
+
+// Animated gradient border
+.gradient-border-animated
+  position relative
+  background $base
+  border-radius $border-radius-md
+  padding 3px
+
+  &::before
+    content ''
+    position absolute
+    inset 0
+    border-radius inherit
+    padding 3px
+    background linear-gradient(
+      135deg,
+      $arch-blue,
+      $secondary-blue,
+      $arch-blue
+    )
+    background-size 200% 200%
+    animation gradient-shift 3s ease infinite
+    -webkit-mask linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+    -webkit-mask-composite xor
+    mask-composite exclude
+    pointer-events none
+
+  > .gradient-content
+    background $base
+    border-radius calc($border-radius-md - 3px)
+    padding 1em
+
+@keyframes gradient-shift
+  0%
+    background-position 0% 50%
+  50%
+    background-position 100% 50%
+  100%
+    background-position 0% 50%
+
+// =============================================================================
+// CORNER ACCENT GRADIENTS
+// =============================================================================
+
+// Top-left corner accent
+.corner-gradient-tl
+  position relative
+
+  &::before
+    content ''
+    position absolute
+    top 0
+    left 0
+    width 40px
+    height 40px
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-bottom-right-radius 100%
+    opacity 0.8
+    pointer-events none
+
+// Top-right corner accent
+.corner-gradient-tr
+  position relative
+
+  &::before
+    content ''
+    position absolute
+    top 0
+    right 0
+    width 40px
+    height 40px
+    background linear-gradient(225deg, $arch-blue, $secondary-blue)
+    border-bottom-left-radius 100%
+    opacity 0.8
+    pointer-events none
+
+// Bottom-left corner accent
+.corner-gradient-bl
+  position relative
+
+  &::before
+    content ''
+    position absolute
+    bottom 0
+    left 0
+    width 40px
+    height 40px
+    background linear-gradient(45deg, $arch-blue, $secondary-blue)
+    border-top-right-radius 100%
+    opacity 0.8
+    pointer-events none
+
+// Bottom-right corner accent
+.corner-gradient-br
+  position relative
+
+  &::before
+    content ''
+    position absolute
+    bottom 0
+    right 0
+    width 40px
+    height 40px
+    background linear-gradient(315deg, $arch-blue, $secondary-blue)
+    border-top-left-radius 100%
+    opacity 0.8
+    pointer-events none
+
+// All corners accent
+.corner-gradient-all
+  position relative
+
+  &::before
+  &::after
+    content ''
+    position absolute
+    width 30px
+    height 30px
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    opacity 0.6
+    pointer-events none
+
+  &::before
+    top 0
+    left 0
+    border-bottom-right-radius 100%
+
+  &::after
+    bottom 0
+    right 0
+    border-top-left-radius 100%
+
+// =============================================================================
+// GRADIENT BORDER VARIANTS
+// =============================================================================
+
+// Arch-themed gradient (blue to lighter blue)
+.gradient-border-arch
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $arch-blue, lighten($arch-blue, 20%))
+  background $base
+  border-radius $border-radius-md
+
+// Warning gradient (orange to red)
+.gradient-border-warning
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $orange, $secondary-red)
+  background $base
+  border-radius $border-radius-md
+
+// Success gradient (green)
+.gradient-border-success
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $green, lighten($green, 20%))
+  background $base
+  border-radius $border-radius-md
+
+// Info gradient (cyan)
+.gradient-border-info
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $term-cyan, $term-blue)
+  background $base
+  border-radius $border-radius-md
+
+// =============================================================================
+// GRADIENT BORDER SIZES
+// =============================================================================
+
+.gradient-border-sm
+  border-width 1px
+  border-image-source linear-gradient(135deg, $arch-blue, $secondary-blue)
+
+.gradient-border-md
+  border-width 3px
+
+.gradient-border-lg
+  border-width 5px
+
+.gradient-border-xl
+  border-width 8px
+
+// =============================================================================
+// GRADIENT BORDER WITH ROUNDED CORNERS
+// =============================================================================
+
+.gradient-border-rounded
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $arch-blue, $secondary-blue)
+  background $base
+  border-radius $border-radius-lg
+  padding 3px
+
+.gradient-border-pill
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $arch-blue, $secondary-blue)
+  background $base
+  border-radius 50px
+  padding 3px
+
+// =============================================================================
+// INTERACTIVE GRADIENT BORDERS
+// =============================================================================
+
+// Focus-visible gradient border
+.gradient-border-focus
+  &:focus-visible
+    outline none
+    border 3px solid transparent
+    border-image-slice 1
+    border-width 3px
+    border-image-source linear-gradient(135deg, $arch-blue, $secondary-blue)
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// Active gradient border
+.gradient-border-active
+  &:active
+    border-image-source linear-gradient(135deg, darken($arch-blue, 15%), darken($secondary-blue, 15%))
+
+// =============================================================================
+// GRADIENT BORDER WITH BACKGROUND
+// =============================================================================
+
+.gradient-border-bg
+  border 3px solid transparent
+  border-image-slice 1
+  border-width 3px
+  border-image-source linear-gradient(135deg, $arch-blue, $secondary-blue)
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($secondary-blue, 0.1)) $base
+  border-radius $border-radius-md
+
+// =============================================================================
+// RESPONSIVE GRADIENT BORDERS
+// =============================================================================
+
+@media (max-width $breakpoint-sm)
+  .gradient-border
+  .gradient-border-custom
+  .gradient-border-arch
+  .gradient-border-warning
+  .gradient-border-success
+  .gradient-border-info
+    border-width 2px
+
+  .gradient-border-lg
+  .gradient-border-xl
+    border-width 3px
+
+  .corner-gradient-tl::before
+  .corner-gradient-tr::before
+  .corner-gradient-bl::before
+  .corner-gradient-br::before
+    width 25px
+    height 25px
+
+// =============================================================================
+// DARK MODE GRADIENT BORDERS
+// =============================================================================
+
+@media (prefers-color-scheme dark)
+  .gradient-border
+    background $dark
+
+  .gradient-border-custom > .gradient-content
+  .gradient-border-bg
+    background $dark
+
+  .gradient-border-outer > .gradient-content
+  .gradient-border-animated > .gradient-content
+    background $dark
+
+  // Darker gradient for visibility
+  .gradient-border::before
+  .gradient-border-outer::before
+  .gradient-border-animated::before
+    background linear-gradient(135deg, lighten($arch-blue, 5%), lighten($secondary-blue, 5%))
+
+// =============================================================================
+// HIGH CONTRAST MODE
+// =============================================================================
+
+@media (forced-colors active)
+  .gradient-border
+  .gradient-border-custom
+  .gradient-border-arch
+  .gradient-border-warning
+  .gradient-border-success
+  .gradient-border-info
+  .gradient-border-outer
+  .gradient-border-animated
+    border-image-source none
+    border 3px solid CanvasText
+    background Canvas
+    background-clip padding-box
+
+    &::before
+      display none
+
+// =============================================================================
+// REDUCED MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .gradient-border-animated::before
+    animation none
+    background-size 100% 100%

@@ -1,0 +1,1617 @@
+// Search Components Styling for Violet Void ArchWiki Theme
+// Search suggestions, dropdowns, and search UI elements
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// HIGH SPECIFICITY SEARCH INPUT OVERRIDES
+// Force dark theme on search inputs
+// =============================================================================
+
+// Global search input override
+#searchInput
+#searchInput:focus
+input#searchInput
+.mw-searchInput
+.mw-searchInput:focus
+.searchInput
+.search-input
+.search-input:focus
+#simpleSearch input
+#simpleSearch input:focus
+#searchform input
+.vector-search-box-input
+.vector-sticky-pinned-container input
+input[type="search"]
+input[type="search"]:focus
+input[name="search"]
+input[name="search"]:focus
+.mw-ui-input
+.mw-ui-input:focus
+  background-color $darker !important
+  color $lighter !important
+  border-color $border-subtle !important
+  border 1px solid rgba($arch-blue, 0.2) !important
+
+// Search input placeholder
+#searchInput::placeholder
+.mw-searchInput::placeholder
+.searchInput::placeholder
+.search-input::placeholder
+input[type="search"]::placeholder
+.vector-search-box-input::placeholder
+  color $muted !important
+  opacity 0.7
+
+// Search input hover
+#searchInput:hover
+.mw-searchInput:hover
+.searchInput:hover
+.search-input:hover
+input[type="search"]:hover
+.vector-search-box-input:hover
+  border-color rgba($arch-blue, 0.4) !important
+
+// Search input focus
+#searchInput:focus
+.mw-searchInput:focus
+.searchInput:focus
+.search-input:focus
+input[type="search"]:focus
+.vector-search-box-input:focus
+#simpleSearch input:focus
+  border-color $arch-blue !important
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2) !important
+  outline none
+
+// Search button styling
+#searchButton
+.mw-searchButton
+.searchButton
+button.searchButton
+.vector-search-box-submit-button
+input.mw-searchButton
+#searchform button
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.1)) !important
+  color $light !important
+  border 1px solid $border-subtle !important
+
+#searchButton:hover
+.mw-searchButton:hover
+.searchButton:hover
+.vector-search-box-submit-button:hover
+input.mw-searchButton:hover
+#searchform button:hover
+  background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1)) !important
+  border-color $arch-blue !important
+
+// =============================================================================
+// SEARCH SUGGESTIONS DROPDOWN
+// =============================================================================
+
+// MediaWiki search suggestions dropdown container
+.mw-search-suggest
+.search-suggestions
+.suggestions
+.suggestions-results
+  // Dropdown container
+  position absolute
+  z-index 100
+  min-width 280px
+  max-width 90vw
+  margin-top 2px
+  background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  overflow hidden
+  backdrop-filter blur(10px)
+
+  // Webkit backdrop fallback
+  -webkit-backdrop-filter blur(10px)
+
+// =============================================================================
+// SUGGESTION ITEM STYLING
+// =============================================================================
+
+.suggestions-result
+.search-suggestion
+.mw-search-result-item
+.suggestions-special
+  // Individual suggestion item
+  display flex
+  align-items center
+  gap 0.75em
+  padding 0.6em 1em
+  cursor pointer
+  transition all $transition-fast
+  border-bottom 1px solid rgba($arch-blue, 0.08)
+  color $lighter
+  font-size 0.95em
+  line-height 1.4
+
+  &:last-child
+    border-bottom none
+
+  // Hover state
+  &:hover
+  &.highlighted
+  &.selected
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
+    color $lighter
+
+  // Active/pressed state
+  &:active
+    background linear-gradient(135deg, rgba($arch-blue, 0.25), rgba($arch-blue, 0.15))
+
+  // Focus visible for keyboard navigation
+  &:focus-visible
+    outline none
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
+    box-shadow inset 0 0 0 2px $arch-blue
+
+// Special suggestions (search for exact match, etc.)
+.suggestions-special
+  background-color rgba($arch-blue, 0.05)
+  border-top 1px solid rgba($arch-blue, 0.15)
+  margin-top 0.25em
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.12))
+
+// =============================================================================
+// MATCH HIGHLIGHTING
+// =============================================================================
+
+// Highlighted match text within suggestions
+.searchmatch
+.match-highlight
+.mw-search-highlight
+em
+  // Match highlighting in search suggestions
+  font-weight 600
+  font-style normal
+  color $orange
+  background-color rgba($orange, 0.15)
+  padding 0.1em 0.3em
+  border-radius $border-radius-sm
+
+// Within suggestion items, ensure em stays styled
+.suggestions-result
+.search-suggestion
+  em
+  .searchmatch
+    color $orange
+    font-weight 600
+    font-style normal
+    background-color rgba($orange, 0.12)
+
+// =============================================================================
+// CATEGORY BADGES WITH TABULAR-NUMS
+// =============================================================================
+
+.suggestion-category
+.search-category-badge
+.suggestions-result-meta
+  // Category badge container
+  display inline-flex
+  align-items center
+  gap 0.3em
+  margin-left auto
+  padding 0.2em 0.6em
+  font-size 0.75em
+  font-weight 500
+  text-transform uppercase
+  letter-spacing 0.05em
+  color $light
+  background-color rgba($arch-blue, 0.15)
+  border-radius $border-radius-sm
+  white-space nowrap
+
+  // Tabular numbers for counts
+  font-variant-numeric tabular-nums
+
+// Category badge variants
+.suggestion-category[data-category="help"]
+.search-category-badge.help
+  background-color rgba($green, 0.15)
+  color $green
+
+.suggestion-category[data-category="archwiki"]
+.search-category-badge.archwiki
+  background-color rgba($arch-blue, 0.2)
+  color $secondary-blue
+
+.suggestion-category[data-category="talk"]
+.search-category-badge.talk
+  background-color rgba($orange, 0.15)
+  color $orange
+
+.suggestion-category[data-category="template"]
+.search-category-badge.template
+  background-color rgba($secondary-red, 0.15)
+  color $secondary-red
+
+.suggestion-category[data-category="category"]
+.search-category-badge.category
+  background-color rgba($secondary-blue, 0.15)
+  color $secondary-blue
+
+// Result count badges
+.suggestion-count
+.search-count-badge
+  font-variant-numeric tabular-nums
+  font-size 0.8em
+  color $muted
+  margin-left 0.5em
+  padding 0.1em 0.4em
+  background-color rgba($light, 0.08)
+  border-radius $border-radius-sm
+
+// =============================================================================
+// SEARCH INPUT ENHANCEMENTS
+// =============================================================================
+
+// Search input field
+.mw-searchInput
+#searchInput
+.search-input
+  // Search input styling
+  background-color rgba($darker, 0.8)
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.6em 1em 0.6em 2.5em
+  font-size 0.95em
+  width 100%
+  transition all $transition-fast
+
+  // Placeholder styling
+  &::placeholder
+    color $muted
+    opacity 0.7
+
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+
+  &:focus
+  &:focus-within
+    border-color $arch-blue
+    box-shadow $shadow-focus
+    outline none
+    background-color $darker
+
+  // Clear button styling
+  &::-webkit-search-cancel-button
+  &::-webkit-search-decoration
+    -webkit-appearance none
+    appearance none
+
+// Search icon
+.search-icon
+.mw-search-icon
+  position absolute
+  left 0.75em
+  top 50%
+  transform translateY(-50%)
+  color $muted
+  pointer-events none
+  font-size 1em
+
+// =============================================================================
+// SEARCH FORM CONTAINER
+// =============================================================================
+
+.mw-search-form
+.search-form
+#searchform
+  position relative
+  display flex
+  align-items center
+
+  // Search button
+  .search-button
+  .mw-searchButton
+  #searchButton
+    gradient-surface()
+    border 1px solid $border-subtle
+    border-left none
+    border-radius 0 $border-radius-md $border-radius-md 0
+    padding 0.6em 1em
+    cursor pointer
+    transition all $transition-fast
+    color $lighter
+
+    &:hover
+      background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($arch-blue, 0.15))
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &:active
+      transform scale(0.98)
+
+// =============================================================================
+// SEARCH SUGGESTION ICONS
+// =============================================================================
+
+.suggestion-icon
+.search-type-icon
+  display inline-flex
+  align-items center
+  justify-content center
+  width 1.5em
+  height 1.5em
+  margin-right 0.5em
+  color $arch-blue
+  font-size 0.9em
+  flex-shrink 0
+
+// Icon variants by page type
+.suggestion-icon.page
+.search-type-icon.page
+  color $secondary-blue
+
+.suggestion-icon.category
+.search-type-icon.category
+  color $orange
+
+.suggestion-icon.template
+.search-type-icon.template
+  color $secondary-red
+
+.suggestion-icon.help
+.search-type-icon.help
+  color $green
+
+.suggestion-icon.file
+.search-type-icon.file
+  color $muted
+
+.suggestion-icon.special
+.search-type-icon.special
+  color $light
+
+// =============================================================================
+// SEARCH SUGGESTION META INFO
+// =============================================================================
+
+.suggestions-result-meta
+.search-meta
+  // Meta information (page size, last edit, etc.)
+  display flex
+  align-items center
+  gap 0.5em
+  margin-top 0.3em
+  font-size 0.8em
+  color $muted
+  font-variant-numeric tabular-nums
+
+  // Separator
+  &::before
+    content "•"
+    margin-right 0.25em
+    color rgba($light, 0.3)
+
+// Page size indicator
+.suggestion-size
+.search-size
+  font-variant-numeric tabular-nums
+
+// Last edit timestamp
+.suggestion-timestamp
+.search-timestamp
+  font-variant-numeric tabular-nums
+  color $light
+
+// =============================================================================
+// SEARCH SUGGESTION DESCRIPTION
+// =============================================================================
+
+.suggestion-description
+.search-description
+  // Page description/excerpt
+  display block
+  margin-top 0.25em
+  font-size 0.85em
+  line-height 1.4
+  color $light
+  overflow hidden
+
+  // Truncate long descriptions
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  max-height 2.8em
+
+// =============================================================================
+// SPECIAL SEARCH ACTIONS
+// =============================================================================
+
+.suggestions-special
+  // Special actions (e.g., "containing...", "exact match")
+  display flex
+  align-items center
+  justify-content space-between
+  padding 0.7em 1em
+
+  .special-label
+    color $secondary-blue
+    font-weight 500
+
+  .special-query
+    color $lighter
+    font-weight 600
+
+  // Search icon for special action
+  .special-icon
+    color $muted
+    margin-right 0.5em
+
+// =============================================================================
+// SEARCH RESULTS PAGE STYLING
+// =============================================================================
+
+.mw-search-results
+.search-results
+  // Search results container
+  margin 1em 0
+
+  li
+    list-style none
+    margin-bottom 1.5em
+    padding 0
+
+// Individual search result
+.mw-search-result
+.search-result
+  padding 1em
+  border 1px solid rgba($arch-blue, 0.12)
+  border-radius $border-radius-md
+  background linear-gradient(135deg, rgba($darker, 0.8), rgba($dark, 0.8))
+  transition all $transition-fast
+
+  &:hover
+    border-color rgba($arch-blue, 0.3)
+    box-shadow $shadow-subtle
+
+// Search result title
+.mw-search-result-heading
+.search-result-title
+  display block
+  font-size 1.1em
+  font-weight 600
+  color $secondary-blue
+  margin-bottom 0.5em
+  text-decoration none
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $orange
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// Search result info
+.search-result-info
+.mw-search-result-info
+  font-size 0.85em
+  color $muted
+  font-variant-numeric tabular-nums
+
+// =============================================================================
+// SEARCH STATISTICS
+// =============================================================================
+
+.mw-search-stats
+.search-stats
+.results-info
+  // Search statistics display
+  display flex
+  align-items center
+  gap 1em
+  padding 0.75em 1em
+  margin-bottom 1em
+  background-color rgba($arch-blue, 0.08)
+  border-radius $border-radius-sm
+  font-size 0.9em
+  color $light
+  font-variant-numeric tabular-nums
+
+  strong
+    color $lighter
+
+// =============================================================================
+// NO RESULTS STATE
+// =============================================================================
+
+.mw-search-none
+.search-no-results
+  padding 2em
+  text-align center
+  color $light
+
+  .no-results-icon
+    font-size 2em
+    color $muted
+    margin-bottom 0.5em
+
+  .no-results-text
+    font-size 1.1em
+    color $lighter
+    margin-bottom 0.5em
+
+  .no-results-hint
+    font-size 0.9em
+    color $muted
+
+// =============================================================================
+// SEARCH DID YOU MEAN
+// =============================================================================
+
+.searchdidyoumean
+.did-you-mean
+  // Did you mean suggestion
+  padding 0.75em 1em
+  margin-bottom 1em
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.2)
+  border-radius $border-radius-sm
+  font-size 0.95em
+
+  .did-you-mean-label
+    color $light
+    margin-right 0.5em
+
+  a
+    color $orange
+    font-weight 600
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $orange
+      outline-offset 2px
+
+// =============================================================================
+// SEARCH PAGINATION
+// =============================================================================
+
+.mw-search-pager-bottom
+.search-pagination
+  // Search results pagination
+  display flex
+  align-items center
+  justify-content center
+  gap 0.5em
+  margin-top 2em
+  padding 1em 0
+
+  a
+  span
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 2.5em
+    height 2.5em
+    padding 0.3em 0.6em
+    border-radius $border-radius-sm
+    font-size 0.9em
+    text-decoration none
+    transition all $transition-fast
+    font-variant-numeric tabular-nums
+
+  a
+    color $lighter
+    background-color rgba($arch-blue, 0.1)
+    border 1px solid rgba($arch-blue, 0.2)
+
+    &:hover
+      background linear-gradient(135deg, rgba($arch-blue, 0.25), rgba($arch-blue, 0.15))
+      border-color $arch-blue
+      color $lighter
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  // Current page
+  .current
+  .mw-numlink
+    color $lighter
+    background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($arch-blue, 0.2))
+    border 1px solid $arch-blue
+    font-weight 600
+
+  // Disabled navigation
+  .disabled
+  .mw-prevlink.disabled
+  .mw-nextlink.disabled
+    color $muted
+    background-color rgba($light, 0.05)
+    border-color transparent
+    cursor not-allowed
+    opacity 0.5
+
+// =============================================================================
+// SEARCH FILTER CHIPS
+// =============================================================================
+
+.search-filters
+.mw-search-filters
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-bottom 1em
+
+.filter-chip
+.search-filter
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.3em 0.7em
+  background-color rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-lg
+  font-size 0.85em
+  color $lighter
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background-color rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &.active
+    background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($arch-blue, 0.2))
+    border-color $arch-blue
+    color $lighter
+
+  // Remove button
+  .remove-filter
+    margin-left 0.25em
+    padding 0.1em 0.3em
+    border-radius $border-radius-sm
+    color $muted
+
+    &:hover
+      color $secondary-red
+      background-color rgba($secondary-red, 0.15)
+
+// =============================================================================
+// NAMESPACE SELECTOR
+// =============================================================================
+
+.mw-search-ns
+.search-namespace-selector
+  // Namespace checkboxes container
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+  gap 0.5em
+  padding 1em
+  background-color rgba($darker, 0.5)
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-md
+
+  label
+    display flex
+    align-items center
+    gap 0.5em
+    padding 0.3em 0.5em
+    border-radius $border-radius-sm
+    cursor pointer
+    font-size 0.9em
+    color $light
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+
+    input[type="checkbox"]
+      margin 0
+
+// =============================================================================
+// RESPONSIVE STYLES
+// =============================================================================
+
+@media screen and (max-width 768px)
+  .mw-search-suggest
+  .search-suggestions
+    min-width 200px
+    max-width calc(100vw - 2em)
+
+  .suggestions-result
+  .search-suggestion
+    padding 0.75em 1em
+
+    // Stack vertically on mobile
+    flex-direction column
+    align-items flex-start
+    gap 0.3em
+
+  .suggestion-category
+  .search-category-badge
+    margin-left 0
+    margin-top 0.3em
+
+  .search-filters
+    gap 0.3em
+
+  .filter-chip
+    font-size 0.8em
+    padding 0.25em 0.5em
+
+  .mw-search-ns
+    grid-template-columns repeat(auto-fill, minmax(120px, 1fr))
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// High contrast mode
+@media (forced-colors active)
+  .suggestions-result
+  .search-suggestion
+    border-bottom 1px solid CanvasText
+
+    &:hover
+    &.highlighted
+      background Highlight
+      color HighlightText
+
+  .searchmatch
+  .match-highlight
+  em
+    color LinkText
+    background Highlight
+
+  .suggestion-category
+  .search-category-badge
+    border 1px solid CanvasText
+
+// =============================================================================
+// ADVANCED SEARCH FORM
+// =============================================================================
+
+// Advanced search form container
+.mw-advanced-search-form
+.advanced-search-form
+.search-advanced-form
+  // Form container
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-lg
+  padding 1.25em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+// Search field grouping
+.search-field-group
+.search-group
+.field-group
+  // Group container for related search fields
+  background rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-md
+  padding 1em
+  margin-bottom 1em
+
+  &:last-child
+    margin-bottom 0
+
+  // Group title/label
+  .group-title
+  .group-label
+  .search-group-title
+    display block
+    font-weight 600
+    color $lighter
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($arch-blue, 0.15)
+    font-size 0.95em
+
+  // Fields within group
+  .mw-input
+  .search-field
+  input[type="text"]
+  input[type="search"]
+    width 100%
+    padding 0.6em 0.8em
+    background rgba($base, 0.5)
+    border 1px solid rgba($arch-blue, 0.25)
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.95em
+    transition all $transition-fast
+
+    &::placeholder
+      color $muted
+
+    &:hover
+      border-color rgba($arch-blue, 0.4)
+      background rgba($base, 0.6)
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      background rgba($base, 0.7)
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// Filter chip styling
+.filter-chips
+.filter-chip-container
+.search-filters-chip
+  // Container for filter chips
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  padding 0.5em 0
+
+.filter-chip
+.search-filter-chip
+.mw-filter-chip
+  // Individual filter chip
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.4em 0.75em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-pill
+  color $light
+  font-size 0.85em
+  cursor pointer
+  transition all $transition-fast
+  user-select none
+
+  // Chip label
+  .chip-label
+    font-weight 500
+
+  // Chip remove button
+  .chip-remove
+    display inline-flex
+    align-items center
+    justify-content center
+    width 1.1em
+    height 1.1em
+    margin-left 0.2em
+    background rgba($arch-blue, 0.2)
+    border-radius 50%
+    font-size 0.9em
+    line-height 1
+    cursor pointer
+    transition all $transition-fast
+
+    &::before
+      content "×"
+
+    &:hover
+      background $secondary-red
+      color $lighter
+
+  // Hover state
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+    transform translateY(-1px)
+
+  // Active/selected chip
+  &.active
+  &.selected
+  &[aria-selected="true"]
+    background rgba($arch-blue, 0.3)
+    border-color $arch-blue
+    color $lighter
+
+  // Focus visible
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Filter chip categories
+.filter-chip-category
+  // Category label for filter chips
+  font-size 0.75em
+  text-transform uppercase
+  letter-spacing 0.05em
+  color $muted
+  margin-right 0.25em
+  font-weight 500
+
+// Boolean operator indicators
+.boolean-operator
+.search-operator
+.mw-search-operator
+  // Boolean operator buttons (AND, OR, NOT)
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 2.5em
+  padding 0.3em 0.6em
+  background rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-sm
+  color $secondary-blue
+  font-size 0.8em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  cursor pointer
+  transition all $transition-fast
+
+  // Hover state
+  &:hover
+    background rgba($arch-blue, 0.25)
+    border-color $arch-blue
+    color $lighter
+
+  // Active/selected state
+  &.active
+  &.selected
+    background $arch-blue
+    border-color $arch-blue
+    color $lighter
+
+  // NOT operator special styling
+  &.not-operator
+    background rgba($secondary-red, 0.15)
+    border-color rgba($secondary-red, 0.3)
+    color $secondary-red
+
+    &:hover
+      background rgba($secondary-red, 0.25)
+      border-color $secondary-red
+
+    &.active
+    &.selected
+      background $secondary-red
+      color $lighter
+
+  // Focus visible
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Operator between fields
+.search-field + .boolean-operator
+.search-field + .search-operator
+  margin 0 0.5em
+
+.boolean-operator + .search-field
+.search-operator + .search-field
+  margin-left 0.5em
+
+// Namespace selector in advanced search
+.namespace-selector
+.search-namespace
+.mw-namespace-select
+  // Namespace dropdown in advanced search
+  padding 0.5em 0.75em
+  background rgba($base, 0.5)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-sm
+  color $light
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+  min-width 150px
+
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Date range inputs in advanced search
+.date-range-inputs
+.search-date-range
+  // Container for date range fields
+  display flex
+  align-items center
+  gap 0.75em
+
+  .date-from
+  .date-to
+    flex 1
+
+  .date-separator
+    color $muted
+    font-size 0.9em
+    padding 0 0.25em
+
+// Advanced search submit button
+.advanced-search-submit
+.search-submit-advanced
+.mw-advanced-search-submit
+  // Submit button for advanced search
+  padding 0.6em 1.5em
+  background linear-gradient(135deg, $arch-blue, rgba($secondary-blue, 0.8))
+  border 1px solid rgba($arch-blue, 0.5)
+  border-radius $border-radius-md
+  color $lighter
+  font-weight 600
+  font-size 0.95em
+  cursor pointer
+  transition all $transition-fast
+  text-transform uppercase
+  letter-spacing 0.03em
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.9), $secondary-blue)
+    transform translateY(-2px)
+    box-shadow $shadow-subtle
+
+  &:active
+    transform translateY(0)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &:disabled
+    opacity 0.5
+    cursor not-allowed
+    transform none
+
+// Advanced search reset button
+.advanced-search-reset
+.search-reset-advanced
+  // Reset/clear button
+  padding 0.6em 1.25em
+  background transparent
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  color $light
+  font-weight 500
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Advanced search field rows
+.advanced-search-row
+.search-row
+  // Row container for search field + operator
+  display flex
+  align-items center
+  flex-wrap wrap
+  gap 0.5em
+  margin-bottom 0.75em
+
+  &:last-child
+    margin-bottom 0
+
+// Advanced search help text
+.advanced-search-help
+.search-help-text
+  // Help text below fields
+  font-size 0.8em
+  color $muted
+  margin-top 0.5em
+  padding-left 0.5em
+  border-left 2px solid rgba($arch-blue, 0.3)
+
+// =============================================================================
+// CROSS-WIKI SEARCH RESULTS
+// =============================================================================
+// Sister project icons, project badge styling, result grouping headers
+// Cross-wiki search results from different Wikimedia projects
+
+// Cross-wiki results container
+.mw-crosswiki-results
+.search-results-crosswiki
+  margin 1em 0
+
+// Cross-wiki result group
+.crosswiki-result-group
+  margin-bottom 1.5em
+  padding 1em
+  background rgba($dark, 0.5)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  // Group header with project icon
+  .result-group-header
+    display flex
+    align-items center
+    gap 0.75em
+    margin-bottom 1em
+    padding-bottom 0.75em
+    border-bottom 1px solid $border-subtle
+
+    // Sister project icon
+    .project-icon
+      width 24px
+      height 24px
+      display flex
+      align-items center
+      justify-content center
+
+      // SVG icons for sister projects
+      svg
+        width 20px
+        height 20px
+        fill currentColor
+
+    // Project name
+    .project-name
+      font-weight 600
+      color $lighter
+      font-size 1em
+
+    // Result count badge
+    .result-count
+      margin-inline-start auto
+      padding 0.2em 0.6em
+      background rgba($arch-blue, 0.2)
+      border-radius $border-radius-sm
+      font-size 0.8em
+      color $arch-blue
+      font-variant-numeric tabular-nums
+
+// Cross-wiki project badges
+.wiki-project-badge
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.75em
+  font-weight 500
+  text-transform uppercase
+  letter-spacing 0.5px
+
+  // Wikipedia
+  &.wikipedia
+    background rgba(255, 255, 255, 0.1)
+    color $lighter
+
+  // Wiktionary
+  &.wiktionary
+    background rgba(0, 96, 170, 0.2)
+    color #0060aa
+
+  // Wikibooks
+  &.wikibooks
+    background rgba(161, 188, 51, 0.2)
+    color #a1bc33
+
+  // Wikiquote
+  &.wikiquote
+    background rgba(161, 188, 51, 0.2)
+    color #a1bc33
+
+  // Wikisource
+  &.wikisource
+    background rgba(0, 91, 129, 0.2)
+    color #005b81
+
+  // Wikiversity
+  &.wikiversity
+    background rgba(63, 145, 26, 0.2)
+    color #3f911a
+
+  // Wikinews
+  &.wikinews
+    background rgba(144, 36, 36, 0.2)
+    color #902424
+
+  // Wikivoyage
+  &.wikivoyage
+    background rgba(0, 105, 180, 0.2)
+    color #0069b4
+
+  // Commons
+  &.commons
+    background rgba(0, 97, 157, 0.2)
+    color #00619d
+
+  // Wikidata
+  &.wikidata
+    background rgba(66, 133, 244, 0.2)
+    color #4285f4
+
+  // Meta-Wiki
+  &.meta
+    background rgba(190, 190, 190, 0.15)
+    color #bebebe
+
+// Cross-wiki result item
+.crosswiki-result-item
+  padding 0.75em
+  margin-bottom 0.5em
+  background rgba($base, 0.5)
+  border-radius $border-radius-sm
+  border 1px solid transparent
+  transition transition-fast
+
+  &:hover
+    background rgba($dark, 0.6)
+    border-color rgba($arch-blue, 0.3)
+
+  &:last-child
+    margin-bottom 0
+
+  // Result title
+  .result-title
+    font-weight 600
+    color $lighter
+    margin-bottom 0.3em
+
+    a
+      color inherit
+      text-decoration none
+
+      &:hover
+        color $arch-blue
+
+  // Result snippet
+  .result-snippet
+    font-size 0.9em
+    color $light
+    line-height 1.5
+    margin-bottom 0.5em
+
+    // Highlight matched terms
+    .search-match
+      background rgba($arch-blue, 0.3)
+      color $lighter
+      padding 0.1em 0.2em
+      border-radius 2px
+
+  // Result metadata
+  .result-meta
+    display flex
+    align-items center
+    gap 1em
+    font-size 0.8em
+    color $muted
+
+    .result-size
+      font-variant-numeric tabular-nums
+
+    .result-date
+      font-variant-numeric tabular-nums
+
+// Cross-wiki result thumbnails
+.crosswiki-thumbnail
+  float inset-inline-start
+  width 80px
+  height 60px
+  margin-inline-end 0.75em
+  margin-bottom 0.5em
+  border-radius $border-radius-sm
+  overflow hidden
+  background $dark
+  border 1px solid $border-subtle
+
+  img
+    width 100%
+    height 100%
+    object-fit cover
+
+// Clear cross-wiki thumbnails
+.crosswiki-result-item::after
+  content ''
+  display table
+  clear both
+
+
+// =============================================================================
+// RELATED PAGES SUGGESTION
+// =============================================================================
+// Related article cards, relevance indicator, read more expansion
+
+// Related pages container
+.related-pages
+.related-suggestions
+.mw-related-pages
+  margin 1.5em 0
+  display flex
+  flex-direction column
+  gap 1em
+
+// Related pages header
+.related-pages-header
+.related-suggestions-header
+  font-size 0.9em
+  font-weight 600
+  color $muted
+  text-transform uppercase
+  letter-spacing 0.05em
+  margin-bottom 0.25em
+
+// Related pages grid
+.related-pages-grid
+.related-articles-grid
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(250px, 1fr))
+  gap 1em
+
+// Related page card
+.related-page-card
+.related-article-card
+  display flex
+  flex-direction column
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  text-decoration none
+  transition transition-medium
+  position relative
+  overflow hidden
+
+  // Hover state - lift effect
+  &:hover
+    border-color rgba($arch-blue, 0.4)
+    transform translateY(-2px)
+    box-shadow $shadow-subtle
+
+  // Focus visible for keyboard navigation
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Related page thumbnail
+.related-page-thumbnail
+.related-article-thumbnail
+  width 100%
+  height 120px
+  margin-bottom 0.75em
+  border-radius $border-radius-sm
+  overflow hidden
+  background $darker
+
+  img
+    width 100%
+    height 100%
+    object-fit cover
+    transition transition-medium
+
+  // Zoom on hover
+  .related-page-card:hover & img
+    transform scale(1.05)
+
+// Related page title
+.related-page-title
+.related-article-title
+  font-size 1em
+  font-weight 600
+  color $lighter
+  margin-bottom 0.4em
+  line-height 1.4
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Related page snippet
+.related-page-snippet
+.related-article-snippet
+  font-size 0.85em
+  color $light
+  line-height 1.5
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+  flex 1
+
+// Related page relevance indicator
+.related-page-relevance
+.related-article-relevance
+  display flex
+  align-items center
+  gap 0.5em
+  margin-top 0.75em
+  padding-top 0.5em
+  border-top 1px solid rgba($border-subtle, 0.5)
+
+  // Relevance bar
+  .relevance-bar
+    flex 1
+    height 4px
+    background rgba($dark, 0.8)
+    border-radius 2px
+    overflow hidden
+
+    .relevance-fill
+      height 100%
+      background linear-gradient(90deg, $arch-blue, lighten($arch-blue, 15%))
+      border-radius 2px
+      transition transition-fast
+
+  // Relevance percentage
+  .relevance-score
+    font-size 0.75em
+    font-family $font-mono
+    color $muted
+    font-variant-numeric tabular-nums
+    min-width 35px
+    text-align end
+
+  // High relevance
+  &.high-relevance .relevance-fill
+    background linear-gradient(90deg, $green, lighten($green, 10%))
+
+  // Medium relevance
+  &.medium-relevance .relevance-fill
+    background linear-gradient(90deg, $arch-blue, lighten($arch-blue, 15%))
+
+  // Low relevance
+  &.low-relevance .relevance-fill
+    background linear-gradient(90deg, $muted, lighten($muted, 10%))
+
+// Related page category/tag
+.related-page-category
+.related-article-category
+  display inline-block
+  font-size 0.7em
+  color $arch-blue
+  background rgba($arch-blue, 0.1)
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  margin-top 0.5em
+  align-self flex-start
+
+// Read more expansion link
+.related-pages-more
+.related-suggestions-more
+  display flex
+  align-items center
+  justify-content center
+  gap 0.5em
+  padding 0.75em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  color $arch-blue
+  text-decoration none
+  font-weight 500
+  transition transition-fast
+  margin-top 0.5em
+
+  // Arrow icon
+  &::after
+    content '→'
+    transition transition-fast
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+
+    &::after
+      transform translateX(4px)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Related pages loading state
+.related-pages-loading
+.related-suggestions-loading
+  display flex
+  align-items center
+  justify-content center
+  padding 2em
+  color $muted
+
+  // Loading spinner
+  .loading-spinner
+    width 24px
+    height 24px
+    border 2px solid rgba($arch-blue, 0.2)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 0.8s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// Related pages empty state
+.related-pages-empty
+.related-suggestions-empty
+  padding 1.5em
+  text-align center
+  color $muted
+  font-style italic
+  background rgba($dark, 0.4)
+  border-radius $border-radius-md
+  border 1px dashed $border-subtle
+
+// Related pages compact mode (for sidebar)
+.related-pages-compact
+.related-suggestions-compact
+  .related-pages-grid
+    grid-template-columns 1fr
+
+  .related-page-card
+    flex-direction row
+    padding 0.75em
+    gap 0.75em
+
+  .related-page-thumbnail
+    width 60px
+    height 60px
+    margin-bottom 0
+    flex-shrink 0
+
+  .related-page-title
+    font-size 0.9em
+    -webkit-line-clamp 1
+
+  .related-page-snippet
+    display none
+
+  .related-page-relevance
+    display none
+
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  .suggestions-result
+  .search-suggestion
+  .search-input
+  .filter-chip
+  a
+    transition none
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  .mw-search-suggest
+  .search-suggestions
+  .search-filters
+    display none
+
+  .mw-search-results
+    li
+      margin-bottom 1em
+      padding 0.5em 0
+      border-bottom 1px solid $print-border
+
+  .mw-search-result-heading a
+    color $print-black
+    text-decoration underline
+
+    &::after
+      content none

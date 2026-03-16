@@ -1,0 +1,2033 @@
+// Enhanced Print Styles
+// Optimized printing for all Arch Linux sites
+
+@media print
+  // =============================================================================
+  // RESET FOR PRINT
+  // =============================================================================
+
+  // White background
+  *
+    background white !important
+    color black !important
+    box-shadow none !important
+    text-shadow none !important
+
+  // Hide unnecessary elements
+  #archnavbar
+  .mw-sidebar
+  #vector-main-menu
+  .vector-sticky-header
+  .mw-editsection
+  .toctoggle
+  .catlinks
+  #footer
+  .navbox
+  .navigation-box
+  #mw-page-info
+  .mw-indicators
+  .vector-user-links
+  .vector-search-box
+  .oo-ui-toolbar
+  .mw-notification
+  .aur-enhanced
+  .pkgactions
+  .vote-btn
+  .unvote-btn
+  .flag-btn
+    display none !important
+
+  // Show links
+  a
+    color black !important
+    text-decoration underline
+
+    // Show URLs for external links
+    &[href^="http"]:not([href*="archlinux.org"])::after
+      content " (" attr(href) ")"
+      font-size 0.85em
+      color $print-text !important
+
+  // =============================================================================
+  // COLOR ADJUSTMENT FOR PRINT
+  // =============================================================================
+
+  // Preserve theme colors in print instead of converting to grayscale
+  // Browser support: 97%+
+  // Use cases: colored code blocks, message boxes, syntax highlighting, links
+  // Note: May not work in all browsers - fallback is grayscale
+
+  body
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Preserve colors for specific elements that benefit from visible colors in print
+  pre
+  code
+  .mw-highlight
+  .highlight
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Message boxes and advisory content
+  .mbox
+  .ambox
+  .ombox
+  .cmbox
+  .tmbox
+  .imbox
+  .dmbox
+  .notice
+  .warning
+  .error
+  .success
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Table headers and important table data
+  table.wikitable
+    th
+      print-color-adjust exact
+      -webkit-print-color-adjust exact
+
+  // Code syntax highlighting
+  .mw-highlight .c
+  .mw-highlight .k
+  .mw-highlight .o
+  .mw-highlight .s
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // =============================================================================
+  // TYPOGRAPHY FOR PRINT
+  // =============================================================================
+
+  body
+    font-family "Georgia", "Times New Roman", serif
+    font-size 12pt
+    line-height 1.6
+    max-width 100%
+
+  h1
+    font-size 24pt
+    page-break-after avoid
+    margin-top 0.5in
+
+  h2
+    font-size 18pt
+    page-break-after avoid
+    margin-top 0.4in
+
+  h3
+    font-size 14pt
+    page-break-after avoid
+
+  h4
+  h5
+  h6
+    font-size 12pt
+    page-break-after avoid
+
+  // =============================================================================
+  // WIDOWS & ORPHANS CONTROL
+  // =============================================================================
+
+  // Widow: single line at top of page (from previous paragraph)
+  // Orphan: single line at bottom of page (from next paragraph)
+  // Browser support: 97%+
+  // Values: minimum number of lines that must stay together
+
+  p
+  li
+  dd
+  dt
+  blockquote
+    orphans 3    // Minimum 3 lines at bottom of page
+    widows 3     // Minimum 3 lines at top of page
+
+  // Definition lists - keep terms with definitions
+  dl
+    break-inside avoid
+
+  // Keep list items together
+  li
+    break-inside avoid
+
+  // =============================================================================
+  // CODE BLOCKS FOR PRINT
+  // =============================================================================
+
+  pre
+  code
+    font-family "Courier New", Courier, monospace
+    font-size 10pt
+    background $print-bg !important
+    border 1px solid $print-border-light !important
+    page-break-inside avoid
+    overflow-wrap break-word
+    white-space pre-wrap
+
+  // =============================================================================
+  // TABLES FOR PRINT
+  // =============================================================================
+
+  table
+    border-collapse collapse
+    page-break-inside avoid
+
+  th
+    background $print-bg !important
+    font-weight bold
+    border 1px solid $print-border !important
+
+  td
+    border 1px solid $print-border !important
+
+  // Complex table headers
+  th[colspan]
+  th[rowspan]
+    background darken($print-bg, 5%) !important
+    text-align center
+
+  // =============================================================================
+  // IMAGES FOR PRINT - Enhanced
+  // =============================================================================
+
+  // Browser support: 97%+
+  // Comprehensive image handling for print output
+
+  // Base image sizing
+  img
+    max-width 100%
+    height auto
+    page-break-inside avoid
+    break-inside avoid
+    display block
+
+    // Constrain very large images to fit page
+    // Typical printable area is ~6.5in wide for letter/A4
+    &:not([width])
+      max-width 6in
+
+    // Respect explicit dimensions but cap at page width
+    &[width]
+      max-width min(attr(width pt), 6in)
+
+  // Figure containers
+  figure
+    page-break-inside avoid
+    break-inside avoid
+    margin 1em 0
+    text-align center
+
+    // Keep caption with image
+    figcaption
+      page-break-before avoid
+      break-before avoid
+      margin-top 0.5em
+      font-size 10pt
+      color $print-text !important
+      font-style italic
+      text-align center
+      max-width 6in
+
+  // Thumbnail images
+  .thumb
+  .mw-file-element
+    page-break-inside avoid
+    break-inside avoid
+
+  // Image captions in MediaWiki
+  .thumbcaption
+  .mw-file-element + p
+    font-size 9pt
+    color $print-text !important
+    font-style italic
+    margin-top 0.25em
+    text-align center
+
+  // Gallery images
+  .gallery
+    display block
+    page-break-inside avoid
+
+    .gallerybox
+      display inline-block
+      width 45%
+      vertical-align top
+      margin 0.25em
+      page-break-inside avoid
+
+      img
+        max-width 100%
+        height auto
+
+  // Floating images - clear floats for print
+  .thumb.tright
+  .floatright
+  img[style*="float: right"]
+  img[style*="float:right"]
+    float none !important
+    margin 1em auto
+    display block
+
+  .thumb.tleft
+  .floatleft
+  img[style*="float: left"]
+  img[style*="float:left"]
+    float none !important
+    margin 1em auto
+    display block
+
+  // SVG images - ensure they render properly
+  svg
+    max-width 100%
+    height auto
+    page-break-inside avoid
+
+    // Ensure stroke/fill colors are printable
+    *
+      stroke black !important
+      fill black !important
+
+    // But preserve none values for transparency
+    [stroke="none"]
+      stroke none !important
+
+    [fill="none"]
+      fill none !important
+
+  // Background images - convert to printable
+  // Most background images should be hidden in print
+  [style*="background-image"]
+    background-image none !important
+
+  // Image placeholders for broken/missing images
+  img[src=""]
+  img:not([src])
+  img[alt]::before
+    content attr(alt)
+    display block
+    padding 1em
+    background $print-bg !important
+    border 1px dashed $print-border !important
+    font-style italic
+    font-size 10pt
+    color $print-text !important
+    text-align center
+
+  // Alt text display option - show alt text in parentheses after images
+  // Useful for screen reader users and when images don't print well
+  img[alt]:not([alt=""])::after
+    content " (" attr(alt) ")"
+    display block
+    font-size 8pt
+    color $print-text !important
+    font-style italic
+    margin-top 0.25em
+    text-align center
+
+  // Don't show alt text for decorative images
+  img[role="presentation"]::after
+  img[aria-hidden="true"]::after
+    content none
+
+  // Logo and icon sizing for print
+  .mw-logo
+  #archnavbar-logo
+    img
+      max-height 1in
+      max-width 2in
+      width auto
+      height auto
+
+  // Screenshots and diagrams - ensure visibility
+  .screenshot
+  .diagram
+  .mw-file-resolution-option
+    img
+      border 1px solid $print-border !important
+      padding 0.25em
+
+  // Infobox images
+  .infobox
+    img
+      max-width 200px
+      margin 0 auto
+
+  // =============================================================================
+  // PRINT INFobox - Compact Format for Print Output
+  // =============================================================================
+
+  // Compact infobox format for print - key facts only
+  .infobox
+    // Compact styling for print
+    width 100% !important
+    max-width 250px !important
+    float right !important
+    margin 0 0 1em 1em !important
+    padding 0.5em !important
+    border 1px solid $print-border !important
+    background $print-bg !important
+    color $print-text !important
+    font-size 10pt !important
+    line-height 1.3 !important
+    page-break-inside avoid !important
+    break-inside avoid !important
+
+    // Compact header
+    .infobox-title
+    .infobox-header
+      font-size 12pt !important
+      font-weight bold !important
+      text-align center !important
+      padding 0.25em 0.5em !important
+      background darken($print-bg, 8%) !important
+      border-bottom 1px solid $print-border !important
+
+    // Compact image
+    .infobox-image
+      padding 0.5em !important
+      text-align center !important
+
+      img
+        max-width 150px !important
+        max-height 100px !important
+        page-break-inside avoid !important
+
+    // Compact data rows - reduce spacing
+    .infobox-row
+    .infobox-data
+      padding 0.15em 0.5em !important
+      font-size 9pt !important
+      line-height 1.2 !important
+
+    // Label/value pairs - inline for compactness
+    .infobox-label
+    .infobox-data
+      display inline !important
+
+    .infobox-label
+      font-weight 600 !important
+      margin-right 0.25em !important
+
+    // Reduce vertical spacing between rows
+    .infobox-row
+      margin 0 !important
+      padding 0.1em 0.5em !important
+
+    // Remove decorative elements
+    .infobox-subheader
+    .infobox-subtitle
+      font-size 9pt !important
+      padding 0.15em 0.5em !important
+
+    // Hide non-essential elements in print
+    .infobox-full-data
+    .infobox-below
+    .infobox-above
+      display none !important
+
+    // Grayscale option - force grayscale for print
+    &.grayscale
+      filter grayscale(100%) !important
+      background white !important
+
+    // Ensure border prints with color
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Mobile-friendly collapsible infobox for print
+  .infobox-mobile
+    display block !important
+
+  // Math images (rendered LaTeX)
+  img.mwe-math-fallback-image
+    max-width 100%
+    height auto
+
+  // Emoji images - keep small
+  img.emoji
+    max-width 1em
+    max-height 1em
+    display inline
+    vertical-align middle
+
+  // High-resolution images - maintain aspect ratio
+  // Note: aspect-ratio with attr() is not widely supported
+  // Images with width/height attributes maintain aspect ratio naturally
+
+  // Image maps - not printable, show alt text
+  map + img
+  img[usemap]
+    &::before
+      content "[Image map - not printable]"
+      display block
+      font-size 8pt
+      color $print-text !important
+      font-style italic
+
+  // Prevent images from being cut off at page boundaries
+  img
+  figure
+  .thumb
+    break-inside avoid
+    page-break-inside avoid
+
+  // Ensure images don't overflow page
+  img
+    box-sizing border-box
+
+  // Dark images need inversion for print (optional)
+  // Uncomment if printing dark screenshots
+  // img[src*="dark"]
+  // img.dark-theme
+  //   filter invert(1) hue-rotate(180deg)
+
+  // =============================================================================
+  // LINKS FOR PRINT - Enhanced
+  // =============================================================================
+
+  // Base link styling
+  a
+    color black !important
+    text-decoration underline
+    font-weight inherit
+
+  // Show URLs for external links only (not internal Arch Linux links)
+  a[href^="http"]:not([href*="archlinux.org"])::after
+    content " (" attr(href) ")"
+    font-size 0.75em
+    color $print-text !important
+    text-decoration none
+    font-family "Courier New", monospace
+
+  // Don't show URLs for internal links (same domain)
+  a[href*="archlinux.org"]::after
+    content none
+
+  // Don't show for anchor links
+  a[href^="#"]::after
+    content none
+
+  // Don't show for javascript links
+  a[href^="javascript"]::after
+    content none
+
+  // Don't show for mailto links (they're self-explanatory)
+  a[href^="mailto"]::after
+    content none
+
+  // Truncate very long URLs
+  a[href^="http"]::after
+    max-width 40em
+    overflow hidden
+    text-overflow ellipsis
+    display inline-block
+    white-space nowrap
+
+  // =============================================================================
+  // TABLE OF CONTENTS FOR PRINT
+  // =============================================================================
+
+  #toc
+  .toc
+    display block !important
+    background $print-white !important
+    border 1px solid $print-border !important
+    padding 0.5em
+    margin 0.5em 0
+
+    .toctitle
+      font-weight bold
+      font-size 14pt
+
+    ul
+      list-style none
+      padding-left 1em
+
+    li
+      margin 0.25em 0
+
+  // =============================================================================
+  // SPECIFIC ARCH WIKI IMPROVEMENTS
+  // =============================================================================
+
+  // Warning/Note/Tip boxes
+  .mw-warning
+  .mw-notice
+  .warningbox
+  .notebox
+    border 1px solid $print-border !important
+    border-left 4px solid $print-text !important
+    padding 0.5em
+    margin 0.5em 0
+    page-break-inside avoid
+
+  // Infoboxes
+  .infobox
+    border 1px solid $print-border !important
+    float right
+    width 250px
+    margin 0 0 0.5em 0.5em
+    page-break-inside avoid
+
+  // Message boxes
+  .ambox
+    border 1px solid $print-border !important
+    margin 0.5em 0
+
+  // =============================================================================
+  // FORUM PRINT OPTIMIZATIONS
+  // =============================================================================
+
+  .blockpost
+    border 1px solid $print-border !important
+    margin 1em 0
+    page-break-inside avoid
+
+    .box-head
+      border-bottom 1px solid $print-border !important
+      font-weight bold
+
+  // =============================================================================
+  // AUR PRINT OPTIMIZATIONS
+  // =============================================================================
+
+  #pkgdetails
+    border 1px solid $print-border !important
+    page-break-inside avoid
+
+  .pkgsearch-results
+  table.results
+    border 1px solid $print-border !important
+
+  // =============================================================================
+  // COLLAPSIBLE SECTIONS (details/summary) - Show all content when printing
+  // =============================================================================
+
+  // Show all details elements expanded when printing
+  // This ensures hidden content is visible in printed output
+  details
+    display block !important
+
+    summary
+      display list-item
+      list-style disclosure-closed inside
+
+      &::marker
+        content "▶ "
+        color $print-text !important
+
+    // Show the expanded content
+    &[open] summary
+      list-style disclosure-open inside
+
+      &::marker
+        content "▼ "
+        color $print-text !important
+
+    // Ensure content doesn't break across pages
+    break-inside avoid
+    page-break-inside avoid
+
+  // Collapsible templates in MediaWiki
+  .mw-collapsible
+    display block !important
+
+    .mw-collapsible-toggle
+      display none !important
+
+    // Show all content
+    .mw-collapsible-content
+      display block !important
+
+  // Hidden-by-default sections (hidden=until-found)
+  details[hidden="until-found"]
+    display block !important
+
+  // =============================================================================
+  // PAGE BREAKS
+  // =============================================================================
+
+  // Avoid page breaks inside these elements
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+  img
+  figure
+  table
+  pre
+    page-break-inside avoid
+
+  // Page break before new sections
+  h2
+    page-break-before auto
+
+  // =============================================================================
+  // MARGINS FOR PRINT
+  // =============================================================================
+
+  @page
+    margin 1in
+    size letter
+
+  // First page
+  @page :first
+    margin-top 1.5in
+
+  // =============================================================================
+  // ACCESSIBILITY FOR PRINT
+  // =============================================================================
+
+  // Increase contrast
+  *
+    -webkit-print-color-adjust exact
+    print-color-adjust exact
+
+  // Ensure text is readable
+  body
+    font-size 12pt
+
+  // Ensure links are distinguishable
+  a
+    text-decoration underline
+
+  // =============================================================================
+  // MINIMAL STYLING FOR PRINT
+  // =============================================================================
+
+  // Remove shadows
+  *
+    box-shadow none !important
+
+  // Remove gradients
+  *
+    background-image none !important
+
+  // Remove animations
+  *
+    animation none !important
+    transition none !important
+
+  // Remove borders except for tables and boxes
+  *
+    border none !important
+
+  table
+  .infobox
+  .mw-warning
+  .mw-notice
+  .warningbox
+  .notebox
+  .ambox
+  pre
+  code
+    border 1px solid $print-border !important
+
+  // =============================================================================
+  // SPECIAL PAGES PRINT OPTIMIZATION
+  // =============================================================================
+
+  // History pages
+  #pagehistory
+    list-style none
+    padding 0
+
+    li
+      border-bottom 1px solid $print-border !important
+      padding 0.5em
+
+  // Diff view
+  table.diff
+    border 1px solid $print-border !important
+
+    td
+      border 1px solid $print-border !important
+      padding 0.5em
+
+    td.diff-deletedline
+      background lighten(red, 45%) !important
+
+    td.diff-addedline
+      background lighten(green, 45%) !important
+
+  // =============================================================================
+  // CATEGORIES PRINT
+  // =============================================================================
+
+  .catlinks
+    display block !important
+    border-top 1px solid $print-border !important
+    padding-top 0.5em
+    margin-top 1em
+
+    a
+      display inline-block
+      margin-right 0.5em
+
+// =============================================================================
+// PRINT-ONLY LINK URLs - Enhanced
+// =============================================================================
+
+// Show link destinations in print
+// Browser support: 100%
+
+@media print
+  // External link indicator with arrow symbol
+  a[href^="http"]:not([href*="archlinux.org"])::before
+    content "↗ "
+    font-size 0.9em
+    color $print-text
+    display inline-block
+    margin-right 0.1em
+
+  // Show URL for external links
+  a[href]::after
+    content " (" attr(href) ")"
+    font-size 0.75em
+    color $muted
+    font-family "Courier New", monospace
+
+  // Don't show for internal anchors
+  a[href^="#"]::after
+  a[href^="javascript"]::after
+  a[href*="archlinux.org"]::after
+    content none
+
+  // Truncate long URLs intelligently
+  a[href^="http"]::after
+    max-width 35em
+    overflow hidden
+    text-overflow ellipsis
+    display inline-block
+    white-space nowrap
+    vertical-align baseline
+
+  // Don't show arrow for internal links
+  a[href*="archlinux.org"]::before
+    content none
+
+  // Special styling for mailto links
+  a[href^="mailto"]
+    text-decoration underline
+
+    &::before
+      content "✉ "
+      font-size 0.9em
+
+  // Special styling for tel links
+  a[href^="tel"]
+    &::before
+      content "📞 "
+
+// =============================================================================
+// REFERENCE LIST GENERATION - Footnote Style
+// =============================================================================
+
+// Generate a reference list at the end of printed document
+// This uses CSS counters to create numbered references
+
+@media print
+  // Counter for references
+  body
+    counter-reset ref-links
+
+  // Add reference numbers to links
+  a[href^="http"]:not([href*="archlinux.org"])
+    counter-increment ref-links
+
+    &::after
+      content " [" counter(ref-links) "]"
+      font-size 0.7em
+      color $print-text
+      vertical-align super
+      font-family "Courier New", monospace
+
+  // Create reference list at end of document
+  // Note: This is a visual enhancement - actual list generation would require JS
+  #content::after
+    content "\A\AReferences:\A"
+    font-size 11pt
+    font-weight bold
+    display block
+    margin-top 1em
+    padding-top 0.5em
+    border-top 2px solid black
+    white-space pre
+
+// =============================================================================
+// LINK STYLING BY TYPE
+// =============================================================================
+
+@media print
+  // Interwiki links (Wikipedia, etc.)
+  a[href*="wikipedia.org"]::before
+    content "W "
+    font-weight bold
+    font-size 0.85em
+
+  // Wikidata links
+  a[href*="wikidata.org"]::before
+    content "D "
+    font-weight bold
+    font-size 0.85em
+
+  // GitHub links
+  a[href*="github.com"]::before
+    content "⌨ "
+    font-size 0.85em
+
+  // Package links (Arch packages)
+  a[href*="archlinux.org/packages"]::before
+    content "📦 "
+    font-size 0.85em
+
+  // AUR links
+  a[href*="aur.archlinux.org"]::before
+    content "📦 "
+    font-size 0.85em
+
+  // Documentation links
+  a[href*="wiki.archlinux.org"]::before
+    content "📄 "
+    font-size 0.85em
+
+  // Forum links
+  a[href*="bbs.archlinux.org"]::before
+    content "💬 "
+    font-size 0.85em
+
+// =============================================================================
+// INTELLIGENT URL DISPLAY
+// =============================================================================
+
+@media print
+  // For very long URLs, show domain + path truncated
+  a[href^="http"]:not([href*="archlinux.org"])
+    // This is handled by the ::after pseudo-element above
+    // but we can add additional styling here
+
+    &[href*="?"]
+      // URLs with query strings - show them (important for reference)
+      &::after
+        font-size 0.7em  // Smaller for complex URLs
+
+    &[href*="#"]
+      // URLs with anchors - the anchor is usually less important
+      // The truncation will handle this
+
+// =============================================================================
+// ACCESSIBILITY FOR PRINT LINKS
+// =============================================================================
+
+@media print
+  // Ensure link text is readable
+  a
+    // Minimum font size for readability
+    font-size 10pt
+
+    // Ensure underline is visible
+    text-decoration underline
+    text-decoration-thickness 1px
+    text-underline-offset 2px
+
+  // High contrast for link text
+  a:link
+  a:visited
+    color black !important
+
+  // Ensure reference numbers don't break lines awkwardly
+  a[href]::after
+    white-space nowrap
+
+// =============================================================================
+// PAGE BREAK CONTROL
+// =============================================================================
+
+// Prevent orphaned headings and break issues
+// Browser support: 97%+
+
+@media print
+  // Avoid breaking inside these elements
+  .infobox
+  .wikitable
+  pre
+  code
+  blockquote
+  figure
+  .mw-highlight
+    break-inside avoid
+
+  // Major sections start on new page
+  h1
+    break-before page
+
+  h2
+    break-before auto
+    break-after avoid
+
+  // Prevent orphaned headings
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-after avoid
+
+  // Prevent breaking right after heading
+  h1 + p
+  h2 + p
+  h3 + p
+    break-before avoid
+
+// =============================================================================
+// =============================================================================
+// PRINT HEADER/FOOTER
+// =============================================================================
+
+// Enhanced @page rules for page margins and page numbers
+// Browser support: 97%+ for basic @page, 85%+ for named pages
+// Note: Margin boxes require @css{} wrapper for Stylus
+
+@media print
+  // Article title in header
+  @page
+    margin 2cm
+    size A4
+
+// Named page styles for different content types
+// Note: Wrap in @css{} for Stylus compatibility with margin boxes
+@css {
+  @page {
+    /* Page margins */
+    margin: 2cm;
+
+    /* Page numbers in bottom-right corner */
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 9pt;
+      color: #666;
+    }
+
+    /* Article title in top-center */
+    @top-center {
+      content: element(page-header);
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+
+  /* First page styling */
+  @page :first {
+    margin-top: 3cm;
+
+    @top-center {
+      content: none;
+    }
+  }
+
+  /* Landscape pages for wide tables */
+  @page landscape {
+    size: A4 landscape;
+    margin: 1.5cm;
+  }
+
+  /* Apply landscape to wide tables */
+  table.wikitable-wide {
+    page: landscape;
+  }
+}
+
+@media print
+  .page-header
+    position running(page-header)
+    font-size 0.9em
+    color $muted
+    border-bottom 1px solid $border-subtle
+    padding-bottom 0.5em
+
+  .page-footer
+    position running(page-footer)
+    font-size 0.8em
+    color $muted
+
+// =============================================================================
+// PAGE ORIENTATION
+// =============================================================================
+
+// Control page orientation for different content types
+// Browser support: 87%+
+// Allows forcing portrait or landscape orientation for specific pages/elements
+
+@media print
+  // Default portrait orientation
+  @page
+    page-orientation portrait
+
+  // Landscape orientation for wide content
+  @page landscape
+    page-orientation landscape
+
+  // Apply landscape orientation to wide tables
+  .wikitable-wide
+  .table-wide
+  .wide-content
+    page landscape
+
+  // Apply landscape to code blocks that are too wide
+  pre.code-block-wide
+    page landscape
+
+  // Landscape for diff views and large code comparisons
+  .diff
+  .mw-diff
+    page landscape
+
+  // Ensure landscape pages have proper margins
+  @page landscape
+    margin 1.5cm
+
+  // Portrait for narrow content like infoboxes
+  @page portrait
+    page-orientation portrait
+
+  // Apply to narrow columns
+  .narrow-column
+  .infobox
+    page portrait
+
+// =============================================================================
+// NAMED PAGES AND SIZE DESCRIPTORS
+// =============================================================================
+
+// Named pages for different content types
+// Browser support: 97%+
+// Allows assigning named page templates to specific content
+
+@media print
+  // Default page size - A4
+  @page
+    size A4
+
+  // Default page size - US Letter (uncomment to use as default)
+  // @page
+  //   size: Letter
+
+  // Wide pages for tables, code blocks, and wide content
+  @page wide
+    size A4 landscape
+    page-orientation landscape
+
+  // Compact pages for narrow content
+  @page compact
+    size A5
+    page-orientation portrait
+    margin 1cm
+
+  // Apply wide page to very wide tables
+  .wikitable-very-wide
+  .table-very-wide
+  .content-wide
+    page wide
+
+  // Apply compact page to focused/narrow content
+  .content-compact
+  .summary-box
+    page compact
+
+// =============================================================================
+// MARKS AND BLEED DESCRIPTORS
+// =============================================================================
+
+// Print crop/registration marks for professional printing
+// Browser support: 97%+
+// - marks: none (default, no marks)
+// - marks: crop (corner crop marks)
+// - marks: cross (registration marks)
+// - marks: crop cross (both)
+// bleed: the area beyond the trim edge for professional printing
+// Note: marks and bleed require @css{} wrapper for Stylus
+
+@css {
+  @media print {
+    /* Default: no marks */
+    @page {
+      marks: none;
+      bleed: 0;
+    }
+
+    /* Add crop marks for final printed documents */
+    @page crop-marks {
+      marks: crop;
+      bleed: 3mm;
+    }
+
+    /* Add registration marks for color separation printing */
+    @page registration-marks {
+      marks: cross;
+      bleed: 0;
+    }
+
+    /* Add both crop and registration marks */
+    @page full-marks {
+      marks: crop cross;
+      bleed: 5mm;
+    }
+  }
+}
+
+@media print
+  // Apply crop marks to specific pages/sections
+  .crop-marks
+    page crop-marks
+
+  .registration-marks
+    page registration-marks
+
+  .full-marks
+    page full-marks
+
+  // Bleed for full-bleed printing (images that go to edge)
+  // Note: 'bleed' as a class property needs @css{} wrapper
+  .bleed
+    padding 3mm
+
+  .bleed-large
+    padding 5mm
+
+  // Wide tables and figures may need marks
+  .wikitable-wide
+  .figure-fullbleed
+    page full-marks
+
+// Additional print margin options for different paper sizes
+@media print
+  // A4 paper (default)
+  @page
+    size A4
+
+  // Letter size (common in US)
+  @page letter
+    size letter
+
+  // Legal size
+  @page legal
+    size legal
+
+  // Apply to specific content
+  .page-a4
+    page
+
+  .page-letter
+    page letter
+
+// =============================================================================
+// PRINT HEADER
+// =============================================================================
+
+// Print header with title, URL, and metadata
+// Browser support: 97%+
+
+@media print
+  // Print header container
+  .print-header
+    margin-bottom 1.5em
+    padding-bottom 1em
+    border-bottom 2px solid $print-black
+
+  // Article title in print
+  .print-title
+    font-size 18pt
+    font-weight bold
+    margin 0 0 0.5em 0
+    line-height 1.3
+    color $print-black
+
+  // Print metadata row
+  .print-meta
+    display flex
+    flex-wrap wrap
+    gap 0.5em 1em
+    font-size 10pt
+    color $print-text
+
+  // URL display
+  .print-url
+    font-family monospace
+    font-size 9pt
+
+    &::before
+      content "URL: "
+      font-weight normal
+
+  // Date printed
+  .print-date
+    &::before
+      content "Printed: "
+
+  // ArchWiki branding
+  .print-source
+    font-style italic
+
+    &::before
+      content "Source: "
+
+  // Alternative: header with title and subtitle
+  .print-header-simple
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid $print-border-light
+
+  // Main title
+  .print-header-title
+    font-size 20pt
+    font-weight bold
+    margin 0
+
+  // Subtitle or description
+  .print-header-subtitle
+    font-size 11pt
+    color $print-text
+    margin-top 0.25em
+
+  // Header with logo
+  .print-header-logo
+    display flex
+    align-items center
+    gap 1em
+    margin-bottom 0.5em
+
+  // Logo image in header
+  .print-logo
+    height 24px
+    width auto
+
+  // Header with both title and URL
+  .print-header-full
+    margin-bottom 1em
+
+    .print-header-title
+      font-size 18pt
+      margin-bottom 0.25em
+
+    .print-header-url
+      font-size 9pt
+      font-family monospace
+      color $print-text
+
+  // Hide regular header elements in print
+  .mw-header
+  .vector-page-titlebar
+  .mw-title
+    display none
+
+// =============================================================================
+// PRINT TABLE OF CONTENTS
+// =============================================================================
+
+// Simple list format for printing
+// Browser support: 97%+
+
+@media print
+  // Print TOC container
+  .print-toc
+    display block
+    margin 1em 0
+    padding 1em
+    border 1px solid $print-border-light
+
+  // TOC title
+  .print-toc-title
+    font-size 14pt
+    font-weight bold
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 2px solid $print-black
+    page-break-after avoid
+
+  // TOC entries
+  .print-toc-entry
+    display flex
+    align-items baseline
+    margin 0.5em 0
+    page-break-inside avoid
+
+  // TOC link (the section title)
+  .print-toc-link
+    color $print-text
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+  // TOC leader (dots)
+  .print-toc-leader
+    flex-grow 1
+    border-bottom 1px dotted $print-border-dark
+    margin 0 0.5em
+    min-width 20px
+
+  // TOC page number
+  .print-toc-page
+    font-variant-numeric tabular-nums
+    color $print-text
+
+  // TOC nesting levels
+  .print-toc-level-1
+    font-weight bold
+    margin-top 0.75em
+
+  .print-toc-level-2
+    margin-inline-start 1em
+
+  .print-toc-level-3
+    margin-inline-start 2em
+    font-size 0.95em
+
+  // Hide interactive TOC elements in print
+  .toc
+  .tocnumber
+  .toctoggle
+  .mw-editsection
+    display none
+
+  // Convert interactive TOC to print-friendly format
+  .toc
+    display block
+    border 1px solid $print-border-light
+    padding 1em
+    background $print-bg
+
+    // Show only links and numbers
+    a
+      color $print-text
+
+    // Section numbers
+    .tocnumber
+      display inline
+      margin-inline-end 0.5em
+
+    // Indent nested items
+    .toclevel-1
+      margin-top 0.5em
+
+    .toclevel-2
+      margin-inline-start 1em
+
+    .toclevel-3
+      margin-inline-start 2em
+
+  // If TOC is empty/hidden, show print-toc
+  .print-toc:empty
+    display none
+
+  // Page break before TOC if it's long
+  .toc
+    page-break-before auto
+
+// =============================================================================
+// PRINT PAGE NUMBERS
+// =============================================================================
+
+// Page numbering styles
+// Browser support: 97%+
+
+@media print
+  // Page counter - shown in header/footer
+  .print-page-number
+    font-variant-numeric tabular-nums
+
+  // Show page numbers in TOC
+  .toc .tocnumber::after
+    content leader(" . ") target-counter(attr(href), page)
+
+  // Alternative: manual page numbers for TOC
+  .toc-page-manual .tocline
+    display flex
+
+  .toc-page-manual .tocnumber
+    order 1
+
+// =============================================================================
+// PRINT FOOTER
+// =============================================================================
+
+// Print-specific footer with source, license, categories, and page info
+// Browser support: 97%+
+
+@media print
+  // Print footer container
+  .print-footer
+    margin-top 2em
+    padding-top 1em
+    border-top 2px solid $print-black
+    page-break-before avoid
+
+  // Footer sections - horizontal layout
+  .print-footer-sections
+    display flex
+    flex-wrap wrap
+    justify-content space-between
+    gap 1em
+
+  // Individual footer section
+  .print-footer-section
+    flex 1 1 200px
+    min-width 150px
+
+  // Section title
+  .print-footer-title
+    font-size 10pt
+    font-weight bold
+    color $print-black
+    margin-bottom 0.5em
+    text-transform uppercase
+    letter-spacing 0.5px
+
+  // Section content
+  .print-footer-content
+    font-size 9pt
+    color $print-text
+    line-height 1.5
+
+  // Source URL section
+  .print-footer-source
+    .print-footer-content
+      font-family "Courier New", monospace
+      word-break break-all
+
+    a
+      color $print-text
+      text-decoration none
+
+    // Show full URL for source
+    &::before
+      content "Source: "
+
+  // License info section
+  .print-footer-license
+    .print-footer-content
+      font-style italic
+
+    // License name
+    .license-name
+      font-weight bold
+
+    // License URL
+    .license-url
+      font-family monospace
+      font-size 8pt
+
+  // Categories section
+  .print-footer-categories
+    .print-footer-content
+      // Categories as comma-separated list
+      display block
+
+    // Category links
+    .print-category
+      display inline
+      color $print-text
+      text-decoration none
+
+      // Separator between categories
+      &:not(:last-child)::after
+        content ", "
+
+      &:hover
+        text-decoration underline
+
+  // Page info section
+  .print-footer-info
+    .print-footer-content
+      font-variant-numeric tabular-nums
+
+    // Page metadata
+    .page-info-item
+      display block
+      margin-bottom 0.25em
+
+    // Date info
+    .page-date
+      &::before
+        content "Printed: "
+
+    // Page URL
+    .page-url
+      font-family monospace
+      font-size 8pt
+      word-break break-all
+      display block
+      margin-top 0.25em
+
+  // Simple footer layout - single line at bottom
+  .print-footer-simple
+    margin-top 1em
+    padding-top 0.5em
+    border-top 1px solid $print-border-light
+    font-size 9pt
+    color $print-text
+    text-align center
+
+    // Simple footer with just source and page number
+    .print-footer-source
+      display inline
+      margin 0 0.5em
+
+    .print-page-number
+      display inline
+      margin 0 0.5em
+
+    .print-footer-license
+      display inline
+      margin 0 0.5em
+      font-style italic
+
+  // Footer with centered content
+  .print-footer-centered
+    text-align center
+
+    .print-footer-sections
+      justify-content center
+
+  // Footer with minimal info - just URL and page number
+  .print-footer-minimal
+    margin-top 0.5em
+    padding-top 0.25em
+    border-top 1px solid $print-border-light
+    font-size 8pt
+    color $print-text
+
+    .minimal-source
+      display block
+      text-align center
+      margin-bottom 0.25em
+      font-family monospace
+
+    .minimal-page
+      display block
+      text-align center
+
+  // License badge styling
+  .license-badge
+    display inline-block
+    padding 0.125em 0.5em
+    border 1px solid $print-border
+    border-radius 2px
+    font-size 8pt
+    background $print-bg
+
+  // CC license specific styling
+  .license-cc
+    &::before
+      content "CC "
+      font-weight bold
+
+  // GNU FDL styling
+  .license-gfdl
+    &::before
+      content "GFDL "
+      font-weight bold
+
+  // Date formatting in footer
+  .print-date
+    font-variant-numeric tabular-nums
+
+  // Hide interactive elements in print footer
+  .print-footer
+    .edit-link
+    .watch-link
+    .history-link
+      display none
+
+// =============================================================================
+// PRINT FOOTER - COMPACT FORMAT
+// =============================================================================
+
+// Compact footer for limited space
+// Browser support: 97%+
+
+@media print
+  // Compact footer - single row at bottom of last page
+  .print-footer-compact
+    margin-top 1em
+    padding-top 0.5em
+    border-top 1px solid $print-border-light
+    font-size 8pt
+    color $print-text
+
+    // Compact layout - all in one line
+    display flex
+    justify-content space-between
+    align-items center
+    flex-wrap wrap
+    gap 0.5em
+
+    // Source URL (truncated if needed)
+    .compact-source
+      flex 1 1 200px
+      font-family monospace
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+
+    // Page number (right aligned)
+    .compact-page
+      font-variant-numeric tabular-nums
+      white-space nowrap
+
+    // License (center)
+    .compact-license
+      flex 0 0 auto
+      font-style italic
+
+  // Very minimal - just source URL and page
+  .print-footer-minimal-compact
+    margin-top 0.5em
+    font-size 7pt
+    color $muted
+
+    // Two-column layout
+    display table
+    width 100%
+
+    .minimal-col
+      display table-cell
+      width 50%
+
+    .minimal-source
+      text-align left
+      font-family monospace
+
+    .minimal-page
+      text-align right
+      font-variant-numeric tabular-nums
+
+// =============================================================================
+// PRINT FOOTER - DYNAMIC CONTENT
+// =============================================================================
+
+// Footer content generated via CSS for dynamic elements
+// Browser support: 97%+
+
+@media print
+  // Auto-generated source line
+  .print-source-auto
+    &::before
+      content "Source: " attr(data-print-url)
+
+    // If data-title exists, add it
+    &[data-title]::before
+      content attr(data-title) ": " attr(data-print-url)
+
+  // Auto-generated date
+  .print-date-auto
+    &::before
+      content "Printed: " attr(data-print-date)
+
+  // Category list from data attribute
+  .print-categories-auto
+    // Categories stored as space-separated in data attribute
+    &::before
+      content "Categories: "
+
+    // We'll need JavaScript to populate this properly
+    // CSS can only show the container
+
+  // License from data attribute
+  .print-license-auto
+    &::before
+      content attr(data-license-name)
+
+    a::after
+      content " (" attr(href) ")"
+
+// =============================================================================
+// LEGACY PAGE SIZE SUPPORT
+// =============================================================================
+
+@media print
+  // Letter size (common in US)
+  @page :left
+    margin 1in 1.25in 1in 1in
+
+  @page :right
+    margin 1in 1in 1in 1.25in
+
+  @page :first
+    margin 1.5in 1.25in 1in 1.25in
+
+  // Named pages
+  @page landscape
+    size landscape
+
+  @page portrait
+    size portrait
+
+// =============================================================================
+// PRINT PAGE BREAKS
+// =============================================================================
+// Comprehensive page break controls for print media
+// Browser support: 97%+
+// =============================================================================
+
+@media print
+  // ---------------------------------------------------------------------------
+  // ORPHAN/WIDOW CONTROL
+  // ---------------------------------------------------------------------------
+  // Prevent lonely lines at the top or bottom of a page
+
+  p
+  li
+  td
+  th
+    orphans 3
+    widows 3
+
+  // Headings should have at least 2 lines of following content
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    orphans 2
+    widows 2
+
+  // ---------------------------------------------------------------------------
+  // BREAK-INSIDE: AVOID
+  // ---------------------------------------------------------------------------
+  // Prevent elements from being split across pages
+
+  .infobox
+  .thumb
+  .thumbinner
+  table
+  tr
+  td
+  th
+  pre
+  code
+  .mw-highlight
+  blockquote
+  .navbox
+  .toc
+  .gallery
+  .mw-parser-output
+    break-inside avoid
+    page-break-inside avoid
+    -webkit-column-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // BREAK-BEFORE CONTROLS
+  // ---------------------------------------------------------------------------
+  // Ensure major sections start on a new page
+
+  h1
+    break-before page
+    page-break-before auto
+
+  h2
+    break-before auto
+    page-break-before auto
+
+  // ---------------------------------------------------------------------------
+  // BREAK-AFTER CONTROLS
+  // ---------------------------------------------------------------------------
+  // Ensure headings don't appear alone at bottom of page
+
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-after avoid
+    page-break-after avoid
+
+  // ---------------------------------------------------------------------------
+  // TABLE SPECIFIC BREAKS
+  // ---------------------------------------------------------------------------
+
+  table.wikitable
+    break-inside avoid
+    page-break-inside avoid
+
+    thead
+      break-after avoid
+      page-break-after avoid
+
+    tbody
+      tr
+        break-inside avoid
+        page-break-inside avoid
+
+    tfoot
+      break-before avoid
+      page-break-before avoid
+
+  // ---------------------------------------------------------------------------
+  // CODE BLOCK BREAKS
+  // ---------------------------------------------------------------------------
+
+  pre
+    break-inside avoid
+    page-break-inside avoid
+    white-space pre-wrap
+    word-wrap break-word
+
+  // ---------------------------------------------------------------------------
+  // LIST BREAKS
+  // ---------------------------------------------------------------------------
+
+  ul
+  ol
+    li
+      break-inside avoid
+      page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // FIGURE AND CAPTION BREAKS
+  // ---------------------------------------------------------------------------
+
+  figure
+    break-inside avoid
+    page-break-inside avoid
+
+    figcaption
+      break-after avoid
+      page-break-after avoid
+
+  // ---------------------------------------------------------------------------
+  // REFERENCE LIST BREAKS
+  // ------------------------------------------------------------------------===
+
+  .references
+    li
+      break-inside avoid
+      page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // MESSAGE BOX BREAKS
+  // ---------------------------------------------------------------------------
+
+  .mbox
+  .ambox
+  .ombox
+  .cmbox
+  .tmbox
+  .imbox
+  .dmbox
+    break-inside avoid
+    page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // NAVBOX BREAKS
+  // ---------------------------------------------------------------------------
+
+  .navbox
+    break-before auto
+    break-after auto
+    break-inside avoid
+    page-break-before auto
+    page-break-after auto
+    page-break-inside avoid
+
+  // ---------------------------------------------------------------------------
+  // HEADING AVOIDANCE - Keep headings with following content
+  // ---------------------------------------------------------------------------
+
+  h1 + p
+  h2 + p
+  h3 + p
+  h4 + p
+  h5 + p
+  h6 + p
+    break-after avoid
+    page-break-after avoid
+
+  // =============================================================================
+  // PRINT TYPOGRAPHY
+  // =============================================================================
+  // Print-optimized typography for better readability in printed output
+  // Browser support: 100%
+
+  // Print font stack - serif for better readability in print
+  @media print
+    body
+    .mw-body
+    #content
+    article
+      font-family Georgia, 'Times New Roman', Times, serif
+      line-height 1.4
+      font-size 11pt
+
+    // Headings with serif and slightly larger for print
+    h1
+      font-size 22pt
+      line-height 1.2
+
+    h2
+      font-size 18pt
+      line-height 1.25
+
+    h3
+      font-size 14pt
+      line-height 1.3
+
+    h4
+      font-size 12pt
+      line-height 1.35
+
+    h5
+      font-size 11pt
+      line-height 1.4
+
+    h6
+      font-size 10pt
+      line-height 1.4
+      font-weight bold
+
+    // Code/tech content - monospace for print clarity
+    pre
+    code
+    .mw-highlight
+      font-family 'Courier New', Courier, monospace
+      font-size 9pt
+      line-height 1.3
+
+    // Links - ensure readability
+    a
+      font-size 10pt
+      font-weight normal
+
+    // Tables - optimized for print
+    table
+      font-size 9pt
+
+      th
+        font-size 8pt
+        text-transform uppercase
+        letter-spacing 0.5pt
+
+    // Lists - tighter spacing for print
+    ul
+    ol
+      font-size 10pt
+
+      li
+        line-height 1.3
+        margin-bottom 0.25em
+
+    // Blockquotes - italic for print
+    blockquote
+      font-style italic
+      font-size 10pt
+      margin-left 1em
+      padding-left 1em
+      border-left 2px solid #333

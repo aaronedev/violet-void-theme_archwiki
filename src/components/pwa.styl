@@ -1,0 +1,448 @@
+// =============================================================================
+// Progressive Web App (PWA) Styling - Violet Void ArchWiki Theme
+// Offline indicators, install prompts, and PWA UI components
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// OFFLINE MODE INDICATOR
+// =============================================================================
+
+// Offline banner displayed when network is unavailable
+// Shows cached content status and sync options
+
+.offline-banner
+  position fixed
+  top 0
+  inset-inline-start 0
+  inset-inline-end 0
+  z-index 9999
+  display flex
+  align-items center
+  justify-content center
+  gap 0.75em
+  padding 0.5em 1em
+  background-color $arch-blue
+  color $lighter
+  font-size 0.875rem
+  font-weight 500
+  box-shadow 0 2px 8px rgba(0, 0, 0, 0.3)
+
+  // Offline icon
+  &::before
+    content ''
+    display inline-block
+    width 18px
+    height 18px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e7e7e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='1' y1='1' x2='23' y2='23'%3E%3Cpath d='M16.72 11.06A10.94 10.94 0 0 1 19 12.55'%3E%3Cpath d='M5 12.55a10.94 10.94 0 0 1 5.17-2.39'%3E%3Cpath d='M10.71 5.05A16 16 0 0 1 22.58 9'%3E%3Cpath d='M1.42 9a15.91 15.91 0 0 1 4.7-2.88'%3E%3Cpath d='M8.53 16.11a6 6 0 0 1 6.95 0'%3E%3Cline x1='12' y1='20' x2='12.01' y2='20'%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+    flex-shrink 0
+
+  // Message text
+  .offline-message
+    flex 1
+    text-align center
+
+  // Action buttons
+  .offline-actions
+    display flex
+    gap 0.5em
+
+  // Retry button
+  .offline-retry
+    padding 0.25em 0.75em
+    background rgba(255, 255, 255, 0.2)
+    color inherit
+    border-radius 4px
+    font-weight 600
+    cursor pointer
+    transition background 0.2s ease
+
+    &:hover
+      background rgba(255, 255, 255, 0.3)
+
+    &:focus-visible
+      outline 2px solid $lighter
+      outline-offset 2px
+
+  // Dismiss button
+  .offline-dismiss
+    padding 0.25em 0.5em
+    background transparent
+    color inherit
+    border none
+    cursor pointer
+    opacity 0.7
+    transition opacity 0.2s ease
+
+    &:hover
+      opacity 1
+
+    &:focus-visible
+      outline 2px solid $lighter
+      outline-offset 2px
+
+// =============================================================================
+// CACHED CONTENT INDICATOR
+// =============================================================================
+
+// Shows when viewing cached/offline-available content
+
+.cached-indicator
+  display inline-flex
+  align-items center
+  gap 0.375em
+  padding 0.25em 0.5em
+  background rgba($arch-blue, 0.2)
+  color $light
+  font-size 0.75rem
+  border-radius 4px
+
+  // Cache icon
+  &::before
+    content ''
+    display inline-block
+    width 12px
+    height 12px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bfbfbf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3Cpolyline points='7 10 12 15 17 10'%3E%3Cpolyline points='12 15 12 3'%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+
+// =============================================================================
+// SYNC PENDING STATUS
+// =============================================================================
+
+// Indicates content changes waiting to be synced
+
+.sync-pending
+  display inline-flex
+  align-items center
+  gap 0.375em
+  padding 0.25em 0.5em
+  background rgba($orange, 0.15)
+  color $orange
+  font-size 0.75rem
+  border-radius 4px
+
+  // Animated sync icon
+  &::before
+    content ''
+    display inline-block
+    width 12px
+    height 12px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fd7cff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='23 4 23 10 17 10'%3E%3Cpolyline points='1 20 1 14 7 14'%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+    animation spin 2s linear infinite
+
+  @keyframes spin
+    from
+      rotate 0deg
+    to
+      rotate 360deg
+
+// Synced indicator (success state)
+.sync-complete
+  display inline-flex
+  align-items center
+  gap 0.375em
+  padding 0.25em 0.5em
+  background rgba($green, 0.15)
+  color $green
+  font-size 0.75rem
+  border-radius 4px
+
+  &::before
+    content ''
+    display inline-block
+    width 12px
+    height 12px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+
+// =============================================================================
+// INSTALL PROMPT STYLING
+// =============================================================================
+
+// Custom install prompt banner
+
+.install-prompt
+  position fixed
+  bottom 1em
+  inset-inline-start 1em
+  inset-inline-end 1em
+  max-width 400px
+  margin-inline auto
+  z-index 9998
+  display flex
+  flex-direction column
+  gap 0.75em
+  padding 1em
+  background-color $dark
+  color $lighter
+  border 1px solid rgba($arch-blue, 0.5)
+  border-radius 8px
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+
+  @media (max-width 480px)
+    inset-inline-start 0.5em
+    inset-inline-end 0.5em
+    bottom 0.5em
+
+  // Prompt header
+  .install-header
+    display flex
+    align-items center
+    justify-content space-between
+    gap 0.5em
+
+  // Title
+  .install-title
+    font-size 1rem
+    font-weight 600
+    color $lighter
+
+  // Close/dismiss button
+  .install-close
+    padding 0.25em
+    background transparent
+    color $light
+    border none
+    cursor pointer
+    opacity 0.7
+    transition opacity 0.2s ease
+
+    &:hover
+      opacity 1
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  // Description text
+  .install-description
+    font-size 0.875rem
+    color $light
+    line-height 1.4
+
+  // Feature list
+  .install-features
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    margin 0.5em 0
+
+    .feature
+      display inline-flex
+      align-items center
+      gap 0.25em
+      padding 0.25em 0.5em
+      background rgba($arch-blue, 0.15)
+      color $light
+      font-size 0.75rem
+      border-radius 4px
+
+      &::before
+        content '✓'
+        color $arch-blue
+
+  // Button container
+  .install-actions
+    display flex
+    gap 0.5em
+    margin-top 0.25em
+
+  // Install button
+  .install-button
+    flex 1
+    padding 0.5em 1em
+    background-color $arch-blue
+    color white
+    font-weight 600
+    border none
+    border-radius 4px
+    cursor pointer
+    transition background-color 0.2s ease, transform 0.1s ease
+
+    &:hover
+      background-color darken($arch-blue, 10%)
+
+    &:active
+      transform scale(0.98)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  // Later button (secondary)
+  .install-later
+    padding 0.5em 1em
+    background transparent
+    color $light
+    font-weight 500
+    border 1px solid rgba($light, 0.3)
+    border-radius 4px
+    cursor pointer
+    transition background-color 0.2s ease
+
+    &:hover
+      background rgba(255, 255, 255, 0.05)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// =============================================================================
+// PWA INSTALL BUTTON (ALTERNATIVE PLACEMENT)
+// =============================================================================
+
+// Standalone install button for placement in navigation/toolbar
+
+.pwa-install-button
+  display inline-flex
+  align-items center
+  gap 0.375em
+  padding 0.5em 0.75em
+  background-color rgba($arch-blue, 0.15)
+  color $arch-blue
+  font-size 0.875rem
+  font-weight 500
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius 4px
+  cursor pointer
+  transition background-color 0.2s ease, border-color 0.2s ease
+
+  // Install icon
+  &::before
+    content ''
+    display inline-block
+    width 16px
+    height 16px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238950c7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3Cpolyline points='7 10 12 15 17 10'%3E%3Cpolyline points='12 15 12 3'%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+
+  &:hover
+    background-color rgba($arch-blue, 0.25)
+    border-color rgba($arch-blue, 0.5)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  // Hidden state when already installed
+  &[hidden]
+    display none
+
+// =============================================================================
+// SERVICE WORKER STATUS
+// =============================================================================
+
+// Status indicator for service worker state
+
+.sw-status
+  display inline-flex
+  align-items center
+  gap 0.375em
+  padding 0.25em 0.5em
+  font-size 0.75rem
+  border-radius 4px
+
+  // Active/updating state
+  &.sw-active
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+
+    &::before
+      content ''
+      display inline-block
+      width 8px
+      height 8px
+      background $arch-blue
+      border-radius 50%
+      animation pulse 2s ease-in-out infinite
+
+  // Offline/disabled state
+  &.sw-offline
+    background rgba($secondary-red, 0.15)
+    color $secondary-red
+
+    &::before
+      content ''
+      display inline-block
+      width 8px
+      height 8px
+      background $secondary-red
+      border-radius 50%
+
+  @keyframes pulse
+    0%
+    100%
+      opacity 1
+    50%
+      opacity 0.5
+
+// =============================================================================
+// PWA ANIMATIONS
+// =============================================================================
+
+// Slide-in animation for install prompt
+
+@keyframes slideInUp
+  from
+    opacity 0
+    translate-y 1rem
+  to
+    opacity 1
+    translate-y 0
+
+.install-prompt
+  animation slideInUp 0.3s ease-out
+
+// Fade animation for offline banner
+
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
+.offline-banner
+  animation fadeIn 0.2s ease-out
+
+// =============================================================================
+// DARK MODE PWA ADJUSTMENTS
+// =============================================================================
+
+@media (prefers-color-scheme dark)
+  .install-prompt
+    background-color $base
+    border-color rgba($arch-blue, 0.3)
+
+  .pwa-install-button
+    background-color rgba($arch-blue, 0.1)
+
+  .cached-indicator
+    background rgba($arch-blue, 0.25)
+
+// =============================================================================
+// REDUCED MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .sync-pending::before
+    animation none
+
+  .sw-status.sw-active::before
+    animation none
+
+  .install-prompt
+    animation none
+
+  .offline-banner
+    animation none

@@ -1,0 +1,50 @@
+{
+  "name": "violet-void-theme_archwiki",
+  "version": "1.0.0",
+  "description": "Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.",
+  "author": "aaronedev",
+  "license": "MIT",
+  "homepage": "https://github.com/aaronedev/violet-void-theme_archwiki",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aaronedev/violet-void-theme.git"
+  },
+  "userStyle": {
+    "namespace": "github.com/aaronedev/violet-void-theme",
+    "version": "20260317.00.01"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "watch": "stylus -u autoprefixer-stylus src/main.styl -o dist/main.css --watch",
+    "lint": "stylelint \"src/**/*.styl\"",
+    "lint:fix": "stylelint \"src/**/*.styl\" --fix",
+    "format": "prettier --write \"**/*.{js,json}\" && stylelint --fix \"src/**/*.styl\"",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:visual": "playwright test visual-regression",
+    "test:report": "playwright show-report",
+    "setup:stylus": "node scripts/setup-stylus.js",
+    "test:integration": "playwright test tests/integration/stylus-integration.spec.js --project=chromium",
+    "console-check": "node scripts/console-fixer.js --browser=firefox --dry-run",
+    "console-fix": "node scripts/console-fixer.js --browser=firefox --fix"
+  },
+  "overrides": {
+    "autoprefixer-stylus": {
+      "autoprefixer": "^10.4.0",
+      "postcss": "^8.4.31"
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "autoprefixer-stylus": "^1.0.0",
+    "playwright": "^1.58.2",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.0.0",
+    "stylelint-config-recommended": "^14.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-plugin-stylus": "^1.0.0",
+    "stylus": "^0.64.0",
+    "stylus-loader": "^8.1.2"
+  }
+}

@@ -1,0 +1,2209 @@
+// Form validation, states, and enhanced form elements
+// Better UX for all form interactions
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// FORM VALIDATION STATES
+// =============================================================================
+
+// Success state
+input.valid
+input:valid
+textarea.valid
+textarea:valid
+select.valid
+select:valid
+  border-color $green
+  box-shadow 0 0 0 3px rgba($green, 0.2)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($green, 0.3)
+
+// Error state
+input.invalid
+input:invalid
+textarea.invalid
+textarea:invalid
+select.invalid
+select:invalid
+  border-color $secondary-red
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.2)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($secondary-red, 0.3)
+
+// =============================================================================
+// USER-VALID / USER-INVALID (Validation after user interaction)
+// Better UX - only shows validation after user has interacted with the field
+// Browser support: 89%+
+// =============================================================================
+
+input:user-valid
+textarea:user-valid
+select:user-valid
+  border-color $green
+  box-shadow 0 0 0 3px rgba($green, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($green, 0.35)
+
+  // Add a subtle checkmark indicator for valid fields
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234bfe9b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 1em
+  padding-right 2.5em
+
+input:user-invalid
+textarea:user-invalid
+select:user-invalid
+  border-color $secondary-red
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($secondary-red, 0.35)
+
+  // Add an error indicator for invalid fields
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ff1a67' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='15' y1='9' x2='9' y2='15'%3E%3C/line%3E%3Cline x1='9' y1='9' x2='15' y2='15'%3E%3C/line%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 1em
+  padding-right 2.5em
+
+// User-valid/invalid with explicit classes (for manual control)
+input.valid:user-valid
+input:valid:user-valid
+textarea.valid:user-valid
+textarea:valid:user-valid
+select.valid:user-valid
+select:valid:user-valid
+  border-color $green
+  box-shadow 0 0 0 3px rgba($green, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($green, 0.35)
+
+input.invalid:user-invalid
+input:invalid:user-invalid
+textarea.invalid:user-invalid
+textarea:invalid:user-invalid
+select.invalid:user-invalid
+select:invalid:user-invalid
+  border-color $secondary-red
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.25)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($secondary-red, 0.35)
+
+// Warning state
+input.warning
+textarea.warning
+select.warning
+  border-color $orange
+  box-shadow 0 0 0 3px rgba($orange, 0.2)
+
+// =============================================================================
+// READ-ONLY / READ-WRITE STATES
+// =============================================================================
+// Visual distinction for editable vs static content
+// Browser support: 97%+
+
+// Read-only inputs - styled as non-editable/static content
+input:read-only
+textarea:read-only
+select:read-only
+  background-color rgba($darker, 0.5)
+  border-color rgba($arch-blue, 0.3)
+  color $light
+  cursor not-allowed
+  opacity 0.8
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+
+  // Add a lock indicator
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a7a7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E")
+  background-repeat no-repeat
+  background-position right 0.75em center
+  background-size 1em
+  padding-right 2.5em
+
+// Read-only with explicit class
+input.read-only
+textarea.read-only
+select.read-only
+  @extend input:read-only
+
+// Read-write (editable) inputs - normal editable state
+input:read-write
+textarea:read-write
+select:read-write
+  background-color rgba($base, 0.8)
+  border-color rgba($arch-blue, 0.4)
+  color $lighter
+  cursor text
+  opacity 1
+
+  &:focus-visible
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  // Remove any lock indicator if present
+  background-image none
+  padding-right 0.75em
+
+// Read-write with explicit class
+input.read-write
+textarea.read-write
+select.read-write
+  @extend input:read-write
+
+// Read-only content within fieldsets or forms
+fieldset:read-only
+.form-static
+  background-color rgba($darker, 0.4)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  padding 1em
+  color $light
+
+  legend
+    color $lighter
+    font-weight 600
+
+// Make sure read-only elements don't show validation indicators
+input:read-only:user-valid
+input:read-only:user-invalid
+textarea:read-only:user-valid
+textarea:read-only:user-invalid
+select:read-only:user-valid
+select:read-only:user-invalid
+  background-image none
+  padding-right 0.75em
+  box-shadow none
+  border-color rgba($arch-blue, 0.3)
+
+// Field with error message
+.form-field.has-error
+  input
+  textarea
+  select
+    border-color $secondary-red
+
+  .error-message
+    display block
+    color $secondary-red
+    font-size 0.85em
+    margin-top 0.3em
+
+.form-field.has-success
+  input
+  textarea
+  select
+    border-color $green
+
+  .success-message
+    display block
+    color $green
+    font-size 0.85em
+    margin-top 0.3em
+
+// =============================================================================
+// FORM FIELD GROUPS
+// =============================================================================
+
+.form-group
+.field-group
+  margin 1em 0
+
+  label
+    display block
+    color $lighter
+    font-weight 600
+    margin-bottom 0.4em
+    font-size 0.95em
+
+  .help-text
+  .field-description
+    color $light
+    font-size 0.85em
+    margin-top 0.3em
+
+  input
+  textarea
+  select
+    width 100%
+
+// Inline form
+.form-inline
+.form-row
+  display flex
+  gap 1em
+  align-items flex-end
+
+  .form-group
+    flex 1
+    margin 0
+
+// =============================================================================
+// INPUT ADDONS
+// =============================================================================
+
+.input-group
+  display flex
+  align-items stretch
+
+  input
+    flex 1
+    border-radius $border-radius-sm 0 0 $border-radius-sm
+
+  .input-addon
+  .input-group-addon
+    background linear-gradient(135deg, $dark, $darker)
+    border 1px solid $border-subtle
+    padding 0.5em 0.75em
+    color $lighter
+    display flex
+    align-items center
+    font-size 0.9em
+
+    &:first-child
+      border-right none
+      border-radius $border-radius-sm 0 0 $border-radius-sm
+
+    &:last-child
+      border-left none
+      border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  button
+    border-radius 0 $border-radius-sm $border-radius-sm 0
+    margin-inline-start -1px
+
+// Prefix/suffix
+.input-prefix
+.input-suffix
+  background-color $darker
+  border 1px solid $border-subtle
+  padding 0.5em 0.75em
+  color $lighter
+  font-family $font-mono
+  font-size 0.9em
+
+// =============================================================================
+// ENHANCED CHECKBOXES & RADIOS
+// =============================================================================
+
+// Checkbox group
+.checkbox-group
+.radio-group
+  display flex
+  flex-direction column
+  gap 0.5em
+
+  label
+    display flex
+    align-items center
+    gap 0.5em
+    cursor pointer
+    color $light
+    padding 0.3em 0
+
+    &:hover
+      color $lighter
+
+    input
+      margin 0
+
+// Inline checkbox/radio group
+.checkbox-group-inline
+.radio-group-inline
+  flex-flow row wrap
+  gap 1.5em
+
+// Toggle switch
+.toggle-switch
+  position relative
+  display inline-block
+  width 48px
+  height 24px
+
+  input
+    opacity 0
+    width 0
+    height 0
+
+  .slider
+    position absolute
+    cursor pointer
+    inset 0
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius 24px
+    transition all $transition-fast
+
+    &::before
+      content ""
+      position absolute
+      height 18px
+      width 18px
+      left 2px
+      bottom 2px
+      background-color $light
+      border-radius 50%
+      transition all $transition-fast
+
+  input:checked + .slider
+    background-color $arch-blue
+    border-color $arch-blue
+
+    &::before
+      transform translateX(24px)
+      background-color $darker
+
+  input
+    &:focus-visible + .slider
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// =============================================================================
+// MULTI-SELECT & TAGS
+// =============================================================================
+
+.tags-input
+  display flex
+  flex-wrap wrap
+  gap 0.3em
+  padding 0.4em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  min-height 2.5em
+
+  &:focus-within
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+  .tag
+    display inline-flex
+    align-items center
+    gap 0.3em
+    padding 0.2em 0.5em
+    background-color rgba($arch-blue, 0.2)
+    color $lighter
+    border-radius $border-radius-sm
+    font-size 0.85em
+
+    .tag-remove
+      cursor pointer
+      opacity 0.6
+      transition opacity $transition-fast
+
+      &:hover
+        opacity 1
+
+  input
+    flex 1
+    min-width 100px
+    background transparent
+    border none
+    outline none
+    color $lighter
+    padding 0.2em
+
+// =============================================================================
+// AUTOCOMPLETE
+// =============================================================================
+
+.autocomplete-wrapper
+  position relative
+
+  input
+    width 100%
+
+  .autocomplete-results
+    position absolute
+    top 100%
+    left 0
+    right 0
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+    border 1px solid $border-subtle
+    border-top none
+    border-radius 0 0 $border-radius-md $border-radius-md
+    max-height 200px
+    overflow-y auto
+    box-shadow $shadow-elevated
+    z-index 1000
+
+    .autocomplete-item
+      padding 0.5em 0.75em
+      color $light
+      cursor pointer
+      transition background-color $transition-fast
+
+      &:hover
+      &.active
+        background-color rgba($arch-blue, 0.15)
+        color $secondary-blue
+
+      &.selected
+        background-color rgba($arch-blue, 0.2)
+        color $white
+
+// =============================================================================
+// DATE & TIME INPUTS
+// =============================================================================
+
+input[type="date"]
+input[type="time"]
+input[type="datetime-local"]
+  &::-webkit-calendar-picker-indicator
+    filter invert(0.8)
+    cursor pointer
+
+    &:hover
+      filter invert(1)
+
+// =============================================================================
+// COLOR INPUT
+// =============================================================================
+
+input[type="color"]
+  -webkit-appearance none
+  width 50px
+  height 35px
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  cursor pointer
+  padding 2px
+
+  &::-webkit-color-swatch-wrapper
+    padding 0
+
+  &::-webkit-color-swatch
+    border none
+    border-radius 3px
+
+// =============================================================================
+// SEARCH ENHANCED
+// =============================================================================
+
+.search-enhanced
+  position relative
+  display flex
+  align-items center
+
+  input
+    padding-inline-start 2.5em
+
+  .search-icon
+    position absolute
+    left 0.75em
+    color $secondary-blue
+    pointer-events none
+
+  .search-clear
+    position absolute
+    right 0.5em
+    background transparent
+    border none
+    color $light
+    cursor pointer
+    padding 0.3em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      color $white
+
+// =============================================================================
+// FORM VALIDATION MESSAGES
+// =============================================================================
+
+.form-message
+  padding 0.75em 1em
+  border-radius $border-radius-sm
+  margin 0.5em 0
+  font-size 0.9em
+
+  &.form-message-error
+    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    border-inline-start 3px solid $secondary-red
+    color $lighter
+
+  &.form-message-success
+    background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+    border-inline-start 3px solid $green
+    color $lighter
+
+  &.form-message-warning
+    background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.08))
+    border-inline-start 3px solid $orange
+    color $lighter
+
+  &.form-message-info
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
+    border-inline-start 3px solid $secondary-blue
+    color $lighter
+
+// =============================================================================
+// REQUIRED FIELD INDICATORS
+// =============================================================================
+
+.required-indicator
+  color $secondary-red
+  font-weight bold
+  margin-inline-start 0.2em
+
+label.required
+  &::after
+    content " *"
+    color $secondary-red
+    font-weight bold
+
+// =============================================================================
+// CHARACTER COUNTER
+// =============================================================================
+
+.char-counter
+  font-size 0.85em
+  color $muted
+  text-align right
+  margin-top 0.2em
+
+  &.char-limit-near
+    color $orange
+
+  &.char-limit-exceeded
+    color $secondary-red
+    font-weight 600
+
+// =============================================================================
+// FORM PROGRESS
+// =============================================================================
+
+.form-progress
+  display flex
+  gap 0.5em
+  margin-bottom 1.5em
+
+  .progress-step
+    flex 1
+    text-align center
+    padding 0.5em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.85em
+    transition all $transition-fast
+
+    &.active
+      background linear-gradient(135deg, $arch-blue, $secondary-blue)
+      color $darker
+      border-color $arch-blue
+      font-weight 600
+
+    &.completed
+      background-color rgba($green, 0.2)
+      border-color $green
+      color $green
+
+// =============================================================================
+// BUTTON GROUPS
+// =============================================================================
+
+.button-group
+  display flex
+  gap 0.5em
+
+  button
+  .button
+    border-radius 0
+
+    &:first-child
+      border-radius $border-radius-sm 0 0 $border-radius-sm
+
+    &:last-child
+      border-radius 0 $border-radius-sm $border-radius-sm 0
+
+    &:not(:last-child)
+      border-right none
+
+// Vertical button group
+.button-group-vertical
+  flex-direction column
+
+  button
+  .button
+    border-radius 0
+
+    &:first-child
+      border-radius $border-radius-sm $border-radius-sm 0 0
+
+    &:last-child
+      border-radius 0 0 $border-radius-sm $border-radius-sm
+
+    &:not(:last-child)
+      border-bottom none
+      border-right 1px solid $border-subtle
+
+// =============================================================================
+// FORM ACTIONS
+// =============================================================================
+
+.form-actions
+  display flex
+  gap 0.75em
+  margin-top 1.5em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+
+  button
+    min-width 100px
+
+  .spacer
+    flex 1
+
+// =============================================================================
+// DISABLED FORM
+// =============================================================================
+
+.form-disabled
+fieldset[disabled]
+  opacity 0.6
+  pointer-events none
+
+// =============================================================================
+// READ-ONLY FORM
+// =============================================================================
+
+input[readonly]
+textarea[readonly]
+select[readonly]
+  background-color rgba($arch-blue, 0.05)
+  border-color rgba($arch-blue, 0.2)
+  cursor not-allowed
+
+// =============================================================================
+// FORM SKELETON LOADING
+// =============================================================================
+
+.form-skeleton
+  .skeleton-input
+    background linear-gradient(90deg, $darker 25%, rgba($arch-blue, 0.1) 50%, $darker 75%)
+    background-size 200% 100%
+    animation shimmer 1.5s infinite
+    height 2.5em
+    border-radius $border-radius-sm
+
+  .skeleton-label
+    background linear-gradient(90deg, $darker 25%, rgba($arch-blue, 0.1) 50%, $darker 75%)
+    background-size 200% 100%
+    animation shimmer 1.5s infinite
+    height 1em
+    width 60%
+    border-radius 2px
+    margin-bottom 0.4em
+
+// =============================================================================
+// CARET-COLOR FOR THEMED TEXT CURSOR
+// =============================================================================
+
+// Style text cursor in inputs/textareas to match theme
+// Browser support: 97%+
+
+// Themed cursor for all text inputs
+input[type="text"]
+input[type="search"]
+input[type="email"]
+input[type="password"]
+input[type="url"]
+input[type="number"]
+input[type="tel"]
+textarea
+  caret-color $arch-blue
+
+// Edit form textarea
+#wpTextbox1
+.mw-editfont-monospace
+  caret-color $secondary-blue
+
+
+// =============================================================================
+// FORM ENHANCEMENTS
+// =============================================================================
+
+// Field-sizing for auto-expanding textareas (Chrome 122+ only)
+// Firefox doesn't support - already wrapped in modern-css.styl, this is utility class
+
+@supports (field-sizing: content)
+  .auto-expand
+    field-sizing content
+    min-height 3em
+    max-height 20em
+
+// Accent-color for form controls
+// Browser support: 97%+
+
+input[type="checkbox"]
+input[type="radio"]
+input[type="range"]
+progress
+  accent-color $arch-blue
+
+// Appearance: none for custom controls
+// Browser support: 97%+
+
+.custom-checkbox
+.custom-radio
+.custom-select
+  appearance none
+  -webkit-appearance none
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em
+
+
+// =============================================================================
+// ::picker(select) Pseudo-element for Dropdown Styling
+// Browser support: 60%+ (Chrome 135+, Edge 135+)
+// =============================================================================
+
+// Enable base-select appearance on select elements
+@supports (appearance: base-select)
+  select
+    appearance base-select
+    -webkit-appearance base-select
+
+  // Style the dropdown picker container
+  select::picker(select)
+    background-color $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.4)
+    padding 0.25em
+
+    // Dropdown options container
+    &::picker-dropdown
+      background-color $dark
+      border 1px solid $border-subtle
+
+    // Option styling within the picker
+    &::picker-option
+      padding 0.5em 0.75em
+      color $lighter
+      cursor pointer
+      transition background-color 0.15s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.2)
+
+      &:checked
+        background-color rgba($arch-blue, 0.3)
+        color $lighter
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset -2px
+
+    // Option with checkbox (multiple select)
+    &::picker-option-checkbox
+      width 1em
+      height 1em
+      margin-right 0.5em
+      accent-color $arch-blue
+
+// =============================================================================
+// ::checkmark Pseudo-element for Select Checkmarks
+// Browser support: 60%+ (Chrome 135+, Edge 135+)
+// =============================================================================
+
+@supports (appearance: base-select)
+  // Style the checkmark indicator for selected options
+  select::picker(select)::checkmark
+    // Checkmark color - use theme accent
+    color $arch-blue
+
+    // Checkmark size
+    width 0.75em
+    height 0.75em
+
+    // Position within the option
+    margin-right 0.25em
+
+  // Selected option with checkmark styling
+  select::picker(select)::option:checked::checkmark
+    color $arch-blue
+    background-color transparent
+
+  // Checkmark in focus state
+  select::picker(select)::option:focus-visible::checkmark
+    outline 2px solid $arch-blue
+    outline-offset 1px
+
+  // Checkmark hover state
+  select::picker(select)::option:hover::checkmark
+    color lighten($arch-blue, 10%)
+
+  // Multi-select with checkmarks
+  select[multiple]::picker(select)::option:checked::checkmark
+    // In multi-select, show checkmark for selected items
+    &::after
+      content "✓"
+
+
+// =============================================================================
+// EDIT FORM ENHANCEMENTS (MediaWiki)
+// =============================================================================
+
+// Edit form container
+.mw-editform
+.edit-form
+  margin 1em 0
+
+// Main edit textarea
+#wpTextbox1
+.mw-editarea
+  width 100%
+  min-height 400px
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.6
+  resize vertical
+  transition border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $muted
+
+// Edit summary input styling
+#wpSummary
+.mw-summary
+  width 100%
+  padding 0.6em 0.9em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-size 0.95em
+  transition all 0.2s ease
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $muted
+
+// Summary label with character counter
+.mw-summary-label
+.summary-label-wrapper
+  display flex
+  justify-content space-between
+  align-items center
+  margin-bottom 0.5em
+
+  label
+    color $lighter
+    font-weight 500
+
+  .char-counter
+    font-variant-numeric tabular-nums
+    color $muted
+    font-size 0.8em
+
+    &.near-limit
+      color $orange
+
+    &.at-limit
+      color $secondary-red
+
+// Minor edit checkbox
+.mw-editsection-checkbox
+.minor-edit-wrapper
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 0.75em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+
+  input[type="checkbox"]
+    accent-color $arch-blue
+    width 1.1em
+    height 1.1em
+
+  label
+    color $lighter
+    font-size 0.9em
+    cursor pointer
+
+// Watch this page checkbox
+.watch-page-wrapper
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 0.75em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+
+  input[type="checkbox"]
+    accent-color $arch-blue
+
+  label
+    color $lighter
+    font-size 0.9em
+    cursor pointer
+
+// Edit checkboxes container
+.mw-edit-options
+.edit-options
+  display flex
+  flex-wrap wrap
+  gap 0.75em
+  margin 1em 0
+
+// Preview/Show changes tabs
+.mw-edit-tabs
+.edit-tabs
+  display flex
+  gap 0
+  margin-bottom 1em
+  border-bottom 2px solid $border-subtle
+
+  .edit-tab
+    padding 0.6em 1.2em
+    background-color transparent
+    border 1px solid transparent
+    border-bottom none
+    border-radius $border-radius-sm $border-radius-sm 0 0
+    color $muted
+    font-size 0.9em
+    font-weight 500
+    cursor pointer
+    transition all 0.2s ease
+    margin-bottom -2px
+
+    &:hover
+      background-color rgba($arch-blue, 0.05)
+      color $secondary-blue
+
+    &.active
+    &.selected
+      background-color $darker
+      border-color $border-subtle
+      color $arch-blue
+      border-bottom 2px solid $darker
+
+// Tab content areas
+.mw-preview
+.mw-diff
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1em
+
+// Edit toolbar button styling
+.mw-editTools
+.edit-toolbar
+  display flex
+  flex-wrap wrap
+  gap 0.25em
+  padding 0.5em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-bottom none
+  border-radius $border-radius-md $border-radius-md 0 0
+  margin-bottom 0
+
+  .editbutton
+  button
+    padding 0.4em 0.6em
+    background-color transparent
+    border 1px solid transparent
+    border-radius $border-radius-sm
+    color $muted
+    font-size 0.85em
+    cursor pointer
+    transition all 0.15s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.2)
+      color $secondary-blue
+
+    &:active
+      transform scale(0.95)
+
+  // Character insertion buttons
+  .char-insert
+    font-family $font-mono
+    min-width 2em
+    text-align center
+
+// Toolbar groups
+.toolbar-group
+  display flex
+  gap 0.15em
+  padding-right 0.5em
+  margin-right 0.5em
+  border-right 1px solid $border-subtle
+
+  &:last-child
+    border-right none
+    padding-right 0
+    margin-right 0
+
+// Save/Preview/Changes buttons container
+.mw-edit-buttons
+.edit-buttons
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 1em
+
+// Primary save button
+#wpSave
+.save-button
+  padding 0.6em 1.5em
+  background linear-gradient(135deg, $green, rgba($green, 0.8))
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-size 1em
+  font-weight 600
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($green, 0.3)
+
+  &:active
+    transform translateY(0)
+
+// Preview button
+#wpPreview
+.preview-button
+  padding 0.6em 1.2em
+  background-color $arch-blue
+  border none
+  border-radius $border-radius-md
+  color $darker
+  font-size 0.95em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.8)
+
+// Show changes button
+#wpDiff
+.changes-button
+  padding 0.6em 1.2em
+  background-color transparent
+  border 1px solid $arch-blue
+  border-radius $border-radius-md
+  color $secondary-blue
+  font-size 0.95em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.1)
+
+// Cancel link
+.cancel-link
+  padding 0.6em 1em
+  color $muted
+  font-size 0.9em
+  text-decoration none
+
+  &:hover
+    color $secondary-red
+
+// Copyright warning
+.mw-editnotice
+.edit-notice
+  padding 0.75em 1em
+  background-color rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  font-size 0.85em
+  color $lighter
+
+  a
+    color $secondary-blue
+
+// Section edit link
+.mw-editsection
+  font-size 0.75em
+  margin-left 0.5em
+
+  a
+    color $muted
+    text-decoration none
+    padding 0.2em 0.4em
+    border-radius $border-radius-sm
+    transition all 0.2s ease
+
+    &:hover
+      background-color rgba($arch-blue, 0.1)
+      color $secondary-blue
+
+// Edit conflict warning
+.mw-editconflict
+.edit-conflict
+  padding 1em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+  h2
+    color $secondary-red
+    margin 0 0 0.5em 0
+    font-size 1.1em
+
+// Responsive edit form
+@media (max-width 768px)
+  #wpTextbox1
+  .mw-editarea
+    min-height 250px
+    font-size 0.85em
+
+  .mw-edit-tabs
+    flex-wrap wrap
+
+    .edit-tab
+      flex 1
+      text-align center
+      border-radius $border-radius-sm
+      border 1px solid $border-subtle
+      margin-bottom 0.25em
+
+  .mw-edit-buttons
+  .edit-buttons
+    flex-direction column
+
+    button
+    input[type="submit"]
+      width 100%
+
+// =============================================================================
+// FILE INPUT STYLING (::file-selector-button)
+// Browser support: 97%+
+// =============================================================================
+
+// File input container styling
+input[type="file"]
+  width 100%
+  padding 0
+  background-color transparent
+  border none
+  color $lighter
+  font-size 0.95em
+  cursor pointer
+
+  // File name display area
+  &::file-selector-button
+    display inline-flex
+    align-items center
+    gap 0.4em
+    padding 0.5em 1em
+    margin-inline-end 0.75em
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+    border none
+    border-radius $border-radius-md
+    color $darker
+    font-family inherit
+    font-size 0.9em
+    font-weight 600
+    cursor pointer
+    transition all $transition-fast
+
+    &:hover
+      background linear-gradient(135deg, rgba($arch-blue, 0.9), rgba($arch-blue, 0.75))
+      transform translateY(-1px)
+      box-shadow 0 2px 8px rgba($arch-blue, 0.3)
+
+    &:active
+      transform translateY(0)
+      box-shadow none
+
+  // Focus state
+  &:focus-visible
+    outline none
+
+    &::file-selector-button
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+  // Disabled state
+  &:disabled
+    cursor not-allowed
+    opacity 0.5
+
+    &::file-selector-button
+      cursor not-allowed
+      background linear-gradient(135deg, $muted, rgba($muted, 0.85))
+
+// Alternative styled file input wrapper
+.file-input-wrapper
+  position relative
+  display inline-flex
+  align-items center
+  gap 0.75em
+
+  input[type="file"]
+    position absolute
+    inset 0
+    opacity 0
+    cursor pointer
+    width 100%
+    height 100%
+
+  .file-input-button
+    display inline-flex
+    align-items center
+    gap 0.4em
+    padding 0.5em 1em
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+    border none
+    border-radius $border-radius-md
+    color $darker
+    font-size 0.9em
+    font-weight 600
+    cursor pointer
+    pointer-events none
+    transition all $transition-fast
+
+  .file-input-filename
+    color $light
+    font-size 0.9em
+    font-variant-numeric tabular-nums
+
+    &.empty
+      color $muted
+      font-style italic
+
+  &:hover .file-input-button
+    background linear-gradient(135deg, rgba($arch-blue, 0.9), rgba($arch-blue, 0.75))
+    transform translateY(-1px)
+    box-shadow 0 2px 8px rgba($arch-blue, 0.3)
+
+  &:has(input:focus-visible) .file-input-button
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// Multiple file input
+input[type="file"][multiple]
+  &::file-selector-button
+    &::before
+      content "📁 "
+
+// Accept-specific styling
+input[type="file"][accept="image/*"]
+  &::file-selector-button
+    &::before
+      content "🖼️ "
+
+input[type="file"][accept=".pdf"]
+input[type="file"][accept="application/pdf"]
+  &::file-selector-button
+    &::before
+      content "📄 "
+
+// Drag and drop file zone
+.file-drop-zone
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  gap 0.75em
+  padding 2em
+  border 2px dashed $border-subtle
+  border-radius $border-radius-lg
+  background-color rgba($arch-blue, 0.02)
+  text-align center
+  transition all $transition-fast
+  cursor pointer
+
+  &:hover
+  &.drag-over
+    border-color $arch-blue
+    background-color rgba($arch-blue, 0.08)
+
+  .drop-icon
+    font-size 2.5em
+    color $secondary-blue
+    opacity 0.8
+
+  .drop-text
+    color $lighter
+    font-size 1em
+    font-weight 500
+
+  .drop-hint
+    color $muted
+    font-size 0.85em
+
+  input[type="file"]
+    position absolute
+    inset 0
+    opacity 0
+    cursor pointer
+    width 100%
+    height 100%
+
+// Responsive file input
+@media (max-width 768px)
+  input[type="file"]
+    &::file-selector-button
+      display block
+      width 100%
+      margin-bottom 0.5em
+      margin-inline-end 0
+      text-align center
+
+  .file-input-wrapper
+    flex-direction column
+    width 100%
+
+    .file-input-filename
+      text-align center
+      width 100%
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
+
+// High contrast mode
+@media (forced-colors active)
+  input[type="file"]
+    &::file-selector-button
+      border 2px solid ButtonText
+      background-color ButtonFace
+      color ButtonText
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  input[type="file"]
+    &::file-selector-button
+      transition none
+
+// =============================================================================
+// PAGE MOVE FORM (Special:MovePage)
+// =============================================================================
+
+// Move form container
+.mw-movepage
+.movepage-form
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin 1em 0
+
+// Form fieldset
+.mw-movepage fieldset
+.movepage-fieldset
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 0 0 1em 0
+
+  legend
+    color $lighter
+    font-weight 600
+    padding 0 0.5em
+
+// New title input section
+.mw-movepage-newtitle
+.new-title-section
+  margin-bottom 1em
+
+  label
+    display block
+    color $lighter
+    font-weight 500
+    margin-bottom 0.5em
+
+  input[type="text"]
+    width 100%
+    padding 0.6em 0.9em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-size 1em
+    transition all 0.2s ease
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Namespace selector with title input group
+.mw-movepage-namespace
+.namespace-title-group
+  display flex
+  gap 0.5em
+  align-items stretch
+
+  select
+    padding 0.6em 0.9em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-size 1em
+    min-width 120px
+    cursor pointer
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+  input[type="text"]
+    flex 1
+
+// Reason textarea
+.mw-movepage-reason
+.reason-section
+  margin-bottom 1em
+
+  label
+    display block
+    color $lighter
+    font-weight 500
+    margin-bottom 0.5em
+
+  textarea
+  input[type="text"]
+    width 100%
+    padding 0.6em 0.9em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    color $lighter
+    font-size 0.95em
+    min-height 80px
+    resize vertical
+    transition all 0.2s ease
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Options checkboxes
+.mw-movepage-options
+.move-options
+  display flex
+  flex-direction column
+  gap 0.75em
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+
+  .option-item
+    display flex
+    align-items flex-start
+    gap 0.5em
+
+    input[type="checkbox"]
+      margin-top 0.2em
+      accent-color $arch-blue
+
+    label
+      color $light
+      font-size 0.9em
+      cursor pointer
+      line-height 1.4
+
+      .option-description
+        display block
+        color $muted
+        font-size 0.85em
+        margin-top 0.2em
+
+// Talk page move option (highlighted)
+.talk-move-option
+  padding 0.75em
+  background-color rgba($arch-blue, 0.08)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+
+  label
+    color $lighter
+    font-weight 500
+
+// Leave redirect option
+.leave-redirect-option
+  padding-left 0.5em
+
+// Watch pages option
+.watch-pages-option
+  padding 0.5em
+  background-color rgba($green, 0.05)
+  border-radius $border-radius-sm
+
+// Submit button
+.mw-movepage-submit
+.move-submit
+  margin-top 1.5em
+  display flex
+  gap 0.75em
+
+  input[type="submit"]
+  button
+    padding 0.6em 1.5em
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+    border none
+    border-radius $border-radius-md
+    color $darker
+    font-size 1em
+    font-weight 600
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      transform translateY(-1px)
+      box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+    &:active
+      transform translateY(0)
+
+  .cancel-link
+    padding 0.6em 1em
+    background transparent
+    border none
+    color $muted
+    font-size 0.95em
+    text-decoration none
+    cursor pointer
+
+    &:hover
+      color $secondary-red
+
+// Warning messages
+.mw-movepage-warning
+.movepage-warning
+  padding 1em
+  background-color rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+  strong
+    color $orange
+
+// Error messages
+.mw-movepage-error
+.movepage-error
+  padding 1em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+// Success message
+.mw-movepage-success
+.movepage-success
+  padding 1em
+  background-color rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-md
+  margin-bottom 1em
+  color $lighter
+
+  a
+    color $secondary-blue
+
+// Log entries display
+.mw-movepage-log
+.move-log
+  margin-top 1.5em
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  h3
+    color $lighter
+    font-size 1em
+    margin 0 0 0.75em 0
+
+  .log-entry
+    padding 0.5em 0
+    border-bottom 1px solid $border-subtle
+    font-size 0.9em
+    color $light
+
+    &:last-child
+      border-bottom none
+
+    .log-timestamp
+      font-variant-numeric tabular-nums
+      color $muted
+      margin-right 0.75em
+
+    a
+      color $secondary-blue
+
+// Responsive move form
+@media (max-width 768px)
+  .mw-movepage-namespace
+  .namespace-title-group
+    flex-direction column
+
+    select
+      width 100%
+
+  .mw-movepage-submit
+  .move-submit
+    flex-direction column
+
+    button
+    input[type="submit"]
+      width 100%
+
+// =============================================================================
+// :BLANK PSEUDO-CLASS FOR EMPTY FORM FIELDS
+// =============================================================================
+// Browser support: 87%+ (Chrome 120+, Firefox 109+, Safari 16+)
+// Style truly empty inputs (no whitespace) - more specific than :placeholder-shown
+
+:blank
+  // Input fields that are truly blank (no content at all)
+  &
+  input:blank
+  textarea:blank
+  select:blank
+    background-color rgba($darker, 0.5)
+    border-color $border-subtle
+
+    &::placeholder
+      color $muted
+      opacity 0.7
+
+// Style focused blank inputs differently
+input:blank:focus-visible
+textarea:blank:focus-visible
+select:blank:focus-visible
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+  background-color $darker
+
+// Blank inputs with floating labels pattern
+.form-field.has-floating-label
+  input:blank
+  textarea:blank
+    & + label
+    & ~ label
+      top 50%
+      transform translateY(-50%)
+      font-size 1em
+      color $muted
+
+// Visual distinction for optional blank fields
+input:blank[optional]
+textarea:blank[optional]
+select:blank[optional]
+  background linear-gradient(135deg, rgba($darker, 0.3) 0%, rgba($dark, 0.3) 100%)
+  border-style dashed
+
+// :not(:blank) - fields with content
+// Use for reverse styling (content present)
+:not(:blank)
+  &
+  input:not(:blank)
+  textarea:not(:blank)
+  select:not(:blank)
+    background-color $darker
+    border-color $border-subtle
+
+    &::placeholder
+      color $light
+      opacity 1
+
+// =============================================================================
+// :autofill PSEUDO-CLASS - Style Autofilled Inputs (85%+ browser support)
+// =============================================================================
+// Style inputs when browser autofills them (username, password, etc.)
+// Browser support: Chrome/Edge 99+, Firefox 119+, Safari 16.5+
+// Note: WebKit prefix required for Safari
+
+// Apply to all autofilled inputs
+input:-webkit-autofill
+input:-webkit-autofill:hover
+input:-webkit-autofill:focus
+input:-webkit-autofill:active
+  // Override default yellow background
+  -webkit-text-fill-color $light
+  -webkit-box-shadow 0 0 0px 1000px $darker inset
+  transition background-color 5000s ease-in-out 0s
+
+// Username/password autofill specific styling
+input[name="wpName"]:autofill
+input[name="wpName"]:-webkit-autofill
+input[name="wpPassword"]:autofill
+input[name="wpPassword"]:-webkit-autofill
+input[type="email"]:autofill
+input[type="email"]:-webkit-autofill
+input[type="tel"]:autofill
+input[type="tel"]:-webkit-autofill
+input[type="username"]:autofill
+input[type="username"]:-webkit-autofill
+  background-color $darker
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Credit card / payment autofill styling
+input[autocomplete="cc-name"]:autofill
+input[autocomplete="cc-name"]:-webkit-autofill
+input[autocomplete="cc-number"]:autofill
+input[autocomplete="cc-number"]:-webkit-autofill
+  background linear-gradient(135deg, rgba($arch-blue, 0.05) 0%, rgba($darker, 0.1) 100%) !important
+  border-color $arch-blue
+
+// Prevent autofill animation flicker
+@supports (-webkit-appearance: none)
+  input:-webkit-autofill
+    animation-name onautofillstart
+
+@keyframes onautofillstart
+  from
+    background transparent
+  to
+    background $darker
+
+// =============================================================================
+// :indeterminate PSEUDO-CLASS - Style Indeterminate Checkboxes/Radios (97%+ browser support)
+// =============================================================================
+// Style checkboxes/radios in indeterminate state (neither checked nor unchecked)
+// Also applies to progress bars without value
+
+// Indeterminate checkbox styling
+input[type="checkbox"]:indeterminate
+input[type="checkbox"]:indeterminate:hover
+input[type="checkbox"]:indeterminate:focus
+  // Custom indeterminate indicator
+  appearance none
+  -webkit-appearance none
+  background-color $darker
+  border-color $border-subtle
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  // Custom checkmark for indeterminate state
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%) rotate(45deg)
+    width 8px
+    height 8px
+    background $arch-blue
+    border-radius 1px
+
+// Indeterminate radio button styling
+input[type="radio"]:indeterminate
+input[type="radio"]:indeterminate:hover
+input[type="radio"]:indeterminate:focus
+  appearance none
+  -webkit-appearance none
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    width 6px
+    height 6px
+    background $arch-blue
+    border-radius 50%
+
+// Progress bar in indeterminate state
+progress:indeterminate
+progress:not([value]):indeterminate
+  appearance none
+  -webkit-appearance none
+  background $darker
+  border none
+  border-radius $border-radius-sm
+
+  &::-webkit-progress-bar
+    background $darker
+    border-radius $border-radius-sm
+
+  &::-webkit-progress-value
+    background linear-gradient(90deg, $arch-blue 0%, lighten($arch-blue, 15%) 50%, $arch-blue 100%)
+    background-size 200% 100%
+    animation indeterminate-progress 1.5s ease-in-out infinite
+    border-radius $border-radius-sm
+
+  &::-moz-progress-bar
+    background linear-gradient(90deg, $arch-blue 0%, lighten($arch-blue, 15%) 50%, $arch-blue 100%)
+    background-size 200% 100%
+    animation indeterminate-progress 1.5s ease-in-out infinite
+    border-radius $border-radius-sm
+
+@keyframes indeterminate-progress
+  0%
+    background-position 100% 0
+  100%
+    background-position -100% 0
+
+// Checkbox container for custom styling
+.mw-ui-checkbox
+  input[type="checkbox"]:indeterminate
+    & + label::before
+      background-color $arch-blue
+      border-color $arch-blue
+
+      &::after
+        content ''
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        width 8px
+        height 2px
+        background $light
+        border-radius 1px
+
+// =============================================================================
+// :placeholder-shown Detection (97%+ browser support)
+// =============================================================================
+// Style inputs based on empty state - more specific than :empty
+// Useful for floating label patterns, empty state indicators
+// Browser support: Chrome/Edge 99+, Firefox 119+, Safari 16.5+
+
+// Input with placeholder visible (empty state)
+input:placeholder-shown
+textarea:placeholder-shown
+select:placeholder-shown
+  border-color $border-subtle
+  color $muted
+
+  // Subtle indication that field is empty
+  & + label
+  & ~ .field-label
+    color $muted
+
+// Input without placeholder (has content)
+input:not(:placeholder-shown)
+textarea:not(:placeholder-shown)
+select:not(:placeholder-shown)
+  border-color $arch-blue
+  color $light
+
+  & + label
+  & ~ .field-label
+    color $arch-blue
+
+// Floating label pattern - label moves when placeholder is not shown
+.form-field.floating-label
+  position relative
+
+  input
+  textarea
+    &::placeholder
+      opacity 0
+
+  // When placeholder is shown (input empty), position label as placeholder
+  input:placeholder-shown + label
+  textarea:placeholder-shown + label
+    position absolute
+    top 50%
+    left 1em
+    transform translateY(-50%)
+    font-size 1em
+    color $muted
+    pointer-events none
+    transition all 0.2s ease
+
+  // When placeholder not shown (input has content), move label up
+  input:not(:placeholder-shown) + label
+  textarea:not(:placeholder-shown) + label
+    top -0.75em
+    left 0.5em
+    font-size 0.75em
+    color $arch-blue
+    background $base
+    padding 0 0.25em
+    border-radius $border-radius-sm
+
+// Placeholder-shown with :focus for better UX
+input:placeholder-shown:focus
+textarea:placeholder-shown:focus
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  & + label
+    color $arch-blue
+
+// Optional field styling with placeholder-shown
+input:placeholder-shown[optional]
+textarea:placeholder-shown[optional]
+select:placeholder-shown[optional]::after
+  border-style dashed
+  border-color $border-subtle
+
+// Required field - hide "required" indicator when placeholder is shown
+input:placeholder-shown[required] + label .required-indicator
+input:placeholder-shown ~ .required-indicator
+  display none
+
+input:not(:placeholder-shown)[required] + label .required-indicator
+input:not(:placeholder-shown) ~ .required-indicator
+  display inline
+
+// =============================================================================
+// :in-range / :out-of-range - Range Validation Styling
+// =============================================================================
+
+// Note: 97%+ browser support
+// Style inputs based on min/max range constraints
+// Applies to number, range, date, time, datetime-local inputs with min/max
+
+// In-range: value is within min/max bounds
+input:in-range
+textarea:in-range
+  border-color $arch-blue
+  background lighten($base, 0.5%)
+  transition border-color 0.2s ease, background-color 0.2s ease
+
+// Add subtle glow for in-range state
+input:in-range:focus
+textarea:in-range:focus
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Out-of-range: value is outside min/max bounds
+input:out-of-range
+textarea:out-of-range
+  border-color $secondary-red
+  background rgba($secondary-red, 0.05)
+  transition border-color 0.2s ease, background-color 0.2s ease
+
+// Add warning glow for out-of-range state
+input:out-of-range:focus
+textarea:out-of-range:focus
+  box-shadow 0 0 0 3px rgba($secondary-red, 0.2)
+
+// Range input specific styling for in-range (thumb color)
+input[type="range"]:in-range
+  &::-webkit-slider-thumb
+    background $arch-blue
+
+  &::-moz-range-thumb
+    background $arch-blue
+
+// Range input specific styling for out-of-range (warning thumb)
+input[type="range"]:out-of-range
+  &::-webkit-slider-thumb
+    background $secondary-red
+
+  &::-moz-range-thumb
+    background $secondary-red
+
+// Combined with :valid/:invalid for extra feedback
+input:in-range:valid
+input:out-of-range:invalid
+  // Additional styling if needed
+  // Most browsers handle this automatically
+
+// Reduced motion support for range inputs
+@media (prefers-reduced-motion reduce)
+  input:in-range
+  input:out-of-range
+    transition none
+
+// =============================================================================
+// :READ-ONLY / :READ-WRITE STATES (97%+ browser support)
+// Visual distinction for editable vs static/readonly content
+// =============================================================================
+
+// Read-only inputs - visual distinction for non-editable content
+input:read-only
+textarea:read-only
+select:read-only
+  background $lighter
+  border-color $light
+  color $light
+  cursor not-allowed
+  opacity 0.8
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Read-only with explicit class (for manual control)
+input.readonly
+textarea.readonly
+select.readonly
+  background $lighter
+  border-color $light
+  color $light
+  cursor not-allowed
+  opacity 0.8
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Read-only with placeholder - style placeholder differently
+input:read-only::placeholder
+textarea:read-only::placeholder
+  color $light
+
+// Read-write (editable) inputs - default styling reinforced
+input:read-write
+textarea:read-write
+select:read-write
+  background $base
+  border-color $border
+  color $text
+  cursor text
+  transition border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Read-write with explicit class
+input.editable
+textarea.editable
+select.editable
+  background $base
+  border-color $border
+  color $text
+  cursor text
+
+  &:focus-visible
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Read-only fieldsets - style entire sections as readonly
+fieldset:read-only
+  background $lighter
+  opacity 0.9
+
+  legend
+    color $light
+    font-style italic
+
+// ContentEditable areas that are read-only
+[contenteditable="false"]:read-write
+  background $lighter
+  border 1px dashed $light
+  cursor default
+
+// Form sections with all inputs readonly - container styling
+.form-readonly
+  background $lighter
+  border-radius 4px
+  padding 1em
+
+  input:read-only
+  textarea:read-only
+  select:read-only
+    background lighten($lighter, 2%)
+
+  > legend
+    color $light
+    font-weight 600
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  input:read-only
+  input:read-write
+  textarea:read-only
+  textarea:read-write
+    transition none
+
+// =============================================================================
+// :DEFAULT PSEUDO-CLASS
+// Style default form elements for better UX and accessibility
+// Browser support: 97%+
+// =============================================================================
+
+// Default submit button styling
+input[type="submit"]:default
+input[type="image"]:default
+button[type="submit"]:default
+button.default
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+  &:hover
+    background $secondary-blue
+    box-shadow 0 0 0 4px rgba($arch-blue, 0.4)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.5)
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Default radio button in a group
+input[type="radio"]:default
+  border-color $arch-blue
+
+  &:checked
+    background $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+
+// Default checkbox in a group
+input[type="checkbox"]:default
+  border-color $arch-blue
+
+  &:checked
+    background $arch-blue
+    box-shadow  0 0 0 3px rgba($arch-blue, 0.3)
+
+// Default option in a select
+select:default
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+
+  &:focus-visible
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.4)
+
+// Default button in button group
+.button-group
+  button:default
+    background $arch-blue
+    color $darker
+    font-weight 600
+
+    &::before
+      content "✓ "
+      opacity 0.7

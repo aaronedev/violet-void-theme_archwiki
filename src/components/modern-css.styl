@@ -1,0 +1,3015 @@
+// Modern CSS Features (Progressive Enhancement)
+// Uses cutting-edge CSS features that may not be supported in all browsers
+// These enhancements will be automatically applied where supported
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CONTAINER QUERIES (@container) - Component-Based Responsive
+// =============================================================================
+
+// Note: @container support is good (89%+ browser support as of 2024)
+// Allows components to respond to their container size, not just viewport
+
+// Sidebar as a container
+.mw-sidebar
+#vector-main-menu
+  container-type inline-size
+  container-name sidebar
+
+// Content area as a container
+#content
+.mw-body
+  container-type inline-size
+  container-name content
+
+// TOC as a container
+#toc
+.toc
+  container-type inline-size
+  container-name toc
+
+// Example: Adjust sidebar layout based on container width
+@container sidebar (max-width: 250px)
+  .vector-menu-content
+    padding 0.25em
+
+  .vector-menu-heading
+    font-size 0.75em
+
+// =============================================================================
+// SCROLL-DRIVEN ANIMATIONS - Performance Animations
+// =============================================================================
+
+// Note: scroll() and view() support is growing (75%+ in 2024)
+// These run on the compositor thread for better performance
+
+// Fade in elements as they scroll into view
+@supports (animation-timeline: view())
+  .mw-heading
+  .mw-parser-output > h2
+  .mw-parser-output > h3
+    animation fade-in-up both
+    animation-timeline view()
+    animation-range entry 0% entry 25%
+
+  @keyframes fade-in-up
+    from
+      opacity 0
+      transform translateY(20px)
+
+    to
+      opacity 1
+      transform translateY(0)
+
+// Parallax effect for page headers (subtle)
+@supports (animation-timeline: scroll())
+  .mw-first-heading
+    animation parallax-header linear
+    animation-timeline scroll()
+    animation-range 0vh 50vh
+
+  @keyframes parallax-header
+    from
+      transform translateY(0)
+
+    to
+      transform translateY(-10px)
+
+// =============================================================================
+// SCROLL STATE CONTAINERS (@scroll-state) - Scroll Snapping Detection
+// =============================================================================
+
+// Note: @scroll-state support is growing (85%+ browser support as of 2024)
+// Allows querying scroll state in CSS - detecting snapped positions
+// Using @css{} wrapper since Stylus doesn't natively support @scroll-state
+
+/* stylelint-disable stylus/at-rule-no-unknown, selector-pseudo-class-no-unknown, stylus/single-line-comment */
+@css {
+  @supports (scroll-state: snapped) {
+    /* TOC items - highlight when snapped into view */
+    @scroll-state (snapped: y) {
+      #toc li,
+      .toc li {
+        outline: 2px solid var(--accent-color, #6c5ce7);
+        outline-offset: 2px;
+      }
+    }
+
+    /* Scrollable sections with snap - visual feedback */
+    .mw-parser-output {
+      scroll-snap-type: y proximity;
+    }
+
+    /* Gallery items - highlight when snapped */
+    .gallery-item {
+      scroll-snap-align: center;
+    }
+
+    /* Carousel items - snap to center */
+    .mwcarousel-item {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+  }
+
+  /* :snapped pseudo-class for elements that are snapped */
+  @supports (selector(:snapped)) {
+    :snapped {
+      outline: 2px solid var(--accent-color, #6c5ce7);
+      outline-offset: 2px;
+    }
+
+    :snapped-y {
+      border-left: 3px solid var(--accent-color, #6c5ce7);
+    }
+
+    :snapped-x {
+      border-top: 3px solid var(--accent-color, #6c5ce7);
+    }
+  }
+}
+/* stylelint-enable */
+
+// =============================================================================
+// @starting-style - Entry Animations
+// =============================================================================
+
+// Note: @starting-style support is growing (85%+ in 2024)
+// Allows defining initial styles for elements entering the DOM
+// Using @css for @starting-style since Stylus doesn't support it
+
+/* stylelint-disable stylus/single-line-comment, selector-type-no-unknown */
+@css {
+  @supports (@starting-style) {
+    /* Dialogs and modals */
+    dialog {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @starting-style {
+      dialog {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* Dropdowns */
+    .vector-dropdown-content,
+    .oo-ui-popupWidget-popup {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    @starting-style {
+      .vector-dropdown-content,
+      .oo-ui-popupWidget-popup {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Notifications */
+    .mw-notification {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @starting-style {
+      .mw-notification {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+  }
+}
+/* stylelint-enable stylus/single-line-comment, selector-type-no-unknown */
+
+// =============================================================================
+// SUBGRID - Better Grid Alignment
+// =============================================================================
+
+// Note: subgrid support is good (88%+ in 2024)
+// Allows nested grids to align with parent grid tracks
+
+@supports (grid-template-rows: subgrid)
+  // Table of contents with aligned items
+  #toc ul
+  .toc ul
+    display grid
+    grid-template-rows subgrid
+    gap 0.25em
+
+  // Infobox with aligned sections
+  .infobox tbody
+    display grid
+    grid-template-rows subgrid
+
+  // Navigation boxes
+  .navbox-table tbody
+    display grid
+    grid-template-rows subgrid
+
+// =============================================================================
+// =============================================================================
+// SCROLL SNAP - Better Scroll Behavior
+// =============================================================================
+
+// Enhanced scroll snapping for navigation
+.vector-menu-content
+  scroll-snap-type y proximity
+
+  li
+    scroll-snap-align start
+
+// =============================================================================
+// SCROLL PADDING - Account for Sticky Headers
+// =============================================================================
+
+// When navigating to anchors (hash links), the sticky header covers content.
+// scroll-padding-top on html ensures the browser accounts for this offset.
+// scroll-margin-top on targets ensures proper positioning for in-page links.
+
+// Root scroll padding for hash navigation
+html
+  scroll-padding-top 5em
+
+// TOC links need scroll margin for proper positioning
+#toc a
+.toc a
+  scroll-margin-top 5em
+
+// Headings as anchor targets need scroll margin
+.mw-heading
+h2[id]
+h3[id]
+h4[id]
+  scroll-margin-top 5em
+
+// Smooth scrolling for TOC links
+@supports (scroll-behavior: smooth)
+  #toc a
+  .toc a
+    scroll-behavior smooth
+
+// =============================================================================
+// BACKDROP FILTER - Frosted Glass Effects
+// =============================================================================
+
+// Note: backdrop-filter support is good (93%+ in 2024)
+// Allows blur and other effects behind elements
+
+@supports (backdrop-filter: blur(10px))
+  // Sticky header with frosted glass
+  .vector-sticky-header
+    background rgba($base, 0.8)
+    backdrop-filter blur(12px) saturate(180%)
+    -webkit-backdrop-filter blur(12px) saturate(180%)
+
+  // Dropdowns with frosted glass
+  .vector-dropdown-content
+  .oo-ui-popupWidget-popup
+    background rgba($dark, 0.9)
+    backdrop-filter blur(16px) saturate(180%)
+    -webkit-backdrop-filter blur(16px) saturate(180%)
+
+  // Modals with frosted glass
+  .oo-ui-window-frame
+    background rgba($base, 0.95)
+    backdrop-filter blur(20px)
+    -webkit-backdrop-filter blur(20px)
+
+
+// =============================================================================
+// REDUCED TRANSPARENCY - Accessibility Preference (92%+ browser support)
+// =============================================================================
+
+// Note: prefers-reduced-transparency support is good (92%+ as of 2024)
+// Respects user preference for reduced transparency (Windows 10+ setting)
+
+@media (prefers-reduced-transparency reduce)
+  // Remove backdrop-filter transparency
+  .vector-sticky-header
+    background $dark !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .vector-dropdown-content
+  .oo-ui-popupWidget-popup
+    background $base !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .oo-ui-window-frame
+    background $darker !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  // Solid backgrounds for panels
+  .mw-sidebar
+  #vector-main-menu
+    background $darker !important
+
+// =============================================================================
+
+// FIELD SIZING - Auto-Growing Textareas
+// =============================================================================
+
+// Note: field-sizing support is new (Chrome 122+, 2024)
+// Allows textareas to auto-grow based on content
+
+@supports (field-sizing: content)
+  textarea
+  .oo-ui-textInputWidget-textarea
+    field-sizing content
+    min-height 3em
+    max-height 20em
+
+// =============================================================================
+// :has() SELECTOR - Parent Selection Based on Children (89%+ browser support)
+// =============================================================================
+
+// Note: :has() support is good (89%+ as of 2024)
+// Allows styling parents based on their children state
+// Using @css for :has() selectors for better Stylus compatibility
+
+@css {
+  /* Form validation states */
+  /* Highlight form containers with invalid inputs */
+  .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:invalid) {
+    background: rgba(255, 68, 68, 0.05);
+    border-left: 3px solid var(--arch-red, #ff4444);
+    padding-left: 0.5em;
+  }
+
+  /* Success state for valid inputs */
+  .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:valid:not(:placeholder-shown)) {
+    background: rgba(68, 255, 68, 0.05);
+    border-left: 3px solid var(--arch-green, #44ff44);
+    padding-left: 0.5em;
+  }
+
+  /* OOUI form validation */
+  .oo-ui-fieldLayout:has(.oo-ui-inputWidget input:invalid) {
+    background: rgba(255, 68, 68, 0.05);
+    border-left: 3px solid var(--arch-red, #ff4444);
+    padding-left: 0.5em;
+  }
+
+  /* Empty content detection */
+  .mw-parser-output > *:has(:empty) {
+    opacity: 0.5;
+  }
+
+  /* Highlight sections with empty paragraphs */
+  .mw-heading:has(+ p:empty) {
+    opacity: 0.6;
+  }
+
+  /* Parent styling based on children state */
+  /* Style list items that contain links */
+  li:has(> a) {
+    margin-left: -0.5em;
+    padding-left: 0.5em;
+  }
+
+  /* Highlight navigation items with active links */
+  .vector-menu-content li:has(a.mw-selflink) {
+    background: rgba(var(--arch-blue-rgb, 23, 147, 209), 0.1);
+    font-weight: 600;
+  }
+
+  /* Table row highlighting based on cell class */
+  /* Highlight rows with deprecated class */
+  .wikitable tbody tr:has(td.deprecated) {
+    opacity: 0.6;
+    text-decoration: line-through;
+  }
+
+  /* Note: :contains() is not valid CSS - use JS or add classes to HTML for text-based selection */
+
+  /* Card/list hover states affecting siblings */
+  /* Dim sibling items when hovering */
+  .mw-parser-output > ul > li:has(a:hover),
+  .mw-parser-output > ol > li:has(a:hover) {
+    opacity: 1;
+  }
+
+  .mw-parser-output > ul:has(li a:hover) > li:not(:has(a:hover)) {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .mw-parser-output > ol:has(li a:hover) > li:not(:has(a:hover)) {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Infobox rows with images */
+  .infobox tr:has(img) {
+    text-align: center;
+    background: rgba(var(--base-rgb, 25, 25, 35), 0.3);
+  }
+
+  /* Highlight sections containing code */
+  .mw-heading:has(+ .mw-parser-output pre),
+  .mw-heading:has(+ .mw-parser-output code) {
+    border-left: 3px solid var(--arch-blue, #1793d1);
+    padding-left: 0.5em;
+  }
+
+  /* Navigation boxes with nested content */
+  .navbox-list:has(ul) {
+    padding-left: 1em;
+  }
+
+  /* Categories box with items */
+  .mw-normal-catlinks:has(ul li) {
+    background: rgba(var(--base-rgb, 25, 25, 35), 0.2);
+    padding: 0.5em;
+    border-radius: 4px;
+  }
+
+  /* Table of contents with active section */
+  #toc:has(a.active) {
+    border-left: 3px solid var(--arch-blue, #1793d1);
+  }
+
+  /* Message boxes with icons */
+  .mw-message-box:has(.mw-message-box-icon) {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+
+  /* Form sections with required fields */
+  .mw-htmlform-field:has([required]) {
+    border-left: 2px solid var(--arch-blue, #1793d1);
+  }
+
+  /* Highlight template documentation */
+  .mw-parser-output:has(.template-documentation) {
+    border: 1px dashed rgba(var(--arch-blue-rgb, 23, 147, 209), 0.3);
+    padding: 1em;
+    margin: 1em 0;
+  }
+}
+
+// =============================================================================
+// TRANSITION BEHAVIOR - Discrete Property Transitions (80%+ browser support)
+// =============================================================================
+
+// Note: transition-behavior support is growing (Chrome 117+, Safari 17.5+, 80%+ as of 2024)
+// Allows transitioning discrete properties like display, overlay, and visibility
+// Must be combined with @starting-style for full enter/leave animations
+// Using @css for transition-behavior since Stylus doesn't support the allow-discrete keyword
+
+@css {
+  @supports (transition-behavior: allow-discrete) {
+    /* ==========================================================================
+       COLLAPSIBLE SECTIONS - Smooth Expand/Collapse
+       ========================================================================== */
+
+    /* MediaWiki collapsible elements */
+    .mw-collapsible {
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    .mw-collapsible.mw-collapsed {
+      display: none;
+    }
+
+    /* HTML5 details/summary elements */
+    details {
+      transition: display 0.3s allow-discrete;
+    }
+
+    details[open] {
+      display: block;
+    }
+
+    /* Details content animation */
+    details > *:not(summary) {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @starting-style {
+      details > *:not(summary) {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ==========================================================================
+       DROPDOWNS & POPOVERS - Smooth Show/Hide
+       ========================================================================== */
+
+    /* Vector dropdown menus */
+    .vector-dropdown-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: display 0.2s allow-discrete, opacity 0.2s ease, transform 0.2s ease, overlay 0.2s allow-discrete;
+    }
+
+    .vector-dropdown:hover .vector-dropdown-content,
+    .vector-dropdown:focus-within .vector-dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .vector-dropdown:hover .vector-dropdown-content,
+      .vector-dropdown:focus-within .vector-dropdown-content {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* OOUI popup widgets */
+    .oo-ui-popupWidget-popup {
+      display: none;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: display 0.2s allow-discrete, opacity 0.2s ease, transform 0.2s ease, overlay 0.2s allow-discrete;
+    }
+
+    .oo-ui-popupWidget-popup:not([hidden]) {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .oo-ui-popupWidget-popup:not([hidden]) {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Native popovers */
+    [popover] {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, transform 0.25s ease, overlay 0.25s allow-discrete;
+    }
+
+    [popover]:popover-open {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      [popover]:popover-open {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* ==========================================================================
+       MODALS & DIALOGS - Smooth Entry/Exit
+       ========================================================================== */
+
+    /* HTML5 dialog element */
+    dialog {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease, overlay 0.3s allow-discrete;
+    }
+
+    dialog[open] {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* OOUI modals */
+    .oo-ui-window-frame {
+      display: none;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease, overlay 0.3s allow-discrete;
+    }
+
+    .oo-ui-window-frame:not([hidden]) {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      .oo-ui-window-frame:not([hidden]) {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+    }
+
+    /* ==========================================================================
+       NOTIFICATIONS & TOASTS - Slide Animations
+       ========================================================================== */
+
+    /* MediaWiki notifications */
+    .mw-notification {
+      display: none;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .mw-notification:not([hidden]) {
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @starting-style {
+      .mw-notification:not([hidden]) {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Echo notifications */
+    .mw-echo-notification {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .mw-echo-notification:not([hidden]) {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .mw-echo-notification:not([hidden]) {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ==========================================================================
+       TABLE OF CONTENTS - Smooth Expand/Collapse
+       ========================================================================== */
+
+    /* TOC collapsible sections */
+    .toc > ul {
+      display: none;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, max-height 0.25s ease;
+    }
+
+    .toc:not(.tochidden) > ul {
+      display: block;
+      opacity: 1;
+      max-height: 2000px;
+    }
+
+    @starting-style {
+      .toc:not(.tochidden) > ul {
+        opacity: 0;
+        max-height: 0;
+      }
+    }
+
+    /* ==========================================================================
+       SIDEBAR PANELS - Smooth Show/Hide
+       ========================================================================== */
+
+    /* Collapsible sidebar sections */
+    .vector-menu-content {
+      display: none;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: display 0.25s allow-discrete, opacity 0.25s ease, max-height 0.25s ease;
+    }
+
+    .vector-menu:not(.collapsed) .vector-menu-content {
+      display: block;
+      opacity: 1;
+      max-height: 2000px;
+    }
+
+    @starting-style {
+      .vector-menu:not(.collapsed) .vector-menu-content {
+        opacity: 0;
+        max-height: 0;
+      }
+    }
+
+    /* ==========================================================================
+       MESSAGE BOXES - Dismissible Animations
+       ========================================================================== */
+
+    /* Dismissible message boxes */
+    .mw-message-box[dismissible] {
+      display: block;
+      opacity: 1;
+      max-height: 500px;
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    .mw-message-box.dismissed {
+      display: none;
+      opacity: 0;
+      max-height: 0;
+    }
+
+    /* ==========================================================================
+       UTILITY CLASSES - Reusable Transition Patterns
+       ========================================================================== */
+
+    /* Generic fade in/out */
+    .fade-transition {
+      display: none;
+      opacity: 0;
+      transition: display 0.3s allow-discrete, opacity 0.3s ease;
+    }
+
+    .fade-transition.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    @starting-style {
+      .fade-transition.visible {
+        opacity: 0;
+      }
+    }
+
+    /* Generic slide in/out */
+    .slide-transition {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .slide-transition.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      .slide-transition.visible {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    /* Generic scale in/out */
+    .scale-transition {
+      display: none;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: display 0.3s allow-discrete, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .scale-transition.visible {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      .scale-transition.visible {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+
+// Fallback for browsers without transition-behavior support
+// These use traditional opacity/visibility transitions
+@supports not (transition-behavior: allow-discrete)
+  .mw-collapsible.mw-collapsed
+    visibility hidden
+    opacity 0
+    max-height 0
+
+
+  .vector-dropdown-content
+    visibility hidden
+    opacity 0
+
+
+  .vector-dropdown:hover .vector-dropdown-content
+    visibility visible
+    opacity 1
+
+
+  dialog
+    visibility hidden
+    opacity 0
+
+
+  dialog[open]
+    visibility visible
+    opacity 1
+
+
+
+// =============================================================================
+// OVERLAY - Better Modal Positioning
+// =============================================================================
+
+// Note: overlay support is new (Chrome 117+, 2023)
+// Simplifies positioning of overlays
+
+@supports (overlay: auto)
+  dialog
+  .oo-ui-window-frame
+    overlay auto
+
+// =============================================================================
+// PERFORMANCE HINTS
+// =============================================================================
+
+// Hint to browsers about rendering priority
+.mw-parser-output
+  content-visibility auto
+  contain-intrinsic-size auto 500px
+
+// Note: loading and decoding are HTML attributes, not CSS properties
+// They should be set in HTML: <img loading="lazy" decoding="async">
+// Including here for documentation purposes only
+
+// =============================================================================
+// ACCESSIBILITY IMPROVEMENTS
+// =============================================================================
+
+// Better focus indication
+@supports (outline: auto)
+  :focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// High contrast mode support
+/* stylelint-disable media-feature-colon, stylus/single-line-comment */
+@media (forced-colors active)
+  .mw-ui-button
+  .cdx-button
+    border 2px solid CurrentColor
+
+  .oo-ui-checkboxInputWidget [type="checkbox"]
+    border 2px solid CurrentColor
+/* stylelint-enable media-feature-colon, stylus/single-line-comment */
+
+
+// =============================================================================
+// SPELLING & GRAMMAR ERROR STYLING
+// =============================================================================
+// Note: ::spelling-error and ::grammar-error are Chrome/Edge only
+// Firefox doesn't support these - removed to prevent PostCSS build errors
+// These pseudo-elements are not critical for theme functionality
+
+// High contrast for reduced motion preference
+@media screen and (prefers-reduced-motion reduce)
+  [contenteditable="true"]
+  textarea
+    text-decoration-style solid
+    text-decoration-thickness 3px
+
+// =============================================================================
+// PRINT ENHANCEMENTS
+// =============================================================================
+
+@media print
+  // Ensure containers don't interfere with print
+  .mw-sidebar
+  #vector-main-menu
+  #content
+    container-type normal
+
+  // Remove scroll-driven animations for print
+  @supports (animation-timeline: view())
+    *
+      animation none !important
+
+// =============================================================================
+// @PROPERTY - Animatable CSS Custom Properties (93%+ browser support)
+// =============================================================================
+
+// Note: @property support is good (93%+ as of 2024)
+// Allows defining typed custom properties with syntax, inheritance, and initial values
+// Enables CSS transitions on custom properties for smooth theme changes
+// Using @css for @property since Stylus doesn't support it
+
+@css {
+  /* Base theme colors */
+  @property --theme-darker {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #0f0f0f;
+  }
+
+  @property --theme-dark {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #202020;
+  }
+
+  @property --theme-base {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #181818;
+  }
+
+  @property --theme-light {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #bfbfbf;
+  }
+
+  @property --theme-lighter {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #e7e7e7;
+  }
+
+  @property --theme-white {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #ffffff;
+  }
+
+  /* Accent colors */
+  @property --theme-arch-blue {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #8950c7;
+  }
+
+  @property --theme-secondary-blue {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #c7b8ff;
+  }
+
+  @property --theme-red {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #a80065;
+  }
+
+  @property --theme-secondary-red {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #ff1a67;
+  }
+
+  @property --theme-green {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #4bfe9b;
+  }
+
+  @property --theme-orange {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #fd7cff;
+  }
+
+  /* UI colors */
+  @property --theme-comment {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #6f6f6f;
+  }
+
+  @property --theme-muted {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #7a7a7a;
+  }
+
+  @property --theme-cell-delim {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #252525;
+  }
+}
+
+// Apply custom properties to root
+:root
+  --theme-darker $darker
+  --theme-dark $dark
+  --theme-base $base
+  --theme-light $light
+  --theme-lighter $lighter
+  --theme-white $white
+  --theme-arch-blue $arch-blue
+  --theme-secondary-blue $secondary-blue
+  --theme-red $red
+  --theme-secondary-red $secondary-red
+  --theme-green $green
+  --theme-orange $orange
+  --theme-comment $comment
+  --theme-muted $muted
+  --theme-cell-delim $cell-delim
+
+// Example: Smooth color transitions using custom properties
+// These transitions now work because @property defines types
+@supports (background: paint(something))
+  .mw-ui-button
+  .cdx-button
+    transition background-color 0.3s ease, color 0.3s ease
+
+  .vector-dropdown-content
+    transition background-color 0.2s ease
+
+  .oo-ui-popupWidget-popup
+    transition background-color 0.2s ease, border-color 0.2s ease
+
+// =============================================================================
+// =============================================================================
+// COLOR-MIX() FUNCTION - Dynamic Color Mixing (97%+ browser support)
+// =============================================================================
+
+// Note: color-mix() support is excellent (97%+ as of 2024)
+// Allows mixing two colors together in CSS without pre-computing variants
+// Useful for hover states, transparency adjustments, and dynamic color variants
+// Using @css for color-mix() since Stylus parser doesn't support it
+
+@css {
+  @supports (color: color-mix(in srgb, red, blue)) {
+    :root {
+      /* Hover state colors - lighter variants */
+      --arch-blue-hover: color-mix(in srgb, var(--theme-arch-blue), white 15%);
+      --secondary-blue-hover: color-mix(in srgb, var(--theme-secondary-blue), white 15%);
+      --red-hover: color-mix(in srgb, var(--theme-red), white 15%);
+      --secondary-red-hover: color-mix(in srgb, var(--theme-secondary-red), white 15%);
+      --green-hover: color-mix(in srgb, var(--theme-green), white 15%);
+      --orange-hover: color-mix(in srgb, var(--theme-orange), white 15%);
+
+      /* Active/pressed state colors - darker variants */
+      --arch-blue-active: color-mix(in srgb, var(--theme-arch-blue), black 15%);
+      --secondary-blue-active: color-mix(in srgb, var(--theme-secondary-blue), black 15%);
+      --red-active: color-mix(in srgb, var(--theme-red), black 15%);
+      --secondary-red-active: color-mix(in srgb, var(--theme-secondary-red), black 15%);
+      --green-active: color-mix(in srgb, var(--theme-green), black 15%);
+      --orange-active: color-mix(in srgb, var(--theme-orange), black 15%);
+
+      /* Transparent color variants for backgrounds and overlays */
+      --arch-blue-t-10: color-mix(in srgb, var(--theme-arch-blue), transparent 90%);
+      --arch-blue-t-20: color-mix(in srgb, var(--theme-arch-blue), transparent 80%);
+      --arch-blue-t-30: color-mix(in srgb, var(--theme-arch-blue), transparent 70%);
+      --arch-blue-t-50: color-mix(in srgb, var(--theme-arch-blue), transparent 50%);
+
+      --secondary-blue-t-10: color-mix(in srgb, var(--theme-secondary-blue), transparent 90%);
+      --secondary-blue-t-20: color-mix(in srgb, var(--theme-secondary-blue), transparent 80%);
+      --secondary-blue-t-30: color-mix(in srgb, var(--theme-secondary-blue), transparent 70%);
+
+      --red-t-10: color-mix(in srgb, var(--theme-red), transparent 90%);
+      --red-t-20: color-mix(in srgb, var(--theme-red), transparent 80%);
+      --red-t-30: color-mix(in srgb, var(--theme-red), transparent 70%);
+
+      --green-t-10: color-mix(in srgb, var(--theme-green), transparent 90%);
+      --green-t-20: color-mix(in srgb, var(--theme-green), transparent 80%);
+      --green-t-30: color-mix(in srgb, var(--theme-green), transparent 70%);
+
+      --orange-t-10: color-mix(in srgb, var(--theme-orange), transparent 90%);
+      --orange-t-20: color-mix(in srgb, var(--theme-orange), transparent 80%);
+      --orange-t-30: color-mix(in srgb, var(--theme-orange), transparent 70%);
+
+      /* Muted color variants for secondary UI elements */
+      --arch-blue-muted: color-mix(in srgb, var(--theme-arch-blue), var(--theme-muted) 40%);
+      --secondary-blue-muted: color-mix(in srgb, var(--theme-secondary-blue), var(--theme-muted) 40%);
+      --red-muted: color-mix(in srgb, var(--theme-red), var(--theme-muted) 40%);
+      --green-muted: color-mix(in srgb, var(--theme-green), var(--theme-muted) 40%);
+      --orange-muted: color-mix(in srgb, var(--theme-orange), var(--theme-muted) 40%);
+    }
+
+    /* Utility classes for color-mix */
+    .text-hover-light:hover {
+      color: color-mix(in srgb, currentColor, white 20%);
+    }
+
+    .text-hover-dark:hover {
+      color: color-mix(in srgb, currentColor, black 20%);
+    }
+
+    .bg-hover-light:hover {
+      background-color: color-mix(in srgb, currentColor, white 10%);
+    }
+
+    .bg-hover-dark:hover {
+      background-color: color-mix(in srgb, currentColor, black 10%);
+    }
+
+    /* Button hover states using color-mix */
+    .mw-ui-button:hover,
+    .cdx-button:hover {
+      background-color: color-mix(in srgb, var(--theme-arch-blue), white 15%);
+    }
+
+    .mw-ui-button:active,
+    .cdx-button:active {
+      background-color: color-mix(in srgb, var(--theme-arch-blue), black 15%);
+    }
+
+    /* Link hover states */
+    a:hover {
+      color: color-mix(in srgb, var(--theme-secondary-blue), white 15%);
+    }
+
+    a:active {
+      color: color-mix(in srgb, var(--theme-secondary-blue), black 15%);
+    }
+
+    /* Code block hover */
+    code:hover,
+    pre:hover {
+      background-color: color-mix(in srgb, var(--theme-base), var(--theme-arch-blue) 10%);
+    }
+
+    /* Table row hover */
+    .wikitable tbody tr:hover {
+      background-color: color-mix(in srgb, var(--theme-base), var(--theme-arch-blue) 5%);
+    }
+
+    /* Infobox header */
+    .infobox th {
+      background-color: color-mix(in srgb, var(--theme-darker), var(--theme-arch-blue) 20%);
+    }
+
+    /* Focus ring using color-mix */
+    :focus-visible {
+      outline-color: color-mix(in srgb, var(--theme-arch-blue), white 20%);
+    }
+
+    /* Selection color */
+    ::selection {
+      background-color: color-mix(in srgb, var(--theme-arch-blue), transparent 70%);
+    }
+
+    /* Scrollbar thumb */
+    ::-webkit-scrollbar-thumb {
+      background-color: color-mix(in srgb, var(--theme-comment), var(--theme-arch-blue) 30%);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: color-mix(in srgb, var(--theme-comment), var(--theme-arch-blue) 50%);
+    }
+  }
+}
+
+// =============================================================================
+// RELATIVE COLOR SYNTAX - Dynamic Color Variants (88%+ browser support)
+// =============================================================================
+
+// Note: Relative color syntax support is good (88%+ as of 2024)
+// Allows creating color variants dynamically from base colors
+// Using @css for relative color syntax since Stylus doesn't support it
+
+@css {
+  @supports (color: rgb(from red r g b)) {
+    :root {
+      /* Arch-blue variants */
+      --arch-blue-light: rgb(from #8950c7 r g b / 0.5);
+      --arch-blue-lighter: rgb(from #8950c7 r g b / 0.3);
+      --arch-blue-dark: rgb(from #8950c7 calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
+      --arch-blue-darker: rgb(from #8950c7 calc(r * 0.6) calc(g * 0.6) calc(b * 0.6));
+
+      /* Secondary-blue variants */
+      --secondary-blue-muted: rgb(from #c7b8ff r g b / 0.6);
+      --secondary-blue-subtle: rgb(from #c7b8ff r g b / 0.3);
+      --secondary-blue-dark: rgb(from #c7b8ff calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
+
+      /* Red variants */
+      --red-light: rgb(from #a80065 r g b / 0.5);
+      --red-dark: rgb(from #a80065 calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
+
+      /* Secondary-red variants */
+      --secondary-red-muted: rgb(from #ff1a67 r g b / 0.6);
+      --secondary-red-subtle: rgb(from #ff1a67 r g b / 0.3);
+
+      /* Green variants */
+      --green-muted: rgb(from #4bfe9b r g b / 0.6);
+      --green-dark: rgb(from #4bfe9b calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
+
+      /* Orange variants */
+      --orange-muted: rgb(from #fd7cff r g b / 0.6);
+      --orange-subtle: rgb(from #fd7cff r g b / 0.3);
+
+      /* Base/UI variants */
+      --base-lighter-opaque: rgb(from #181818 r g b / 0.8);
+      --base-semi-transparent: rgb(from #181818 r g b / 0.5);
+      --light-muted: rgb(from #bfbfbf r g b / 0.7);
+      --light-subtle: rgb(from #bfbfbf r g b / 0.4);
+
+      /* Comment/muted variants */
+      --comment-light: rgb(from #6f6f6f calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
+      --muted-light: rgb(from #7a7a7a calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
+    }
+  }
+}
+
+// FUTURE ENHANCEMENTS
+// =============================================================================
+
+// Modern CSS features that could be added in the future:
+// - @layer for better cascade control (needs @css wrapper)
+// - Trigonometric functions: sin(), cos(), tan()
+// - Native CSS nesting (when dropping Stylus)
+
+// =============================================================================
+// ACCENT-COLOR - Native Form Control Styling (93%+ browser support)
+// =============================================================================
+
+// Provides native styling for checkboxes, radios, range inputs, and progress bars
+@supports (accent-color: $arch-blue)
+  :root
+    accent-color $arch-blue
+
+  // Form controls inherit accent color
+  input[type="checkbox"]
+  input[type="radio"]
+  input[type="range"]
+  progress
+    accent-color $arch-blue
+
+// =============================================================================
+// TEXT-WRAP - Better Text Wrapping (Chrome 114+, Safari 17.4+)
+// =============================================================================
+
+// Balance headlines for better appearance
+@supports (text-wrap: balance)
+  h1
+  h2
+  h3
+  .mw-heading
+    text-wrap balance
+
+// Pretty wrapping for paragraphs (prevents orphans)
+@supports (text-wrap: pretty)
+  p
+  li
+  dd
+    text-wrap pretty
+
+// =============================================================================
+// SCROLLBAR-GUTTER - Prevent Layout Shift (90%+ browser support)
+// =============================================================================
+
+// Prevents layout shift when content overflows
+@supports (scrollbar-gutter: stable)
+  // Main content areas
+  .mw-body
+  #content
+  .mw-parser-output
+    scrollbar-gutter stable
+
+  // Code blocks
+  pre
+  code
+    scrollbar-gutter stable both-edges
+
+  // Tables that might overflow
+  .wikitable
+  .infobox
+  table.results
+    scrollbar-gutter stable
+
+  // Sidebars
+  .mw-sidebar
+  #vector-main-menu
+    scrollbar-gutter stable
+
+// =============================================================================
+// @SCOPE - Component Isolation (88%+ browser support)
+// =============================================================================
+
+// Note: @scope support is good (88%+ as of 2024)
+// Allows scoped styles that only apply within specific components
+// Using @css for @scope since Stylus doesn't support it
+
+@css {
+  @supports (@scope) {
+    /* Infobox scoped styles */
+    @scope (.infobox) {
+      th { background: rgba(137, 80, 199, 0.1); }
+      td { border-color: rgba(137, 80, 199, 0.2); }
+    }
+
+    /* Wikitable scoped styles */
+    @scope (.wikitable) {
+      th { background: rgba(137, 80, 199, 0.08); }
+    }
+
+    /* Navigation scoped styles */
+    @scope (.vector-menu) {
+      li:hover { background: rgba(137, 80, 199, 0.05); }
+    }
+  }
+}
+
+// =============================================================================
+// COLOR-GAMUT MEDIA QUERY FOR P3 DISPLAYS
+// =============================================================================
+
+// Detect wide-gamut (P3) displays and provide enhanced colors
+// Browser support: 93%+
+@supports (color: color(display-p3 1 1 1))
+  @media (color-gamut p3)
+    // More vibrant accent colors on capable hardware
+    :root
+      --arch-blue-p3 color(display-p3 0.537 0.314 0.78)
+      --secondary-blue-p3 color(display-p3 0.78 0.722 1)
+      --arch-blue var(--arch-blue-p3)
+      --secondary-blue var(--secondary-blue-p3)
+
+    // Enhanced gradients
+    .gradient-primary
+      background linear-gradient(135deg, var(--arch-blue-p3), var(--secondary-blue-p3))
+
+// =============================================================================
+// OKLCH COLOR SPACE
+// =============================================================================
+// Perceptually uniform color space with better L/C/H control than HSL
+// Browser support: 90%+ (Chrome 111+, Safari 15.4+, Firefox 113+)
+// Format: oklch(L% C H)
+//   - L: lightness (0-100%)
+//   - C: chroma (saturation intensity)
+//   - H: hue (0-360 degrees)
+
+// OKLCH provides consistent perceived brightness across hues
+// Use for smooth color transitions and better gradient interpolation
+
+// Example: Smooth color transitions using OKLCH
+@supports (color: oklch(0 0 0))
+  .color-transition
+    transition color 0.3s ease
+
+  // Interactive element states with OKLCH
+  .oklch-link
+    color $arch-blue
+    transition color 0.2s ease
+
+    &:hover
+      color oklch(65% 0.22 280)
+
+    &:active
+      color oklch(45% 0.25 280)
+
+// OKLCH gradients - smoother than HSL
+// Note: gradient interpolation in oklch is supported in modern browsers
+// Using direct oklch values for gradient colors
+.gradient-oklch
+  background linear-gradient(135deg, oklch(55% 0.2 280), oklch(80% 0.1 280))
+
+.gradient-surface-oklch
+  background linear-gradient(135deg, oklch(15% 0.025 280), oklch(12% 0.02 280))
+
+// P3 gamut enhancement using OKLCH
+@supports (color: oklch(0 0 0)) and (color: oklch(0 0.3 0))
+  @media (color-gamut p3)
+    :root
+      // More saturated colors for P3 displays
+      --oklch-arch-blue oklch(55% 0.25 280)
+      --oklch-green oklch(70% 0.28 150)
+      --oklch-orange oklch(70% 0.28 320)
+
+    // Use OKLCH variants on P3 displays
+    .oklch-enhanced
+      color var(--oklch-arch-blue)
+
+      &.accent-green
+        color var(--oklch-green)
+
+      &.accent-orange
+        color var(--oklch-orange)
+
+// =============================================================================
+// @MEDIA (VIDEO-DYNAMIC-RANGE) FOR HDR DISPLAYS
+// =============================================================================
+// Detect HDR video capability and provide enhanced colors
+// Browser support: 92%+ (Chrome 108+, Firefox 128+, Safari 17.4+)
+// Values: standard, hdr
+
+// HDR-enhanced styling for video content
+@media (video-dynamic-range hdr)
+  // Enhanced video player colors for HDR displays
+  :root
+    --video-player-bg rgba(0, 0, 0, 0.95)
+    --video-progress-hdr linear-gradient(90deg, oklch(55% 0.25 280), oklch(70% 0.28 150))
+    --video-controls-hdr rgba(255, 255, 255, 0.15)
+
+  // Video element enhancements
+  video
+    // HDR-optimized contrast
+    filter contrast(1.1) saturate(1.15)
+
+  // Video player container
+  .mw-video-player
+    // Brighter controls for HDR
+    .video-controls
+      background linear-gradient(transparent, rgba(0, 0, 0, 0.8))
+
+    // Enhanced progress bar
+    .video-progress
+      background linear-gradient(90deg, var(--arch-blue), var(--secondary-blue))
+
+    // HDR indicator badge
+    .hdr-indicator
+      display inline-flex
+      background oklch(55% 0.25 280)
+      color white
+
+// Standard dynamic range (SDR) fallback
+@media (video-dynamic-range standard)
+  :root
+    --video-player-bg rgba(0, 0, 0, 0.85)
+    --video-progress-hdr linear-gradient(90deg, #8950c7, #c7b8ff)
+    --video-controls-hdr rgba(255, 255, 255, 0.1)
+
+// =============================================================================
+// :IS() FOR SELECTOR GROUPING
+// =============================================================================
+
+// Simplify complex selectors: :is(h1, h2, h3):hover
+// Browser support: 97%+
+// Stylus: Works directly
+
+// Heading hover effects
+:is(h1, h2, h3, h4, h5, h6):hover
+  color $lighter
+
+// Focus states for interactive elements
+:is(a, button, input, select, textarea):focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Code and pre hover
+:is(code, pre):hover
+  background-color rgba($arch-blue, 0.05)
+
+// =============================================================================
+// :WHERE() FOR ZERO-SPECIFICITY SELECTORS
+// =============================================================================
+
+// Low-specificity overrides for theming
+// Browser support: 97%+
+// Stylus: Works directly
+
+// Base link styles (easily overridden)
+:where(a)
+  color $secondary-blue
+  text-decoration none
+
+// Base list styles
+:where(ul, ol)
+  padding-inline-start 1.5em
+
+// Base heading margins
+:where(h1, h2, h3, h4, h5, h6)
+  margin 0.5em 0
+
+
+// =============================================================================
+// ANIMATION-COMPOSITION FOR LAYERED ANIMATIONS
+// =============================================================================
+
+// Control how multiple animations combine
+// Browser support: 87%+ (Chrome 112+, Safari 16+)
+
+// Add animations together
+.animate-add
+  animation-composition add
+
+// Accumulate animations
+.animate-accumulate
+  animation-composition accumulate
+
+// Replace (default)
+.animate-replace
+  animation-composition replace
+
+
+// =============================================================================
+// BACKDROP-FILTER FOR GLASSMORPHISM
+// =============================================================================
+
+// Blur behind elements
+// Browser support: 97%+
+
+.glass
+  backdrop-filter blur(10px)
+  -webkit-backdrop-filter blur(10px)
+  background-color rgba($base, 0.7)
+
+.glass-strong
+  backdrop-filter blur(20px) saturate(1.2)
+  -webkit-backdrop-filter blur(20px) saturate(1.2)
+  background-color rgba($base, 0.5)
+
+// Navigation glass effect
+.mw-header
+#mw-head
+  backdrop-filter blur(12px)
+  -webkit-backdrop-filter blur(12px)
+
+// =============================================================================
+// FILTER EXPANSION
+// =============================================================================
+
+// Various filter effects
+// Browser support: 97%+
+
+// Blur unfocused elements
+.blur-light
+  filter blur(2px)
+
+// Brightness adjustments
+.brighten
+  filter brightness(1.1)
+
+.darken
+  filter brightness(0.9)
+
+// Saturate/desaturate
+.saturate
+  filter saturate(1.3)
+
+.desaturate
+  filter saturate(0)
+
+// Grayscale for disabled states
+.disabled
+.muted-element
+  filter grayscale(1)
+  opacity 0.6
+
+// Hue rotate for variations
+.hue-shift
+  filter hue-rotate(180deg)
+
+// Invert for dark/light mode helpers
+.invert
+  filter invert(1)
+
+// Sepia for vintage
+.vintage
+  filter sepia(0.5)
+
+// Drop shadow for irregular shapes
+.drop-shadow
+  filter drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3))
+
+// =============================================================================
+// INDIVIDUAL TRANSFORM PROPERTIES
+// =============================================================================
+
+// translate, rotate, scale without transform shorthand
+// Browser support: 97%+
+
+.translate-up
+  translate 0 -10px
+
+.translate-center
+  translate -50% -50%
+
+.rotate-45
+  rotate 45deg
+
+.rotate-90
+  rotate 90deg
+
+.scale-up
+  scale 1.1
+
+.scale-down
+  scale 0.9
+
+// Combined transforms
+.transform-hover:hover
+  translate 0 -2px
+  scale 1.02
+  transition translate 0.2s, scale 0.2s
+
+
+// =============================================================================
+// ANIMATION PROPERTIES
+// =============================================================================
+
+// animation-delay negative for mid-cycle start
+// Browser support: 97%+
+
+.pre-start
+  animation-delay -1s
+
+// animation-direction alternate-reverse
+// Browser support: 97%+
+
+.bounce-reverse
+  animation-direction alternate-reverse
+
+// animation-fill-mode both
+// Browser support: 97%+
+
+.fill-both
+  animation-fill-mode both
+
+// animation-play-state paused
+// Browser support: 97%+
+
+.paused
+  animation-play-state paused
+
+// =============================================================================
+// OUTLINE ENHANCEMENTS
+// =============================================================================
+
+// outline-offset for spaced outlines
+// Browser support: 97%+
+
+.outline-spaced
+  outline 2px solid $arch-blue
+  outline-offset 4px
+
+// outline-style auto for platform focus
+// Browser support: 97%+
+
+.outline-native
+  outline-style auto
+  outline-color $arch-blue
+
+// =============================================================================
+// BORDER IMAGE
+// =============================================================================
+
+// border-image for decorative borders
+// Browser support: 97%+
+
+.border-image-gradient
+  border-image linear-gradient(135deg, $arch-blue, $secondary-blue) 1
+
+.border-image-slice
+  border-image-slice 30
+
+.border-image-round
+  border-image-repeat round
+
+
+// =============================================================================
+// INPUT CAPABILITY DETECTION
+// =============================================================================
+
+// Hover capability detection
+// Browser support: 97%+
+
+@media (hover hover)
+  .hover-only
+    display block
+  .touch-only
+    display none
+
+@media (hover none)
+  .hover-only
+    display none
+  .touch-only
+    display block
+
+// Pointer precision
+@media (pointer fine)
+  .fine-pointer
+    // Smaller targets OK
+
+@media (pointer coarse)
+  // Increase touch targets
+  button
+  a
+    min-height 44px
+    min-width 44px
+
+// Any-hover/any-pointer for hybrid devices
+@media (any-hover hover)
+  .has-hover-capable
+    display block
+
+@media (any-pointer fine)
+  .has-fine-pointer
+    display block
+
+// Touch-only devices (finger input, no precise pointer)
+@media (any-pointer coarse)
+  .has-coarse-pointer
+    display block
+
+  // Larger touch targets for coarse pointers
+  .touch-friendly
+    min-height 48px
+    min-width 48px
+
+  // Simplified interactions for touch
+  .touch-optimized
+    touch-action manipulation
+
+// =============================================================================
+// COLOR PREFERENCE QUERIES
+// =============================================================================
+
+// Forced colors (high contrast mode)
+// Browser support: 95%+
+
+@media (forced-colors active)
+  .forced-colors-adapt
+    // Use system colors
+    color CanvasText
+    background-color Canvas
+    border-color CanvasText
+
+// Inverted colors detection
+@media (inverted-colors inverted)
+  img
+    filter invert(1)
+
+// =============================================================================
+// SCRIPTING DETECTION
+// =============================================================================
+
+@media (scripting enabled)
+  .js-required
+    display block
+
+@media (scripting none)
+  .no-js-fallback
+    display block
+
+  .js-required
+    display none
+
+// Update frequency
+@media (update slow)
+  // Reduce animations for e-ink
+  *
+    animation none !important
+    transition none !important
+
+// =============================================================================
+// DISPLAY CAPABILITY QUERIES
+// =============================================================================
+
+// Resolution / Pixel Density Detection
+// Browser support: 97%+
+// Detect screen DPI/Pixel density to serve higher-res assets for retina displays
+
+// Standard resolution (1dppx)
+@media (resolution 1dppx)
+  .retina-ready
+    // Standard resolution - load normal images
+
+// High resolution (2dppx and above - Retina/HiDPI displays)
+@media (min-resolution 2dppx)
+  .retina-ready
+    // High resolution display - serve @2x images
+    background-image -webkit-image-set(
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+    background-image image-set(
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+
+// Very high resolution (3dppx and above)
+@media (min-resolution 3dppx)
+  .ultra-hi-res
+    background-image -webkit-image-set(
+      url("../images/logo@3x.png") 3x,
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+    background-image image-set(
+      url("../images/logo@3x.png") 3x,
+      url("../images/logo@2x.png") 2x,
+      url("../images/logo.png") 1x
+    )
+
+// Low resolution fallback
+@media (max-resolution 0.9dppx)
+  .low-res-fallback
+    // Simplify gradients for low bandwidth
+    background-image linear-gradient($base, $darker)
+
+// Color Index Detection
+// Browser support: 97%+
+// Detect indexed color displays to simplify gradients for limited color devices
+
+@media (color-index 0)
+  // True color (no index)
+  .color-adapt
+    gradient-surface()
+
+@media (color-index 256)
+  // 256 colors or less - simplify styling
+  .color-adapt
+    // Reduce gradient complexity
+    background $base
+    border 1px solid $border-subtle
+
+// Monochrome Display Detection
+// Browser support: 97%+
+// Detect e-ink, monochrome screens for high contrast styling
+@media (monochrome)
+  .mono-adapt
+    // High contrast for monochrome
+    color black
+    background white
+    border 2px solid black
+
+  img
+    filter grayscale(100%)
+
+@media (monochrome 0)
+  // Not monochrome - full color
+  .mono-adapt
+    color $text
+    background $base
+
+
+// =============================================================================
+// WEB COMPONENTS / SHADOW DOM
+// =============================================================================
+
+// Custom element styling
+// Browser support: 97%+
+
+// Style defined custom elements
+// Removed: :defined applies to all elements, causing massive layout issues with inline elements
+// :defined
+//   display block
+
+// Shadow DOM parts
+::part(button)
+  background $arch-blue
+  color $darker
+  border-radius $border-radius-sm
+  padding 0.5em 1em
+  border none
+  cursor pointer
+
+  &:hover
+    background $secondary-blue
+
+// Slotted content
+::slotted(.highlight)
+  background rgba($arch-blue, 0.2)
+  padding 0.1em 0.2em
+  border-radius 2px
+
+// =============================================================================
+// :host Pseudo-class for Shadow DOM
+// =============================================================================
+
+// Style shadow host from inside shadow DOM
+// Browser support: 97%+
+// Note: These only work from WITHIN a shadow root
+
+// Base :host styling - the element hosting the shadow tree
+:host
+  display block
+  box-sizing border-box
+
+// :host with functional pseudo-class - match based on host's state
+:host(:hover)
+  outline none
+
+:host(:focus)
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+:host(:focus-visible)
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// :host() with attribute selector - style based on host's own attributes
+:host([disabled])
+  opacity 0.5
+  pointer-events none
+
+:host([variant="primary"])
+  background $arch-blue
+  color $darker
+
+:host([variant="secondary"])
+  background $base
+  color $text
+
+:host([variant="danger"])
+  background $error-red
+  color $light
+
+// Size variants via host attributes
+:host([size="small"])
+  font-size 0.875rem
+  padding 0.25em 0.5em
+
+:host([size="large"])
+  font-size 1.25rem
+  padding 0.75em 1.5em
+
+// Full-width variant
+:host([full-width])
+  width 100%
+
+// Rounded variant
+:host([rounded])
+  border-radius $border-radius-lg
+
+// =============================================================================
+// :HOST-CONTEXT() - Contextual Shadow Host Styling
+// =============================================================================
+// :host-context() allows styling the shadow host based on its ancestors
+// Browser support: 97%+
+// Useful for theming custom elements based on parent context (dark mode, RTL, etc.)
+
+// Base :host-context() - style based on any ancestor matching selector
+:host-context(.dark-theme)
+  --component-bg #1a1a1a
+  --component-text #e0e0e0
+
+:host-context(.light-theme)
+  --component-bg #ffffff
+  --component-text #333333
+
+// :host-context() with functional selector - style when ancestor has class
+:host-context(.theme-primary)
+  --component-accent var(--theme-primary, #8b5cf6)
+
+:host-context(.theme-danger)
+  --component-accent var(--theme-danger, #ef4444)
+
+// :host-context() for direction-based styling
+:host-context([dir="rtl"])
+  --text-align right
+  --padding-start 1rem
+  --padding-end 0
+
+:host-context([dir="ltr"])
+  --text-align left
+  --padding-start 0
+  --padding-end 1rem
+
+// :host-context() for responsive breakpoints
+:host-context(.mobile-view)
+  --component-width 100%
+  --component-padding 0.5rem
+
+:host-context(.desktop-view)
+  --component-width auto
+  --component-padding 1rem
+
+// :host-context() for print styles
+:host-context(.print-only)
+  display block
+
+:host-context(.no-print)
+  display none
+
+// :host-context() combined with :host - conditional host styling based on context
+:host-context(.highlight):host(.active)
+  outline 2px solid var(--accent)
+  box-shadow 0 0 10px var(--accent)
+
+// :host-context() for language-based styling
+:host-context(:lang(en))
+  --component-direction ltr
+
+:host-context(:lang(ar))
+  --component-direction rtl
+
+:host-context(:lang(ja))
+  --component-font "Noto Sans JP", sans-serif
+
+// :host-context() for media query context (limited support - some browsers)
+:host-context(.dark-mode)
+  color-scheme dark
+
+:host-context(.high-contrast)
+  --component-border 2px solid currentColor
+
+// Utility classes for :host-context() variants
+.host-context-dark
+  &::part(base)
+    background #1a1a1a
+    color #e0e0e0
+
+.host-context-light
+  &::part(base)
+    background #ffffff
+    color #333333
+
+.host-context-compact
+  &::part(base)
+    padding 0.25rem
+    font-size 0.875rem
+
+.host-context-spacious
+  &::part(base)
+    padding 1.5rem
+    font-size 1.125rem
+
+// =============================================================================
+// SYSTEM COLORS
+// =============================================================================
+
+// Extended system color keywords
+// Browser support: 97%+
+
+.system-accent
+  color AccentColor
+  background-color AccentColorText
+
+.system-selected
+  color SelectedItemText
+  background-color SelectedItem
+
+.system-mark
+  color MarkText
+  background-color Mark
+
+// light-dark() function
+// Browser support: 92%+
+
+.adaptive-text
+  color light-dark(#333, #ccc)
+
+.adaptive-bg
+  background-color light-dark(#fff, #1a1a2e)
+
+// =============================================================================
+// MASK AND CLIP PATH
+// =============================================================================
+
+// CSS masking
+// Browser support: 97%+
+
+.mask-gradient
+  mask-image linear-gradient(to bottom, black, transparent)
+  -webkit-mask-image linear-gradient(to bottom, black, transparent)
+
+// Clip path shapes
+.clip-circle
+  clip-path circle(50%)
+
+.clip-ellipse
+  clip-path ellipse(50% 30%)
+
+.clip-polygon
+  clip-path polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+// Triangle
+.clip-triangle
+  clip-path polygon(50% 0, 0 100%, 100% 100%)
+
+// =============================================================================
+// CONTAIN PROPERTY
+// =============================================================================
+
+// Performance isolation
+// Browser support: 97%+
+
+.contain-layout
+  contain layout
+
+.contain-paint
+  contain paint
+
+.contain-strict
+  contain strict
+
+.contain-content
+  contain content
+
+// =============================================================================
+// CONTAINER QUERIES
+// =============================================================================
+
+// Container-based responsive design
+// Browser support: 87%+
+
+.container-query
+  container-type inline-size
+  container-name sidebar
+
+@container (min-width: 300px)
+  .container-responsive
+    flex-direction row
+
+@container (max-width: 299px)
+  .container-responsive
+    flex-direction column
+
+
+// =============================================================================
+// ::target-text PSEUDO-ELEMENT
+// =============================================================================
+
+// Style text highlighted by URL fragments (#:~:text=...)
+// Browser support: 85%+ (Chrome 89+, Safari 17.2+, Edge 89+)
+// Note: Uses theme accent color for highlighted text
+
+@css {
+  ::target-text {
+    background-color: rgba(199, 146, 234, 0.3); /* --arch-blue with alpha */
+    color: inherit;
+    text-shadow: none;
+  }
+
+  /* Dark mode variant */
+  @media (prefers-color-scheme: dark) {
+    ::target-text {
+      background-color: rgba(199, 146, 234, 0.4);
+    }
+  }
+}
+
+// Alternative approach using custom properties
+// For browsers that support ::target-text with custom properties
+.target-text-highlight
+  background-color rgba($arch-blue, 0.3)
+  color inherit
+
+// =============================================================================
+// ATTR() WITH TYPE() FUNCTION - Dynamic Values from HTML Attributes
+// =============================================================================
+
+// Note: attr() with type() support is growing (90%+ browser support)
+// Allows parsing HTML attributes as typed CSS values
+// Enables dynamic component sizing and styling from data attributes
+// Using @css for attr() type() syntax since Stylus doesn't support it
+
+@css {
+  @supports (width: attr(data-width px)) {
+    /* Dynamic sizing from data attributes */
+    /* Components can be sized via HTML data-* attributes */
+
+    /* Dynamic width components */
+    [data-width] {
+      width: attr(data-width px);
+    }
+
+    /* Dynamic height components */
+    [data-height] {
+      height: attr(data-height px);
+    }
+
+    /* Dynamic max-width constraints */
+    [data-max-width] {
+      max-width: attr(data-max-width px);
+    }
+
+    /* Dynamic min-width constraints */
+    [data-min-width] {
+      min-width: attr(data-min-width px);
+    }
+
+    /* Dynamic padding */
+    [data-padding] {
+      padding: attr(data-padding em);
+    }
+
+    /* Dynamic margin */
+    [data-margin] {
+      margin: attr(data-margin em);
+    }
+
+    /* Dynamic gap for flex/grid containers */
+    [data-gap] {
+      gap: attr(data-gap em);
+    }
+
+    /* Card components with dynamic sizing */
+    .archwiki-card[data-card-width] {
+      width: attr(data-card-width px);
+      max-width: 100%;
+    }
+
+    /* Sidebar with configurable width */
+    .mw-sidebar[data-sidebar-width] {
+      width: attr(data-sidebar-width px);
+      min-width: attr(data-sidebar-width px);
+    }
+
+    /* Infobox with dynamic sizing */
+    .infobox[data-infobox-width] {
+      width: attr(data-infobox-width px);
+    }
+
+    /* Code blocks with configurable max-height */
+    pre[data-max-lines] {
+      max-height: attr(data-max-lines em, 20em);
+    }
+
+    /* Progress bars with dynamic value */
+    progress[data-progress]::progress-bar {
+      width: attr(data-progress %);
+    }
+
+    /* Dynamic border radius */
+    [data-radius] {
+      border-radius: attr(data-radius px);
+    }
+
+    /* Dynamic font size */
+    [data-font-size] {
+      font-size: attr(data-font-size rem);
+    }
+
+    /* Color values from data attributes */
+    /* Note: attr() with type(<color>) has limited support */
+
+    /* Dynamic accent color for buttons */
+    .mw-ui-button[data-accent-color] {
+      background-color: attr(data-accent-color type(<color>), var(--theme-arch-blue));
+      border-color: attr(data-accent-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Dynamic text color */
+    [data-text-color] {
+      color: attr(data-text-color type(<color>), var(--theme-light));
+    }
+
+    /* Dynamic background color */
+    [data-bg-color] {
+      background-color: attr(data-bg-color type(<color>), var(--theme-base));
+    }
+
+    /* Dynamic border color */
+    [data-border-color] {
+      border-color: attr(data-border-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Status indicators with dynamic colors */
+    .status-indicator[data-status-color] {
+      background-color: attr(data-status-color type(<color>));
+      border-color: attr(data-status-color type(<color>));
+    }
+
+    /* Tag/badge components with dynamic colors */
+    .archwiki-tag[data-tag-color] {
+      background-color: attr(data-tag-color type(<color>), var(--theme-arch-blue));
+      color: var(--theme-darker);
+    }
+
+    /* Alert boxes with dynamic accent */
+    .mw-message-box[data-box-accent] {
+      border-left-color: attr(data-box-accent type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Highlight elements with dynamic background */
+    .highlight[data-highlight-color] {
+      background-color: attr(data-highlight-color type(<color>), rgba(137, 80, 199, 0.2));
+    }
+
+    /* Navigation items with dynamic active color */
+    .vector-menu-item[data-active-color].active {
+      background-color: attr(data-active-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Progress indicators */
+    .progress-bar[data-progress-color] {
+      background-color: attr(data-progress-color type(<color>), var(--theme-arch-blue));
+    }
+
+    /* Fallback values with var() */
+    /* attr() supports fallback values */
+    [data-spacing] {
+      padding: attr(data-spacing rem, 1rem);
+    }
+
+    /* Complex selectors combining multiple attrs */
+    .archwiki-component[data-width][data-height] {
+      width: attr(data-width px);
+      height: attr(data-height px);
+    }
+
+    /* Responsive components using attr with media queries */
+    /* Note: attr() values are computed, not reactive to media changes */
+    /* Use CSS custom properties for reactive values */
+
+    /* Grid layouts with dynamic columns */
+    [data-columns] {
+      grid-template-columns: repeat(attr(data-columns type(<integer>), 3), 1fr);
+    }
+
+    /* List styling with dynamic marker */
+    ol[data-start] {
+      counter-reset: item attr(data-start type(<integer>), 1);
+    }
+  }
+}
+
+// Fallback for browsers without attr() type() support
+// Uses CSS custom properties as alternative
+
+.archwiki-card
+  --card-width auto
+  width var(--card-width)
+  max-width 100%
+
+.mw-sidebar
+  --sidebar-width 250px
+  width var(--sidebar-width)
+  min-width var(--sidebar-width)
+
+.infobox
+  --infobox-width 300px
+  width var(--infobox-width)
+
+.mw-ui-button[data-accent-color]
+  --button-accent var(--theme-arch-blue)
+  background-color var(--button-accent)
+  border-color var(--button-accent)
+
+// JavaScript can set these custom properties as fallback
+// Example JS: element.style.setProperty('--card-width', '400px')
+
+
+// =============================================================================
+// @FONT-PALETTE-VALUES - Custom Color Font Palettes (87%+ browser support)
+// =============================================================================
+
+// Define custom palettes for emoji and color fonts
+// Usage: font-palette: --emoji-void;
+@css{}
+
+@font-palette-values --emoji-void
+  --font-color-1 #8950c7
+  --font-color-2 #c7b8ff
+  --font-color-3 #fd7cff
+
+@font-palette-values --emoji-archive
+  --font-color-1 #29adff
+  --font-color-2 #00a8a4
+  --font-color-3 #42ff97
+
+@font-palette-values --emoji-contrast
+  --font-color-1 #ffffff
+  --font-color-2 #bfbfbf
+  --font-color-3 #e7e7e7
+
+// CSS custom property for JS-based palette selection
+:root
+  --custom-palette normal
+
+
+// =============================================================================
+// @MEDIA (HOVER: NONE) - Touch-Only Devices (97%+ browser support)
+// =============================================================================
+
+// Scroll-driven animations - animate based on scroll position
+// Provides smooth, performant animations without JavaScript
+// Browser support: 85%+ (Chrome 115+, Firefox 123+ behind flag)
+
+/* stylelint-disable stylus/at-rule-no-unknown, selector-pseudo-class-no-unknown, stylus/single-line-comment */
+@css {
+  @supports (animation-timeline: scroll()) {
+    /* Reading progress bar - animates as user scrolls through article */
+    .mw-parser-output {
+      animation-timeline: scroll();
+      animation-name: reading-progress;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+
+    /* Reading progress bar keyframes */
+    @keyframes reading-progress {
+      from {
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      to {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    /* TOC section indicator - highlights current section while scrolling */
+    #toc,
+    .toc {
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+
+    /* Fade-in effect for elements entering viewport */
+    .mw-parser-output > * {
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+      animation-fill-mode: both;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Infobox fade-in as it enters viewport */
+    .infobox,
+    .thumb.tright,
+    .thumb.tleft {
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+      animation-name: infobox-fade-in;
+      animation-fill-mode: both;
+    }
+
+    @keyframes infobox-fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Navbox visibility - subtle scale effect when scrolling into view */
+    .navbox,
+    .vertical-navbox {
+      animation-timeline: view();
+      animation-range: entry 0% cover 20%;
+      animation-name: navbox-scale-in;
+      animation-fill-mode: both;
+    }
+
+    @keyframes navbox-scale-in {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Code block highlight effect while scrolling past */
+    pre,
+    .mw-highlight {
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+      animation-name: code-block-appear;
+    }
+
+    @keyframes code-block-appear {
+      0% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.7;
+      }
+    }
+
+    /* Gallery items - staggered animation when scrolling into view */
+    .gallery,
+    .mw-gallery-traditional {
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+
+    /* Reference section highlight as user scrolls */
+    .references,
+    .ref-list {
+      animation-timeline: view();
+      animation-range: entry 0% cover 20%;
+      animation-name: references-appear;
+    }
+
+    @keyframes references-appear {
+      from {
+        background-color: transparent;
+      }
+      to {
+        background-color: rgba(108, 92, 231, 0.05);
+      }
+    }
+  }
+
+  /* Scroll-driven animations with named timelines */
+  @supports (animation-timeline-name: continuous) {
+    /* Create named timeline for continuous scroll */
+    .mw-body {
+      scroll-timeline: --page-scroll block;
+      animation-timeline: --page-scroll;
+    }
+
+    /* Header shrink effect on scroll */
+    #mw-head,
+    .vector-sticky-p-container {
+      animation-timeline: --page-scroll;
+      animation-range: 0px 100px;
+      animation-name: header-shrink;
+    }
+
+    @keyframes header-shrink {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Sidebar parallax effect */
+    .mw-sidebar {
+      animation-timeline: --page-scroll;
+      animation-range: 0px 500px;
+      animation-name: sidebar-fade;
+    }
+
+    @keyframes sidebar-fade {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+/* Scroll Timeline Named Timelines - Performance optimization for scroll-driven animations
+ * Browser support: 85%+ (Chrome 115+, Edge 115+)
+ * Allows creating named scroll timelines for reusable scroll-driven animations
+ */
+
+@supports (scroll-timeline-name: none) or (scroll-timeline-axis: block)
+  // Named scroll timeline utilities
+  .timeline-page
+    scroll-timeline-name --page-scroll
+    scroll-timeline-axis block
+
+  .timeline-page-inline
+    scroll-timeline-name --page-scroll
+    scroll-timeline-axis inline
+
+  .timeline-vertical
+    scroll-timeline-name --vertical-scroll
+    scroll-timeline-axis block
+
+  .timeline-horizontal
+    scroll-timeline-name --horizontal-scroll
+    scroll-timeline-axis inline
+
+  // View timeline for enter/exit animations
+  .view-timeline-main
+    view-timeline-name --main
+    view-timeline-axis block
+
+  .view-timeline-inline
+    view-timeline-name --inline
+    view-timeline-axis inline
+
+  // Timeline scope - define reusable named timelines
+  .timeline-scope-page
+    timeline-scope --page-scroll
+
+  .timeline-scope-vertical
+    timeline-scope --vertical-scroll
+
+  .timeline-scope-horizontal
+    timeline-scope --horizontal-scroll
+
+  // View timeline insets - adjust when view animations start/end
+  .view-inset-start
+    view-timeline-inset start 0%
+
+  .view-inset-end
+    view-timeline-inset end 0%
+
+  .view-inset-both
+    view-timeline-inset start 10% end 10%
+
+/* Animation range utilities for fine-tuning scroll-driven animations */
+
+@supports (animation-range: 0%)
+  // Entry animations - element entering viewport
+  .range-entry-cover
+    animation-range entry 0% cover 100%
+
+  .range-entry-25
+    animation-range entry 0% cover 25%
+
+  .range-entry-50
+    animation-range entry 0% cover 50%
+
+  .range-entry-75
+    animation-range entry 0% cover 75%
+
+  // Exit animations - element leaving viewport
+  .range-exit-cover
+    animation-range exit 0% cover 100%
+
+  .range-exit-25
+    animation-range exit 0% cover 25%
+
+  .range-exit-50
+    animation-range exit 0% cover 50%
+
+  // Cross animations - element crossing through viewport
+  .range-cross-cover
+    animation-range crossfade 0% cover 100%
+
+  // Contain animations - element contained in viewport
+  .range-contain-cover
+    animation-range contain 0% contain 100%
+
+/* Disable scroll-driven animations for users who prefer reduced motion */
+@media (prefers-reduced-motion reduce)
+  .mw-parser-output > *
+  .infobox
+  .thumb.tright
+  .thumb.tleft
+  .navbox
+  .vertical-navbox
+  pre
+  .mw-highlight
+  .gallery
+  .mw-gallery-traditional
+  .references
+  .ref-list
+    animation none !important
+    animation-timeline none !important
+
+
+// Remove hover-dependent UI and enhance touch experience
+// Use alongside @media (hover: hover) for devices with hover capability
+
+@media (hover none) and (pointer coarse)
+  // Hide hover-dependent elements that don't work on touch
+  .tooltip
+  .mw-title .mw-editsection-like
+    visibility hidden
+
+  // Remove hover states that can stick on touch
+  a:hover
+  button:hover
+  .mw-ui-button:hover
+    background-color inherit
+
+  // Touch-friendly link targets
+  .mw-body-content a
+    padding 0.5em 0.25em // Larger tap area
+    margin -0.5em -0.25em // Maintain layout while expanding tap area
+
+  // Disable hover-based dropdowns - use tap/click instead
+  .vector-sticky-pinned-container
+  .mw-sidebar
+    &:hover .dropdown-menu
+      display none
+
+    .dropdown-menu
+      display block // Always visible on touch
+      position relative
+      opacity 1
+      visibility visible
+      pointer-events auto
+
+  // Larger touch targets for navigation
+  #mw-head .vector-sticky-pinned-container::after
+    min-height 48px
+
+  // Remove hover-based image previews
+  .mw-wiki-logo
+    opacity 1
+
+  // Touch-friendly TOC
+  #toc
+    a
+      padding 0.75em 0.5em
+
+    li
+      margin 0.25em 0
+
+// =============================================================================
+// INSET SHORTHAND - Logical Positioning
+// =============================================================================
+
+// The inset property is the logical equivalent of top/right/bottom/left
+// Provides flow-relative positioning for better RTL support
+// Browser support: 97%+
+
+// Full coverage - replaces top: 0; right: 0; bottom: 0; left: 0;
+.inset-cover
+  inset 0
+
+// Center positioning
+.inset-center
+  inset 50%
+  translate -50% -50%
+
+// Inset from all sides with custom value
+.inset-space
+  &-xs
+    inset 0.25rem
+  &-sm
+    inset 0.5rem
+  &-md
+    inset 1rem
+  &-lg
+    inset 1.5rem
+  &-xl
+    inset 2rem
+
+// Vertical inset only (top/bottom)
+.inset-vertical
+  &-sm
+    inset-block 0.5rem
+  &-md
+    inset-block 1rem
+  &-lg
+    inset-block 1.5rem
+
+// Horizontal inset only (left/right)
+.inset-horizontal
+  &-sm
+    inset-inline 0.5rem
+  &-md
+    inset-inline 1rem
+  &-lg
+    inset-inline 1.5rem
+
+// Inset-start (left in LTR, right in RTL)
+.inset-start
+  &-sm
+    inset-inline-start 0.5rem
+  &-md
+    inset-inline-start 1rem
+  &-lg
+    inset-inline-start 1.5rem
+
+// Inset-end (right in LTR, left in RTL)
+.inset-end
+  &-sm
+    inset-inline-end 0.5rem
+  &-md
+    inset-inline-end 1rem
+  &-lg
+    inset-inline-end 1.5rem
+
+// Inset-block (top/bottom)
+.inset-block
+  &-sm
+    inset-block 0.5rem
+  &-md
+    inset-block 1rem
+  &-lg
+    inset-block 1.5rem
+
+// Inset-inline (left/right)
+.inset-inline
+  &-sm
+    inset-inline 0.5rem
+  &-md
+    inset-inline 1rem
+  &-lg
+    inset-inline 1.5rem
+
+// Fixed positioning with inset shorthand
+.fixed-cover
+  position fixed
+  inset 0
+
+.fixed-center
+  position fixed
+  inset 50%
+  translate -50% -50%
+
+// Absolute positioning with inset for filling container
+.absolute-cover
+  position absolute
+  inset 0
+
+// Sticky positioning improvements
+.sticky-cover
+  position sticky
+  inset-block-start 0
+
+// =============================================================================
+// UPDATE MEDIA QUERY - Display Refresh Capability
+// =============================================================================
+
+// Detect display refresh capability
+// Browser support: 92%+
+// Useful for e-ink displays (slow update) or high-refresh displays (fast)
+// @media (update: slow) - display updates slowly (e-ink)
+// @media (update: none) - no updates possible (printed)
+// @media (update: fast) - frequent updates (typical screens)
+
+// E-ink / slow display optimization
+@media (update slow)
+  // Disable smooth animations for e-ink displays
+  *
+  *::before
+  *::after
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+    scroll-behavior auto !important
+
+  // Keep essential transitions but make them instant
+  a
+  button
+  .mw-ui-button
+    transition-duration 0.01ms !important
+
+  // Disable motion-heavy effects
+  .vector-sticky-pinned-container
+  .mw-parser-output
+  #content
+    // Reduce or disable parallax effects
+    transform none !important
+
+  // Simplify shadows for e-ink
+  .mbox
+  .ambox
+  .infobox
+  .thumb
+    box-shadow none !important
+
+// No update possible (printed output)
+@media (update none)
+  // Additional print-like restrictions
+  .vector-sticky-pinned-container
+  .mw-sidebar
+  #vector-main-menu
+    display none !important
+
+  // Ensure all content is visible
+  body
+    overflow visible !important
+
+// Fast update (typical screens) - no restrictions needed
+// This is the default and needs no special handling
+
+// =============================================================================
+// CUSTOM HIGHLIGHT API - JavaScript-Driven Highlights
+// =============================================================================
+
+// Note: ::highlight pseudo-element support is 85%+ (Chrome 105+, Edge 105+)
+// Requires JavaScript API pairing for custom highlights
+// Below are styles using data attributes that work with JS highlight APIs
+
+// Search results highlight - purple theme for found text
+[data-highlight="search"]
+  background rgba($arch-blue, 0.3)
+  color inherit
+  border-radius 2px
+  padding-inline 1px
+
+// Custom annotation highlight - for user-added notes
+[data-highlight="annotation"]
+  background rgba($arch-blue, 0.2)
+  border-bottom 2px solid $arch-blue
+
+// Find match highlight - in-document search
+[data-highlight="find"]
+  background rgba($orange, 0.35)
+  border-radius 2px
+
+// Current match highlight - active find result
+[data-highlight="current"]
+  background rgba($orange, 0.5)
+  border-radius 2px
+  box-shadow 0 0 0 2px rgba($orange, 0.3)
+
+// Quote highlight - for citation highlighting
+[data-highlight="quote"]
+  background rgba($green, 0.15)
+  border-inline-start 3px solid $green
+  padding-inline-start 0.5em
+
+// Code highlight - for code snippet highlighting
+[data-highlight="code"]
+  background rgba($orange, 0.15)
+  font-family $font-mono
+  font-size 0.95em
+
+// Region highlight - for highlighted regions/sections
+[data-highlight="region"]
+  background rgba($secondary-blue, 0.2)
+  outline 1px dashed $secondary-blue
+
+// Dimmed highlight - for less important matches
+[data-highlight="dimmed"]
+  background rgba($muted, 0.15)
+  color $muted
+
+// Highlight animation for attention
+.highlight-pulse
+  animation highlight-pulse 0.6s ease-out
+
+@keyframes highlight-pulse
+  0%
+    background-color rgba($arch-blue, 0.5)
+  100%
+    background-color transparent
+
+// =============================================================================
+// ::HIGHLIGHT() PSEUDO-ELEMENT - CSS Custom Highlight API
+// =============================================================================
+// Browser support: 85%+ (Chrome 105+, Edge 105+, Safari pending)
+// Requires JavaScript API: CSS.highlights.set('name', range)
+// This provides native text highlighting without modifying DOM
+// stylelint-disable-next-line selector-type-no-unknown
+@css {
+  /* Search results highlight - found text in page search */
+  ::highlight(search-results) {
+    background-color: rgba(130, 100, 255, 0.35);
+    color: inherit;
+    border-radius: 2px;
+  }
+
+  /* Current/active search match highlight */
+  ::highlight(search-current) {
+    background-color: rgba(255, 150, 50, 0.5);
+    color: inherit;
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px rgba(255, 150, 50, 0.3);
+  }
+
+  /* Annotation highlight - user-added notes/marks */
+  ::highlight(annotation) {
+    background-color: rgba(130, 100, 255, 0.25);
+    border-bottom: 2px solid #824cff;
+  }
+
+  /* Selection-like highlight for custom selections */
+  ::highlight(custom-selection) {
+    background-color: rgba(100, 200, 150, 0.3);
+  }
+
+  /* Quote highlight - for citation/reference highlighting */
+  ::highlight(quote) {
+    background-color: rgba(80, 180, 120, 0.2);
+    border-inline-start: 3px solid #50b878;
+  }
+
+  /* Error highlight for validation errors */
+  ::highlight(error) {
+    background-color: rgba(255, 80, 80, 0.25);
+    text-decoration: underline wavy #ff5050;
+  }
+
+  /* Warning highlight for caution items */
+  ::highlight(warning) {
+    background-color: rgba(255, 180, 50, 0.3);
+    border-bottom: 2px dashed #ffb432;
+  }
+
+  /* Link highlight - for discovered links within content */
+  ::highlight(link-found) {
+    background-color: rgba(80, 140, 255, 0.2);
+    text-decoration: underline;
+  }
+}
+
+// Utility class to work with JS highlight API
+.highlight-range
+  background-color rgba($arch-blue, 0.25)
+  color inherit
+
+// Reduced motion for highlights
+@media (prefers-reduced-motion reduce)
+  .highlight-pulse
+    animation none
+
+  [data-highlight]
+    transition none

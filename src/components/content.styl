@@ -1,0 +1,1972 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// =============================================================================
+// ULTRA HIGH SPECIFICITY MAIN CONTENT DARK MODE
+// Force dark theme on ArchWiki main content area
+// =============================================================================
+
+@layer violet-void-content
+
+// Main content area - the core dark background
+html body div#content
+html body div#bodyContent
+html body div.mw-body
+html body div.mw-body-content
+html body div.mw-body-content.mw-body
+html body #mw-content-text
+html body div#mw-content-text
+html body .mw-body .mw-body-content
+html body .mw-parser-output
+html body div.mw-parser-output
+body .mw-body
+body #content
+body #mw-content-text
+body .mw-body-content
+body .mw-parser-output
+#content #bodyContent
+#content .mw-body
+#content .mw-body-content
+#content .mw-parser-output
+.mw-body #content
+.mw-body .mw-body-content
+.mw-body .mw-parser-output
+.mw-body-content #content
+.mw-body-content .mw-body
+.mw-body-content .mw-parser-output
+.mw-parser-output
+  background-color #181818 !important
+  color #bfbfbf !important
+
+// Main content text
+html body div#content div.mw-body-content.mw-body p
+html body div.mw-body-content p
+html body .mw-body p
+html body .mw-parser-output p
+body .mw-body p
+body .mw-parser-output p
+#content p
+#mw-content-text p
+.mw-body p
+.mw-body-content p
+.mw-parser-output p
+  color #e7e7e7 !important
+
+// Headings in main content
+html body .mw-body h1
+html body .mw-body h2
+html body .mw-body h3
+html body .mw-body h4
+html body .mw-body h5
+html body .mw-body h6
+html body .mw-parser-output h1
+html body .mw-parser-output h2
+html body .mw-parser-output h3
+html body .mw-parser-output h4
+html body .mw-parser-output h5
+html body .mw-parser-output h6
+body .mw-body h1
+body .mw-body h2
+body .mw-body h3
+body .mw-body h4
+body .mw-body h5
+body .mw-body h6
+body .mw-parser-output h1
+body .mw-parser-output h2
+body .mw-parser-output h3
+body .mw-parser-output h4
+body .mw-parser-output h5
+body .mw-parser-output h6
+#content h1
+#content h2
+#content h3
+#content h4
+#content h5
+#content h6
+#mw-content-text h1
+#mw-content-text h2
+#mw-content-text h3
+#mw-content-text h4
+#mw-content-text h5
+#mw-content-text h6
+  color #e7e7e7 !important
+
+// Custom counter styles for list markers
+// Uses @css{} wrapper for Stylus compatibility
+@css {
+  /* Installation step counter - styled with arch-blue */
+  @counter-style archwiki-steps {
+    system: numeric;
+    symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+    suffix: ". ";
+    pad: 2 "0";
+    speak-as: numbers;
+  }
+
+  /* Terminal-style counter for command lists */
+  @counter-style terminal-prompt {
+    system: cyclic;
+    symbols: '$' '>' '#';
+    suffix: " ";
+  }
+
+  /* Checklist style for verification steps */
+  @counter-style archwiki-check {
+    system: cyclic;
+    symbols: '▸' '→' '✓' '◆';
+    suffix: " ";
+  }
+}
+
+// Apply custom counter styles to ordered lists
+ol
+  counter-reset archwiki-step
+
+  // Installation steps - uses padded numeric counter
+  &[data-style="steps"]
+  &.archwiki-steps
+    list-style archwiki-steps
+    padding-inline-start 2.5em
+
+    li
+      padding-inline-start 0.5em
+      position relative
+
+      &::before
+        content ""
+        position absolute
+        left -1.5em
+        top 0.4em
+        width 1.2em
+        height 1.2em
+        background rgba($arch-blue, 0.15)
+        border-radius 50%
+        z-index -1
+
+  // Terminal command lists
+  &[data-style="terminal"]
+  &.archwiki-terminal-list
+    list-style terminal-prompt
+    padding-inline-start 2em
+    font-family $font-mono
+
+    li
+      color $term-green
+
+      &::marker
+        color $term-bright-green
+
+  // Verification/checklist style
+  &[data-style="check"]
+  &.archwiki-check
+    list-style archwiki-check
+    padding-inline-start 2em
+
+    li
+      padding-inline-start 0.5em
+
+      &::marker
+        color $arch-blue
+
+// Nested list styling with custom markers
+ol ol
+  list-style lower-alpha
+
+ol ol ol
+  list-style lower-roman
+
+// Main content area
+#content
+  background-color $dark
+  border 1px solid $border-subtle
+  color $light
+  border-radius $border-radius-md
+  box-shadow $shadow-subtle
+  transition box-shadow $transition-medium
+  padding 1em 1.5em
+
+  // Subtle lift effect on content area isn't usually great for UX as it moves text
+  // Removed hover-lift() for better stability, kept transition just in case
+
+// Links
+a
+a:visited
+  text-decoration none !important
+  color $secondary-blue
+  background-image linear-gradient(to right, $orange, $orange)
+  background-size 0% 1px
+  background-repeat no-repeat
+  background-position left bottom 0.1em
+  transition background-size $transition-fast, color $transition-fast
+
+  &:hover
+    color $orange
+    background-size 100% 1px
+
+  &:active
+    color $secondary-red
+    background-size 100% 1px
+
+// Man page links and other specific template links
+.archwiki-template-man a
+.archwiki-template-pkg a
+  color $term-green !important
+  background-image linear-gradient(to right, $term-bright-green, $term-bright-green) !important
+
+  &:hover
+    color $term-bright-green !important
+
+  &:active
+    color $term-green !important
+
+// Headings with gradient underlines
+h1
+h2
+h3
+h4
+h5
+h6
+  color $lighter
+  font-weight 600
+  line-height 1.3
+  margin-top 1.5em
+  margin-bottom 0.75em
+
+h1
+h2
+  position relative
+  padding-bottom 0.5em
+  margin-bottom 1em
+
+h1::after
+  content ""
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 3px
+  gradient-primary()
+
+  border-radius 2px
+
+h2::after
+  content ""
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 2px
+  background linear-gradient(90deg, $arch-blue, transparent)
+  border-radius 1px
+
+// =============================================================================
+// LEAD SECTION STYLING
+// First paragraph emphasis and article intro formatting
+// Browser support: 97%+
+// =============================================================================
+
+// Lead section - the first paragraph(s) before the first heading
+// In MediaWiki, this is content before the TOC and first section
+.mw-parser-output
+  // Lead section container (first paragraphs before first heading)
+  > p:first-of-type
+  > p:nth-of-type(2)
+    // Lead paragraph emphasis
+    font-size 1.05em
+    line-height 1.7
+    color $lighter
+
+    // First paragraph gets extra emphasis
+    &:first-of-type
+      font-size 1.1em
+
+      // Bold first occurrence of article subject
+      // The first bold text in lead is typically the article title/subject
+      b
+      strong
+        color $white
+        font-weight 700
+
+        // First bold gets special styling
+        &:first-of-type
+          background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.08))
+          padding 0.1em 0.3em
+          margin 0 0.1em
+          border-radius $border-radius-sm
+
+  // Lead section paragraphs (before first h2)
+  > p:not(h2 ~ p)
+    // Slightly enhanced readability for lead content
+    max-width 75ch
+
+// Alternative: Use CSS to target content before first heading
+// This uses :has() for modern browsers
+@css {
+  /* Lead section - paragraphs before first section heading */
+  .mw-parser-output:has(h2) > p:has(~ h2),
+  .mw-parser-output:not(:has(h2)) > p {
+    font-size: 1.05em;
+    line-height: 1.7;
+  }
+
+  /* First paragraph of article gets lead emphasis */
+  .mw-parser-output > p:first-of-type {
+    font-size: 1.1em;
+  }
+
+  /* Lead paragraph bold text (typically article subject) */
+  .mw-parser-output > p:first-of-type b:first-of-type,
+  .mw-parser-output > p:first-of-type strong:first-of-type {
+    color: var(--lighter, #e8e8e8);
+    font-weight: 700;
+  }
+}
+
+// =============================================================================
+// DISAMBIGUATION HATNOTE
+// "For other uses, see..." notices at top of articles
+// Browser support: 97%+
+// =============================================================================
+
+// Hatnote - disambiguation and clarification notes at article start
+.hatnote
+.dablink
+.rellink
+// Also target common MediaWiki hatnote patterns
+.mw-parser-output > .hatnote
+.mw-parser-output > .dablink
+.mw-parser-output > p.hatnote
+  font-style italic
+  font-size 0.92em
+  color $muted
+  padding 0.6em 1em
+  margin 0.5em 0 1em 0
+  border-left 3px solid $arch-blue
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.02))
+  border-radius 0 $border-radius-md $border-radius-md 0
+  line-height 1.5
+
+  // Remove italic from nested elements for better readability
+  i
+  em
+    font-style normal
+
+  // Links in hatnote
+  a
+    color $secondary-blue
+    font-style normal
+    font-weight 500
+    text-decoration none
+
+    &:hover
+      color $orange
+
+  // "Not to be confused with" variant
+  &.hatnote-confusion
+    border-left-color $term-yellow
+    background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.02))
+
+  // "Main article" variant
+  &.hatnote-main
+    border-left-color $term-green
+    background linear-gradient(135deg, rgba($term-green, 0.08), rgba($term-green, 0.02))
+    font-weight 500
+
+    &::before
+      content "→ "
+      color $term-green
+      font-style normal
+
+  // "See also" variant
+  &.hatnote-see-also
+    border-left-color $term-cyan
+    background linear-gradient(135deg, rgba($term-cyan, 0.08), rgba($term-cyan, 0.02))
+
+    &::before
+      content "📚 "
+      font-style normal
+
+// "May refer to" formatting for disambiguation pages
+.mw-disambig-page
+.dab-page
+  // Lead section on disambiguation pages
+  .mw-parser-output > p:first-of-type
+    font-style italic
+    color $light
+    border-bottom 1px solid $border-subtle
+    padding-bottom 1em
+    margin-bottom 1em
+
+// Disambiguation page list items
+.dab-list
+  column-width 20em
+  column-gap 2em
+
+  li
+    break-inside avoid
+    margin 0.5em 0
+
+// =============================================================================
+// SECTION ANCHORS - Permalink styling with hover reveal
+// Browser support: 97%+
+// =============================================================================
+
+// Section heading container for anchor positioning
+.mw-headline
+  position relative
+  display inline-block
+
+// Section edit link - already exists in MediaWiki, style for consistency
+.mw-editsection
+  font-size 0.65em
+  font-weight 400
+  margin-inline-start 0.75em
+  opacity 0.5
+  transition opacity $transition-fast
+
+  // Hide on mobile by default, show on touch
+  @media (pointer coarse)
+    opacity 1
+
+// Show edit link on heading hover (hover-capable devices only)
+@media (hover hover)
+  h1:hover
+  h2:hover
+  h3:hover
+  h4:hover
+  h5:hover
+  h6:hover
+    .mw-editsection
+      opacity 1
+
+// Section anchor permalink (the § or # link next to headings)
+// MediaWiki adds these for linking directly to sections
+.mw-headline-anchor
+.section-anchor
+  display inline-flex
+  align-items center
+  justify-content center
+  width 1.5em
+  height 1.5em
+  margin-inline-start 0.25em
+  color $muted
+  text-decoration none
+  font-size 0.7em
+  opacity 0
+  transition opacity $transition-fast, color $transition-fast, background-color $transition-fast, transform $transition-fast
+  border-radius $border-radius-sm
+  vertical-align middle
+
+  // Hash/pilcrow icon styling
+  &::before
+    content "§"
+    font-weight 600
+
+  // Hover state
+  &:hover
+  &:focus
+    color $arch-blue
+    background-color rgba($arch-blue, 0.1)
+    opacity 1
+    transform scale(1.1)
+
+  // Focus visible for keyboard navigation
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Hover reveal pattern for section anchors
+// Only show on hover-capable devices
+@media (hover hover)
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    // Show anchor on heading hover
+    &:hover
+      .mw-headline-anchor
+      .section-anchor
+        opacity 0.7
+
+        &:hover
+          opacity 1
+
+    // Always visible when focused (keyboard navigation)
+    &:focus-within
+      .mw-headline-anchor
+      .section-anchor
+        opacity 1
+
+// Touch devices - always show anchors but smaller
+@media (hover none)
+  .mw-headline-anchor
+  .section-anchor
+    opacity 0.6
+    width 1.2em
+    height 1.2em
+    font-size 0.65em
+
+// Copy link tooltip/indicator
+.section-anchor-copy
+  position absolute
+  top -2em
+  left 50%
+  transform translateX(-50%)
+  padding 0.3em 0.6em
+  background-color $darker
+  color $lighter
+  font-size 0.75em
+  border-radius $border-radius-sm
+  white-space nowrap
+  opacity 0
+  pointer-events none
+  transition opacity $transition-fast
+  box-shadow $shadow-subtle
+
+  // Arrow pointing down
+  &::after
+    content ""
+    position absolute
+    bottom -0.4em
+    left 50%
+    transform translateX(-50%)
+    border 0.3em solid transparent
+    border-top-color $darker
+
+// Show copy indicator when anchor is focused or recently clicked
+.section-anchor
+  &:focus
+  &.copied
+    .section-anchor-copy
+      opacity 1
+
+  // Success state after copying
+  &.copied
+    &::before
+      content "✓"
+      color $term-green
+
+// Section link URL preview (optional enhancement)
+.section-link-preview
+  position absolute
+  bottom -2.5em
+  left 0
+  padding 0.4em 0.8em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  font-family $font-mono
+  font-size 0.75em
+  color $muted
+  max-width 300px
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+  opacity 0
+  pointer-events none
+  transition opacity $transition-fast
+  z-index 10
+
+// Show URL preview on hover
+@media (hover hover)
+  .section-anchor:hover
+    .section-link-preview
+      opacity 1
+
+// Deep link target highlight
+// When user navigates to a section via anchor link
+:target
+  scroll-margin-top 5em // Account for sticky headers
+
+  // Subtle highlight animation for the target section
+  animation target-highlight 2s ease-out
+
+// Keyframe for target highlight animation
+@keyframes target-highlight
+  0%
+    background-color rgba($arch-blue, 0.15)
+  100%
+    background-color transparent
+
+// Alternative: highlight the heading specifically
+// Some wikis wrap headings in spans with IDs
+.mw-headline:target
+  animation target-heading-highlight 2s ease-out
+
+@keyframes target-heading-highlight
+  0%
+    text-decoration underline
+    text-decoration-color rgba($arch-blue, 0.5)
+    text-underline-offset 0.3em
+  100%
+    text-decoration none
+
+// Collapsible content blocks
+.mw-collapsible
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  transition background-color $transition-fast, border-color $transition-fast, box-shadow $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, $dark, rgba($arch-blue, 0.08))
+    border-color rgba($arch-blue, 0.25)
+    box-shadow $shadow-subtle
+
+.mw-collapsible-toggle
+  display inline-flex
+  align-items center
+  gap 0.35em
+  // Match menu panel styling
+  gradient-surface()
+
+  border 1px solid $border-subtle
+  color $lighter
+  border-radius $border-radius-sm
+  padding 0.25em 0.6em
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+  focus-ring($arch-blue)
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+.mw-collapsible-content
+  margin-top 0.6em
+  padding-top 0.6em
+  border-top 1px solid $border-subtle
+
+// ============================================================================
+// Performance: content-visibility for off-screen/collapsed content
+// Browser skips rendering work for hidden content (85%+ browser support)
+// Uses @css{} wrapper for advanced :has() selectors with Stylus compatibility
+// ============================================================================
+
+@css {
+  /* Collapsed content - browser skips layout/paint entirely */
+  .mw-collapsible:has(.mw-collapsible-toggle:not([aria-expanded="true"])) .mw-collapsible-content,
+  .mw-collapsible:not(:has(.mw-collapsible-content:not([hidden]))) .mw-collapsible-content,
+  .mw-collapsible.mw-collapsed .mw-collapsible-content {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 200px; /* Estimated height prevents layout shift */
+  }
+
+  /* Expanded content - browsers optimize rendering automatically */
+  .mw-collapsible:not(.mw-collapsed) .mw-collapsible-content {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+}
+
+// Fallback for browsers without :has() support (uses JS-added class)
+.mw-collapsible.mw-collapsed
+  .mw-collapsible-content
+    content-visibility hidden
+    // Provide intrinsic size hint to prevent layout thrash when expanding
+    contain-intrinsic-size 0 200px
+
+// Expandable sections in TOC and navigation
+.mw-parser-output
+  // Hidden subsections benefit from content-visibility
+  details:not([open])
+    summary
+      // Summary stays visible for interaction
+      content-visibility visible
+
+    // Hidden content skips rendering
+    > *:not(summary)
+      content-visibility hidden
+      contain-intrinsic-size 0 100px
+
+// Performance hint for deeply nested content
+// Browsers can skip rendering subtrees until needed
+#content
+  .mw-parser-output
+    // Off-screen content optimization for TOC levels
+    .toclevel-2
+    .toclevel-3
+    .toclevel-4
+      details:not([open])
+        > *:not(summary)
+          content-visibility hidden
+          contain-intrinsic-size 0 50px
+
+// =============================================================================
+// CONTENT-VISIBILITY: HIDDEN=UNTIL-FOUND
+// =============================================================================
+
+// Hidden until found - collapsible content that's searchable
+// Browser support: 97%+ (Chrome 123+, Edge 123+, Opera 109+)
+// Use cases: Collapsible sections, hidden content that should be findable via Ctrl+F
+// Note: Must use @css{} wrapper as Stylus doesn't fully support this attribute value
+
+@css {
+  /* Hidden until found - content hidden but searchable */
+  .mw-collapsible-content[hidden="until-found"],
+  .hidden-until-found {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 150px;
+  }
+
+  /* When found via browser search, reveal content */
+  .mw-collapsible-content[hidden="until-found"]:has(+ *),
+  .hidden-until-found:has(+ *) {
+    /* Browser handles reveal automatically */
+  }
+
+  /* Details/summary with hidden=until-found */
+  details > .mw-collapsible-content[hidden="until-found"],
+  details > .hidden-until-found {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 200px;
+  }
+
+  /* Support for nested hidden content */
+  .mw-collapsible-content[hidden="until-found"] .mw-collapsible-content {
+    content-visibility: hidden;
+    contain-intrinsic-size: 0 50px;
+  }
+}
+
+// Class-based fallback for browsers without hidden=until-found support
+.hidden-until-found-fallback
+  content-visibility hidden
+  contain-intrinsic-size 0 150px
+
+// Combined with existing content-visibility patterns
+// Hidden until found takes priority for searchability
+.mw-collapsible[data-hidden-until-found]
+  .mw-collapsible-content
+    content-visibility hidden
+    contain-intrinsic-size 0 200px
+
+// Ensure hidden until found elements have proper intrinsic size hints
+// These help avoid layout shift when content is revealed
+[hidden="until-found"]
+  contain-intrinsic-size 0 150px
+
+// =============================================================================
+// HYPHENATION FOR NARROW CONTAINERS
+// =============================================================================
+
+// Better text wrapping in sidebars and narrow columns
+// Browser support: 95%+
+.mw-parser-output
+  // Sidebar content
+  .sidebar
+  .side-box
+    p
+    li
+      hyphens auto
+
+  // Narrow template boxes
+  .archwiki-template-box
+    p
+      hyphens auto
+
+  // Narrow columns in multi-column layouts
+  .mw-parser-output
+    [style*="width: 30%"]
+    [style*="width: 25%"]
+    [style*="width: 20%"]
+      p
+      li
+        hyphens auto
+
+// =============================================================================
+// MIX-BLEND-MODE FOR CONTENT EMPHASIS
+// =============================================================================
+
+// Browser support: 97%+
+
+// Emphasis overlays in content
+.mw-parser-output
+  // Highlighted text with blend
+  .archwiki-template-highlight
+    mix-blend-mode multiply
+    opacity 0.9
+
+  // Warning emphasis
+  .archwiki-template-warning
+    mix-blend-mode normal
+
+    strong
+      mix-blend-mode plus-lighter
+
+// =============================================================================
+// TEXT-ALIGN-LAST FOR JUSTIFIED TEXT CONTROL
+// =============================================================================
+
+// Control alignment of last line in justified text
+// Browser support: 97%+
+
+// Article content - justified with left-aligned last line for better readability
+.mw-parser-output
+  p
+    text-align justify
+    text-align-last left
+
+  // Headlines with centered last line
+  h1
+  h2
+  h3
+    text-align-last left
+
+// =============================================================================
+// IMAGE-RENDERING FOR SCREENSHOT/DIAGRAM QUALITY
+// =============================================================================
+
+// Control image scaling: auto, crisp-edges, pixelated
+// Browser support: 97%+
+
+// Preserve pixel art and terminal screenshots in docs
+img.pixel-art
+img.screenshot
+img.terminal
+img[data-pixel]
+  image-rendering crisp-edges
+  image-rendering pixelated // Firefox
+
+// High-quality photo rendering
+img.photo
+img.hq
+  image-rendering auto
+
+// =============================================================================
+// OBJECT-POSITION FOR IMAGE FRAMING
+// =============================================================================
+
+// Control visible area when using object-fit
+// Browser support: 97%+
+
+// Center-focused images
+.img-center
+  object-fit cover
+  object-position center center
+
+// Top-focused (faces, portraits)
+.img-top
+  object-fit cover
+  object-position center top
+
+// Bottom-focused
+.img-bottom
+  object-fit cover
+  object-position center bottom
+
+
+// =============================================================================
+// OBJECT-VIEW-BOX FOR IMAGE CLIPPING
+// =============================================================================
+
+// Clip images with CSS - create custom crop regions without JavaScript
+// Browser support: 87%+ (Chrome 104+, Firefox: behind flag, Safari 16.4+)
+
+// Inset clipping - crop from all sides
+.object-clip-inset
+  object-view-box inset(10%)
+
+// Top crop - show bottom portion
+.object-clip-top
+  object-view-box inset(0 0 50% 0)
+
+// Bottom crop - show top portion
+.object-clip-bottom
+  object-view-box inset(50% 0 0 0)
+
+// Left crop - show right portion
+.object-clip-left
+  object-view-box inset(0 50% 0 0)
+
+// Right crop - show left portion
+.object-clip-right
+  object-view-box inset(0 0 0 50%)
+
+// Circular clip using view-box
+.object-clip-circle
+  object-view-box inset(15%)
+
+// Thumbnail zoom effect - clip to center portion on hover
+.mw-file-element.thumbnail
+  transition object-position 0.3s ease
+
+  &:hover
+    object-view-box inset(10%)
+    object-fit cover
+
+
+// =============================================================================
+// MULTI-COLUMN LAYOUT
+// =============================================================================
+
+// Multi-column layouts for TOC, related articles, link lists
+// Browser support: 97%+
+
+// Two-column layout
+.columns-2
+  column-count 2
+  column-gap 2em
+  column-rule 1px solid $border-subtle
+
+// Three-column layout
+.columns-3
+  column-count 3
+  column-gap 2em
+  column-rule 1px solid $border-subtle
+
+// Responsive columns (width-based)
+.columns-auto
+  column-width 15em
+  column-gap 1.5em
+
+// Column span
+.column-span-all
+  column-span all
+
+// Column fill balance
+.columns-balanced
+  column-fill balance
+
+// Related articles grid
+.related-articles
+  column-count 3
+  column-gap 1.5em
+  column-rule 1px solid $border-subtle
+
+  li
+    break-inside avoid
+
+// Category list multi-column
+.category-list
+  column-count 2
+  column-gap 2em
+
+
+// =============================================================================
+// SHAPE-OUTSIDE FOR TEXT WRAPPING AROUND IMAGES
+// =============================================================================
+
+// Flow text around images with custom shapes
+// Browser support: 97%+
+
+// Float left with circle shape
+img.float-left
+.shape-circle-left
+  float left
+  shape-outside circle(50%)
+  margin 0 1.5em 1em 0
+  border-radius 50%
+
+// Float right with circle
+img.float-right
+.shape-circle-right
+  float right
+  shape-outside circle(50%)
+  margin 0 0 1em 1.5em
+  border-radius 50%
+
+// Polygon shape for complex wrapping
+.shape-polygon
+  float left
+  shape-outside polygon(0 0, 100% 0, 100% 100%, 0 100%)
+  clip-path polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+// Shape margin for spacing
+.shape-margin
+  shape-margin 1em
+
+
+// =============================================================================
+// CATEGORY TAG STYLING
+// =============================================================================
+
+// Pill-style category links
+// Browser support: 97%+
+
+#catlinks
+  margin-top 2em
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+#mw-normal-catlinks
+  a
+    display inline-block
+    padding 0.2em 0.6em
+    margin 0.2em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius 1em
+    font-size 0.85em
+    text-decoration none
+    transition all 0.2s ease
+
+    &:hover
+      background-color $arch-blue
+      color $darker
+
+
+// =============================================================================
+// RELATED ARTICLES SECTION
+// =============================================================================
+
+// Card-style related article links with hover preview effects
+// Browser support: 97%+
+
+// Related articles container
+.related-pages-section
+.mw-related-pages
+  margin 2em 0
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  box-shadow $shadow-subtle
+
+  // Section heading
+  h2
+  h3
+    color $lighter
+    font-size 1.1em
+    margin 0 0 1em 0
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content "📚"
+      font-size 1em
+
+// Card grid for related articles
+.related-pages-list
+  display grid
+  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+  gap 1em
+  list-style none
+  padding 0
+  margin 0
+
+// Individual related article card
+.related-pages-item
+  margin 0
+
+  a
+    display flex
+    flex-direction column
+    padding 1em
+    background-color $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    text-decoration none
+    color $lighter
+    transition all 0.25s ease
+    position relative
+    overflow hidden
+
+    // Hover preview effect
+    &:hover
+      background-color rgba($arch-blue, 0.08)
+      border-color rgba($arch-blue, 0.3)
+      transform translateY(-2px)
+      box-shadow 0 4px 12px rgba(0, 0, 0, 0.2)
+
+      // Preview arrow indicator
+      &::after
+        content "→"
+        position absolute
+        right 0.75em
+        top 50%
+        transform translateY(-50%)
+        color $arch-blue
+        font-size 1.2em
+        opacity 0.8
+
+    // Focus state for accessibility
+    &:focus
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// Article title in card
+.related-pages-title
+  color $lighter
+  font-weight 500
+  font-size 0.95em
+  line-height 1.4
+  margin 0
+  padding-right 1.5em // Space for hover arrow
+
+// Article preview/description (if available)
+.related-pages-excerpt
+  color $muted
+  font-size 0.85em
+  line-height 1.4
+  margin-top 0.5em
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Category badge on related article
+.related-pages-category
+  display inline-block
+  margin-top 0.75em
+  padding 0.2em 0.5em
+  background-color rgba($arch-blue, 0.15)
+  color $secondary-blue
+  border-radius 1em
+  font-size 0.75em
+  text-transform uppercase
+  letter-spacing 0.05em
+
+// Horizontal layout variant
+.related-pages-horizontal
+  .related-pages-list
+    grid-template-columns repeat(auto-fill, minmax(280px, 1fr))
+
+  .related-pages-item a
+    flex-direction row
+    align-items center
+    gap 0.75em
+
+// Compact list variant
+.related-pages-compact
+  padding 1em
+
+  .related-pages-list
+    grid-template-columns 1fr
+    gap 0.5em
+
+  .related-pages-item a
+    padding 0.6em 0.8em
+    flex-direction row
+    align-items center
+    gap 0.5em
+
+    &:hover::after
+      content none
+
+  .related-pages-title
+    font-size 0.9em
+
+
+// =============================================================================
+// REFERENCE LIST STYLING
+// Citations and footnotes with tabular-nums, tooltips, and backlinks
+// Browser support: 97%+
+// =============================================================================
+
+// Reference list container (at bottom of article)
+.references
+.mw-references-wrap
+ol.references
+  margin 1.5em 0
+  padding 0.75em 1em 0.75em 2.5em
+  background linear-gradient(135deg, rgba($darker, 0.5), rgba($base, 0.3))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-size 0.9em
+  line-height 1.6
+
+  // List styling
+  li
+    margin 0.4em 0
+    padding 0.25em 0
+    break-inside avoid
+
+    // Reference text
+    .reference-text
+      color $light
+
+// Reference number markers (superscript links in text)
+// MediaWiki uses <sup class="reference"> for citation markers
+sup.reference
+.mw-reference
+  font-size 0.75em
+  font-weight 500
+  vertical-align super
+  line-height 0
+  margin 0 0.1em
+
+  // The actual link inside the sup
+  a
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 1.4em
+    height 1.4em
+    padding 0.1em 0.35em
+    background-color rgba($arch-blue, 0.15)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    text-decoration none
+    font-family $font-mono
+    font-feature-settings "tnum" // Tabular numbers for alignment
+    font-size 0.9em
+    transition all $transition-fast
+
+    &:hover
+    &:focus
+      background-color rgba($arch-blue, 0.3)
+      color $lighter
+      transform scale(1.05)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// Multiple references (e.g., [1][2][3])
+sup.reference + sup.reference
+  margin-left 0.15em
+
+// Reference link in the reference list (back to citation point)
+.references
+  .reference
+    a
+      font-weight 500
+
+      // Backlink arrow
+      &::before
+        content "↑ "
+        color $muted
+        font-size 0.85em
+
+      &:hover::before
+        color $secondary-blue
+
+// Named reference groups (e.g., [a], [b] for general references)
+.reference-group-alpha
+  sup.reference a
+    background-color rgba($term-cyan, 0.15)
+    color $term-cyan
+
+    &:hover
+      background-color rgba($term-cyan, 0.3)
+
+// =============================================================================
+// REFERENCE TOOLTIPS ON HOVER
+// =============================================================================
+
+// Reference tooltip container (JS-enhanced)
+.reference-tooltip
+.mw-reference-tooltip
+  position absolute
+  z-index 1000
+  max-width 350px
+  padding 0.75em 1em
+  background-color $darker
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  font-size 0.85em
+  line-height 1.5
+  color $light
+  pointer-events none
+  opacity 0
+  transform translateY(-5px)
+  transition opacity 0.2s ease, transform 0.2s ease
+
+  // Arrow pointing to reference
+  &::before
+    content ""
+    position absolute
+    bottom 100%
+    left 1em
+    border 6px solid transparent
+    border-bottom-color $darker
+
+  // When visible (via JS or CSS hover)
+  &.visible
+  &.is-visible
+    opacity 1
+    transform translateY(0)
+    pointer-events auto
+
+  // Tooltip title (citation number)
+  .tooltip-title
+  .mw-reference-tooltip-title
+    color $secondary-blue
+    font-weight 600
+    margin-bottom 0.4em
+    font-feature-settings "tnum"
+
+  // Tooltip content (reference text preview)
+  .tooltip-content
+  .mw-reference-tooltip-text
+    color $light
+    max-height 150px
+    overflow-y auto
+    scrollbar-gutter stable // Prevent layout shift when scrollbar appears
+
+    // Links in tooltip
+    a
+      color $secondary-blue
+
+      &:hover
+        color $orange
+
+  // Tooltip footer (link to full reference)
+  .tooltip-footer
+    margin-top 0.5em
+    padding-top 0.5em
+    border-top 1px solid $border-subtle
+    font-size 0.85em
+
+    a
+      color $muted
+
+      &:hover
+        color $secondary-blue
+
+// CSS-only hover tooltip for references
+// For browsers without JS tooltip enhancement
+sup.reference
+  position relative
+
+  a
+    // Tooltip appears on hover
+    &:hover::after
+      content attr(data-tooltip)
+      position absolute
+      bottom 100%
+      left 50%
+      transform translateX(-50%)
+      padding 0.5em 0.75em
+      background-color $darker
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      font-size 0.8em
+      line-height 1.4
+      white-space normal
+      max-width 250px
+      width max-content
+      color $light
+      z-index 100
+      box-shadow $shadow-subtle
+      pointer-events none
+
+// =============================================================================
+// BACKLINK INDICATORS
+// =============================================================================
+
+// Jump-back links from reference list to citation points
+.cite-backlink
+.mw-cite-backlink
+  display inline-flex
+  align-items center
+  justify-content center
+  width 1.6em
+  height 1.6em
+  margin-right 0.3em
+  background-color rgba($arch-blue, 0.1)
+  color $secondary-blue
+  border-radius $border-radius-sm
+  font-size 0.75em
+  text-decoration none
+  transition all $transition-fast
+
+  &:hover
+    background-color rgba($arch-blue, 0.25)
+    color $lighter
+    transform scale(1.1)
+
+  // Backlink arrow
+  &::before
+    content "↑"
+    font-weight 600
+
+// Multiple backlinks (for references cited multiple times)
+.cite-backlink-multi
+  display inline-flex
+  flex-wrap wrap
+  gap 0.2em
+  margin-right 0.5em
+
+  a
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 1.4em
+    height 1.4em
+    padding 0 0.2em
+    background-color rgba($arch-blue, 0.1)
+    color $secondary-blue
+    border-radius $border-radius-sm
+    font-size 0.7em
+    font-feature-settings "tnum"
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.25)
+      transform scale(1.1)
+
+// Backlink with context (shows citation context on hover)
+.cite-backlink-context
+  position relative
+
+  &:hover
+    .backlink-context-popup
+      opacity 1
+      visibility visible
+
+.backlink-context-popup
+  position absolute
+  bottom 100%
+  left 0
+  padding 0.4em 0.6em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  font-size 0.75em
+  white-space nowrap
+  color $muted
+  opacity 0
+  visibility hidden
+  transition opacity $transition-fast
+  z-index 10
+
+// =============================================================================
+// REFERENCE GROUPS
+// =============================================================================
+
+// Different reference groups get different styling
+// MediaWiki supports groups like "note", "lower-alpha", etc.
+
+// General references (no group)
+.mw-ref-general
+  sup.reference a
+    background-color rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+// Notes group (often used for explanatory notes)
+.mw-ref-note
+.mw-ref-lower-alpha
+  sup.reference a
+    background-color rgba($term-cyan, 0.15)
+    color $term-cyan
+    font-weight 400
+
+    &:hover
+      background-color rgba($term-cyan, 0.3)
+
+// Lower-roman group
+.mw-ref-lower-roman
+  sup.reference a
+    background-color rgba($term-magenta, 0.15)
+    color $term-magenta
+
+// Upper-alpha group
+.mw-ref-upper-alpha
+  sup.reference a
+    background-color rgba($term-yellow, 0.15)
+    color $term-yellow
+
+// =============================================================================
+// REFERENCE ERRORS AND WARNINGS
+// =============================================================================
+
+// Invalid or malformed references
+.mw-ext-cite-error
+  color $secondary-red
+  font-size 0.85em
+  padding 0.5em
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-sm
+  margin 0.5em 0
+
+// Reference warnings (less severe)
+.mw-ext-cite-warning
+  color $term-yellow
+  font-size 0.85em
+  padding 0.3em 0.5em
+  background-color rgba($term-yellow, 0.1)
+  border-radius $border-radius-sm
+
+// Empty reference
+.reference-empty
+  font-style italic
+  color $muted
+
+  &::after
+    content " (citation needed)"
+    color $secondary-red
+    font-size 0.85em
+
+// =============================================================================
+// FOOTNOTE SCROLL ANIMATION
+// =============================================================================
+
+// Smooth scroll behavior for reference links
+html
+  scroll-behavior smooth
+
+// Highlight animation when jumping to reference
+:target
+  scroll-margin-top 5em // Account for sticky header
+
+// Reference target highlight
+.reference-target
+.mw-cite-target
+  animation reference-highlight 2s ease-out
+
+@keyframes reference-highlight
+  0%
+    background-color rgba($arch-blue, 0.2)
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.3)
+  100%
+    background-color transparent
+    box-shadow none
+
+// Highlight the citation marker when reference is targeted
+sup.reference:has(a:target)
+sup.reference:target
+  animation reference-marker-pulse 1.5s ease-out
+
+@keyframes reference-marker-pulse
+  0%
+  100%
+    transform scale(1)
+  50%
+    transform scale(1.2)
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// Reduced motion - instant transitions
+@media (prefers-reduced-motion reduce)
+  sup.reference a
+  .cite-backlink
+    transition none
+
+  .reference-tooltip
+    transition none
+    transform none
+
+  @keyframes reference-highlight
+    0%
+    100%
+      background-color transparent
+      box-shadow none
+
+  @keyframes reference-marker-pulse
+    0%
+    100%
+      transform none
+
+// High contrast mode
+@media (forced-colors active)
+  sup.reference a
+    forced-color-adjust none
+    background-color transparent
+    border 1px solid LinkText
+
+  .cite-backlink
+    border 1px solid LinkText
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  // Show reference text inline for print
+  sup.reference a::after
+    content none
+
+  // Reference list styling for print
+  .references
+  ol.references
+    background-color transparent
+    border none
+    padding-left 1.5em
+
+    li
+      color $print-black
+
+  // Hide tooltips in print
+  .reference-tooltip
+    display none
+
+// =============================================================================
+// WHITE-SPACE-COLLAPSE - Fine-Grained Whitespace Control (97%+ browser support)
+// =============================================================================
+// Controls how whitespace sequences are handled within text
+// Values: collapse, preserve, preserve-breaks, preserve-spaces, discard
+// Useful for precise content layout and typography control
+
+// Default content areas collapse extra whitespace (standard behavior)
+.mw-parser-output
+  white-space-collapse collapse
+
+// Preserve line breaks in poetry and formatted text
+.poem
+.verse
+.formatted-text
+  white-space-collapse preserve-breaks
+
+// Preserve all whitespace in preformatted content
+.preformatted
+.preserve-whitespace
+  white-space-collapse preserve
+
+// Table cells with code or commands
+.wikitable td code
+.infobox td code
+  white-space-collapse preserve-breaks
+
+// Navigation lists - collapse for cleaner display
+.navbox-list
+.vector-menu-content
+  white-space-collapse collapse
+
+// Message boxes - preserve breaks for readability
+.mw-message-box
+.ambox
+.tmbox
+.imbox
+.cmbox
+.ombox
+  white-space-collapse preserve-breaks
+
+// Lead section - collapse for normal text flow
+.mw-parser-output > p:first-of-type
+  white-space-collapse collapse
+
+// Blockquotes preserve structure
+blockquote
+.quote
+  white-space-collapse preserve-breaks
+
+// Definition lists - preserve breaks for definitions
+dl
+dd
+  white-space-collapse preserve-breaks
+
+// Footnotes and references
+.references
+.footnotes
+  white-space-collapse collapse
+
+// Collapsible content - preserve when expanded
+.mw-collapsible-content
+.collapsible-content
+  white-space-collapse preserve-breaks
+
+// Table of contents - collapse for compact display
+#toc
+.toc
+  white-space-collapse collapse
+
+// Infobox data cells
+.infobox td
+.infobox th
+  white-space-collapse collapse
+
+// Category links - collapse for inline display
+.mw-normal-catlinks
+.mw-hidden-catlinks
+  white-space-collapse collapse
+
+// ===========================================
+// Background Blend Mode
+// For visual effects and performance optimization
+// Allows combining background layers without extra images
+// Browser support: 97%+
+// ===========================================
+
+// Background blend mode utilities - use with background-color
+// These provide visual effects when layered with a background-color
+
+.background-blend-multiply
+  background-blend-mode multiply
+
+.background-blend-screen
+  background-blend-mode screen
+
+.background-blend-overlay
+  background-blend-mode overlay
+
+.background-blend-darken
+  background-blend-mode darken
+
+.background-blend-lighten
+  background-blend-mode lighten
+
+.background-blend-color-dodge
+  background-blend-mode color-dodge
+
+.background-blend-color-burn
+  background-blend-mode color-burn
+
+.background-blend-hard-light
+  background-blend-mode hard-light
+
+.background-blend-soft-light
+  background-blend-mode soft-light
+
+.background-blend-difference
+  background-blend-mode difference
+
+.background-blend-exclusion
+  background-blend-mode exclusion
+
+.background-blend-hue
+  background-blend-mode hue
+
+.background-blend-saturation
+  background-blend-mode saturation
+
+.background-blend-color
+  background-blend-mode color
+
+.background-blend-luminosity
+  background-blend-mode luminosity
+
+// ===== Background Blend Mode with Normal Fallback =====
+// Use with background-color for simple tinting effects
+.background-tint
+  background-color rgba($arch-blue, 0.1)
+  background-blend-mode multiply
+
+.background-tint-subtle
+  background-color rgba($arch-blue, 0.05)
+  background-blend-mode multiply
+
+.background-tint-strong
+  background-color rgba($arch-blue, 0.2)
+  background-blend-mode multiply
+
+// ===== Background Blend Mode for Textures =====
+// Light texture overlay
+.background-texture-light
+  background-image linear-gradient(180deg, transparent 0%, rgba(255,255,255 0.03) 100%)
+  background-blend-mode overlay
+
+// Dark texture overlay
+.background-texture-dark
+  background-image linear-gradient(180deg, transparent 0%, rgba(0,0,0, 0.05) 100%)
+  background-blend-mode multiply
+
+// ===== Background Blend Mode for Gradients =====
+// Gradient with texture blend
+.background-gradient-texture
+  background-image linear-gradient(135deg, $base 0%, darken($base, 5%) 100%)
+  background-blend-mode normal, overlay
+  background-color $base
+
+// ===== Background Blend Mode for Cards =====
+// Card with subtle texture effect
+.card-background-blend
+  background-color $surface
+  background-image radial-gradient(circle at 50% 0%, rgba($arch-blue, 0.08) 0%, transparent 70%)
+  background-blend-mode normal, screen
+  background-position center top
+  background-repeat no-repeat
+
+// ===== Background Blend Mode for Hero Sections =====
+// Hero with layered backgrounds
+.hero-background-blend
+  background-color $base
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%238950c7' stroke-width='0.5' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23grid)' width='100' height='100'/%3E%3C/svg%3E")
+  background-blend-mode multiply, normal
+  background-repeat repeat, no-repeat
+  background-size auto, cover
+  background-position center
+
+// ===== Background Blend Mode for Info Boxes =====
+// Info box with subtle gradient blend
+.infobox-background-blend
+  background linear-gradient(135deg, $surface 0%, rgba($arch-blue, 0.03) 100%)
+  background-blend-mode normal, overlay
+  background-color $surface
+
+// ===== Background Blend Mode for Navigation =====
+// Nav with background blend
+.nav-background-blend
+  background-color $nav-bg
+  background-image linear-gradient(180deg, rgba($arch-blue, 0.05) 0%, transparent 20%)
+  background-blend-mode normal, screen
+
+// ===== Responsive Background Blend =====
+// Disable blend modes on low-power devices if needed
+@media (prefers-reduced-motion reduce)
+  .background-blend-multiply
+  .background-blend-screen
+  .background-blend-overlay
+  .background-blend-darken
+  .background-blend-lighten
+  .background-blend-color-dodge
+  .background-blend-color-burn
+  .background-blend-hard-light
+  .background-blend-soft-light
+  .background-blend-difference
+  .background-blend-exclusion
+  .background-blend-hue
+  .background-blend-saturation
+  .background-blend-color
+  .background-blend-luminosity
+  .background-tint
+  .background-tint-subtle
+  .background-tint-strong
+  .background-texture-light
+  .background-texture-dark
+  .background-gradient-texture
+  .card-background-blend
+  .hero-background-blend
+  .infobox-background-blend
+  .nav-background-blend
+    background-blend-mode normal
+
+// ===== Print: Disable blend modes =====
+@media print
+  .background-blend-multiply
+  .background-blend-screen
+  .background-blend-overlay
+  .background-blend-darken
+  .background-blend-lighten
+  .background-blend-color-dodge
+  .background-blend-color-burn
+  .background-blend-hard-light
+  .background-blend-soft-light
+  .background-blend-difference
+  .background-blend-exclusion
+  .background-blend-hue
+  .background-blend-saturation
+  .background-blend-color
+  .background-blend-luminosity
+  .background-tint
+  .background-tint-subtle
+  .background-tint-strong
+  .background-texture-light
+  .background-texture-dark
+  .background-gradient-texture
+  .card-background-blend
+  .hero-background-blend
+  .infobox-background-blend
+  .nav-background-blend
+    background-blend-mode normal
+    background-image none
+
+// =============================================================================
+// ASPECT-RATIO FOR PERFORMANCE (CLS Optimization)
+// =============================================================================
+// Browser support: 97%+ for aspect-ratio
+// Setting aspect-ratio on images prevents layout shift when they load
+// This improves Core Web Vitals (CLS) score
+
+// Images without explicit dimensions get a reasonable default
+// This prevents layout shift for lazy-loaded or dimension-less images
+img:not([width]):not([height])
+  aspect-ratio 16 / 9
+  height auto
+
+// Override for specific image types
+// Thumbnails should maintain their natural aspect ratio
+img.thumbimage
+img.mw-file-element
+  aspect-ratio unset
+  height auto
+
+// Gallery images - grid-friendly aspect ratios
+.gallery .gallerybox img
+  aspect-ratio 1
+  object-fit cover
+
+// File history and upload images
+.mw-filepage-reset img
+  aspect-ratio 16 / 9
+
+// Avatar images - square aspect ratio
+img.avatar
+img.useravatar
+  aspect-ratio 1
+  border-radius 50%
+
+// Icon images
+img.mw-wiki-logo
+img.mw-ui-icon
+  aspect-ratio 1
+  width inherit
+  height inherit
+
+// Video thumbnails - default 16:9 for videos without dimensions
+video:not([width]):not([height])
+  aspect-ratio 16 / 9
+
+// Ensure responsive images don't overflow
+@media (max-width 768px)
+  img
+    max-width 100%
+    height auto
+
+// =============================================================================
+// IMAGE-SET() - Responsive Images based on Device Pixel Ratio (97%+ browser support)
+// =============================================================================
+
+// Performance: Serve appropriate resolution based on screen DPR
+// Reduces bandwidth on lower-DPR devices while providing sharp images on HiDPI
+// Works directly in Stylus without @css wrapper
+
+// Utility classes for image-set backgrounds
+.image-set-std
+  background-image image-set("img.png" 1x, "img@2x.png" 2x, "img@3x.png" 3x)
+
+.image-set-1x2
+  background-image image-set("img.png" 1x, "img@2x.png" 2x)
+
+.image-set-2x
+  background-image image-set("img-2x.png" 2x)
+
+.image-set-auto
+  background-image image-set("img.png" 1x, "img@1.5x.png" 1.5x, "img@2x.png" 2x)
+
+// image-set for standard resolution displays (1x)
+@media (resolution 1dppx), (resolution 96dpi)
+  .image-set-responsive
+    background-image image-set("img.png" 1x)
+
+// image-set for high resolution displays (1.5x)
+@media (min-resolution 144dpi), (min-resolution 1.5dppx)
+  .image-set-responsive
+    background-image image-set("img@1.5x.png" 1.5x)
+
+// image-set for retina displays (2x)
+@media (min-resolution 192dpi), (min-resolution 2dppx)
+  .image-set-responsive
+    background-image image-set("img@2x.png" 2x)
+
+// image-set for high-DPI displays (3x)
+@media (min-resolution 288dpi), (min-resolution 3dppx)
+  .image-set-responsive
+    background-image image-set("img@3x.png" 3x)
+
+// For img elements - use -webkit-image-set for broader compatibility
+img.image-set-std
+  background-image -webkit-image-set("img.png" 1x, "img@2x.png" 2x)
+  background-image image-set("img.png" 1x, "img@2x.png" 2x)
+
+img.image-set-responsive
+  background-image -webkit-image-set("img.png" 1x, "img@2x.png" 2x)
+  background-image image-set("img.png" 1x, "img@2x.png" 2x)
+
+// avatar image-set for user images
+img.avatar.image-set-responsive
+  background-image -webkit-image-set("avatar.png" 1x, "avatar@2x.png" 2x)
+  background-image image-set("avatar.png" 1x, "avatar@2x.png" 2x)
+
+// Thumbnail image-set
+div.thumb img.image-set-responsive
+  background-image -webkit-image-set("thumb.png" 1x, "thumb@2x.png" 2x)
+  background-image image-set("thumb.png" 1x, "thumb@2x.png" 2x)

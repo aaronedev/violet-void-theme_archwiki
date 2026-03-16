@@ -1,0 +1,1992 @@
+// MediaWiki Extensions Styling
+// Styling for MediaWiki extension interfaces including VisualEditor
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// VISUALEDITOR STYLING
+// =============================================================================
+
+// VisualEditor toolbar container
+.ve-ui-toolbar
+.ve-ui-mwToolbar
+.ve-ui-surface
+.ve-ui-diffSurface
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.5em
+
+// VisualEditor toolbar bar
+.ve-ui-toolbar-bar
+.ve-ui-mwToolbar-bar
+  background linear-gradient(180deg, rgba($arch-blue, 0.1), transparent)
+  border-bottom 1px solid $border-subtle
+  padding 0.25em 0.5em
+  margin-bottom 0.5em
+  display flex
+  flex-wrap wrap
+  gap 0.25em
+
+// VisualEditor tool groups
+.ve-ui-toolbar-group
+.ve-ui-mwToolbar-group
+  display flex
+  align-items center
+  gap 0.15em
+  padding 0.15em 0.3em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.05)
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+
+// VisualEditor tool buttons
+.ve-ui-toolbar-tool
+.ve-ui-toolbar-tool-button
+.ve-ui-mwToolbar-tool
+  appearance none
+  -webkit-appearance none
+  background transparent
+  border 1px solid transparent
+  border-radius $border-radius-sm
+  color $light
+  cursor pointer
+  padding 0.4em 0.6em
+  transition all $transition-fast
+  display flex
+  align-items center
+  justify-content center
+  min-width 2em
+  min-height 2em
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+    transform translateY(-1px)
+
+  &:focus
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &:active
+    background rgba($arch-blue, 0.2)
+    transform translateY(0)
+
+// VisualEditor tool active state
+.ve-ui-toolbar-tool-active
+.ve-ui-toolbar-tool-button-active
+  background rgba($arch-blue, 0.2)
+  border-color $arch-blue
+  color $secondary-blue
+
+  &:hover
+    background rgba($arch-blue, 0.25)
+
+// VisualEditor dropdown menus
+.ve-ui-toolbar-popup
+.ve-ui-mwToolbar-popup
+.ve-ui-dropdownWidget
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+
+// VisualEditor dropdown options
+.ve-ui-dropdownOption
+.ve-ui-menuOption
+  padding 0.5em 0.75em
+  border-radius $border-radius-sm
+  color $light
+  cursor pointer
+  transition background $transition-fast
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  &.oo-ui-option-selected
+    background rgba($arch-blue, 0.2)
+    color $accent
+
+// VisualEditor formatting dialogs
+.ve-ui-dialog
+.ve-ui-mwDialog
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  box-shadow $shadow-modal
+
+// VisualEditor dialog title
+.ve-ui-dialog-title
+.ve-ui-mwDialog-title
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), transparent)
+  border-bottom 1px solid $border-subtle
+  padding 0.75em 1em
+  color $light
+  font-weight 600
+
+// VisualEditor dialog body
+.ve-ui-dialog-content
+.ve-ui-mwDialog-content
+  padding 1em
+  color $light
+
+// VisualEditor dialog footer
+.ve-ui-dialog-footer
+.ve-ui-mwDialog-footer
+  background linear-gradient(180deg, transparent, rgba($arch-blue, 0.05))
+  border-top 1px solid $border-subtle
+  padding 0.75em 1em
+  display flex
+  justify-content flex-end
+  gap 0.5em
+
+// VisualEditor edit surface / editing area
+.ve-ui-surface-editor
+.ve-ui-mwEditSurface
+.ve-ui-texture-editor
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  min-height 400px
+
+  // Content area inside editor
+  .ve-ce-documentNode
+  .ve-ce-contentEditable
+    background $darker
+    color $light
+    padding 1.5em
+    line-height 1.6
+
+    // Placeholder text
+    &.ve-ce-placeholder
+      color rgba($light, 0.4)
+      font-style italic
+
+// VisualEditor selection highlight
+.ve-ui-selection
+.ve-ce-selection
+  background rgba($arch-blue, 0.3)
+  color inherit
+
+// VisualEditor cursor / caret
+.ve-ce-cursor
+.ve-ui-cursorWidget
+  background $arch-blue
+  width 2px
+
+// VisualEditor focus outline
+.ve-ui-surface-focused
+.ve-ui-mwSurface-focused
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// VisualEditor floating toolbar (appears on text selection)
+.ve-ui-floatingToolbar
+.ve-ui-mwFloatingToolbar
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.15))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+
+// VisualEditor formatting buttons in floating toolbar
+.ve-ui-floatingToolbar-tool
+  appearance none
+  -webkit-appearance none
+  background transparent
+  border none
+  border-radius $border-radius-sm
+  color $light
+  cursor pointer
+  padding 0.35em 0.5em
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    color $secondary-blue
+
+  &:active
+    background rgba($arch-blue, 0.25)
+
+// =============================================================================
+// VISUALEDITOR DIFF HIGHLIGHT COLORS
+// =============================================================================
+
+// Diff surface container
+.ve-ui-diffSurface
+.ve-ui-mwDiffSurface
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// VisualEditor diff: added content
+.ve-ui-diff-added
+.ve-ce-diff-added
+  background rgba($green, 0.2)
+  border-left 3px solid $green
+  padding 0.1em 0.25em
+  margin 0.1em 0
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &:hover
+    background rgba($green, 0.25)
+
+// VisualEditor diff: removed content
+.ve-ui-diff-removed
+.ve-ce-diff-removed
+  background rgba($red, 0.2)
+  border-left 3px solid $red
+  padding 0.1em 0.25em
+  margin 0.1em 0
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+  text-decoration line-through
+  opacity 0.8
+
+  &:hover
+    background rgba($red, 0.25)
+    opacity 0.9
+
+// VisualEditor diff: unchanged content
+.ve-ui-diff-unmodified
+.ve-ce-diff-unmodified
+  background transparent
+  padding 0.1em 0.25em
+  margin 0.1em 0
+
+// VisualEditor diff: moved content
+.ve-ui-diff-moved
+.ve-ce-diff-moved
+  background rgba($orange, 0.15)
+  border 1px dashed rgba($orange, 0.5)
+  border-radius $border-radius-sm
+  padding 0.25em 0.5em
+  margin 0.25em 0
+
+// VisualEditor diff: paragraph formatting changes
+.ve-ui-diff-paragraphFormat
+.ve-ce-diff-paragraphFormat
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-sm
+  padding 0.25em 0.5em
+
+// VisualEditor diff: cursor position indicator
+.ve-ui-diff-cursor
+.ve-ce-diff-cursor
+  background $arch-blue
+  width 3px
+  border-radius 1px
+  opacity 0.6
+
+// VisualEditor diff: change summary
+.ve-ui-diff-change-summary
+.ve-ce-diff-change-summary
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), transparent)
+  border-bottom 1px solid $border-subtle
+  padding 0.5em 1em
+  color rgba($light, 0.7)
+  font-size 0.9em
+
+// =============================================================================
+// VISUALEDITOR SPECIAL ELEMENTS
+// =============================================================================
+
+// VisualEditor template dialog
+.ve-ui-mwTemplateDialog
+.ve-ui-templateDialog
+  background $darker
+  border 1px solid $border-subtle
+
+  // Template title
+  .ve-ui-mwTemplateTitle
+    background rgba($arch-blue, 0.1)
+    border-bottom 1px solid $border-subtle
+    padding 0.5em 1em
+    color $light
+    font-weight 600
+
+  // Template preview
+  .ve-ui-mwTemplatePreview
+    background rgba($dark, 0.5)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 1em
+    margin 0.5em
+
+// VisualEditor reference dialog
+.ve-ui-mwReferenceDialog
+.ve-ui-referenceDialog
+  background $darker
+
+  // Reference list
+  .ve-ui-mwReferenceList
+    background transparent
+
+  // Individual reference item
+  .ve-ui-mwReferenceItem
+    background rgba($arch-blue, 0.05)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.75em
+    margin 0.5em 0
+
+// VisualEditor image dialog
+.ve-ui-mwImageInsertDialog
+.ve-ui-imageInsertDialog
+  background $darker
+
+  // Image preview
+  .ve-ui-mwImageInsertPreview
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+    min-height 150px
+    display flex
+    align-items center
+    justify-content center
+
+// VisualEditor link dialog
+.ve-ui-mwLinkTargetInput
+.ve-ui-linkTargetInput
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  color $light
+
+  &:focus
+    border-color $arch-blue
+    outline none
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// =============================================================================
+// ACCESSIBILITY: Focus and keyboard navigation
+// =============================================================================
+
+// Visible focus for keyboard navigation
+.ve-ui-toolbar-tool:focus-visible
+.ve-ui-toolbar-tool-button:focus-visible
+.ve-ui-dropdownOption:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// High contrast mode support
+@media (forced-colors active)
+  .ve-ui-toolbar-tool
+    border 1px solid CanvasText
+
+    &:hover
+      border 1px solid Highlight
+
+    &:active
+      background Highlight
+      color Canvas
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .ve-ui-toolbar-tool
+  .ve-ui-dropdownOption
+    transition none
+
+  .ve-ui-toolbar-tool:hover
+    transform none
+
+// =============================================================================
+// MATH EXTENSION STYLING
+// =============================================================================
+
+// MathML equation container
+math
+  font-family $font-code
+  font-size 1.1em
+  line-height 1.4
+  color $light
+
+// Math container (for rendered LaTeX)
+.mw-math-element
+.mwe-math-element
+  display inline-block
+  margin 0.5em 0
+  padding 0.5em 1em
+  background rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-md
+  overflow-x auto
+  overflow-y hidden
+  max-width 100%
+
+  // Center standalone equations
+  &.mw-math-center
+    display block
+    text-align center
+    margin 1em 0
+
+// LaTeX source display (before rendering)
+.mw-math-source
+.mwe-math-source
+  font-family $font-code
+  font-size 0.9em
+  background rgba($dark, 0.8)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.75em 1em
+  color rgba($light, 0.85)
+  line-height 1.5
+  overflow-x auto
+
+  // Syntax highlighting for LaTeX commands
+  .mwe-math-tex-command
+    color $arch-blue
+
+  // Math variables
+  .mwe-math-variable
+    color $secondary-blue
+
+  // Math numbers
+  .mwe-math-number
+    color $accent
+
+// Equation numbering (when enabled)
+.mw-math-numbering
+.mwe-math-numbering
+  position relative
+  display block
+  margin 1em 0
+  padding-right 3em
+
+  // Equation number label
+  .mw-math-eq-number
+  .mwe-math-eq-number
+    position absolute
+    right 0
+    top 0
+    font-size 0.85em
+    color rgba($light, 0.5)
+    font-family $font-ui
+
+// Display math (block-level equations)
+.mw-display-math
+.mwe-display-math
+  display block
+  margin 1.5em 0
+  padding 1em 1.5em
+  background rgba($arch-blue, 0.08)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-lg
+  text-align center
+  overflow-x auto
+  overflow-y hidden
+
+  // Larger font for display math
+  math
+    font-size 1.25em
+
+// Inline math styling
+.mw-math-inline
+.mwe-math-inline
+  display inline
+  padding 0.1em 0.3em
+  background rgba($arch-blue, 0.05)
+  border-radius $border-radius-sm
+
+// Math error display (when LaTeX fails to render)
+.mw-math-error
+.mwe-math-error
+  display inline-block
+  padding 0.5em 1em
+  background rgba($red, 0.15)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-sm
+  color $red
+  font-size 0.9em
+  font-family $font-code
+
+// Math gallery (multiple equations)
+.mw-math-gallery
+.mwe-math-gallery
+  display grid
+  grid-template-columns repeat(auto-fit, minmax(250px, 1fr))
+  gap 1em
+  margin 1em 0
+  padding 1em
+  background rgba($dark, 0.5)
+  border-radius $border-radius-md
+
+  // Individual equation in gallery
+  .mw-math-gallery-item
+  .mwe-math-gallery-item
+    padding 0.75em
+    background rgba($arch-blue, 0.05)
+    border-radius $border-radius-sm
+    text-align center
+
+// Math symbol annotations (tooltips for symbols)
+.mw-math-symbol-annotation
+.mwe-math-symbol-annotation
+  border-bottom 1px dotted rgba($arch-blue, 0.5)
+  cursor help
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+
+// =============================================================================
+// MATHML ELEMENT STYLING
+// =============================================================================
+
+// MathML semantic annotations
+annotation[encoding="application/x-tex"]
+annotation[encoding="MathML-Content"]
+  display none
+
+// MathML fractions
+mlabeledtr
+  // Equation number in row
+  &:first-child
+    font-weight 600
+    color rgba($light, 0.7)
+
+// MathML matrices
+mmultiscripts
+msub
+msup
+msubsup
+  // Subscript/superscript styling
+  > *:nth-child(n+2)
+    font-size 0.7em
+
+// MathML operators
+mo
+  margin 0 0.15em
+
+// MathML numbers
+mn
+  color $accent
+
+// MathML variables
+mi
+  color $secondary-blue
+  font-style italic
+
+// MathML text
+mtext
+  color $light
+
+// MathML brackets and fences
+mfenced
+mo
+  color rgba($light, 0.8)
+
+// MathML spacing elements
+mspace
+  margin 0 0.25em
+
+// =============================================================================
+// ACCESSIBILITY: Math and equations
+// =============================================================================
+
+// Ensure math is readable in high contrast mode
+@media (forced-colors active)
+  .mw-math-element
+    border 1px solid CanvasText
+
+  .mw-math-error
+    border 1px solid CanvasText
+    background transparent
+
+  math
+    color CanvasText
+
+// Screen reader text for complex equations
+.sr-only
+  &.mw-math-element-alt
+    position absolute
+    width 1px
+    height 1px
+    padding 0
+    margin -1px
+    overflow hidden
+    clip rect(0, 0, 0, 0)
+    white-space nowrap
+    border 0
+
+// Reduced motion: simplify math animations
+@media (prefers-reduced-motion reduce)
+  .mw-math-element
+    transition none
+
+// =============================================================================
+// CITE EXTENSION ENHANCEMENTS
+// =============================================================================
+
+// Reference list (the bibliography section at bottom)
+.references
+  list-style none
+  padding-left 0
+  margin 1.5em 0
+
+// Individual reference item
+.reference
+  padding 0.5em 0
+  border-bottom 1px solid rgba($border-subtle, 0.5)
+  font-size 0.95em
+  line-height 1.6
+
+  &:last-child
+    border-bottom none
+
+  // Reference number - tabular-nums for alignment
+  sup
+  .reference-accessibility
+    font-variant-numeric tabular-nums
+    font-weight 600
+    color $arch-blue
+    margin-right 0.25em
+
+// Reference link styling
+.reference a
+  color $arch-blue
+  text-decoration none
+  border-bottom 1px dotted rgba($arch-blue, 0.4)
+  transition all $transition-fast
+
+  &:hover
+    color $secondary-blue
+    border-bottom-style solid
+
+// Reference anchor (the [1] link in text)
+.referenceAnchor
+  color $arch-blue
+  font-weight 600
+  font-variant-numeric tabular-nums
+  text-decoration none
+  padding 0 0.2em
+
+  &:hover
+    color $secondary-blue
+    text-decoration underline
+
+// Reference tooltip on hover
+.reference-tooltip
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.5em 0.75em
+  font-size 0.85em
+  color $light
+  max-width 300px
+  z-index $z-dropdown
+
+  // Tooltip citation
+  .reference-name
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.25em
+
+  // Tooltip content preview
+  .reference-text
+    color rgba($light, 0.85)
+    line-height 1.5
+
+// Reference list with numbers - using CSS counters
+.references-numbered
+  counter-reset ref-counter
+
+  .reference
+    counter-increment ref-counter
+
+    &::before
+      content "[" counter(ref-counter) "] "
+      font-variant-numeric tabular-nums
+      font-weight 600
+      color $arch-blue
+      float left
+      margin-right 0.5em
+      min-width 2em
+
+// Reference group styling (multiple reference lists)
+.reference-group
+  background rgba($arch-blue, 0.03)
+  border 1px solid rgba($border-subtle, 0.3)
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1em 0
+
+  // Group header
+  .reference-group-title
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+
+// Backlinks from references to citation
+.references-backlink
+  display inline-flex
+  align-items center
+  gap 0.25em
+  font-size 0.85em
+  color rgba($light, 0.6)
+  margin-left 0.5em
+
+  // Backlink arrow icon
+  &::before
+    content "←"
+    font-size 0.9em
+
+  &:hover
+    color $arch-blue
+
+// Citation needed styling in article text
+.citation-needed
+.citation-needed-etc
+  background rgba($arch-blue, 0.08)
+  border-bottom 2px dotted $arch-blue
+  color rgba($light, 0.8)
+  padding 0 0.15em
+  border-radius 2px
+  cursor help
+  position relative
+
+  // Hover tooltip showing source request
+  &:hover::after
+    content attr(data-content)
+    position absolute
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+    font-size 0.8em
+    white-space nowrap
+    box-shadow $shadow-elevated
+    z-index $z-dropdown
+
+// Cite error styling
+.mw-cite-error
+.cite-error
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  color $red
+  font-size 0.9em
+  display inline-block
+  margin 0.25em 0
+
+// Reference list columns for many references
+.references-many
+  column-count 2
+  column-gap 2em
+  column-rule 1px solid rgba($border-subtle, 0.3)
+
+  @media (max-width 768px)
+    column-count 1
+
+// Reference hover preview card
+.reference-hover-card
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.75em 1em
+  max-width 350px
+  z-index $z-dropdown
+
+  // Card title
+  .reference-hover-title
+    font-weight 600
+    color $light
+    margin-bottom 0.5em
+
+  // Card content
+  .reference-hover-content
+    font-size 0.9em
+    color rgba($light, 0.8)
+    line-height 1.5
+
+  // Card footer with link
+  .reference-hover-footer
+    margin-top 0.75em
+    padding-top 0.5em
+    border-top 1px solid rgba($border-subtle, 0.3)
+    font-size 0.85em
+
+    a
+      color $arch-blue
+
+// External reference styling
+.externalReference
+  display inline-flex
+  align-items center
+  gap 0.3em
+  color $arch-blue
+
+  // External link icon
+  &::after
+    content "↗"
+    font-size 0.85em
+    opacity 0.6
+
+// Bibliography (works cited) styling
+.bibliography
+  background rgba($arch-blue, 0.03)
+  border 1px solid rgba($border-subtle, 0.3)
+  border-radius $border-radius-md
+  padding 1em 1.5em
+  margin 1.5em 0
+
+  // Bibliography header
+  .bibliography-header
+    font-weight 600
+    color $arch-blue
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.3)
+
+// Reflist template styling
+.reflist
+  // Reference list template container
+  &.references-small
+    font-size 0.9em
+
+  &.references-large
+    font-size 1.1em
+
+// Citation template support
+cite
+  font-style normal
+
+  // Wiki citation templates
+  &.citation
+    color $light
+
+    // Author
+    .citation-author
+      font-weight 600
+      color $light
+
+    // Title
+    .citation-title
+      font-style italic
+      color rgba($light, 0.9)
+
+    // Date/publisher
+    .citation-date
+    .citation-publisher
+      color rgba($light, 0.6)
+      font-size 0.9em
+
+// Focus-visible support for reference links
+.reference a:focus-visible
+.referenceAnchor:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion for reference interactions
+@media (prefers-reduced-motion reduce)
+  .reference a
+  .citation-needed
+  .references-backlink
+    transition none
+
+// =============================================================================
+// TRANSLATION EXTENSION STYLING
+// =============================================================================
+
+// Translation banner styling
+// For ContentTranslation, Translate, and other translation extensions
+
+.translation-details
+  // Translation banner container
+  &.translation-notice
+    background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.05))
+    border 1px solid rgba($arch-blue, 0.2)
+    border-radius $border-radius-md
+    padding 1em
+    margin-bottom 1em
+
+  // Translation progress indicator
+  .translation-progress
+    background rgba($arch-blue, 0.1)
+    border-radius $border-radius-sm
+    height 8px
+    overflow hidden
+
+    .progress-fill
+      background linear-gradient(90deg, $arch-blue, $secondary-blue)
+      height 100%
+      transition width 0.3s ease
+
+// Language selector dropdown
+.language-selector
+  // Dropdown container
+  &.mw-translation-editor-language-selector
+  &.mw-ui-construct
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em
+
+    &:focus-within
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  // Language option
+  .language-option
+    padding 0.5em 0.75em
+    border-radius $border-radius-sm
+    cursor pointer
+    transition background 0.2s
+
+    &:hover
+      background rgba($arch-blue, 0.1)
+
+    // Selected language
+    &.selected
+      background rgba($arch-blue, 0.15)
+      color $arch-blue
+
+// Outdated translation indicator
+.translation-outdated
+  // Warning banner for outdated translations
+  &.outdated-translation
+    background rgba($orange, 0.1)
+    border 1px solid rgba($orange, 0.3)
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    margin-bottom 1em
+    display flex
+    align-items center
+    gap 0.5em
+
+    // Warning icon
+    .outdated-icon
+      color $orange
+      font-size 1.2em
+
+    // Message text
+    .outdated-message
+      color rgba($light, 0.9)
+      font-size 0.95em
+
+    // Link to original
+    .view-original
+      color $arch-blue
+      text-decoration underline
+      cursor pointer
+
+      &:hover
+        color $secondary-blue
+
+// Translation status badges
+.translation-status-badge
+  // Completed translation
+  &.translated
+    background rgba($green, 0.15)
+    color $green
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 600
+
+  // In-progress translation
+  &.in-progress
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 600
+
+  // Needs review
+  &.needs-review
+    background rgba($orange, 0.15)
+    color $orange
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 600
+
+// Translation editor surface
+.translation-editor
+  // Editor container
+  &.mw-translation-editor
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-lg
+    padding 1em
+
+  // Source text panel
+  .source-text-panel
+    background rgba($dark, 0.5)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+
+    .source-label
+      color rgba($light, 0.6)
+      font-size 0.85em
+      margin-bottom 0.5em
+
+    .source-text
+      color rgba($light, 0.9)
+      line-height 1.6
+
+  // Target text panel
+  .target-text-panel
+    background rgba($dark, 0.5)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+
+    .target-label
+      color rgba($light, 0.6)
+      font-size 0.85em
+      margin-bottom 0.5em
+
+    .target-text
+      color rgba($light, 0.9)
+      line-height 1.6
+
+// Translation toolbar
+.translation-toolbar
+  // Toolbar container
+  &.mw-translation-toolbar
+    background linear-gradient(180deg, rgba($arch-blue, 0.08), transparent)
+    border-bottom 1px solid $border-subtle
+    padding 0.5em
+    display flex
+    gap 0.5em
+
+  // Tool button
+  .translation-tool-button
+    background rgba($arch-blue, 0.1)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.4em 0.75em
+    color rgba($light, 0.9)
+    cursor pointer
+    transition all 0.2s
+
+    &:hover
+      background rgba($arch-blue, 0.2)
+      border-color $arch-blue
+
+    &:active
+      background rgba($arch-blue, 0.25)
+
+    // Disabled state
+    &:disabled
+      opacity 0.5
+      cursor not-allowed
+
+// =============================================================================
+// WIKIDATA INTEGRATION STYLING
+// =============================================================================
+
+// Wikidata item link styling
+.wikidata-link
+  color $arch-blue
+  text-decoration none
+  border-bottom 1px dotted rgba($arch-blue, 0.5)
+  transition all 0.2s
+
+  &:hover
+    color $secondary-blue
+    border-bottom-color $secondary-blue
+
+// Wikidata badge styling
+.wikidata-badge
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.8em
+  font-weight 600
+
+  // Quality badges
+  &.quality-good
+    background rgba($green, 0.15)
+    color $green
+
+  &.quality-medium
+    background rgba($orange, 0.15)
+    color $orange
+
+  &.quality-poor
+    background rgba($red, 0.15)
+    color $red
+
+// Wikidata property/value pairs
+.wikidata-property
+  color rgba($light, 0.7)
+  font-size 0.9em
+  font-weight 500
+  margin-right 0.5em
+
+.wikidata-value
+  color $lighter
+  font-size 0.95em
+
+// Wikidata identifier formatting
+.wikidata-entity-id
+  font-family $font-mono
+  font-size 0.85em
+  background rgba($arch-blue, 0.1)
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  color $secondary-blue
+
+// Wikidata item display card
+.wikidata-item
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+
+  // Item label
+  .item-label
+    color $lighter
+    font-size 1.1em
+    font-weight 600
+    margin-bottom 0.75em
+
+  // Property list
+  .property-list
+    display flex
+    flex-direction column
+    gap 0.5em
+
+  // Property row
+  .property-row
+    display flex
+    align-items baseline
+    gap 0.75em
+    padding 0.25em 0
+
+    &:hover
+      background rgba($arch-blue, 0.05)
+      border-radius $border-radius-sm
+
+// Wikidata reference links
+.wikidata-reference
+  color rgba($light, 0.6)
+  font-size 0.85em
+  font-style italic
+
+  a
+    color $arch-blue
+
+    &:hover
+      color $secondary-blue
+
+// Wikidata statement container
+.wikidata-statement
+  background rgba($dark, 0.5)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em
+  margin-bottom 0.5em
+
+  // Statement rank indicator
+  .statement-rank
+    display inline-block
+    width 8px
+    height 8px
+    border-radius 50%
+    margin-right 0.5em
+
+    &.preferred
+      background $green
+
+    &.normal
+      background $orange
+
+    &.deprecated
+      background rgba($light, 0.4)
+
+// Wikidata quick statement input
+.wikidata-quickstatement
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  font-family $font-mono
+  font-size 0.9em
+
+  textarea
+    width 100%
+    min-height 120px
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    padding 0.75em
+    font-family inherit
+
+    &:focus
+      outline none
+      border-color $arch-blue
+
+  // Execute button
+  .qs-execute
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+    color $white
+    border none
+    border-radius $border-radius-sm
+    padding 0.5em 1em
+    font-weight 600
+    cursor pointer
+    margin-top 0.5em
+    transition all 0.2s
+
+    &:hover
+      background linear-gradient(135deg, $secondary-blue, $arch-blue)
+
+    &:disabled
+      opacity 0.5
+      cursor not-allowed
+
+// Focus-visible support for Wikidata interactions
+.wikidata-link:focus-visible
+.wikidata-item:focus-visible
+.wikidata-quickstatement textarea:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion for Wikidata animations
+@media (prefers-reduced-motion reduce)
+  .wikidata-link
+    transition none
+
+  .wikidata-badge
+    transition none
+
+  .wikidata-item
+    transition none
+
+// Reduced motion for translation interactions
+@media (prefers-reduced-motion reduce)
+  .translation-details .translation-progress .progress-fill
+    transition none
+
+  .translation-status-badge
+    transition none
+
+  .translation-toolbar .translation-tool-button
+    transition none
+
+// =============================================================================
+// PAGEFORMS EXTENSION STYLING
+// =============================================================================
+// Styling for PageForms - MediaWiki extension for creating and managing forms
+
+// PageForms form container
+.pf-form-container
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin-bottom 1em
+
+// Form title
+.pf-form-title
+  font-size 1.5em
+  font-weight 600
+  color $lighter
+  margin-bottom 1em
+  padding-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+
+// Form field container
+.pf-field
+  margin-bottom 1.25em
+
+  // Field label
+  .pf-field-label
+    display block
+    font-weight 500
+    color $light
+    margin-bottom 0.5em
+    font-size 0.95em
+
+    // Required field indicator
+    .pf-required-indicator
+      color $red
+      margin-left 0.25em
+
+  // Field description
+  .pf-field-description
+    font-size 0.85em
+    color $muted
+    margin-top 0.25em
+    margin-bottom 0.5em
+
+  // Field input styling
+  input[type="text"]
+  input[type="email"]
+  input[type="url"]
+  input[type="number"]
+  input[type="tel"]
+  input[type="search"]
+  input[type="password"]
+  textarea.pf-textarea
+  select.pf-select
+    width 100%
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    color $lighter
+    font-size 1em
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &::placeholder
+      color $muted
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:hover:not(:focus)
+      border-color rgba($arch-blue, 0.5)
+
+// Multi-line textarea
+textarea.pf-textarea
+  min-height 120px
+  resize vertical
+  line-height 1.5
+
+// PF date picker styling
+input.pf-date-picker
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  color $lighter
+  font-size 1em
+  cursor pointer
+  transition border-color 0.2s, box-shadow 0.2s
+
+  &::-webkit-calendar-picker-indicator
+    filter invert(1)
+    opacity 0.6
+    cursor pointer
+
+    &:hover
+      opacity 1
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Date with time picker
+input.pf-datetime-picker
+  @extend input.pf-date-picker
+
+// Combo box / autocomplete styling
+.pf-combo-box
+  position relative
+
+  .pf-combo-box-input
+    width 100%
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    padding-right 2.5em
+    color $lighter
+    font-size 1em
+    cursor pointer
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  .pf-combo-box-arrow
+    position absolute
+    right 1em
+    top 50%
+    transform translateY(-50%)
+    pointer-events none
+    color $muted
+
+  // Dropdown menu
+  .pf-combo-box-menu
+    position absolute
+    top 100%
+    left 0
+    right 0
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    margin-top 0.25em
+    max-height 250px
+    overflow-y auto
+    z-index 1000
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.3)
+
+    .pf-combo-box-option
+      padding 0.75em 1em
+      cursor pointer
+      transition background 0.15s
+
+      &:hover
+        background rgba($arch-blue, 0.15)
+
+      &.selected
+        background rgba($arch-blue, 0.25)
+        color $lighter
+
+// Multi-select styling
+.pf-multi-select
+  .pf-multi-select-container
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.5em
+    min-height 44px
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    cursor pointer
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &:focus-within
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:hover
+      border-color rgba($arch-blue, 0.5)
+
+  // Selected item tag
+  .pf-multi-select-tag
+    display inline-flex
+    align-items center
+    background rgba($arch-blue, 0.2)
+    border 1px solid rgba($arch-blue, 0.4)
+    border-radius $border-radius-sm
+    padding 0.25em 0.5em
+    font-size 0.9em
+    color $lighter
+
+    .pf-tag-remove
+      margin-left 0.5em
+      cursor pointer
+      color $muted
+      transition color 0.15s
+
+      &:hover
+        color $secondary-red
+
+  // Placeholder
+  .pf-multi-select-placeholder
+    color $muted
+    padding 0.25em 0.5em
+
+  // Dropdown
+  .pf-multi-select-dropdown
+    position absolute
+    top 100%
+    left 0
+    right 0
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    margin-top 0.25em
+    max-height 200px
+    overflow-y auto
+    z-index 1000
+    box-shadow 0 4px 12px rgba(0, 0, 0, 0.3)
+
+    .pf-multi-select-option
+      padding 0.5em 0.75em
+      cursor pointer
+      transition background 0.15s
+
+      &:hover
+        background rgba($arch-blue, 0.15)
+
+      &.selected
+        background rgba($arch-blue, 0.25)
+        color $lighter
+
+// Checkbox and radio within PageForms
+.pf-checkbox
+.pf-radio
+  display flex
+  align-items center
+  gap 0.5em
+  margin-bottom 0.5em
+  cursor pointer
+
+  input[type="checkbox"]
+  input[type="radio"]
+    appearance none
+    -webkit-appearance none
+    width 18px
+    height 18px
+    background $dark
+    border 2px solid $border-subtle
+    border-radius $border-radius-sm
+    cursor pointer
+    transition all 0.15s
+    position relative
+
+    &:checked
+      background $arch-blue
+      border-color $arch-blue
+
+    &:checked::after
+      content ''
+      position absolute
+      top 2px
+      left 6px
+      width 5px
+      height 9px
+      border solid $white
+      border-width 0 2px 2px 0
+      transform rotate(45deg)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+  &:hover input:not(:checked)
+    border-color $arch-blue
+
+// Form submit button
+.pf-submit-button
+  background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+  color $white
+  border none
+  border-radius $border-radius-md
+  padding 0.75em 1.5em
+  font-size 1em
+  font-weight 600
+  cursor pointer
+  transition all 0.2s
+  margin-top 1em
+
+  &:hover
+    background linear-gradient(135deg, $secondary-blue, $arch-blue)
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &:active
+    transform translateY(0)
+
+  &:disabled
+    opacity 0.5
+    cursor not-allowed
+    transform none
+
+// Form validation error
+.pf-form-error
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-sm
+  padding 0.75em
+  margin-top 0.5em
+  color $secondary-red
+  font-size 0.9em
+
+  .pf-error-message
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content '⚠'
+      font-size 1.1em
+
+// Form section headers
+.pf-section-header
+  font-size 1.1em
+  font-weight 600
+  color $lighter
+  margin-top 1.5em
+  margin-bottom 0.75em
+  padding-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+
+// Section collapsed state
+.pf-section-collapsed
+  .pf-section-header::before
+    content '▶'
+    margin-right 0.5em
+    font-size 0.8em
+    color $muted
+
+.pf-section-expanded
+  .pf-section-header::before
+    content '▼'
+    margin-right 0.5em
+    font-size 0.8em
+    color $muted
+
+// File upload in forms
+.pf-file-upload
+  .pf-file-upload-input
+    background $dark
+    border 2px dashed $border-subtle
+    border-radius $border-radius-md
+    padding 2em
+    text-align center
+    cursor pointer
+    transition all 0.2s
+
+    &:hover
+      border-color $arch-blue
+      background rgba($arch-blue, 0.05)
+
+    &:focus-within
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  .pf-file-upload-icon
+    font-size 2em
+    color $muted
+    margin-bottom 0.5em
+
+  .pf-file-upload-text
+    color $light
+    font-size 0.95em
+
+  .pf-file-upload-hint
+    color $muted
+    font-size 0.85em
+    margin-top 0.25em
+
+// Embed markup textarea
+.pf-embed-markup
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  font-family $font-mono
+  font-size 0.9em
+  color $lighter
+  min-height 200px
+  resize vertical
+
+  &:focus
+    outline none
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Form loading state
+.pf-form-loading
+  opacity 0.7
+  pointer-events none
+
+  &::after
+    content ''
+    position absolute
+    top 50%
+    left 50%
+    width 24px
+    height 24px
+    margin -12px 0 0 -12px
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation pf-spin 0.8s linear infinite
+
+@keyframes pf-spin
+  to
+    transform rotate(360deg)
+
+// Focus-visible for accessibility
+.pf-form-container input:focus-visible
+.pf-form-container textarea:focus-visible
+.pf-form-container select:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion for PageForms
+@media (prefers-reduced-motion reduce)
+  .pf-form-container
+    transition none
+
+  .pf-submit-button
+  .pf-multi-select-tag
+  .pf-combo-box-option
+  .pf-multi-select-option
+    transition none
+
+  @keyframes pf-spin
+    animation none
+
+
+// =============================================================================
+// CODEMIRROR STYLING
+// =============================================================================
+
+// CodeMirror editor container
+.CodeMirror
+  background $dark
+  color $lighter
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.5
+  height auto
+  min-height 150px
+
+// CodeMirror scrollbars
+.CodeMirror-vscrollbar
+.CodeMirror-hscrollbar
+  scrollbar-color $arch-blue $darker
+  scrollbar-width thin
+
+// CodeMirror gutters (line numbers)
+.CodeMirror-gutters
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.05))
+  border-right 1px solid $border-subtle
+  padding-right 0.5em
+
+.CodeMirror-linenumber
+  color $muted
+  font-size 0.85em
+  padding 0 0.5em
+  min-width 2em
+  text-align right
+
+// Active line highlight
+.CodeMirror-activeline-background
+  background rgba($arch-blue, 0.08)
+
+.CodeMirror-selected
+  background rgba($arch-blue, 0.2)
+
+.CodeMirror-focused .CodeMirror-selected
+  background rgba($arch-blue, 0.25)
+
+// Cursor and current line
+.CodeMirror-cursor
+  border-left 2px solid $arch-blue
+
+.CodeMirror-matchingbracket
+  color $green
+  background rgba($green, 0.15)
+  font-weight bold
+
+.CodeMirror-nonmatchingbracket
+  color $secondary-red
+  background rgba($secondary-red, 0.15)
+
+// Search/replace highlights
+.CodeMirror-searching
+  background rgba($orange, 0.3)
+  color $orange
+
+.CodeMirror-search-match
+  background rgba($arch-blue, 0.3)
+  border-radius 2px
+
+// Syntax highlighting theme
+.cm-s-default
+
+  // Keywords
+  .cm-keyword
+    color $secondary-red
+
+  // Comments
+  .cm-comment
+    color $muted
+    font-style italic
+
+  // Strings
+  .cm-string
+    color $green
+
+  // Numbers
+  .cm-number
+    color $orange
+
+  // Variables
+  .cm-variable
+    color $light
+
+  // Functions
+  .cm-variable-2
+    color $secondary-blue
+
+  // Operators
+  .cm-operator
+    color $light
+
+  // Property names
+  .cm-property
+    color $secondary-blue
+
+  // Qualifiers
+  .cm-qualifier
+    color $secondary-blue
+
+  // Tags (HTML/XML)
+  .cm-tag
+    color $secondary-red
+
+  // Attributes
+  .cm-attribute
+    color $orange
+
+  // Built-in values
+  .cm-atom
+    color $orange
+
+  // Meta
+  .cm-meta
+    color $muted
+
+  // Link/URL
+  .cm-link
+    color $secondary-blue
+    text-decoration underline
+
+  // Heading
+  .cm-header
+    color $secondary-blue
+    font-weight bold
+
+  // Quote
+  .cm-quote
+    color $green
+    font-style italic
+
+  // Format
+  .cm-formatting
+    color $muted
+
+  // Bracket matching highlight
+  .cm-bracket
+    color $lighter
+
+  // Active line focus
+  &.CodeMirror-focused
+    .CodeMirror-activeline-background
+      background rgba($arch-blue, 0.1)
+
+    .CodeMirror-cursor
+      border-left 2px solid $secondary-blue
+
+// CodeMirror fold gutters
+.CodeMirror-foldgutter
+  width 1em
+
+.CodeMirror-foldgutter-open
+.CodeMirror-foldgutter-folded
+  cursor pointer
+  color $muted
+  text-align center
+
+  &:after
+    content "›"
+    display inline-block
+    transition transform 0.2s
+
+  &:hover
+    color $arch-blue
+
+.CodeMirror-foldgutter-folded:after
+  transform rotate(90deg)
+
+// CodeMirror hint/autocomplete dropdown
+.CodeMirror-hints
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.25em
+  max-height 200px
+  overflow-y auto
+
+.CodeMirror-hint
+  color $light
+  padding 0.25em 0.5em
+  border-radius $border-radius-sm
+  cursor pointer
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  &.CodeMirror-hint-active
+    background rgba($arch-blue, 0.2)
+    color $secondary-blue
+
+// CodeMirror dialogs
+.CodeMirror-dialog
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+  border-bottom 1px solid $border-subtle
+  padding 0.5em 1em
+  color $light
+
+.CodeMirror-dialog input
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $lighter
+  padding 0.25em 0.5em
+  font-family $font-mono
+
+  &:focus
+    outline none
+    border-color $arch-blue
+
+.CodeMirror-dialog button
+  background rgba($arch-blue, 0.2)
+  border 1px solid $arch-blue
+  border-radius $border-radius-sm
+  color $secondary-blue
+  padding 0.25em 0.75em
+  cursor pointer
+
+  &:hover
+    background rgba($arch-blue, 0.3)
+
+// CodeMirror selection match
+.CodeMirror-selection-background
+  background rgba($arch-blue, 0.25)
+
+// CodeMirror line widget (added by plugins)
+.CodeMirror-linewidget
+  background rgba($orange, 0.1)
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-sm
+  padding 0.5em
+
+// CodeMirror readonly
+.CodeMirror-readonly
+  background rgba($muted, 0.1)
+  color $muted
+
+// CodeMirror placeholder
+.CodeMirror-placeholder
+  color $muted
+  font-style italic
+
+// Focus-visible for accessibility
+.CodeMirror textarea:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  .CodeMirror-foldgutter-open:after
+  .CodeMirror-foldgutter-folded:after
+    transition none

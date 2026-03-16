@@ -1,0 +1,521 @@
+// Message Boxes Styling for Violet Void ArchWiki Theme
+// Handles Ambox, Ombox, Imbox, Tmbox, and Citation Needed templates
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// AMBOX (ARTICLE MESSAGE BOX)
+// =============================================================================
+// Used on article pages to indicate issues with the article
+// Types: serious (delete/speedy), content (issues), style (cleanup), notice, move
+
+.ambox
+  background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-left 5px solid $arch-blue
+  border-radius $border-radius-md
+  margin 0.5em 0
+  padding 0.75em 1em
+  font-size 0.9em
+  color $light
+  display table
+  width 100%
+  box-sizing border-box
+  box-shadow $shadow-subtle
+
+  // Ambox inner structure
+  .ambox-image
+    display table-cell
+    vertical-align middle
+    padding-right 0.75em
+    width 1%
+    text-align center
+
+    img
+      max-width 52px
+      height auto
+
+  .ambox-text
+    display table-cell
+    vertical-align middle
+    padding-left 0.5em
+
+    p
+      margin 0.3em 0
+
+      &:first-child
+        margin-top 0
+
+      &:last-child
+        margin-bottom 0
+
+  // Type-specific styling
+  // Serious issues (deletion, speedy)
+  &.ambox-serious
+  &.ambox-delete
+  &.ambox-speedy
+    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    border-color rgba($secondary-red, 0.3)
+    border-left-color $secondary-red
+
+    .ambox-image
+      color $secondary-red
+
+  // Content issues (accuracy, disputed)
+  &.ambox-content
+  &.ambox-accuracy
+  &.ambox-disputed
+    background linear-gradient(135deg, rgba($orange, 0.12), rgba($orange, 0.06))
+    border-color rgba($orange, 0.3)
+    border-left-color $orange
+
+    .ambox-image
+      color $orange
+
+  // Style issues (cleanup, copyedit)
+  &.ambox-style
+  &.ambox-cleanup
+  &.ambox-copyedit
+    background linear-gradient(135deg, rgba($term-yellow, 0.1), rgba($term-yellow, 0.05))
+    border-color rgba($term-yellow, 0.3)
+    border-left-color $term-yellow
+
+    .ambox-image
+      color $term-yellow
+
+  // Notice/information
+  &.ambox-notice
+  &.ambox-info
+    background linear-gradient(135deg, rgba($secondary-blue, 0.1), rgba($secondary-blue, 0.05))
+    border-color rgba($secondary-blue, 0.25)
+    border-left-color $secondary-blue
+
+    .ambox-image
+      color $secondary-blue
+
+  // Move/merge proposals
+  &.ambox-move
+  &.ambox-merge
+    background linear-gradient(135deg, rgba($term-cyan, 0.1), rgba($term-cyan, 0.05))
+    border-color rgba($term-cyan, 0.3)
+    border-left-color $term-cyan
+
+    .ambox-image
+      color $term-cyan
+
+  // Protection
+  &.ambox-protection
+    background linear-gradient(135deg, rgba($muted, 0.15), rgba($muted, 0.08))
+    border-color rgba($muted, 0.3)
+    border-left-color $muted
+
+    .ambox-image
+      color $muted
+
+  // Links within ambox
+  a
+    color $secondary-blue
+    font-weight 500
+    text-decoration none
+
+    &:hover
+      color $white
+      text-decoration underline
+
+// Mobile responsive
+@media (max-width $breakpoint-sm)
+  .ambox
+    padding 0.5em 0.75em
+
+    .ambox-image
+      display none
+
+    .ambox-text
+      padding-left 0
+
+// =============================================================================
+// OMBOX (OTHER PAGES MESSAGE BOX)
+// =============================================================================
+// Used on non-article pages (templates, categories, etc.)
+
+.ombox
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  margin 0.5em 0
+  padding 0.75em 1em
+  font-size 0.9em
+  color $light
+  box-shadow $shadow-subtle
+
+  // Type-specific styling (similar to ambox)
+  &.ombox-serious
+  &.ombox-delete
+    background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06))
+    border-color rgba($secondary-red, 0.25)
+
+  &.ombox-content
+    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    border-color rgba($orange, 0.25)
+
+  &.ombox-style
+    background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.04))
+    border-color rgba($term-yellow, 0.25)
+
+  &.ombox-notice
+    background linear-gradient(135deg, rgba($secondary-blue, 0.08), rgba($secondary-blue, 0.04))
+    border-color rgba($secondary-blue, 0.2)
+
+  &.ombox-protection
+    background linear-gradient(135deg, rgba($muted, 0.12), rgba($muted, 0.06))
+    border-color rgba($muted, 0.25)
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+// =============================================================================
+// IMBOX (IMAGE MESSAGE BOX)
+// =============================================================================
+// Used on file/image description pages
+
+.imbox
+  background linear-gradient(135deg, rgba($term-cyan, 0.08), rgba($term-cyan, 0.04))
+  border 1px solid rgba($term-cyan, 0.25)
+  border-radius $border-radius-md
+  margin 0.5em 0
+  padding 0.75em 1em
+  font-size 0.9em
+  color $light
+  box-shadow $shadow-subtle
+
+  // Type-specific styling
+  &.imbox-serious
+  &.imbox-delete
+    background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06))
+    border-color rgba($secondary-red, 0.25)
+
+  &.imbox-content
+    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    border-color rgba($orange, 0.25)
+
+  &.imbox-notice
+    background linear-gradient(135deg, rgba($secondary-blue, 0.08), rgba($secondary-blue, 0.04))
+    border-color rgba($secondary-blue, 0.2)
+
+  &.imbox-license
+    background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.05))
+    border-color rgba($green, 0.25)
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+// =============================================================================
+// TMBOX (TALK PAGE MESSAGE BOX)
+// =============================================================================
+// Used on discussion/talk pages
+
+.tmbox
+  background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.04))
+  border 1px solid rgba($term-yellow, 0.25)
+  border-radius $border-radius-md
+  margin 0.5em 0
+  padding 0.75em 1em
+  font-size 0.9em
+  color $light
+  box-shadow $shadow-subtle
+
+  // Type-specific styling
+  &.tmbox-serious
+  &.tmbox-delete
+    background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06))
+    border-color rgba($secondary-red, 0.25)
+
+  &.tmbox-content
+    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    border-color rgba($orange, 0.25)
+
+  &.tmbox-notice
+    background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.04))
+    border-color rgba($term-yellow, 0.2)
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+// =============================================================================
+// CMBOX (CATEGORY MESSAGE BOX)
+// =============================================================================
+// Used on category pages
+
+.cmbox
+  background linear-gradient(135deg, rgba($term-magenta, 0.08), rgba($term-magenta, 0.04))
+  border 1px solid rgba($term-magenta, 0.25)
+  border-radius $border-radius-md
+  margin 0.5em 0
+  padding 0.75em 1em
+  font-size 0.9em
+  color $light
+  box-shadow $shadow-subtle
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+// =============================================================================
+// FMBOX (FOOTER MESSAGE BOX)
+// =============================================================================
+// Used at the bottom of pages
+
+.fmbox
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  margin 1em 0
+  padding 0.75em 1em
+  font-size 0.85em
+  color $light
+  clear both
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $white
+
+// =============================================================================
+// CITATION NEEDED TEMPLATE
+// =============================================================================
+// Inline template for marking unsourced statements
+
+// Inline citation needed marker
+.citation-needed
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.08))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-sm
+  padding 0.1em 0.4em
+  font-size 0.75em
+  font-weight 600
+  color $orange
+  cursor help
+  display inline-block
+  vertical-align baseline
+  margin-left 0.3em
+  text-transform uppercase
+  letter-spacing 0.03em
+  transition all $transition-fast
+
+  &:hover
+    background rgba($orange, 0.2)
+    border-color rgba($orange, 0.5)
+
+// Alternative citation needed styling
+.cn-uncollapsed
+  background rgba($orange, 0.1)
+  padding 0.2em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.85em
+
+  a
+    color $orange
+    font-weight 600
+    text-decoration none
+
+    &:hover
+      color $term-bright-yellow
+
+// Citation needed tooltip (hover explanation)
+.citation-needed
+  position relative
+
+  &::after
+    content "This claim needs a reliable source"
+    position absolute
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    background-color $darker
+    color $lighter
+    padding 0.4em 0.7em
+    border-radius $border-radius-sm
+    font-size 0.9em
+    font-weight normal
+    text-transform none
+    letter-spacing normal
+    white-space nowrap
+    opacity 0
+    visibility hidden
+    transition all $transition-fast
+    z-index 100
+    box-shadow 0 2px 8px rgba(0, 0, 0, 0.3)
+    border 1px solid $border-subtle
+    margin-bottom 0.3em
+
+  &:hover::after
+    opacity 1
+    visibility visible
+
+// Dismiss button for logged-in users
+.citation-needed-close
+  background transparent
+  border none
+  color $muted
+  cursor pointer
+  padding 0 0.3em
+  font-size 1.2em
+  line-height 1
+  opacity 0.6
+  transition opacity $transition-fast
+
+  &:hover
+    opacity 1
+    color $light
+
+// =============================================================================
+// COLLAPSIBLE NOTICE BOXES
+// =============================================================================
+// Make certain message boxes collapsible
+
+.mw-collapsible
+  &.ambox
+  &.ombox
+  &.imbox
+  &.tmbox
+    .mw-collapsible-toggle
+      float right
+      font-size 0.85em
+      color $muted
+      cursor pointer
+      user-select none
+      padding 0.2em 0.5em
+      border-radius $border-radius-sm
+      transition all $transition-fast
+
+      &:hover
+        background rgba($light, 0.1)
+        color $light
+
+      &::before
+        content "▼ "
+        font-size 0.8em
+
+    &.mw-collapsed
+      .mw-collapsible-toggle::before
+        content "▶ "
+
+      .mw-collapsible-content
+        display none
+
+// =============================================================================
+// COMMON MESSAGE BOX ELEMENTS
+// =============================================================================
+
+// Icons in message boxes
+.ambox-image
+.ombox-image
+.imbox-image
+.tmbox-image
+  img
+    max-width 52px
+    height auto
+    opacity 0.9
+
+// Text styling
+.ambox-text
+.ombox-text
+.imbox-text
+.tmbox-text
+  line-height 1.5
+
+  b
+  strong
+    color $lighter
+
+  small
+    font-size 0.9em
+    color $muted
+
+// Links in message boxes
+.ambox
+.ombox
+.imbox
+.tmbox
+.cmbox
+.fmbox
+  a
+    text-decoration none
+    border-bottom 1px dotted transparent
+    transition all $transition-fast
+
+    &:hover
+      border-bottom-color currentColor
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// High contrast mode support
+@media (forced-colors active)
+  .ambox
+  .ombox
+  .imbox
+  .tmbox
+  .cmbox
+  .fmbox
+    forced-color-adjust none
+    border 2px solid CanvasText
+
+// Reduced motion - no animations
+@media (prefers-reduced-motion reduce)
+  .ambox
+  .ombox
+  .imbox
+  .tmbox
+  .citation-needed
+    transition none
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  // Simplified styling for print
+  .ambox
+  .ombox
+  .imbox
+  .tmbox
+  .cmbox
+  .fmbox
+    background #f9f9f9
+    border 1px solid #aaa
+    border-left 3px solid #36c
+    color #333
+    box-shadow none
+
+    a
+      color #0645ad
+
+  // Show citation needed as simple text
+  .citation-needed
+    background transparent
+    border none
+    color #d33
+    font-size 0.85em
+
+    &::after
+      content none
+
+  // Hide collapsible toggles
+  .mw-collapsible-toggle
+    display none

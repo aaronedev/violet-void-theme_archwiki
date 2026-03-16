@@ -1,0 +1,96 @@
+@import '../variables/layout'
+
+// Accessibility: respect user's motion preferences
+@media (prefers-reduced-motion reduce)
+  *
+  *::before
+  *::after
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+    scroll-behavior auto !important
+
+// Responsive design adjustments
+@media (max-width 768px)
+  #content pre:not([class*="codemirror"])
+    font-size 0.85em
+    padding 0.75em !important
+    padding-top 2em !important
+    border-radius $border-radius-md
+
+  .wikitable
+    font-size 0.85em
+
+  #content
+    padding 0.75em 1em
+
+  .mw-parser-output .wikitable
+  .mw-parser-output .infobox
+  .mw-parser-output table.results
+    display block
+    overflow-x auto
+    max-width 100%
+    -webkit-overflow-scrolling touch
+
+  .mw-parser-output .wikitable thead
+  .mw-parser-output .infobox thead
+  .mw-parser-output table.results thead
+    display table-header-group
+
+  .mw-parser-output .wikitable th
+  .mw-parser-output .infobox th
+  .mw-parser-output table.results th
+    white-space nowrap
+
+  .mw-ui-button
+    padding 0.3em 0.8em
+    font-size 0.9em
+
+// Small mobile
+@media (max-width 480px)
+  #content
+    padding 0.5em
+    border-radius $border-radius-sm
+
+  #content pre:not([class*="codemirror"])
+    font-size 0.8em
+    border-radius $border-radius-sm
+
+  .wikitable
+  .infobox
+    font-size 0.8em
+
+// Print styles
+// Print styles intentionally use light theme with hardcoded colors
+// This ensures proper printing on physical paper and PDF exports
+// Dark themes don't print well and waste ink
+@media print
+  body
+    background white
+    color black
+
+  #content
+    background white
+    color black
+    box-shadow none
+    border 1px solid $print-border
+
+  a
+    color black
+    text-decoration underline
+
+    &[href]::after
+      content " (" attr(href) ")"
+      font-size 0.8em
+      color $print-text
+
+  pre
+  code
+    border 1px solid $print-border
+    background $print-bg
+
+  .mw-sidebar
+  .vector-header
+  .vector-sticky-header
+  #archnavbar
+    display none

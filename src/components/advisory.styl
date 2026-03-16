@@ -1,0 +1,186 @@
+// Advisory boxes for Violet Void ArchWiki
+// Warning, tip, note, deprecated content styling
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// WARNING BOXES ENHANCED
+// =============================================================================
+
+// Data loss / critical warnings
+.mw-warning-with-logexcerpt
+.warning-box.critical
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.05))
+  border 1px solid rgba($secondary-red, 0.4)
+  border-inline-start 4px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "⚠ CRITICAL: "
+    color $secondary-red
+    font-weight 700
+
+// System instability warnings
+.warning-box.system
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.4)
+  border-inline-start 4px solid $orange
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "⚠ WARNING: "
+    color $orange
+    font-weight 600
+
+// Security warnings
+.warning-box.security
+  background linear-gradient(135deg, rgba($secondary-red, 0.2), rgba($secondary-red, 0.08))
+  border 1px solid rgba($secondary-red, 0.5)
+  border-inline-start 4px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "🔒 SECURITY: "
+    color $secondary-red
+    font-weight 700
+
+// =============================================================================
+// TIP BOXES ENHANCED
+// =============================================================================
+
+// Performance tips
+.tip-box.performance
+  background linear-gradient(135deg, rgba($green, 0.12), rgba($green, 0.04))
+  border 1px solid rgba($green, 0.3)
+  border-inline-start 4px solid $green
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "⚡ TIP: "
+    color $green
+    font-weight 600
+
+// Alternative methods
+.tip-box.alternative
+  background linear-gradient(135deg, rgba($secondary-blue, 0.12), rgba($secondary-blue, 0.04))
+  border 1px solid rgba($secondary-blue, 0.3)
+  border-inline-start 4px solid $secondary-blue
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "🔄 ALTERNATIVE: "
+    color $secondary-blue
+    font-weight 600
+
+// Shortcut tips
+.tip-box.shortcut
+  background linear-gradient(135deg, rgba($term-bright-cyan, 0.12), rgba($term-bright-cyan, 0.04))
+  border 1px solid rgba($term-bright-cyan, 0.3)
+  border-inline-start 4px solid $term-bright-cyan
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "⌨ SHORTCUT: "
+    color $term-bright-cyan
+    font-weight 600
+
+// =============================================================================
+// NOTE BOXES ENHANCED
+// =============================================================================
+
+// Version-specific notes
+.note-box.version
+  background linear-gradient(135deg, rgba($purple, 0.12), rgba($purple, 0.04))
+  border 1px solid rgba($purple, 0.3)
+  border-inline-start 4px solid $purple
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "📦 VERSION: "
+    color $purple
+    font-weight 600
+
+// Architecture-specific notes
+.note-box.arch
+  background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($arch-blue, 0.04))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-inline-start 4px solid $arch-blue
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  color $light
+
+  &::before
+    content "🖥 ARCH: "
+    color $arch-blue
+    font-weight 600
+
+// =============================================================================
+// DEPRECATED CONTENT
+// =============================================================================
+
+// Outdated version strikethrough
+.deprecated
+  opacity 0.6
+
+  &
+  *
+    text-decoration line-through
+    text-decoration-color $secondary-red
+
+// Legacy method indicator
+.legacy
+  position relative
+  padding-inline-end 3em
+
+  &::after
+    content "LEGACY"
+    position absolute
+    right 0
+    top 50%
+    transform translateY(-50%)
+    font-size 0.7em
+    padding 0.2em 0.5em
+    background-color rgba($muted, 0.2)
+    color $muted
+    border-radius $border-radius-sm
+    text-transform uppercase
+    letter-spacing 0.05em
+
+// Migration guide link
+.migration-guide
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.3em 0.6em
+  background-color rgba($green, 0.15)
+  color $green
+  border-radius $border-radius-sm
+  font-size 0.85em
+  text-decoration none
+
+  &:hover
+    background-color rgba($green, 0.25)
+

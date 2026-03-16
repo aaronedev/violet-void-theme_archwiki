@@ -1,0 +1,297 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// ArchWiki template boxes
+div.archwiki-template-box
+  position relative
+  overflow hidden
+  transition all $transition-medium
+  box-shadow $shadow-subtle
+  margin 1em 0
+
+  // Note: hover-lift removed to avoid layout shifting on informational content
+  // hover-lift()
+
+// Note boxes
+div.archwiki-template-box.archwiki-template-box-note
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.12)
+  border-radius $border-radius-md
+  padding 0.6em 0.75em 0.6em 1.5em
+
+  &::before
+    content ""
+    position absolute
+    top 0
+    left 0
+    width 3px
+    height 100%
+    gradient-primary-vertical()
+
+// Tip boxes
+div.archwiki-template-box.archwiki-template-box-tip
+  background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.03))
+  border 1px solid rgba($green, 0.14)
+  border-radius $border-radius-md
+  padding 0.6em 2em 0.6em 0.75em
+
+  &::before
+    content "💡"
+    position absolute
+    top 0.4em
+    right 0.5em
+    font-size 1em
+    opacity 0.8
+    filter drop-shadow(0 0 5px rgba($green, 0.4))
+
+// Warning boxes
+div.archwiki-template-box.archwiki-template-box-warning
+  background linear-gradient(135deg, rgba($red, 0.1), rgba($secondary-red, 0.03))
+  border 1px solid rgba($secondary-red, 0.12)
+  border-radius $border-radius-md
+  padding 0.6em 2em 0.6em 0.75em
+
+  &::before
+    content "!"
+    position absolute
+    top 0.4em
+    right 0.5em
+    font-size 1em
+    font-weight bold
+    color $secondary-red
+
+// ArchWiki message boxes
+.mw-message-box
+.messagebox
+.warningbox
+.errorbox
+.successbox
+.noticebox
+  position relative
+  overflow hidden
+  transition all $transition-medium
+  box-shadow $shadow-subtle
+  margin 1em 0
+  border-radius $border-radius-md
+
+.mw-message-box
+.messagebox
+.noticebox
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.12)
+  padding 0.6em 0.75em 0.6em 1.5em
+
+  &::before
+    content ""
+    position absolute
+    top 0
+    left 0
+    width 3px
+    height 100%
+    gradient-primary-vertical()
+
+.successbox
+  background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.03))
+  border 1px solid rgba($green, 0.14)
+  padding 0.6em 2em 0.6em 0.75em
+
+  &::before
+    content "✓"
+    position absolute
+    top 0.4em
+    right 0.5em
+    font-size 1em
+    font-weight bold
+    color $green
+    opacity 0.85
+    filter drop-shadow(0 0 5px rgba($green, 0.4))
+
+.warningbox
+  background linear-gradient(135deg, rgba($red, 0.1), rgba($secondary-red, 0.03))
+  border 1px solid rgba($secondary-red, 0.12)
+  padding 0.6em 2em 0.6em 0.75em
+
+  &::before
+    content "!"
+    position absolute
+    top 0.4em
+    right 0.5em
+    font-size 1em
+    font-weight bold
+    color $secondary-red
+
+.errorbox
+  background linear-gradient(135deg, rgba($secondary-red, 0.14), rgba($secondary-red, 0.04))
+  border 1px solid rgba($secondary-red, 0.2)
+  padding 0.6em 2em 0.6em 0.75em
+
+  &::before
+    content "✖"
+    position absolute
+    top 0.4em
+    right 0.5em
+    font-size 1em
+    font-weight bold
+    color $secondary-red
+
+// =============================================================================
+// ULTRA HIGH SPECIFICITY NOTICE BOX OVERRIDES
+// Force dark theme on notice boxes
+// =============================================================================
+
+// High specificity notice box overrides
+
+// Target notice boxes with maximum specificity
+body .mw-body .mw-body-content .note
+body .mw-body-content .note
+.mw-body .note
+.mw-body-content .note
+.mw-parser-output .note
+#content .note
+#mw-content-text .note
+.mw-body .mw-parser-output .note
+body .mw-body .mw-body-content .tip
+body .mw-body-content .tip
+.mw-body .tip
+.mw-body-content .tip
+.mw-parser-output .tip
+#content .tip
+#mw-content-text .tip
+.mw-body .mw-parser-output .tip
+body .mw-body .mw-body-content .warning
+body .mw-body-content .warning
+.mw-body .warning
+.mw-body-content .warning
+.mw-parser-output .warning
+#content .warning
+#mw-content-text .warning
+.mw-body .mw-parser-output .warning
+body .mw-body .mw-body-content .important
+body .mw-body-content .important
+.mw-body .important
+.mw-body-content .important
+.mw-parser-output .important
+#content .important
+#mw-content-text .important
+.mw-body .mw-parser-output .important
+div.note
+div.tip
+div.warning
+div.important
+div[class*="note"]
+div[class*="tip"]
+div[class*="warning"]
+.mw-notice
+.notification
+.admonition
+.admonition-note
+.admonition-tip
+.admonition-warning
+  background-color #181818 !important
+  color #bfbfbf !important
+  border-color rgba(137, 80, 199, 0.25) !important
+  border-radius 9px !important
+
+// Note specific styling - blue accent
+body .mw-body .note
+body .mw-body .mw-parser-output .note
+.note
+div.note
+.notification-note
+.admonition-note
+  border-left 4px solid #8950c7 !important
+  background linear-gradient(135deg, rgba(137, 80, 199, 0.12), rgba(137, 80, 199, 0.06)) !important
+
+// Tip specific styling - green accent
+body .mw-body .tip
+body .mw-body .mw-parser-output .tip
+.tip
+div.tip
+.notification-tip
+.admonition-tip
+  border-left 4px solid #4bfe9b !important
+  background linear-gradient(135deg, rgba(75, 254, 155, 0.12), rgba(75, 254, 155, 0.06)) !important
+
+// Warning specific styling - orange accent
+body .mw-body .warning
+body .mw-body .mw-parser-output .warning
+.warning
+div.warning
+.notification-warning
+.admonition-warning
+  border-left 4px solid #fd7cff !important
+  background linear-gradient(135deg, rgba(253, 124, 255, 0.12), rgba(253, 124, 255, 0.06)) !important
+
+// Important/Caution - red accent
+body .mw-body .important
+body .mw-body .mw-parser-output .important
+.important
+div.important
+.caution
+.notification-error
+.admonition-caution
+.admonition-danger
+  border-left 4px solid #ff1a67 !important
+  background linear-gradient(135deg, rgba(255, 26, 103, 0.12), rgba(255, 26, 103, 0.06)) !important
+
+// Ensure text in notice boxes is readable
+.note p
+.tip p
+.warning p
+.important p
+div.note p
+div.tip p
+div.warning p
+div.important p
+.notification p
+.admonition p
+  color #e7e7e7 !important
+
+// Links in notice boxes
+.note a
+.tip a
+.warning a
+.important a
+div.note a
+div.tip a
+div.warning a
+div.important a
+  color #c7b8ff !important
+
+.note a:hover
+.tip a:hover
+.warning a:hover
+.important a:hover
+div.note a:hover
+div.tip a:hover
+div.warning a:hover
+div.important a:hover
+  color #fd7cff !important
+
+// =============================================================================
+// MIX-BLEND-MODE FOR EMPHASIS EFFECTS
+// =============================================================================
+
+// Subtle blend effects for emphasis and overlays
+
+// Warning boxes with enhanced contrast via blend mode
+.warningbox
+.errorbox
+  mix-blend-mode normal // Base - ensures consistent appearance
+
+  // Overlay effect for nested emphasis
+  strong
+  em
+    mix-blend-mode plus-lighter
+
+// Highlight overlays
+.highlight-overlay
+  mix-blend-mode screen
+  opacity 0.15
+
+// Emphasis marks with blend effects
+mark
+.highlight
+  mix-blend-mode multiply

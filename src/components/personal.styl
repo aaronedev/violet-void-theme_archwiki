@@ -1,0 +1,785 @@
+// =============================================================================
+// Personalization - Violet Void ArchWiki Theme
+// Reading List, Quick Links, and User Preferences Styling
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// READING LIST STYLING
+// =============================================================================
+// Saved article cards, read/unread indicators, category organization
+
+// Reading list container
+.reading-list
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  display flex
+  flex-direction column
+  gap 1em
+
+  // List header
+  .reading-list-header
+    display flex
+    align-items center
+    justify-content space-between
+    padding-bottom 0.75em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    h3
+      margin 0
+      font-size 1.1rem
+      color $lighter
+
+    .list-actions
+      display flex
+      gap 0.5rem
+
+      button
+        padding 0.4rem 0.75rem
+        background rgba($arch-blue, 0.2)
+        border 1px solid rgba($arch-blue, 0.3)
+        border-radius $border-radius-sm
+        color $light
+        font-size 0.85rem
+        cursor pointer
+        transition transition-fast
+
+        &:hover
+          background rgba($arch-blue, 0.3)
+          border-color $arch-blue
+
+        &:focus-visible
+          outline 2px solid $arch-blue
+          outline-offset 2px
+
+  // Reading list items
+  .reading-list-items
+    display flex
+    flex-direction column
+    gap 0.75rem
+
+  // Individual reading list item card
+  .reading-list-item
+    display flex
+    align-items center
+    gap 1rem
+    padding 0.75rem 1rem
+    background rgba($base, 0.6)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    transition transition-medium
+    text-decoration none
+    color $light
+
+    &:hover
+      border-color rgba($arch-blue, 0.4)
+      background rgba($arch-blue, 0.1)
+
+    // Read/unread indicator
+    .read-status
+      width 8px
+      height 8px
+      border-radius 50%
+      flex-shrink 0
+
+      &.unread
+        background $arch-blue
+        box-shadow 0 0 6px rgba($arch-blue, 0.5)
+
+      &.read
+        background $muted
+        opacity 0.5
+
+    // Article thumbnail (if available)
+    .item-thumbnail
+      width 60px
+      height 40px
+      border-radius $border-radius-sm
+      object-fit cover
+      background $dark
+      flex-shrink 0
+
+    // Article info
+    .item-info
+      flex 1
+      min-width 0
+
+      .item-title
+        font-size 0.95rem
+        font-weight 500
+        color $lighter
+        margin-bottom 0.25rem
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+
+      .item-meta
+        font-size 0.8rem
+        color $muted
+        display flex
+        gap 0.75rem
+
+        .item-date
+          tabular-nums()
+
+        .item-category
+          color $secondary-blue
+
+    // Item actions
+    .item-actions
+      display flex
+      gap 0.5rem
+      opacity 0
+      transition opacity-fast
+
+    &:hover .item-actions
+      opacity 1
+
+    // Remove from list button
+    .remove-item
+      width 24px
+      height 24px
+      border-radius $border-radius-sm
+      background transparent
+      border none
+      color $muted
+      cursor pointer
+      display flex
+      align-items center
+      justify-content center
+      transition transition-fast
+
+      &:hover
+        background rgba($secondary-red, 0.2)
+        color $secondary-red
+
+// Reading list categories
+.reading-list-category
+  margin-bottom 1.5em
+
+  .category-header
+    display flex
+    align-items center
+    gap 0.5rem
+    padding 0.5rem 0.75rem
+    background rgba($arch-blue, 0.15)
+    border-radius $border-radius-sm $border-radius-sm 0 0
+    border-bottom 1px solid rgba($arch-blue, 0.2)
+
+    .category-icon
+      font-size 1rem
+
+    .category-name
+      flex 1
+      font-size 0.9rem
+      font-weight 500
+      color $lighter
+
+    .category-count
+      font-size 0.8rem
+      color $muted
+      tabular-nums()
+
+  .category-items
+    border 1px solid rgba($arch-blue, 0.2)
+    border-top none
+    border-radius 0 0 $border-radius-sm $border-radius-sm
+
+// Reading list empty state
+.reading-list-empty
+  text-align center
+  padding 2rem
+  color $muted
+
+  .empty-icon
+    font-size 3rem
+    margin-bottom 1rem
+    opacity 0.5
+
+  h4
+    margin 0 0 0.5rem
+    color $light
+
+  p
+    margin 0
+    font-size 0.9rem
+
+// =============================================================================
+// CUSTOM QUICK LINKS
+// =============================================================================
+// Quick link cards, reorder handles, edit/delete actions
+
+// Quick links panel
+.quick-links-panel
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+
+  // Panel header
+  .quick-links-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 1rem
+
+    h3
+      margin 0
+      font-size 1.1rem
+      color $lighter
+
+    .add-link-btn
+      padding 0.4rem 0.75rem
+      background $arch-blue
+      border none
+      border-radius $border-radius-sm
+      color $white
+      font-size 0.85rem
+      font-weight 500
+      cursor pointer
+      transition transition-fast
+      display flex
+      align-items center
+      gap 0.4rem
+
+      &:hover
+        background lighten($arch-blue, 8%)
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+  // Quick links grid
+  .quick-links-grid
+    display grid
+    grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+    gap 0.75rem
+
+  // Quick link card
+  .quick-link-card
+    display flex
+    align-items center
+    gap 0.75rem
+    padding 0.75rem
+    background rgba($base, 0.6)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    text-decoration none
+    color $light
+    transition transition-medium
+    position relative
+
+    &:hover
+      border-color rgba($arch-blue, 0.4)
+      background rgba($arch-blue, 0.1)
+
+    // Drag handle for reordering
+    .drag-handle
+      width 20px
+      height 20px
+      display flex
+      align-items center
+      justify-content center
+      color $muted
+      cursor grab
+      opacity 0
+      transition opacity-fast
+
+      &:active
+        cursor grabbing
+
+    &:hover .drag-handle
+      opacity 1
+
+    // Link icon
+    .link-icon
+      width 32px
+      height 32px
+      border-radius $border-radius-sm
+      background rgba($arch-blue, 0.15)
+      display flex
+      align-items center
+      justify-content center
+      color $arch-blue
+      font-size 1rem
+      flex-shrink 0
+
+    // Link info
+    .link-info
+      flex 1
+      min-width 0
+
+      .link-title
+        font-size 0.9rem
+        font-weight 500
+        color $lighter
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+
+      .link-url
+        font-size 0.75rem
+        color $muted
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+
+    // Link actions (visible on hover)
+    .link-actions
+      display flex
+      gap 0.25rem
+      opacity 0
+      transition opacity-fast
+
+    &:hover .link-actions
+      opacity 1
+
+    // Edit/delete buttons
+    .link-action-btn
+      width 24px
+      height 24px
+      border-radius $border-radius-sm
+      background transparent
+      border none
+      color $muted
+      cursor pointer
+      display flex
+      align-items center
+      justify-content center
+      transition transition-fast
+
+      &:hover
+        background rgba($arch-blue, 0.2)
+        color $arch-blue
+
+      &.delete:hover
+        background rgba($secondary-red, 0.2)
+        color $secondary-red
+
+// Quick link add/edit form
+.quick-link-form
+  padding 1rem
+  background rgba($base, 0.8)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin-bottom 1rem
+
+  .form-group
+    margin-bottom 0.75rem
+
+    label
+      display block
+      font-size 0.85rem
+      color $light
+      margin-bottom 0.25rem
+
+    input
+      width 100%
+      padding 0.5rem 0.75rem
+      background $dark
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $lighter
+      font-size 0.9rem
+
+      &:focus
+        outline none
+        border-color $arch-blue
+
+  .form-actions
+    display flex
+    gap 0.5rem
+    justify-content flex-end
+
+    button
+      padding 0.4rem 1rem
+      border-radius $border-radius-sm
+      font-size 0.85rem
+      cursor pointer
+      transition transition-fast
+
+      &.save
+        background $arch-blue
+        border none
+        color $white
+
+        &:hover
+          background lighten($arch-blue, 8%)
+
+      &.cancel
+        background transparent
+        border 1px solid $border-subtle
+        color $light
+
+        &:hover
+          border-color $arch-blue
+
+// Quick links empty state
+.quick-links-empty
+  text-align center
+  padding 2rem
+  color $muted
+
+  .empty-icon
+    font-size 2.5rem
+    margin-bottom 0.75rem
+    opacity 0.5
+
+  p
+    margin 0
+    font-size 0.9rem
+
+// =============================================================================
+// WATCHLIST ENHANCEMENTS (additional styling beyond existing)
+// =============================================================================
+// Enhanced watchlist styling with change summary and diff preview
+
+// Watchlist item enhancements
+.mw-watchlist
+  // Change summary styling
+  .change-summary
+    font-size 0.85rem
+    color $muted
+    padding 0.25rem 0
+    display flex
+    align-items center
+    gap 0.5rem
+
+    .change-tags
+      display flex
+      gap 0.25rem
+
+      .change-tag
+        padding 0.15rem 0.4rem
+        background rgba($arch-blue, 0.15)
+        border-radius $border-radius-sm
+        font-size 0.75rem
+        color $secondary-blue
+
+        &.minor
+          background rgba($green, 0.15)
+          color $green
+
+        &.bot
+          background rgba($orange, 0.15)
+          color $orange
+
+        &.new
+          background rgba($secondary-red, 0.15)
+          color $secondary-red
+
+  // Diff preview cards
+  .watchlist-diff-preview
+    margin-top 0.5rem
+    padding 0.5rem
+    background rgba($dark, 0.4)
+    border 1px solid rgba($border-subtle, 0.5)
+    border-radius $border-radius-sm
+    font-size 0.8rem
+
+    .diff-line
+      padding 0.1rem 0.25rem
+      font-family monospace
+
+      &.added
+        background rgba($green, 0.2)
+        color $green
+
+      &.removed
+        background rgba($secondary-red, 0.2)
+        color $secondary-red
+
+// Watchlist timestamps with tabular-nums
+.watchlist-timestamp
+  font-size 0.85rem
+  color $muted
+  tabular-nums()
+
+// Watchlist change indicators
+.watchlist-change
+  display inline-flex
+  align-items center
+  gap 0.25rem
+  font-size 0.8rem
+
+  &.increase
+    color $green
+
+  &.decrease
+    color $secondary-red
+
+// =============================================================================
+// NOTIFICATION PREFERENCES PANEL
+// =============================================================================
+// Toggle switches for notification types, email digest options, quiet hours settings
+
+.notification-preferences
+  margin 1.5em 0
+  padding 1.25em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  display flex
+  flex-direction column
+  gap 1.25em
+
+  .preferences-header
+    display flex
+    align-items center
+    justify-content space-between
+    padding-bottom 0.75em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    h3
+      margin 0
+      font-size 1.1rem
+      color $lighter
+
+    .preferences-actions
+      display flex
+      gap 0.5rem
+
+      button
+        padding 0.4rem 0.75rem
+        background rgba($arch-blue, 0.2)
+        border 1px solid rgba($arch-blue, 0.3)
+        border-radius $border-radius-sm
+        color $light
+        font-size 0.85rem
+        cursor pointer
+
+        &:hover
+          background rgba($arch-blue, 0.3)
+          border-color rgba($arch-blue, 0.5)
+
+// Notification type toggles
+.notification-types
+  display flex
+  flex-direction column
+  gap 0.875em
+
+  .notification-type
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.75em 1em
+    background rgba($darker, 0.5)
+    border 1px solid rgba($border-subtle, 0.5)
+    border-radius $border-radius-md
+    transition background 0.2s ease
+
+    &:hover
+      background rgba($darker, 0.7)
+
+    .type-info
+      display flex
+      align-items center
+      gap 0.75rem
+
+      .type-icon
+        width 2rem
+        height 2rem
+        display flex
+        align-items center
+        justify-content center
+        background rgba($arch-blue, 0.15)
+        border-radius $border-radius-sm
+        color $arch-blue
+        font-size 1rem
+
+      .type-details
+        .type-name
+          font-weight 600
+          color $light
+          font-size 0.95rem
+
+        .type-description
+          font-size 0.8rem
+          color $muted
+          margin-top 0.125rem
+
+    // Toggle switch styling
+    .toggle-switch
+      position relative
+      width 2.75rem
+      height 1.5rem
+      background rgba($border-subtle, 0.5)
+      border-radius 1rem
+      cursor pointer
+      transition background 0.25s ease
+
+      &::after
+        content ''
+        position absolute
+        top 0.1875rem
+        left 0.1875rem
+        width 1.125rem
+        height 1.125rem
+        background $light
+        border-radius 50%
+        transition transform 0.25s ease
+        box-shadow 0 2px 4px rgba(0, 0, 0, 0.2)
+
+      &.active
+        background $arch-blue
+
+        &::after
+          transform 1.25rem
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+// Email digest options
+.email-digest-section
+  padding-top 0.75em
+  border-top 1px solid rgba($border-subtle, 0.5)
+
+  .section-title
+    font-size 0.9rem
+    font-weight 600
+    color $lighter
+    margin-bottom 0.875em
+
+  .digest-options
+    display flex
+    flex-direction column
+    gap 0.625rem
+
+    .digest-option
+      display flex
+      align-items center
+      gap 0.75rem
+      padding 0.625em 0.875em
+      background rgba($darker, 0.4)
+      border 1px solid rgba($border-subtle, 0.4)
+      border-radius $border-radius-md
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background rgba($darker, 0.6)
+        border-color rgba($arch-blue, 0.3)
+
+      input[type="radio"]
+        appearance none
+        width 1rem
+        height 1rem
+        border 2px solid $border-subtle
+        border-radius 50%
+        cursor pointer
+        transition border-color 0.2s ease
+
+        &:checked
+          border-color $arch-blue
+          background conic-gradient($arch-blue 50%, transparent 50%)
+          background-size 100%
+          background-position center
+
+      label
+        flex 1
+        font-size 0.875rem
+        color $light
+        cursor pointer
+
+// Quiet hours settings
+.quiet-hours-section
+  padding-top 0.75em
+  border-top 1px solid rgba($border-subtle, 0.5)
+
+  .section-title
+    font-size 0.9rem
+    font-weight 600
+    color $lighter
+    margin-bottom 0.875em
+
+  .quiet-hours-toggle
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.75em 1em
+    background rgba($darker, 0.5)
+    border 1px solid rgba($border-subtle, 0.5)
+    border-radius $border-radius-md
+    margin-bottom 0.875rem
+
+    .toggle-label
+      font-size 0.9rem
+      color $light
+
+  .quiet-hours-range
+    display flex
+    align-items center
+    gap 1rem
+    padding 0 0.5rem
+
+    .time-input
+      display flex
+      align-items center
+      gap 0.5rem
+
+      label
+        font-size 0.85rem
+        color $muted
+
+      input[type="time"]
+        padding 0.5rem 0.75rem
+        background rgba($darker, 0.6)
+        border 1px solid rgba($border-subtle, 0.5)
+        border-radius $border-radius-sm
+        color $light
+        font-size 0.875rem
+
+        &::-webkit-calendar-picker-indicator
+          filter invert(0.7)
+
+    .separator
+      color $muted
+      font-size 0.875rem
+
+// Save preferences button
+.save-preferences-btn
+  margin-top 0.5rem
+  padding 0.75rem 1.5rem
+  background $arch-blue
+  border none
+  border-radius $border-radius-md
+  color white
+  font-size 0.95rem
+  font-weight 600
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background lighten($arch-blue, 8%)
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &:active
+    transform translateY(0)
+
+// =============================================================================
+// REDUCED MOTION SUPPORT
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .reading-list-item
+  .quick-link-card
+  .change-summary
+  .notification-type
+  .digest-option
+  .save-preferences-btn
+    transition none
+
+  .reading-list-item .read-status.unread
+    animation none
+
+  .save-preferences-btn:hover
+    transform none

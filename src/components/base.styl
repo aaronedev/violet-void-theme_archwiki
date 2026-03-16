@@ -1,0 +1,127 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/effects'
+
+// Base styles and CSS custom properties
+:root
+  // Color variables
+  --darker $darker
+  --dark $dark
+  --base $base
+  --light $light
+  --lighter $lighter
+  --arch-blue $arch-blue
+  --secondary-blue $secondary-blue
+  --red $red
+  --secondary-red $secondary-red
+  --green $green
+  --secondary-green $secondary-green
+  --orange $orange
+  --cell-delim $cell-delim
+
+  // Layout variables
+  --border-radius-sm $border-radius-sm
+  --border-radius-md $border-radius-md
+  --border-radius-lg $border-radius-lg
+  --border-subtle $border-subtle
+  --shadow-subtle $shadow-subtle
+  --shadow-elevated $shadow-elevated
+  --transition-fast $transition-fast
+  --transition-medium $transition-medium
+
+  // Terminal palette
+  --term-black $term-black
+  --term-red $term-red
+  --term-green $term-green
+  --term-yellow $term-yellow
+  --term-blue $term-blue
+  --term-magenta $term-magenta
+  --term-cyan $term-cyan
+  --term-white $term-white
+  --term-bright-black $term-bright-black
+  --term-bright-red $term-bright-red
+  --term-bright-green $term-bright-green
+  --term-bright-yellow $term-bright-yellow
+  --term-bright-blue $term-bright-blue
+  --term-bright-magenta $term-bright-magenta
+  --term-bright-cyan $term-bright-cyan
+  --term-bright-white $term-bright-white
+
+// Modern form control accent color (progressive enhancement)
+// Applies to checkboxes, radios, range inputs, and progress bars
+// Note: Most form controls have custom styling, but this provides fallback
+html
+  accent-color $arch-blue
+
+// Prevent mobile browsers from adjusting text size (Chrome/Safari only)
+@supports (-webkit-text-size-adjust: 100%)
+  html
+    -webkit-text-size-adjust 100%
+
+// Note: text-size-adjust (unprefixed) not widely supported, omit to avoid errors
+
+// Selection and focus
+::selection
+  background-color rgba($arch-blue, 0.4) !important
+  color $white !important
+
+// Remove gradient underline from icon-only links while keeping text links intact.
+a:has(.vector-icon)
+a:has(.mw-ui-icon)
+a:has(.oo-ui-iconElement-icon)
+  background-image none !important
+
+// Focus ring for interactive elements only
+a
+button
+input
+select
+textarea
+[role="button"]
+[tabindex]
+  focus-ring()
+
+// Scrollbar theming with stable gutter to prevent layout shift
+// scrollbar-gutter: stable reserves space for scrollbar even when not visible
+// This prevents content from jumping when scrollbar appears/disappears
+html
+body
+#content
+.mw-body
+.mw-sidebar
+.mw-page-container
+.vector-body
+  scrollbar-width thin
+  scrollbar-color $secondary-blue transparent
+  scrollbar-gutter stable
+
+  &::-webkit-scrollbar
+    width $scrollbar-width
+    height $scrollbar-width
+
+  &::-webkit-scrollbar-track
+    background-color rgba(0, 0, 0, 0.08)
+    border-radius ($scrollbar-width / 2)
+
+  &::-webkit-scrollbar-thumb
+    background-color $secondary-blue
+    border-radius ($scrollbar-width / 2)
+    transition background-color $transition-fast
+    border 2px solid transparent
+    background-clip content-box
+
+    &:hover
+      background-color $arch-blue
+
+// Page shell
+body
+  background-color $base
+  color $light
+  font-family $font-sans
+  -webkit-font-smoothing antialiased
+  line-height 1.6
+  // Prevent scroll chaining (scroll bouncing) for better UX
+  overscroll-behavior-y contain
+
+body.skin-vector div.mw-page-container
+  background-color $base

@@ -1,0 +1,473 @@
+// Print-specific optimizations and alternative color schemes
+// Ensures theme works well in all contexts
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// PRINT OPTIMIZATIONS (Already in responsive-enhanced.styl, but more here)
+// =============================================================================
+
+@media print
+  // Force background colors and images to print
+  *
+    -webkit-print-color-adjust exact !important
+    print-color-adjust exact !important
+
+  // Reduce ink usage
+  body
+  #content
+  .mw-body
+    background white !important
+    color black !important
+
+  // Hide unnecessary elements
+  .mw-indicators
+  .mw-portlet
+  .mw-editTools
+  .editCheckboxes
+  .mw-notification
+  nav
+  .mw-sidebar
+  .vector-header
+  footer
+  .mw-footer
+  .patrollink
+  .mw-history-undo
+  .mw-watchlink
+  .mw-rollback-link
+    display none !important
+
+  // Optimize links
+  a
+    color black !important
+    text-decoration underline !important
+
+    &[href^="http"]::after
+      content " (" attr(href) ")"
+      font-size 0.8em
+      color $print-text !important
+
+  // Code blocks
+  pre
+  code
+    background $print-bg !important
+    color black !important
+    border 1px solid $print-border-light !important
+    break-inside avoid
+
+  // Tables
+  table
+    border-collapse collapse !important
+
+  th
+  td
+    border 1px solid $print-black !important
+
+  // Prevent orphans and widows
+  p
+  h2
+  h3
+    orphans 3
+    widows 3
+
+  // Page breaks
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-after avoid
+
+  img
+  table
+  figure
+    break-inside avoid
+
+  // Reduce font sizes for print
+  body
+    font-size 12pt
+
+  h1
+    font-size 24pt
+
+  h2
+    font-size 18pt
+
+  h3
+    font-size 14pt
+
+// =============================================================================
+// HIGH CONTRAST MODE ENHANCEMENTS
+// =============================================================================
+
+// stylelint-disable media-feature-name-value-no-unknown
+@media (prefers-contrast high)
+  :root
+    --border-subtle rgba(255, 255, 255, 0.5)
+
+  // Increase border visibility
+  button
+  input
+  select
+  textarea
+  a
+    border-width 2px !important
+
+  // Make text more visible
+  body
+    font-weight 500
+
+  // Focus indicators
+  :focus
+    outline 3px solid currentcolor !important
+    outline-offset 3px !important
+
+// =============================================================================
+// DARK MODE SYSTEM PREFERENCE
+// =============================================================================
+
+// If user's system is set to light mode but they're using this theme,
+// ensure it still works
+@media (prefers-color-scheme light)
+  // Theme is designed for dark, but ensure it stays dark
+  body
+  html
+    color-scheme dark
+
+// =============================================================================
+// MONOCHROME DISPLAY SUPPORT
+// =============================================================================
+
+@media (monochrome)
+  // Remove color gradients, use grayscale
+  *
+    background-image none !important
+
+  // Use different shades of gray
+  .mw-ui-button
+  button
+    background-color $print-button-bg !important
+    color $print-white !important
+
+  a
+    color $print-text !important
+    text-decoration underline !important
+
+// =============================================================================
+// REDUCED DATA MODE
+// =============================================================================
+
+@media (prefers-reduced-data reduce)
+  // Remove non-essential background images
+  *
+    background-image none !important
+
+  // Remove custom fonts
+  body
+    font-family sans-serif !important
+
+// =============================================================================
+// ANIMATION PERFORMANCE
+// =============================================================================
+
+// Use GPU acceleration for animations
+.animate-fade-in
+.animate-fade-in-up
+.animate-scale-in
+  will-change opacity, transform
+
+// Reduce animation complexity on low-end devices
+@media (prefers-reduced-motion reduce)
+  *
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+
+// =============================================================================
+// CSS CONTAINMENT (Performance)
+// =============================================================================
+
+// Improve rendering performance with containment
+.mw-body-content
+.mw-parser-output
+#content
+  contain layout style
+
+.mw-indicators
+.mw-portlet
+  contain layout
+
+// =============================================================================
+// SCROLL ANCHORING (overflow-anchor)
+// =============================================================================
+
+// Browser support: 97%+
+// Controls scroll anchoring behavior to prevent scroll jumps when content
+// is dynamically inserted above the viewport
+
+// Default: enable scroll anchoring for main content areas
+// This prevents scroll jumps when lazy-loaded images or dynamic content appears
+.mw-body
+.mw-body-content
+.mw-parser-output
+#content
+  overflow-anchor auto
+
+// Disable scroll anchoring for elements that shouldn't affect scroll position
+// Useful for chat messages, live feeds, and dynamically prepended content
+.mw-notification
+.oo-ui-popupWidget
+.vector-dropdown-content
+.mw-indicators
+  overflow-anchor none
+
+// Opt out of scroll anchoring for sidebars and navigation
+// Prevents scroll position changes when navigation items expand/collapse
+.mw-sidebar
+#vector-main-menu
+.vector-sticky-header
+.mw-portlet
+  overflow-anchor none
+
+// Prevent scroll anchoring in edit areas where content frequently changes
+.mw-editsection
+.editCheckboxes
+.mw-editTools
+  overflow-anchor none
+
+// Chat/discussion areas where new messages shouldn't affect scroll
+.mw-thread-item
+.flow-topic
+  overflow-anchor none
+
+// =============================================================================
+// SCROLLING PERFORMANCE
+// =============================================================================
+
+// Smooth scrolling with GPU acceleration
+@media (prefers-reduced-motion no-preference)
+  html
+    scroll-behavior smooth
+
+  // Use overflow-scrolling for touch devices
+  .mw-body
+  .mw-parser-output
+    -webkit-overflow-scrolling touch
+
+// =============================================================================
+// TEXT RENDERING OPTIMIZATION
+// =============================================================================
+
+// Improve text rendering
+body
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  text-rendering optimizelegibility
+
+// Optimize for different languages
+html[lang="ja"]
+html[lang="zh"]
+html[lang="ko"]
+  body
+    font-feature-settings "pkna"
+
+// =============================================================================
+// GRID/FLEXBOX FALLBACKS
+// =============================================================================
+
+// Fallback for browsers without flexbox
+@supports not (display flex)
+  .mw-body
+    display block
+
+  .mw-portlet
+    display inline-block
+
+// Fallback for browsers without grid
+@supports not (display grid)
+  .mw-parser-output
+    display block
+
+// =============================================================================
+// LEGACY BROWSER SUPPORT
+// =============================================================================
+
+// IE11 specific fixes (if needed)
+@media all and (-ms-high-contrast none), (-ms-high-contrast active)
+  .mw-body
+    display block
+
+// =============================================================================
+// SCREEN READER IMPROVEMENTS
+// =============================================================================
+
+// Ensure screen readers can navigate properly
+[role="navigation"]
+[role="main"]
+[role="complementary"]
+[role="banner"]
+[role="contentinfo"]
+  contain none
+
+// Skip links
+.mw-jump-link
+#mw-navigation
+  position absolute
+  top -9999px
+  left -9999px
+
+  &:focus-visible
+    position static
+    background-color $arch-blue
+    color $darker
+    padding 1em
+    z-index 9999
+
+// =============================================================================
+// COLOR SCHEME META TAGS
+// =============================================================================
+
+// Ensure browsers know we're a dark theme
+html
+  color-scheme dark
+
+// =============================================================================
+// LOADING STATES
+// =============================================================================
+
+// Skeleton screens while loading
+.mw-body.loading
+  .mw-parser-output
+    min-height 400px
+    background linear-gradient(
+      90deg,
+      $darker 25%,
+      rgba($arch-blue, 0.1) 50%,
+      $darker 75%
+    )
+    background-size 200% 100%
+    animation skeleton-loading 1.5s infinite
+
+// =============================================================================
+// ERROR STATES
+// =============================================================================
+
+.mw-error
+  background linear-gradient(135deg, rgba($secondary-red, 0.2), rgba($secondary-red, 0.1))
+  border 2px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+
+  h1
+  h2
+  h3
+    color $secondary-red
+    margin-top 0
+
+// =============================================================================
+// EMPTY STATES
+// =============================================================================
+
+.mw-empty-elt
+  color $muted
+  font-style italic
+  text-align center
+  padding 2em
+
+// =============================================================================
+// LOADING SPINNER
+// =============================================================================
+
+.mw-loading-spinner
+  display inline-block
+  width 20px
+  height 20px
+  border 2px solid $border-subtle
+  border-top-color $secondary-blue
+  border-radius 50%
+  animation spin 0.8s linear infinite
+
+// =============================================================================
+// RESPONSIVE IMAGES
+// =============================================================================
+
+// Ensure images scale properly
+img
+  max-width 100%
+  height auto
+
+// Lazy loading support
+img[loading="lazy"]
+  background-color $darker
+  min-height 100px
+
+// =============================================================================
+// FIX FOR COMMON ISSUES
+// =============================================================================
+
+// Fix text selection in some browsers
+::selection
+  background rgba($arch-blue, 0.4)
+  color $white
+
+// Fix tap highlight on mobile
+a
+button
+input
+select
+textarea
+  -webkit-tap-highlight-color rgba($arch-blue, 0.3)
+
+// Fix iOS input zoom
+@media screen and (max-width 768px)
+  input[type="text"]
+  input[type="email"]
+  input[type="password"]
+  input[type="search"]
+  textarea
+  select
+    font-size 16px
+
+// =============================================================================
+// RTL SUPPORT
+// =============================================================================
+
+[dir="rtl"]
+  // Mirror layouts for RTL languages
+  .mw-portlet
+    direction rtl
+
+  .mw-indicators
+    direction ltr
+
+  // Adjust text alignment
+  .mw-body-content
+    text-align right
+
+  // Mirror list bullets
+  ul
+  ol
+    margin-left 0
+    margin-right 1.5em
+
+// =============================================================================
+// CUSTOM SCROLLBAR FOR WEBKIT (Already in responsive-enhanced.styl)
+// =============================================================================
+
+// Ensured for all webkit browsers
+::-webkit-scrollbar
+  width 10px
+  height 10px
+
+::-webkit-scrollbar-track
+  background rgba(0, 0, 0, 0.1)
+
+::-webkit-scrollbar-thumb
+  background rgba($arch-blue, 0.5)
+  border-radius 5px
+
+  &:hover
+    background rgba($secondary-blue, 0.7)

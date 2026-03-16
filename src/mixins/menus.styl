@@ -1,0 +1,62 @@
+// Menu and navigation mixins for consistent layout and typography
+menu-panel($gradient = linear-gradient(135deg, lighten($base, 4%), rgba($arch-blue, 0.08)), $padding = 0.75em, $radius = $border-radius-md)
+  background $gradient
+  border 1px solid $border-subtle
+  border-radius $radius
+  padding $padding
+  box-shadow $shadow-subtle
+
+menu-heading()
+  color white
+  font-size 0.85em
+  font-weight 700
+  text-transform uppercase
+  letter-spacing 0.05em
+  border-bottom 2px solid $secondary-blue
+  padding-bottom 0.3em
+  margin-bottom 0.4em
+
+menu-list-item($with-card = false)
+  margin 0.35em 0
+  font-size 0.95em
+
+  a
+    color $lighter
+    text-decoration none
+
+    if $with-card
+      display block
+      padding 0.2em 0.5em
+      border-radius $border-radius-sm
+
+    &:hover
+      if $with-card
+        background-color rgba($arch-blue, 0.15)
+
+      color white
+      font-weight 500
+
+pinnable-header()
+  display flex
+  align-items center
+  justify-content space-between
+  color $lighter
+  font-weight 600
+  font-size 0.8em
+  padding-bottom 0.3em
+  margin-bottom 0.3em
+  border-bottom 1px solid $border-subtle
+
+  .vector-pinnable-header-label
+    color inherit
+
+  .vector-pinnable-header-toggle-button
+    background-color transparent
+    border none
+    color $secondary-blue
+    padding 0.1em 0.3em
+    font-size 0.85em
+    cursor pointer
+
+    &:hover
+      color $orange

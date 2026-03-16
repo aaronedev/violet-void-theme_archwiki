@@ -1,0 +1,364 @@
+// =============================================================================
+// Print Theme - Optimized Print Styles
+// =============================================================================
+// Browser support: 100%
+// This file provides dedicated @media print overrides for optimal printing
+// Includes: background removal, B&W optimization, page break controls
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// PRINT THEME - Base Overrides
+// =============================================================================
+
+@media print
+  // =============================================================================
+  // RESET FOR PRINT - Remove backgrounds and optimize for B&W
+  // =============================================================================
+
+  // Reset all elements for print - remove backgrounds, use B&W
+  *
+    background white !important
+    background-color white !important
+    background-image none !important
+    color black !important
+    border-color #333 !important
+    box-shadow none !important
+    text-shadow none !important
+    // Optimize for B&W printing
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // Body styling for print
+  body
+    font-size 12pt
+    line-height 1.4
+    color black
+    background white
+
+  // =============================================================================
+  // HIDE NON-ESSENTIAL ELEMENTS FOR PRINT
+  // =============================================================================
+
+  // Navigation and chrome - hide for print
+  #archnavbar
+  .mw-sidebar
+  #vector-main-menu
+  .vector-sticky-pinned-container
+  .vector-sticky-header
+  .vector-header
+  .vector-main-menu
+  .vector-main-menu-dropdown
+  .mw-editsection
+  .toctoggle
+  .toctogglespan
+  .catlinks
+  #footer
+  #footer-info
+  #footer-info-lastmod
+  .navbox
+  .navigation-box
+  #mw-page-info
+  .mw-indicators
+  .vector-user-links
+  .vector-search-box
+  .oo-ui-toolbar
+  .mw-notification
+  .aur-enhanced
+  .pkgactions
+  .vote-btn
+  .unvote-btn
+  .flag-btn
+  .mw-editorsuggest
+  .vector-ai-assistant
+  .vector-ai-toolbar
+    display none !important
+
+  // Sidebar - hide for print
+  #sidebar
+  #side-bar
+  .mw-sidebar
+  .sidebar
+    display none !important
+
+  // Remove float and margins for main content
+  #content
+  #bodyContent
+  .mw-body
+    margin 0 !important
+    padding 0 !important
+    float none !important
+
+  // =============================================================================
+  // PAGE BREAK CONTROLS
+  // =============================================================================
+
+  // Avoid page breaks inside these elements
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-after avoid
+    page-break-after avoid
+
+  // Avoid page breaks before these elements
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    break-before avoid
+    page-break-before avoid
+
+  // Avoid page breaks inside these elements
+  p
+  pre
+  blockquote
+  table
+  figure
+  .infobox
+    break-inside avoid
+    page-break-inside avoid
+
+  // Tables - avoid breaking
+  table
+  thead
+  tbody
+  tr
+  th
+  td
+    break-inside avoid
+    page-break-inside avoid
+
+  // Images - avoid breaking
+  img
+  figure
+  .thumb
+    break-inside avoid
+    page-break-inside avoid
+
+  // Lists - avoid breaking
+  ul
+  ol
+  li
+    break-inside avoid
+    page-break-inside avoid
+
+  // Code blocks - avoid breaking
+  pre
+  code
+  .mw-highlight
+    break-inside avoid
+    page-break-inside avoid
+
+  // Message boxes - keep together
+  .mbox
+  .ambox
+  .ombox
+  .cmbox
+  .tmbox
+  .imbox
+  .dmbox
+    break-inside avoid
+    page-break-inside avoid
+
+  // Navboxes - avoid breaking
+  .navbox
+  .navbox-above-below
+    break-inside avoid
+    page-break-inside avoid
+
+  // Require page break before major sections
+  .mw-headline-1
+  h1.first
+    break-before page
+    page-break-before always
+
+  // =============================================================================
+  // LINK STYLING FOR PRINT
+  // =============================================================================
+
+  // Show URLs for external links
+  a
+    color black !important
+    text-decoration underline
+
+    // External links - show URL
+    &[href^="http"]:not([href*="archlinux.org"])::after
+      content " (" attr(href) ")"
+      font-size 0.85em
+      color #333 !important
+      word-break break-all
+
+    // Wiki links - don't show URL
+    &[href^="/"]::after
+      content ""
+
+    // Internal links
+    &[href^="#"]::after
+      content ""
+
+  // =============================================================================
+  // CODE AND PRE STYLING
+  // =============================================================================
+
+  // Code blocks - use monospace, slight border
+  pre
+  code
+  .mw-highlight
+    font-family monospace
+    font-size 10pt
+    border 1px solid #ccc
+    padding 0.2em 0.4em
+    background #f5f5f5 !important
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+    white-space pre-wrap
+    word-wrap break-word
+
+  // =============================================================================
+  // TABLE STYLING
+  // =============================================================================
+
+  // Tables - simple borders for print
+  table
+  .wikitable
+    border-collapse collapse
+    border 1px solid #333
+    font-size 10pt
+
+  th
+  td
+    border 1px solid #333
+    padding 0.2em 0.5em
+
+  th
+    background #eee !important
+    font-weight bold
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // =============================================================================
+  // INFBOX STYLING
+  // =============================================================================
+
+  // Infobox - keep compact for print
+  .infobox
+  .mw-infobox
+  table.infobox
+    border 1px solid #333
+    float none !important
+    margin 0 0 1em 1em
+    max-width 100%
+    width auto
+
+  .infobox th
+    background #eee !important
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // =============================================================================
+  // HEADING STYLING
+  // =============================================================================
+
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    font-weight bold
+    margin-top 1em
+    margin-bottom 0.5em
+    color black
+
+  h1
+    font-size 18pt
+
+  h2
+    font-size 16pt
+    border-bottom 1px solid #333
+
+  h3
+    font-size 14pt
+
+  h4
+  h5
+  h6
+    font-size 12pt
+
+  // =============================================================================
+  // MESSAGE BOX STYLING
+  // =============================================================================
+
+  .mbox
+  .ambox
+  .ombox
+  .cmbox
+  .tmbox
+  .imbox
+  .dmbox
+    border 1px solid #333
+    margin 0.5em 0
+    padding 0.5em
+    // Preserve colors for message boxes in print
+    print-color-adjust exact
+    -webkit-print-color-adjust exact
+
+  // =============================================================================
+  // PAGE MARGINS (for supported browsers)
+  // =============================================================================
+
+  @page
+    margin 2cm
+    size auto
+
+  @page :first
+    margin-top 3cm
+
+  @page :left
+    margin-right 2.5cm
+    margin-left 1.5cm
+
+  @page :right
+    margin-left 2.5cm
+    margin-right 1.5cm
+
+// =============================================================================
+// PRINT ONLY VISIBLE ELEMENTS
+// =============================================================================
+
+@media print
+  // Show print-only elements
+  .print-only
+    display block !important
+
+  // Hide screen-only elements
+  .screen-only
+    display none !important
+
+// =============================================================================
+// HIGH CONTRAST MODE SUPPORT
+// =============================================================================
+
+@media (prefers-contrast more)
+  @media print
+    // Increase contrast for high contrast mode
+    *
+      border-color black !important
+
+    a
+      text-decoration underline
+
+    th
+    td
+      border-width 2px
+
+    pre
+    code
+      border-width 2px

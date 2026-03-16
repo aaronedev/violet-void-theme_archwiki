@@ -1,0 +1,1182 @@
+// Animations, transitions, and utility classes
+// Enhance interactivity and provide reusable utilities
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+// Fade in
+@keyframes fade-in
+  from
+    opacity 0
+
+  to
+    opacity 1
+
+// Fade in up
+@keyframes fade-in-up
+  from
+    opacity 0
+    transform translateY(20px)
+
+  to
+    opacity 1
+    transform translateY(0)
+
+// Fade in down
+@keyframes fade-in-down
+  from
+    opacity 0
+    transform translateY(-20px)
+
+  to
+    opacity 1
+    transform translateY(0)
+
+// Scale in
+@keyframes scale-in
+  from
+    opacity 0
+    transform scale(0.9)
+
+  to
+    opacity 1
+    transform scale(1)
+
+// Slide in left
+@keyframes slide-in-left
+  from
+    transform translateX(-100%)
+
+  to
+    transform translateX(0)
+
+// Slide in right
+@keyframes slide-in-right
+  from
+    transform translateX(100%)
+
+  to
+    transform translateX(0)
+
+// Pulse
+@keyframes pulse
+  0%
+  100%
+    opacity 1
+
+  50%
+    opacity 0.5
+
+// Bounce
+@keyframes bounce
+  0%
+  100%
+    transform translateY(0)
+
+  50%
+    transform translateY(-10px)
+
+// Spin (for loading)
+@keyframes spin
+  from
+    transform rotate(0deg)
+
+  to
+    transform rotate(360deg)
+
+// Shimmer (skeleton loading)
+@keyframes shimmer
+  0%
+    background-position -1000px 0
+
+  100%
+    background-position 1000px 0
+
+// Glow pulse
+@keyframes glow-pulse
+  0%
+  100%
+    box-shadow 0 0 5px rgba($arch-blue, 0.5)
+
+  50%
+    box-shadow 0 0 20px rgba($arch-blue, 0.8), 0 0 30px rgba($arch-blue, 0.6)
+
+// =============================================================================
+// ANIMATION UTILITY CLASSES
+// =============================================================================
+
+.animate-fade-in
+  animation fade-in 0.3s ease-in
+
+.animate-fade-in-up
+  animation fade-in-up 0.4s ease-out
+
+.animate-fade-in-down
+  animation fade-in-down 0.4s ease-out
+
+.animate-scale-in
+  animation scale-in 0.3s ease-out
+
+.animate-slide-in-left
+  animation slide-in-left 0.3s ease-out
+
+.animate-slide-in-right
+  animation slide-in-right 0.3s ease-out
+
+.animate-pulse
+  animation pulse 2s infinite
+
+.animate-bounce
+  animation bounce 1s infinite
+
+.animate-spin
+  animation spin 1s linear infinite
+
+.animate-glow
+  animation glow-pulse 2s infinite
+
+// Hover animations
+.hover-lift
+  transition transform $transition-fast, box-shadow $transition-fast
+
+  &:hover
+    transform translateY(-2px)
+    box-shadow $shadow-elevated
+
+.hover-scale
+  transition transform $transition-fast
+
+  &:hover
+    transform scale(1.05)
+
+.hover-glow
+  transition box-shadow $transition-fast
+
+  &:hover
+    box-shadow 0 0 20px rgba($arch-blue, 0.6)
+
+// =============================================================================
+// TRANSITION UTILITIES
+// =============================================================================
+
+.transition-none
+  transition none !important
+
+.transition-all
+  transition all $transition-fast
+
+.transition-colors
+  transition color $transition-fast, background-color $transition-fast, border-color $transition-fast
+
+.transition-opacity
+  transition opacity $transition-fast
+
+.transition-transform
+  transition transform $transition-fast
+
+.transition-shadow
+  transition box-shadow $transition-fast
+
+// =============================================================================
+// SHADOW UTILITIES
+// =============================================================================
+
+.shadow-none
+  box-shadow none !important
+
+.shadow-subtle
+  box-shadow $shadow-subtle
+
+.shadow-elevated
+  box-shadow $shadow-elevated
+
+.shadow-glow
+  box-shadow 0 0 20px rgba($arch-blue, 0.5)
+
+.shadow-glow-strong
+  box-shadow 0 0 30px rgba($arch-blue, 0.7), 0 0 40px rgba($arch-blue, 0.5)
+
+// =============================================================================
+// GRADIENT UTILITIES
+// =============================================================================
+
+.gradient-primary
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+
+.gradient-primary-vertical
+  background linear-gradient(180deg, $arch-blue, $secondary-blue)
+
+.gradient-surface
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
+
+.gradient-elevated
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+
+.gradient-radial
+  background radial-gradient(circle, rgba($arch-blue, 0.1), transparent)
+
+// Text gradient
+.text-gradient
+  background linear-gradient(90deg, $arch-blue, $secondary-blue)
+  -webkit-background-clip text
+  -webkit-text-fill-color transparent
+  background-clip text
+
+// =============================================================================
+// OPACITY UTILITIES
+// =============================================================================
+
+.opacity-0
+  opacity 0
+
+.opacity-25
+  opacity 0.25
+
+.opacity-50
+  opacity 0.5
+
+.opacity-75
+  opacity 0.75
+
+.opacity-100
+  opacity 1
+
+// =============================================================================
+// BORDER UTILITIES
+// =============================================================================
+
+.border-none
+  border none !important
+
+.border-subtle
+  border 1px solid $border-subtle
+
+.border-accent
+  border 1px solid $arch-blue
+
+.border-accent-strong
+  border 2px solid $arch-blue
+
+.border-left-accent
+  border-left 3px solid $secondary-blue
+
+.border-top-accent
+  border-top 2px solid $arch-blue
+
+// Border radius
+.rounded-none
+  border-radius 0 !important
+
+.rounded-sm
+  border-radius $border-radius-sm
+
+.rounded-md
+  border-radius $border-radius-md
+
+.rounded-lg
+  border-radius $border-radius-lg
+
+.rounded-full
+  border-radius 9999px
+
+// =============================================================================
+// SPACING UTILITIES
+// =============================================================================
+
+// Margin
+.m-0
+  margin 0
+
+.m-1
+  margin 0.25em
+
+.m-2
+  margin 0.5em
+
+.m-3
+  margin 1em
+
+.m-4
+  margin 1.5em
+
+// Padding
+.p-0
+  padding 0
+
+.p-1
+  padding 0.25em
+
+.p-2
+  padding 0.5em
+
+.p-3
+  padding 1em
+
+.p-4
+  padding 1.5em
+
+// Gap
+.gap-1
+  gap 0.25em
+
+.gap-2
+  gap 0.5em
+
+.gap-3
+  gap 1em
+
+.gap-4
+  gap 1.5em
+
+// =============================================================================
+// DISPLAY UTILITIES
+// =============================================================================
+
+.block
+  display block
+
+.inline-block
+  display inline-block
+
+.inline
+  display inline
+
+.flex
+  display flex
+
+.inline-flex
+  display inline-flex
+
+.grid
+  display grid
+
+.hidden
+  display none
+
+// Flex utilities
+.flex-row
+  flex-direction row
+
+.flex-col
+  flex-direction column
+
+.flex-wrap
+  flex-wrap wrap
+
+.items-start
+  align-items flex-start
+
+.items-center
+  align-items center
+
+.items-end
+  align-items flex-end
+
+.justify-start
+  justify-content flex-start
+
+.justify-center
+  justify-content center
+
+.justify-end
+  justify-content flex-end
+
+.justify-between
+  justify-content space-between
+
+.flex-1
+  flex 1 1 auto
+
+.flex-none
+  flex none
+
+// =============================================================================
+// POSITIONING UTILITIES
+// =============================================================================
+
+.relative
+  position relative
+
+.absolute
+  position absolute
+
+.fixed
+  position fixed
+
+.sticky
+  position sticky
+
+.inset-0
+  inset 0
+
+// =============================================================================
+// SIZE UTILITIES
+// =============================================================================
+
+.w-full
+  width 100%
+
+.w-auto
+  width auto
+
+.h-full
+  height 100%
+
+.h-auto
+  height auto
+
+.min-h-screen
+  min-height 100vh
+
+.max-w-full
+  max-width 100%
+
+// =============================================================================
+// TEXT UTILITIES
+// =============================================================================
+
+.text-left
+  text-align left
+
+.text-center
+  text-align center
+
+.text-right
+  text-align right
+
+.text-justify
+  text-align justify
+
+.text-xs
+  font-size 0.75em
+
+.text-sm
+  font-size 0.875em
+
+.text-base
+  font-size 1em
+
+.text-lg
+  font-size 1.125em
+
+.text-xl
+  font-size 1.25em
+
+.text-2xl
+  font-size 1.5em
+
+.font-normal
+  font-weight 400
+
+.font-medium
+  font-weight 500
+
+.font-semibold
+  font-weight 600
+
+.font-bold
+  font-weight 700
+
+.uppercase
+  text-transform uppercase
+
+.lowercase
+  text-transform lowercase
+
+.capitalize
+  text-transform capitalize
+
+// Text colors
+.text-primary
+  color $lighter
+
+.text-secondary
+  color $light
+
+.text-accent
+  color $secondary-blue
+
+.text-muted
+  color $muted
+
+// ============================================================================
+// LINE CLAMP UTILITIES
+// ============================================================================
+
+// Line clamp utilities (90%+ browser support with -webkit prefix)
+.line-clamp-1
+  display -webkit-box
+  -webkit-line-clamp 1
+  -webkit-box-orient vertical
+  overflow hidden
+
+.line-clamp-2
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+  overflow hidden
+
+.line-clamp-3
+  display -webkit-box
+  -webkit-line-clamp 3
+  -webkit-box-orient vertical
+  overflow hidden
+
+// Apply to specific elements
+.infobox-description
+.package-description
+  -webkit-line-clamp 3
+  display -webkit-box
+  -webkit-box-orient vertical
+  overflow hidden
+
+// =============================================================================
+// OVERFLOW UTILITIES
+// =============================================================================
+
+.overflow-hidden
+  overflow hidden
+
+.overflow-auto
+  overflow auto
+
+.overflow-scroll
+  overflow scroll
+
+.overflow-x-auto
+  overflow-x auto
+
+.overflow-y-auto
+  overflow-y auto
+
+// =============================================================================
+// LOGICAL OVERFLOW PROPERTIES
+// =============================================================================
+
+// Logical overflow for block/inline dimensions
+// Browser support: 97%+
+// These properties are direction-aware, supporting RTL and vertical writing modes
+// - Block dimension: vertical for horizontal text, horizontal for vertical text
+// - Inline dimension: horizontal for horizontal text, vertical for vertical text
+
+.overflow-block-auto
+  overflow-block auto
+
+.overflow-block-hidden
+  overflow-block hidden
+
+.overflow-block-scroll
+  overflow-block scroll
+
+.overflow-block-clip
+  overflow-block clip
+
+.overflow-block-visible
+  overflow-block visible
+
+.overflow-inline-auto
+  overflow-inline auto
+
+.overflow-inline-hidden
+  overflow-inline hidden
+
+.overflow-inline-scroll
+  overflow-inline scroll
+
+.overflow-inline-clip
+  overflow-inline clip
+
+.overflow-inline-visible
+  overflow-inline visible
+
+// =============================================================================
+// LOGICAL OVERSCROLL BEHAVIOR
+// =============================================================================
+
+// Logical overscroll behavior for block/inline dimensions
+// Browser support: 92%+
+// Prevents scroll chaining in nested scrollables
+// - contain: prevents scroll chaining and overscroll effects
+// - none: disables overscroll entirely
+
+.overscroll-block-contain
+  overscroll-behavior-block contain
+
+.overscroll-block-none
+  overscroll-behavior-block none
+
+.overscroll-inline-contain
+  overscroll-behavior-inline contain
+
+.overscroll-inline-none
+  overscroll-behavior-inline none
+
+// =============================================================================
+// LOGICAL CONTAINMENT SIZE
+// =============================================================================
+
+// Logical containment size for content-visibility optimization
+// Browser support: 87%+
+// Reserve space for off-screen content when using content-visibility: auto
+// Prevents layout shifts when content becomes visible
+
+.contain-intrinsic-block-auto
+  contain-intrinsic-block-size auto
+
+.contain-intrinsic-block-none
+  contain-intrinsic-block-size none
+
+.contain-intrinsic-inline-auto
+  contain-intrinsic-inline-size auto
+
+.contain-intrinsic-inline-none
+  contain-intrinsic-inline-size none
+
+// Common presets for content-visibility optimization
+// Apply to elements with content-visibility: auto
+.content-visibility-block-sm
+  contain-intrinsic-block-size 200px
+
+.content-visibility-block-md
+  contain-intrinsic-block-size 400px
+
+.content-visibility-block-lg
+  contain-intrinsic-block-size 600px
+
+// Apply to sidebars and fixed-width content
+.content-visibility-inline-full
+  contain-intrinsic-inline-size 100%
+
+// =============================================================================
+// CURSOR UTILITIES
+// =============================================================================
+
+.cursor-pointer
+  cursor pointer
+
+.cursor-not-allowed
+  cursor not-allowed
+
+.cursor-wait
+  cursor wait
+
+// =============================================================================
+// POINTER EVENTS
+// =============================================================================
+
+.pointer-events-none
+  pointer-events none
+
+.pointer-events-auto
+  pointer-events auto
+
+// =============================================================================
+// USER SELECT
+// =============================================================================
+
+.select-none
+  user-select none
+
+.select-text
+  user-select text
+
+.select-all
+  user-select all
+
+// =============================================================================
+// Z-INDEX UTILITIES
+// =============================================================================
+
+.z-0
+  z-index 0
+
+.z-10
+  z-index 10
+
+.z-20
+  z-index 20
+
+.z-30
+  z-index 30
+
+.z-40
+  z-index 40
+
+.z-50
+  z-index 50
+
+.z-auto
+  z-index auto
+
+// =============================================================================
+// STATE INDICATORS
+// =============================================================================
+
+// Loading state
+.is-loading
+  position relative
+  pointer-events none
+
+  &::after
+    content ""
+    position absolute
+    inset 0
+    background rgba($darker, 0.8)
+    display flex
+    align-items center
+    justify-content center
+
+// Disabled state
+.is-disabled
+  opacity 0.5
+  pointer-events none
+  cursor not-allowed
+
+// Active state
+.is-active
+  background-color rgba($arch-blue, 0.15)
+  border-color $arch-blue
+  color $secondary-blue
+
+// Error state
+.is-error
+.has-error
+  border-color $secondary-red
+  color $secondary-red
+
+  input
+  textarea
+  select
+    border-color $secondary-red
+
+// Success state
+.is-success
+.has-success
+  border-color $green
+  color $green
+
+// Warning state
+.is-warning
+.has-warning
+  border-color $orange
+  color $orange
+
+// =============================================================================
+// INTERACTIVE STATES
+// =============================================================================
+
+// Interactive element base
+.interactive
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    opacity 0.8
+
+  &:active
+    transform scale(0.98)
+
+  &.is-disabled
+    opacity 0.4
+    cursor not-allowed
+    pointer-events none
+
+// Focusable element
+.focusable
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    border-radius $border-radius-sm
+
+// =============================================================================
+// DISPLAY ENHANCEMENTS
+// =============================================================================
+
+// flow-root: clearfix replacement
+// Browser support: 97%+
+
+.clearfix
+.flow-root
+  display flow-root
+
+// contents: remove from box tree
+// Browser support: 97%+
+
+.contents-wrapper
+  display contents
+
+// =============================================================================
+// VISIBILITY ENHANCEMENTS
+// =============================================================================
+
+// collapse for table rows
+// Browser support: 97%+
+
+tr.collapsed
+  visibility collapse
+
+// opacity in animations
+// Browser support: 97%+
+
+.fade-in
+  animation fadeIn 0.3s ease
+
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
+.fade-out
+  animation fadeOut 0.3s ease
+
+@keyframes fadeOut
+  from
+    opacity 1
+  to
+    opacity 0
+
+// =============================================================================
+// INTERACTION ENHANCEMENTS
+// =============================================================================
+
+// user-select containment
+// Browser support: 97%+
+
+.no-select
+  user-select none
+
+.select-all
+  user-select all
+
+.select-contain
+  user-select contain
+
+// pointer-events for SVG
+// Browser support: 97%+
+
+.pointer-painted
+  pointer-events painted
+
+.pointer-none
+  pointer-events none
+
+// resize logical axis
+// Browser support: 97%+
+
+.resize-block
+  resize block
+
+.resize-inline
+  resize inline
+
+// cursor hints
+.cursor-zoom-in
+  cursor zoom-in
+
+.cursor-zoom-out
+  cursor zoom-out
+
+.cursor-grab
+  cursor grab
+
+.cursor-grabbing
+  cursor grabbing
+
+// caret-shape - Chrome/Edge only (Firefox doesn't support)
+@supports (caret-shape: block)
+  .caret-block
+    caret-shape block
+
+  .caret-bar
+    caret-shape bar
+
+// =============================================================================
+// SIZING KEYWORDS
+// =============================================================================
+
+// fit-content, min-content, max-content, stretch
+// Browser support: 97%+
+
+.fit-content
+  width fit-content
+
+.min-content
+  width min-content
+
+.max-content
+  width max-content
+
+.stretch-width
+  width -webkit-fill-available
+  width stretch
+
+// =============================================================================
+// MULTI-COLUMN LAYOUT
+// =============================================================================
+// column-rule, column-span, column-fill, columns shorthands
+// Browser support: 97%+
+
+// column-fill - control how column content is distributed
+.column-fill-balance
+  column-fill balance
+
+.column-fill-auto
+  column-fill auto
+
+// column-span - make element span all columns
+.column-span-all
+  column-span all
+
+// columns - shorthand for column-count and column-width
+.columns-2
+  columns 2
+
+.columns-3
+  columns 3
+
+.columns-auto
+  columns auto
+
+// column-rule utilities
+.column-rule
+  column-rule 1px solid var(--border-color, #ccc)
+
+.column-rule-thin
+  column-rule 1px solid var(--border-color, #ccc)
+
+.column-rule-medium
+  column-rule 2px solid var(--border-color, #ccc)
+
+.column-rule-thick
+  column-rule 3px solid var(--border-color, #ccc)
+
+.column-rule-dashed
+  column-rule 1px dashed var(--border-color, #ccc)
+
+.column-rule-dotted
+  column-rule 1px dotted var(--border-color, #ccc)
+
+.column-rule-double
+  column-rule 3px double var(--border-color, #ccc)
+
+.column-rule-none
+  column-rule none
+
+// =============================================================================
+// GRID SHORTHANDS
+// =============================================================================
+// place-items, place-content, place-self shorthands
+// Browser support: 97%+
+// These combine align/justify properties into single properties
+
+// place-items - shorthand for align-items + justify-items
+// Example: place-items: center = align-items: center + justify-items: center
+.place-items-start
+  place-items start start
+
+.place-items-end
+  place-items end end
+
+.place-items-center
+  place-items center center
+
+.place-items-stretch
+  place-items stretch stretch
+
+.place-items-baseline
+  place-items baseline baseline
+
+// place-content - shorthand for align-content + justify-content
+// Example: place-content: center = align-content: center + justify-content: center
+.place-content-start
+  place-content start start
+
+.place-content-end
+  place-content end end
+
+.place-content-center
+  place-content center center
+
+.place-content-stretch
+  place-content stretch stretch
+
+.place-content-space-between
+  place-content space-between space-between
+
+.place-content-space-around
+  place-content space-around space-around
+
+.place-content-space-evenly
+  place-content space-evenly space-evenly
+
+// place-self - shorthand for align-self + justify-self
+// Example: place-self: center = align-self: center + justify-self: center
+.place-self-start
+  place-self start start
+
+.place-self-end
+  place-self end end
+
+.place-self-center
+  place-self center center
+
+.place-self-stretch
+  place-self stretch stretch
+
+.place-self-baseline
+  place-self baseline baseline
+
+// Flexbox equivalents using place-items for flex containers
+// These work in flex containers where align-items/justify-items apply to align-content
+.flex-place-items-center
+  display flex
+  place-items center center
+
+.flex-place-items-start
+  display flex
+  place-items flex-start flex-start
+
+.flex-place-items-end
+  display flex
+  place-items flex-end flex-end
+
+.flex-place-items-stretch
+  display flex
+  place-items stretch stretch
+
+// =============================================================================
+// CONIC-GRADIENT PATTERNS
+// =============================================================================
+// conic-gradient for creating pie charts, color wheels, loading spinners
+// Browser support: 97%+
+// Note: Use @supports for broader compatibility if needed
+
+// Pie chart segments using conic-gradient
+.conic-pie-chart
+  border-radius 50%
+  background conic-gradient(
+    $arch-blue 0deg 120deg,
+    $secondary-blue 120deg 240deg,
+    $green 240deg 360deg
+  )
+
+// Loading spinner using conic-gradient
+.conic-spinner
+  width 24px
+  height 24px
+  border-radius 50%
+  background conic-gradient(
+    from 0deg,
+    $secondary-blue 0deg 90deg,
+    transparent 90deg 360deg
+  )
+  animation spin 1s linear infinite
+
+// Rainbow gradient for decorative purposes
+.conic-rainbow
+  background conic-gradient(
+    $red 0deg 60deg,
+    $orange 60deg 120deg,
+    $green 120deg 180deg,
+    $arch-blue 180deg 240deg,
+    $secondary-blue 240deg 300deg,
+    $term-magenta 300deg 360deg
+  )
+
+// Neutral gradient for UI elements
+.conic-neutral
+  background conic-gradient(
+    $dark 0deg 180deg,
+    $base 180deg 360deg
+  )
+
+// Progress indicator conic gradient
+.conic-progress
+  border-radius 50%
+  background conic-gradient(
+    $arch-blue var(--progress, 50%),
+    $dark var(--progress, 50%)
+  )
+
+// =============================================================================
+// CROSS-FADE TRANSITIONS
+// =============================================================================
+// cross-fade() for smooth image transitions
+// Browser support: 97%+
+// Format: cross-fade(from-image, to-image, percentage)
+// Percentage: 0% = fully from-image, 100% = fully to-image
+
+// Image cross-fade utility
+.cross-fade-overlay
+  position relative
+  width 100%
+  height 100%
+
+.cross-fade-overlay::before
+.cross-fade-overlay::after
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-size cover
+  background-position center
+
+.cross-fade-overlay::before
+  z-index 1
+  opacity 1
+  transition opacity 0.5s ease-in-out
+
+.cross-fade-overlay::after
+  z-index 2
+  opacity 0
+  transition opacity 0.5s ease-in-out
+
+.cross-fade-overlay:hover::before
+  opacity 0
+
+.cross-fade-overlay:hover::after
+  opacity 1
+
+// Blur-up image loading effect using cross-fade pattern
+.image-blur-up
+  position relative
+  overflow hidden
+  background $dark
+
+.image-blur-up::before
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-size cover
+  background-position center
+  filter blur(20px)
+  transform scale(1.1)
+  transition opacity 0.5s ease-out
+
+.image-blur-up.loaded::before
+  opacity 0
+
+.image-blur-up::after
+  content ''
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-size cover
+  background-position center
+  transition opacity 0.5s ease-out
+
+.image-blur-up.loaded::after
+  opacity 1
+

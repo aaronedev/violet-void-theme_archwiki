@@ -1,0 +1,354 @@
+// Critical CSS Patterns for Performance Optimization
+// Browser support: 100%
+// Above-fold styles, deferred loading patterns, minimal initial payload
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CRITICAL CSS CONCEPTS
+// =============================================================================
+// Critical CSS is the subset of CSS required to render the above-the-fold content.
+// By inlining critical styles and deferring non-critical styles, we can
+// improve First Contentful Paint (FCP) and Largest Contentful Paint (LCP).
+
+// =============================================================================
+// ABOVE-THE-FOLD STYLES
+// =============================================================================
+// Styles for content visible without scrolling - these should be inlined
+// in the <head> for fastest rendering
+
+// Critical viewport setup
+.critical-viewport
+  // Optimize text rendering
+  text-rendering optimizeSpeed
+
+  // Prevent flash of unstyled content
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+// Critical body styles
+.critical-body
+  // Above-fold background color (avoid white flash)
+  background-color $base
+
+  // Above-fold text color
+  color $text
+
+  // Prevent layout shift
+  overflow-y scroll
+
+  // Initial font settings
+  font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+  font-size 16px
+  line-height 1.5
+
+// Critical content container
+.critical-content
+  // Above-fold content width
+  max-width 100vw
+
+  // Center content if needed
+  margin 0 auto
+
+  // Prevent horizontal overflow
+  overflow-x hidden
+
+// =============================================================================
+// DEFERRED STYLES PATTERN
+// =============================================================================
+// Non-critical styles can be loaded asynchronously using media queries
+// or loaded after initial render
+
+// Defer non-critical styles
+[data-defer-styles]
+  // Initially hidden to prevent FOUC
+  // Will be made visible after styles load
+
+// Deferred content container
+.deferred-content
+  // Initially render with minimal layout
+  contain content
+
+  // Hide until styles loaded
+  &[data-loading]
+    visibility hidden
+
+  // Show when ready
+  &[data-loaded]
+    visibility visible
+    transition visibility 0.3s
+
+// =============================================================================
+// PROGRESSIVE ENHANCEMENT
+// =============================================================================
+// Base styles that work without advanced CSS, enhanced with modern features
+
+// Progressive enhancement wrapper
+.progressive-enhance
+  // Base styles (work everywhere)
+  display block
+  width 100%
+
+  // Enhanced styles (if supported)
+  @supports (contain: layout paint)
+    contain layout paint
+
+// =============================================================================
+// LAZY LOADING STATES
+// =============================================================================
+// Styles for content that loads progressively
+
+// Skeleton loading state
+.skeleton
+  // Animated placeholder
+  background linear-gradient(90deg, $bg-secondary 25%, lighten($bg-secondary, 5%) 50%, $bg-secondary 75%)
+  background-size 200% 100%
+  animation skeleton-loading 1.5s infinite
+
+  // Prevent layout shift
+  min-height 1em
+  border-radius 4px
+
+@keyframes skeleton-loading
+  0%
+    background-position 200% 0
+  100%
+    background-position -200% 0
+
+// Skeleton text placeholder
+.skeleton-text
+  @extend .skeleton
+
+  height 1em
+  margin-bottom 0.5em
+
+  &:last-child
+    width 70%
+
+// Skeleton image placeholder
+.skeleton-image
+  @extend .skeleton
+
+  aspect-ratio 16 / 9
+  width 100%
+
+// =============================================================================
+// FADE-IN TRANSITIONS
+// =============================================================================
+// Smooth reveal of content after initial render
+
+// Fade-in container
+.fade-in
+  opacity 0
+  transition opacity 0.3s ease-in
+
+  &.loaded
+    opacity 1
+
+// Fade-in-up animation
+.fade-in-up
+  opacity 0
+  transform translateY(20px)
+  transition opacity 0.3s ease-out, transform 0.3s ease-out
+
+  &.loaded
+    opacity 1
+    transform translateY(0)
+
+// Fade-in-scale animation
+.fade-in-scale
+  opacity 0
+  transform scale(0.95)
+  transition opacity 0.3s ease-out, transform 0.3s ease-out
+
+  &.loaded
+    opacity 1
+    transform scale(1)
+
+// =============================================================================
+// PRIORITY LOADING
+// =============================================================================
+// Control load priority for different content types
+
+// High priority content (above fold)
+.priority-high
+  // Render immediately
+  content-visibility visible
+
+// Low priority content (below fold)
+.priority-low
+  // Can be deferred
+  content-visibility auto
+
+// Medium priority content
+.priority-medium
+  content-visibility auto
+
+// =============================================================================
+// INLINE CRITICAL STYLES
+// =============================================================================
+// These styles should be inlined in the HTML <head>
+
+// Critical inline - main content area
+.critical-inline
+  // Box sizing
+  box-sizing border-box
+
+  // Main content width
+  max-width 1200px
+  margin 0 auto
+  padding 0 1rem
+
+  // Typography
+  font-family inherit
+  line-height 1.6
+
+  // Colors
+  background-color $bg-primary
+  color $text
+
+// Critical inline - navigation
+.critical-nav
+  display flex
+  align-items center
+  justify-content space-between
+  padding 0.5rem 1rem
+  background-color $bg-secondary
+  border-bottom 1px solid $border-subtle
+
+// Critical inline - heading
+.critical-h1
+  font-size 2rem
+  font-weight 700
+  line-height 1.2
+  margin-bottom 1rem
+  color $heading
+
+// Critical inline - paragraph
+.critical-p
+  font-size 1rem
+  line-height 1.6
+  margin-bottom 1rem
+
+// =============================================================================
+// PERFORMANCE UTILITY CLASSES
+// =============================================================================
+
+// GPU acceleration hint
+.gpu-accelerate
+  transform translateZ(0)
+  will-change transform
+  backface-visibility hidden
+
+// Smooth scrolling
+.smooth-scroll
+  scroll-behavior smooth
+
+  @media (prefers-reduced-motion reduce)
+    scroll-behavior auto
+
+// Content visibility auto
+.content-visible
+  content-visibility auto
+  contain-intrinsic-size auto
+
+// Render until found
+.render-until-found
+  render-until-found
+
+// =============================================================================
+// INITIAL PAYLOAD OPTIMIZATION
+// =============================================================================
+// Minimal styles for fastest initial load
+
+// Minimal box
+.minimal-box
+  box-sizing border-box
+  display block
+  margin 0
+  padding 0
+
+// Minimal text
+.minimal-text
+  font-size inherit
+  line-height inherit
+  color inherit
+
+// Minimal image
+.minimal-image
+  display block
+  max-width 100%
+  height auto
+
+// Minimal button
+.minimal-button
+  display inline-block
+  padding 0.5em 1em
+  font-size inherit
+  line-height inherit
+  text-decoration none
+  cursor pointer
+  border none
+  border-radius 4px
+
+// =============================================================================
+// CRITICAL PATH OPTIMIZATION
+// =============================================================================
+// Optimize the critical rendering path
+
+// Critical path - avoid
+.critical-avoid
+  // Avoid these in critical CSS:
+  // - Complex selectors
+  // - Large images
+  // - Custom fonts
+  // - Animations
+  // - External resources
+
+// Critical path - prefer
+.critical-prefer
+  // Prefer in critical CSS:
+  // - Simple selectors
+  // - System fonts
+  // - Inline styles
+  // - CSS containment
+  // - will-change for animations
+
+// =============================================================================
+// MEDIA QUERY OPTIMIZATIONS
+// =============================================================================
+
+// Print - hide non-essential
+@media print
+  .critical-content
+    max-width 100%
+
+  .skeleton
+    display none
+
+// Reduced motion - disable animations
+@media (prefers-reduced-motion reduce)
+  .skeleton
+    animation none
+    background $bg-secondary
+
+  .fade-in
+    transition none
+
+    &.loaded
+      opacity 1
+
+  .fade-in-up
+    transform none
+    transition none
+
+    &.loaded
+      opacity 1
+
+  .fade-in-scale
+    transform none
+    transition none
+
+    &.loaded
+      opacity 1

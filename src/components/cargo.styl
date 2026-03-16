@@ -1,0 +1,494 @@
+// =============================================================================
+// Cargo Query Interface - Violet Void ArchWiki Theme
+// Query builder, result tables, and export options for Cargo extension
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CARGO QUERY INTERFACE
+// =============================================================================
+
+// Cargo query builder container
+.cargo-query-builder
+  margin 1.5em 0
+  padding 1em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// Query form elements
+.cargo-query-form
+  .query-field
+    margin-bottom 1em
+
+    label
+      display block
+      font-size 0.875rem
+      color $muted
+      margin-bottom 0.25em
+
+    input[type="text"]
+    select
+      width 100%
+      max-width 400px
+      padding 0.5em 0.75em
+      background $darker
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $light
+      font-size 0.9rem
+
+      &:focus
+        outline none
+        border-color $arch-blue
+        box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+    // Field selector
+    .field-selector
+      display flex
+      flex-wrap wrap
+      gap 0.5em
+      margin-top 0.5em
+
+      .field-chip
+        display inline-flex
+        align-items center
+        padding 0.25em 0.75em
+        background rgba($arch-blue, 0.15)
+        border 1px solid rgba($arch-blue, 0.3)
+        border-radius 20px
+        color $light
+        font-size 0.8rem
+        cursor pointer
+        transition all 0.2s ease
+
+        &:hover
+          background rgba($arch-blue, 0.25)
+          border-color $arch-blue
+
+        &.selected
+          background $arch-blue
+          color $white
+          border-color $arch-blue
+
+// Query conditions
+.cargo-query-conditions
+  margin 1em 0
+  padding 1em
+  background rgba($darker, 0.5)
+  border-radius $border-radius-sm
+
+  .condition-row
+    display flex
+    align-items center
+    gap 0.75em
+    margin-bottom 0.75em
+    flex-wrap wrap
+
+    .condition-field
+      flex 1
+      min-width 120px
+      padding 0.4em 0.6em
+      background $dark
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $light
+      font-size 0.85rem
+
+    .condition-operator
+      padding 0.4em 0.6em
+      background $dark
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $light
+      font-size 0.85rem
+      min-width 80px
+
+    .condition-value
+      flex 2
+      min-width 150px
+      padding 0.4em 0.6em
+      background $dark
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $light
+      font-size 0.85rem
+
+    .remove-condition
+      display flex
+      align-items center
+      justify-content center
+      width 28px
+      height 28px
+      background transparent
+      border 1px solid $border-subtle
+      border-radius 50%
+      color $muted
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background rgba($red, 0.2)
+        border-color $red
+        color $red
+
+  .add-condition
+    display inline-flex
+    align-items center
+    gap 0.5em
+    padding 0.5em 1em
+    background transparent
+    border 1px dashed $border-subtle
+    border-radius $border-radius-sm
+    color $muted
+    font-size 0.85rem
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      border-color $arch-blue
+      color $arch-blue
+
+// Query order by
+.cargo-query-order
+  display flex
+  align-items center
+  gap 0.75em
+  margin 1em 0
+
+  label
+    color $muted
+    font-size 0.85rem
+
+  select
+    padding 0.4em 0.6em
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.85rem
+
+// Run query button
+.cargo-run-query
+  display inline-flex
+  align-items center
+  gap 0.5em
+  padding 0.6em 1.25em
+  background $arch-blue
+  border none
+  border-radius $border-radius-sm
+  color $white
+  font-size 0.9rem
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background lighten($arch-blue, 8%)
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+
+  &:active
+    transform translateY(0)
+
+// =============================================================================
+// CARGO RESULT TABLE
+// =============================================================================
+
+// Results container
+.cargo-results
+  margin 1.5em 0
+  overflow-x auto
+  border-radius $border-radius-md
+  border 1px solid $border-subtle
+
+// Result table
+.cargo-result-table
+  width 100%
+  border-collapse collapse
+  background $dark
+
+  th
+    padding 0.75em 1em
+    background rgba($arch-blue, 0.15)
+    border-bottom 2px solid $arch-blue
+    color $light
+    font-weight 600
+    text-align start
+    font-size 0.85rem
+    white-space nowrap
+
+    // Sortable column header
+    &.sortable
+      cursor pointer
+      user-select none
+      transition background 0.2s ease
+
+      &:hover
+        background rgba($arch-blue, 0.25)
+
+      &::after
+        content '↕'
+        margin-inline-start 0.5em
+        opacity 0.5
+        font-size 0.75rem
+
+      &.asc::after
+        content '↑'
+        opacity 1
+
+      &.desc::after
+        content '↓'
+        opacity 1
+
+  td
+    padding 0.6em 1em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+    color $light
+    font-size 0.85rem
+
+    // Cell truncation for long content
+    &.truncated
+      max-width 300px
+      white-space nowrap
+      overflow hidden
+      text-overflow ellipsis
+
+  tr
+    transition background 0.15s ease
+
+    &:last-child td
+      border-bottom none
+
+    &:hover
+      background rgba($arch-blue, 0.08)
+
+    // Alternating rows
+    &:nth-child(even)
+      background rgba($dark, 0.5)
+
+      &:hover
+        background rgba($arch-blue, 0.08)
+
+// Result count
+.cargo-result-count
+  padding 0.75em 1em
+  background rgba($darker, 0.8)
+  border-top 1px solid $border-subtle
+  color $muted
+  font-size 0.8rem
+  display flex
+  justify-content space-between
+  align-items center
+
+  .count-number
+    color $arch-blue
+    font-weight 600
+    font-variant-numeric tabular-nums
+
+// Pagination
+.cargo-pagination
+  display flex
+  justify-content center
+  align-items center
+  gap 0.5em
+  margin-top 1em
+  padding 0.5em
+
+  .page-button
+    display flex
+    align-items center
+    justify-content center
+    min-width 36px
+    height 36px
+    padding 0 0.5em
+    background $dark
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.85rem
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover:not(:disabled)
+      background rgba($arch-blue, 0.15)
+      border-color $arch-blue
+
+    &:disabled
+      opacity 0.4
+      cursor not-allowed
+
+    &.active
+      background $arch-blue
+      border-color $arch-blue
+      color $white
+
+// =============================================================================
+// CARGO EXPORT OPTIONS
+// =============================================================================
+
+// Export toolbar
+.cargo-export-bar
+  display flex
+  flex-wrap wrap
+  gap 0.75em
+  margin 1em 0
+  padding 0.75em
+  background rgba($darker, 0.5)
+  border-radius $border-radius-sm
+  align-items center
+
+  .export-label
+    color $muted
+    font-size 0.8rem
+    margin-inline-end 0.5em
+
+// Export buttons
+.cargo-export-btn
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.4em 0.75em
+  background transparent
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $light
+  font-size 0.8rem
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($arch-blue, 0.15)
+    border-color $arch-blue
+    color $arch-blue
+
+  // Format-specific icons (using emoji as placeholders)
+  &.export-csv::before
+    content '📊'
+
+  &.export-json::before
+    content '{}'
+
+  &.export-xml::before
+    content '📄'
+
+  &.export-print::before
+    content '🖨️'
+
+// =============================================================================
+// CARGO MAP VIEW (if spatial queries enabled)
+// =============================================================================
+
+.cargo-map-view
+  margin 1.5em 0
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  .map-container
+    min-height 300px
+    background $darker
+
+  .map-controls
+    display flex
+    gap 0.5em
+    padding 0.5em
+    background rgba($dark, 0.8)
+    border-top 1px solid $border-subtle
+
+    .map-btn
+      padding 0.4em 0.75em
+      background $dark
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $light
+      font-size 0.8rem
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        border-color $arch-blue
+        color $arch-blue
+
+// =============================================================================
+// CARGO ERROR STATES
+// =============================================================================
+
+.cargo-error
+  margin 1em 0
+  padding 1em
+  background rgba($red, 0.1)
+  border 1px solid rgba($red, 0.3)
+  border-radius $border-radius-md
+  color $light
+
+  .error-title
+    font-weight 600
+    color $red
+    margin-bottom 0.5em
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content '⚠️'
+
+  .error-message
+    font-size 0.85rem
+    color $muted
+    font-family $font-mono
+
+// =============================================================================
+// CARGO LOADING STATE
+// =============================================================================
+
+.cargo-loading
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  padding 2em
+  color $muted
+
+  .loading-spinner
+    width 40px
+    height 40px
+    border 3px solid rgba($arch-blue, 0.2)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+
+    @keyframes spin
+      to
+        transform rotate(360deg)
+
+  .loading-text
+    margin-top 1em
+    font-size 0.85rem
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width 768px)
+  .cargo-query-builder
+    padding 0.75em
+
+  .cargo-query-form
+    .query-field
+      input[type="text"]
+      select
+        max-width 100%
+
+  .cargo-export-bar
+    flex-direction column
+    align-items flex-start
+
+  .cargo-result-table
+    th
+    td
+      padding 0.5em 0.75em
+      font-size 0.8rem

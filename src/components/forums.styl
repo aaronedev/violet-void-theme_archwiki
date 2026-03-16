@@ -1,0 +1,369 @@
+// Arch Linux Forums (bbs.archlinux.org) - FluxBB styling
+// The forums use FluxBB which has different classes than MediaWiki
+
+// Forum table structure
+.brd
+  background-color $base
+  color $light
+
+// Main forum listings
+.main-item
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin 0.5em 0
+  padding 0.75em
+  box-shadow $shadow-subtle
+  transition all $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, $dark, rgba($arch-blue, 0.08))
+    border-color rgba($arch-blue, 0.2)
+    box-shadow $shadow-elevated
+
+// Forum item info
+.main-item .info
+  h3 a
+    color $lighter
+    font-weight 600
+    text-decoration none
+
+    &:hover
+      color $secondary-blue
+
+// Forum table cells
+.tcl
+.tc2
+.tc3
+.tcr
+  color $light
+  padding 0.5em 0.75em
+  border-color $border-subtle
+
+// Forum descriptions
+.main-item .info .desc
+  color $light
+  opacity 0.8
+  font-size 0.9em
+
+// Topic listings
+.main-item.item-subject
+  .info
+    .subject
+      a
+        color $lighter
+        font-weight 600
+
+        &:hover
+          color $secondary-blue
+
+    .num-replies
+    .byuser
+      color $light
+      font-size 0.9em
+
+// Posts
+.blockpost
+  background-color $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .box
+    background-color transparent
+
+// Post header
+.blockpost .box-head
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+  border-bottom 1px solid $border-subtle
+  padding 0.75em 1em
+  border-radius $border-radius-md $border-radius-md 0 0
+
+  a
+    color $secondary-blue
+    font-weight 600
+    text-decoration none
+
+    &:hover
+      color $white
+
+  .conr
+    color $light
+    font-size 0.9em
+
+// Post content area
+.postleft
+.postfootleft
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+  border-right 1px solid $border-subtle
+  padding 1em
+
+  dl
+    dt
+      color $lighter
+      font-weight 600
+      font-size 0.85em
+      text-transform uppercase
+      letter-spacing 0.05em
+      margin-top 0.75em
+
+      &:first-child
+        margin-top 0
+
+    dd
+      color $light
+      font-size 0.9em
+      margin-left 0
+
+// User info in posts
+.postleft .username
+  color $secondary-blue
+  font-weight 600
+  font-size 1.1em
+  text-decoration none
+
+  &:hover
+    color $white
+
+// Post content
+.postright
+.postfootright
+  background-color $dark
+  padding 1em
+  color $light
+
+  .postmsg
+    color $light
+    line-height 1.6
+
+    a
+      color $secondary-blue
+      text-decoration none
+
+      &:hover
+        color $white
+
+// Code blocks in posts
+.postright .postmsg
+  .code
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 1em
+    font-family $font-mono
+    font-size 0.9em
+    color $lighter
+    overflow-x auto
+    margin 1em 0
+
+  .quote
+    background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+    border-left 3px solid $secondary-blue
+    padding 0.75em 1em
+    margin 1em 0
+    border-radius 0 $border-radius-md $border-radius-md 0
+    color $light
+    font-style italic
+
+// Post footer
+.postfootright
+  border-top 1px solid $border-subtle
+  padding 0.5em 1em
+  font-size 0.9em
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $white
+
+// Forum buttons
+.brd .button
+.brd input[type="submit"]
+.brd input[type="button"]
+  gradient-surface()
+
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.4em 1em
+  font-weight 600
+  font-size 0.9em
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+  &:active
+    transform translateY(0)
+
+// Primary buttons
+.brd .primary-button
+.brd input[type="submit"][name="submit"]
+  background linear-gradient(135deg, $arch-blue, $secondary-blue)
+  color $darker
+
+  &:hover
+    background linear-gradient(135deg, lighten($arch-blue, 12%), $secondary-blue)
+    color $darker
+
+// Form inputs
+.brd input[type="text"]
+.brd input[type="password"]
+.brd textarea
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  font-size 0.9em
+  transition all $transition-fast
+
+  &:focus-visible
+    border-color $arch-blue
+    box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+    outline none
+
+  &::placeholder
+    color rgba($light, 0.5)
+
+// Pagination
+.main-item .pagination
+  color $light
+  font-size 0.9em
+
+  a
+    color $secondary-blue
+    text-decoration none
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+    transition all $transition-fast
+
+    &:hover
+      background-color rgba($arch-blue, 0.15)
+      color $white
+
+  .current
+    background-color rgba($arch-blue, 0.15)
+    color $white
+    font-weight 600
+
+// Forum statistics
+#brd-stats
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  ul
+    color $light
+    font-size 0.9em
+
+    li
+      margin 0.3em 0
+
+    strong
+      color $secondary-blue
+
+// Breadcrumbs
+#brd-crumbs
+  color $light
+  font-size 0.9em
+  margin 1em 0
+
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $white
+
+  .crumb
+    &::after
+      content " → "
+      color $light
+
+// Forum header
+#brd-head
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border-bottom 1px solid $border-subtle
+  padding 1em
+
+  a
+    color $lighter
+    font-weight 600
+    text-decoration none
+
+    &:hover
+      color $secondary-blue
+
+// Quick post form
+#quick-post-form
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  label
+    color $lighter
+    font-weight 600
+
+// Search form
+#search-form
+  input[type="text"]
+    background-color $darker
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 0.75em
+
+  input[type="submit"]
+    gradient-surface()
+
+    color $lighter
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.5em 1em
+    cursor pointer
+
+    &:hover
+      background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+      border-color rgba($arch-blue, 0.3)
+      color $secondary-blue
+
+// Online users
+#brd-online
+  color $light
+  font-size 0.9em
+
+  strong
+    color $secondary-blue
+
+// Forum tables
+.brd table
+  border-collapse separate
+  border-spacing 0
+
+  th
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+    color $lighter
+    font-weight 600
+    padding 0.75em 1em
+    border-bottom 1px solid $border-subtle
+
+  td
+    padding 0.5em 1em
+    border-bottom 1px solid $border-subtle
+    color $light
+
+  tr:hover td
+    background-color rgba($arch-blue, 0.05)

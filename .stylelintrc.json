@@ -1,0 +1,110 @@
+{
+  "extends": ["stylelint-plugin-stylus/standard"],
+  "rules": {
+    "stylus/declaration-colon": "never",
+    "stylus/semicolon": "never",
+    "stylus/indentation": [2, { "except": ["param"] }],
+    "stylus/selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": [
+          "page-content",
+          "root",
+          "caption-side",
+          "bottom",
+          "search-results",
+          "search-current",
+          "annotation",
+          "custom-selection",
+          "quote",
+          "error",
+          "warning",
+          "link-found",
+          "hero",
+          "title",
+          "content",
+          "sidebar",
+          "toc",
+          "infobox",
+          "none",
+          "scroll-snap-container",
+          "css",
+          "@css"
+        ]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "interpolate-size",
+          "navigation",
+          "copy-button-selectors",
+          "render-subtree",
+          "contain-intrinsic-block-size",
+          "contain-intrinsic-inline-size",
+          "stylus/render-subtree",
+          "scroll-start",
+          "scroll-end",
+          "view-transition-class"
+        ]
+      }
+    ],
+    "at-rule-no-unknown": null,
+    "stylus/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "view-transition",
+          "container",
+          "layer",
+          "css",
+          "if",
+          "else",
+          "for",
+          "each",
+          "while",
+          "return",
+          "import",
+          "require",
+          "extend",
+          "block",
+          "mixin",
+          "function",
+          "media",
+          "keyframes",
+          "supports",
+          "font-face",
+          "charset",
+          "namespace",
+          "page",
+          "counter-style",
+          "font-feature-values",
+          "property",
+          "scope"
+        ]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "contains",
+          "has",
+          "is",
+          "where",
+          "not",
+          "nth-child",
+          "local",
+          "global",
+          "until-found",
+          "snapped",
+          "snapped-x",
+          "snapped-y"
+        ]
+      }
+    ],
+    "stylus/no-eol-whitespace": true
+  },
+  "ignoreFiles": ["dist/**", "node_modules/**", "**/*.css"]
+}

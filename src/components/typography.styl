@@ -1,0 +1,1849 @@
+// Typography and content enhancements
+// Better styling for various content elements
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// LISTS
+// =============================================================================
+
+// Unordered lists with custom bullets
+ul
+  padding-inline-start 1.5em
+
+  li
+    position relative
+    margin 0.3em 0
+
+    &::marker
+      color $secondary-blue
+
+// Nested lists
+ul ul
+ol ol
+ul ol
+ol ul
+  margin 0.3em 0
+
+// Custom bullet styles
+ul.custom-bullets
+  list-style none
+  padding-inline-start 1.5em
+
+  li::before
+    content "▸"
+    position absolute
+    left -1.2em
+    color $secondary-blue
+
+// Checkmark list
+ul.checklist
+  list-style none
+  padding-inline-start 1.8em
+
+  li
+    position relative
+
+    &::before
+      content "✓"
+      position absolute
+      left -1.5em
+      color $green
+      font-weight bold
+
+// Ordered lists with better numbering
+ol
+  padding-inline-start 1.8em
+  counter-reset item
+
+  li
+    position relative
+    margin 0.3em 0
+
+  &.styled-numbers
+    list-style none
+    padding-inline-start 2.5em
+
+    li
+      counter-increment item
+
+      &::before
+        content counter(item)
+        position absolute
+        left -2.2em
+        width 1.5em
+        height 1.5em
+        background linear-gradient(135deg, $arch-blue, $secondary-blue)
+        color $darker
+        border-radius 50%
+        display flex
+        align-items center
+        justify-content center
+        font-size 0.8em
+        font-weight bold
+        line-height 1
+
+// Description lists
+dl
+  margin 1em 0
+
+dt
+  color $lighter
+  font-weight 600
+  margin-top 1em
+
+  &:first-child
+    margin-top 0
+
+dd
+  color $light
+  margin-inline-start 1.5em
+  margin-top 0.3em
+
+// =============================================================================
+// BLOCKQUOTES
+// =============================================================================
+
+blockquote
+  position relative
+  margin 1.5em 0
+  padding 1em 1.5em
+  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+  border-inline-start 4px solid $secondary-blue
+  border-radius 0 $border-radius-md $border-radius-md 0
+  font-style italic
+  color $light
+
+  &::before
+    content '"'
+    position absolute
+    top -0.2em
+    left 0.3em
+    font-size 3em
+    color $arch-blue
+    opacity 0.3
+    line-height 1
+
+  p:last-child
+    margin-bottom 0
+
+  cite
+    display block
+    margin-top 0.5em
+    font-size 0.9em
+    font-style normal
+    color $muted
+
+    &::before
+      content "— "
+
+// Nested blockquotes
+blockquote blockquote
+  margin 1em 0
+  border-inline-start-color rgba($arch-blue, 0.5)
+
+// =============================================================================
+// KEYBOARD SHORTCUTS
+// =============================================================================
+
+kbd
+  display inline-block
+  padding 0.2em 0.5em
+  font-family $font-mono
+  font-size 0.85em
+  background linear-gradient(180deg, $dark, $darker)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  box-shadow 0 2px 0 $darker, inset 0 1px 0 rgba(255, 255, 255, 0.05)
+  color $lighter
+  vertical-align middle
+  line-height 1
+
+  // Key combination
+  & + kbd
+    margin-inline-start 0.3em
+
+// Keyboard shortcut group
+.keyboard-shortcut
+  display inline-flex
+  align-items center
+  gap 0.3em
+
+  kbd
+    margin 0
+
+// =============================================================================
+// TIMESTAMPS & DATES
+// =============================================================================
+
+time
+.timestamp
+.date
+  color $light
+  font-size 0.9em
+  font-family $font-mono
+
+  &.relative
+    color $muted
+
+// Human-readable time
+time[datetime]
+  cursor help
+  border-bottom 1px dotted $border-subtle
+
+// =============================================================================
+// USER NAMES & AVATARS
+// =============================================================================
+
+.username
+  color $secondary-blue
+  font-weight 500
+  text-decoration none
+
+  &:hover
+    color $white
+
+.user-link
+  display inline-flex
+  align-items center
+  gap 0.5em
+  text-decoration none
+
+  &:hover .username
+    color $white
+
+// Avatar styling
+.avatar
+.user-avatar
+  display inline-block
+  width 40px
+  height 40px
+  border-radius 50%
+  background linear-gradient(135deg, $arch-blue, $secondary-blue)
+  color $darker
+  font-weight bold
+  text-align center
+  line-height 40px
+  vertical-align middle
+
+  img
+    width 100%
+    height 100%
+    object-fit cover
+    border-radius 50%
+
+  &.avatar-sm
+    width 24px
+    height 24px
+    line-height 24px
+    font-size 0.7em
+
+  &.avatar-lg
+    width 56px
+    height 56px
+    line-height 56px
+    font-size 1.2em
+
+// =============================================================================
+// STATUS INDICATORS
+// =============================================================================
+
+.status-indicator
+  display inline-flex
+  align-items center
+  gap 0.5em
+  font-size 0.9em
+
+  &::before
+    content ""
+    width 8px
+    height 8px
+    border-radius 50%
+    background-color $muted
+
+  &.status-online::before
+    background-color $green
+    box-shadow 0 0 6px rgba($green, 0.6)
+
+  &.status-offline::before
+    background-color $muted
+
+  &.status-busy::before
+    background-color $secondary-red
+
+  &.status-away::before
+    background-color $orange
+
+// Status badges
+.status-badge
+  display inline-block
+  padding 0.2em 0.6em
+  font-size 0.75em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  border-radius $border-radius-sm
+
+  &.status-active
+    background-color rgba($green, 0.2)
+    color $green
+    border 1px solid rgba($green, 0.3)
+
+  &.status-inactive
+    background-color rgba($muted, 0.2)
+    color $muted
+    border 1px solid rgba($muted, 0.3)
+
+  &.status-pending
+    background-color rgba($orange, 0.2)
+    color $orange
+    border 1px solid rgba($orange, 0.3)
+
+  &.status-error
+    background-color rgba($secondary-red, 0.2)
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.3)
+
+// =============================================================================
+// ABBREVIATIONS & ACRONYMS
+// =============================================================================
+
+abbr[title]
+acronym[title]
+  border-bottom 1px dotted $border-subtle
+  cursor help
+  text-decoration none
+
+  &:hover
+    border-bottom-color $arch-blue
+
+// =============================================================================
+// TEXT DECORATION ENHANCEMENTS
+// =============================================================================
+
+// Better underlines that skip descenders (g, y, p, etc.)
+// Browser support: 95%+
+a
+ins
+u
+.marked-text
+  text-decoration-skip-ink auto
+
+// Ensure links with text-decoration also benefit
+[style*="text-decoration: underline"]
+  text-decoration-skip-ink auto
+
+// =============================================================================
+// MARK & HIGHLIGHT
+// =============================================================================
+
+mark
+.highlight
+  background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($secondary-blue, 0.2))
+  color $lighter
+  padding 0.1em 0.3em
+  border-radius 2px
+  text-decoration-skip-ink auto
+
+.search-match
+  background-color rgba($orange, 0.3)
+  color $lighter
+  padding 0.1em 0.2em
+  border-radius 2px
+
+// =============================================================================
+// SUBSCRIPT & SUPERSCRIPT
+// =============================================================================
+
+// font-variant-position for proper super/subscript glyphs
+// Browser support: 97%+
+// Uses proper glyphs from the font instead of scaled characters
+sub
+sup
+  font-size 0.75em
+  line-height 0
+  position relative
+  vertical-align baseline
+  font-variant-position super
+
+sub
+  bottom -0.25em
+  font-variant-position sub
+
+sup
+  top -0.5em
+
+// =============================================================================
+// HORIZONTAL RULE
+// =============================================================================
+
+hr
+  border none
+  height 1px
+  background linear-gradient(90deg, transparent, $border-subtle, transparent)
+  margin 2em 0
+
+  &.hr-accent
+    height 2px
+    background linear-gradient(90deg, $arch-blue, $secondary-blue)
+
+  &.hr-strong
+    height 2px
+    background $border-subtle
+
+// =============================================================================
+// DETAILS & SUMMARY
+// =============================================================================
+
+details
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  margin 1em 0
+
+  &[open]
+    summary
+      border-bottom 1px solid $border-subtle
+      padding-bottom 0.75em
+      margin-bottom 0.75em
+
+summary
+  cursor pointer
+  color $lighter
+  font-weight 600
+  user-select none
+  outline none
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    border-radius $border-radius-sm
+
+  &::marker
+    color $secondary-blue
+
+  &:hover
+    color $secondary-blue
+
+// =============================================================================
+// MATH & EQUATIONS
+// =============================================================================
+
+.math
+.equation
+  font-family "Times New Roman", serif
+  font-style italic
+  color $lighter
+
+.math-block
+  display block
+  text-align center
+  margin 1.5em 0
+  padding 1em
+  background-color $darker
+  border-radius $border-radius-md
+  overflow-x auto
+
+// =============================================================================
+// FOOTNOTES
+// =============================================================================
+
+.footnote
+a[href^="#fn"]
+a[href^="#cite"]
+  font-size 0.8em
+  vertical-align super
+  color $secondary-blue
+  text-decoration none
+  border-bottom 1px dotted $border-subtle
+
+  &:hover
+    color $white
+    border-bottom-color $arch-blue
+
+.footnotes
+  margin-top 3em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+  font-size 0.9em
+
+  li
+    margin 0.5em 0
+
+// =============================================================================
+// EDITORIAL MARKS
+// =============================================================================
+
+ins
+  background-color rgba($green, 0.2)
+  color $lighter
+  text-decoration none
+  border-bottom 1px solid $green
+
+del
+  background-color rgba($secondary-red, 0.2)
+  color $light
+  text-decoration line-through
+
+// =============================================================================
+// ADDRESS
+// =============================================================================
+
+address
+  font-style normal
+  color $light
+  margin 1em 0
+  padding 1em
+  background-color $darker
+  border-inline-start 3px solid $secondary-blue
+  border-radius 0 $border-radius-md $border-radius-md 0
+
+// =============================================================================
+// DEFINITION TERM
+// =============================================================================
+
+dfn
+  font-style italic
+  color $lighter
+  border-bottom 1px dotted $border-subtle
+
+// =============================================================================
+// VARIABLE
+// =============================================================================
+
+var
+  font-family $font-mono
+  font-style italic
+  color $term-bright-cyan
+
+// =============================================================================
+// SAMPLE OUTPUT
+// =============================================================================
+
+samp
+  font-family $font-mono
+  background-color $darker
+  color $term-bright-green
+  padding 0.1em 0.3em
+  border-radius 2px
+
+// =============================================================================
+// DROP CAPS FOR ARTICLE INTROS
+// =============================================================================
+
+// Subtle typographic enhancement for article openings
+// Browser support: 100%
+// Applies drop cap to first letter of lead paragraphs
+
+// Article lead paragraph class for explicit drop cap
+.drop-cap
+  &::first-letter
+    float left
+    font-size 3.5em
+    line-height 0.8
+    padding-right 0.12em
+    margin-top 0.05em
+    font-weight 700
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    -webkit-background-clip text
+    background-clip text
+    -webkit-text-fill-color transparent
+    color $arch-blue // Fallback
+
+// Small drop cap variant
+.drop-cap-sm
+  &::first-letter
+    float left
+    font-size 2em
+    line-height 0.9
+    padding-right 0.08em
+    margin-top 0.1em
+    font-weight 600
+    color $secondary-blue
+
+// Raised cap (not floating) variant
+.raised-cap
+  &::first-letter
+    font-size 2.5em
+    font-weight 700
+    color $arch-blue
+    vertical-align baseline
+    margin-right 0.05em
+
+// =============================================================================
+// INITIAL-LETTER DROP CAPS (CSS Level 4)
+// Browser support: 87%+ (Chrome 110+, Safari 17.5+)
+// Enhanced drop caps with precise control over size and sink
+// =============================================================================
+
+// Initial-letter utility classes for enhanced drop caps
+.initial-letter-1
+  initial-letter 1
+
+.initial-letter-2
+  initial-letter 2
+
+.initial-letter-3
+  initial-letter 3
+
+.initial-letter-4
+  initial-letter 4
+
+// Initial-letter with specific sink values (sink = how many lines the letter drops)
+.initial-letter-2-1
+  initial-letter 2 1
+
+.initial-letter-3-2
+  initial-letter 3 2
+
+.initial-letter-4-3
+  initial-letter 4 3
+
+// Initial-letter with alignment options
+.initial-letter-auto
+  initial-letter auto
+
+.initial-letter-alphabetic
+  initial-letter alphabetic
+
+.initial-letter-hanging
+  initial-letter hanging
+
+.initial-letter-ideographic
+  initial-letter ideographic
+
+// Full drop cap using initial-letter (replaces float-based drop caps)
+// Works with @css{} wrapper for broader compatibility
+.initial-letter-drop
+  @css {
+    initial-letter: 3 2
+  }
+
+// Wrap control for initial-letter
+.initial-letter-wrap-auto
+  initial-letter-wrap auto
+
+.initial-letter-wrap-first
+  initial-letter-wrap first
+
+.initial-letter-wrap-all
+  initial-letter-wrap all
+
+// Progressive enhancement: Use initial-letter when supported
+.drop-cap-enhanced
+  // Fallback to traditional ::first-letter
+  &::first-letter
+    float left
+    font-size 3em
+    line-height 0.85
+    padding-right 0.1em
+    margin-top 0.1em
+    font-weight 600
+    color $arch-blue
+    // Fallback for older browsers
+    @supports not (initial-letter: 1)
+      float left
+      font-size 3em
+
+  // Enhanced with initial-letter when supported
+  @supports (initial-letter: 3) or (initial-letter: 3 2)
+    &::first-letter
+      initial-letter 3 2
+      float none
+      padding-right 0
+      margin-top 0
+
+// =============================================================================
+// AUTO DROP CAP FOR ARTICLE FIRST PARAGRAPHS
+// Using @css{} for sibling selectors that conflict with Stylus built-ins
+// =============================================================================
+
+@css {
+  /* First paragraph of article content gets subtle drop cap */
+  .mw-parser-output > p:first-of-type::first-letter {
+    float: left;
+    font-size: 3em;
+    line-height: 0.85;
+    padding-right: 0.1em;
+    margin-top: 0.08em;
+    font-weight: 600;
+    color: #7eb8e2;
+  }
+
+  /* First paragraph after main heading */
+  .mw-parser-output h1 + p::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.1em;
+    margin-top: 0.05em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7eb8e2, #4a90c2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #7eb8e2; /* Fallback */
+  }
+
+  /* Lead paragraph class */
+  .lead-paragraph::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.12em;
+    margin-top: 0.05em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7eb8e2, #4a90c2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #7eb8e2;
+  }
+}
+
+// =============================================================================
+// DROP CAPS FOR ARTICLE INTROS
+// =============================================================================
+
+// Typographic polish for lead paragraphs
+// Browser support: 100%
+.mw-parser-output
+  // First paragraph of article content
+  > p:first-of-type
+    &::first-letter
+      float left
+      font-size 3.5em
+      line-height 0.8
+      padding-right 0.1em
+      margin-top 0.05em
+      color $arch-blue
+      font-weight 700
+      text-shadow 2px 2px 4px rgba($darker, 0.3)
+
+  // Lead section marker class for explicit drop caps
+  .lead-paragraph
+    &::first-letter
+      float left
+      font-size 3.5em
+      line-height 0.8
+      padding-right 0.1em
+      margin-top 0.05em
+      color $arch-blue
+      font-weight 700
+      text-shadow 2px 2px 4px rgba($darker, 0.3)
+
+// =============================================================================
+// HANGING PUNCTUATION FOR BETTER QUOTE TYPOGRAPHY
+// =============================================================================
+
+// Hangs punctuation marks outside text box for better alignment
+// Browser support: Chrome/Safari only (Firefox doesn't support)
+
+@supports (hanging-punctuation: first)
+  blockquote
+    hanging-punctuation first last
+
+    p
+      hanging-punctuation first last
+
+  // List items with hanging quotes
+  blockquote li
+    hanging-punctuation first
+
+// =============================================================================
+// BOX-DECORATION-BREAK FOR MULTI-LINE INLINE STYLES
+// =============================================================================
+
+// Inline backgrounds/padding that span multiple lines properly
+// Browser support: 97%+
+
+mark
+.highlight
+.search-match
+kbd
+code
+  -webkit-box-decoration-break clone
+  box-decoration-break clone
+
+// Inline code with proper line wrapping
+.mw-parser-output
+  code
+    -webkit-box-decoration-break clone
+    box-decoration-break clone
+
+// =============================================================================
+// OVERFLOW-WRAP FOR LONG CONTENT
+// =============================================================================
+
+// Better line breaking for long URLs, code paths, package names
+// Browser support: 97%+
+
+// Code blocks
+pre
+code
+  overflow-wrap anywhere
+
+// Tables with long content
+.wikitable
+.infobox
+  td
+    overflow-wrap anywhere
+
+// Content areas with long URLs/paths
+.mw-parser-output
+  p
+  li
+    overflow-wrap anywhere
+
+// =============================================================================
+// FONT-VARIANT-NUMERIC FOR NUMBER FORMATTING
+// =============================================================================
+
+// Tabular numbers for tables, slashed-zero for code, ordinals
+// Browser support: 97%+
+
+// Slashed zero for code/monospace content - better distinction between 0 and O
+code
+kbd
+samp
+pre
+  font-variant-numeric slashed-zero
+
+// Ordinals for better typography (1st, 2nd, etc.)
+.ordinal
+  font-variant-numeric ordinal
+
+// Tabular numbers utility class - fixed-width digits for alignment
+.tabular-nums
+  font-variant-numeric tabular-nums
+
+// Lining figures (default) - numbers align with capitals
+.lining-nums
+  font-variant-numeric lining-nums
+
+// Oldstyle figures - numbers have ascenders/descenders like text
+.oldstyle-nums
+  font-variant-numeric oldstyle-nums
+
+// Fraction formatting
+.fraction
+  font-variant-numeric diagonal-fractions
+
+// Combined: tabular nums with slashed zero (great for financial/technical data)
+.tabular-zero
+  font-variant-numeric tabular-nums slashed-zero
+
+// =============================================================================
+// TEXT-ALIGN-LAST FOR JUSTIFIED TEXT CONTROL
+// =============================================================================
+
+// Control alignment of last line in justified text
+// Browser support: 97%+
+
+// Justified text with left-aligned last line (better for readability)
+.justified
+  text-align justify
+  text-align-last left
+
+// Justified with centered last line (headlines)
+.justified-center
+  text-align justify
+  text-align-last center
+
+// Justified with auto (browser default)
+.justified-auto
+  text-align justify
+  text-align-last auto
+
+// Article body text - justified with clean last line
+.article-body
+  text-align justify
+  text-align-last left
+  hyphens auto
+
+// =============================================================================
+// HYPHENATION CONTROL
+// =============================================================================
+
+// Browser support: 85%+
+// Control how text is hyphenated
+
+// Minimal characters before hyphen (default: browser dependent, usually 2/2)
+// hyphenate-limit-chars: [before] [after] [minimum]
+.hyphenate-limit-chars-6-3
+  hyphenate-limit-chars 6 3
+
+.hyphenate-limit-chars-5-3
+  hyphenate-limit-chars 5 3
+
+.hyphenate-limit-chars-4-2
+  hyphenate-limit-chars 4 2
+
+// Maximum consecutive hyphenated lines
+.hyphenate-limit-lines-2
+  hyphenate-limit-lines 2
+
+.hyphenate-limit-lines-3
+  hyphenate-limit-lines 3
+
+// Hyphenation zone limit (percentage of line width)
+.hyphenate-limit-zone-10
+  hyphenate-limit-zone 10%
+
+.hyphenate-limit-zone-15
+  hyphenate-limit-zone 15%
+
+// Combined hyphenation control
+.hyphenate-balanced
+  hyphenate-limit-chars 6 3
+  hyphenate-limit-lines 2
+  hyphenate-limit-zone 10%
+
+.hyphenate-aggressive
+  hyphenate-limit-chars 4 2
+  hyphenate-limit-lines 3
+  hyphenate-limit-zone 15%
+
+// Disable hyphenation
+.hyphens-none
+  hyphens none
+
+// =============================================================================
+// FLUID TYPOGRAPHY WITH CLAMP()
+// =============================================================================
+
+// Responsive font sizes without media queries
+// Browser support: 95%+
+
+// Fluid body text
+.fluid-text
+  font-size clamp(0.9rem, 0.85rem + 0.25vw, 1.1rem)
+
+// Fluid headings
+.fluid-h1
+  font-size clamp(1.8rem, 1.5rem + 2vw, 3rem)
+
+.fluid-h2
+  font-size clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem)
+
+.fluid-h3
+  font-size clamp(1.25rem, 1.1rem + 1vw, 1.75rem)
+
+.fluid-h4
+  font-size clamp(1.1rem, 1rem + 0.5vw, 1.4rem)
+
+// Fluid lead paragraph
+.fluid-lead
+  font-size clamp(1rem, 0.9rem + 0.5vw, 1.25rem)
+
+// =============================================================================
+// MIN() / MAX() FOR RESPONSIVE VALUES
+// =============================================================================
+
+// Dynamic padding, margins, and dimensions
+// Browser support: 95%+
+
+// Responsive spacing
+.spacing-fluid
+  padding clamp(0.75rem, 2vw, 2rem)
+  margin clamp(0.5rem, 1.5vw, 1.5rem)
+
+// Responsive container width
+.container-fluid
+  width min(100% - 2rem, 1200px)
+  margin-inline auto
+
+// Responsive gap
+.gap-fluid
+  gap clamp(0.5rem, 1vw, 1.5rem)
+
+
+// =============================================================================
+// QUOTES PROPERTY FOR CUSTOM QUOTATION MARKS
+// =============================================================================
+
+// Define custom quotation marks for nested quotes
+// Browser support: 97%+
+
+q
+  quotes "«" "»" "‹" "›"
+
+blockquote q
+  quotes "„" "“" "‚" "‘"
+
+// French-style quotes
+.quotes-french
+  quotes "«\00a0" "\00a0»" "‹\00a0" "\00a0›"
+
+// =============================================================================
+// FONT-KERNING FOR TYPOGRAPHY CONTROL
+// =============================================================================
+
+// Enable/disable font kerning for better letter spacing
+// Browser support: 97%+
+
+body
+  font-kerning auto
+
+// Headings benefit from kerning
+h1
+h2
+h3
+h4
+h5
+h6
+  font-kerning normal
+
+
+// =============================================================================
+// FONT-SYNTHESIS FOR AUTO-GENERATED FONTS
+// =============================================================================
+
+// Control automatic bold/italic generation
+// Browser support: 97%+
+
+// Disable synthesis for web fonts with proper weights
+.webfont
+  font-synthesis none
+
+// Enable synthesis for system fonts (default)
+.system-font
+  font-synthesis auto
+
+// Only synthesize weight
+.synth-weight
+  font-synthesis weight
+
+// Only synthesize style
+.synth-style
+  font-synthesis style
+
+
+// =============================================================================
+// TEXT-AUTOSPACE FOR CJK-LATIN SPACING
+// =============================================================================
+
+// Auto-insert spacing between CJK and Latin text
+// Browser support: 87%+ (Chrome 120+, Safari 17.2+)
+
+// Enable auto-spacing for multilingual content
+.i18n-content
+.cjk-content
+  text-autospace insert
+
+// No auto-spacing
+.no-autospace
+  text-autospace none
+
+
+// =============================================================================
+// CJK TYPOGRAPHY - TEXT SPACING TRIM
+// =============================================================================
+
+// text-spacing-trim - Control spacing around CJK punctuation
+// Browser support: 87%+ (Chrome 114+, Safari 17.2+)
+// Enables proper text trimming for Asian languages
+// Values: auto, none, trim-start, trim-end, trim-both, space-first
+
+// CJK content with proper spacing
+.cjk-content
+.text-cjk
+  text-spacing-trim auto
+
+// No text spacing trim
+.no-spacing-trim
+  text-spacing-trim none
+
+// Trim both sides for centered text
+.trim-both
+  text-spacing-trim trim-both
+
+// Trim start only
+.trim-start
+  text-spacing-trim trim-start
+
+// Trim end only
+.trim-end
+  text-spacing-trim trim-end
+
+// Keep space before CJK characters
+.space-first
+  text-spacing-trim space-first
+
+// Combine with writing-mode for vertical text
+[lang^="ja"]
+[lang^="zh"]
+[lang^="ko"]
+  &.cjk-content
+    text-spacing-trim auto
+
+
+// =============================================================================
+// COUNTER ENHANCEMENTS
+// =============================================================================
+
+// counter-set for resetting without increment
+// Browser support: 97%+
+
+.counter-reset
+  counter-set item 0
+
+// counters() for nested lists
+// Browser support: 97%+
+
+ol.nested-counter
+  counter-reset section
+  list-style none
+
+  li::before
+    content counters(section, ".") " "
+    counter-increment section
+    font-weight 600
+    color $arch-blue
+    margin-inline-end 0.5em
+
+// =============================================================================
+// FONT-VARIANT EXPANSION
+// =============================================================================
+
+// font-variant-caps
+// Browser support: 97%+
+
+.small-caps
+  font-variant-caps small-caps
+
+.all-small-caps
+  font-variant-caps all-small-caps
+
+// font-variant-ligatures
+// Browser support: 97%+
+
+.ligatures
+  font-variant-ligatures common-ligatures
+
+.no-ligatures
+  font-variant-ligatures none
+
+// font-variant-position for super/subscript
+// Browser support: 97%+
+
+.super
+  font-variant-position super
+
+.sub
+  font-variant-position sub
+
+// font-variant-east-asian for CJK Typography
+// Browser support: 97%+
+// Control East Asian glyphs (Japanese kanji, simplified/traditional Chinese, Korean hanja)
+// Values: normal, jis78, jis83, jis90, jis04, simplified, traditional, hojo, nlc, expert, nosei, tenpro, p袋uit
+
+.east-asian-normal
+  font-variant-east-asian normal
+
+.east-asian-simplified
+  font-variant-east-asian simplified
+
+.east-asian-traditional
+  font-variant-east-asian traditional
+
+.east-asian-jis78
+  font-variant-east-asian jis78
+
+.east-asian-jis83
+  font-variant-east-asian jis83
+
+.east-asian-jis90
+  font-variant-east-asian jis90
+
+.east-asian-jis04
+  font-variant-east-asian jis04
+
+.east-asian-expert
+  font-variant-east-asian expert
+
+.east-asian-nlc
+  font-variant-east-asian nlc
+
+// font-variant-emoji for Emoji Presentation
+// Browser support: 87%+
+// Control emoji rendering style
+// Values: text (use text glyphs), emoji (use emoji glyphs), unicode (use platform default)
+
+.emoji-text
+  font-variant-emoji text
+
+.emoji-emoji
+  font-variant-emoji emoji
+
+.emoji-unicode
+  font-variant-emoji unicode
+
+// font-language-override for Language-Specific Glyphs
+// Browser support: 97%+
+// Override the language-sensitive font features for a piece of text
+// Use three-letter OpenType language tag (e.g., "ENG", "JAN", "KOR", "ZHS", "ZHT")
+
+.language-override-normal
+  font-language-override normal
+
+.language-override-eng
+  font-language-override "ENG"
+
+.language-override-jan
+  font-language-override "JAN"
+
+.language-override-kor
+  font-language-override "KOR"
+
+.language-override-zhs
+  font-language-override "ZHS"
+
+.language-override-zht
+  font-language-override "ZHT"
+
+// font-size-adjust for fallback font normalization
+// Browser support: 90%+
+// Normalize visual size across different fallback fonts
+// Base sizing on x-height (ex) or cap-height (cap) to prevent layout shifts
+
+.font-size-adjust-ex
+  font-size-adjust 0.5
+
+.font-size-adjust-cap
+  font-size-adjust from-font
+
+.font-size-adjust-auto
+  font-size-adjust auto
+
+// Base font-size-adjust for body text to improve readability
+// Uses the font's x-height ratio for consistent sizing across fonts
+body
+  font-size-adjust 0.5
+
+// font-optical-sizing for Variable Fonts
+// Browser support: 97%+
+// Enable optical sizing for variable fonts
+// Values: auto (enable, default), none (disable)
+// Optical sizing adjusts glyph outlines based on font size for better readability
+
+.optical-sizing-auto
+  font-optical-sizing auto
+
+.optical-sizing-none
+  font-optical-sizing none
+
+// Base optical sizing for body text when using variable fonts
+// Enables automatic adjustment of glyph weight at different sizes
+body.variable-font
+  font-optical-sizing auto
+
+// font-variant-alternates for OpenType features
+// Browser support: 87%+
+// Access alternate glyphs provided by fonts (historical forms, swash, ornaments, etc.)
+
+.historical-forms
+  font-variant-alternates historical-forms
+
+.swash
+  font-variant-alternates swash
+
+.no-swash
+  font-variant-alternates swash 0
+
+.ornaments
+  font-variant-alternates ornaments
+
+.no-ornaments
+  font-variant-alternates ornaments 0
+
+.annotation-circles
+  font-variant-alternates annotation(circles)
+
+.annotation-squares
+  font-variant-alternates annotation(squares)
+
+// Stylistic sets (font-specific, common ranges 01-20)
+.stylistic-set-1
+  font-variant-alternates stylistic(user-font-1)
+
+.stylistic-set-2
+  font-variant-alternates stylistic(user-font-2)
+
+// Character variants (font-specific, common ranges 01-20)
+.character-variant-1
+  font-variant-alternates character-variant(user-char-1)
+
+.character-variant-2
+  font-variant-alternates character-variant(user-char-2)
+
+// @font-feature-values for named font feature values
+// Browser support: 97%+
+// Define named feature values that can be referenced in font-variant-alternates
+// This provides cleaner syntax for accessing font features
+
+// Define stylistic sets for a font family
+// Usage: font-variant-alternates: stylistic(my-font-1);
+// Note: Replace 'Font Family Name' with actual font name in production
+
+@css {
+  @font-feature-values "Font Family Name" {
+    @stylistic {
+      alternate: 1;
+      swash-variant: 1;
+      historic-variant: 1;
+    }
+
+    @historical-forms {
+      hist: 1;
+    }
+
+    @styleset {
+      nice-style: 1;
+      alt-glyphs: 1;
+      dashed-zero: 1;
+      diagonal-fractions: 1;
+      slashed-zero: 1;
+      titling: 1;
+      contextual: 1;
+      case-sensitive-forms: 1;
+    }
+
+    @character-variant {
+      cv01: 1;
+      cv02: 1;
+      cv03: 1;
+    }
+
+    @swash {
+      swash-1: 1;
+      contextual-swash: 1;
+      ornamental-1: 1;
+    }
+
+    @ornaments {
+      ornaments-1: 1;
+      fleurons: 1;
+    }
+
+    @annotation {
+      circles: 1;
+      squares: 1;
+      numbers: 1;
+    }
+  }
+}
+
+// Utility classes for @font-feature-values
+// These can be used when the font-family matches above
+
+.font-feature-stylistic
+  font-variant-alternates stylistic(1)
+
+.font-feature-historical
+  font-variant-alternates historical-forms
+
+.font-feature-swash
+  font-variant-alternates swash
+
+.font-feature-ornaments
+  font-variant-alternates ornaments
+
+.font-feature-annotation-circles
+  font-variant-alternates annotation(circles)
+
+.font-feature-annotation-squares
+  font-variant-alternates annotation(squares)
+
+// Common ligature controls
+.font-ligatures-common
+  font-variant-ligatures common-ligatures
+
+.font-ligatures-none
+  font-variant-ligatures none
+
+.font-ligatures-discretionary
+  font-variant-ligatures discretionary-ligatures
+
+.font-ligatures-historical
+  font-variant-ligatures historical-ligatures
+
+// font-optical-sizing
+// Browser support: 97%+
+
+.optical-sizing
+  font-optical-sizing auto
+
+
+// =============================================================================
+// COLOR FONT SUPPORT (font-palette)
+// =============================================================================
+
+// Control color font palettes (emoji, icon fonts)
+// Browser support: 87%+ (Chrome 80+, Firefox 107+, Safari 15.4+)
+
+// Use default font palette (system emoji)
+.font-palette-normal
+  font-palette normal
+
+// Use light variant if available
+.font-palette-light
+  font-palette light
+
+// Use dark variant if available
+.font-palette-dark
+  font-palette dark
+
+// Use minimal palette (monochrome)
+.font-palette-monochrome
+  font-palette monochrome
+
+// Custom palette override via @font-palette-values (see modern-css.styl)
+.font-palette-custom
+  font-palette var(--custom-palette, normal)
+
+// Emoji text styling
+// Use system emoji with proper color
+.emoji-text
+  font-family "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif
+  font-palette light-dark(normal, dark)
+
+// Force grayscale emoji (accessibility)
+.emoji-grayscale
+  font-palette monochrome
+
+
+// =============================================================================
+// MATHML STYLING
+// =============================================================================
+
+// Style mathematical equations
+// Browser support: 97%+
+
+math
+  font-family "Times New Roman", "STIX Two Math", serif
+  font-size 1.1em
+  color $lighter
+
+  mi
+    font-style italic
+    color $arch-blue
+
+  mo
+    color $lighter
+
+  mn
+    color $secondary-blue
+    font-variant-numeric tabular-nums
+
+  mfrac
+    color $lighter
+
+  msqrt
+  mroot
+    color $lighter
+
+.math-style-compact
+  math-style compact
+
+.math-style-normal
+  math-style normal
+
+// =============================================================================
+// RUBY TEXT SUPPORT
+// =============================================================================
+
+// Ruby annotation styling (East Asian)
+// Browser support: 97%+
+
+ruby
+  ruby-align center
+  font-size 1em
+
+rt
+  ruby-position over
+  font-size 0.6em
+  color $muted
+
+ruby.under
+  rt
+    ruby-position under
+
+// =============================================================================
+// TEXT EMPHASIS
+// =============================================================================
+
+// Emphasis marks for text
+// Browser support: 90%+
+
+.emphasis-dot
+  text-emphasis filled dot
+  text-emphasis-position over right
+
+.emphasis-circle
+  text-emphasis filled circle
+  text-emphasis-position over right
+
+.emphasis-sesame
+  text-emphasis filled sesame
+  text-emphasis-position under right
+
+
+// =============================================================================
+// TEXT-WRAP FOR BETTER TYPOGRAPHY
+// =============================================================================
+
+// Better headline wrapping and paragraph orphans
+// Browser support: 92%+
+// text-wrap: balance - Balances lines in headlines for better appearance
+// text-wrap: pretty - Prevents orphans in paragraphs (single words on last line)
+
+// Balanced text for headlines - distributes words more evenly across lines
+// Great for headings, titles, and short blocks of text
+.text-balance
+  text-wrap balance
+
+// Pretty text for paragraphs - prevents typographic orphans
+// Browser adjusts line breaks to avoid single words on last line
+.text-pretty
+  text-wrap pretty
+
+// Apply to all headings for better typography
+h1
+h2
+h3
+  text-wrap balance
+
+// Apply to article lead paragraphs for better line distribution
+.lead-paragraph
+.mw-parser-output > p:first-of-type
+  text-wrap pretty
+
+// Wiki headings
+.mw-heading
+  h1
+  h2
+  h3
+    text-wrap balance
+
+// Section headings in content
+.mw-parser-output
+  h2
+  h3
+  h4
+    text-wrap balance
+
+// Article body text - prevent orphans
+.article-body
+.wiki-article
+  p
+    text-wrap pretty
+
+// Card titles and short text blocks
+.card-title
+.info-box-title
+.navbox-title
+  text-wrap balance
+
+// =============================================================================
+// TEXT WRAP MODE - Control Text Wrapping Behavior
+// =============================================================================
+// text-wrap-mode controls whether text wraps or displays without wrapping
+// Browser support: 97%+
+// Useful for preventing unwanted line breaks in specific contexts
+
+// Normal wrapping (default)
+.text-wrap
+  text-wrap-mode wrap
+
+// No wrapping - display text on single line
+// Use for short labels, buttons, or where wrapping is undesirable
+.text-nowrap
+  text-wrap-mode nowrap
+
+// Apply nowrap to specific elements
+// Navigation labels
+.mw-ui-button
+.mw-ui-quiet
+  text-wrap-mode nowrap
+
+// Table headers
+th
+  text-wrap-mode nowrap
+
+// Code and preformatted text
+pre
+.code
+.mw-highlight
+  text-wrap-mode nowrap
+
+// Short labels and badges
+.label
+.badge
+.tag
+  text-wrap-mode nowrap
+
+// Button text
+input[type="submit"]
+input[type="button"]
+button
+  text-wrap-mode nowrap
+
+// =============================================================================
+// TEXT WRAP STYLE - Control Text Wrapping Style
+// =============================================================================
+// text-wrap-style controls the style of text wrapping
+// Values: auto (browser default), balance (even line distribution), pretty (prevent orphans)
+// Browser support: 92%+ (Chrome 123+, Safari 17.5+)
+// Note: Works with text-wrap: wrap or text-wrap: nowrap
+
+// Auto style - browser default wrapping behavior
+.text-wrap-style-auto
+  text-wrap-style auto
+
+// Balance style - distributes text more evenly across lines
+// Best for short headlines and titles where even line lengths matter
+.text-wrap-style-balance
+  text-wrap-style balance
+
+// Pretty style - optimizes line breaks to avoid orphans
+// Best for longer paragraphs where typographic quality matters
+.text-wrap-style-pretty
+  text-wrap-style pretty
+
+// Apply balance style to headings
+h1
+h2
+h3
+h4
+  text-wrap-style balance
+
+// Apply pretty style to article body paragraphs
+.article-body
+.wiki-article
+  p
+    text-wrap-style pretty
+
+// Card titles get balance
+.card-title
+.info-box-title
+.navbox-title
+  text-wrap-style balance
+
+// =============================================================================
+// TEXT GROUP ALIGN - Block Level Text Alignment
+// =============================================================================
+// text-group-align controls alignment of text groups within blocks
+// Better than text-align for complex layouts with mixed content
+// Browser support: 87%+ (Chrome 120+, Safari 17.4+)
+
+// Default text group alignment - start
+.text-group-start
+  text-group-align start
+
+// Center text groups
+.text-group-center
+  text-group-align center
+
+// End text group alignment
+.text-group-end
+  text-group-align end
+
+// Justify text groups (space between)
+.text-group-justify
+  text-group-align justify
+
+// Default - inherit from parent
+.text-group-inherit
+  text-group-align inherit
+
+// Apply to specific content elements
+// Lead paragraphs with balanced text
+.lead-paragraph
+  text-group-align center
+
+// Section headings
+.mw-heading
+  h1
+  h2
+  h3
+    text-group-align start
+
+// Block quotes - center the quote content
+blockquote
+  cite
+  .quote-text
+    text-group-align center
+
+// Definition lists - align terms and definitions
+dl
+  text-group-align start
+
+  dt
+    text-group-align end
+
+  dd
+    text-group-align start
+
+// Tables - align cell content groups
+table
+  text-group-align start
+
+  th
+    text-group-align center
+
+// Form labels - center label text
+label
+  text-group-align center
+
+// Navigation items - start alignment
+.nav
+.mw-menu
+  li
+    text-group-align start
+
+// =============================================================================
+// text-justify for Asian Languages
+// =============================================================================
+
+// Browser support: 97%+
+// Control the justification algorithm for text
+// Values: auto (browser-determined), inter-word (WordPress-like), inter-character (CJK optimal), distribute (equiv to inter-character for CJK)
+
+// Default justified text behavior - let browser decide based on language
+.text-justify-auto
+  text-wrap justify
+  text-justify auto
+
+// Inter-word justification - spaces between words
+.text-justify-inter-word
+  text-wrap justify
+  text-justify inter-word
+
+// Inter-character justification - spaces between characters (ideal for CJK)
+.text-justify-inter-character
+  text-wrap justify
+  text-justify inter-character
+
+// Distribute justification - distributes space equally (best for CJK)
+.text-justify-distribute
+  text-wrap justify
+  text-justify distribute
+
+// None - disable justification
+.text-justify-none
+  text-justify none
+
+// CJK-specific text wrapping
+// Use on paragraphs containing mixed CJK and Latin text
+.cjk-text
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+
+// Japanese-specific text spacing
+// For Japanese text with proper line height adjustment
+.japanese-text
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+  line-height 1.8
+
+// Chinese-specific text
+.chinese-text
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+
+// Korean-specific text
+.korean-text
+  text-justify inter-word
+  line-height 1.6
+
+// Mixed content paragraphs with CJK and Latin
+// Better spacing and justification for multilingual content
+.mixed-content
+  text-justify inter-character
+  text-spacing trimallow ideograph-alpha allowideograph-numeric
+
+// Apply inter-character justification to CJK elements
+// This provides better visual alignment for Asian text
+:lang(zh)
+  text-justify inter-character
+  text-spacing trimallow
+
+:lang(ja)
+  text-justify inter-character
+  text-spacing trimallow
+
+:lang(ko)
+  text-justify inter-word
+
+// =============================================================================
+// font-variant-caps for Capital Styles
+// =============================================================================
+
+// Browser support: 97%+
+// Control capital glyph variants
+// Values: normal, small-caps, all-small-caps, petite-caps, all-petite-caps, unicase, titling-caps
+
+.small-caps
+  font-variant-caps small-caps
+
+.all-small-caps
+  font-variant-caps all-small-caps
+
+.petite-caps
+  font-variant-caps petite-caps
+
+.all-petite-caps
+  font-variant-caps all-petite-caps
+
+.unicase
+  font-variant-caps unicase
+
+.titling-caps
+  font-variant-caps titling-caps
+
+// =============================================================================
+// Line Grid for Typography
+// =============================================================================
+
+// Browser support: 85%+
+// Align text to a baseline grid for consistent vertical rhythm
+// Note: Limited browser support - use as progressive enhancement
+
+@supports (line-grid: match-parent)
+  .line-grid-match
+    line-grid match-parent
+
+  .line-grid-slice
+    line-grid slice
+
+  .line-grid-prose
+    line-grid prose
+
+// line-snap: Snap lines to grid
+@supports (line-snap: baseline)
+  .line-snap-baseline
+    line-snap baseline
+
+  .line-snap-contain
+    line-snap contain
+
+  .line-snap-none
+    line-snap none
+
+// box-snap: Snap boxes to line grid
+@supports (box-snap: block-start)
+  .box-snap-block-start
+    box-snap block-start
+
+  .box-snap-block-end
+    box-snap block-end
+
+  .box-snap-baseline
+    box-snap baseline
+
+  .box-snap-none
+    box-snap none
+

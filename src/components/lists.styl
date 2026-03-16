@@ -1,0 +1,461 @@
+// =============================================================================
+// List Styling for Violet Void ArchWiki Theme
+// Definition lists, checklists, and enhanced list styling
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// DEFINITION LISTS
+// =============================================================================
+// Styling for dl, dt, dd elements
+
+// Base definition list
+dl
+  margin 0.8em 0
+  line-height 1.6
+
+// Definition term
+dt
+  font-weight 600
+  color $lighter
+  margin-top 0.6em
+
+  // First term in list - no top margin
+  &:first-of-type
+    margin-top 0
+
+  // Nested definition term
+  dl dt
+    font-weight 500
+    color $light
+    font-size 0.95em
+
+// Definition description
+dd
+  margin-inline-start 1.5em
+  margin-block-start 0.3em
+  margin-block-end 0.5em
+  color $light
+  line-height 1.6
+
+  // Multiple definitions for single term
+  & + dd
+    margin-block-start 0.2em
+
+  // Nested definition description
+  dl dd
+    margin-inline-start 1em
+    font-size 0.95em
+
+// Horizontal definition list (inline terms)
+dl.horizontal
+  display flex
+  flex-wrap wrap
+  gap 0.5em 1em
+
+  dt
+    flex 0 0 auto
+    margin-top 0
+
+  dd
+    flex 1 1 auto
+    margin-inline-start 0
+    margin-block-start 0
+    min-width 50%
+
+// Definition list with borders
+dl.bordered
+  dt
+    padding 0.4em 0.6em
+    background rgba($arch-blue, 0.1)
+    border-radius $border-radius-sm
+    margin-bottom 0.3em
+
+  dd
+    padding 0.3em 0.6em
+    margin-inline-start 0.5em
+    border-inline-start 2px solid rgba($arch-blue, 0.3)
+    padding-inline-start 0.6em
+
+// Definition list with icons
+dl.icon-list
+  dt::before
+    content "▸"
+    color $arch-blue
+    margin-inline-end 0.4em
+    font-size 0.9em
+
+// Compact definition list
+dl.compact
+  font-size 0.9em
+
+  dt
+    margin-top 0.4em
+
+  dd
+    margin-block-start 0.2em
+    margin-block-end 0.3em
+
+// Wiki-specific definition lists (MediaWiki uses these in various templates)
+.mw-parser-output
+  dl
+    margin 0.5em 0
+
+    & + &
+    & + dl
+      margin-top 0.5em
+
+// =============================================================================
+// CHECKLIST STYLING
+// =============================================================================
+// Custom checklist styling with checkboxes
+
+// Checklist container
+.checklist
+  list-style none
+  padding 0
+  margin 0.8em 0
+
+// Checklist item
+.checklist-item
+  display flex
+  align-items flex-start
+  padding 0.4em 0
+  gap 0.5em
+
+  // Checkbox styling
+  input[type="checkbox"]
+    appearance none
+    width 1.2em
+    height 1.2em
+    min-width 1.2em
+    border 2px solid rgba($arch-blue, 0.5)
+    border-radius $border-radius-sm
+    background transparent
+    cursor pointer
+    margin-top 0.1em
+    position relative
+    transition all $transition-fast
+
+    &:checked
+      background $arch-blue
+      border-color $arch-blue
+
+      &::after
+        content "✓"
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        color $lighter
+        font-size 0.9em
+        font-weight bold
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &:hover
+      border-color $arch-blue
+
+// Checklist label
+.checklist-label
+  color $light
+  cursor pointer
+  line-height 1.5
+
+  &:hover
+    color $lighter
+
+// Checked state
+.checklist-item.checked
+  .checklist-label
+    color $muted
+    text-decoration line-through
+
+// Partial completion (some subtasks done)
+.checklist-item.partial
+  input[type="checkbox"]
+    border-color $orange
+
+    &:checked
+      background rgba($orange, 0.3)
+
+// Progress indicator for checklist
+.checklist-progress
+  width 100%
+  height 4px
+  background rgba($arch-blue, 0.2)
+  border-radius 2px
+  margin-top 0.3em
+  overflow hidden
+
+  .progress-bar
+    height 100%
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-radius 2px
+    transition width $transition-medium
+
+// Checklist with groups
+.checklist-group
+  margin-bottom 0.8em
+
+  .group-title
+    font-weight 600
+    color $lighter
+    padding 0.3em 0
+    border-bottom 1px solid rgba($arch-blue, 0.2)
+    margin-bottom 0.3em
+
+// Nested checklist
+.checklist-item
+  .checklist
+    margin-left 1.5em
+    margin-top 0.3em
+
+// =============================================================================
+// STEP-BY-STEP LISTS
+// =============================================================================
+// Numbered steps for tutorials
+
+.step-list
+  counter-reset step
+  list-style none
+  padding 0
+  margin 0.8em 0
+
+.step-item
+  display flex
+  align-items flex-start
+  padding 0.5em 0
+  gap 0.8em
+
+  // Step number
+  &::before
+    counter-increment step
+    content counter(step)
+    display flex
+    align-items center
+    justify-content center
+    min-width 1.8em
+    height 1.8em
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($secondary-blue, 0.1))
+    border 1px solid rgba($arch-blue, 0.3)
+    border-radius 50%
+    color $lighter
+    font-weight 600
+    font-size 0.9em
+
+.step-content
+  flex 1
+
+  .step-title
+    font-weight 600
+    color $lighter
+    margin-bottom 0.2em
+
+  .step-description
+    color $light
+    line-height 1.5
+
+// Current step highlight
+.step-item.current
+  &::before
+    background linear-gradient(135deg, $arch-blue, $secondary-blue)
+    border-color $arch-blue
+
+// Completed step
+.step-item.completed
+  &::before
+    background linear-gradient(135deg, rgba($green, 0.3), rgba($green, 0.1))
+    border-color rgba($green, 0.5)
+    color $green
+
+// Alternative/branch steps
+.step-item.branch
+  &::before
+    border-style dashed
+    border-color $orange
+
+// =============================================================================
+// NESTED LISTS ENHANCEMENTS
+// =============================================================================
+
+// Indentation levels with visual distinction
+ul
+ol
+  // Level 1 - default
+  & &
+    // Level 2
+    margin-inline-start 1.2em
+
+  & & &
+    // Level 3
+    margin-inline-start 1em
+    border-inline-start 1px solid rgba($arch-blue, 0.2)
+    padding-inline-start 0.8em
+
+  & & & &
+    // Level 4+
+    border-inline-start-color rgba($arch-blue, 0.3)
+    margin-inline-start 0.8em
+
+// Different bullet styles per level
+ul
+  // Level 1
+  list-style-type disc
+
+  & &
+    // Level 2 - circle
+    list-style-type circle
+
+  & & &
+    // Level 3 - square
+    list-style-type square
+
+  & & & &
+    // Level 4+ - none
+    list-style-type none
+
+// Enhanced list markers with theme colors
+ul.theme-markers
+  list-style none
+
+  li::before
+    content "•"
+    color $arch-blue
+    display inline-block
+    width 1em
+    margin-inline-start -1em
+
+  // Nested - different markers
+  & &
+    li::before
+      content "◦"
+      color $secondary-blue
+
+  & & &
+    li::before
+      content "▪"
+      color $orange
+
+// =============================================================================
+// RESPONSIVE STYLES
+// =============================================================================
+
+@media screen and (max-width 768px)
+  // Definition lists - stack on mobile
+  dl
+    dd
+      margin-inline-start 1em
+
+  // Horizontal definition list - stack on mobile
+  dl.horizontal
+    display block
+
+    dt
+    dd
+      width 100%
+
+  // Checklist - adjust spacing
+  .checklist-item
+    padding 0.3em 0
+
+    input[type="checkbox"]
+      width 1.1em
+      height 1.1em
+      min-width 1.1em
+
+  // Step list - smaller numbers
+  .step-item::before
+    min-width 1.5em
+    height 1.5em
+    font-size 0.85em
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// High contrast mode support
+@media (forced-colors active)
+  dt
+    forced-color-adjust none
+    color CanvasText
+
+  dd
+    color CanvasText
+
+  .checklist-item
+    input[type="checkbox"]
+      border 2px solid CanvasText
+
+      &:checked
+        background CanvasText
+
+        &::after
+          color Canvas
+
+// Reduced motion - instant transitions
+@media (prefers-reduced-motion reduce)
+  .checklist-item input[type="checkbox"]
+  .checklist-progress .progress-bar
+  .step-item::before
+    transition none
+
+// Focus visible for all interactive list elements
+.checklist-label:focus-visible
+.step-content a:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius 2px
+
+// Skip link for list navigation
+.skip-list
+  position absolute
+  left -9999px
+
+  &:focus
+    position fixed
+    top 0.5em
+    left 0.5em
+    padding 0.5em 1em
+    background $arch-blue
+    color $lighter
+    border-radius $border-radius-sm
+    z-index 9999
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  dl
+    dt
+      color $print-black
+
+    dd
+      color $print-text
+
+  .checklist-item
+    input[type="checkbox"]
+      border 1px solid $print-black
+
+      &:checked
+        background $print-black
+
+        &::after
+          color $print-white
+
+  .step-item::before
+    background $print-bg
+    border 1px solid $print-black
+    color $print-black
+
+  ul
+  ol
+    & &
+    & & &
+      margin-inline-start 0.5em

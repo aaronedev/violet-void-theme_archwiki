@@ -1,0 +1,408 @@
+// Lazy Loading Hints for Performance Optimization
+// Browser support: 85%+
+// Provides patterns for efficient lazy loading and progressive content reveal
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CONTENT VISIBILITY PATTERNS
+// =============================================================================
+// content-visibility allows the browser to skip rendering work for off-screen content
+
+// =============================================================================
+// AUTO VISIBILITY (browser decides)
+// =============================================================================
+// Browser will automatically determine whether to render based on proximity to viewport
+
+.lazy-auto
+  content-visibility auto
+
+.lazy-visible
+  content-visibility visible
+
+// =============================================================================
+// HIDDEN VISIBILITY (skip rendering entirely)
+// =============================================================================
+// Use for content that is hidden and unlikely to be accessed
+// Browser will not render until the property is removed or made visible
+
+.lazy-hidden
+  content-visibility hidden
+
+// =============================================================================
+// UNTIL-FOUND VISIBILITY (hidden but searchable)
+// =============================================================================
+// Hidden until found via browser search or fragment navigation
+// Good for collapsible sections, hidden tabs, etc.
+
+.lazy-until-found
+  content-visibility hidden
+  contain-intrinsic-size 1px 5000px
+
+// When revealed via search/anchor
+.lazy-until-found:target
+  content-visibility visible
+
+// =============================================================================
+// SKELETON SCREENS
+// =============================================================================
+// Placeholder loading animations for content that is loading
+
+// Base skeleton shimmer animation
+@keyframes skeleton-shimmer
+  0%
+    background-position -200% 0
+  100%
+    background-position 200% 0
+
+// Skeleton base style
+.skeleton
+  background linear-gradient(
+    90deg,
+    rgba($base, 0.06) 25%,
+    rgba($base, 0.12) 50%,
+    rgba($base, 0.06) 75%
+  )
+  background-size 200% 100%
+  animation skeleton-shimmer 1.5s ease-in-out infinite
+  border-radius 4px
+  color transparent
+  pointer-events none
+
+// Reduced motion for skeleton
+@media (prefers-reduced-motion reduce)
+  .skeleton
+    animation none
+    background-size 100% 100%
+
+// =============================================================================
+// SKELETON VARIANTS
+// =============================================================================
+
+// Text skeleton - single line
+.skeleton-text
+  @extend .skeleton
+  height 1em
+  margin-bottom 0.5em
+
+  &:last-child
+    width 70%
+
+// Text skeleton - multiple lines
+.skeleton-text-lines
+  @extend .skeleton
+  height 1em
+  margin-bottom 0.25em
+
+  &::before
+    content ''
+    display block
+    width 100%
+    height 1em
+    margin-bottom 0.25em
+    background linear-gradient(
+      90deg,
+      rgba($base, 0.06) 25%,
+      rgba($base, 0.12) 50%,
+      rgba($base, 0.06) 75%
+    )
+    background-size 200% 100%
+    border-radius 4px
+
+// Paragraph skeleton
+.skeleton-paragraph
+  @extend .skeleton
+  min-height 3em
+
+// Heading skeleton
+.skeleton-heading
+  @extend .skeleton
+  height 1.5em
+  width 40%
+  margin-bottom 1em
+
+// Image skeleton
+.skeleton-image
+  @extend .skeleton
+  aspect-ratio 16 / 9
+  width 100%
+
+// Avatar skeleton
+.skeleton-avatar
+  @extend .skeleton
+  width 48px
+  height 48px
+  border-radius 50%
+
+// Thumbnail skeleton
+.skeleton-thumbnail
+  @extend .skeleton
+  width 80px
+  height 80px
+  border-radius 4px
+
+// List item skeleton
+.skeleton-list-item
+  @extend .skeleton
+  height 60px
+  margin-bottom 8px
+  border-radius 8px
+
+// =============================================================================
+// PLACEHOLDER STYLING
+// =============================================================================
+// Styles for lazy-loaded content placeholders
+
+// Image placeholder
+.lazy-image-placeholder
+  background rgba($base, 0.05)
+  border 1px dashed rgba($border, 0.5)
+  display flex
+  align-items center
+  justify-content center
+  min-height 200px
+  color rgba($text-muted, 0.5)
+  border-radius 4px
+
+  // Icon indicator
+  &::before
+    content '🖼'
+    font-size 2rem
+    opacity 0.3
+
+// =============================================================================
+// FADE-IN TRANSITIONS
+// =============================================================================
+// Smooth reveal for loaded content
+
+// Fade in keyframes
+@keyframes fade-in
+  from
+    opacity 0
+    transform translateY(10px)
+  to
+    opacity 1
+    transform translateY(0)
+
+// Fade in up
+.fade-in
+  animation fade-in 0.3s ease-out forwards
+
+// Staggered fade in delays
+.fade-in-delay-1
+  @extend .fade-in
+  animation-delay 0.1s
+  opacity 0
+
+.fade-in-delay-2
+  @extend .fade-in
+  animation-delay 0.2s
+  opacity 0
+
+.fade-in-delay-3
+  @extend .fade-in
+  animation-delay 0.3s
+  opacity 0
+
+.fade-in-delay-4
+  @extend .fade-in
+  animation-delay 0.4s
+  opacity 0
+
+.fade-in-delay-5
+  @extend .fade-in
+  animation-delay 0.5s
+  opacity 0
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  .fade-in
+  .fade-in-delay-1
+  .fade-in-delay-2
+  .fade-in-delay-3
+  .fade-in-delay-4
+  .fade-in-delay-5
+    animation none
+    opacity 1
+    transform none
+
+// =============================================================================
+// BLUR-UP IMAGE LOADING
+// =============================================================================
+// Progressive image loading with blur effect
+
+// Low-res placeholder
+.img-blur-up
+  filter blur(10px)
+  transition filter 0.3s ease-out
+
+// High-res loaded
+.img-blur-up.loaded
+  filter blur(0)
+
+// Opacity transition for blur-up
+.img-blur-up
+  opacity 1
+  transition opacity 0.3s ease-out
+
+.img-blur-up.loaded
+  opacity 1
+
+// =============================================================================
+// MEDIAWIKI-SPECIFIC LAZY LOADING
+// =============================================================================
+
+// Lazy load images in content
+.mw-content-lazy
+  img[lazy]
+    opacity 0
+    transition opacity 0.3s
+
+  img[lazy].loaded
+  img[lazy][src]
+    opacity 1
+
+// Lazy gallery images
+.mw-gallery-lazy
+  .gallery-image-placeholder
+    @extend .skeleton-image
+
+// Lazy thumbnails in lists
+.mw-list-lazy
+  .mw-list-item
+    content-visibility auto
+    contain-intrinsic-size 1px 80px
+
+// =============================================================================
+// SPECIAL PAGES LAZY LOADING
+// =============================================================================
+
+// Category member lazy loading
+#mw-category-media
+  .mw-category
+    content-visibility auto
+    contain-intrinsic-size 1px 2000px
+
+// Search results lazy loading
+.search-results-lazy
+  .search-result
+    content-visibility auto
+    contain-intrinsic-size 1px 100px
+
+// Recent changes lazy loading
+.mw-recent-changes-lazy
+  .mw-changeslist
+    content-visibility auto
+    contain-intrinsic-size 1px 3000px
+
+// =============================================================================
+// LAZY LOADING UTILITY CLASSES
+// =============================================================================
+
+// Apply to any element that should lazy load its content
+.lazy-load
+  content-visibility auto
+  contain-intrinsic-size 1px 500px
+
+// Lazy load container
+.lazy-container
+  content-visibility auto
+
+// Lazy load with custom intrinsic height
+.lazy-height-auto
+  contain-intrinsic-size auto
+
+.lazy-height-100
+  contain-intrinsic-size 1px 100px
+
+.lazy-height-200
+  contain-intrinsic-size 1px 200px
+
+.lazy-height-300
+  contain-intrinsic-size 1px 300px
+
+.lazy-height-500
+  contain-intrinsic-size 1px 500px
+
+.lazy-height-1000
+  contain-intrinsic-size 1px 1000px
+
+// =============================================================================
+// INTERSECTION OBSERVER HINTS
+// =============================================================================
+// Styles for elements that will be revealed via JavaScript IntersectionObserver
+
+// Pre-reveal state
+.lazy-reveal
+  opacity 0
+  transform translateY(20px)
+  transition opacity 0.4s ease-out, transform 0.4s ease-out
+
+// Post-reveal state (applied by JS)
+.lazy-reveal.visible
+  opacity 1
+  transform translateY(0)
+
+// Reveal from left
+.lazy-reveal-left
+  @extend .lazy-reveal
+  transform translateX(-20px)
+
+.lazy-reveal-left.visible
+  transform translateX(0)
+
+// Reveal from right
+.lazy-reveal-right
+  @extend .lazy-reveal
+  transform translateX(20px)
+
+.lazy-reveal-right.visible
+  transform translateX(0)
+
+// Reveal scale
+.lazy-reveal-scale
+  @extend .lazy-reveal
+  transform scale(0.95)
+
+.lazy-reveal-scale.visible
+  transform scale(1)
+
+// =============================================================================
+// REDUCED DATA MODE
+// =============================================================================
+// Reduce visual effects when user prefers reduced data
+
+@media (prefers-reduced-data reduce)
+  // Disable skeleton animations
+  .skeleton
+  .skeleton-text
+  .skeleton-paragraph
+  .skeleton-heading
+  .skeleton-image
+  .skeleton-avatar
+  .skeleton-thumbnail
+  .skeleton-list-item
+    animation none
+    background rgba($base, 0.1)
+
+  // Simplify fade transitions
+  .fade-in
+  .fade-in-delay-1
+  .fade-in-delay-2
+  .fade-in-delay-3
+  .fade-in-delay-4
+  .fade-in-delay-5
+    transition opacity 0.1s
+
+  // Simplify lazy reveal
+  .lazy-reveal
+  .lazy-reveal-left
+  .lazy-reveal-right
+  .lazy-reveal-scale
+    transition opacity 0.1s
+
+  // Skip blur-up effect
+  .img-blur-up
+    filter none
+    transition none

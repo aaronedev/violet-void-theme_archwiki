@@ -1,0 +1,741 @@
+// =============================================================================
+// Internationalization & Localization (i18n)
+// =============================================================================
+// RTL Language Full Support
+// Logical Properties for RTL languages
+// Bidirectional text handling
+
+// =============================================================================
+// RTL Base Styles
+// =============================================================================
+
+[dir="rtl"]
+  // ---------------------------------------------------------------------------
+  // Direction and Text Flow
+  // ---------------------------------------------------------------------------
+  direction rtl
+
+  // Logical text alignment (replaces text-align)
+  text-align start
+
+  // Ensure proper bidi text handling
+  unicode-bidi plaintext
+
+  // ---------------------------------------------------------------------------
+  // Logical Margin Properties
+  // ---------------------------------------------------------------------------
+  // Replace margin-left/right with logical properties
+  .mw-body
+  .mw-body-content
+    margin-inline-start 0
+    margin-inline-end 0
+
+  // List margins - margin-start and margin-end handle RTL automatically
+  ul
+  ol
+    margin-block-start 0
+    margin-block-end 0
+    margin-inline-start 0
+    margin-inline-end 1.5em
+
+  dl
+    margin-inline-start 0
+    margin-inline-end 0
+
+  // ---------------------------------------------------------------------------
+  // Logical Padding Properties
+  // ---------------------------------------------------------------------------
+  // Replace padding-left/right with logical properties
+  .mw-body
+  .mw-body-content
+    padding-inline-start 0
+    padding-inline-end 0
+
+  // ---------------------------------------------------------------------------
+  // Logical Border Properties
+  // ---------------------------------------------------------------------------
+  // Replace border-left/right with logical properties
+  .mw-body
+    border-inline-start none
+    border-inline-end none
+
+  // ---------------------------------------------------------------------------
+  // Floating Elements
+  // ---------------------------------------------------------------------------
+  // Float start/end automatically handles RTL
+  .float-left
+    float inline-start
+
+  .float-right
+    float inline-end
+
+  .float-start
+    float inline-start
+
+  .float-end
+    float inline-end
+
+  // ---------------------------------------------------------------------------
+  // Clearfix
+  // ---------------------------------------------------------------------------
+  // Clear start/end handles RTL automatically
+  .mw-body::after
+    clear inline-start
+
+// =============================================================================
+// Text Direction-Specific Utilities
+// =============================================================================
+
+// Bold text alignment helpers
+[dir="ltr"] .textrtl
+[dir="rtl"] .textltr
+  unicode-bidi embed
+
+// Direction-neutral text
+[dir="rtl"] .text-dgn
+[dir="ltr"] .text-dgn
+  unicode-bidi bidi-override
+
+// ============================================================================
+// :dir() Pseudo-class Support (Modern browsers)
+// ============================================================================
+// Style based on text direction without needing dir attribute
+
+// Use :where() for low-specificity overrides
+:where(:dir(rtl))
+  text-align start
+
+:where(:dir(ltr))
+  text-align start
+
+// ============================================================================
+// Bidirectional Text Handling
+// ============================================================================
+
+// Handle mixed-direction content
+bdo[dir="ltr"]
+bdo[dir="rtl"]
+  unicode-bidi bidi-override
+
+// Ensure proper display of embedded RTL in LTR
+.mw-content-ltr
+  direction ltr
+  text-align left
+
+// Ensure proper display of embedded LTR in RTL
+.mw-content-rtl
+  direction rtl
+  text-align right
+
+// ============================================================================
+// Logical Position Properties
+// =============================================================================
+// Replace top/right/bottom/left with inset properties
+
+[dir="rtl"]
+  .mw-portlet
+    inset-inline-start 0
+    inset-inline-end auto
+
+  // Position absolute elements
+  .mw-first-heading
+    inset-inline-start 0
+
+// ============================================================================
+// Navigation RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  // Sidebar positioning
+  .mw-sidebar
+    inset-inline-start 0
+    inset-inline-end auto
+
+  // Menu items
+  .mw-menu-item
+    padding-inline-start 0
+    padding-inline-end 1em
+
+  // Back links
+  .mw-backlink
+  .mw-relatedlink
+    padding-inline-start 0
+    padding-inline-end 0.5em
+
+// ============================================================================
+// Table RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  table
+    text-align start
+
+  th[scope="row"]
+    text-align start
+
+  // Table caption
+  caption
+    text-align start
+
+  // Cell alignment
+  .mw-rcfilters-ui-tableCellContainer
+    text-align start
+
+// ============================================================================
+// Form RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  // Form labels
+  .mw-label
+    text-align start
+
+  // Input direction
+  input
+  textarea
+  select
+    text-align start
+    direction rtl
+
+  // Help text
+  .mw-help-field
+    text-align start
+
+  // Fieldset
+  legend
+    text-align start
+
+// ============================================================================
+// Image and Media RTL
+// =============================================================================
+
+[dir="rtl"]
+  // Thumbnails
+  .thumbinner
+    margin-inline-start 1em
+    margin-inline-end 0
+
+  // Gallery
+  .gallery
+    margin-inline-start 0
+
+  .galleryitem
+    margin-inline-start 0.5em
+    margin-inline-end 0
+
+  // File history
+  .mw-filepage-resolutioninfo
+    text-align start
+
+// ============================================================================
+// Code and Pre RTL
+// =============================================================================
+
+[dir="rtl"]
+  // Code blocks
+  pre
+  code
+  .mw-code
+    direction ltr
+    text-align left
+
+  // Keep code LTR even in RTL context
+  *[dir="rtl"] pre
+  *[dir="rtl"] code
+  *[dir="rtl"] .mw-code
+    direction ltr
+    text-align left
+
+// ============================================================================
+// Category Links RTL
+// =============================================================================
+
+[dir="rtl"]
+  #catlinks
+    text-align start
+
+  .mw-category
+    text-align start
+
+  .mw-category-generated
+    text-align start
+
+// ============================================================================
+// Search RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  .mw-search-input
+    direction rtl
+
+  // Search results
+  .mw-search-results
+    text-align start
+
+  .mw-search-result
+    text-align start
+
+  // Search suggestions
+  .mw-search-suggestions
+    text-align start
+
+// ============================================================================
+// TOC RTL Support
+// =============================================================================
+
+[dir="rtl"]
+  .toc
+    text-align start
+
+  .tocnumber
+    margin-inline-start 0.5em
+    margin-inline-end 0
+
+// ============================================================================
+// Message Boxes RTL
+// =============================================================================
+
+[dir="rtl"]
+  .messagebox
+  .mbox-small
+    text-align start
+
+  // Ambox types
+  .ambox
+    text-align start
+
+    .ambox-image
+      margin-inline-start 0
+      margin-inline-end 1em
+
+    .ambox-text
+      margin-inline-start 0
+      margin-inline-end 0
+
+// ============================================================================
+// Print RTL (for RTL language print output)
+// =============================================================================
+
+@media print
+  [dir="rtl"]
+    direction rtl
+    text-align right
+
+    // Keep code LTR in print
+    pre
+    code
+    .mw-code
+      direction ltr
+      text-align left
+
+// ============================================================================
+// Reduced Motion with RTL
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  [dir="rtl"]
+    // Disable RTL-specific animations if needed
+
+// ============================================================================
+// High Contrast Mode RTL
+// =============================================================================
+
+@media (forced-colors active)
+  [dir="rtl"]
+    // Ensure proper direction in high contrast
+    direction rtl
+
+// ============================================================================
+// Language Variant Styling
+// ============================================================================
+// Language-specific font stacks, CJK adjustments, non-Latin script support
+
+// -----------------------------------------------------------------------------
+// CJK (Chinese, Japanese, Korean) Support
+// -----------------------------------------------------------------------------
+// CJK characters need different font sizing and line-height adjustments
+
+:lang(zh)
+:lang(zh-Hans)
+:lang(zh-Hant)
+:lang(zh-CN)
+:lang(zh-TW)
+:lang(zh-HK)
+  // CJK-optimized font stack
+  font-family "Noto Sans SC", "Noto Sans TC", "PingFang SC", "PingFang TC", "Microsoft YaHei", "Microsoft JhengHei", "WenQuanYi Micro Hei", sans-serif
+  // Slightly increased line-height for CJK characters
+  line-height 1.8
+
+:lang(ja)
+  // Japanese-optimized font stack
+  font-family "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif
+  // Adjusted line-height for Japanese
+  line-height 1.85
+
+:lang(ko)
+  // Korean-optimized font stack
+  font-family "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif
+  // Slightly increased line-height for Korean
+  line-height 1.75
+
+// CJK heading adjustments
+:lang(zh)
+:lang(zh-Hans)
+:lang(zh-Hant)
+:lang(ja)
+:lang(ko)
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    line-height 1.5
+
+// -----------------------------------------------------------------------------
+// Arabic Script Support
+// -----------------------------------------------------------------------------
+// Arabic needs specific typography adjustments
+
+:lang(ar)
+  // Arabic-optimized font stack
+  font-family "Noto Sans Arabic", "Amiri", "Traditional Arabic", "Arial", sans-serif
+  // Increased line-height for Arabic
+  line-height 2
+  // Enable typographic features for Arabic
+  font-feature-settings "calt" 1, "liga" 1
+
+  // Arabic headings need more breathing room
+  h1
+  h2
+  h3
+    line-height 1.6
+
+// Arabic-specific text adjustments
+:lang(ar)
+  // Improve Arabic text justification
+  text-align start
+  text-justify inter-word
+
+  // Tashkeel (diacritical marks) positioning
+  text-spacing-trim allow-end
+
+// -----------------------------------------------------------------------------
+// Hebrew Script Support
+// -----------------------------------------------------------------------------
+
+:lang(he)
+  // Hebrew-optimized font stack
+  font-family "Noto Sans Hebrew", "Arial", sans-serif
+  // Adjusted line-height for Hebrew
+  line-height 1.8
+
+  // Hebrew headings
+  h1
+  h2
+  h3
+    line-height 1.5
+
+// -----------------------------------------------------------------------------
+// Devanagari Script Support
+// -----------------------------------------------------------------------------
+// Hindi and related languages
+
+:lang(hi)
+:lang(sa)
+:lang(ne)
+  // Devanagari-optimized font stack
+  font-family "Noto Sans Devanagari", "Mangal", "Kokila", sans-serif
+  // Devanagari needs increased line-height
+  line-height 2
+
+  h1
+  h2
+  h3
+    line-height 1.6
+
+// -----------------------------------------------------------------------------
+// Thai Script Support
+// -----------------------------------------------------------------------------
+
+:lang(th)
+  // Thai-optimized font stack
+  font-family "Noto Sans Thai", "Tahoma", "Arial", sans-serif
+  // Thai needs increased line-height
+  line-height 2
+
+// -----------------------------------------------------------------------------
+// Vietnamese Support
+// -----------------------------------------------------------------------------
+// Vietnamese uses diacritical marks that need extra space
+
+:lang(vi)
+  // Vietnamese-optimized font stack
+  font-family "Noto Sans", "Roboto", "Open Sans", sans-serif
+  // Extra line-height for diacritical marks
+  line-height 1.9
+
+  // Ensure proper display of special characters
+  .mw-content-vietnamese
+    line-height 2
+
+// -----------------------------------------------------------------------------
+// Greek Script Support
+// -----------------------------------------------------------------------------
+
+:lang(el)
+  // Greek-optimized font stack
+  font-family "Noto Sans", "Gentium", "Arial", sans-serif
+
+// -----------------------------------------------------------------------------
+// Cyrillic Script Support
+// -----------------------------------------------------------------------------
+// Russian, Ukrainian, Bulgarian, etc.
+
+:lang(ru)
+:lang(uk)
+:lang(bg)
+:lang(sr)
+:lang(mk)
+  // Cyrillic-optimized font stack
+  font-family "Noto Sans", "Roboto", "Arial", sans-serif
+
+// -----------------------------------------------------------------------------
+// Font Size Adjustments for CJK
+// -----------------------------------------------------------------------------
+// CJK text often needs smaller base font sizes for readability
+
+@media (max-width 768px)
+  :lang(zh)
+  :lang(zh-Hans)
+  :lang(zh-Hant)
+  :lang(ja)
+  :lang(ko)
+    // Increase line-height on mobile for CJK
+    line-height 2
+
+    p
+    li
+    td
+    th
+      line-height 2
+
+// -----------------------------------------------------------------------------
+// Mixed Language Content
+// -----------------------------------------------------------------------------
+// Handle content with multiple languages
+
+.mw-contentMixedLang
+  // Ensure proper line-height for mixed content
+  line-height 1.9
+
+  // Code in mixed content
+  code
+    line-height 1.5
+
+// -----------------------------------------------------------------------------
+// Vertical Writing Mode (for CJK)
+// -----------------------------------------------------------------------------
+// Support for vertical text in traditional Chinese and Japanese
+
+:lang(zh-Hant)
+:lang(ja)
+  &[style*="writing-mode: vertical"]
+    // Vertical text adjustments
+    text-combine-upright all
+    text-orientation mixed
+
+// -----------------------------------------------------------------------------
+// Full Vertical Writing Mode Support
+// -----------------------------------------------------------------------------
+// CSS-native vertical writing mode support for CJK languages
+// Browser support: 97%+
+
+// Vertical writing mode classes - can be applied to any container
+.vertical-rl
+[data-writing-mode="vertical-rl"]
+  writing-mode vertical-rl
+  text-orientation mixed
+  unicode-bidi plaintext
+
+.vertical-lr
+[data-writing-mode="vertical-lr"]
+  writing-mode vertical-lr
+  text-orientation mixed
+  unicode-bidi plaintext
+
+// Sideways text - rotates text 90deg for vertical
+.vertical-sideways
+[data-orientation="sideways"]
+  text-orientation sideways
+  writing-mode vertical-rl
+
+// Upright text - displays each character upright in vertical text
+.vertical-upright
+[data-orientation="upright"]
+  text-orientation upright
+  text-combine-upright all
+
+// Vertical text in articles - for spans within vertical containers
+.vertical-text
+article.vertical-rl
+article.vertical-lr
+  text-orientation mixed
+
+// CJK vertical text defaults
+:lang(zh)
+:lang(zh-CN)
+:lang(zh-TW)
+:lang(zh-Hans)
+:lang(zh-Hant)
+:lang(ja)
+:lang(ko)
+  // Default vertical text styling when writing-mode is set
+  &[style*="writing-mode: vertical"]
+    text-orientation mixed
+    text-combine-upright all
+    unicode-bidi plaintext
+
+  // Add vertical-rl as common class for CJK languages
+  &.vertical
+    writing-mode vertical-rl
+    text-orientation mixed
+    unicode-bidi plaintext
+
+// Vertical list markers
+.vertical-lists
+.vertical-rl ul
+.vertical-lr ul
+  list-style-position inside
+
+// Vertical table headers
+.vertical-table-headers
+.vertical-rl table th
+.vertical-lr table th
+  writing-mode vertical-rl
+  text-orientation mixed
+
+// -----------------------------------------------------------------------------
+// :dir() Pseudo-class for Direction Styling
+// -----------------------------------------------------------------------------
+// Style elements based on their text direction (ltr/rtl)
+// Better than [dir] attribute selectors as it uses the CSS :dir() pseudo-class
+// Browser support: 90%+ (Firefox 113+, Chrome 114+, Safari 17.4+)
+
+// Direction-aware base styling
+:dir(ltr)
+  // Left-to-right specific styles
+  text-align left
+  unicode-bidi plaintext
+
+  // Logical border radius adjustments for LTR
+  .infobox
+    border-radius 0 $border-radius-lg $border-radius-lg 0
+
+  // Code block alignment for LTR
+  pre
+    text-align left
+
+:dir(rtl)
+  // Right-to-left specific styles
+  text-align right
+  unicode-bidi plaintext
+
+  // Logical border radius adjustments for RTL (flipped)
+  .infobox
+    border-radius $border-radius-lg 0 0 $border-radius-lg
+
+  // Code block alignment for RTL
+  pre
+    text-align right
+
+  // Reverse list marker alignment in RTL
+  ul
+    list-style-position inside
+    padding-inline-start 0
+    padding-inline-end 1em
+
+// Direction-aware navigation
+:dir(ltr)
+  .mw-portlet
+    .mw-ui-icon
+      margin-right 0.5em
+      margin-left 0
+
+:dir(rtl)
+  .mw-portlet
+    .mw-ui-icon
+      margin-left 0.5em
+      margin-right 0
+
+// Direction-aware button icons
+:dir(ltr)
+  .mw-ui-button
+    .mw-ui-icon-start::before
+      margin-right 0.5em
+
+:dir(rtl)
+  .mw-ui-button
+    .mw-ui-icon-start::before
+      margin-left 0.5em
+
+// Direction-aware form inputs
+:dir(ltr)
+  input
+    text-align left
+
+:dir(rtl)
+  input
+    text-align right
+
+  // Flip select arrow in RTL
+  select
+    background-position left center
+    padding-left 2em
+    padding-right 1em
+
+// Direction-aware table cells
+:dir(ltr)
+  table.wikitable
+    th
+      text-align left
+
+:dir(rtl)
+  table.wikitable
+    th
+      text-align right
+
+// Direction-aware blockquotes
+:dir(ltr)
+  blockquote
+    border-left 4px solid $arch-blue
+    border-right none
+    padding-left 1em
+    padding-right 0
+
+:dir(rtl)
+  blockquote
+    border-right 4px solid $arch-blue
+    border-left none
+    padding-right 1em
+    padding-left 0
+
+// Direction-aware message boxes
+:dir(ltr)
+  .messagebox
+    border-left 4px solid
+    border-right none
+
+:dir(rtl)
+  .messagebox
+    border-right 4px solid
+    border-left none
+
+// Direction-aware tooltips
+:dir(ltr)
+  .mw-tooltip
+    text-align left
+
+:dir(rtl)
+  .mw-tooltip
+    text-align right

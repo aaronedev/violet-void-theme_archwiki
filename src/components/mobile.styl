@@ -1,0 +1,894 @@
+// Mobile Touch-Friendly Enhancements
+// Styling for touch devices and mobile editing interface
+// Browser support: 97%+ for touch-action, 44px touch targets
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// TOUCH-FRIENDLY EDIT CONTROLS
+// =============================================================================
+
+// Minimum touch target size (44x44px as per WCAG guidelines)
+$touch-target-min = 44px
+
+// Edit form touch enhancements
+.mw-editform
+  // Larger touch targets for form elements on mobile
+  input
+  textarea
+  select
+    @media (pointer coarse)
+      min-height $touch-target-min
+      padding 0.75em 1em
+      font-size 16px // Prevents iOS zoom on focus
+
+  // Touch-friendly checkboxes and radios
+  input[type="checkbox"]
+  input[type="radio"]
+    @media (pointer coarse)
+      width 24px
+      height 24px
+      margin 0.5em
+
+  // Larger submit buttons
+  input[type="submit"]
+  input[type="button"]
+  button
+    @media (pointer coarse)
+      min-height $touch-target-min
+      padding 0.75em 1.5em
+      font-size 1rem
+
+// Edit toolbar - touch-friendly
+.mw-editTools
+.editToolbar
+#toolbar
+  @media (pointer coarse)
+    padding 0.75em
+
+    button
+    .mw-editbutton
+      min-width $touch-target-min
+      min-height $touch-target-min
+      padding 0.5em
+      font-size 1rem
+
+// Textarea improvements for touch
+#wpTextbox1
+.mw-edit textarea
+  @media (pointer coarse)
+    min-height 300px
+    line-height 1.8
+
+// Edit summary - touch-friendly
+#wpSummary
+.mw-summary
+  @media (pointer coarse)
+    min-height $touch-target-min
+    padding 0.75em 1em
+    font-size 16px // Prevents iOS zoom
+
+// =============================================================================
+// TOUCH ACTION - PREVENT ACCIDENTAL ZOOM/PAN
+// =============================================================================
+
+// Allow manipulation (touch-action) for better touch UX
+// Disables double-tap to zoom, allows panning and scrolling
+#editform
+.mw-editform
+.mw-parser-output
+  @media (pointer coarse)
+    touch-action manipulation
+
+// Form elements - prevent unwanted zoom on iOS
+input
+select
+textarea
+  @media (pointer coarse) and (max-width 768px)
+    font-size 16px // iOS requires 16px+ to prevent auto-zoom on focus
+
+// =============================================================================
+// SWIPE GESTURE INDICATORS
+// =============================================================================
+
+// Visual feedback for swipe-capable elements
+.swipeable
+  position relative
+
+  &::after
+    content ''
+    position absolute
+    bottom 0.5em
+    right 0.5em
+    width 2em
+    height 3px
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.4))
+    border-radius 2px
+    opacity 0.6
+    pointer-events none
+
+    @media (pointer fine)
+      display none // Hide on mouse devices
+
+// Swipe hint for horizontal scroll containers
+.horizontal-scroll
+  position relative
+
+  &::before
+    content ''
+    position absolute
+    right 0
+    top 0
+    bottom 0
+    width 30px
+    background linear-gradient(to right, transparent, rgba($base, 0.8))
+    pointer-events none
+    opacity 0
+
+    @media (pointer coarse)
+      opacity 1
+
+// =============================================================================
+// MOBILE EDIT BUTTONS
+// =============================================================================
+
+// Mobile-specific edit button styling
+#mw-editsection
+  @media (pointer coarse)
+    // Larger edit section links on touch devices
+    a
+      min-width $touch-target-min
+      min-height $touch-target-min
+      padding 0.5em 0.75em
+      display inline-flex
+      align-items center
+      justify-content center
+
+// Edit page buttons
+.editButtons
+  @media (pointer coarse)
+    display flex
+    flex-direction column
+    gap 0.75em
+
+    .mw-ui-button
+      min-height $touch-target-min
+      padding 0.75em 1.5em
+      font-size 1rem
+
+// =============================================================================
+// TOUCH-FRIENDLY NAVIGATION IN EDIT MODE
+// =============================================================================
+
+// Page history controls
+.mw-history-legend
+  @media (pointer coarse)
+    .mw-history-compareselectedversions
+    .mw-history-suppress
+      min-height $touch-target-min
+      padding 0.5em 1em
+
+// Diff controls
+.diff-navigator
+  @media (pointer coarse)
+    .diff-next
+    .diff-prev
+      min-width $touch-target-min
+      min-height $touch-target-min
+      padding 0.5em
+
+// =============================================================================
+// SAFE AREA SUPPORT FOR NOTCHED DEVICES
+// =============================================================================
+
+// Safe area inset for modern mobile devices
+@supports (padding: unquote("max(0px)"))
+  // Respect notched devices
+  .mw-body
+  #content
+  .mw-editform
+    @media (max-width 768px)
+      padding-left unquote("max(1em, env(safe-area-inset-left))")
+      padding-right unquote("max(1em, env(safe-area-inset-right))")
+
+  // Fixed bottom elements need bottom safe area
+  .mw-footer
+    @media (max-width 768px)
+      padding-bottom unquote("max(0.5em, env(safe-area-inset-bottom))")
+
+// =============================================================================
+// MOBILE KEYBOARD SUPPORT
+// =============================================================================
+
+// Adjust layout when virtual keyboard is visible
+@supports (padding: unquote("env(keyboard-inset-bottom)"))
+  .mw-editform
+    @media (max-width 768px)
+      padding-bottom calc(1em + env(keyboard-inset-bottom))
+
+// =============================================================================
+// HORIZONTAL SCROLL ON TOUCH DEVICES
+// =============================================================================
+
+// Mobile table container - provides horizontal scroll with visual feedback
+.table-scroll-wrapper
+  @media (max-width 768px)
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+    scroll-behavior smooth
+    position relative
+    margin 1em 0
+
+    // Fade indicators on scroll edges
+    &::before
+      content ''
+      position absolute
+      left 0
+      top 0
+      bottom 0
+      width 15px
+      background linear-gradient(to right, rgba($base, 0.7), transparent)
+      pointer-events none
+      z-index 1
+      opacity 0
+
+    &::after
+      content ''
+      position absolute
+      right 0
+      top 0
+      bottom 0
+      width 15px
+      background linear-gradient(to left, rgba($base, 0.7), transparent)
+      pointer-events none
+      z-index 1
+      opacity 0
+
+    // Show indicators when there's overflow
+    &.scrollable::after
+      opacity 1
+
+    @media (pointer coarse)
+      // Always show right indicator on touch devices
+      &::after
+        opacity 1
+
+// Smooth horizontal scrolling for code blocks and tables on touch
+pre
+code
+.mw-code
+  @media (pointer coarse)
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+    scroll-behavior smooth
+
+// Tables on mobile - horizontal scroll with enhanced styling
+table.wikitable
+table.mwMetadata
+table.mw-html-magic-mw-data-interface
+  @media (max-width 768px)
+    display block
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+    scroll-behavior smooth
+
+    // Prevent layout breaks
+    max-width 100vw
+    width auto
+    min-width 100%
+
+// Sticky first column for horizontal scroll tables
+// Helps users maintain context while scrolling
+@supports (position: sticky)
+  table.wikitable
+  table.mwMetadata
+  table.mw-html-magic-mw-data-interface
+    @media (max-width 768px) and (pointer fine)
+      // Set up the scroll container
+      display block
+      overflow-x auto
+      scroll-behavior smooth
+      position relative
+
+      // Make first column sticky
+      thead th:first-child
+      tbody th:first-child
+      td:first-child
+        position sticky
+        left 0
+        z-index 2
+        background $base
+
+        // Add subtle border to separate from scrolling content
+        &::after
+          content ''
+          position absolute
+          right 0
+          top 0
+          bottom 0
+          width 2px
+          background $border-subtle
+
+      // Header cells need higher z-index
+      thead th:first-child
+        z-index 3
+        background $base-secondary
+
+// Priority-based column hiding for very small screens
+// Uses data-priority attribute for column importance
+// Priority 1 = always shown, 2 = tablet+, 3 = desktop only
+@media (max-width 480px)
+  table.wikitable
+  table.mwMetadata
+  table.mw-html-magic-mw-data-interface
+    // Hide priority-3 columns (desktop only)
+    th[data-priority="3"]
+    td[data-priority="3"]
+    .priority-3
+      display none
+
+    // Show priority-2 on small screens too
+    th[data-priority="2"]
+    td[data-priority="2"]
+    .priority-2
+      // Reduce padding to save space
+      padding 0.25em 0.5em
+      font-size 0.9em
+
+@media (max-width 360px)
+  table.wikitable
+  table.mwMetadata
+  table.mw-html-magic-mw-data-interface
+    // Even more aggressive: hide priority-2 on very small screens
+    th[data-priority="2"]
+    td[data-priority="2"]
+    .priority-2
+      display none
+
+    // Keep only priority-1 columns visible
+    th:not([data-priority])
+    td:not([data-priority])
+    th[data-priority="1"]
+    td[data-priority="1"]
+    .priority-1
+      display table-cell
+
+// Card-based mobile table transformation
+// For extremely narrow viewports or user preference
+@media (max-width 320px), (horizontal-viewport-segments 1)
+  table.wikitable
+  table.mwMetadata
+    @media (pointer coarse)
+      display flex
+      flex-direction column
+
+      tbody
+        display flex
+        flex-direction column
+        gap 0.5em
+
+      tr
+        display flex
+        flex-direction column
+        border 1px solid $border-subtle
+        border-radius 4px
+        padding 0.5em
+        background $base-secondary
+
+      th
+      td
+        display flex
+        justify-content space-between
+        align-items baseline
+        padding 0.25em 0.5em
+        border none
+
+        // Add label before content
+        &::before
+          content attr(data-label)
+          font-weight 600
+          color $text-muted
+          margin-right 0.5em
+          font-size 0.85em
+
+// Scroll position indicator - shows current scroll position
+.table-scroll-indicator
+  @media (max-width 768px)
+    display flex
+    justify-content space-between
+    padding 0.25em 0.5em
+    font-size 0.75em
+    color $text-muted
+    background $base-secondary
+    border-radius 4px 4px 0 0
+
+    .scroll-position
+      font-variant-numeric tabular-nums
+
+// =============================================================================
+// TOUCH CURSOR INDICATORS
+// =============================================================================
+
+// Change cursor to indicate interactivity on touch
+@media (pointer coarse)
+  a
+  button
+  .mw-ui-button
+  input[type="checkbox"]
+  input[type="radio"]
+  input[type="submit"]
+  input[type="button"]
+    cursor pointer
+
+// =============================================================================
+// MOBILE NAVIGATION PATTERNS
+// =============================================================================
+
+// Bottom Navigation Bar
+// Fixed bottom navigation for mobile devices
+.mobile-bottom-nav
+  position fixed
+  bottom 0
+  left 0
+  right 0
+  height 56px
+  background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
+  border-top 1px solid rgba($arch-blue, 0.25)
+  display flex
+  justify-content space-around
+  align-items center
+  padding 0 0.5em
+  padding-bottom env(safe-area-inset-bottom, 0)
+  z-index 1000
+  box-shadow 0 -2px 10px rgba(0, 0, 0, 0.3)
+
+  // Navigation items
+  .mobile-nav-item
+    flex 1
+    display flex
+    flex-direction column
+    align-items center
+    justify-content center
+    padding 0.5em
+    color $light
+    text-decoration none
+    font-size 0.75em
+    min-width 48px
+    min-height 48px
+    transition all $transition-fast
+
+    // Icon styling
+    .nav-icon
+      font-size 1.25em
+      margin-bottom 0.15em
+
+    // Label
+    .nav-label
+      font-weight 500
+
+    &:hover
+      color $lighter
+      background-color rgba($arch-blue, 0.15)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset -2px
+      border-radius 4px
+
+    // Active state
+    &.active
+      color $arch-blue
+      background-color rgba($arch-blue, 0.1)
+
+      .nav-icon
+        transform scale(1.1)
+
+// Slide-out Menu (Drawer)
+// Mobile navigation drawer from left/right
+.mobile-slide-menu
+  position fixed
+  top 0
+  bottom 0
+  width 280px
+  max-width 85vw
+  background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
+  border-right 1px solid rgba($arch-blue, 0.25)
+  z-index 1001
+  overflow-y auto
+  padding 1em 0
+  padding-bottom calc(1em + env(safe-area-inset-bottom, 0))
+  box-shadow 4px 0 15px rgba(0, 0, 0, 0.4)
+
+  // Slide from left by default
+  left -100%
+  transition left $transition-medium
+
+  // Open state
+  &.open
+    left 0
+
+  // Right-aligned variant
+  &.slide-right
+    left auto
+    right -100%
+    border-right none
+    border-left 1px solid rgba($arch-blue, 0.25)
+    box-shadow -4px 0 15px rgba(0, 0, 0, 0.4)
+
+    &.open
+      left auto
+      right 0
+
+  // Menu header
+  .menu-header
+    padding 1em 1.25em
+    font-size 1.1em
+    font-weight 600
+    color $lighter
+    border-bottom 1px solid rgba($arch-blue, 0.15)
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.05))
+
+  // Menu sections
+  .menu-section
+    padding 0.5em 0
+
+    .section-title
+      padding 0.5em 1.25em
+      font-size 0.8em
+      font-weight 600
+      color $muted
+      text-transform uppercase
+      letter-spacing 0.05em
+
+  // Menu items
+  .menu-item
+    display flex
+    align-items center
+    padding 0.75em 1.25em
+    color $light
+    text-decoration none
+    transition all $transition-fast
+    border-left 3px solid transparent
+
+    .item-icon
+      margin-right 0.75em
+      font-size 1.1em
+      width 24px
+      text-align center
+
+    .item-label
+      flex 1
+
+    .item-badge
+      font-size 0.75em
+      padding 0.15em 0.5em
+      border-radius 10px
+      background rgba($arch-blue, 0.2)
+      color $secondary-blue
+
+    &:hover
+      color $lighter
+      background-color rgba($arch-blue, 0.1)
+      border-left-color $arch-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset -2px
+
+    // Active/current page
+    &.active
+      color $arch-blue
+      background-color rgba($arch-blue, 0.15)
+      border-left-color $arch-blue
+
+  // Menu divider
+  .menu-divider
+    height 1px
+    background rgba($arch-blue, 0.15)
+    margin 0.5em 1.25em
+
+// Mobile menu toggle button
+.mobile-menu-toggle
+  display none // Hidden on desktop
+  position fixed
+  top 0.5em
+  left 0.5em
+  width 44px
+  height 44px
+  background linear-gradient(135deg, rgba($darker, 0.9), rgba($dark, 0.9))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  color $light
+  font-size 1.25em
+  cursor pointer
+  z-index 1002
+  align-items center
+  justify-content center
+  transition all $transition-fast
+  padding-bottom env(safe-area-inset-top, 0)
+  padding-left env(safe-area-inset-left, 0)
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  @media (max-width 768px)
+    display flex
+
+// Menu overlay/backdrop
+.mobile-menu-overlay
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background rgba(0, 0, 0, 0.6)
+  z-index 1000
+  opacity 0
+  visibility hidden
+  transition all $transition-medium
+
+  &.active
+    opacity 1
+    visibility visible
+
+// Quick Access Shortcuts
+// Floating action button with quick actions
+.mobile-quick-access
+  position fixed
+  bottom 1em
+  right 1em
+  z-index 999
+
+  // Main FAB button
+  .fab-main
+    width 56px
+    height 56px
+    border-radius 50%
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+    border none
+    color $white
+    font-size 1.5em
+    cursor pointer
+    box-shadow 0 4px 15px rgba($arch-blue, 0.4)
+    display flex
+    align-items center
+    justify-content center
+    transition all $transition-fast
+
+    &:hover
+      transform scale(1.1)
+      box-shadow 0 6px 20px rgba($arch-blue, 0.5)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    // Rotate icon when expanded
+    &.expanded
+      transform rotate(45deg)
+
+  // Quick action items
+  .fab-items
+    position absolute
+    bottom 70px
+    right 0
+    display flex
+    flex-direction column-reverse
+    gap 0.75em
+    opacity 0
+    visibility hidden
+    transform translateY(20px) scale(0.9)
+    transition all $transition-medium
+
+    &.expanded
+      opacity 1
+      visibility visible
+      transform translateY(0) scale(1)
+
+    .fab-item
+      width 48px
+      height 48px
+      border-radius 50%
+      background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+      border 1px solid rgba($arch-blue, 0.25)
+      color $light
+      font-size 1.1em
+      cursor pointer
+      display flex
+      align-items center
+      justify-content center
+      transition all $transition-fast
+      text-decoration none
+
+      &:hover
+        background rgba($arch-blue, 0.2)
+        color $lighter
+        transform scale(1.1)
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+      .fab-tooltip
+        position absolute
+        right 60px
+        background rgba($darker, 0.95)
+        padding 0.4em 0.75em
+        border-radius $border-radius-sm
+        font-size 0.75em
+        color $light
+        white-space nowrap
+        opacity 0
+        visibility hidden
+        transition all $transition-fast
+
+        &::after
+          content ''
+          position absolute
+          right -6px
+          top 50%
+          transform translateY(-50%)
+          border 6px solid transparent
+          border-left-color rgba($darker, 0.95)
+
+      &:hover .fab-tooltip
+        opacity 1
+        visibility visible
+
+// Ensure body doesn't scroll when menu is open
+body.menu-open
+  overflow hidden
+
+  @media (max-width 768px)
+    &
+    .mw-body
+    #content
+      overflow hidden
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .mobile-slide-menu
+    transition none
+
+  .mobile-menu-overlay
+    transition none
+
+  .mobile-quick-access
+    .fab-main
+    .fab-items
+    .fab-item
+      transition none
+
+      &:hover
+        transform none
+
+// High contrast mode
+@media (forced-colors active)
+  .mobile-bottom-nav
+  .mobile-slide-menu
+  .mobile-quick-access .fab-main
+    border 2px solid CanvasText
+
+// =============================================================================
+// REDUCED MOTION FOR TOUCH ANIMATIONS
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .swipeable::after
+  .horizontal-scroll::before
+    display none
+
+  pre
+  code
+  .mw-code
+    @media (pointer coarse)
+      scroll-behavior auto
+      overflow-x auto
+
+// =============================================================================
+// SAFE AREA SUPPORT (iOS Notched Devices)
+// =============================================================================
+// Support for iPhone X and later devices with notches and home indicator
+// Browser support: 87%+ (iOS Safari 11+)
+// Requires viewport-fit=cover in HTML meta viewport
+
+// Wrap in @supports for browsers that don't support env()
+@supports (padding-top: env(safe-area-inset-top))
+  // Global body padding for safe areas
+  body
+    padding-top env(safe-area-inset-top)
+    padding-bottom env(safe-area-inset-bottom)
+    padding-left env(safe-area-inset-left)
+    padding-right env(safe-area-inset-right)
+
+  // Content area safe insets
+  #content
+    padding-top calc(1em + env(safe-area-inset-top))
+    padding-bottom calc(1em + env(safe-area-inset-bottom))
+
+  // Fixed header adjustments
+  .mw-header
+  .vector-header
+  .vector-sticky-header
+    top env(safe-area-inset-top)
+
+  // Fixed footer / bottom navigation
+  .mobile-bottom-nav
+  .mw-footer
+    bottom env(safe-area-inset-bottom)
+
+  // Sidebar safe insets
+  #mw-sidebar
+  .mw-sidebar
+    padding-top env(safe-area-inset-top)
+
+  // Edit form - prevent keyboard from covering input
+  .mw-editform
+    padding-bottom env(safe-area-inset-bottom)
+
+  // Fixed position elements
+  .fixed-top
+    top env(safe-area-inset-top)
+
+  .fixed-bottom
+    bottom env(safe-area-inset-bottom)
+
+  // Mobile slide menu
+  .mobile-slide-menu
+    padding-top calc(1em + env(safe-area-inset-top))
+    padding-bottom calc(1em + env(safe-area-inset-bottom))
+
+  // Quick access FAB - above home indicator
+  .mobile-quick-access
+    bottom calc(1em + env(safe-area-inset-bottom))
+    right calc(1em + env(safe-area-inset-right))
+
+  // Content padding for safe areas on all edges
+  .mw-parser-output
+    padding-left unquote("max(1em, env(safe-area-inset-left))")
+    padding-right unquote("max(1em, env(safe-area-inset-right))")
+
+  // TOC mobile - avoid notch
+  #toc
+  .toc
+    @media (max-width 768px)
+      padding-top env(safe-area-inset-top)
+      padding-left unquote("max(0.5em, env(safe-area-inset-left))")
+      padding-right unquote("max(0.5em, env(safe-area-inset-right))")
+
+  // Search bar on mobile
+  .mw-search-input
+    @media (max-width 768px)
+      padding-left unquote("max(1em, env(safe-area-inset-left))")
+      padding-right unquote("max(1em, env(safe-area-inset-right))")
+
+  // Talk/new message banner
+  .usermessage
+  #mw-notice-area
+    padding-top calc(0.5em + env(safe-area-inset-top))
+    padding-left unquote("max(1em, env(safe-area-inset-left))")
+    padding-right unquote("max(1em, env(safe-area-inset-right))")
+
+  // Personal tools / user menu
+  .mw-portlet
+  #p-personal
+    @media (max-width 768px)
+      padding-top env(safe-area-inset-top)
+
+  // Page actions / tabs
+  .mw-ui-tabs
+  .vector-page-toolbar
+    @media (max-width 768px)
+      padding-left unquote("max(0.5em, env(safe-area-inset-left))")
+      padding-right unquote("max(0.5em, env(safe-area-inset-right))")
+
+  // Categories at bottom of page
+  #catlinks
+  .catlinks
+    padding-bottom calc(1em + env(safe-area-inset-bottom))

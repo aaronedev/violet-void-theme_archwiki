@@ -1,0 +1,415 @@
+// Link Types Styling for Violet Void ArchWiki Theme
+// Handles interwiki links, redirects, disambiguation, and broken/red links
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// BROKEN/RED LINKS (Non-existent Pages)
+// =============================================================================
+// MediaWiki uses .new class for links to pages that don't exist
+// These are traditionally shown in red - we maintain that convention
+// with theme-appropriate colors
+
+// Base red link styling
+a.new
+a.mw-new
+.new a
+.mw-new a
+  // Use theme's red palette for consistency
+  color $secondary-red
+  background-image linear-gradient(to right, $secondary-red, $secondary-red)
+  background-size 0% 1px
+  background-repeat no-repeat
+  background-position left bottom 0.1em
+  text-decoration none
+  transition all $transition-fast
+  cursor pointer
+
+  &:hover
+  &:focus
+    color $red
+    background-size 100% 1px
+    // Subtle indication this will create a page
+    &::after
+      content " (create)"
+      font-size 0.75em
+      opacity 0.7
+      margin-left 0.25em
+      color $orange
+
+  &:active
+    color $secondary-red
+    text-decoration underline
+    text-decoration-style dotted
+
+  &:visited
+    // Visited red links stay red (they still don't exist)
+    color $secondary-red
+
+// Red link in specific contexts
+.mw-parser-output
+  a.new
+    // Slightly muted in article content
+    color $secondary-red
+
+    &:hover
+      color $red
+
+// Red links in tables
+.wikitable
+.infobox
+  a.new
+    // Maintain readability in table context
+    font-weight 500
+
+// Red links in navigation
+#mw-navigation
+.mw-navigation
+  a.new
+    // Subtle indicator in nav areas
+    opacity 0.9
+
+    &:hover
+      opacity 1
+
+// Red links in sidebars
+.sidebar
+#mw-panel
+  a.new
+    padding 0.1em 0.3em
+    border-radius $border-radius-sm
+
+    &:hover
+      background-color rgba($secondary-red, 0.1)
+
+// =============================================================================
+// NONEXISTENT VS BROKEN DISTINCTION
+// =============================================================================
+// Different shades for different types of missing content
+// .new = page doesn't exist (can be created)
+// .broken = link is broken/inaccessible (external)
+
+// Broken external links (when applicable)
+a.broken
+a.mw-broken
+.is-broken
+  color $red
+  text-decoration line-through
+  text-decoration-color rgba($red, 0.5)
+  opacity 0.7
+  cursor not-allowed
+
+  &:hover
+    opacity 0.9
+    text-decoration-color $red
+
+  &::after
+    content " ⚠"
+    font-size 0.75em
+    color $orange
+
+// =============================================================================
+// INTERWIKI LINK INDICATORS
+// =============================================================================
+// Visual indicators for links to other wikis
+
+// External link icon (arrow)
+a.external
+  &::after
+    content " ↗"
+    font-size 0.75em
+    opacity 0.6
+    color $secondary-blue
+    margin-left 0.15em
+    transition opacity $transition-fast
+
+  &:hover::after
+    opacity 1
+    color $orange
+
+// Secure/insecure indicator
+a.external[href^="https://"]
+  // Secure links - no additional indicator needed
+// The ↗ icon already indicates external
+
+a.external[href^="http://"]
+  // Insecure HTTP links - add warning indicator
+  &::before
+    content "⚠ "
+    font-size 0.7em
+    color $orange
+    opacity 0.7
+
+// Interwiki links (to other Wikimedia projects)
+a.extiw
+a.mw-extiw
+  color $term-cyan
+  background-image linear-gradient(to right, $term-cyan, $term-cyan)
+  background-size 0% 1px
+  background-repeat no-repeat
+  background-position left bottom 0.1em
+  transition all $transition-fast
+
+  &:hover
+    color $term-bright-cyan
+    background-size 100% 1px
+
+  // Interwiki icon
+  &::after
+    content " ⟡"
+    font-size 0.7em
+    opacity 0.5
+
+// Wikipedia interwiki
+a.extiw[title*="Wikipedia"]
+  color $secondary-blue
+
+  &::after
+    content " W"
+    font-size 0.65em
+    font-weight bold
+
+// Wikidata interwiki
+a.extiw[title*="Wikidata"]
+  color $term-magenta
+
+  &::after
+    content " D"
+    font-size 0.65em
+    font-weight bold
+
+// Wikimedia Commons interwiki
+a.extiw[title*="Commons"]
+  color $term-green
+
+  &::after
+    content " C"
+    font-size 0.65em
+    font-weight bold
+
+// =============================================================================
+// REDIRECT PAGES
+// =============================================================================
+
+// Redirect notice on redirect pages
+.redirectMsg
+.mw-redirectedfrom
+  background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  padding 0.75em 1em
+  margin 0.5em 0
+  font-size 0.9em
+  color $light
+
+  a
+    color $secondary-blue
+    font-weight 500
+
+    &:hover
+      color $orange
+
+// Redirect category badge
+.redirect-text
+  font-style italic
+  color $muted
+
+  &::before
+    content "↪ "
+    color $arch-blue
+
+// Links to redirect pages
+a.mw-redirect
+  color $term-yellow
+  background-image linear-gradient(to right, $term-yellow, $term-yellow)
+  background-size 0% 1px
+  background-repeat no-repeat
+  background-position left bottom 0.1em
+
+  &:hover
+    color $term-bright-yellow
+    background-size 100% 1px
+
+  // Redirect arrow indicator
+  &::after
+    content " ↯"
+    font-size 0.7em
+    opacity 0.6
+
+// =============================================================================
+// DISAMBIGUATION LINKS
+// =============================================================================
+
+// Disambiguation page indicator
+.mw-disambig
+.hatnote
+  font-style italic
+  color $muted
+  padding 0.5em 1em
+  margin 0.5em 0
+  border-left 3px solid $arch-blue
+  background-color rgba($arch-blue, 0.05)
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+  font-size 0.9em
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $orange
+
+// Links to disambiguation pages
+a.mw-disambig
+  // Subtle styling to indicate multiple meanings
+  color $term-yellow
+
+  &:hover
+    color $term-bright-yellow
+
+  // Disambiguation indicator
+  &::after
+    content " ⁂"
+    font-size 0.65em
+    opacity 0.5
+    color $arch-blue
+
+// "May refer to" formatting
+.dablink
+  font-style italic
+  padding 0.5em 0
+  border-bottom 1px solid $border-subtle
+  margin-bottom 1em
+
+// =============================================================================
+// PDF AND SPECIAL FILE LINKS
+// =============================================================================
+
+// PDF link indicator
+a[href$=".pdf"]
+a.pdf
+  &::after
+    content " 📄"
+    font-size 0.7em
+
+// Mailto link indicator
+a[href^="mailto:"]
+  &::after
+    content " ✉"
+    font-size 0.7em
+    color $orange
+
+// Tel link indicator
+a[href^="tel:"]
+  &::after
+    content " 📞"
+    font-size 0.7em
+
+// =============================================================================
+// LINK STATES
+// =============================================================================
+
+// Visited links
+a:visited
+  &:not(.new):not(.external):not(.extiw):not(.mw-redirect):not(.mw-disambig)
+    color darken($secondary-blue, 15%)
+
+// Focus state for accessibility
+a:focus
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius 2px
+
+// Active state
+a:active
+  color $secondary-red
+
+// =============================================================================
+// LINK TOOLTIPS AND PREVIEWS
+// =============================================================================
+
+// Hover tooltip for link info
+a[data-title]
+  position relative
+
+  &:hover::after
+    content attr(data-title)
+    position absolute
+    bottom 100%
+    left 0
+    background-color $darker
+    color $lighter
+    padding 0.4em 0.7em
+    border-radius $border-radius-sm
+    font-size 0.8em
+    white-space nowrap
+    z-index 100
+    box-shadow 0 2px 8px rgba(0, 0, 0, 0.3)
+    border 1px solid $border-subtle
+
+// Link preview on hover (for JS-enabled previews)
+.mw-link-preview
+  position absolute
+  background-color $darker
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  max-width 300px
+  box-shadow $shadow-medium
+  z-index 1000
+
+  .preview-title
+    color $lighter
+    font-weight 600
+    margin-bottom 0.5em
+
+  .preview-excerpt
+    color $light
+    font-size 0.9em
+    line-height 1.4
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// High contrast mode support
+@media (forced-colors active)
+  a.new
+  a.mw-new
+  .new a
+    forced-color-adjust none
+    color LinkText
+    text-decoration underline
+    text-decoration-style dotted
+
+  a.broken
+    text-decoration line-through
+
+// Reduced motion - instant transitions
+@media (prefers-reduced-motion reduce)
+  a
+    transition none
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  // Show URLs for external links
+  a.external
+  a.extiw
+    &::after
+      content " (" attr(href) ")"
+      font-size 0.8em
+      color $print-text
+
+  // Don't show create indicators in print
+  a.new
+    &:hover::after
+      content none
+
+  // Remove decorative elements
+  a::before
+  a::after
+    content none !important

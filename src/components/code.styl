@@ -1,0 +1,627 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// Common code styling
+#content pre:not([class*="codemirror"])
+#content code
+#content tt
+  font-family $font-mono
+  font-size 0.95em
+  font-variant-ligatures contextual
+  line-height 1.6
+  tab-size 4
+
+// Inline code chips
+#content code
+#content tt
+  gradient-inline-code()
+
+  border 1px solid rgba($arch-blue, 0.12)
+  border-radius $border-radius-sm
+  padding 0.18em 0.5em
+  margin 0 0.2em
+  color $term-bright-green
+  font-size 0.9em
+  transition all $transition-fast
+  vertical-align baseline
+
+  &:hover
+    gradient-inline-code-hover()
+
+    border-color rgba($arch-blue, 0.18)
+    micro-lift()
+
+// Inline code inside dense contexts (headings, tables, lists)
+#content h1 code
+#content h2 code
+#content th code
+#content li code
+  padding 0.06em 0.35em
+  margin 0 0.08em
+  vertical-align 0.05em
+
+// Large code blocks
+#content pre:not([class*="codemirror"])
+  position relative
+  margin 1em 0 !important
+  padding 1em !important
+  padding-top 2.5em !important
+  border none !important
+
+  gradient-elevated() !important
+
+  overflow auto
+  word-break normal
+  overflow-wrap normal
+  white-space pre !important
+  border-radius $border-radius-md
+  box-shadow 0 0 0 1px rgba($arch-blue, 0.12), 0 4px 12px rgba(0, 0, 0, 0.4)
+  transition box-shadow $transition-fast
+  cursor text
+
+  &:hover
+    box-shadow 0 0 0 1px rgba($arch-blue, 0.18), 0 6px 16px rgba(0, 0, 0, 0.5)
+
+// -----------------------------------------------------------------------------
+// Scroll Snap Enhancements for Code Blocks
+// Horizontal scroll snapping provides a smoother experience when scrolling
+// through long lines of code on touch devices.
+
+// Code block horizontal scroll snap
+#content pre:not([class*="codemirror"])
+  scroll-snap-type x mandatory
+  // Smooth scrolling behavior
+  scroll-behavior smooth
+
+// Snap points for code content - snap to start of each "page" of horizontal scroll
+#content pre:not([class*="codemirror"]) code
+  scroll-snap-align start
+
+// Code block headers
+#content pre[data-lang]::before
+  content attr(data-lang)
+
+#content pre:not([data-lang])::before
+  content "Code"
+
+#content pre:not([class*="codemirror"])::before
+  position absolute
+  top 0
+  left 0
+  right 0
+  height 2em
+  gradient-code-header()
+
+  display flex
+  align-items center
+  padding 0 2.5em 0 0.75em
+  font-size 0.8em
+  font-weight 600
+  color $white
+  letter-spacing 0.04em
+  text-transform uppercase
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+  border-top-left-radius $border-radius-md
+  border-top-right-radius $border-radius-md
+  z-index 1
+
+// Clear inline styles for code inside pre
+#content pre:not([class*="codemirror"]) code
+  background-color transparent
+  border none
+  padding 0
+  margin 0
+  color $lighter
+  overflow-x auto
+  display block
+  counter-reset line
+
+// Syntax highlighting
+#content pre
+  .keyword
+  .statement
+    color $term-red
+    font-weight 600
+
+  .string
+  .value
+    color $term-magenta
+
+  .comment
+    color $comment
+    font-style italic
+
+  .function
+    color $term-blue
+    font-weight 500
+
+  .number
+    color $term-bright-cyan
+
+  .variable
+    color $term-bright-white
+
+  .operator
+    color $term-bright-yellow
+
+  .class
+  .type
+    color $term-bright-yellow
+
+// =============================================================================
+// Command Prompt Styling
+// Enhanced terminal/command prompt styling for ArchWiki command examples
+// Supports user prompts ($), root prompts (#), user@host patterns, and more
+
+// Prompt character colors - distinct for user vs root
+$prompt-user = $term-bright-green      // $ - user prompt
+$prompt-root = $term-bright-red        // # - root prompt
+$prompt-host = $term-bright-cyan       // @host part
+$prompt-path = $term-bright-blue       // directory path
+$prompt-user-name = $term-bright-yellow // username
+
+// Base prompt styling class
+#content pre:not([class*="codemirror"]) .prompt
+  display inline
+  font-weight 600
+  user-select none
+
+  // Default user prompt ($)
+  &::before
+    content "$ "
+    color $prompt-user
+    font-weight bold
+
+// Root prompt (#) - dangerous commands
+#content pre:not([class*="codemirror"]) .prompt-root::before
+#content pre:not([class*="codemirror"]) .root-prompt::before
+#content pre:not([class*="codemirror"]) [data-prompt="root"]::before
+  content "# "
+  color $prompt-root
+  font-weight bold
+
+// User prompt ($) - explicit class
+#content pre:not([class*="codemirror"]) .prompt-user::before
+#content pre:not([class*="codemirror"]) [data-prompt="user"]::before
+  content "$ "
+  color $prompt-user
+  font-weight bold
+
+// Full prompt line with user@host:path$ pattern
+// Usage: <span class="prompt-line"><span class="prompt-userhost">user@host</span><span class="prompt-path">:~</span><span class="prompt-char">$</span></span>
+#content pre:not([class*="codemirror"]) .prompt-line
+  display inline
+  color $lighter
+
+// User@host portion styling
+#content pre:not([class*="codemirror"]) .prompt-userhost
+#content pre:not([class*="codemirror"]) .prompt-user-name
+  color $prompt-user-name
+  font-weight 600
+
+// @ symbol between user and host
+#content pre:not([class*="codemirror"]) .prompt-at
+  color $muted
+  font-weight normal
+
+// Hostname portion
+#content pre:not([class*="codemirror"]) .prompt-host
+  color $prompt-host
+  font-weight 500
+
+// Path/directory portion
+#content pre:not([class*="codemirror"]) .prompt-path
+#content pre:not([class*="codemirror"]) .prompt-directory
+  color $prompt-path
+  font-weight 500
+
+// Colon separator between host and path
+#content pre:not([class*="codemirror"]) .prompt-colon
+  color $muted
+
+// The actual prompt character ($ or #)
+#content pre:not([class*="codemirror"]) .prompt-char
+  font-weight bold
+  margin-right 0.3em
+
+  // User prompt
+  &.user
+  &.dollar
+    color $prompt-user
+
+  // Root prompt
+  &.root
+  &.hash
+  &.sudo
+    color $prompt-root
+
+// Command portion (after prompt)
+#content pre:not([class*="codemirror"]) .prompt-command
+#content pre:not([class*="codemirror"]) .command
+  color $lighter
+  font-weight normal
+
+// Output from commands (not the command itself)
+#content pre:not([class*="codemirror"]) .command-output
+#content pre:not([class*="codemirror"]) .prompt-output
+  color $muted
+  font-style italic
+
+// Success output indicator
+#content pre:not([class*="codemirror"]) .output-success
+  color $term-bright-green
+  font-style normal
+
+// Error output indicator
+#content pre:not([class*="codemirror"]) .output-error
+  color $term-bright-red
+  font-style normal
+
+// Warning output indicator
+#content pre:not([class*="codemirror"]) .output-warning
+  color $term-bright-yellow
+  font-style normal
+
+// -----------------------------------------------------------------------------
+// Auto-detection patterns for common prompt formats
+// These use attribute selectors for data attributes and class patterns
+
+// Lines that start with $ or # (common in ArchWiki)
+// Style the prompt character distinctly from the command
+
+// data-prompt attribute - explicit prompt type
+#content pre:not([class*="codemirror"]) [data-prompt]
+  &::before
+    font-weight bold
+    margin-right 0.3em
+
+// Prompt environment wrapper - for multi-line commands with continuation
+#content pre:not([class*="codemirror"]) .prompt-environment
+#content pre:not([class*="codemirror"]) .terminal-session
+  display block
+  padding 0.2em 0
+
+// Continuation prompt for multi-line commands
+#content pre:not([class*="codemirror"]) .prompt-continuation
+#content pre:not([class*="codemirror"]) .continuation
+  color $muted
+  &::before
+    content "> "
+    color $muted
+
+// Copy prompt button - positioned differently than copy code button
+#content pre:not([class*="codemirror"]) .copy-prompt
+#content pre:not([class*="codemirror"]) .copy-command
+  display inline-block
+  visibility hidden
+  position relative
+  margin-left 0.5em
+  padding 0.1em 0.4em
+  font-size 0.75em
+  color $muted
+  background transparent
+  border 1px solid transparent
+  border-radius $border-radius-sm
+  cursor pointer
+  opacity 0
+  transition all $transition-fast
+  vertical-align middle
+
+// Show copy prompt button on hover
+#content pre:not([class*="codemirror"]):hover .copy-prompt
+#content pre:not([class*="codemirror"]):hover .copy-command
+  visibility visible
+  opacity 1
+
+  &:hover
+    color $secondary-blue
+    border-color rgba($arch-blue, 0.3)
+    background rgba($arch-blue, 0.08)
+
+  &:active
+    transform scale(0.95)
+
+// Focus state for keyboard accessibility
+#content pre:not([class*="codemirror"]) .copy-prompt:focus-visible
+#content pre:not([class*="codemirror"]) .copy-command:focus-visible
+  visibility visible
+  opacity 1
+  outline 2px solid $secondary-blue
+  outline-offset 2px
+
+// -----------------------------------------------------------------------------
+// Legacy prompt styling (backwards compatibility)
+// Prompt styling
+#content pre:not([class*="codemirror"]) .prompt::before
+  content "$ "
+  color $secondary-blue
+  font-weight bold
+  user-select none
+
+// Comments in code blocks
+#content pre:not([class*="codemirror"]) .bash-comment
+#content pre:not([class*="codemirror"]) .line-comment
+  color $muted
+  font-style italic
+
+// Copy buttons - RESTORED and STYLED
+copy-button-selectors = '.copy-to-clipboard', '.copy-to-clipboard-button', '.copy-button', '.copyBtn', '.copy-btn', '.btn-copy', '.btn-clipboard', '.copy', '.clipboard', '.clipboard-button', '.clipboard-copy', '.clipboard-btn', '.copybtn', '.copywrap', '.code-toolbar .toolbar', '.prism .toolbar', '.highlight .copybtn', '.highlight .toolbar', '.gatsby-highlight .copy-button', 'button[data-clipboard-text]', '[data-clipboard-text]', '[data-clipboard-target]', '[data-action="copy"]', '[data-copy]', '[data-copy-text]', '[aria-label="Copy"]', '[aria-label="copy"]'
+
+// Build a single selector string to avoid CSS bloat
+$final-selector = ''
+
+for selector, index in copy-button-selectors
+  if index > 0
+    $final-selector = $final-selector + ', '
+  $final-selector = $final-selector + '#content pre:not([class*="codemirror"]) ' + selector + ', #content ' + selector
+
+{$final-selector}
+  display block !important
+  visibility visible !important
+  pointer-events auto !important
+  opacity 1 !important
+  width auto !important
+  height auto !important
+  position absolute !important
+  top 0.5em !important
+  right 0.5em !important
+  z-index 10 !important
+  // Match menu panel styling
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06)) !important
+  border 1px solid $border-subtle !important
+  color $lighter !important
+  padding 0.2em 0.6em !important
+  border-radius $border-radius-sm !important
+  font-size 0.8em !important
+  cursor pointer !important
+  transition all $transition-fast !important
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12)) !important
+    border-color rgba($arch-blue, 0.3) !important
+    color $secondary-blue !important
+
+// Ensure toolbars are visible if they wrap the button
+#content .code-toolbar
+#content .highlight .toolbar
+  display block !important
+  visibility visible !important
+
+// =============================================================================
+// WHITE-SPACE-COLLAPSE - Fine-Grained Whitespace Control (97%+ browser support)
+// =============================================================================
+// Controls how whitespace sequences are handled within text
+// Values: collapse, preserve, preserve-breaks, preserve-spaces, discard
+// Useful for code blocks, preformatted text, and precise layout control
+
+// Code blocks preserve all whitespace (default behavior, explicit for clarity)
+#content pre
+#content pre:not([class*="codemirror"])
+  white-space-collapse preserve
+
+// Inline code preserves spaces but allows line breaking
+#content code
+#content tt
+  white-space-collapse preserve-breaks
+
+// Terminal output preserves all whitespace
+.terminal-output
+.command-output
+  white-space-collapse preserve
+
+// Configuration files need exact whitespace
+.config-file
+.conf-block
+  white-space-collapse preserve
+
+// Diff output preserves whitespace for alignment
+.diff-output
+.diff-block
+  white-space-collapse preserve
+
+// Collapsible code sections - preserve breaks for readability when expanded
+.mw-collapsible-content pre
+.collapsible-code
+  white-space-collapse preserve-breaks
+
+// Code comments and annotations - collapse extra spaces
+.code-comment
+.code-annotation
+  white-space-collapse collapse
+
+// Multi-line command examples - preserve line structure
+.multi-line-command
+.command-continuation
+  white-space-collapse preserve-breaks
+
+// -----------------------------------------------------------------------------
+// Word Break for Long URLs and Code Paths
+// Break long URLs at any character - different from overflow-wrap
+// Browser support: 97%+
+
+// Break long URLs and file paths in code blocks at any character
+// Useful for: URLs, file paths, long package names, UUIDs, hashes
+.code-break-all
+.url-break
+  word-break break-all
+  overflow-wrap break-word
+
+// Apply to specific code contexts where long URLs commonly appear
+// Links within code blocks
+#content pre code a
+#content pre:not([class*="codemirror"]) a
+  word-break break-all
+  overflow-wrap break-word
+
+// Long file paths in configuration examples
+.config-path
+.file-path
+  word-break break-all
+  overflow-wrap anywhere
+
+// Package names and repository URLs in PKGBUILD examples
+#content pre[data-lang="PKGBUILD"]
+#content pre[data-lang="bash"]
+  .url
+  .package-name
+  .repository-url
+    word-break break-all
+    overflow-wrap anywhere
+
+// =============================================================================
+// INTERACTIVE HINTS FOR CODE BLOCKS
+// =============================================================================
+// Interactive hints for command examples - show on hover
+// Browser support: 97%+
+
+// Container for interactive hints
+.code-hints
+  position absolute
+  top 0.5em
+  inset-inline-end 0.5em
+  display flex
+  gap 0.35em
+  opacity 0
+  transition opacity 0.2s ease
+
+  // Show hints on code block hover
+  #content pre:not([class*="codemirror"]):hover &
+    opacity 1
+
+// Individual hint button
+.code-hint
+  display inline-flex
+  align-items center
+  justify-content center
+  width 24px
+  height 24px
+  background rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-sm
+  color $arch-blue
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($arch-blue, 0.25)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+    transform scale(1.1)
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  // Hint icons (use CSS shapes or emoji fallback)
+  &.hint-copy::before
+    content "📋"
+
+  &.hint-run::before
+    content "▶"
+
+  &.hint-explain::before
+    content "?"
+
+  &.hint-edit::before
+    content "✏️"
+
+// Copy success indicator
+.code-hint.copied
+  background rgba($green, 0.2)
+  border-color rgba($green, 0.4)
+  color $green
+
+  &::before
+    content "✓"
+
+// Command explanation toggle
+.command-explanation
+  margin-top 0.75em
+  padding 0.75em
+  background rgba($muted, 0.08)
+  border-inline-start 3px solid $arch-blue
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+  font-size 0.9em
+  color $light
+  display none
+
+  // Show explanation when toggled
+  &.expanded
+    display block
+    animation fade-in 0.3s ease
+
+// Explanation toggle button
+.explain-toggle
+  display inline-flex
+  align-items center
+  gap 0.35em
+  padding 0.25em 0.5em
+  margin-top 0.5em
+  background transparent
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $muted
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.3)
+    color $arch-blue
+
+  &::before
+    content "▶"
+    font-size 0.7em
+    transition transform 0.2s ease
+
+  &.expanded::before
+    transform rotate(90deg)
+
+// Editable command indicator
+.editable-command
+  position relative
+
+  &::after
+    content "✏️"
+    position absolute
+    top -8px
+    inset-inline-end -8px
+    font-size 0.75em
+    opacity 0.6
+
+// Run in terminal hint
+.run-in-terminal
+  display inline-flex
+  align-items center
+  gap 0.35em
+  padding 0.2em 0.5em
+  margin-inline-start 0.5em
+  background rgba($green, 0.1)
+  border 1px solid rgba($green, 0.3)
+  border-radius $border-radius-sm
+  color $green
+  font-size 0.75em
+  font-weight 500
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($green, 0.2)
+    border-color rgba($green, 0.5)
+
+  &::before
+    content "▶"
+    font-size 0.7em
+
+@keyframes fade-in
+  from
+    opacity 0
+    transform translateY(-5px)
+  to
+    opacity 1
+    transform translateY(0)

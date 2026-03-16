@@ -1,0 +1,456 @@
+// =============================================================================
+// Gadget Integration - Violet Void ArchWiki Theme
+// Gadget activation toggle, configuration panel, conflict warning styling
+// Browser support: 97%+
+// =============================================================================
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// GADGET LIST STYLES
+// =============================================================================
+// Styling for the gadget list on Special:Gadgets
+
+// Gadget list container
+.mw-gadget-list
+  display flex
+  flex-direction column
+  gap 1em
+  margin 1.5em 0
+
+// Individual gadget item
+.gadget-item
+  display flex
+  flex-direction column
+  gap 0.5em
+  padding 1em 1.25em
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition transition-medium
+
+  // Hover state
+  &:hover
+    border-color rgba($arch-blue, 0.3)
+    background rgba($dark, 0.8)
+
+  // Gadget title row
+  .gadget-title
+    display flex
+    align-items center
+    justify-content space-between
+    gap 1em
+
+    // Gadget name
+    .gadget-name
+      font-weight 600
+      font-size 1.05em
+      color $lighter
+
+    // Gadget description
+    .gadget-description
+      color $light
+      font-size 0.9em
+      line-height 1.5
+
+// =============================================================================
+// GADGET ACTIVATION TOGGLE
+// =============================================================================
+// Toggle switch styling for enabling/disabling gadgets
+
+// Toggle switch container
+.gadget-toggle
+  position relative
+  display inline-flex
+  align-items center
+  cursor pointer
+
+  // Hide default checkbox
+  input[type="checkbox"]
+    position absolute
+    opacity 0
+    width 0
+    height 0
+
+  // Toggle track
+  .toggle-track
+    width 44px
+    height 24px
+    background $dark
+    border 1px solid $border-subtle
+    border-radius 12px
+    transition transition-medium
+    position relative
+
+    // Toggle thumb/knob
+    &::after
+      content ''
+      position absolute
+      top 2px
+      inset-inline-start 2px
+      width 18px
+      height 18px
+      background $muted
+      border-radius 50%
+      transition transition-medium
+      box-shadow 0 1px 3px rgba(0, 0, 0, 0.3)
+
+    // Checked state
+    input:checked + &
+      background rgba($arch-blue, 0.3)
+      border-color rgba($arch-blue, 0.5)
+
+      &::after
+        background $arch-blue
+        transform translateX(20px)
+
+    // Focus state
+    input:focus-visible + &
+      outline none
+      box-shadow $shadow-focus
+
+  // Hover state
+  &:hover .toggle-track
+    border-color rgba($arch-blue, 0.3)
+
+// =============================================================================
+// GADGET CONFIGURATION PANEL
+// =============================================================================
+// Settings panel for gadgets with configurable options
+
+// Configuration container
+.gadget-config
+  margin-top 0.75em
+  padding 1em
+  background rgba($darker, 0.5)
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+
+  // Config section title
+  .config-title
+    font-size 0.85em
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.75em
+    text-transform uppercase
+    letter-spacing 0.5px
+
+  // Config options list
+  .config-options
+    display flex
+    flex-direction column
+    gap 0.5em
+
+  // Individual config option
+  .config-option
+    display flex
+    align-items center
+    gap 0.75em
+    padding 0.5em
+    border-radius $border-radius-sm
+    transition transition-fast
+
+    &:hover
+      background rgba($arch-blue, 0.1)
+
+    // Option label
+    label
+      color $light
+      font-size 0.95em
+      cursor pointer
+
+    // Option description
+    .option-description
+      color $muted
+      font-size 0.85em
+      margin-top 0.25em
+
+// =============================================================================
+// GADGET PREFERENCES
+// =============================================================================
+// User preferences for gadgets
+
+// Preferences container
+.gadget-preferences
+  margin 1.5em 0
+
+  // Preference group
+  .pref-group
+    margin-bottom 1.5em
+    padding 1em
+    background rgba($dark, 0.6)
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+
+    // Group title
+    .pref-group-title
+      font-weight 600
+      color $lighter
+      margin-bottom 1em
+      padding-bottom 0.5em
+      border-bottom 1px solid $border-subtle
+
+// =============================================================================
+// GADGET CONFLICT WARNING
+// =============================================================================
+// Warning styling when gadgets conflict
+
+// Conflict warning box
+.gadget-conflict-warning
+  display flex
+  align-items flex-start
+  gap 0.75em
+  padding 0.75em 1em
+  margin 0.5em 0
+  background rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-sm
+  color $light
+
+  // Warning icon
+  .conflict-icon
+    color $secondary-red
+    font-size 1.2em
+    flex-shrink 0
+
+  // Warning content
+  .conflict-content
+    flex 1
+
+    // Warning title
+    .conflict-title
+      font-weight 600
+      color $secondary-red
+      font-size 0.95em
+      margin-bottom 0.25em
+
+    // Warning description
+    .conflict-description
+      font-size 0.85em
+      color $light
+      line-height 1.4
+
+  // Conflicting gadgets list
+  .conflict-list
+    margin-top 0.5em
+    padding-inline-start 1.25em
+    font-size 0.85em
+
+    li
+      margin-bottom 0.25em
+      color $muted
+
+      // Gadget names
+      .gadget-ref
+        color $light
+        font-weight 500
+
+// =============================================================================
+// GADGET CATEGORY TABS
+// =============================================================================
+// Category navigation for gadget organization
+
+// Tab container
+.gadget-categories
+  display flex
+  gap 0.5em
+  margin-bottom 1.5em
+  padding-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+  overflow-x auto
+  scrollbar-width thin
+
+  // Category tab
+  .category-tab
+    padding 0.5em 1em
+    background transparent
+    border 1px solid transparent
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.9em
+    white-space nowrap
+    cursor pointer
+    transition transition-fast
+
+    // Hover state
+    &:hover
+      background rgba($arch-blue, 0.1)
+      color $lighter
+
+    // Active state
+    &.active
+      background rgba($arch-blue, 0.2)
+      border-color rgba($arch-blue, 0.3)
+      color $arch-blue
+      font-weight 500
+
+    // Focus state
+    &:focus-visible
+      outline none
+      box-shadow $shadow-focus
+
+// =============================================================================
+// GADGET USAGE STATS
+// =============================================================================
+// Display gadget usage statistics
+
+// Stats container
+.gadget-stats
+  display flex
+  gap 1.5em
+  margin 1em 0
+  flex-wrap wrap
+
+  // Individual stat
+  .stat-item
+    display flex
+    flex-direction column
+    gap 0.25em
+
+    // Stat value
+    .stat-value
+      font-size 1.5em
+      font-weight 700
+      color $arch-blue
+      font-variant-numeric tabular-nums
+
+    // Stat label
+    .stat-label
+      font-size 0.8em
+      color $muted
+      text-transform uppercase
+      letter-spacing 0.5px
+
+// =============================================================================
+// GADGET DESCRIPTION EXPAND
+// =============================================================================
+// Expandable description for gadgets
+
+// Expand button
+.gadget-expand-btn
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.25em 0.5em
+  background transparent
+  border none
+  color $arch-blue
+  font-size 0.85em
+  cursor pointer
+  transition transition-fast
+
+  // Hover state
+  &:hover
+    color $lighter
+    text-decoration underline
+
+  // Arrow icon
+  .expand-arrow
+    transition transform transition-fast
+
+  // Expanded state
+  &.expanded .expand-arrow
+    transform rotate(90deg)
+
+// Expanded content
+.gadget-expanded-content
+  margin-top 0.75em
+  padding 0.75em
+  background rgba($darker, 0.4)
+  border-radius $border-radius-sm
+  font-size 0.9em
+  color $light
+  line-height 1.5
+
+// =============================================================================
+// GADGET VERSION INFO
+// =============================================================================
+// Version display for gadgets
+
+// Version badge
+.gadget-version
+  display inline-flex
+  align-items center
+  padding 0.2em 0.5em
+  background rgba($arch-blue, 0.15)
+  border-radius $border-radius-sm
+  font-size 0.75em
+  color $arch-blue
+  font-family $font-mono
+  font-variant-numeric tabular-nums
+
+// =============================================================================
+// GADGET REQUIREMENTS
+// =============================================================================
+// Required permissions or settings for gadgets
+
+// Requirements list
+.gadget-requirements
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 0.5em
+
+  // Requirement badge
+  .requirement-badge
+    display inline-flex
+    align-items center
+    gap 0.3em
+    padding 0.25em 0.6em
+    background rgba($dark, 0.6)
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    font-size 0.8em
+    color $light
+
+    // Icon
+    .requirement-icon
+      color $muted
+
+    // Met requirement
+    &.met
+      border-color rgba($green, 0.3)
+      color $green
+
+      .requirement-icon
+        color $green
+
+    // Unmet requirement
+    &.unmet
+      border-color rgba($secondary-red, 0.3)
+      color $secondary-red
+
+      .requirement-icon
+        color $secondary-red
+
+// =============================================================================
+// RESPONSIVE GADGET STYLES
+// =============================================================================
+
+// Mobile adjustments
+@media (max-width 768px)
+  // Gadget item
+  .gadget-item
+    padding 0.75em 1em
+
+  // Toggle
+  .gadget-toggle
+    .toggle-track
+      width 40px
+      height 22px
+
+      &::after
+        width 16px
+        height 16px
+
+    input:checked + .toggle-track::after
+      transform translateX(18px)
+
+  // Stats
+  .gadget-stats
+    gap 1em
+
+    .stat-item
+      .stat-value
+        font-size 1.25em

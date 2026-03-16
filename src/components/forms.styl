@@ -1,0 +1,96 @@
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// Buttons - match menu panel styling
+.mw-ui-button
+.oo-ui-buttonelement-framed.oo-ui-widget-enabled > .oo-ui-buttonelement-button
+.cdx-button
+  gradient-surface()
+
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 0.4em 1em
+  font-weight 600
+  font-size 0.9em
+  letter-spacing 0.02em
+  box-shadow $shadow-subtle
+  transition all $transition-fast
+  cursor pointer
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+    transform translateY(-1px)
+    box-shadow $shadow-elevated
+
+  &:active
+    transform translateY(0)
+    box-shadow $shadow-subtle
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+
+  &:focus-visible
+    focus-ring()
+
+// Text inputs
+input[type="text"]
+input[type="search"]
+input[type="email"]
+input[type="password"]
+input[type="url"]
+input[type="number"]
+input[type="tel"]
+textarea
+.oo-ui-textinputwidget .oo-ui-inputwidget-input
+  background-color $darker
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  padding 0.5em 0.75em
+  font-size 0.9em
+  transition all $transition-fast
+  box-shadow inset 0 1px 2px rgba(0, 0, 0, 0.06)
+  font-family $font-sans
+
+  &:focus-visible
+    focus-ring()
+
+  &::placeholder
+    color rgba($light, 0.5)
+
+input:disabled
+input:read-only
+textarea:disabled
+textarea:read-only
+select:disabled
+button:disabled
+  background-color $dark
+  color $light
+  border-color $cell-delim
+  box-shadow none
+  cursor not-allowed
+  opacity 0.6
+
+// Dropdowns
+.oo-ui-dropdownwidget.oo-ui-widget-enabled .oo-ui-dropdownwidget-handle
+  background linear-gradient(135deg, $dark, $darker)
+  color $lighter
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all $transition-fast
+
+  &:hover
+    border-color $arch-blue
+    box-shadow 0 2px 4px rgba(0, 0, 0, 0.06)
+
+// Universal smooth transitions
+a
+button
+input
+textarea
+select
+.oo-ui-widget
+  transition all $transition-fast

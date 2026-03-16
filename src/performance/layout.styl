@@ -1,0 +1,149 @@
+// =============================================================================
+// LAYOUT CONTAINMENT OPTIMIZATION
+// =============================================================================
+// Browser support: 97%+
+// The contain property allows you to declare that an element and its contents
+// are independent from the rest of the document tree.
+// This helps browser performance by limiting layout, style, and paint calculations
+// to just the contained subtree.
+
+// =============================================================================
+// LAYOUT CONTAINMENT
+// =============================================================================
+// contain: layout - the element's layout is isolated from its descendants
+// Use on elements that are self-contained and won't affect parent layout
+
+// Sidebar containment for improved reflow performance
+#sidebar
+#side-bar
+.mw-sidebar
+.aside-sidebar
+  contain layout
+
+// Infobox containment - isolate infobox calculations from main content
+.infobox
+.mw-infobox
+table.infobox
+  contain layout
+
+// Navigation elements containment
+.navbox
+.mw-navbox
+.navbar
+.site-navigation
+  contain layout
+
+// Footer containment
+#footer
+.mw-footer
+#site-footer
+.site-footer
+  contain layout
+
+// Header containment
+#header
+.mw-header
+#site-header
+.site-header
+  contain layout
+
+// =============================================================================
+// STYLE CONTAINMENT
+// =============================================================================
+// contain: style - the element's style properties don't cascade out
+// Useful for components that should be style-isolated
+
+// Message boxes and alerts - style isolation
+.mw-message-box
+.ambox
+.ombox
+.imbox
+.tmbox
+.cmbox
+.fmbox
+  contain style
+
+// Template styling isolation
+.template-box
+  contain style
+
+// =============================================================================
+// CONTENT CONTAINMENT
+// =============================================================================
+// contain: content - combines layout and style containment
+// Use for elements that are fully self-contained
+
+// Card components
+.card
+.article-card
+.summary-card
+  contain content
+
+// Gallery items
+.gallery-item
+.mw-gallery-item
+  contain content
+
+// List items in self-contained lists
+.category-item
+.search-result-item
+  contain content
+
+// =============================================================================
+// SIZE CONTAINMENT
+// =============================================================================
+// contain: size - the element's size is determined by its own dimensions
+// not by its contents. Useful for elements with fixed dimensions
+
+// Fixed-size elements
+.thumb
+.mw-thumbnail
+figure.image
+  contain size
+
+// =============================================================================
+// COMBINED CONTAINMENT
+// =============================================================================
+// Use contain: layout paint for elements with complex internals
+// that don't need style isolation but should limit layout/paint scope
+
+// Complex interactive elements
+.tabs
+.tab-panel
+.accordion
+.accordion-content
+  contain layout paint
+
+// Media elements
+audio
+video
+.mw-video
+  contain layout paint
+
+// =============================================================================
+// STRICT CONTAINMENT
+// =============================================================================
+// contain: strict - combines layout, style, size, and paint containment
+// Use sparingly - can break some layouts
+
+// Truly isolated components
+.tooltip
+.popover
+.dropdown-menu
+  contain strict
+
+// =============================================================================
+// ADAPTABLE CONTAINMENT
+// =============================================================================
+// Containment that adapts to context
+
+// Mobile: less containment for better flexibility
+@media (max-width 768px)
+  .infobox
+  .navbox
+    contain layout
+
+// Print: reduce containment for simpler rendering
+@media print
+  *
+    contain none

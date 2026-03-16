@@ -1,0 +1,485 @@
+// User Pages Styling
+// User profile, menu, contributions
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// USER PAGE LAYOUT
+// =============================================================================
+
+// User page container
+.mw-userpage
+.user-page
+  margin 1em 0
+
+// User profile box
+.user-profile-box
+.mw-userprofile
+  padding 1.5em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  margin-bottom 1.5em
+  display flex
+  flex-wrap wrap
+  gap 1.5em
+
+// User avatar
+.user-avatar
+  flex-shrink 0
+
+  img
+    width 120px
+    height 120px
+    border-radius 50%
+    border 3px solid $border-subtle
+    object-fit cover
+
+  .avatar-placeholder
+    width 120px
+    height 120px
+    border-radius 50%
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.6))
+    display flex
+    align-items center
+    justify-content center
+    font-size 3em
+    color $darker
+    font-weight bold
+
+// User info section
+.user-info
+  flex 1
+  min-width 250px
+
+  .user-name
+    color $lighter
+    font-size 1.5em
+    font-weight 600
+    margin 0 0 0.25em 0
+
+  .user-title
+    color $muted
+    font-size 0.9em
+    margin-bottom 0.75em
+
+    &.admin
+      color $secondary-red
+
+    &.moderator
+      color $green
+
+    &.bot
+      color $muted
+
+  .user-stats
+    display flex
+    flex-wrap wrap
+    gap 1.5em
+    margin-top 0.75em
+
+    .stat
+      text-align center
+
+      .stat-value
+        color $lighter
+        font-size 1.3em
+        font-weight 600
+        font-variant-numeric tabular-nums
+
+      .stat-label
+        color $muted
+        font-size 0.75em
+        text-transform uppercase
+        letter-spacing 0.05em
+
+  .user-actions
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    margin-top 1em
+
+    a
+      padding 0.4em 0.8em
+      background-color transparent
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $secondary-blue
+      text-decoration none
+      font-size 0.85em
+      transition all 0.2s ease
+
+      &:hover
+        background-color rgba($arch-blue, 0.1)
+        border-color rgba($arch-blue, 0.3)
+
+// Babel box styling
+.mw-babel
+.babel-box
+  display inline-block
+  padding 0.25em 0.5em
+  margin 0.15em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  font-size 0.85em
+
+  .babel-label
+    display inline-block
+    padding 0.1em 0.4em
+    background-color $arch-blue
+    color $darker
+    border-radius 2px
+    font-weight 600
+    margin-right 0.3em
+    font-size 0.9em
+
+  .babel-level
+    color $muted
+    font-size 0.8em
+    margin-left 0.2em
+
+// Babel box container
+.babel-container
+  display flex
+  flex-wrap wrap
+  gap 0.25em
+  margin 0.5em 0
+
+// Language proficiency levels
+.babel-level-N .babel-label
+  background-color $green
+
+.babel-level-4 .babel-label
+  background-color rgba($green, 0.8)
+
+.babel-level-3 .babel-label
+  background-color $arch-blue
+
+.babel-level-2 .babel-label
+  background-color $orange
+
+.babel-level-1 .babel-label
+  background-color rgba($orange, 0.7)
+
+.babel-level-0 .babel-label
+  background-color rgba($secondary-red, 0.7)
+
+// User contribution stats
+.user-contribution-stats
+.contribution-stats
+  padding 1em
+  background-color $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  margin 1em 0
+
+  h3
+    color $lighter
+    font-size 1em
+    margin 0 0 0.75em 0
+
+  .stats-grid
+    display grid
+    grid-template-columns repeat(auto-fill, minmax(150px, 1fr))
+    gap 1em
+
+    .stat-item
+      padding 0.75em
+      background-color $base
+      border-radius $border-radius-sm
+      text-align center
+
+      .stat-value
+        color $lighter
+        font-size 1.2em
+        font-weight 600
+        font-variant-numeric tabular-nums
+
+      .stat-label
+        color $muted
+        font-size 0.75em
+        margin-top 0.25em
+
+// Edit count chart
+.edit-count-chart
+  margin-top 1em
+  padding 1em
+  background-color $base
+  border-radius $border-radius-sm
+
+  .chart-bar
+    display flex
+    align-items center
+    gap 0.5em
+    margin 0.4em 0
+
+    .bar-label
+      width 100px
+      color $muted
+      font-size 0.8em
+      text-align right
+
+    .bar-track
+      flex 1
+      height 16px
+      background-color $darker
+      border-radius 8px
+      overflow hidden
+
+    .bar-fill
+      height 100%
+      background linear-gradient(90deg, $arch-blue, rgba($arch-blue, 0.6))
+      border-radius 8px
+      transition width 0.3s ease
+
+    .bar-value
+      width 60px
+      color $lighter
+      font-size 0.8em
+      font-variant-numeric tabular-nums
+
+// User groups display
+.user-groups
+  display flex
+  flex-wrap wrap
+  gap 0.4em
+  margin 0.5em 0
+
+  .group-badge
+    padding 0.2em 0.5em
+    background-color rgba($arch-blue, 0.15)
+    border 1px solid rgba($arch-blue, 0.3)
+    border-radius 1em
+    color $secondary-blue
+    font-size 0.75em
+    text-transform uppercase
+    letter-spacing 0.03em
+
+    &.admin
+      background-color rgba($secondary-red, 0.15)
+      border-color rgba($secondary-red, 0.3)
+      color $secondary-red
+
+    &.bureaucrat
+      background-color rgba($orange, 0.15)
+      border-color rgba($orange, 0.3)
+      color $orange
+
+    &.bot
+      background-color rgba($muted, 0.2)
+      border-color rgba($muted, 0.3)
+      color $muted
+
+// =============================================================================
+// USER MENU DROPDOWN
+// =============================================================================
+
+// User dropdown container
+.vector-user-menu
+.user-menu-dropdown
+  position relative
+
+// User menu toggle button
+.vector-user-menu-logout
+.user-menu-toggle
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.4em 0.75em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  color $lighter
+  font-size 0.9em
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.08))
+    border-color rgba($arch-blue, 0.3)
+
+  .user-name
+    max-width 120px
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+
+  .dropdown-arrow
+    font-size 0.7em
+    color $muted
+    transition transform 0.2s ease
+
+  &.open .dropdown-arrow
+    transform rotate(180deg)
+
+// User dropdown content
+.vector-user-menu-content
+.user-menu-content
+  position absolute
+  top 100%
+  right 0
+  min-width 200px
+  padding 0.5em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  z-index 1000
+  margin-top 0.5em
+
+// User menu header
+.user-menu-header
+  padding 0.75em 1em
+  border-bottom 1px solid $border-subtle
+  margin-bottom 0.25em
+
+  .header-username
+    color $lighter
+    font-weight 600
+    font-size 0.95em
+
+  .header-groups
+    color $muted
+    font-size 0.75em
+    margin-top 0.2em
+
+// Menu items
+.user-menu-item
+  display flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 1em
+  color $light
+  text-decoration none
+  transition all 0.2s ease
+
+  &:hover
+    background-color rgba($arch-blue, 0.08)
+    color $lighter
+
+  .menu-icon
+    width 16px
+    text-align center
+    color $muted
+
+  .menu-label
+    flex 1
+
+// Notification count badge
+.notification-badge
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 18px
+  height 18px
+  padding 0 5px
+  background-color $secondary-red
+  color $white
+  border-radius 9px
+  font-size 0.7em
+  font-weight 600
+  font-variant-numeric tabular-nums
+
+  &.empty
+    display none
+
+// Alert notification badge (with animation)
+.notification-badge.alert
+  animation pulse-badge 2s ease-in-out infinite
+
+@keyframes pulse-badge
+  0%
+  100%
+    transform scale(1)
+  50%
+    transform scale(1.1)
+
+// Menu divider
+.user-menu-divider
+  height 1px
+  background-color $border-subtle
+  margin 0.5em 0
+
+// Preferences link
+.user-menu-preferences
+  .menu-icon
+    color $secondary-blue
+
+// Logout link
+.user-menu-logout
+  color $secondary-red
+
+  &:hover
+    background-color rgba($secondary-red, 0.1)
+
+  .menu-icon
+    color $secondary-red
+
+// User menu footer
+.user-menu-footer
+  padding 0.5em 1em
+  border-top 1px solid $border-subtle
+  margin-top 0.25em
+
+  .footer-link
+    color $muted
+    font-size 0.8em
+    text-decoration none
+
+    &:hover
+      color $secondary-blue
+
+// Anonymous user menu
+.user-menu-anon
+  .user-menu-content
+    min-width 160px
+
+  .login-link
+  .create-account-link
+    display flex
+    align-items center
+    gap 0.5em
+    padding 0.6em 1em
+    text-decoration none
+    transition all 0.2s ease
+
+  .login-link
+    color $secondary-blue
+
+    &:hover
+      background-color rgba($arch-blue, 0.08)
+
+  .create-account-link
+    color $green
+
+    &:hover
+      background-color rgba($green, 0.08)
+
+// Responsive user menu
+@media (max-width 768px)
+  .user-profile-box
+    flex-direction column
+    align-items center
+    text-align center
+
+    .user-info
+      .user-stats
+        justify-content center
+
+      .user-actions
+        justify-content center
+
+  .vector-user-menu-logout
+  .user-menu-toggle
+    .user-name
+      max-width 80px
+
+  .vector-user-menu-content
+  .user-menu-content
+    position fixed
+    left 1em
+    right 1em
+    width auto

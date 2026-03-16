@@ -1,0 +1,616 @@
+// Page Load Indicator Styling
+// Progress bars and skeleton screen patterns for loading states
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// LOADING PROGRESS BAR
+// =============================================================================
+
+// Top progress bar for page load indication
+.page-load-progress
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 3px
+  background rgba($arch-blue, 0.1)
+  z-index 10000
+  overflow hidden
+
+  // Progress fill
+  .progress-fill
+    height 100%
+    background linear-gradient(90deg, $arch-blue, $secondary-blue, $arch-blue)
+    background-size 200% 100%
+    animation load-progress 1.5s ease-in-out infinite
+    width 0%
+    transition width 0.3s ease-out
+
+  // Determinate progress
+  &.determinate .progress-fill
+    animation none
+    background $arch-blue
+
+@keyframes load-progress
+  0%
+    background-position 200% 0
+    width 0%
+  50%
+    width 70%
+    background-position 100% 0
+  100%
+    background-position 0 0
+    width 100%
+
+// =============================================================================
+// SKELETON SCREEN PATTERNS
+// =============================================================================
+
+// Skeleton loading placeholder
+.skeleton
+  background linear-gradient(90deg,
+  rgba($darker, 0.3) 0%,
+  rgba($dark, 0.5) 50%,
+  rgba($darker, 0.3) 100%)
+  background-size 200% 100%
+  animation skeleton-pulse 1.5s ease-in-out infinite
+  border-radius $border-radius-sm
+  color transparent
+  position relative
+  overflow hidden
+
+  // Prevent text selection during load
+  &
+  & *
+    user-select none
+    pointer-events none
+
+@keyframes skeleton-pulse
+  0%
+    background-position 200% 0
+  100%
+    background-position -200% 0
+
+// Skeleton text line
+.skeleton-text
+  @extend .skeleton
+  height 1em
+  margin-bottom 0.5em
+
+  &:last-child
+    width 70%
+
+// Skeleton heading
+.skeleton-heading
+  @extend .skeleton
+  height 1.5em
+  width 60%
+  margin-bottom 0.75em
+
+// Skeleton paragraph
+.skeleton-paragraph
+  @extend .skeleton
+  height 1em
+  width 100%
+  margin-bottom 0.25em
+
+// Skeleton image/thumbnail
+.skeleton-image
+  @extend .skeleton
+  aspect-ratio 16 / 9
+  width 100%
+  border-radius $border-radius-md
+
+// Skeleton avatar
+.skeleton-avatar
+  @extend .skeleton
+  width 48px
+  height 48px
+  border-radius 50%
+
+// Skeleton button
+.skeleton-button
+  @extend .skeleton
+  width 120px
+  height 40px
+  border-radius $border-radius-md
+
+// Skeleton card
+.skeleton-card
+  @extend .skeleton
+  padding 1em
+  border-radius $border-radius-lg
+  border 1px solid rgba($arch-blue, 0.15)
+
+  .skeleton-image
+    margin-bottom 0.75em
+
+  .skkeleton-heading
+    margin-bottom 0.5em
+
+  .skeleton-text
+    margin-bottom 0.25em
+
+// =============================================================================
+// CONTENT LOADING STATES
+// =============================================================================
+
+// Loading wrapper for dynamic content
+.content-loading
+  position relative
+  min-height 200px
+
+  // Overlay with spinner
+  &::after
+    content ''
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background rgba($darker, 0.7)
+    display flex
+    align-items center
+    justify-content center
+    z-index 10
+
+// Spinner for loading state
+.loading-spinner
+  width 40px
+  height 40px
+  border 3px solid rgba($arch-blue, 0.2)
+  border-top-color $arch-blue
+  border-radius 50%
+  animation spin 0.8s linear infinite
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// =============================================================================
+// BLUR-UP IMAGE LOADING
+// =============================================================================
+
+// Blur-up effect for lazy loaded images
+.img-loading
+  filter blur(10px)
+  transform scale(1.05)
+  transition filter 0.3s ease, transform 0.3s ease
+
+  &.loaded
+    filter blur(0)
+    transform scale(1)
+
+// Placeholder for images
+.img-placeholder
+  background-color rgba($dark, 0.3)
+  // Note: Use actual aspect-ratio values or aspect-ratio: attr(width) / attr(height) with proper fallback
+  aspect-ratio 16 / 9
+  min-height 100px
+
+// =============================================================================
+// LAZY LOAD IMAGE PLACEHOLDER
+// =============================================================================
+// Enhanced lazy loading with aspect ratio placeholders, blur-up animation, and error fallbacks
+// Browser support: 97%+ for all features
+
+// Aspect ratio placeholder for lazy loaded images
+// Maintains space before image loads to prevent layout shift
+.img-lazy-placeholder
+  position relative
+  display block
+  background-color rgba($dark, 0.25)
+  overflow hidden
+
+  // Default aspect ratio (16:9)
+  aspect-ratio 16 / 9
+
+  // Skeleton shimmer animation
+  &::before
+    content ''
+    position absolute
+    inset 0
+    background linear-gradient(90deg,
+    transparent 0%,
+    rgba($light, 0.05) 50%,
+    transparent 100%)
+    animation shimmer 1.5s ease-in-out infinite
+
+  // Different aspect ratios for common image sizes
+  &.placeholder-square
+    aspect-ratio 1 / 1
+
+  &.placeholder-4-3
+    aspect-ratio 4 / 3
+
+  &.placeholder-3-2
+    aspect-ratio 3 / 2
+
+  &.placeholder-3-1
+    aspect-ratio 3 / 1
+
+  &.placeholder-2-3
+    aspect-ratio 2 / 3
+
+  &.placeholder-3-4
+    aspect-ratio 3 / 4
+
+  // Portrait/avatar ratio
+  &.placeholder-avatar
+    aspect-ratio 1 / 1
+    border-radius 50%
+
+  // Custom aspect ratio via data attribute
+  &[data-aspect-ratio]
+    aspect-ratio attr(data-aspect-ratio)
+
+// Shimmer animation for placeholder
+@keyframes shimmer
+  0%
+    transform translateX(-100%)
+  100%
+    transform translateX(100%)
+
+// =============================================================================
+// BLUR-UP IMAGE LOADING - Enhanced
+// =============================================================================
+
+// Blur-up effect for lazy loaded images
+.img-loading
+  filter blur(10px)
+  transform scale(1.05)
+  transition filter 0.3s ease, transform 0.3s ease
+  will-change filter, transform
+
+  &.loaded
+    filter blur(0)
+    transform scale(1)
+
+// Progressive blur-up with low-quality image placeholder
+// The .loaded class is added when the high-quality image loads
+.img-blur-up
+  // Start with very blurred version (or use a tiny placeholder)
+  filter blur(20px)
+  transform scale(1.1)
+  transition filter 0.5s ease-out, transform 0.5s ease-out
+  will-change filter, transform
+
+  // Loaded state - clear image
+  &.loaded
+    filter blur(0)
+    transform scale(1)
+
+// Reduce blur for data saver mode
+@media (prefers-reduced-data reduce)
+  .img-loading
+  .img-blur-up
+    filter blur(5px)
+    transform scale(1.02)
+    transition none
+
+    &.loaded
+      filter none
+      transform none
+
+// Placeholder for images
+.img-placeholder
+  background-color rgba($dark, 0.3)
+  aspect-ratio 16 / 9
+  min-height 100px
+  position relative
+  overflow hidden
+
+  // Placeholder icon
+  &::before
+    content '\f03e' // Font Awesome image icon fallback
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    font-size 2rem
+    opacity  0.3
+    color $light
+
+// =============================================================================
+// ERROR FALLBACK STYLING
+// =============================================================================
+
+// Image load error state
+.img-error
+  position relative
+  background-color rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.2)
+  aspect-ratio 16 / 9
+  min-height 120px
+  display flex
+  align-items center
+  justify-content center
+
+  // Error icon
+  &::before
+    content ''
+    width 48px
+    height 48px
+    background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E")
+    background-size contain
+    background-repeat no-repeat
+    opacity 0.6
+
+  // Error message (hidden by default, shown on hover or via aria)
+  .error-message
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    padding 0.5em
+    background rgba($darker, 0.9)
+    color $light
+    font-size 0.85em
+    text-align center
+    opacity 0
+    transition opacity 0.2s
+
+  &:hover .error-message
+    opacity 1
+
+// Broken image fallback with retry option
+.img-broken
+  background-color rgba($orange, 0.1)
+  border 1px dashed rgba($orange, 0.3)
+
+  &::before
+    content '\21BB' // Retry arrow symbol
+    font-size 1.5rem
+    color $orange
+    opacity 0.5
+
+// Retry button for failed images
+.img-retry-btn
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.4em 0.8em
+  background rgba($arch-blue, 0.2)
+  color $secondary-blue
+  border-radius $border-radius-sm
+  font-size 0.85em
+  cursor pointer
+  transition all 0.2s
+  margin-top 0.5em
+
+  &:hover
+    background rgba($arch-blue, 0.3)
+    color $white
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// =============================================================================
+// LAZY LOAD FADE-IN
+// =============================================================================
+
+// Fade-in for lazy loaded content
+.lazy-load-fade
+  opacity 0
+  transform translateY(10px)
+  transition opacity 0.4s ease, transform 0.4s ease
+
+  &.loaded
+    opacity 1
+    transform translateY(0)
+
+// Intersection observer loading trigger
+.lazy-load-trigger
+  min-height 1px
+
+// =============================================================================
+// RESOURCE HINT INDICATORS
+// =============================================================================
+
+// Prefetch status badge styling
+.resource-hint
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.15em 0.5em
+  font-size 0.75em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.1)
+  color $light
+  font-family monospace
+
+  // Prefetch indicator
+  &.prefetch
+    background rgba($green, 0.1)
+    color $green
+
+  // Preload indicator
+  &.preload
+    background rgba($secondary-blue, 0.1)
+    color $secondary-blue
+
+  // DNS-prefetch indicator
+  &.dns-prefetch
+    background rgba($muted, 0.15)
+    color $muted
+
+  // Preconnect indicator
+  &.preconnect
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  // Module/preload indicator
+  &.module
+    background rgba($orange, 0.15)
+    color $orange
+
+  // Hint icon
+  .hint-icon
+    width 12px
+    height 12px
+    opacity 0.8
+
+// Resource hint container (for multiple hints)
+.resource-hints
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin 0.5em 0
+
+// =============================================================================
+// ERROR STATE STYLING
+// =============================================================================
+
+// Loading error state
+.loading-error
+  padding 1.5em
+  text-align center
+  background rgba($secondary-red, 0.1)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  color $light
+
+  .error-icon
+    font-size 2em
+    margin-bottom 0.5em
+    color $secondary-red
+
+  .error-message
+    margin-bottom 0.75em
+
+  .retry-button
+    display inline-block
+    padding 0.5em 1.5em
+    background $arch-blue
+    color $lighter
+    border-radius $border-radius-md
+    cursor pointer
+    transition background 0.2s
+
+    &:hover
+      background $secondary-blue
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+// =============================================================================
+// REDUCED MOTION - SIMPLE TRANSITIONS
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .skeleton
+    animation none
+    background rgba($dark, 0.3)
+
+  .loading-spinner
+    animation none
+    border-top-color $arch-blue
+
+  .img-loading
+    transition none
+    filter none
+    transform none
+
+    &.loaded
+      filter none
+      transform none
+
+  .lazy-load-fade
+    transition none
+    opacity 1
+    transform none
+
+// =============================================================================
+// PREFER REDUCED DATA - Data Saver Mode
+// =============================================================================
+
+// Detect data saver mode and reduce resource usage
+// Browser support: 87%+ (Chrome 113+, Firefox 121+, Safari 17.4+)
+// Reduces image quality, animations, and optional content for data-conscious users
+
+@media (prefers-reduced-data reduce)
+  // Disable skeleton loading animations
+  .skeleton
+    animation none
+    background rgba($dark, 0.2)
+
+  // Simplify blur-up loading - no blur transition needed
+  .img-loading
+    filter none
+    transform none
+    transition none
+
+    &.loaded
+      filter none
+      transform none
+
+  // Reduce lazy load fade animations
+  .lazy-load-fade
+    opacity 1
+    transform none
+    transition none
+
+  // Disable or simplify progress bar animations
+  .page-load-progress .progress-fill
+    animation none
+    background $arch-blue
+    width 100%
+
+  // No blur on placeholders
+  .img-placeholder
+    filter none
+    background-color rgba($dark, 0.15)
+
+  // Reduce or disable decorative background images
+  body
+    background-image none !important
+
+  // Simplify shadows for less rendering
+  .skeleton-card
+    box-shadow none
+    border 1px solid rgba($arch-blue, 0.1)
+
+  // Disable decorative pseudo-elements that add visual flair but not content
+  .decorative-gradient::before
+  .decorative-gradient::after
+  .glow-effect::before
+  .pulse-indicator::after
+    display none
+
+  // Reduce motion in animations
+  *:not(.no-reduce)
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+
+  // Simplify loading spinner
+  .loading-spinner
+    animation none
+    border-top-color $arch-blue
+
+  // Show lightweight alternatives to heavy components
+  .heavy-graphic
+    display none
+
+  // Prefer simpler color schemes
+  .complex-gradient
+    background simple
+
+// =============================================================================
+// HIGH CONTRAST MODE
+// =============================================================================
+
+@media (forced-colors active)
+  .skeleton
+    border 1px solid CanvasText
+
+  .loading-spinner
+    border-top-color Highlight
+
+  .loading-error
+    border-color HighlightText

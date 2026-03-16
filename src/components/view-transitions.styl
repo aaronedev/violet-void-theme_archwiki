@@ -1,0 +1,224 @@
+// View Transitions API for smooth navigation
+// Browser support: ~70% (Chrome 111+, Edge 111+)
+// https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
+
+@css {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+  }
+
+  ::view-transition-old(page-content) {
+    animation: fade-out 0.2s ease-out;
+  }
+
+  ::view-transition-new(page-content) {
+    animation: fade-in 0.3s ease-in;
+  }
+
+  @keyframes fade-out {
+    to { opacity: 0; transform: translateY(-10px); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+  }
+}
+
+// =============================================================================
+// VIEW-TRANSITION-CLASS - Class-based View Transition Styling (85%+ browser support)
+// =============================================================================
+// view-transition-class allows grouping elements for coordinated transitions
+// Apply view-transition-class to elements, then style via ::view-transition-group()
+// https://developer.mozilla.org/en-US/docs/Web/CSS/view-transition-class
+
+@css {
+  /* Hero image transitions - dramatic zoom effect */
+  ::view-transition-group(hero) {
+    z-index: 100;
+  }
+
+  ::view-transition-old(hero) {
+    animation: hero-shrink 0.4s ease-in-out;
+  }
+
+  ::view-transition-new(hero) {
+    animation: hero-expand 0.4s ease-in-out;
+  }
+
+  @keyframes hero-shrink {
+    to {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes hero-expand {
+    from {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+  }
+
+  /* Article title transitions - slide up with fade */
+  ::view-transition-group(title) {
+    z-index: 50;
+  }
+
+  ::view-transition-old(title) {
+    animation: title-slide-up 0.3s ease-out;
+  }
+
+  ::view-transition-new(title) {
+    animation: title-fade-in 0.3s ease-in;
+  }
+
+  @keyframes title-slide-up {
+    to {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes title-fade-in {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+  }
+
+  /* Content area transitions - cross-fade */
+  ::view-transition-group(content) {
+    z-index: 10;
+  }
+
+  ::view-transition-old(content) {
+    animation: content-fade-out 0.25s ease;
+  }
+
+  ::view-transition-new(content) {
+    animation: content-fade-in 0.25s ease;
+  }
+
+  @keyframes content-fade-out {
+    to { opacity: 0; }
+  }
+
+  @keyframes content-fade-in {
+    from { opacity: 0; }
+  }
+
+  /* Sidebar transitions - slide from side */
+  ::view-transition-group(sidebar) {
+    z-index: 20;
+  }
+
+  ::view-transition-old(sidebar) {
+    animation: sidebar-slide-out 0.3s ease-in-out;
+  }
+
+  ::view-transition-new(sidebar) {
+    animation: sidebar-slide-in 0.3s ease-in-out;
+  }
+
+  @keyframes sidebar-slide-out {
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes sidebar-slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Table of contents transitions */
+  ::view-transition-group(toc) {
+    z-index: 15;
+  }
+
+  ::view-transition-old(toc) {
+    animation: toc-fade-out 0.2s ease;
+  }
+
+  ::view-transition-new(toc) {
+    animation: toc-fade-in 0.2s ease;
+  }
+
+  @keyframes toc-fade-out {
+    to { opacity: 0; transform: translateX(10px); }
+  }
+
+  @keyframes toc-fade-in {
+    from { opacity: 0; transform: translateX(-10px); }
+  }
+
+  /* Infobox transitions - scale up on appear */
+  ::view-transition-group(infobox) {
+    z-index: 25;
+  }
+
+  ::view-transition-old(infobox) {
+    animation: infobox-shrink 0.35s ease;
+  }
+
+  ::view-transition-new(infobox) {
+    animation: infobox-grow 0.35s ease;
+  }
+
+  @keyframes infobox-shrink {
+    to {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes infobox-grow {
+    from {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+  }
+
+  /* No transition class - disable transition for specific elements */
+  ::view-transition-group(none) {
+    display: none;
+  }
+
+  /* Shared image-pair styling */
+  ::view-transition-image-pair(hero),
+  ::view-transition-image-pair(title),
+  ::view-transition-image-pair(infobox) {
+    isolation: isolate;
+  }
+}
+
+// Utility classes for applying view-transition-class in HTML
+.view-transition-hero
+  view-transition-class hero
+
+.view-transition-title
+  view-transition-class title
+
+.view-transition-content
+  view-transition-class content
+
+.view-transition-sidebar
+  view-transition-class sidebar
+
+.view-transition-toc
+  view-transition-class toc
+
+.view-transition-infobox
+  view-transition-class infobox
+
+// Disable transitions for specific elements
+.view-transition-none
+  view-transition-class none

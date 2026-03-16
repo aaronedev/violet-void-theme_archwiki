@@ -1,0 +1,773 @@
+// Template Documentation Subpage Styling for Violet Void ArchWiki Theme
+// Styles for template documentation boxes, usage examples, and parameter tables
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+
+// =============================================================================
+// TEMPLATE DOCUMENTATION BOX
+// =============================================================================
+// MediaWiki templates often have /doc subpages that display documentation
+// These are transcluded via {{Documentation}} template
+
+// Main documentation container
+.template-documentation
+.mw-template-documentation
+.mw-parser-output .template-documentation
+  // Container styling with subtle distinction from article content
+  margin 1em 0
+  padding 1em 1.5em
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($base, 0.9))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  box-shadow $shadow-subtle
+  clear both
+
+  // Header section
+  .template-documentation-header
+  .mw-template-doc-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 1em
+    padding-bottom 0.75em
+    border-bottom 1px solid $border-subtle
+
+    // Title
+    .template-documentation-title
+    .mw-template-doc-title
+      display flex
+      align-items center
+      gap 0.5em
+      font-size 1.1em
+      font-weight 600
+      color $lighter
+      margin 0
+
+      &::before
+        content "📄"
+        font-size 1em
+
+    // Edit/view links
+    .template-documentation-links
+    .mw-template-doc-links
+      display flex
+      gap 0.5em
+      font-size 0.85em
+
+      a
+        color $secondary-blue
+        text-decoration none
+        padding 0.2em 0.5em
+        border-radius $border-radius-sm
+        transition all $transition-fast
+
+        &:hover
+          color $orange
+          background-color rgba($arch-blue, 0.1)
+
+        &:focus-visible
+          outline 2px solid $arch-blue
+          outline-offset 2px
+
+// Documentation content area
+.template-documentation-content
+.mw-template-doc-content
+  color $light
+  line-height 1.7
+  font-size 0.95em
+
+  // Paragraphs
+  p
+    margin 0.75em 0
+
+  // Headings within documentation
+  h2
+  h3
+  h4
+    color $lighter
+    margin 1.25em 0 0.5em 0
+    font-weight 600
+
+  h2
+    font-size 1.15em
+    padding-bottom 0.3em
+    border-bottom 1px solid $border-subtle
+
+  h3
+    font-size 1.05em
+
+  h4
+    font-size 1em
+    color $secondary-blue
+
+  // Lists
+  ul
+  ol
+    margin 0.5em 0
+    padding-left 1.5em
+
+    li
+      margin 0.3em 0
+      color $light
+
+  // Links
+  a
+    color $secondary-blue
+    text-decoration none
+
+    &:hover
+      color $orange
+
+// Documentation start/end markers (MediaWiki adds these)
+.template-documentation-start
+.template-documentation-end
+  display none
+
+// =============================================================================
+// USAGE EXAMPLE FORMATTING
+// =============================================================================
+// Examples showing how to use the template
+
+// Usage example container
+.template-example
+.mw-template-example
+.templatedoc-example
+  margin 1em 0
+  padding 1em
+  background-color rgba($darker, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// Example heading
+.template-example-title
+.mw-template-example-title
+  font-weight 600
+  color $secondary-blue
+  margin-bottom 0.75em
+  display flex
+  align-items center
+  gap 0.4em
+
+  &::before
+    content "📝"
+    font-size 0.9em
+
+// Code example (the template invocation)
+.template-example-code
+.mw-template-example-code
+.templatedoc-code
+  font-family $font-mono
+  font-size 0.9em
+  padding 0.75em 1em
+  background-color rgba($term-black, 0.3)
+  border 1px solid rgba($border-subtle, 0.5)
+  border-radius $border-radius-sm
+  color $term-green
+  overflow-x auto
+  white-space pre-wrap
+  word-break break-word
+  line-height 1.5
+
+  // Highlight template name
+  .template-name
+    color $term-cyan
+    font-weight 600
+
+  // Highlight parameters
+  .template-param
+    color $term-yellow
+
+  // Highlight values
+  .template-value
+    color $term-green
+
+// Example output/result
+.template-example-output
+.mw-template-example-output
+.templatedoc-output
+  margin-top 0.75em
+  padding 0.75em 1em
+  background-color rgba($arch-blue, 0.05)
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-sm
+
+  // Output label
+  &::before
+    content "Output: "
+    font-weight 600
+    color $muted
+    font-size 0.85em
+
+// Example with description
+.template-example-description
+.mw-template-example-desc
+  font-size 0.9em
+  color $muted
+  margin-bottom 0.5em
+  font-style italic
+
+// =============================================================================
+// PARAMETER TABLE STYLING
+// =============================================================================
+// Tables documenting template parameters
+
+// Parameter table container
+.template-parameters
+.mw-template-parameters
+.templatedoc-params
+  margin 1em 0
+  overflow-x auto
+
+// Parameter table
+.template-parameters-table
+.mw-template-parameters-table
+.wikitable.template-params
+  width 100%
+  border-collapse collapse
+  font-size 0.9em
+  background-color rgba($darker, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  overflow hidden
+
+  // Header row
+  thead
+  tr:first-child
+    th
+      background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.08))
+      color $lighter
+      font-weight 600
+      text-align left
+      padding 0.6em 0.8em
+      border-bottom 1px solid rgba($arch-blue, 0.2)
+
+  // Table body
+  tbody
+    tr
+      border-bottom 1px solid $border-subtle
+
+      &:last-child
+        border-bottom none
+
+      &:hover
+        background-color rgba($arch-blue, 0.05)
+
+    td
+      padding 0.5em 0.8em
+      color $light
+      vertical-align top
+
+// Parameter name column
+.param-name
+.template-param-name
+  font-family $font-mono
+  font-weight 600
+  color $term-cyan
+  white-space nowrap
+
+  // Required parameter indicator
+  &.required
+  &.param-required
+    &::after
+      content " *"
+      color $secondary-red
+      font-size 0.85em
+
+  // Optional parameter indicator
+  &.optional
+  &.param-optional
+    color $term-yellow
+
+  // Deprecated parameter indicator
+  &.deprecated
+  &.param-deprecated
+    color $muted
+    text-decoration line-through
+
+// Parameter description column
+.param-description
+.template-param-desc
+  line-height 1.5
+
+  // Inline code in description
+  code
+    font-family $font-mono
+    font-size 0.9em
+    padding 0.1em 0.3em
+    background-color rgba($term-black, 0.2)
+    border-radius $border-radius-sm
+    color $term-green
+
+// Parameter default value column
+.param-default
+.template-param-default
+  font-family $font-mono
+  font-size 0.9em
+  color $term-yellow
+
+  // No default indicator
+  &.no-default
+    color $muted
+    font-style italic
+
+// Parameter status column
+.param-status
+.template-param-status
+  font-size 0.85em
+  font-weight 500
+
+  // Required status
+  &.status-required
+    color $secondary-red
+
+  // Optional status
+  &.status-optional
+    color $term-cyan
+
+  // Deprecated status
+  &.status-deprecated
+    color $muted
+
+  // Suggested status
+  &.status-suggested
+    color $term-yellow
+
+// Parameter type column
+.param-type
+.template-param-type
+  font-family $font-mono
+  font-size 0.85em
+  color $term-magenta
+
+// Parameter table badges
+.param-badge
+  display inline-block
+  padding 0.15em 0.4em
+  font-size 0.75em
+  font-weight 600
+  border-radius $border-radius-sm
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &.badge-required
+    background-color rgba($secondary-red, 0.15)
+    color $secondary-red
+
+  &.badge-optional
+    background-color rgba($term-cyan, 0.15)
+    color $term-cyan
+
+  &.badge-deprecated
+    background-color rgba($muted, 0.15)
+    color $muted
+
+  &.badge-suggested
+    background-color rgba($term-yellow, 0.15)
+    color $term-yellow
+
+// =============================================================================
+// DOCUMENTATION SIDEBAR/INFO BOX
+// =============================================================================
+// Quick reference sidebar for template documentation
+
+.template-doc-sidebar
+.mw-template-doc-sidebar
+  float right
+  width 280px
+  margin 0 0 1em 1.5em
+  padding 1em
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($base, 0.9))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  font-size 0.9em
+
+  // Clear float on small screens
+  @media screen and (max-width 768px)
+    float none
+    width 100%
+    margin 1em 0
+
+// Sidebar title
+.template-doc-sidebar-title
+  font-weight 600
+  color $lighter
+  margin-bottom 0.75em
+  padding-bottom 0.5em
+  border-bottom 1px solid $border-subtle
+  display flex
+  align-items center
+  gap 0.4em
+
+  &::before
+    content "ℹ️"
+    font-size 0.9em
+
+// Sidebar info items
+.template-doc-info-item
+  display flex
+  justify-content space-between
+  padding 0.4em 0
+  border-bottom 1px solid rgba($border-subtle, 0.5)
+
+  &:last-child
+    border-bottom none
+
+// Sidebar label
+.template-doc-info-label
+  color $muted
+  font-size 0.9em
+
+// Sidebar value
+.template-doc-info-value
+  color $light
+  font-weight 500
+  text-align right
+
+  a
+    color $secondary-blue
+
+    &:hover
+      color $orange
+
+// =============================================================================
+// SEE ALSO SECTION
+// =============================================================================
+
+.template-see-also
+.mw-template-see-also
+  margin 1.5em 0
+  padding 1em
+  background linear-gradient(135deg, rgba($arch-blue, 0.05), rgba($secondary-blue, 0.02))
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-md
+
+  h2
+  h3
+    color $lighter
+    font-size 1em
+    margin 0 0 0.75em 0
+    display flex
+    align-items center
+    gap 0.4em
+
+    &::before
+      content "🔗"
+      font-size 0.9em
+
+  ul
+    margin 0
+    padding-left 1.5em
+    list-style disc
+
+    li
+      margin 0.3em 0
+
+      a
+        color $secondary-blue
+
+        &:hover
+          color $orange
+
+// =============================================================================
+// TEMPLATE CATEGORIES
+// =============================================================================
+
+.template-categories
+.mw-template-categories
+  margin 1em 0
+  padding 0.75em 1em
+  background-color rgba($darker, 0.5)
+  border-radius $border-radius-sm
+  font-size 0.9em
+
+  // Category label
+  &::before
+    content "Categories: "
+    color $muted
+    font-weight 500
+
+  // Category links
+  a
+    color $secondary-blue
+    text-decoration none
+    margin-right 0.5em
+
+    &:hover
+      color $orange
+
+    // Separator
+    &::after
+      content " |"
+      color $muted
+      margin-left 0.25em
+
+    &:last-child::after
+      content none
+
+// =============================================================================
+// COPY TEMPLATE CODE BUTTON
+// =============================================================================
+
+.template-copy-button
+.mw-template-copy
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.3em 0.6em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.1))
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $lighter
+  font-size 0.8em
+  cursor pointer
+  transition all $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($secondary-blue, 0.08))
+    border-color rgba($arch-blue, 0.3)
+    color $lighter
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  // Copy icon
+  &::before
+    content "📋"
+    font-size 0.9em
+
+  // Success state
+  &.copied
+    background-color rgba($term-green, 0.15)
+    border-color rgba($term-green, 0.3)
+    color $term-green
+
+    &::before
+      content "✓"
+
+// =============================================================================
+// TEMPLATE DATA BOX
+// =============================================================================
+// TemplateData JSON-LD styling
+
+.template-data
+.mw-templatedata
+  margin 1em 0
+  padding 1em
+  background-color rgba($darker, 0.6)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  // TemplateData header
+  .mw-templatedata-header
+    font-weight 600
+    color $lighter
+    margin-bottom 0.75em
+    display flex
+    align-items center
+    gap 0.4em
+
+    &::before
+      content "📊"
+      font-size 0.9em
+
+  // TemplateData description
+  .mw-templatedata-description
+    color $light
+    font-size 0.95em
+    margin-bottom 1em
+    line-height 1.5
+
+// =============================================================================
+// DEPRECATED TEMPLATE NOTICE
+// =============================================================================
+
+.template-deprecated
+.mw-template-deprecated
+  margin 1em 0
+  padding 0.75em 1em
+  background linear-gradient(135deg, rgba($secondary-red, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($secondary-red, 0.3)
+  border-radius $border-radius-md
+  display flex
+  align-items flex-start
+  gap 0.75em
+
+  // Warning icon
+  &::before
+    content "⚠️"
+    font-size 1.2em
+    flex-shrink 0
+
+  // Notice content
+  .deprecated-content
+    flex 1
+
+  .deprecated-title
+    font-weight 600
+    color $secondary-red
+    margin-bottom 0.25em
+
+  .deprecated-message
+    color $light
+    font-size 0.9em
+
+  // Replacement link
+  .deprecated-replacement
+    margin-top 0.5em
+    font-size 0.9em
+
+    &::before
+      content "Use instead: "
+      color $muted
+
+    a
+      color $term-green
+
+      &:hover
+        color $term-bright-green
+
+// =============================================================================
+// INTERLANGUAGE LINKS IN DOC
+// =============================================================================
+
+.template-doc-languages
+.mw-template-doc-langs
+  margin 1em 0
+  padding 0.5em 0.75em
+  background-color rgba($darker, 0.5)
+  border-radius $border-radius-sm
+  font-size 0.85em
+
+  &::before
+    content "Languages: "
+    color $muted
+    font-weight 500
+
+  a
+    color $secondary-blue
+    text-decoration none
+    margin-right 0.5em
+
+    &:hover
+      color $orange
+
+    // Current language
+    &.current
+      font-weight 600
+      color $lighter
+      pointer-events none
+
+// =============================================================================
+// RESPONSIVE STYLES
+// =============================================================================
+
+@media screen and (max-width 768px)
+  // Documentation box
+  .template-documentation
+  .mw-template-documentation
+    padding 0.75em 1em
+    margin 0.75em 0
+
+    .template-documentation-header
+    .mw-template-doc-header
+      flex-direction column
+      align-items flex-start
+      gap 0.5em
+
+  // Parameter tables scroll on mobile
+  .template-parameters
+  .mw-template-parameters
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+
+    table
+      min-width 500px
+
+  // Sidebar becomes full width
+  .template-doc-sidebar
+  .mw-template-doc-sidebar
+    float none
+    width 100%
+    margin 1em 0
+
+// =============================================================================
+// ACCESSIBILITY
+// =============================================================================
+
+// High contrast mode
+@media (forced-colors active)
+  .template-documentation
+  .mw-template-documentation
+    border 2px solid CanvasText
+
+    .template-example-code
+    .mw-template-example-code
+      forced-color-adjust none
+      background-color Canvas
+      color CanvasText
+      border 1px solid CanvasText
+
+  .param-badge
+    forced-color-adjust none
+    border 1px solid currentColor
+
+// Reduced motion
+@media (prefers-reduced-motion reduce)
+  .template-documentation
+  .mw-template-documentation
+    *
+      transition none
+
+// =============================================================================
+// PRINT STYLES
+// =============================================================================
+
+@media print
+  .template-documentation
+  .mw-template-documentation
+    border 1px solid $print-border
+    background $print-white
+    box-shadow none
+    page-break-inside avoid
+
+    .template-documentation-header
+    .mw-template-doc-header
+      border-bottom 1px solid $print-border
+
+    .template-documentation-title
+    .mw-template-doc-title
+      color $print-black
+
+    .template-documentation-content
+    .mw-template-doc-content
+      color $print-black
+
+  // Parameter table for print
+  .template-parameters-table
+  .mw-template-parameters-table
+    border 1px solid $print-border
+    background $print-white
+
+    th
+      background-color $print-bg
+      color $print-black
+
+    td
+      color $print-black
+
+  // Hide interactive elements in print
+  .template-copy-button
+  .mw-template-copy
+    display none
+
+  // Show URLs for links
+  .template-documentation-content
+  .mw-template-doc-content
+    a[href]::after
+      content " (" attr(href) ")"
+      font-size 0.8em
+      color $print-text

@@ -1,0 +1,190 @@
+// Print Styles - Page Break Control
+// Control page/column breaks for better print layout
+// Browser support: 97%+
+
+// ============================================================================
+// Page Break Control
+// ============================================================================
+
+// Prevent breaks inside elements (infoboxes, code blocks, tables, figures)
+.mw-parser-output
+.infobox
+.wikitable
+.code
+.pre
+figure
+table
+tr
+td
+th
+ul
+ol
+li
+p
+h1
+h2
+h3
+h4
+h5
+h6
+  break-inside avoid
+  -webkit-column-break-inside avoid
+  page-break-inside avoid
+
+// Allow breaks after sections
+h1
+h2
+h3
+h4
+h5
+h6
+  break-after avoid
+  -webkit-column-break-after avoid
+  page-break-after avoid
+
+// Force page break before major sections
+h1
+h2
+h3.section-empty
+  break-before auto
+  page-break-before auto
+
+// Allow breaks before paragraphs in long content
+p
+  break-after auto
+  -webkit-column-break-after auto
+  page-break-after auto
+
+// ============================================================================
+// Column Break Control (for multi-column layouts)
+// ============================================================================
+
+// Avoid breaks inside multi-column content
+.mw-columns
+.toc
+#toc
+.navbox
+.category-column
+  break-inside avoid-column
+  -webkit-column-break-inside avoid
+
+// ============================================================================
+// Widows and Orphans
+// ============================================================================
+
+p
+li
+td
+th
+  widows 3
+  orphans 3
+
+// ============================================================================
+// Print-Specific Element Handling
+// ============================================================================
+
+// Ensure images don't break across pages
+img
+figure
+.figure
+  break-inside avoid
+  page-break-inside avoid
+  max-width 100%
+  height auto
+
+// Tables should stay together
+table
+  break-inside avoid
+  page-break-inside avoid
+
+// Code blocks
+code
+pre
+.mw-highlight
+  break-inside avoid
+  page-break-inside avoid
+  white-space pre-wrap
+  word-wrap break-word
+
+// References
+.references
+.reference
+.reflist
+  break-inside avoid
+  page-break-inside avoid
+
+// ============================================================================
+// MediaWiki-Specific Print Breaks
+// ============================================================================
+
+// Infobox breaks
+.infobox
+  break-inside avoid
+  page-break-inside avoid
+  page-break-after auto
+
+// Navbox at bottom
+.navbox
+  break-before auto
+  break-after avoid
+  page-break-before avoid
+  page-break-after avoid
+
+// Print-specific gallery
+@media print
+  .gallery
+  .print-gallery
+    break-inside avoid
+    page-break-inside avoid
+
+// ============================================================================
+// Print Region Breaks
+// ============================================================================
+
+// Ensure headings don't appear alone at bottom of page
+h1
+h2
+h3
+h4
+h5
+h6
+  orphans 3
+  widows 3
+  break-after avoid
+  page-break-after avoid
+
+// Ensure headings have content following
+h1:not(:has(+ *))
+h2:not(:has(+ *))
+h3:not(:has(+ *))
+  break-after avoid-page
+
+// ============================================================================
+// Graceful Degradation
+// ============================================================================
+
+// For older browsers that don't support break-* properties
+@media print
+  // Fallback to older properties
+  .infobox
+  .wikitable
+  .code
+  .pre
+    page-break-inside avoid
+
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+    page-break-after avoid
+    page-break-before avoid
+
+  // Ensure tables don't break
+  table
+    page-break-inside avoid
+
+  // Ensure figures stay together
+  figure
+    page-break-inside avoid

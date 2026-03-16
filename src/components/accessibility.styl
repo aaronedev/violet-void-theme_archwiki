@@ -1,0 +1,560 @@
+// Accessibility enhancements for Violet Void ArchWiki
+// Skip links, focus indicators, reduced motion, etc.
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// SKIP LINK STYLING
+// =============================================================================
+
+// Visible on focus, hidden otherwise
+// Browser support: 100%
+
+.skip-link
+.mw-jump-link
+  position absolute
+  top -100px
+  left 0
+  z-index 9999
+  padding 0.5em 1em
+  background-color $arch-blue
+  color $darker
+  font-weight 600
+  text-decoration none
+  border-radius 0 0 $border-radius-md 0
+  transition top 0.2s ease
+
+  &:focus
+    top 0
+
+// =============================================================================
+// FOCUS ORDER INDICATORS
+// =============================================================================
+
+// Sequential focus indicators with clear outline
+// Browser support: 97%+
+
+// Global focus-visible style
+:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius $border-radius-sm
+
+// Remove default focus for mouse users
+:focus:not(:focus-visible)
+  outline none
+
+// Interactive elements focus
+a:focus-visible
+button:focus-visible
+input:focus-visible
+select:focus-visible
+textarea:focus-visible
+[tabindex]:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.2)
+
+// =============================================================================
+// FOCUS VISIBLE ENHANCEMENT
+// =============================================================================
+
+// Enhanced focus-visible styling with custom focus rings
+// Browser support: 97%+
+
+// Custom focus ring - animated ring effect
+.focus-ring
+  &:focus-visible
+    outline none
+    box-shadow 0 0 0 3px $bg, 0 0 0 5px $arch-blue
+    border-radius $border-radius-md
+    transition box-shadow 0.2s ease
+
+// Focus ring with inset effect
+.focus-ring-inset
+  &:focus-visible
+    outline none
+    box-shadow inset 0 0 0 2px $arch-blue
+    border-radius $border-radius-sm
+
+// Focus visible offset variations
+.focus-offset-sm
+  &:focus-visible
+    outline-offset 1px
+
+.focus-offset-lg
+  &:focus-visible
+    outline-offset 4px
+
+.focus-offset-none
+  &:focus-visible
+    outline-offset 0
+
+// Keyboard navigation indicator
+// Shows keyboard focus is active
+.keyboard-navigation
+  &:focus-visible::after
+    content ''
+    position absolute
+    inset -2px
+    border 2px dashed $arch-blue
+    border-radius calc($border-radius-sm + 2px)
+    pointer-events none
+    opacity 0.5
+
+// Strong focus indicator for critical elements
+// Used for form submits, danger buttons, etc.
+.strong-focus
+  &:focus-visible
+    outline 3px solid $arch-blue
+    outline-offset 2px
+    box-shadow 0 0 0 6px rgba($arch-blue, 0.3)
+    z-index 1
+
+// Focus within - when child element has focus
+.focus-within-indicator
+  &:focus-within
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    border-radius $border-radius-md
+
+// Focus visible for specific element types
+// Links - subtle but visible
+.mw-parser-output
+  a:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+    background-color rgba($arch-blue, 0.1)
+
+// Buttons - more prominent focus
+.mw-ui-button:focus-visible
+.mw-ui-button-secondary:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.25)
+
+button:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.25)
+
+// Form inputs - clear focus state
+input:focus-visible
+select:focus-visible
+textarea:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Checkbox/Radio - custom focus
+input[type="checkbox"]:focus-visible + label::before
+input[type="radio"]:focus-visible + label::before
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Edit form inputs - focus state
+#wpName:focus-visible
+#wpPassword:focus-visible
+#wpEmail:focus-visible
+#wpRealName:focus-visible
+#searchInput:focus-visible
+.mw-ui-input:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+// Wiki editor focus
+#wpTextbox1:focus-visible
+textarea.mw-editfont-monospace:focus-visible
+textarea.mw-editfont-sans-serif:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+
+// Navigation focus states
+.mw-portlet
+  .vector-sticky-pinnable-header:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+  .mw-ui-icon-button:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Tab focus states
+.vector-sticky-pills-container .mw-ui-icon-button:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 4px rgba($arch-blue, 0.25)
+
+// Table sorting headers focus
+th.sortable:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset -2px
+  background-color rgba($arch-blue, 0.1)
+
+// Thumbnail focus
+.thumb:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius $border-radius-md
+
+// Modal/Dialog focus trap indicator
+.ui-dialog:focus-visible
+.cdx-dialog:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  box-shadow 0 0 0 6px rgba($arch-blue, 0.3)
+
+// Menu items focus
+.mw-menu-checkbox-label:focus-visible
+.oo-ui-inputWidget:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+
+// Tooltip focus
+.tooltip:focus-visible
+[role="tooltip"]:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// Dropdown focus
+select:focus-visible
+.mw-select-focus:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 1px
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+
+// Collapsible sections focus
+details > summary:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+  border-radius $border-radius-sm
+  list-style square
+
+// High contrast mode support
+@media (prefers-contrast more)
+  :focus-visible
+    outline 3px solid currentColor
+    outline-offset 3px
+
+  a
+  button:focus-visible
+    outline-width 3px
+
+// Forced colors mode support
+@media (forced-colors active)
+  :focus-visible
+    outline ButtonText solid 3px
+    outline-offset 2px
+
+  a
+  button:focus-visible
+    outline-width 3px
+
+// =============================================================================
+// ERROR/WARNING MESSAGE STYLING
+// =============================================================================
+
+// Clear visual distinction with icon + color coding
+// Browser support: 97%+
+
+.error-message
+.mw-error
+  padding 1em
+  background-color rgba($secondary-red, 0.15)
+  border 1px solid rgba($secondary-red, 0.3)
+  border-inline-start 4px solid $secondary-red
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "⚠ "
+    color $secondary-red
+
+.warning-message
+.mw-warning
+  padding 1em
+  background-color rgba($orange, 0.15)
+  border 1px solid rgba($orange, 0.3)
+  border-inline-start 4px solid $orange
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "⚡ "
+    color $orange
+
+.success-message
+  padding 1em
+  background-color rgba($green, 0.15)
+  border 1px solid rgba($green, 0.3)
+  border-inline-start 4px solid $green
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "✓ "
+    color $green
+
+.info-message
+  padding 1em
+  background-color rgba($arch-blue, 0.15)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-inline-start 4px solid $arch-blue
+  border-radius $border-radius-md
+  color $light
+
+  &::before
+    content "ℹ "
+    color $arch-blue
+
+// =============================================================================
+// REDUCED MOTION ALTERNATIVE ANIMATIONS
+// =============================================================================
+
+// Fade-only alternatives to slide animations
+// Browser support: 95%+
+
+@media (prefers-reduced-motion reduce)
+  *
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+    scroll-behavior auto !important
+
+  // Replace slide with fade
+  .slide-in
+  .slide-up
+  .slide-down
+    animation-name fade-in !important
+    transform none !important
+
+  // Instant transitions
+  .collapsible
+  details
+    transition none !important
+
+// =============================================================================
+// FILTER: CONTRAST() FOR READABILITY
+// =============================================================================
+
+// Increase contrast on demand
+// Browser support: 97%+
+// Pairs well with @media (prefers-contrast: more)
+
+@media (prefers-contrast more)
+  // Increase text contrast globally
+  body
+  .mw-body
+  .mw-content-ltr
+    filter contrast(1.25)
+
+  // Stronger contrast for body text
+  p
+  li
+  td
+  th
+    filter contrast(1.15)
+
+  // Links stand out more
+  a
+    filter contrast(1.3)
+
+  // Code blocks - higher contrast
+  pre
+  code
+  .mw-highlight
+    filter contrast(1.2)
+
+  // Images - increase contrast for diagrams
+  img
+    filter contrast(1.15)
+
+  // Tables - clearer cell boundaries
+  table.wikitable
+    filter contrast(1.1)
+
+  // Infobox - better readability
+  .infobox
+    filter contrast(1.1)
+
+  // Remove transparency for better contrast
+  .mw-notification
+  .toast
+  .popup
+    background-color $base
+    backdrop-filter none
+
+  // Borders more visible
+  table
+  th
+  td
+    border-color currentColor !important
+
+// High contrast mode - additional enhancements
+@media (prefers-contrast more) and (prefers-reduced-motion no-preference)
+  // Subtle highlight on focus for keyboard navigation
+  :focus-visible
+    filter contrast(1.4)
+
+// Custom contrast class for user override
+.high-contrast
+  filter contrast(1.35)
+
+  // Ensure backgrounds are solid
+  &
+  & *
+    background-color $base !important
+    backdrop-filter none !important
+
+  // Strong borders
+  a
+  button
+  input
+  select
+  textarea
+    border 2px solid currentColor !important
+
+// Low contrast mode - for users sensitive to high contrast
+@media (prefers-contrast less)
+  // Subtle reduction for text-heavy pages
+  .mw-body-content
+    filter contrast(0.92)
+
+  // Soften borders
+  table
+  pre
+    border-color rgba(currentColor, 0.7) !important
+
+// =============================================================================
+// SCREEN READER ONLY UTILITIES
+// =============================================================================
+
+// sr-only - Visually hidden but available to screen readers
+// Browser support: 100%
+// Use case: Skip links, aria-labels, supplementary info for AT
+
+.sr-only
+.sr-only-focusable
+.visually-hidden
+.screen-reader-only
+  position absolute
+  width 1px
+  height 1px
+  padding 0
+  margin -1px
+  overflow hidden
+  clip rect(0, 0, 0, 0)
+  white-space nowrap
+  border 0
+
+// Focusable sr-only - visible on focus for keyboard users
+// Use case: Skip to content links that become visible on focus
+.sr-only-focusable
+  &:focus
+  &:focus-visible
+    position static
+    width auto
+    height auto
+    padding inherit
+    margin inherit
+    overflow visible
+    clip auto
+    white-space normal
+
+// =============================================================================
+// LANDMARK REGION STYLING
+// =============================================================================
+
+// Ensure landmark regions are clearly defined for assistive technology
+// Browser support: 100%
+
+[role="banner"]
+[role="navigation"]
+[role="main"]
+[role="complementary"]
+[role="contentinfo"]
+[role="region"]
+[role="search"]
+  // Landmarks are semantic - minimal styling needed
+  // Focus indicators already covered by global :focus-visible
+
+// Skip to main content link enhancement
+// Provides obvious target for keyboard users
+.skip-to-main
+  position absolute
+  top -1000px
+  left 50%
+  transform translateX(-50%)
+  padding 1rem 2rem
+  background-color $arch-blue
+  color $darker
+  font-weight 600
+  border-radius 0 0 $border-radius-md $border-radius-md
+  z-index 10000
+  transition top 0.3s ease
+
+  &:focus
+    top 0
+
+// =============================================================================
+// ACCESSIBLE ANIMATION CONTROLS
+// =============================================================================
+
+// Grid display detection for assistive technology
+// Browser support: 97%+
+// Detects braille displays and grid-based output devices
+// Provides simplified layout for assistive technology
+
+@media (grid)
+  // Simplified grid layout for braille displays
+  .mw-parser-output
+    display block
+
+  // Single column for grid displays
+  .infobox
+  .navbox
+  .mw-sidebar
+    display block
+    width 100%
+
+  // Remove complex visual effects
+  .thumb
+  .gallery
+    display block
+
+  // Ensure proper content order
+  #content
+  .mw-body
+    display block
+    width 100%
+
+// Respect user's motion preferences
+// Browser support: 95%+
+
+// Check if user prefers reduced motion and animations are allowed
+@media (prefers-reduced-motion no-preference)
+  // Enable animations only when user hasn't requested reduced motion
+  .animate-when-preferred
+    animation-play-state running
+
+  // Pause animations when requested
+  .pause-animations
+    animation-play-state paused
+
+// Completely disable animations for reduced motion preference
+@media (prefers-reduced-motion reduce)
+  // Stop all animations
+  *
+    animation-duration 0.01ms !important
+    animation-iteration-count 1 !important
+    transition-duration 0.01ms !important
+
+  // Except for essential visual feedback
+  .animate-reduced-motion-safe
+    animation-duration auto
+    transition-duration auto

@@ -1,0 +1,51 @@
+// Layout and spacing variables
+$border-radius-sm = 6px
+$border-radius-md = 9px
+$border-radius-lg = 12px
+$border-radius-pill = 9999px
+
+$border-subtle = rgba(200, 184, 255, 0.08)
+$border-focus = rgba(137, 80, 199, 0.5)
+
+$shadow-subtle = 0 2px 8px rgba(0, 0, 0, 0.28)
+$shadow-elevated = 0 6px 24px rgba(0, 0, 0, 0.45)
+$shadow-focus = 0 0 0 3px rgba(137, 80, 199, 0.25)
+
+$transition-fast = 150ms cubic-bezier(0.4, 0, 0.2, 1)
+$transition-medium = 250ms cubic-bezier(0.4, 0, 0.2, 1)
+
+// Scrollbar
+$scrollbar-width = 8px
+
+$font-sans = "Inter", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif
+$font-mono = "JetBrains Mono", "Fira Code", "Source Code Pro", consolas, monaco, monospace
+
+// =============================================================================
+// DYNAMIC VIEWPORT UNITS
+// =============================================================================
+
+// Better mobile viewport handling
+// Browser support: 92%+
+
+// Dynamic viewport height (accounts for mobile browser chrome)
+$vh-dynamic = dvh
+$vw-dynamic = dvw
+
+// Small viewport (minimum)
+$vh-small = svh
+$vw-small = svw
+
+// Large viewport (maximum)
+$vh-large = lvh
+$vw-large = lvw
+
+// Utility classes
+.h-dvh
+  height 100dvh
+
+.h-svh
+  height 100svh
+
+.h-lvh
+  height 100lvh
+

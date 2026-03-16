@@ -1,0 +1,1017 @@
+// ArchWiki Status Templates
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// ACCURACY TEMPLATE
+// =============================================================================
+.box-accuracy
+.ambox-accuracy
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.05))
+  border-left 4px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .dispute-indicator
+    font-weight 600
+    color $secondary-red
+    margin-bottom 0.5em
+    display block
+
+  .discussion-link
+    display inline-block
+    margin-top 0.5em
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// OUT OF DATE TEMPLATE
+// =============================================================================
+.box-out-of-date
+.ambox-outdated
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.05))
+  border-left 4px solid $orange
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .outdated-warning
+    font-weight 600
+    color $orange
+    margin-bottom 0.5em
+    display block
+
+  .update-needed
+    color $lighter
+    font-style italic
+
+  .last-updated
+    font-size 0.9em
+    color $light
+    margin-top 0.5em
+    display block
+
+// =============================================================================
+// EXPANSION TEMPLATE
+// =============================================================================
+.box-expansion
+.ambox-expansion
+  background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.05))
+  border-left 4px solid $arch-blue
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .expansion-banner
+    font-weight 600
+    color $secondary-blue
+    margin-bottom 0.5em
+    display block
+
+  .missing-sections
+    color $light
+    margin-bottom 0.5em
+    display block
+
+  .contribution-cta
+    display inline-block
+    margin-top 0.5em
+    font-weight 600
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// TRANSLATEME TEMPLATE
+// =============================================================================
+.box-translateme
+.ambox-translateme
+  background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.05))
+  border-left 4px solid $green
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .translation-banner
+    font-weight 600
+    color $green
+    margin-bottom 0.5em
+    display block
+
+  .language-indicator
+    display inline-block
+    background-color rgba($green, 0.2)
+    color $lighter
+    padding 0.2em 0.5em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    margin-right 0.5em
+
+  .translation-help
+    display inline-block
+    margin-top 0.5em
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// DELETION TEMPLATE
+// =============================================================================
+.box-deletion
+.ambox-delete
+  background linear-gradient(135deg, rgba($secondary-red, 0.2), rgba($secondary-red, 0.1))
+  border 2px solid $secondary-red
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  .deletion-banner
+    font-weight 700
+    font-size 1.1em
+    color $secondary-red
+    margin-bottom 0.5em
+    display block
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  .deletion-reason
+    color $lighter
+    margin-bottom 0.5em
+    display block
+    padding 0.5em
+    background-color rgba($darker, 0.5)
+    border-radius $border-radius-sm
+    border-left 3px solid $secondary-red
+
+  .discussion-link
+    display inline-block
+    margin-top 0.5em
+    font-weight 600
+    color $secondary-blue
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+      border-radius 2px
+
+// =============================================================================
+// RELATED2 TEMPLATE
+// =============================================================================
+.archwiki-template-related2
+  background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  box-shadow $shadow-subtle
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+
+    li
+      margin 0.4em 0
+
+  .bilingual-link
+    display inline-flex
+    align-items center
+    gap 0.5em
+
+    .original-link
+      color $secondary-blue
+      text-decoration none
+      transition color $transition-fast
+
+      &:hover
+        color $lighter
+        text-decoration underline
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+        border-radius 2px
+
+    .translated-anchor
+      color $light
+      font-style italic
+
+      &::before
+        content "("
+        color $muted
+      &::after
+        content ")"
+        color $muted
+
+// =============================================================================
+// LOWERCASE TITLE TEMPLATE
+// =============================================================================
+#firstHeading
+.firstHeading
+  .lowercase-title
+    text-transform lowercase
+    display inline-block
+
+    // exception for specific parts that should remain uppercase if nested
+    .title-exception
+      text-transform none
+
+// =============================================================================
+// SYSTEMD UNIT STYLING
+// =============================================================================
+// Service unit boxes commonly used in ArchWiki systemd articles
+
+.systemd-service
+.systemd-unit-service
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .service-name
+    font-family $font-mono
+    font-weight 600
+    color $arch-blue
+    font-size 0.95em
+
+  .service-description
+    color $light
+    margin-top 0.5em
+
+  .service-status
+    display inline-flex
+    align-items center
+    gap 0.5em
+    margin-top 0.75em
+    padding 0.25em 0.75em
+    border-radius $border-radius-sm
+    font-size 0.875em
+    font-weight 500
+
+    &.active
+      background rgba($green, 0.15)
+      color $green
+      border 1px solid rgba($green, 0.3)
+
+    &.inactive
+      background rgba($muted, 0.15)
+      color $light
+      border 1px solid rgba($muted, 0.3)
+
+    &.failed
+      background rgba($secondary-red, 0.15)
+      color $secondary-red
+      border 1px solid rgba($secondary-red, 0.3)
+
+    &.activating
+    &.deactivating
+      background rgba($orange, 0.15)
+      color $orange
+      border 1px solid rgba($orange, 0.3)
+      animation pulse 2s infinite
+
+  .service-enabled
+    font-size 0.75em
+    color $muted
+    margin-left 0.5em
+
+    &.enabled::before
+      content "enabled"
+      color $green
+
+    &.disabled::before
+      content "disabled"
+      color $muted
+
+    &.masked::before
+      content "masked"
+      color $secondary-red
+
+// =============================================================================
+// SYSTEMD TIMER UNITS
+// =============================================================================
+
+.systemd-timer
+.systemd-unit-timer
+  background linear-gradient(135deg, rgba($secondary-blue, 0.1), rgba($secondary-blue, 0.05))
+  border 1px solid rgba($secondary-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .timer-name
+    font-family $font-mono
+    font-weight 600
+    color $secondary-blue
+    font-size 0.95em
+
+  .timer-schedule
+    margin-top 0.75em
+    color $light
+    font-size 0.9em
+
+    .schedule-type
+      font-weight 600
+      color $lighter
+
+    &.on-calendar .schedule-detail
+      font-family $font-mono
+      background rgba($secondary-blue, 0.1)
+      padding 0.2em 0.4em
+      border-radius 3px
+
+    &.on-boot .schedule-detail
+      color $arch-blue
+
+    &.on-unit .schedule-detail
+      color $orange
+
+  .timer-next-run
+  .timer-last-run
+    margin-top 0.5em
+    font-size 0.85em
+    color $muted
+
+    .label
+      color $light
+
+// =============================================================================
+// SYSTEMD SOCKET UNITS
+// =============================================================================
+
+.systemd-socket
+.systemd-unit-socket
+  background linear-gradient(135deg, rgba($term-cyan, 0.1), rgba($term-cyan, 0.05))
+  border 1px solid rgba($term-cyan, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .socket-name
+    font-family $font-mono
+    font-weight 600
+    color $term-cyan
+    font-size 0.95em
+
+  .socket-listen-stream
+    margin-top 0.75em
+
+    .stream-label
+      font-weight 600
+      color $light
+      font-size 0.9em
+
+    .stream-value
+      font-family $font-mono
+      font-size 0.9em
+      color $lighter
+      background rgba($term-cyan, 0.1)
+      padding 0.2em 0.5em
+      border-radius 3px
+      display inline-block
+      margin-top 0.25em
+
+  .socket-status
+    margin-top 0.75em
+    font-size 0.85em
+    color $muted
+
+    .listening
+      color $green
+      font-weight 500
+
+    .bound
+      color $orange
+
+// =============================================================================
+// SYSTEMD PATH UNITS
+// =============================================================================
+
+.systemd-path
+.systemd-unit-path
+  background linear-gradient(135deg, rgba($term-cyan, 0.1), rgba($term-cyan, 0.05))
+  border 1px solid rgba($term-cyan, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .path-name
+    font-family $font-mono
+    font-weight 600
+    color $term-cyan
+    font-size 0.95em
+
+  .path-watch
+    margin-top 0.75em
+    color $light
+    font-size 0.9em
+
+    .path-item
+      font-family $font-mono
+      background rgba($term-cyan, 0.1)
+      padding 0.2em 0.4em
+      border-radius 3px
+      display inline-block
+      margin 0.25em 0.25em 0 0
+
+// =============================================================================
+// SYSTEMD DEVICE UNITS
+// =============================================================================
+
+.systemd-device
+.systemd-unit-device
+  background linear-gradient(135deg, rgba($dark, 0.1), rgba($dark, 0.05))
+  border 1px solid rgba($dark, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .device-name
+    font-family $font-mono
+    font-weight 600
+    color $dark
+    font-size 0.95em
+
+  .device-device-path
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.85em
+    color $light
+
+  .device-state
+    margin-top 0.5em
+    font-size 0.85em
+
+    .state-plugged
+      color $green
+    .state-unplugged
+      color $secondary-red
+    .state-stub
+      color $orange
+
+// =============================================================================
+// SYSTEMD MOUNT UNITS
+// =============================================================================
+
+.systemd-mount
+.systemd-unit-mount
+  background linear-gradient(135deg, rgba($muted, 0.1), rgba($muted, 0.05))
+  border 1px solid rgba($muted, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .mount-name
+    font-family $font-mono
+    font-weight 600
+    color $muted
+    font-size 0.95em
+
+  .mount-what
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.9em
+    color $light
+    word-break break-all
+
+  .mount-options
+    margin-top 0.75em
+    font-size 0.85em
+
+    .options-label
+      color $muted
+    .options-value
+      font-family $font-mono
+      color $lighter
+      background rgba($muted, 0.1)
+      padding 0.2em 0.4em
+      border-radius 3px
+
+// =============================================================================
+// SYSTEMD AUTOMOUNT UNITS
+// =============================================================================
+
+.systemd-automount
+.systemd-unit-automount
+  background linear-gradient(135deg, rgba($term-magenta, 0.1), rgba($term-magenta, 0.05))
+  border 1px solid rgba($term-magenta, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .automount-name
+    font-family $font-mono
+    font-weight 600
+    color $term-magenta
+    font-size 0.95em
+
+  .automount-where
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.9em
+    color $light
+
+  .automount-timeout
+    margin-top 0.5em
+    font-size 0.85em
+    color $muted
+
+// =============================================================================
+// SYSTEMD SLICE UNITS
+// =============================================================================
+
+.systemd-slice
+.systemd-unit-slice
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .slice-name
+    font-family $font-mono
+    font-weight 600
+    color $orange
+    font-size 0.95em
+
+  .slice-resources
+    margin-top 0.75em
+    font-size 0.9em
+    color $light
+
+    .resource-item
+      display flex
+      justify-content space-between
+      padding 0.25em 0
+      border-bottom 1px solid rgba($orange, 0.1)
+
+      &:last-child
+        border-bottom none
+
+    .resource-limit
+      color $lighter
+      font-family $font-mono
+      font-size 0.9em
+
+// =============================================================================
+// SYSTEMD SCOPE UNITS
+// =============================================================================
+
+.systemd-scope
+.systemd-unit-scope
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .scope-name
+    font-family $font-mono
+    font-weight 600
+    color $orange
+    font-size 0.95em
+
+  .scope-pid
+    margin-top 0.5em
+    font-family $font-mono
+    font-size 0.9em
+    color $light
+
+  .scope-state
+    margin-top 0.5em
+    font-size 0.85em
+    color $muted
+
+// =============================================================================
+// SYSTEMD UNIT ACTIONS
+// =============================================================================
+
+.systemd-actions
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 1em
+  padding-top 1em
+  border-top 1px solid rgba($arch-blue, 0.2)
+
+  .action-button
+    display inline-flex
+    align-items center
+    gap 0.4em
+    padding 0.4em 0.75em
+    border-radius $border-radius-sm
+    font-size 0.85em
+    font-weight 500
+    cursor pointer
+    transition all $transition-fast
+    border 1px solid transparent
+
+    &:hover
+      transform translateY(-1px)
+
+    &:focus-visible
+      outline 2px solid $arch-blue
+      outline-offset 2px
+
+    &.start
+      background rgba($green, 0.15)
+      color $green
+      border-color rgba($green, 0.3)
+
+      &:hover
+        background rgba($green, 0.25)
+
+    &.stop
+      background rgba($secondary-red, 0.15)
+      color $secondary-red
+      border-color rgba($secondary-red, 0.3)
+
+      &:hover
+        background rgba($secondary-red, 0.25)
+
+    &.restart
+      background rgba($orange, 0.15)
+      color $orange
+      border-color rgba($orange, 0.3)
+
+      &:hover
+        background rgba($orange, 0.25)
+
+    &.enable
+      background rgba($arch-blue, 0.15)
+      color $arch-blue
+      border-color rgba($arch-blue, 0.3)
+
+      &:hover
+        background rgba($arch-blue, 0.25)
+
+    &.disable
+      background rgba($muted, 0.15)
+      color $light
+      border-color rgba($muted, 0.3)
+
+      &:hover
+        background rgba($muted, 0.25)
+
+    &.status
+      background rgba($secondary-blue, 0.15)
+      color $secondary-blue
+      border-color rgba($secondary-blue, 0.3)
+
+      &:hover
+        background rgba($secondary-blue, 0.25)
+
+// =============================================================================
+// SYSTEMD JOURNAL ENTRIES
+// =============================================================================
+
+.systemd-journal
+  background rgba($darker, 0.5)
+  border 1px solid rgba($muted, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-family $font-mono
+  font-size 0.85em
+  overflow-x auto
+
+  .journal-timestamp
+    color $muted
+
+  .journal-priority
+    font-weight 600
+    margin 0 0.5em
+
+    &.emerg
+      color $secondary-red
+    &.alert
+      color $secondary-red
+    &.crit
+      color $orange
+    &.err
+      color $secondary-red
+    &.warning
+      color $orange
+    &.notice
+      color $arch-blue
+    &.info
+      color $light
+    &.debug
+      color $muted
+
+  .journal-message
+    color $lighter
+
+  .journal-unit
+    color $secondary-blue
+
+  .journal-host
+    color $term-cyan
+
+// =============================================================================
+// SYSTEMD UNIT FILE PREVIEW
+// =============================================================================
+
+.systemd-unit-file
+  background rgba($darker, 0.5)
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+
+  .file-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 0.75em
+    padding-bottom 0.75em
+    border-bottom 1px solid rgba($arch-blue, 0.2)
+
+    .file-path
+      font-family $font-mono
+      font-weight 600
+      color $arch-blue
+
+    .file-type-badge
+      font-size 0.75em
+      padding 0.2em 0.5em
+      border-radius 3px
+      background rgba($arch-blue, 0.15)
+      color $arch-blue
+      font-weight 500
+
+  .file-section
+    margin-bottom 1em
+
+    &:last-child
+      margin-bottom 0
+
+    .section-header
+      font-weight 600
+      color $lighter
+      margin-bottom 0.5em
+      font-size 0.9em
+      text-transform uppercase
+      letter-spacing 0.05em
+
+    .section-key
+      font-family $font-mono
+      color $arch-blue
+
+    .section-value
+      font-family $font-mono
+      color $light
+      margin-left 0.5em
+
+    .section-comment
+      color $muted
+      font-style italic
+      font-size 0.9em
+      display block
+      margin-top 0.25em
+
+// Pulse animation for activating/deactivating states
+@keyframes pulse
+  0%
+  100%
+    opacity 1
+  50%
+    opacity 0.6
+
+// =============================================================================
+// PACKAGE TEMPLATES
+// Styling for {{Pkg}}, {{AUR}}, {{Grp}} templates commonly used in ArchWiki
+// =============================================================================
+
+// Package link base styling
+.pkg
+.pkg-template
+.pkglink
+  display inline
+  font-family $font-mono
+  font-size 0.95em
+  font-weight 500
+  color $arch-blue
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  transition all $transition-fast
+  white-space nowrap
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.4)
+    color $lighter
+    text-decoration none
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// Official repository packages (core, extra, community)
+.pkg-repo-core
+.pkgrepo-core
+  background rgba($arch-blue, 0.12)
+  border-color rgba($arch-blue, 0.25)
+  color $arch-blue
+
+.pkg-repo-extra
+.pkgrepo-extra
+  background rgba($secondary-blue, 0.12)
+  border-color rgba($secondary-blue, 0.25)
+  color $secondary-blue
+
+.pkg-repo-community
+.pkgrepo-community
+  background rgba($green, 0.12)
+  border-color rgba($green, 0.25)
+  color $green
+
+// AUR packages
+.aur
+.aur-template
+.aurlink
+  display inline
+  font-family $font-mono
+  font-size 0.95em
+  font-weight 500
+  color $term-magenta
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  background rgba($term-magenta, 0.1)
+  border 1px solid rgba($term-magenta, 0.2)
+  transition all $transition-fast
+  white-space nowrap
+
+  &::before
+    content "AUR"
+    font-size 0.7em
+    font-weight 700
+    margin-right 0.35em
+    padding 0.1em 0.3em
+    border-radius 3px
+    background rgba($term-magenta, 0.25)
+    color $base
+
+  &:hover
+    background rgba($term-magenta, 0.2)
+    border-color rgba($term-magenta, 0.4)
+    color $lighter
+    text-decoration none
+
+  &:focus-visible
+    outline 2px solid $term-magenta
+    outline-offset 2px
+
+// Package groups
+.grp
+.grp-template
+.grplink
+  display inline
+  font-family $font-mono
+  font-size 0.95em
+  font-weight 500
+  color $term-cyan
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+  background rgba($term-cyan, 0.1)
+  border 1px solid rgba($term-cyan, 0.2)
+  transition all $transition-fast
+  white-space nowrap
+
+  &::before
+    content "Group"
+    font-size 0.7em
+    font-weight 700
+    margin-right 0.35em
+    padding 0.1em 0.3em
+    border-radius 3px
+    background rgba($term-cyan, 0.25)
+    color $base
+
+  &:hover
+    background rgba($term-cyan, 0.2)
+    border-color rgba($term-cyan, 0.4)
+    color $lighter
+    text-decoration none
+
+  &:focus-visible
+    outline 2px solid $term-cyan
+    outline-offset 2px
+
+// Package version indicator
+.pkg-version
+.pkgver
+  font-size 0.85em
+  color $muted
+  font-weight 400
+  margin-left 0.25em
+
+// Package status indicators
+.pkg-status
+  display inline-flex
+  align-items center
+  gap 0.25em
+  font-size 0.8em
+  font-weight 500
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  margin-left 0.5em
+
+  &.installed
+    background rgba($green, 0.15)
+    color $green
+    border 1px solid rgba($green, 0.3)
+
+    &::before
+      content "✓"
+      font-weight 700
+
+  &.available
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+    border 1px solid rgba($arch-blue, 0.3)
+
+  &.outdated
+    background rgba($orange, 0.15)
+    color $orange
+    border 1px solid rgba($orange, 0.3)
+
+  &.orphan
+    background rgba($secondary-red, 0.15)
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.3)
+
+    &::before
+      content "⚠"
+      font-weight 700
+
+// Package inline (smaller, for use in running text)
+.pkg-inline
+  font-size 0.9em
+  padding 0.1em 0.3em
+
+  &.aur::before
+  &.grp::before
+    font-size 0.75em
+
+// Package list (multiple packages)
+.pkg-list
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  margin 0.5em 0
+
+// Package in table cell
+td .pkg
+td .aur
+td .grp
+  font-size 0.9em
+  padding 0.1em 0.3em

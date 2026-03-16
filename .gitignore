@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+public/
+
+# OS/IDE junk
+.DS_Store
+.idea
+.vscode
+
+# Sensitive local files (for safety)
+.env
+.env.*
+.claude
+.gitconfig
+.gitmodules
+.mcp.json
+.ripgreprc
+.profile
+.zprofile
+.zshrc
+.bash_profile
+.bashrc
+
+# Test artifacts
+screenshots/
+test-results/
+playwright-report/
+/test-results.json
+
+# Browser extensions (downloaded at runtime)
+.browser-extensions/
+test-user-data-integration*
+tests/integration/stylus/
+tests/integration/stylus/*
+!tests/integration/stylus/.gitkeep
+/.code/agents
