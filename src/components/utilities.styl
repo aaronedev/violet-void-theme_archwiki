@@ -916,6 +916,58 @@ tr.collapsed
   width stretch
 
 // =============================================================================
+// MULTI-COLUMN LAYOUT
+// =============================================================================
+// column-rule, column-span, column-fill, columns shorthands
+// Browser support: 97%+
+
+// column-fill - control how column content is distributed
+.column-fill-balance
+  column-fill balance
+
+.column-fill-auto
+  column-fill auto
+
+// column-span - make element span all columns
+.column-span-all
+  column-span all
+
+// columns - shorthand for column-count and column-width
+.columns-2
+  columns 2
+
+.columns-3
+  columns 3
+
+.columns-auto
+  columns auto
+
+// column-rule utilities
+.column-rule
+  column-rule 1px solid var(--border-color, #ccc)
+
+.column-rule-thin
+  column-rule 1px solid var(--border-color, #ccc)
+
+.column-rule-medium
+  column-rule 2px solid var(--border-color, #ccc)
+
+.column-rule-thick
+  column-rule 3px solid var(--border-color, #ccc)
+
+.column-rule-dashed
+  column-rule 1px dashed var(--border-color, #ccc)
+
+.column-rule-dotted
+  column-rule 1px dotted var(--border-color, #ccc)
+
+.column-rule-double
+  column-rule 3px double var(--border-color, #ccc)
+
+.column-rule-none
+  column-rule none
+
+// =============================================================================
 // GRID SHORTHANDS
 // =============================================================================
 // place-items, place-content, place-self shorthands
