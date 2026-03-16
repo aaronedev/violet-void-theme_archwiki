@@ -1,0 +1,375 @@
+// =============================================================================
+// CODEX DESIGN TOKENS - MediaWiki Codex Integration
+// =============================================================================
+// Map MediaWiki's Codex design tokens to ArchWiki theme variables
+// Browser support: 97%+
+// Reference: https://doc.wikimedia.org/codex/latest/
+@import 'colors'
+@import 'layout'
+
+// CODEX COLOR TOKENS
+// Core tokens that map to our theme
+// Using rgba for better transparency support
+$cdx-color-background = $base
+$cdx-color-background-alt = $dark
+$cdx-color-background-filled = rgba($light, 0.08)
+$cdx-color-background-interactive = rgba($arch-blue, 0.08)
+$cdx-color-background-interactive-hover = rgba($arch-blue, 0.15)
+$cdx-color-background-active = rgba($arch-blue, 0.2)
+
+// Text colors
+$cdx-color-text = $light
+$cdx-color-text-alt = $muted
+$cdx-color-text-disabled = rgba($light, 0.4)
+$cdx-color-text-inverted = $dark
+
+// Border colors
+$cdx-color-border = rgba($light, 0.15)
+$cdx-color-border-subtle = rgba($light, 0.08)
+$cdx-color-border-interactive = $arch-blue
+
+// Accent/brand colors
+$cdx-color-primary = $arch-blue
+$cdx-color-primary-hover = lighten($arch-blue, 10%)
+$cdx-color-primary-active = darken($arch-blue, 10%)
+
+// Semantic colors (using theme colors)
+$cdx-color-success = $green
+$cdx-color-warning = $orange
+$cdx-color-error = $red
+$cdx-color-info = $secondary-blue
+
+// CODEX SPACING TOKENS
+$cdx-spacing-0 = 0
+$cdx-spacing-25 = 0.125rem  // 2px
+$cdx-spacing-50 = 0.25rem  // 4px
+$cdx-spacing-75 = 0.375rem  // 6px
+$cdx-spacing-100 = 0.5rem  // 8px
+$cdx-spacing-150 = 0.75rem  // 12px
+$cdx-spacing-200 = 1rem  // 16px
+$cdx-spacing-300 = 1.5rem  // 24px
+$cdx-spacing-400 = 2rem  // 32px
+$cdx-spacing-500 = 2.5rem  // 40px
+$cdx-spacing-600 = 3rem  // 48px
+
+// CODEX FONT SIZE TOKENS
+$cdx-font-size-50 = 0.625rem   // 10px
+$cdx-font-size-75 = 0.75rem    // 12px
+$cdx-font-size-100 = 0.875rem  // 14px
+$cdx-font-size-200 = 1rem      // 16px
+$cdx-font-size-300 = 1.125rem  // 18px
+$cdx-font-size-400 = 1.25rem   // 20px
+$cdx-font-size-500 = 1.375rem  // 22px
+$cdx-font-size-600 = 1.5rem    // 24px
+$cdx-font-size-700 = 1.75rem   // 28px
+$cdx-font-size-800 = 2rem       // 32px
+
+// CODEX FONT WEIGHT TOKENS
+$cdx-font-weight-light = 300
+$cdx-font-weight-normal = 400
+$cdx-font-weight-medium = 500
+$cdx-font-weight-semibold = 600
+$cdx-font-weight-bold = 700
+
+// CODEX LINE HEIGHT TOKENS
+$cdx-line-height-100 = 1
+$cdx-line-height-200 = 1.25
+$cdx-line-height-300 = 1.5
+$cdx-line-height-400 = 1.75
+$cdx-line-height-500 = 2
+
+// CODEX BORDER RADIUS TOKENS
+$cdx-radius-0 = 0
+$cdx-radius-50 = 2px
+$cdx-radius-100 = 4px
+$cdx-radius-200 = 6px
+$cdx-radius-300 = 8px
+$cdx-radius-400 = 12px
+$cdx-radius-500 = 16px
+$cdx-radius-round = 9999px
+
+// CODEX SHADOW TOKENS
+$cdx-shadow-raised = 0 1px 2px rgba(0, 0, 0, 0.1)
+$cdx-shadow-overlay = 0 2px 8px rgba(0, 0, 0, 0.15)
+$cdx-shadow-popover = 0 4px 16px rgba(0, 0, 0, 0.2)
+$cdx-shadow-card = 0 1px 3px rgba(0, 0, 0, 0.1)
+
+// CODEX Z-INDEX TOKENS
+$cdx-z-index-dropdown = 100
+$cdx-z-index-sticky-pinned-container = 200
+$cdx-z-index-sticky-pinned-container-imps = 250
+$cdx-z-index-dropdown-menu = 300
+$cdx-z-index-modal = 400
+$cdx-z-index-popover = 500
+$cdx-z-index-tooltip = 600
+$cdx-z-index-dialog = 700
+
+// CSS CUSTOM PROPERTIES MAPPING
+// Map Codex tokens to CSS custom properties for runtime usage
+:root
+  // Colors - Background
+  --cdx-color-background $base
+  --cdx-color-background-alt $dark
+  --cdx-color-background-filled rgba($light, 0.08)
+  --cdx-color-background-interactive rgba($arch-blue, 0.08)
+  --cdx-color-background-interactive-hover rgba($arch-blue, 0.15)
+  --cdx-color-background-active rgba($arch-blue, 0.2)
+
+  // Colors - Text
+  --cdx-color-text $light
+  --cdx-color-text-alt $muted
+  --cdx-color-text-disabled rgba($light, 0.4)
+  --cdx-color-text-inverted $dark
+
+  // Colors - Border
+  --cdx-color-border rgba($light, 0.15)
+  --cdx-color-border-subtle $border-subtle
+  --cdx-color-border-interactive $arch-blue
+
+  // Colors - Accent
+  --cdx-color-primary $arch-blue
+  --cdx-color-primary-hover lighten($arch-blue, 10%)
+  --cdx-color-primary-active darken($arch-blue, 10%)
+
+  // Colors - Semantic
+  --cdx-color-success $green
+  --cdx-color-warning $orange
+  --cdx-color-error $red
+  --cdx-color-info $secondary-blue
+
+  // Spacing
+  --cdx-spacing-0 $cdx-spacing-0
+  --cdx-spacing-25 $cdx-spacing-25
+  --cdx-spacing-50 $cdx-spacing-50
+  --cdx-spacing-75 $cdx-spacing-75
+  --cdx-spacing-100 $cdx-spacing-100
+  --cdx-spacing-150 $cdx-spacing-150
+  --cdx-spacing-200 $cdx-spacing-200
+  --cdx-spacing-300 $cdx-spacing-300
+  --cdx-spacing-400 $cdx-spacing-400
+  --cdx-spacing-500 $cdx-spacing-500
+  --cdx-spacing-600 $cdx-spacing-600
+
+  // Border radius
+  --cdx-radius-0 $cdx-radius-0
+  --cdx-radius-50 $cdx-radius-50
+  --cdx-radius-100 $cdx-radius-100
+  --cdx-radius-200 $cdx-radius-200
+  --cdx-radius-300 $cdx-radius-300
+  --cdx-radius-400 $cdx-radius-400
+  --cdx-radius-500 $cdx-radius-500
+  --cdx-radius-round $cdx-radius-round
+
+// UTILITY CLASSES
+// Spacing utilities matching Codex tokens
+.cdx-spacing-0
+  padding $cdx-spacing-0
+  margin $cdx-spacing-0
+
+.cdx-spacing-25
+  padding $cdx-spacing-25
+  margin $cdx-spacing-25
+
+.cdx-spacing-50
+  padding $cdx-spacing-50
+  margin $cdx-spacing-50
+
+.cdx-spacing-75
+  padding $cdx-spacing-75
+  margin $cdx-spacing-75
+
+.cdx-spacing-100
+  padding $cdx-spacing-100
+  margin $cdx-spacing-100
+
+.cdx-spacing-150
+  padding $cdx-spacing-150
+  margin $cdx-spacing-150
+
+.cdx-spacing-200
+  padding $cdx-spacing-200
+  margin $cdx-spacing-200
+
+.cdx-spacing-300
+  padding $cdx-spacing-300
+  margin $cdx-spacing-300
+
+// Border radius utilities
+.cdx-radius-0
+  border-radius $cdx-radius-0
+
+.cdx-radius-50
+  border-radius $cdx-radius-50
+
+.cdx-radius-100
+  border-radius $cdx-radius-100
+
+.cdx-radius-200
+  border-radius $cdx-radius-200
+
+.cdx-radius-300
+  border-radius $cdx-radius-300
+
+.cdx-radius-400
+  border-radius $cdx-radius-400
+
+.cdx-radius-round
+  border-radius $cdx-radius-round
+
+// Shadow utilities
+.cdx-shadow-raised
+  box-shadow $cdx-shadow-raised
+
+.cdx-shadow-overlay
+  box-shadow $cdx-shadow-overlay
+
+.cdx-shadow-popover
+  box-shadow $cdx-shadow-popover
+
+.cdx-shadow-card
+  box-shadow $cdx-shadow-card
+
+// CODEX COMPONENT BASE STYLES
+// Button base using Codex tokens
+.cdx-button
+  display inline-flex
+  align-items center
+  justify-content center
+  padding $cdx-spacing-75 $cdx-spacing-200
+  font-family inherit
+  font-size $cdx-font-size-100
+  font-weight $cdx-font-weight-medium
+  line-height $cdx-line-height-300
+  border 1px solid $cdx-color-border
+  border-radius $cdx-radius-100
+  background-color $cdx-color-background
+  color $cdx-color-text
+  cursor pointer
+  transition background-color 0.2s, border-color 0.2s, color 0.2s
+
+  &:hover
+    background-color $cdx-color-background-interactive-hover
+    border-color $cdx-color-border-interactive
+
+  &:active
+    background-color $cdx-color-background-active
+
+  &:disabled
+    color $cdx-color-text-disabled
+    cursor not-allowed
+    opacity 0.5
+
+// Input base using Codex tokens
+.cdx-input
+  padding $cdx-spacing-75 $cdx-spacing-100
+  font-family inherit
+  font-size $cdx-font-size-100
+  line-height $cdx-line-height-300
+  border 1px solid $cdx-color-border
+  border-radius $cdx-radius-100
+  background-color $cdx-color-background
+  color $cdx-color-text
+  transition border-color 0.2s, box-shadow 0.2s
+
+  &:focus
+    outline none
+    border-color $cdx-color-primary
+    box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  &::placeholder
+    color $cdx-color-text-disabled
+
+// Card base using Codex tokens
+.cdx-card
+  background-color $cdx-color-background
+  border 1px solid $cdx-color-border-subtle
+  border-radius $cdx-radius-200
+  box-shadow $cdx-shadow-card
+  padding $cdx-spacing-200
+
+// Menu base using Codex tokens
+.cdx-menu
+  background-color $cdx-color-background
+  border 1px solid $cdx-color-border
+  border-radius $cdx-radius-200
+  box-shadow $cdx-shadow-overlay
+  padding $cdx-spacing-50
+  min-width 180px
+
+  &__item
+    display flex
+    align-items center
+    gap $cdx-spacing-100
+    padding $cdx-spacing-75 $cdx-spacing-100
+    color $cdx-color-text
+    border-radius $cdx-radius-100
+    cursor pointer
+    transition background-color 0.15s
+
+    &:hover
+      background-color $cdx-color-background-interactive-hover
+
+    &:focus
+      outline none
+      background-color $cdx-color-background-active
+
+// Message box base using Codex tokens
+.cdx-message
+  display flex
+  align-items flex-start
+  gap $cdx-spacing-100
+  padding $cdx-spacing-150
+  border-radius $cdx-radius-200
+  font-size $cdx-font-size-100
+  line-height $cdx-line-height-300
+
+  &--success
+    background-color rgba($green, 0.1)
+    border 1px solid $green
+    color darken($green, 15%)
+
+  &--warning
+    background-color rgba($orange, 0.1)
+    border 1px solid $orange
+    color darken($orange, 15%)
+
+  &--error
+    background-color rgba($red, 0.1)
+    border 1px solid $red
+    color darken($red, 15%)
+
+  &--info
+    background-color rgba($secondary-blue, 0.1)
+    border 1px solid $secondary-blue
+    color darken($secondary-blue, 15%)
+
+// Chip/tag base using Codex tokens
+.cdx-chip
+  display inline-flex
+  align-items center
+  gap $cdx-spacing-50
+  padding $cdx-spacing-25 $cdx-spacing-75
+  font-size $cdx-font-size-75
+  font-weight $cdx-font-weight-medium
+  line-height $cdx-line-height-200
+  border-radius $cdx-radius-round
+  background-color $cdx-color-background-alt
+  color $cdx-color-text
+
+  &--interactive
+    cursor pointer
+
+    &:hover
+      background-color $cdx-color-background-interactive-hover
+
+// Themed components override
+// Apply Codex tokens to MediaWiki elements for compatibility
+.mw-htmlform
+  .oo-ui-inputWidget-input
+    border-radius $cdx-radius-100
+
+.oo-ui-window-head
+  border-radius $cdx-radius-200 $cdx-radius-200 0 0
+
+.oo-ui-window-foot
+  border-radius 0 0 $cdx-radius-200 $cdx-radius-200
