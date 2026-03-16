@@ -1943,6 +1943,99 @@ h4[id]
   border-radius $border-radius-lg
 
 // =============================================================================
+// :HOST-CONTEXT() - Contextual Shadow Host Styling
+// =============================================================================
+// :host-context() allows styling the shadow host based on its ancestors
+// Browser support: 97%+
+// Useful for theming custom elements based on parent context (dark mode, RTL, etc.)
+
+// Base :host-context() - style based on any ancestor matching selector
+:host-context(.dark-theme)
+  --component-bg #1a1a1a
+  --component-text #e0e0e0
+
+:host-context(.light-theme)
+  --component-bg #ffffff
+  --component-text #333333
+
+// :host-context() with functional selector - style when ancestor has class
+:host-context(.theme-primary)
+  --component-accent var(--theme-primary, #8b5cf6)
+
+:host-context(.theme-danger)
+  --component-accent var(--theme-danger, #ef4444)
+
+// :host-context() for direction-based styling
+:host-context([dir="rtl"])
+  --text-align right
+  --padding-start 1rem
+  --padding-end 0
+
+:host-context([dir="ltr"])
+  --text-align left
+  --padding-start 0
+  --padding-end 1rem
+
+// :host-context() for responsive breakpoints
+:host-context(.mobile-view)
+  --component-width 100%
+  --component-padding 0.5rem
+
+:host-context(.desktop-view)
+  --component-width auto
+  --component-padding 1rem
+
+// :host-context() for print styles
+:host-context(.print-only)
+  display block
+
+:host-context(.no-print)
+  display none
+
+// :host-context() combined with :host - conditional host styling based on context
+:host-context(.highlight):host(.active)
+  outline 2px solid var(--accent)
+  box-shadow 0 0 10px var(--accent)
+
+// :host-context() for language-based styling
+:host-context(:lang(en))
+  --component-direction ltr
+
+:host-context(:lang(ar))
+  --component-direction rtl
+
+:host-context(:lang(ja))
+  --component-font "Noto Sans JP", sans-serif
+
+// :host-context() for media query context (limited support - some browsers)
+:host-context(.dark-mode)
+  color-scheme dark
+
+:host-context(.high-contrast)
+  --component-border 2px solid currentColor
+
+// Utility classes for :host-context() variants
+.host-context-dark
+  &::part(base)
+    background #1a1a1a
+    color #e0e0e0
+
+.host-context-light
+  &::part(base)
+    background #ffffff
+    color #333333
+
+.host-context-compact
+  &::part(base)
+    padding 0.25rem
+    font-size 0.875rem
+
+.host-context-spacious
+  &::part(base)
+    padding 1.5rem
+    font-size 1.125rem
+
+// =============================================================================
 // SYSTEM COLORS
 // =============================================================================
 
