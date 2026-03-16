@@ -2108,22 +2108,25 @@ Last updated: 2026-03-16 06:36
 
 ## 🔧 @property Expansion (New)
 
-- [ ] **`@property` for Length Values** (97%+ browser support)
-  - File: `src/variables/_properties.styl`
+- [x] **`@property` for Length Values** (97%+ browser support)
+  - File: `src/variables/properties.styl`
   - Already implemented for colors - expand to lengths
   - `@property --spacing { syntax: '<length>'; ... }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
-- [ ] **`@property` for Custom Syntaxes** (97%+ browser support)
-  - File: `src/variables/_properties.styl`
+- [x] **`@property` for Custom Syntaxes** (97%+ browser support)
+  - File: `src/variables/properties.styl`
   - Define custom value types
   - `syntax: '<color> | <length>'`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
-- [ ] **`inherits: false` for Isolation** (97%+ browser support)
-  - File: `src/variables/_properties.styl`
+- [x] **`inherits: false` for Isolation** (97%+ browser support)
+  - File: `src/variables/properties.styl`
   - Prevent inheritance for component-scoped vars
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
 
 ## 🔢 CSS Math Functions (New - 2026-02-28 Scout 13)
