@@ -465,7 +465,9 @@
 
 ---
 
-Last updated: 2026-03-16 00:26
+| 2026-03-16 | :host pseudo-class for Shadow DOM | Added :host base styling, :hover/:focus/:focus-visible states, attribute selectors for variants/sizes, full-width/rounded modifiers | 1eee197 |
+
+Last updated: 2026-03-16 02:52
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2802,10 +2804,13 @@ Last updated: 2026-03-16 00:26
   - Prevent FOUC for web components
   - Stylus: Works directly
 
-- [ ] **`:host` Pseudo-class for Shadow Host** (97%+ browser support)
+- [x] **`:host` Pseudo-class for Shadow Host** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style shadow host from inside shadow DOM
+  - Added :host base styling, :hover/:focus/:focus-visible states
+  - Attribute selectors: [disabled], [variant], [size], [full-width], [rounded]
   - Stylus: Works directly
+  - Commit: 1eee197
 
 - [ ] **`:host-context()` for Contextual Styling** (97%+ browser support)
   - File: `src/components/modern-css.styl`
