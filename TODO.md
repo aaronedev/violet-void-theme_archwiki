@@ -1064,11 +1064,12 @@ Last updated: 2026-03-16 06:36
   - Resolution options
   - Commit: c0b7d33
 
-- [ ] **Collaborative Editing Indicators** (CSS)
+- [x] **Collaborative Editing Indicators** (CSS)
   - File: `src/components/community.styl`
   - Active editor badges
   - Edit lock indicator
   - Real-time presence dots
+  - Commit: 8543a8e
 
 - [ ] **WikiProject Tagging** (CSS)
   - File: `src/components/community.styl`
