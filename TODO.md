@@ -469,6 +469,7 @@
 | 2026-03-16 | calc-size() for Auto Transitions | Added calc-size() alternative to interpolate-size for smooth height transitions in collapsible sections | 1e2b980 |
 
 | 2026-03-16 | Multi-column layout utilities (column-rule, column-span, column-fill, columns) | 2c29491 |
+| 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
 
 Last updated: 2026-03-16 06:36
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
@@ -2599,10 +2600,11 @@ Last updated: 2026-03-16 06:36
   - `border-collapse: separate; border-spacing: 2px;`
   - Stylus: Works directly
 
-- [ ] **`border-spacing` for Gaps** (97%+ browser support)
+- [x] **`border-spacing` for Gaps** (97%+ browser support)
   - File: `src/components/tables.styl`
   - Space between cell borders
   - Stylus: Works directly
+  - Commit: 6b8420c
 
 ## 🔢 Counter Enhancements (New)
 
