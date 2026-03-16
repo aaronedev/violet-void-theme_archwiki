@@ -1,0 +1,249 @@
+// =============================================================================
+// TRANSLATION DASHBOARD - Translation UI Styling
+// =============================================================================
+// Browser support: 97%+
+// Translation progress bars, outdated indicators, language pair display
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// Translation Dashboard Container
+.mw-translation-dashboard
+  background $base
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1rem
+
+// Translation Header
+.translation-header
+  display flex
+  justify-content space-between
+  align-items center
+  padding-bottom 0.75rem
+  border-bottom 1px solid rgba($border-subtle, 0.5)
+  margin-bottom 1rem
+
+  .translation-title
+    font-size 1.25rem
+    font-weight 600
+    color $text
+
+  .translation-actions
+    display flex
+    gap 0.5rem
+
+// Language Pair Display
+.language-pair
+  display flex
+  align-items center
+  gap 0.5rem
+
+  .source-language
+    font-weight 600
+    color $text-muted
+
+  .language-arrow
+    color $arch-blue
+    font-size 0.875rem
+
+  .target-language
+    font-weight 600
+    color $text
+
+// Translation Progress
+.translation-progress-container
+  margin 1rem 0
+
+.translation-progress-bar
+  height 8px
+  background $bg-secondary
+  border-radius 4px
+  overflow hidden
+
+  .translation-progress-fill
+    height 100%
+    background linear-gradient(135deg, $arch-blue, lighten($arch-blue, 10%))
+    border-radius 4px
+    transition width 0.3s ease
+
+  .translation-progress-complete
+    background linear-gradient(135deg, $success, lighten($success, 10%))
+
+  .translation-progress-partial
+    background linear-gradient(135deg, $warning, lighten($warning, 10%))
+
+.translation-progress-label
+  display flex
+  justify-content space-between
+  margin-top 0.25rem
+  font-size 0.75rem
+  color $text-muted
+
+// Translation Stats
+.translation-stats
+  display grid
+  grid-template-columns repeat(auto-fit, minmax(120px, 1fr))
+  gap 0.5rem
+  margin 1rem 0
+
+  .stat-card
+    background $bg-secondary
+    padding 0.75rem
+    border-radius $border-radius-sm
+    text-align center
+
+    .stat-value
+      font-size 1.5rem
+      font-weight 700
+      color $arch-blue
+
+    .stat-label
+      font-size 0.75rem
+      color $text-muted
+
+// Outdated Indicator
+.translation-outdated
+  display inline-flex
+  align-items center
+  gap 0.25rem
+  padding 0.25rem 0.5rem
+  background rgba($warning, 0.15)
+  border 1px solid $warning
+  border-radius 4px
+  color $warning
+  font-size 0.75rem
+  font-weight 500
+
+  &::before
+    content "⚠"
+    font-size 0.75rem
+
+// Translation Status Badges
+.translation-status
+  display inline-flex
+  align-items center
+  gap 0.25rem
+  padding 0.25rem 0.5rem
+  border-radius $border-radius-pill
+  font-size 0.75rem
+  font-weight 500
+
+  &.status-translated
+    background rgba($success, 0.15)
+    color $success
+
+  &.status-needs-translation
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+
+  &.status-outdated
+    background rgba($warning, 0.15)
+    color $warning
+
+  &.status-untranslated
+    background rgba($text-muted, 0.15)
+    color $text-muted
+
+// Translation Table
+.translation-table
+  width 100%
+  border-collapse collapse
+
+  th
+  td
+    padding 0.75rem
+    text-align left
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+  th
+    font-weight 600
+    color $text-muted
+    font-size 0.75rem
+    text-transform uppercase
+    letter-spacing 0.5px
+
+  tr:hover
+    background $bg-secondary
+
+// Language Selector
+.translation-language-selector
+  display flex
+  gap 0.5rem
+  margin 1rem 0
+
+  select
+  .language-dropdown
+    flex 1
+    padding 0.5rem
+    background $bg-secondary
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $text
+    font-size 0.9rem
+    cursor pointer
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Translation Review Panel
+.translation-review-panel
+  background $bg-secondary
+  border-radius $border-radius-lg
+  padding 1rem
+  margin 1rem 0
+
+  .review-header
+    display flex
+    justify-content space-between
+    align-items center
+    margin-bottom 0.5rem
+
+  .review-content
+    display grid
+    grid-template-columns 1fr 1fr
+    gap 1rem
+
+    .original-text
+    .translated-text
+      padding 0.75rem
+      background $base
+      border-radius $border-radius-sm
+      border 1px solid rgba($border-subtle, 0.5)
+
+      h4
+        font-size 0.75rem
+        color $text-muted
+        margin-bottom 0.25rem
+        text-transform uppercase
+
+      p
+        color $text
+        line-height 1.5
+
+// Translation Actions
+.translation-actions-bar
+  display flex
+  justify-content flex-end
+  gap 0.5rem
+  padding 1rem
+  border-top 1px solid rgba($border-subtle, 0.5)
+  margin-top 1rem
+
+// Responsive
+@media (max-width 768px)
+  .translation-review-panel .review-content
+    grid-template-columns 1fr
+
+  .translation-stats
+    grid-template-columns repeat(2, 1fr)
+
+// Print styles
+@media print
+  .translation-actions-bar
+    display none
+
+  .translation-progress-bar
+    print-color-adjust exact
+    -webkit-print-color-adjust exact

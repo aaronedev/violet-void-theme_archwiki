@@ -1229,11 +1229,12 @@ Last updated: 2026-03-16 00:26
   - Article snippet styling
   - Commit: 0e29137
 
-- [ ] **Translation Dashboard** (CSS)
+- [x] **Translation Dashboard** (CSS)
   - File: `src/components/translation.styl` (new file)
   - Translation progress bars
   - Outdated indicator
   - Language pair display
+  - Commit: 8a25a469
 
 
 ## 🎨 Modern Color Spaces (New - 2026-02-28 Scout 6)
