@@ -1804,3 +1804,46 @@ label
 .titling-caps
   font-variant-caps titling-caps
 
+// =============================================================================
+// Line Grid for Typography
+// =============================================================================
+
+// Browser support: 85%+
+// Align text to a baseline grid for consistent vertical rhythm
+// Note: Limited browser support - use as progressive enhancement
+
+@supports (line-grid: match-parent)
+  .line-grid-match
+    line-grid match-parent
+
+  .line-grid-slice
+    line-grid slice
+
+  .line-grid-prose
+    line-grid prose
+
+// line-snap: Snap lines to grid
+@supports (line-snap: baseline)
+  .line-snap-baseline
+    line-snap baseline
+
+  .line-snap-contain
+    line-snap contain
+
+  .line-snap-none
+    line-snap none
+
+// box-snap: Snap boxes to line grid
+@supports (box-snap: block-start)
+  .box-snap-block-start
+    box-snap block-start
+
+  .box-snap-block-end
+    box-snap block-end
+
+  .box-snap-baseline
+    box-snap baseline
+
+  .box-snap-none
+    box-snap none
+
