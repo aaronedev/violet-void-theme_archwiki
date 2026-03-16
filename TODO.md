@@ -2045,10 +2045,11 @@ Last updated: 2026-03-16 00:26
   - `:snapped { background: var(--accent); }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`:snapped-x` / `:snapped-y` Pseudo-classes** (85%+ browser support)
+- [x] **`:snapped-x` / `:snapped-y` Pseudo-classes** (85%+ browser support)
   - File: `src/components/navigation.styl`
   - Style axis-specific snapped items
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 1d5be4f
 
 - [x] **`scroll-start` / `scroll-end` Properties** (85%+ browser support)
   - File: `src/components/navigation.styl`

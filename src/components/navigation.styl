@@ -1598,6 +1598,82 @@ h6:hover .mw-editsection
 
 
 // =============================================================================
+// SNAPPED-X / SNAPPED-Y PSEUDO-CLASSES
+// =============================================================================
+// Style axis-specific snapped items for scroll snap containers
+// Browser support: 85%+ (Chrome 114+, Firefox 109+)
+// Note: Wrap in @css{} for Stylus
+
+@css {
+  /* Horizontal scroll snap - style items snapped on x-axis */
+  :snapped-x {
+    outline: 2px solid var(--accent-color, #7c3aed);
+    outline-offset: 2px;
+  }
+
+  /* Vertical scroll snap - style items snapped on y-axis */
+  :snapped-y {
+    outline: 2px solid var(--accent-color, #7c3aed);
+    outline-offset: 2px;
+  }
+
+  /* Combined snapped states */
+  :snapped-x:snapped-y {
+    outline-color: var(--success-color, #10b981);
+  }
+
+  /* Non-snapped items in snap container */
+  scroll-snap-container :not(:snapped-x):not(:snapped-y) {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Highlight snapped item with transform */
+  :snapped-x {
+    transform: scale(1.02);
+  }
+
+  :snapped-y {
+    transform: scale(1.02);
+  }
+}
+
+// Utility classes for applying snapped pseudo-class behavior
+// These work without @css{} by using scroll-snap-align directly
+
+.scroll-snap-item-snapped
+  &.snapped
+    scroll-snap-align center
+    background-color rgba(124, 58, 237, 0.1)
+
+  &.snapped-x
+    scroll-snap-align center
+
+  &.snapped-y
+    scroll-snap-align center
+
+// Indicator showing current snap position
+.snap-indicator
+  position absolute
+
+  &.snap-x
+    left 50%
+    transform translateX(-50%)
+    width 40px
+    height 3px
+    background var(--accent-color, #7c3aed)
+    border-radius 2px
+
+  &.snap-y
+    top 50%
+    transform translateY(-50%)
+    width 3px
+    height 40px
+    background var(--accent-color, #7c3aed)
+    border-radius 2px
+
+
+// =============================================================================
 // BACKDROP FILTER BRIGHTNESS - Backdrop Brightness Adjustment
 // =============================================================================
 // Adjust backdrop brightness without blur for performance-conscious designs

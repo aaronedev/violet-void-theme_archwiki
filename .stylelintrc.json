@@ -26,7 +26,8 @@
           "sidebar",
           "toc",
           "infobox",
-          "none"
+          "none",
+          "scroll-snap-container"
         ]
       }
     ],
@@ -94,7 +95,10 @@
           "nth-child",
           "local",
           "global",
-          "until-found"
+          "until-found",
+          "snapped",
+          "snapped-x",
+          "snapped-y"
         ]
       }
     ],
