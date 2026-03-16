@@ -1915,12 +1915,13 @@ Last updated: 2026-03-16 00:26
 
 ## 📐 Advanced Interpolation (New)
 
-- [ ] **`interpolate-size: allow-keywords`** (85%+ browser support)
-  - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
+- [x] **`interpolate-size: allow-keywords`** (85%+ browser support)
+  - File: `src/components/animations.styl`
   - Enable smooth transitions to/from `auto`
   - `interpolate-size: allow-keywords;`
   - Example: `height: 0; height: auto;` now animates
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: e5a92b8
 
 - [ ] **`calc-size()` for Auto Transitions** (85%+ browser support)
   - File: `src/components/navigation.styl`
@@ -7594,3 +7595,4 @@ Last updated: 2026-03-16 00:26
 | 2026-03-15 | Masonry Layout for Galleries | Added masonry gallery layouts in file-pages.styl - native CSS masonry with @supports, CSS columns fallback, grid-based simulation with variable spans, dense packing, responsive breakpoints | bd0937b |
 | 2026-03-16 | Command Line Blocks | Added archwiki.styl with terminal prompt styling, command/output separation, copy button positioning, root vs user prompt distinction, config file blocks (INI/JSON/YAML), installation status boxes, kernel module styling | cca8d22 |
 | 2026-03-16 | backdrop-filter brightness/saturate | Added backdrop-filter brightness() and saturate() utility classes in navigation.styl - standalone brightness (light/dark 50-200%), saturate (high/low 150-200%), and combined effects (bright-vibrant, dark-muted, frosted-*) | 37ba9bc |
+| 2026-03-16 | interpolate-size: allow-keywords | Added smooth auto-height transitions in animations.styl - enables height: 0 to height: auto animations without JavaScript, includes utility classes for accordions/dropdowns/collapsibles, MediaWiki patterns, reduced motion support, calc-size() alternative | e5a92b8 |
