@@ -356,18 +356,23 @@ mark
 // SUBSCRIPT & SUPERSCRIPT
 // =============================================================================
 
+// font-variant-position for proper super/subscript glyphs
+// Browser support: 97%+
+// Uses proper glyphs from the font instead of scaled characters
 sub
 sup
   font-size 0.75em
   line-height 0
   position relative
   vertical-align baseline
-
-sup
-  top -0.5em
+  font-variant-position super
 
 sub
   bottom -0.25em
+  font-variant-position sub
+
+sup
+  top -0.5em
 
 // =============================================================================
 // HORIZONTAL RULE

@@ -1716,6 +1716,20 @@ h4[id]
   .has-fine-pointer
     display block
 
+// Touch-only devices (finger input, no precise pointer)
+@media (any-pointer coarse)
+  .has-coarse-pointer
+    display block
+
+  // Larger touch targets for coarse pointers
+  .touch-friendly
+    min-height 48px
+    min-width 48px
+
+  // Simplified interactions for touch
+  .touch-optimized
+    touch-action manipulation
+
 // =============================================================================
 // COLOR PREFERENCE QUERIES
 // =============================================================================
