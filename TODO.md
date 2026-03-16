@@ -3088,12 +3088,13 @@ Last updated: 2026-03-16 00:26
   - Package status indicators
   - Commit: 5754579
 
-- [ ] **Command Line Blocks** (CSS)
+- [x] **Command Line Blocks** (CSS)
   - File: `src/components/archwiki.styl`
   - Terminal prompt styling
   - Command/output separation
   - Copy button positioning
   - Root vs user prompt distinction
+  - Commit: cca8d22
 
 - [ ] **Configuration File Blocks** (CSS)
   - File: `src/components/archwiki.styl`
@@ -7584,3 +7585,4 @@ Last updated: 2026-03-16 00:26
 | 2026-03-15 | Vertical Writing Mode | Added full vertical writing support in i18n.styl - .vertical-rl/.vertical-lr classes, text-orientation variants, CJK defaults, vertical list/table styling (97%+ browser support) | 81111f8 |
 | 2026-03-15 | ::highlight() Pseudo-element | Added ::highlight() pseudo-element styles in modern-css.styl for CSS Custom Highlight API - supports search-results, search-current, annotation, custom-selection, quote, error, warning, link-found highlight types (85%+ browser support) | 9a98043 |
 | 2026-03-15 | Masonry Layout for Galleries | Added masonry gallery layouts in file-pages.styl - native CSS masonry with @supports, CSS columns fallback, grid-based simulation with variable spans, dense packing, responsive breakpoints | bd0937b |
+| 2026-03-16 | Command Line Blocks | Added archwiki.styl with terminal prompt styling, command/output separation, copy button positioning, root vs user prompt distinction, config file blocks (INI/JSON/YAML), installation status boxes, kernel module styling | cca8d22 |
