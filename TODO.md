@@ -3835,19 +3835,21 @@ Last updated: 2026-03-16 06:36
   - Stylus: Works directly
   - Commit: a0104ee
 
-- [ ] **`:interest-source` Pseudo-class** (85%+ browser support)
+- [x] **`:interest-source` Pseudo-class** (85%+ browser support)
   - File: `src/components/navigation.styl`
   - Detect element receiving user interest (hover/focus)
   - Enhanced dropdown menu interactions
   - Progressive disclosure patterns
   - Stylus: Works directly
+  - Commit: 01a96b4
 
-- [ ] **`:interest-target` Pseudo-class** (85%+ browser support)
+- [x] **`:interest-target` Pseudo-class** (85%+ browser support)
   - File: `src/components/navigation.styl`
   - Element targeted by interest source
   - Preview card hover patterns
   - Related articles hover effects
   - Stylus: Works directly
+  - Commit: 01a96b4
 
 ## 📺 Media State Pseudo-Classes (New)
 

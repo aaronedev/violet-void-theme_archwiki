@@ -984,3 +984,83 @@ table.form-table
       grid-template-columns subgrid
       grid-column 1 / -1
 
+// border-spacing for gaps between cells
+// Used with border-collapse: separate to create space between table cells
+table
+  &.spacing-none
+    border-spacing 0
+    border-collapse separate
+
+  &.spacing-xs
+    border-spacing 0.125rem
+    border-collapse separate
+
+  &.spacing-sm
+    border-spacing 0.25rem
+    border-collapse separate
+
+  &.spacing-md
+    border-spacing 0.5rem
+    border-collapse separate
+
+  &.spacing-lg
+    border-spacing 1rem
+    border-collapse separate
+
+  &.spacing-xl
+    border-spacing 1.5rem
+    border-collapse separate
+
+// Vertical spacing only
+&.spacing-y-xs
+  border-spacing 0 0.125rem
+  border-collapse separate
+
+&.spacing-y-sm
+  border-spacing 0 0.25rem
+  border-collapse separate
+
+&.spacing-y-md
+  border-spacing 0 0.5rem
+  border-collapse separate
+
+&.spacing-y-lg
+  border-spacing 0 1rem
+  border-collapse separate
+
+// Horizontal spacing only
+&.spacing-x-xs
+  border-spacing 0.125rem 0
+  border-collapse separate
+
+&.spacing-x-sm
+  border-spacing 0.25rem 0
+  border-collapse separate
+
+&.spacing-x-md
+  border-spacing 0.5rem 0
+  border-collapse separate
+
+&.spacing-x-lg
+  border-spacing 1rem 0
+  border-collapse separate
+
+// Responsive border-spacing based on viewport
+@media (max-width 480px)
+  table
+    &.spacing-responsive
+      border-spacing 0
+      border-collapse separate
+
+@media (min-width 481px) and (max-width 768px)
+  table
+    &.spacing-responsive
+      border-spacing 0.25rem
+      border-collapse separate
+
+@media (min-width 769px)
+  table
+    &.spacing-responsive
+      border-spacing 0.5rem
+      border-collapse separate
+
