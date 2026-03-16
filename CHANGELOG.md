@@ -7,6 +7,158 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
 
 ## [Unreleased]
 
+## [2026.03.16] - 2026-03-16
+
+### Added
+- **Modern CSS Features**
+  - Shadow DOM support: `:host`, `:host-context()`, `:interest-source`, `:interest-target`
+  - Scroll-driven animations: `scroll-timeline`, `interpolate-size` for auto-height transitions
+  - View transitions: `view-transition-class` for coordinated page transitions
+  - Anchor positioning API with `@position-try` fallbacks
+  - `@starting-style` for entry/exit animations
+  - `transition-behavior: allow-discrete` for display transitions
+  - `linear()` timing function for complex easing
+  - `calc-size()` for automatic sizing transitions
+
+- **Typography & Text**
+  - Text wrap control: `text-wrap: balance/pretty`, `text-wrap-mode`, `text-wrap-style`
+  - Font features: `font-variant-position`, `font-optical-sizing`, `font-size-adjust`, `font-variant-alternates`
+  - Font features at-rule: `@font-feature-values` for named font features
+  - CJK support: `font-variant-east-asian`, `text-spacing-trim`, `text-group-align`, vertical writing mode
+  - `initial-letter` drop caps
+  - Line grid, line snap, and box snap CSS properties
+
+- **Forms & Inputs**
+  - Media state pseudo-classes: `:paused`, `:playing`, `:buffering`, `:muted`
+  - Form validation: `:user-valid`, `:user-invalid`, `:in-range`, `:out-of-range`
+  - Form states: `:default`, `:read-only`, `:read-write`, `:blank`, `:nth-child(of)`
+  - Pseudo-elements: `::checkmark`, `::picker(select)`, `::file-selector-button`
+  - Additional: `:autofill`, `:indeterminate`, `:picture-in-picture`
+
+- **Tables & Layout**
+  - `border-spacing` utilities for cell gaps
+  - `table-layout: fixed` for performance
+  - Subgrid support for nested grid alignment
+  - Scrollable table wrapper for mobile
+  - Sortable table enhancements
+
+- **Performance**
+  - Dynamic viewport units (`dvh`, `svh`, `lvh`) with fallbacks
+  - Content-visibility patterns including `hidden=until-found`
+  - Lazy loading hints with skeleton screens
+  - CSS containment utilities
+  - Critical CSS patterns
+  - `overflow-anchor` for scroll anchoring
+
+- **Print Enhancements**
+  - Dedicated Print Theme with enhanced styles
+  - Print typography improvements
+  - Page break controls
+  - Print TOC, header, footer styling
+  - Print Infobox compact styling
+  - Page orientation and print color adjust
+  - Named pages and size descriptors
+  - Marks and bleed for professional printing
+  - Collapsible sections print styles
+
+- **Accessibility**
+  - `outline-style: auto` for platform-native focus rings
+  - Screen reader optimizations and `sr-only` utilities
+  - Enhanced `focus-visible` styling
+  - `@media (hover: none)` for touch-only devices
+  - `@media (grid)` for braille display support
+  - Filter `contrast()` for improved readability
+  - `:modal` pseudo-class for dialogs
+
+- **Extensions & Special Pages**
+  - Package Templates styling (Pkg, AUR, Grp)
+  - TemplateData styling for parameter cards
+  - Wikidata item display styling
+  - Math Extension (MathML/LaTeX) styling
+  - Cite extension enhancements
+  - Timeline Extension styling
+  - Translation Extension and Dashboard styling
+  - PageForms extension styling
+  - Scribunto Console styling
+  - CodeMirror syntax highlighting
+  - Cargo Query Interface styling
+  - Map/Geo Extension styling
+
+- **Media & Video**
+  - HDR video support: `@media (video-dynamic-range)`
+  - `::cue` pseudo-element for video captions
+
+- **Search & Navigation**
+  - Cross-wiki search results styling
+  - Advanced search form styling
+  - Search suggestions dropdown
+  - CategoryTree extension styling
+
+- **Community Features**
+  - Collaborative editing indicators
+  - User Talk Page Enhancements
+
+- **UI Components**
+  - Interactive hints for code blocks
+  - Glassmorphism effects
+  - `backdrop-filter` brightness and saturate utilities
+  - `::scroll-marker` pseudo-element
+  - `::highlight` for CSS Custom Highlight API
+  - Empty, error, and success state styling
+
+- **Miscellaneous**
+  - `image-set()` for responsive images
+  - `background-blend-mode` utilities
+  - Gradient borders component
+  - Masonry layout for image galleries
+  - Command Line Blocks styling
+  - Interwiki Link Preview styling
+  - Chess/Go diagram styling
+  - Related pages suggestion styling
+  - Mobile navigation patterns
+  - Touch-friendly edit controls
+  - Definition lists and checklist styling
+  - Reading List and Custom Quick Links styling
+  - Notification preferences panel styling
+  - Admin Dashboard and Moderation UI styling
+  - User preference overrides styling
+  - Lua module documentation styling
+  - Systemd unit styling (service/timer/socket/path/device/mount/slice/scope)
+  - PWA styling for offline indicators and install prompts
+  - Notification badge and panel styling
+  - Custom CSS Snippet Support in preferences
+  - Template documentation subpage styling
+
+- **Color & Effects**
+  - Color spaces: `lab()`, `lch()`, `oklch()`, `color-mix()`
+  - `font-palette` for color fonts
+  - SVG utilities: `paint-order`, `stroke-*`, `vector-effect`, `shape-rendering`
+
+- **CSS Utilities**
+  - `aspect-ratio` for CLS optimization
+  - Logical properties: `inset`, `inset-block`, `inset-inline`, `margin-block`, `margin-inline`, logical overflow
+  - Grid shorthand: `place-items`, `place-content`, `place-self`
+  - `scrollbar-gutter: stable` for layout stability
+  - `conic-gradient` and `cross-fade()` utilities
+  - CSS Math Functions utilities
+
+### Changed
+- Improved code consistency with automated linting fixes
+
+### Fixed
+- CSS paths to use correct theme location
+- Replaced invalid `scroll-start/scroll-end` with `scroll-padding-block`
+- Chromium-only Stylus integration flow
+- High-specificity CSS overrides for tables, notice boxes, search, and content area
+- Reverted `:open` pseudo-class (caused page rendering issues)
+- Firefox compatibility with `@supports` wrappers for unsupported CSS
+- PostCSS vulnerability via npm overrides
+
+### Maintenance
+- Removed outdated files
+- Added console-fixer for headless browser CSS validation
+- CSS nesting migration path documentation
+
 ## [2026.03.10] - 2026-03-10
 
 ### Added
