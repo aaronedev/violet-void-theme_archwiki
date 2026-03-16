@@ -1,0 +1,535 @@
+// ArchWiki-Specific Elements
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// COMMAND LINE BLOCKS
+// =============================================================================
+
+// Terminal/command block container
+.command-block
+.mw-highlight
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.5
+  overflow-x auto
+  position relative
+
+  // Line numbers
+  .ln
+    color $muted
+    user-select none
+    margin-right 1em
+    min-width 2em
+    display inline-block
+    text-align right
+
+  // Comments in code
+  .c
+  .c1
+  .cm
+    color $comment
+    font-style italic
+
+  // Keywords
+  .k
+  .kd
+  .kn
+    color $arch-blue
+
+  // Strings
+  .s
+  .s1
+  .s2
+  .sb
+    color $term-green
+
+  // Numbers
+  .m
+  .mi
+  .mf
+    color $term-cyan
+
+  // Functions
+  .nf
+  .fu
+    color $term-blue
+
+  // Variables
+  .nv
+  .vi
+    color $term-magenta
+
+  // Operators
+  .o
+  .p
+    color $term-white
+
+  // Terminal prompt styling
+  .prompt
+    color $arch-blue
+    font-weight 600
+    margin-right 0.5em
+
+  // Root prompt (#)
+  .prompt-root
+    color $secondary-red
+    font-weight 600
+
+  // User prompt ($)
+  .prompt-user
+    color $arch-blue
+    font-weight 600
+
+  // Command input line
+  .command
+    color $term-white
+
+  // Command output
+  .output
+    color $light
+    opacity 0.85
+
+  // Error output
+  .error
+    color $secondary-red
+
+  // Success output
+  .success
+    color $green
+
+  // Warning output
+  .warning
+    color $orange
+
+// Pre-formatted terminal blocks
+pre.code
+pre.terminal
+.terminal-block
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.6
+  overflow-x auto
+  white-space pre-wrap
+  word-break break-all
+
+// Terminal output blocks (styled differently from input)
+.output-block
+  background linear-gradient(135deg, rgba($dark, 0.7), rgba($darker, 0.7))
+  border-left 3px solid rgba(200, 184, 255, 0.15)
+  padding 0.75em 1em
+  margin 0.5em 0
+  color $light
+  font-family $font-mono
+  font-size 0.9em
+
+// Interactive shell prompt
+.shell-prompt
+  &::before
+    content '$ '
+    color $arch-blue
+    font-weight 600
+    margin-right 0.5em
+
+  &.root::before
+    content '# '
+    color $secondary-red
+    font-weight 600
+
+// Root privilege indicator
+.root-command
+  .prompt::before
+    content '# '
+    color $secondary-red
+    font-weight 600
+
+  .command-input
+    color $term-white
+
+// User command indicator
+.user-command
+  .prompt::before
+    content '$ '
+    color $arch-blue
+    font-weight 600
+
+  .command-input
+    color $term-white
+
+// Copy button for code blocks
+.code-copy-btn
+  position absolute
+  top 0.5em
+  right 0.5em
+  background $dark
+  border 1px solid rgba(200, 184, 255, 0.15)
+  border-radius $border-radius-sm
+  padding 0.25em 0.5em
+  font-size 0.75em
+  color $muted
+  cursor pointer
+  transition all $transition-fast
+  opacity 0
+  z-index 1
+
+  &:hover
+    background $arch-blue
+    color $white
+    border-color $arch-blue
+
+  &:focus
+    opacity 1
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+.command-block:hover .code-copy-btn
+.code-block:hover .code-copy-btn
+  opacity 1
+
+// Copy button for terminal blocks
+.terminal-copy-btn
+  @extend .code-copy-btn
+  background rgba($arch-blue, 0.1)
+  border-color rgba($arch-blue, 0.3)
+
+// Command history navigation indicator
+.command-history
+  .history-prev::before
+    content '↑ '
+    color $muted
+
+  .history-next::before
+    content '↓ '
+    color $muted
+
+// Heredoc indicators
+.heredoc
+  .heredoc-start
+    color $arch-blue
+    font-weight 600
+
+  .heredoc-end
+    color $arch-blue
+    font-weight 600
+
+// Pipe and redirection indicators
+.pipe
+  color $term-white
+  margin 0 0.25em
+
+.redirection
+  color $term-white
+  margin 0 0.25em
+
+  &::before
+    content '> '
+    color $term-white
+
+.redirection-append::before
+  content '>> '
+
+.redirection-stderr::before
+  content '2> '
+
+.redirection-stderr-append::before
+  content '2>> '
+
+// Variable expansion in commands
+.var-expansion
+  color $term-magenta
+
+  &::before
+    content '${'
+    color $term-white
+
+  &::after
+    content '}'
+    color $term-white
+
+// Command substitution
+.command-substitution
+  color $term-blue
+
+  &::before
+    content '$( '
+    color $term-white
+
+  &::after
+    content ' )'
+    color $term-white
+
+// Path highlighting in commands
+.path
+  color $term-green
+  text-decoration underline
+  text-decoration-style dotted
+  text-decoration-color $muted
+
+// Package names in commands
+.package-name
+  color $arch-blue
+  font-weight 500
+
+// Option flags
+.option-flag
+  color $term-cyan
+
+  &::before
+    content '--'
+    color $muted
+
+  &.short::before
+    content '-'
+
+// Environment variables
+.env-var
+  color $term-magenta
+  font-weight 500
+
+// ============================================================================
+// CONFIGURATION FILE BLOCKS
+// ============================================================================
+
+.config-block
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  font-family $font-mono
+  font-size 0.85em
+  line-height 1.5
+  overflow-x auto
+
+  // File path header
+  .file-path
+    background rgba($arch-blue, 0.1)
+    border-bottom 1px solid rgba(200, 184, 255, 0.15)
+    padding 0.5em 1em
+    margin -1em -1em 1em -1em
+    font-size 0.9em
+    color $arch-blue
+    font-weight 500
+    display flex
+    align-items center
+    gap 0.5em
+
+    &::before
+      content '📄'
+      font-size 1em
+
+  // Section headers in config
+  .config-section
+    color $arch-blue
+    font-weight 600
+    margin-top 1em
+
+  // Comments in config
+  .config-comment
+    color $comment
+    font-style italic
+
+  // Key-value pairs
+  .config-key
+    color $term-magenta
+
+  .config-value
+    color $term-green
+
+  // Active/configured values
+  .config-active
+    color $green
+    font-weight 500
+
+  // Disabled/commented values
+  .config-disabled
+    color $muted
+    text-decoration line-through
+
+// INI-style config
+.config-ini
+  .section-header
+    color $arch-blue
+    font-weight 600
+    margin-top 0.75em
+
+    &::before
+      content '['
+      color $term-white
+
+    &::after
+      content ']'
+      color $term-white
+
+  .key
+    color $term-magenta
+    margin-right 0.5em
+
+  .value
+    color $term-green
+
+// JSON-style config
+.config-json
+  .key
+    color $arch-blue
+
+  .string
+    color $term-green
+
+  .number
+    color $term-cyan
+
+  .boolean
+    color $term-cyan
+
+  .null
+    color $muted
+    font-style italic
+
+// YAML-style config
+.config-yaml
+  .key
+    color $term-magenta
+
+  .value
+    color $term-green
+
+  .boolean
+    color $term-cyan
+
+  .number
+    color $term-cyan
+
+  .comment
+    color $comment
+    font-style italic
+
+// ============================================================================
+// INSTALLATION STATUS BOXES
+// ============================================================================
+
+.install-status
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  display flex
+  align-items center
+  gap 0.75em
+  font-size 0.95em
+
+  // Status icon
+  .status-icon
+    font-size 1.25em
+
+  // Status text
+  .status-text
+    flex 1
+
+  // Package name
+  .package
+    font-weight 600
+    color $arch-blue
+
+  // Available status
+  &.status-available
+    background rgba($green, 0.1)
+    border 1px solid rgba($green, 0.3)
+    color $green
+
+    .status-icon::before
+      content '✓'
+
+  // Installed status
+  &.status-installed
+    background rgba($arch-blue, 0.1)
+    border 1px solid rgba($arch-blue, 0.3)
+    color $arch-blue
+
+    .status-icon::before
+      content '●'
+
+  // Orphaned status
+  &.status-orphaned
+    background rgba($orange, 0.1)
+    border 1px solid rgba($orange, 0.3)
+    color $orange
+
+    .status-icon::before
+      content '⚠'
+
+  // Out-of-date status
+  &.status-outdated
+    background rgba($orange, 0.1)
+    border 1px solid rgba($orange, 0.3)
+    color $orange
+
+    .status-icon::before
+      content '↻'
+
+// ============================================================================
+// KERNEL MODULE STYLING
+// ============================================================================
+
+.module-info
+  background $dark
+  border-radius $border-radius-md
+  padding 1em
+  margin 1em 0
+  border-left 4px solid $arch-blue
+
+  .module-name
+    font-family $font-mono
+    font-weight 600
+    font-size 1.1em
+    color $arch-blue
+    margin-bottom 0.5em
+
+  .module-description
+    color $light
+    margin-bottom 0.75em
+
+  // Module parameters table
+  .module-params
+    margin-top 0.75em
+    font-size 0.9em
+
+    th
+      text-align left
+      padding 0.25em 0.5em
+      background rgba($arch-blue, 0.1)
+      color $arch-blue
+
+    td
+      padding 0.25em 0.5em
+      font-family $font-mono
+
+      &:first-child
+        color $term-magenta
+
+  // Module loaded indicator
+  &.module-loaded
+    border-left-color $green
+
+    .module-name::after
+      content ' [loaded]'
+      font-size 0.8em
+      color $green
+
+  // Module blacklist indicator
+  &.module-blacklisted
+    border-left-color $secondary-red
+    opacity 0.8
+
+    .module-name::after
+      content ' [blacklisted]'
+      font-size 0.8em
+      color $secondary-red
