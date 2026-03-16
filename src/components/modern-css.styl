@@ -1870,6 +1870,65 @@ h4[id]
   border-radius 2px
 
 // =============================================================================
+// :host Pseudo-class for Shadow DOM
+// =============================================================================
+
+// Style shadow host from inside shadow DOM
+// Browser support: 97%+
+// Note: These only work from WITHIN a shadow root
+
+// Base :host styling - the element hosting the shadow tree
+:host
+  display block
+  box-sizing border-box
+
+// :host with functional pseudo-class - match based on host's state
+:host(:hover)
+  outline none
+
+:host(:focus)
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+:host(:focus-visible)
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+// :host() with attribute selector - style based on host's own attributes
+:host([disabled])
+  opacity 0.5
+  pointer-events none
+
+:host([variant="primary"])
+  background $arch-blue
+  color $darker
+
+:host([variant="secondary"])
+  background $base
+  color $text
+
+:host([variant="danger"])
+  background $error-red
+  color $light
+
+// Size variants via host attributes
+:host([size="small"])
+  font-size 0.875rem
+  padding 0.25em 0.5em
+
+:host([size="large"])
+  font-size 1.25rem
+  padding 0.75em 1.5em
+
+// Full-width variant
+:host([full-width])
+  width 100%
+
+// Rounded variant
+:host([rounded])
+  border-radius $border-radius-lg
+
+// =============================================================================
 // SYSTEM COLORS
 // =============================================================================
 
