@@ -1773,6 +1773,13 @@ Last updated: 2026-03-18 20:30
   - Stylus: Works directly
   - Commit: c2aacf9
 
+- [ ] **`input-security` Property** (97%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Control text selection behavior (auto vs none)
+  - Apply to sensitive inputs (one-time codes, OTP fields)
+  - Example: `input[type="password"]:not(.reveal) { input-security: none; }`
+  - Stylus: Works directly
+
 ## 🔤 Typography Deep Cuts (New)
 
 - [x] **`font-optical-sizing` for Variable Fonts** (97%+ browser support)
@@ -2460,6 +2467,13 @@ Last updated: 2026-03-18 20:30
   - Zoom cursor hints
   - Stylus: Works directly
 
+- [ ] **`cursor: grab` / `cursor: grabbing`** (97%+ browser support)
+  - File: `src/components/ui-components.styl`
+  - Open/closed hand cursors for drag-and-drop interfaces
+  - Apply to file upload zones, reorderable lists, sortable grids
+  - Example: `.draggable { cursor: grab; } .draggable:active { cursor: grabbing; }`
+  - Stylus: Works directly
+
 - [x] **`caret-shape` Property** (85%+ browser support)
   - File: `src/components/editing.styl`
   - Style text cursor shape
@@ -2636,7 +2650,12 @@ Last updated: 2026-03-18 20:30
   - `content: counters(item, ".") " ";`
   - Stylus: Works directly
 
-
+- [ ] **`list-style-type: dash` Custom Dash Marker** (97%+ browser support)
+  - File: `src/components/lists.styl`
+  - Custom dash-style list bullets via `@counter-style`
+  - Useful for checklist/stepped tutorials with visual dash markers
+  - Example: `list-style-type: archwiki-dash;`
+  - Stylus: Requires `@css{}` wrapper for `@counter-style` definition
 
 ## 🖱️ Input Capability Detection (New - 2026-03-01 Scout 14)
 
@@ -3363,6 +3382,15 @@ Last updated: 2026-03-18 20:30
   - Unwatch toggle button
   - Edit count badge
   - Time since last edit
+
+- [ ] **Special:ComparePages Styling** (CSS, 97%+ browser support)
+  - File: `src/components/special.styl`
+  - Side-by-side diff comparison UI
+  - Revision selector dropdowns
+  - Diff line highlighting (additions in green, removals in red)
+  - Unified vs side-by-side view toggle
+  - Navigation between comparisons
+  - Stylus: Works directly
 
 - [ ] **Special:Search Results** (CSS)
   - File: `src/components/special.styl`
@@ -4248,6 +4276,14 @@ Last updated: 2026-03-18 20:30
   - Forced colors adaptation
   - System color keywords
   - Border emphasis
+
+- [ ] **`[inert]` Attribute Styling** (CSS, 97%+ browser support)
+  - File: `src/components/accessibility.styl`
+  - Style elements with `inert` attribute (prevents interaction/focus)
+  - Dim/grayscale inert content to indicate non-interactive state
+  - Apply to modal backdrop, disabled form sections, hidden overlays
+  - Example: `[inert] { opacity: 0.5; pointer-events: none; }`
+  - Stylus: Works directly
 
 - [x] **Focus Visible Enhancement** (CSS, 97%+ browser support)
   - File: `src/components/accessibility.styl`
@@ -7691,9 +7727,36 @@ Last updated: 2026-03-18 20:30
   - Ensures content doesn't overlap window control buttons in installed PWAs
   - Stylus: Use `env()` function directly
 
+## 🆕 CSS Custom Media & Print Extensions (New - 2026-03-18 Scout 47)
+
+- [ ] **`@custom-media` for Named Media Query Conditions** (90%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Define reusable named media query conditions
+  - Example: `@custom-media --small-only (max-width: 600px); @media (--small-only) { ... }`
+  - Cleaner than repeating complex media query chains
+  - Pairs with existing responsive breakpoints
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`bookmark-state` for Print Page Break Control** (85%+ browser support)
+  - File: `src/components/print-enhanced.styl`
+  - Control page break behavior for specific elements in print
+  - Values: `auto`, `always`, `avoid`, `left`, `right`
+  - Apply to infoboxes, code blocks, tables to prevent awkward breaks
+  - Example: `.infobox { bookmark-state: avoid; }`
+  - Stylus: Works directly
+
+- [ ] **`@property` with `<percentage>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
+  - Animate percentage custom properties
+  - Example: `@property --progress { syntax: '<percentage>'; initial-value: 0%; inherits: false; }`
+  - Useful for loading bars, completion indicators, skill meters
+  - Pairs with existing `@property` for colors and numbers
+  - Note: Wrap in `@css{}` for Stylus
+
 ---
 
 | 2026-03-18 | Forty-sixth scout | Added :current/:past/:future time-dimensional pseudo-classes (WebVTT captions), ::search-text (find-in-page styling), safe-area-max-inset-* env vars, titlebar-area-* env vars (PWA title bar) |
+| 2026-03-18 | Forty-seventh scout | Added @custom-media for named media queries, bookmark-state for print page breaks, @property percentage syntax |
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
 | 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | 552d96c |
