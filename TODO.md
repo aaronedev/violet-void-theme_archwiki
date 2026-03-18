@@ -470,8 +470,9 @@
 
 | 2026-03-16 | Multi-column layout utilities (column-rule, column-span, column-fill, columns) | 2c29491 |
 | 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
+| 2026-03-18 | Eighteenth scout | Added animation-timeline view(), outline shorthand, math-depth, steps() jump keywords |
 
-Last updated: 2026-03-16 06:36
+Last updated: 2026-03-18 20:30
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -3042,6 +3043,46 @@ Last updated: 2026-03-16 06:36
 
 | 2026-03-01 | Fifteenth scout | Added animation timing functions (linear(), steps() with jump keywords, cubic-bezier()), advanced @property types (<number>, <integer>, <angle>, <time>), advanced @font-feature-values (@stylistic, @historical-forms, @styleset, @character-variant, @swash, @ornaments, @annotation), scroll timeline animations (scroll-timeline-name/axis, view-timeline-name/inset, animation-range), view-transition-class, light-dark() function, extended system colors, MathML styling (math-style, math-depth, math-shift) |
 
+
+## 🎬 Animation Timeline (New - 2026-03-18 Scout)
+
+- [ ] **`animation-timeline: view()` for View-Based Animations** (85%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Animate elements as they enter/exit viewport
+  - Fade-in for infoboxes, navboxes as they scroll into view
+  - Pair with `animation-range` for fine control
+  - Note: Wrap in `@css{}` for Stylus
+  - Commit: (pending)
+
+## 🎯 Layout & Stacking (New)
+
+- [ ] **`outline` Shorthand for Focus Styling** (97%+ browser support)
+  - File: `src/components/focus.styl`
+  - Compact outline syntax: `outline: 2px solid var(--accent);`
+  - Combine width, style, color in one declaration
+  - Already have outline-offset and outline-style auto - add shorthand
+  - Stylus: Works directly
+  - Commit: (pending)
+
+## 📐 MathML Depth (New)
+
+- [ ] **`math-depth` Property for Equation Nesting** (87%+ browser support)
+  - File: `src/components/content.styl`
+  - Control math display depth styling
+  - Adjust font size/style for nested equations
+  - Pairs with existing `math-style` support
+  - Stylus: Works directly
+  - Commit: (pending)
+
+## 🔢 Animation Timing (New)
+
+- [ ] **`steps()` with Jump Keywords** (97%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Discrete animation steps with jump control
+  - `jump-start`, `jump-end`, `jump-none`, `jump-both`
+  - Example: `animation-timing-function: steps(5, jump-end);`
+  - Stylus: Works directly
+  - Commit: (pending)
 
 ## 🔧 MediaWiki Extensions Styling (New - 2026-03-01 Scout 16)
 
