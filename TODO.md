@@ -2557,6 +2557,14 @@ Last updated: 2026-03-18 20:30
   - Stylus: Works directly
   - Commit: bd7afa3
 
+- [ ] **`animation-playback-rate` for Speed Control** (95%+ browser support)
+  - File: `src/components/animations.styl`
+  - Control animation playback speed (0.5x, 1x, 2x, etc.)
+  - Combine with `animation-play-state: paused` for speed + pause
+  - Accessibility: slow-motion mode for reduced motion users
+  - Example: `.slow-motion { animation-playback-rate: 0.5; }`
+  - Stylus: Works directly
+
 ## 🔲 Outline Enhancements (New)
 
 - [x] **`outline-offset` for Spaced Outlines** (97%+ browser support)
@@ -3130,6 +3138,15 @@ Last updated: 2026-03-18 20:30
   - Combo box
   - Multi-select
   - Commit: ef718a8
+
+- [ ] **Extension:FlaggedRevisions Styling** (CSS)
+  - File: `src/components/extensions.styl`
+  - Stable revision indicator styling (green checkmark, star)
+  - Pending revision banner/warning
+  - Revision comparison badges
+  - Editor confidence markers
+  - ArchWiki uses FlaggedRevisions for article quality control
+  - Stylus: Works directly
 
 ## 📋 Advanced Table Features (New)
 
