@@ -11,7 +11,7 @@
   },
   "userStyle": {
     "namespace": "github.com/aaronedev/violet-void-theme",
-    "version": "20260318.14.05"
+    "version": "20260318.15.07"
   },
   "scripts": {
     "build": "node scripts/build.js",
