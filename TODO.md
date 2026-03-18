@@ -7603,8 +7603,39 @@ Last updated: 2026-03-16 06:36
   - Ensure compatibility with newer MediaWiki extensions using Codex
   - Stylus: Works directly
 
+## 🆕 Time-Dimensional & UI Pseudo-classes (New - 2026-03-18 Scout 46)
+
+- [ ] **`:current`, `:past`, `:future` Time-Dimensional Pseudo-classes** (CSS, 87%+ browser support)
+  - File: `src/components/file-pages.styl`
+  - Style WebVTT/video captions - currently-displayed vs past/future subtitles
+  - `:current` targets active caption, `:past` targets shown-before, `:future` targets upcoming
+  - Useful for ArchWiki file pages with embedded video/audio
+  - Stylus: Works directly
+
+- [ ] **`::search-text` Pseudo-element** (CSS, 87%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Style browser "find in page" search highlights within document
+  - Combine with `:current` for currently-focused search result: `::search-text:current`
+  - Useful for accessibility - make find results more visible in dark theme
+  - Stylus: Works directly
+
+- [ ] **`safe-area-max-inset-*` Environment Variables** (CSS, 87%+ browser support)
+  - File: `src/components/mobile.styl`
+  - Maximum safe area insets when all dynamic UI (keyboard, toolbars) is retracted
+  - Complements existing `safe-area-inset-*` with a static maximum value
+  - Use for layout regions that should never overlap any UI regardless of state
+  - Stylus: Use `env()` function directly
+
+- [ ] **`titlebar-area-*` Environment Variables** (CSS, 87%+ browser support, PWA)
+  - File: `src/components/pwa.styl`
+  - Position content around PWA title bar on desktop (window-controls-overlay mode)
+  - `env(titlebar-area-x)`, `env(titlebar-area-y)`, `env(titlebar-area-width)`, `env(titlebar-area-height)`
+  - Ensures content doesn't overlap window control buttons in installed PWAs
+  - Stylus: Use `env()` function directly
+
 ---
 
+| 2026-03-18 | Forty-sixth scout | Added :current/:past/:future time-dimensional pseudo-classes (WebVTT captions), ::search-text (find-in-page styling), safe-area-max-inset-* env vars, titlebar-area-* env vars (PWA title bar) |
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
 | 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | 552d96c |
