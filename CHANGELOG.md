@@ -5,7 +5,27 @@ All notable changes to violet-void-theme_archwiki will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to date-based versioning (YYYY.MM.DD).
 
-## [Unreleased]
+## [2026.03.19] - 2026-03-19
+
+### Added
+- **Modern CSS Features**
+  - `@property` expansion: length/dimension custom property types
+  - `[inert]` attribute styling for disabled/hidden element states
+  - Maintenance template styling for ArchWiki
+
+- **Testing**
+  - Visual regression screenshots for Stylus integration
+
+### Documentation
+- Updated TODO with 50+ newly completed items from scout 52/53, including:
+  - CSS features: `scroll-linked-floating`, `field-sizing: form`, `appearance base-select`, `:drop` pseudo-classes
+  - Color: `color()` with CSS color space, `color-adjust()`, `oklch()` refinement
+  - Text: `text-indent`, `text-underline-offset`, `overflow-clip-margin`, `text-decoration-thickness`, `white-space: break-spaces`, `text-rendering`, `tab-size`, `font-feature-settings`
+  - Animation: `animation-playback-rate`, `animation-timeline view()`, `steps()` jump keywords
+  - Layout: `spatial-navigation`, `scroll-snap-align`, `scroll-snap-stop`, `content-visibility: auto`
+  - Pseudo-classes: `:snapped`, `:current/:past/:future` (WebVTT), `:local-link()`, `:animated-image`, `:target-current`
+  - Functions: `@function`, `random-item()`
+  - Extensions: FlaggedRevisions, Special:ComparePages, `input-security`
 
 ## [2026.03.16] - 2026-03-16
 
