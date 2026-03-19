@@ -1437,6 +1437,26 @@ Last updated: 2026-03-18 20:30
   - Touch-friendly edit buttons
   - Improved hamburger menu
 
+- [ ] **MediaWiki 1.43 Heading HTML Changes** (CSS)
+  - File: `src/components/content.styl`
+  - New heading wrapper markup: `<div class="mw-heading mw-headingN"><hN>...</hN><span class="mw-editsection">...</span></div>`
+  - Replace old `.mw-headline` spans with direct heading styling
+  - Add `.mw-headingN` to all heading selectors for block-level styles
+  - Add h1-h6 to `.mw-headline` selectors for text-level styles
+  - Unset block styles when nested in `.mw-heading` wrapper
+  - Use `.mw-html-heading` for HTML-syntax wikitext headings
+  - Apply to ArchWiki content area, TOC, infobox titles
+  - MediaWiki 1.43+ / Parsoid
+  - See: https://www.mediawiki.org/wiki/Heading_HTML_changes
+
+- [ ] **MediaWiki 1.43 Footer Icons as Buttons** (CSS)
+  - File: `src/components/skin-vector.styl`
+  - Footer icons now wrapped as `<button>` elements instead of `<a>`
+  - Update icon button styles for new markup
+  - Apply to PoweredBy, credits, and other footer icons
+  - MediaWiki 1.43+ ($wgFooterIcons changes)
+  - Stylus: Works directly
+
 
 ## 📐 Modern Layout Techniques (New - 2026-02-28 Scout 8)
 
@@ -7071,6 +7091,15 @@ Last updated: 2026-03-18 20:30
   - Apply to navboxes, tables
   - Stylus: Works directly
 
+- [ ] **`content-visibility: auto`** for Article Sections (CSS, 85%+ browser support)
+  - File: `src/performance/content.styl`
+  - Skip rendering of off-screen article sections
+  - Apply to long-page sections, TOC entries, footnote references
+  - Pair with `contain-intrinsic-size` to reserve space
+  - Improves scroll performance on long ArchWiki articles
+  - Chrome 85+, Firefox 123+, Safari 18+
+  - Stylus: Works directly
+
 ## ♿ Accessibility Enhancements (New)
 
 - [ ] **forced-colors Mode Support** (CSS, 95%+ browser support)
@@ -7230,6 +7259,14 @@ Last updated: 2026-03-18 20:30
   - Prevent typographic orphans/widows
   - Better paragraph ending balance
   - Apply to article content paragraphs
+  - Stylus: Works directly
+
+- [ ] **`text-wrap: stable`** for Contenteditable Areas (CSS, 85%+ browser support)
+  - File: `src/components/content.styl`
+  - Keeps lines stable while user is editing text
+  - Prevents disorienting text rewrap during typing
+  - Apply to wiki editor textarea and contenteditable elements
+  - Chrome 117+, Firefox 121+, Safari 18+
   - Stylus: Works directly
 
 ## 🆕 URL Fragment Targeting (New - 2026-03-10 Scout 35)
