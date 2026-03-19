@@ -472,7 +472,7 @@
 | 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
 | 2026-03-18 | Eighteenth scout | Added animation-timeline view(), outline shorthand, math-depth, steps() jump keywords |
 
-Last updated: 2026-03-18 20:30
+Last updated: 2026-03-19 04:24
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -7818,9 +7818,38 @@ Last updated: 2026-03-18 20:30
   - ArchWiki application: consistent link underline weight across theme variants
   - Stylus: Works directly
 
+## 🆕 CSS Color Level 4/5 Functions (New - 2026-03-19 Scout 49)
+
+- [ ] **`color()` Function with CSS Color Space** (90%+ browser support)
+  - File: `src/variables/colors.styl`, `src/components/modern-css.styl`
+  - Specify colors in predefined color spaces: `display-p3`, `rec2020`, `srgb`, `srgb-linear`, `a98-rgb`, `prophoto-rgb`, `xyz-d50`, `xyz-d65`, `xyz`
+  - Example: `color: color(display-p3 0.8 0.2 0.1);`
+  - Enables wide-gamut P3/Rec.2020 colors beyond sRGB for vibrant theme accents on capable displays
+  - Falls back gracefully on sRGB-only displays
+  - ArchWiki application: accent colors for warning/success boxes, link highlights, category badges
+  - Stylus: Works directly
+
+- [ ] **`color-adjust()` Function** (85%+ browser support)
+  - File: `src/components/modern-css.styl`, `src/variables/colors.styl`
+  - Adjust color: modify hue, saturation, lightness, or whiteness/blackness of a color
+  - Example: `color: color-adjust(saturate(0.7) lightness(+10%))` or `color: color-adjust(wbmed(--accent) saturation(+20%))`
+  - Part of CSS Color Level 5 — fine-tune existing colors without redefining entire palette
+  - Useful for hover/active state variations derived from base theme colors
+  - ArchWiki application: hover states for links, buttons, interactive elements
+  - Stylus: Works directly
+
+- [ ] **`text-indent` with Hanging for First-line Formatting** (97%+ browser support)
+  - File: `src/components/typography.styl`, `src/components/content.styl`
+  - `text-indent: hanging` — indents all lines except the first (hanging indent)
+  - `text-indent: each-line` — indents first line AND each line after a forced break
+  - Better control than manual margin/padding hacks for blockquote indenting
+  - Apply to blockquotes, callouts, definition lists
+  - ArchWiki application: tutorial numbered lists, code block annotations, glossary entries
+  - Stylus: Works directly
+
 ---
 
-| 2026-03-19 | Forty-eighth scout | Added text-underline-offset (underline positioning), overflow-clip-margin (scroll fade effects), text-decoration-thickness (underline weight) |
+| 2026-03-19 | Forty-ninth scout | Added color() with CSS color space, color-adjust() for color fine-tuning, text-indent hanging/each-line for first-line formatting |
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
 | 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | 552d96c |
