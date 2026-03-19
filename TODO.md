@@ -7790,10 +7790,37 @@ Last updated: 2026-03-18 20:30
   - Pairs with existing `@property` for colors and numbers
   - Note: Wrap in `@css{}` for Stylus
 
+## 🆕 Text Decoration & Overflow Extensions (New - 2026-03-19 Scout 48)
+
+- [ ] **`text-underline-offset` for Underline Positioning** (97%+ browser support)
+  - File: `src/components/links.styl`, `src/components/typography.styl`
+  - Controls the offset of underlines from the text baseline
+  - Pairs with `text-decoration-skip-ink: auto` for readable underlines
+  - Use `text-underline-offset: 0.1em` to lift underlines away from descenders
+  - ArchWiki application: links in article body, navigation, sidebar
+  - Stylus: Works directly
+
+- [ ] **`overflow-clip-margin` for Scroll Fade Effects** (97%+ browser support)
+  - File: `src/components/modern-css.styl`, `src/components/navigation.styl`
+  - Extends the clip boundary for `overflow: clip` elements
+  - Enables smooth fade-out effects at scroll container edges
+  - Syntax: `overflow-clip-margin: <length>` or `overflow-clip-margin: <visual-box> <length>`
+  - Combine with gradient masks for polished horizontal scroll fade indicators
+  - ArchWiki application: TOC scroll areas, navbox horizontal scrolls, code block overflows
+  - Stylus: Works directly
+
+- [ ] **`text-decoration-thickness` for Underline Weight** (95%+ browser support)
+  - File: `src/components/typography.styl`, `src/components/links.styl`
+  - Controls the thickness/weight of text decoration lines (underline, overline, line-through)
+  - Values: `auto`, `from-font`, or explicit `<length>`/`<percentage>`
+  - Use `text-decoration-thickness: from-font` to respect font's preferred weight
+  - Fine-tune `text-decoration-thickness: 2px` for optimal readability in dark/light themes
+  - ArchWiki application: consistent link underline weight across theme variants
+  - Stylus: Works directly
+
 ---
 
-| 2026-03-18 | Forty-sixth scout | Added :current/:past/:future time-dimensional pseudo-classes (WebVTT captions), ::search-text (find-in-page styling), safe-area-max-inset-* env vars, titlebar-area-* env vars (PWA title bar) |
-| 2026-03-18 | Forty-seventh scout | Added @custom-media for named media queries, bookmark-state for print page breaks, @property percentage syntax |
+| 2026-03-19 | Forty-eighth scout | Added text-underline-offset (underline positioning), overflow-clip-margin (scroll fade effects), text-decoration-thickness (underline weight) |
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
 | 2026-03-10 | text-wrap balance/pretty | Added text-wrap: balance for better headline wrapping and text-wrap: pretty to prevent orphans in paragraphs | 552d96c |
