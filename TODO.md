@@ -4389,7 +4389,7 @@ Last updated: 2026-03-19 19:42
   - System color keywords
   - Border emphasis
 
-- [ ] **`[inert]` Attribute Styling** (CSS, 97%+ browser support)
+- [x] **`[inert]` Attribute Styling** (CSS, 97%+ browser support)
   - File: `src/components/accessibility.styl`
   - Style elements with `inert` attribute (prevents interaction/focus)
   - Dim/grayscale inert content to indicate non-interactive state
@@ -5310,25 +5310,25 @@ Last updated: 2026-03-19 19:42
 
 ## 🏷️ ArchWiki Status Templates (New)
 
-- [ ] **{{Accuracy}} Template Styling** (CSS)
+- [x] **{{Accuracy}} Template Styling** (CSS)
   - File: `src/components/archwiki-templates.styl`
   - Accuracy warning banner
   - Dispute indicator styling
   - Discussion link styling
 
-- [ ] **{{Out of date}} Template Styling** (CSS)
+- [x] **{{Out of date}} Template Styling** (CSS)
   - File: `src/components/archwiki-templates.styl`
   - Outdated content warning
   - Last updated date display
   - Update needed indicator
 
-- [ ] **{{Expansion}} Template Styling** (CSS)
+- [x] **{{Expansion}} Template Styling** (CSS)
   - File: `src/components/archwiki-templates.styl`
   - Expansion needed banner
   - Missing sections indicator
   - Contribution call-to-action
 
-- [ ] **{{Translateme}} Template Styling** (CSS)
+- [x] **{{Translateme}} Template Styling** (CSS)
   - File: `src/components/archwiki-templates.styl`
   - Translation needed banner
   - Language indicator
@@ -8049,3 +8049,4 @@ Last updated: 2026-03-19 19:42
 | 2026-03-16 | interpolate-size: allow-keywords | Added smooth auto-height transitions in animations.styl - enables height: 0 to height: auto animations without JavaScript, includes utility classes for accordions/dropdowns/collapsibles, MediaWiki patterns, reduced motion support, calc-size() alternative | e5a92b8 |
 | 2026-03-16 | Glassmorphism Effects | Added glass.styl with backdrop-filter based frosted glass styling - glass variants (light, dark, accent, success, warning, danger), glass components (card, nav, sidebar, dropdown, tooltip, button, input), responsive adjustments, forced colors and reduced motion support | c4f64ce |
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
+| 2026-03-19 | Fifty-third scout | Added [inert] attribute styling in accessibility.styl for non-interactive content indication, maintenance template styling (Accuracy, Out of date, Expansion, Translateme, Deletion, Style, Move, Protection) in archwiki-templates.styl | 2f1598b |
