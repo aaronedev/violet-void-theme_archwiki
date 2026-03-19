@@ -472,7 +472,7 @@
 | 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
 | 2026-03-18 | Eighteenth scout | Added animation-timeline view(), outline shorthand, math-depth, steps() jump keywords |
 
-Last updated: 2026-03-19 04:24
+Last updated: 2026-03-19 19:42
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -7971,9 +7971,53 @@ Last updated: 2026-03-19 04:24
   - ArchWiki application: interactive package status icons, expandable section arrows, image gallery zoom
   - Stylus: Requires `@css{}` wrapper
 
+## 🆕 CSS Image Animation & Draft Specs (New - 2026-03-19 Scout 52)
+
+- [ ] **`image-animation` Property** (CSS Image Animation Level 1; editor's draft — monitor)
+  - File: `src/components/content.styl`, `src/components/modern-css.styl`
+  - Control playback of animated images (GIF, WebP, PNG) via CSS
+  - Values: `auto` (default), `play` (force play), `pause` (force pause), `both` (respect user preference)
+  - ArchWiki application: auto-pause animated screenshots in articles, respect `prefers-reduced-motion`, allow user toggle for GIFs in examples
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`:animated-image` Pseudo-class** (CSS Image Animation Level 1; editor's draft — monitor)
+  - File: `src/components/content.styl`, `src/components/modern-css.styl`
+  - Target animated images specifically (GIF, WebP, APNG)
+  - Useful for styling animated images differently from static ones
+  - Combine with `image-animation: pause` for poster-style treatment of animated images
+  - ArchWiki application: styled play/pause overlay on animated screenshots, distinctive border treatment
+  - Stylus: Works directly
+
+- [ ] **`:target-current` Pseudo-class** (CSS Overflow Level 5; Chrome 115+, Firefox 125+, Safari 17.4+; ~93% global)
+  - File: `src/components/navigation.styl`
+  - Matches when element is the current scroll target within a scroll container
+  - Companion to `::scroll-marker` — styles the active marker and its associated element
+  - ArchWiki application: highlight active TOC item, sidebar section markers, scroll-linked progress indicators
+  - Stylus: Works directly
+
+- [ ] **`@function` Rule for Custom CSS Functions** (CSS Custom Functions and Mixins Level 1; editor's draft — experimental)
+  - File: `src/mixins/` (new file, e.g., `functions.styl`)
+  - Define parameterized custom functions in native CSS (unlike Sass/JS mixins)
+  - Example: `@function --shadow(--color, --blur: 4px) { result: 0 2px var(--blur) var(--color); }`
+  - Enables reusable computed values across stylesheets without preprocessor overhead
+  - ArchWiki application: DRY pattern for recurring value computations, consistent theming
+  - Note: No browser support yet; monitor spec progress; consider for future Stylus workflow
+  - Stylus: N/A (native CSS feature)
+
+- [ ] **`random-item()` Function** (CSS Values Level 5; editor's draft — experimental)
+  - File: `src/components/modern-css.styl`, `src/mixins/math.styl`
+  - Randomly select from a list of values at computed-value time
+  - Syntax: `random-item(<seed>, <value>#)` — comma-separated values, optional seed for reproducibility
+  - Example: `font-family: random-item(--x, serif, sans-serif, monospace);`
+  - Values can be wrapped in `{}` to include commas: `random-item(--x, {Times, serif}, Arial)`
+  - ArchWiki application: decorative random gradients, varied decorative patterns, A/B-style theming
+  - Note: No browser support yet; purely experimental
+  - Stylus: N/A (native CSS feature)
+
 ---
 
 | 2026-03-19 | Fiftieth scout | Added scroll-linked-floating for scroll-positioned elements, field-sizing: form for form-based sizing, @property with <transform-list> for animatable transforms |
+| 2026-03-19 | Fifty-second scout | Added image-animation property and :animated-image pseudo-class (CSS Image Animation Level 1), :target-current pseudo-class (CSS Overflow Level 5), @function rule for custom CSS functions, random-item() function (CSS Values Level 5) |
 | 2026-03-19 | Forty-ninth scout | Added color() with CSS color space, color-adjust() for color fine-tuning, text-indent hanging/each-line for first-line formatting |
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
