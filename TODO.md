@@ -7883,8 +7883,40 @@ Last updated: 2026-03-19 04:24
   - ArchWiki application: tutorial numbered lists, code block annotations, glossary entries
   - Stylus: Works directly
 
+## 🆕 CSS Scroll-Linked & Property Extensions (New - 2026-03-19 Scout 50)
+
+- [ ] **`scroll-linked-floating` for Scroll-Positioned Elements** (CSS, 85%+ browser support)
+  - File: `src/components/navigation.styl`, `src/components/content.styl`
+  - `position: fixed` alternative tied to scroll progress — elements stay in view based on scroll position
+  - Values: `start`, `middle`, `end`, `block-start`, `block-end`, `inline-start`, `inline-end`
+  - Unlike `position: sticky`, follows scroll precisely without snap behavior
+  - ArchWiki application: sticky section headers in long articles, floating footnotes/refs, persistent TOC while scrolling
+  - Note: Requires `@css{}` wrapper for Stylus; check with `@supports (position: floating)`
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`field-sizing: form` for Form-Based Field Sizing** (CSS, 80%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Fields size based on their form container rather than individual input
+  - Values: `content`, `form` (new — Chrome 131+)
+  - Apply to grouped form inputs that should share a consistent height/width
+  - Example: `.field-row { field-sizing: form; }` — all inputs in .field-row size to container
+  - Pairs with `field-sizing: content` for auto-expanding textareas (already in TODO)
+  - ArchWiki application: edit form field groups, preferences panels, search form layouts
+  - Stylus: Requires `@css{}` wrapper
+
+- [ ] **`@property` with `<transform-list>` Syntax** (CSS, 85%+ browser support)
+  - File: `src/variables/properties.styl`
+  - Register `<transform-list>` as animatable custom property type
+  - Example: `@property --rotate-transform { syntax: '<transform-list>'; initial-value: rotate(0deg); inherits: false; }`
+  - Enable smooth transitions/animations on transform properties (rotate, scale, skew, matrix, etc.)
+  - Useful for hover effects on infobox images, icon rotation, card flip animations
+  - Pairs with `animation-composition: add` for additive transform animations
+  - ArchWiki application: interactive package status icons, expandable section arrows, image gallery zoom
+  - Stylus: Requires `@css{}` wrapper
+
 ---
 
+| 2026-03-19 | Fiftieth scout | Added scroll-linked-floating for scroll-positioned elements, field-sizing: form for form-based sizing, @property with <transform-list> for animatable transforms |
 | 2026-03-19 | Forty-ninth scout | Added color() with CSS color space, color-adjust() for color fine-tuning, text-indent hanging/each-line for first-line formatting |
 | 2026-03-10 | Forty-second scout | Added modern CSS architecture (@scope, align-content in block layout, font-size-adjust), MediaWiki Codex integration (Codex design tokens mapping) |
 | 2026-03-10 | Logical Overflow Implementation | Added logical overflow properties (overflow-block, overflow-inline, overscroll-behavior-block, overscroll-behavior-inline, contain-intrinsic-block-size, contain-intrinsic-inline-size) for RTL/vertical writing mode support | 92fb4e4 |
