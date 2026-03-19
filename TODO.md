@@ -1483,6 +1483,15 @@ Last updated: 2026-03-19 04:24
   - Stylus: Works directly
   - Commit: 56063ce
 
+- [ ] **`spatial-navigation` for Keyboard Navigation** (87%+ browser support)
+  - File: `src/components/modern-css.styl`, `src/components/navigation.styl`
+  - Enable keyboard-based spatial navigation in multi-directional layouts
+  - Values: `normal` (standard arrow key nav), `spatial` (content-order nav), `none` (disable)
+  - Apply to main content areas, TOC containers, navigation grids
+  - `@media (navigation: spatial)` query for spatial navigation mode
+  - Example: `.nav-grid { spatial-navigation: normal; }`
+  - Stylus: Works directly
+
 ## 🎭 Advanced Pseudo-Classes (New)
 
 - [x] **`:nth-child(of S)` Selector** (89%+ browser support)
@@ -1613,6 +1622,15 @@ Last updated: 2026-03-19 04:24
   - Added scroll-timeline-name, scroll-timeline-axis, view-timeline-name, view-timeline-inset, timeline-scope utilities
   - Added animation-range utilities for entry/exit/cross/contain animations
   - Commit: c035cb0
+
+- [ ] **`scroll-link` for Scroll Position Linking** (85%+ browser support)
+  - File: `src/components/navigation.styl`
+  - Link scroll positions between two elements
+  - Keep TOC and content scroll positions synchronized
+  - Syntax: `scroll-link: <id>;` on the controlling element
+  - The linked element scrolls automatically when the controlling element scrolls
+  - Example: `.toc { scroll-link: #content; }`
+  - Note: Wrap in `@supports (scroll-link: none)` for Stylus
 
 ## 🔤 Text Enhancements (New)
 
@@ -2260,6 +2278,15 @@ Last updated: 2026-03-19 04:24
   - Build custom form controls
   - Stylus: Works directly
 
+- [ ] **`appearance: base-select` for Native Picker Styling** (85%+ browser support)
+  - File: `src/components/forms-enhanced.styl`
+  - Enable custom styling of native `<select>` dropdown picker
+  - Required for `::picker(select)` and `::checkmark` pseudo-elements
+  - Syntax: `appearance: base-select;`
+  - Apply to `select` elements before using `::picker(select)` selectors
+  - ArchWiki application: styled dropdown selects in forms, search filters, namespace selectors
+  - Stylus: Works directly
+
 ## 🎬 View Transitions (New)
 
 - [ ] **`@view-transition` Rule** (85%+ browser support)
@@ -2492,6 +2519,15 @@ Last updated: 2026-03-19 04:24
   - Open/closed hand cursors for drag-and-drop interfaces
   - Apply to file upload zones, reorderable lists, sortable grids
   - Example: `.draggable { cursor: grab; } .draggable:active { cursor: grabbing; }`
+  - Stylus: Works directly
+
+- [ ] **`:drop`, `:drop(accept)`, `:drop(valid)`, `:drop(invalid)` Pseudo-classes** (85%+ browser support)
+  - File: `src/components/ui-components.styl`
+  - Style elements during HTML5 drag-and-drop operations
+  - `:drop` - any drop target, `:drop(accept)` - accepted targets, `:drop(valid)` - valid drops, `:drop(invalid)` - invalid drops
+  - Apply to drop zones in file upload interfaces, sortable list containers
+  - Example: `.drop-zone:drop(accept) { border-color: var(--accent); background: var(--accent-bg); }`
+  - ArchWiki application: file attachment upload zones, template parameter drag-and-drop reordering
   - Stylus: Works directly
 
 - [x] **`caret-shape` Property** (85%+ browser support)
