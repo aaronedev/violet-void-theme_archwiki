@@ -1015,3 +1015,168 @@ td .aur
 td .grp
   font-size 0.9em
   padding 0.1em 0.3em
+
+// =============================================================================
+// MAINTENANCE TEMPLATES
+// Styling for {{Accuracy}}, {{Out of date}}, {{Expansion}}, {{Translateme}} etc.
+// =============================================================================
+
+// Accuracy template - indicates content that may be inaccurate
+.accuracy
+.accuracy-template
+.ambox-accuracy
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($orange, 0.1)
+  border-left 4px solid $orange
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "⚠ Accuracy"
+    display inline-block
+    font-weight 700
+    color $orange
+    margin-bottom 0.5em
+
+  .mw-accuracy-warning
+    color $muted
+    font-size 0.9em
+
+// Out of date template - indicates outdated content
+.outdated
+.outdated-template
+.ambox-outdated
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($secondary-red, 0.1)
+  border-left 4px solid $secondary-red
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "⚠ Out of date"
+    display inline-block
+    font-weight 700
+    color $secondary-red
+    margin-bottom 0.5em
+
+  .mw-outdated-note
+    color $muted
+    font-size 0.9em
+
+// Expansion template - indicates stub articles needing expansion
+.expansion
+.expansion-template
+.ambox-expansion
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($arch-blue, 0.1)
+  border-left 4px solid $arch-blue
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "📝 This article is a stub"
+    display inline-block
+    font-weight 600
+    color $arch-blue
+    margin-bottom 0.5em
+
+  .mw-expansion-note
+    color $muted
+    font-size 0.9em
+
+// Translate me template - indicates articles needing translation
+.translateme
+.translateme-template
+.ambox-translateme
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($green, 0.1)
+  border-left 4px solid $green
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "🌐 Translation needed"
+    display inline-block
+    font-weight 600
+    color $green
+    margin-bottom 0.5em
+
+  .mw-translate-note
+    color $muted
+    font-size 0.9em
+
+// Deletion template - indicates article nominated for deletion
+.deletion
+.deletion-template
+.ambox-delete
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($red, 0.1)
+  border-left 4px solid $red
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "🗑 Deletion候选"
+    display inline-block
+    font-weight 700
+    color $red
+    margin-bottom 0.5em
+
+// Style template - indicates style issues
+.style
+.style-template
+.ambox-style
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($term-yellow, 0.1)
+  border-left 4px solid $term-yellow
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "📋 Style issue"
+    display inline-block
+    font-weight 600
+    color $term-yellow
+    margin-bottom 0.5em
+
+// Move template - indicates article should be moved
+.move
+.move-template
+.ambox-move
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($secondary-blue, 0.1)
+  border-left 4px solid $secondary-blue
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "➡ Move candidate"
+    display inline-block
+    font-weight 600
+    color $secondary-blue
+    margin-bottom 0.5em
+
+// Protection template - indicates protected pages
+.protection
+.protection-template
+.ambox-protection
+  display block
+  margin 1em 0
+  padding 0.75em 1em
+  background rgba($muted, 0.1)
+  border-left 4px solid $muted
+  border-radius 0 $border-radius-sm $border-radius-sm 0
+
+  &::before
+    content "🔒 Protected"
+    display inline-block
+    font-weight 600
+    color $muted
+    margin-bottom 0.5em

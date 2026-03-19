@@ -546,6 +546,37 @@ details > summary:focus-visible
   .pause-animations
     animation-play-state paused
 
+// =============================================================================
+// INERT ATTRIBUTE - Non-Interactive Content Indication
+// =============================================================================
+// The inert attribute prevents interaction with an element and its descendants
+// Browser support: 97%+ (Chrome 102+, Firefox 112+, Safari 16.4+)
+// Style inert content to visually indicate non-interactive state
+
+[inert]
+  opacity: 0.5
+  pointer-events: none
+  // Prevent text selection in inert areas
+  user-select: none
+  // Ensure inert sections are dimmed but not hidden
+  filter: grayscale(30%)
+
+// Inert with more dramatic indication for modal-like contexts
+[inert][aria-hidden="true"]
+  opacity: 0.3
+  filter: grayscale(50%)
+
+// Don't apply inert styling inside editable areas
+.mw-editform,
+textarea,
+input:not([readonly])
+  &[inert]
+    opacity: 0.7
+    filter: none
+
+// =============================================================================
+// REDUCED MOTION - Animation Control
+// =============================================================================
 // Completely disable animations for reduced motion preference
 @media (prefers-reduced-motion reduce)
   // Stop all animations
