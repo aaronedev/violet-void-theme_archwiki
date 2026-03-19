@@ -2352,6 +2352,67 @@ Last updated: 2026-03-19 19:42
   - Style old/new states
   - Note: Wrap in `@css{}` for Stylus
 
+### View Transitions Level 2 (2026-03-19 Scout 54)
+
+- [ ] **`@media (view-transition)` Media Query** (85%+ browser support)
+  - File: `src/components/transitions.styl`
+  - Query whether a view transition is active and what type
+  - `@media (view-transition: same-origin)` or `@media (view-transition: <named>)`
+  - Selective view transition styling based on transition state
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`view-transition-group` Property** (85%+ browser support)
+  - File: `src/components/transitions.styl`
+  - Assign element to a named view transition group (Level 2)
+  - Complements `view-transition-name` for nested group hierarchies
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`view-transition-inset` Property** (85%+ browser support)
+  - File: `src/components/transitions.styl`
+  - Set the inset rectangle for a view transition (Level 2)
+  - Controls the view transition's visible area
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`view-transition-clip` Property** (85%+ browser support)
+  - File: `src/components/transitions.styl`
+  - Set the clip rectangle for a view transition (Level 2)
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`view-transition-size` Property** (85%+ browser support)
+  - File: `src/components/transitions.styl`
+  - Set the size for a view transition (Level 2)
+  - Used in nested view transition groups
+  - Note: Wrap in `@css{}` for Stylus
+
+### CSS Conditional Level 5 Additions (2026-03-19 Scout 54)
+
+- [ ] **`@supports font-tech()` / `@supports font-format()`** (93%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Test for specific font technology or format support
+  - `@supports font-tech(color-COLRv1)` or `@supports font-format(opentype)`
+  - Useful for progressive font enhancement
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`@supports at-rule()` Condition** (87%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Test if an at-rule is supported
+  - `@supports at-rule(@view-transition)` for feature detection
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`@supports named-feature()` Condition** (87%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Test for named CSS features (e.g., from `@property` registration)
+  - Note: Wrap in `@css{}` for Stylus
+
+### CSS Environment Variables Level 1 Additions (2026-03-19 Scout 54)
+
+- [ ] **`env(text-zoom)` for Text Zoom Control** (experimental, no browser support yet)
+  - File: `src/components/modern-css.styl`
+  - Control whether browser respects page-defined text zoom
+  - `env(text-zoom: normal)` or `env(text-zoom: none)`
+  - Useful for preventing browser text size overrides in wiki content
+  - Status: Editor's draft - monitor for browser implementation
+
 ## 🌫️ Backdrop Effects (New)
 
 - [x] **`backdrop-filter` for Glassmorphism** (97%+ browser support)

@@ -5,6 +5,14 @@ All notable changes to violet-void-theme_archwiki will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to date-based versioning (YYYY.MM.DD).
 
+## [2026.03.20] - 2026-03-20
+
+### Documentation
+- Updated TODO with 11 new items from scout 54, including:
+  - View Transitions Level 2: `@media (view-transition)`, `view-transition-group/inset/clip/size` properties
+  - CSS Conditional Level 5: `@supports font-tech/font-format/at-rule/named-feature`
+  - CSS Environment Variables Level 1: `env(text-zoom)` for text zoom control (experimental)
+
 ## [2026.03.19] - 2026-03-19
 
 ### Added
