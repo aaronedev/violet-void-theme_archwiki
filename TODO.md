@@ -4347,6 +4347,32 @@ Last updated: 2026-03-19 04:24
   - Forgiving selector parsing
   - Complex hover combinations
 
+- [ ] **:snapped Pseudo-classes** (CSS Scroll Snap 2; Chrome 117+, Safari 18+, Firefox 133+)
+  - File: `src/components/navigation.styl`, `src/components/content.styl`
+  - `:snapped`, `:snapped-x`, `:snapped-y`, `:snapped-inline`, `:snapped-block`
+  - Style active/snapped TOC items, nav panels, carousels
+  - Axis-specific snapped state styling for sidebar and content scroll containers
+  - Note: `:snapped` may be replaced by container state queries in future spec
+
+- [ ] **scroll-initial-target Property** (CSS Scroll Snap 2; Chrome 117+, Safari 18+, Firefox 133+)
+  - File: `src/components/navigation.styl`
+  - CSS-controlled initial scroll position (`scroll-initial-target: nearest`)
+  - Anchor TOC / nav to a specific section on page load without JavaScript
+  - Complements existing scroll-snap behavior for TOC panels
+
+- [ ] **@starting-style Entry Animations** (CSS, Chrome 117+, Firefox 128+, Safari 17.5+; ~93% global)
+  - File: `src/components/animations.styl`
+  - Enable CSS transitions on element's initial style (display:none→block, first render)
+  - Animate entry of dropdowns, dialogs, popovers, collapsible sections
+  - Useful for menu/open animations that currently require JS
+  - Nest `@starting-style {}` inside existing ruleset or use standalone
+
+- [ ] **:local-link() Navigation Pseudo-class** (Selectors Level 5; no browser support yet — monitor)
+  - File: `src/components/navigation.styl`
+  - `:local-link` / `:local-link(0)` — same-origin links; `:local-link(1)` — same first path segment
+  - Style current-page links in main nav without JS class injection
+  - Useful for sidebar nav highlighting without MediaWiki page-active classes
+
 ## ♿ Accessibility Deep Cuts (New)
 
 - [ ] **Reduced Motion Support** (CSS, 100% browser support)
