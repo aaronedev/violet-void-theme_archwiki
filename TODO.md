@@ -1989,6 +1989,14 @@ Last updated: 2026-03-20 04:15
   - Stylus: Works directly
   - Commit: a7e641fa
 
+- [x] **`fill` and `stroke: currentColor` for SVG Icon Theming** (97%+ browser support)
+  - File: `src/components/ui-components.styl`
+  - Make SVG icons inherit CSS text color for automatic light/dark theme support
+  - `fill: currentColor;` and `stroke: currentColor;` on SVG elements
+  - Utility classes: `.svg-icon-color` (both), `.svg-stroke-only`, `.svg-fill-only`
+  - Consistent icon coloring without hardcoded colors
+  - Stylus: Works directly
+
 ## 🎯 Custom Highlight API (New)
 
 - [x] **`::highlight()` Pseudo-element** (85%+ browser support)
