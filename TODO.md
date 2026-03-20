@@ -474,7 +474,7 @@
 | 2026-03-20 | Fifty-fifth scout | Checked off implemented features: tab-size, text-rendering, font-feature-settings, anchor(), position-anchor, container-name, timeline-scope, named scroll/view timelines, outline shorthand, view-transition rule/class/groups/image-pairs/old/new |
 | 2026-03-20 | Fifty-sixth scout | Added @supports selector() for parse-time selector testing, Container Query Units (cqw, cqh, cqi, cqb, cqd) for relative container-based sizing |
 
-Last updated: 2026-03-20 04:15
+Last updated: 2026-03-20 07:53
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1275,11 +1275,12 @@ Last updated: 2026-03-20 04:15
   - Note: Wrap in `@css{}` for Stylus
   - Commit: 610bf0a
 
-- [ ] **`animation-timeline: view()`** (85%+ browser support)
+- [x] **`animation-timeline: view()`** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Animate elements as they enter/exit viewport
   - Fade-in for infoboxes, navboxes
   - Pair with `animation-range`
+  - Commit: 610bf0a
 
 ## 🎭 Popover & Dialog Styling (New)
 
@@ -1931,17 +1932,19 @@ Last updated: 2026-03-20 04:15
   - Stylus: Works directly
   - Commit: 81111f8
 
-- [ ] **`text-combine-upright` for Tate-chu-yoko** (97%+ browser support)
+- [x] **`text-combine-upright` for Tate-chu-yoko** (97%+ browser support)
   - File: `src/components/i18n.styl`
   - Combine horizontal in vertical text
   - For numbers, dates in vertical text
   - Stylus: Works directly
+  - Commit: 81111f8
 
-- [ ] **`unicode-bidi` for Bidirectional** (97%+ browser support)
+- [x] **`unicode-bidi` for Bidirectional** (97%+ browser support)
   - File: `src/components/i18n.styl`
   - Control bidirectional text algorithm
   - `unicode-bidi: plaintext;`
   - Stylus: Works directly
+  - Commit: 81111f8
 
 ## 🎯 Container Style Queries (New)
 
@@ -2978,11 +2981,12 @@ Last updated: 2026-03-20 04:15
   - Added utility classes: .small-caps, .all-small-caps, .petite-caps, .all-petite-caps, .unicase, .titling-caps
   - Commit: d14fbf7
 
-- [ ] **`font-variant-ligatures` for Ligatures** (97%+ browser support)
-  - File: `src/variables/colors.styl`, `src/components/code.styl`
+- [x] **`font-variant-ligatures` for Ligatures** (97%+ browser support)
+  - File: `src/components/typography.styl`
   - `common-ligatures`, `discretionary-ligatures`, `historical-ligatures`
   - Control code font ligatures
   - Stylus: Works directly
+  - Commit: d14fbf7
 
 - [x] **`font-variant-east-asian` for CJK Typography** (97%+ browser support)
   - File: `src/components/typography.styl`
@@ -3107,11 +3111,12 @@ Last updated: 2026-03-20 04:15
   - Example: `@property --opacity { syntax: '<number>'; initial-value: 1; inherits: false; }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`@property` with `<integer>` Syntax** (93%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`@property` with `<integer>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
   - Animate integer values for stepped effects
+  - Implemented: `--z-dropdown`, `--z-sticky`, `--z-fixed`, `--z-modal-backdrop`, `--z-modal`, `--z-popover`, `--z-tooltip`
   - Example: `@property --step { syntax: '<integer>'; initial-value: 0; inherits: false; }`
-  - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
 - [ ] **`@property` with `<angle>` Syntax** (93%+ browser support)
   - File: `src/components/modern-css.styl`
@@ -3119,11 +3124,12 @@ Last updated: 2026-03-20 04:15
   - Example: `@property --rotation { syntax: '<angle>'; initial-value: 0deg; inherits: false; }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`@property` with `<time>` Syntax** (93%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`@property` with `<time>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
   - Animate duration custom properties
+  - Implemented: `--duration-fast`, `--duration-normal`, `--duration-slow`
   - Example: `@property --duration { syntax: '<time>'; initial-value: 0.3s; inherits: false; }`
-  - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
 ## 🔤 Advanced @font-feature-values (New)
 
@@ -3174,32 +3180,39 @@ Last updated: 2026-03-20 04:15
 
 ## 📜 Scroll Timeline Animations (New)
 
-- [ ] **`scroll-timeline-name` Property** (85%+ browser support)
+- [x] **`scroll-timeline-name` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Name a scroll timeline for animation
   - Example: `scroll-timeline-name: --page-scroll;`
   - Stylus: Works directly
+  - Commit: c035cb0
 
-- [ ] **`scroll-timeline-axis` Property** (85%+ browser support)
+- [x] **`scroll-timeline-axis` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define scroll axis (`block`, `inline`, `x`, `y`)
   - Stylus: Works directly
+  - Commit: c035cb0
 
-- [ ] **`view-timeline-name` Property** (85%+ browser support)
+- [x] **`view-timeline-name` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Name a view timeline
   - Stylus: Works directly
+  - Commit: c035cb0
 
-- [ ] **`view-timeline-inset` Property** (85%+ browser support)
+- [x] **`view-timeline-inset` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Adjust view timeline inset
+  - Implemented: `.view-timeline-inset-*` utilities with start/end/both values
   - Stylus: Works directly
+  - Commit: c035cb0
 
-- [ ] **`animation-range` for Timeline Control** (85%+ browser support)
+- [x] **`animation-range` for Timeline Control** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define animation range in timeline
   - Example: `animation-range: entry 0% cover 40%;`
+  - Implemented: entry/exit/cross/contain animation utilities
   - Stylus: Works directly
+  - Commit: c035cb0
 
 ## 🎬 View Transition Classes (New)
 
@@ -8163,3 +8176,5 @@ Last updated: 2026-03-20 04:15
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
 | 2026-03-19 | Fifty-third scout | Added [inert] attribute styling in accessibility.styl for non-interactive content indication, maintenance template styling (Accuracy, Out of date, Expansion, Translateme, Deletion, Style, Move, Protection) in archwiki-templates.styl | 2f1598b |
 | 2026-03-20 | Fifty-seventh scout | Checked off implemented features: cursor: grab/grabbing (6551a5b), steps() with jump keywords (cd1f29c), :stalled/:volume-locked (4e7bc5d). Updated file paths in TODO entries | |
+| 2026-03-20 | Fifty-eighth scout | Added fill/stroke: currentColor for SVG icon theming - makes SVG icons inherit CSS text color for automatic light/dark theme support, utility classes .svg-icon-color, .svg-stroke-only, .svg-fill-only | 0c448ad |
+| 2026-03-20 | Fifty-ninth scout | Checked off implemented features: text-combine-upright, unicode-bidi (81111f8), font-variant-ligatures (typography.styl), @property <integer>/<time> syntax (841bb1f), scroll-timeline-name/axis, view-timeline-name/inset, animation-range (1a5ffcf) | |
