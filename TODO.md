@@ -1877,12 +1877,13 @@ Last updated: 2026-03-20 07:53
   - Stylus: Works directly
   - Commit: (previous implementation)
 
-- [ ] **`white-space: break-spaces`** (97%+ browser support)
+- [x] **`white-space: break-spaces`** (97%+ browser support)
   - File: `src/components/code.styl`, `src/components/content.styl`
   - Handle whitespace in pre blocks differently - preserves spaces but allows wrapping
   - Example: `white-space: break-spaces;` for code blocks with trailing spaces
   - Useful for documentation showing command output with spaces
   - Stylus: Works directly
+  - Commit: c558994
 
 - [x] **`font-feature-settings` for OpenType** (97%+ browser support)
   - File: `src/components/content.styl`, `src/components/i18n.styl`, `src/components/optimizations.styl`
