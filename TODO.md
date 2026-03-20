@@ -472,8 +472,9 @@
 | 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
 | 2026-03-18 | Eighteenth scout | Added animation-timeline view(), outline shorthand, math-depth, steps() jump keywords |
 | 2026-03-20 | Fifty-fifth scout | Checked off implemented features: tab-size, text-rendering, font-feature-settings, anchor(), position-anchor, container-name, timeline-scope, named scroll/view timelines, outline shorthand, view-transition rule/class/groups/image-pairs/old/new |
+| 2026-03-20 | Fifty-sixth scout | Added @supports selector() for parse-time selector testing, Container Query Units (cqw, cqh, cqi, cqb, cqd) for relative container-based sizing |
 
-Last updated: 2026-03-20 01:59
+Last updated: 2026-03-20 04:07
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2427,6 +2428,15 @@ Last updated: 2026-03-20 01:59
 - [ ] **`@supports named-feature()` Condition** (87%+ browser support)
   - File: `src/components/modern-css.styl`
   - Test for named CSS features (e.g., from `@property` registration)
+  - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **`@supports selector()` Function** (89%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - Test if a selector is supported at parse time
+  - `@supports selector(:has(*))` for progressive `:has()` support detection
+  - `@supports selector(* > *)` for child combinator support
+  - Useful for conditional styling based on selector support
+  - ArchWiki application: progressive enhancement for `:has()` in older browsers
   - Note: Wrap in `@css{}` for Stylus
 
 ### CSS Environment Variables Level 1 Additions (2026-03-19 Scout 54)
@@ -7188,6 +7198,17 @@ Last updated: 2026-03-20 01:59
   - Query-based variants
   - Fallback patterns
   - Note: Wrap in `@css{}` for Stylus
+
+- [ ] **Container Query Units** (CSS, 87%+ browser support)
+  - File: `src/util/containers.styl`
+  - `cqw` — 1% of container's width
+  - `cqh` — 1% of container's height
+  - `cqi` — 1% of container's inline size
+  - `cqb` — 1% of container's block size
+  - `cqd` — 1% of container's direction
+  - Example: `width: cqi(50);` — half the container's inline size
+  - ArchWiki application: responsive element sizing relative to parent containers
+  - Stylus: Works directly
 
 - [ ] **Logical Properties** (CSS, 97%+ browser support)
   - File: `src/util/logical.styl`
