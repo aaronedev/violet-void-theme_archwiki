@@ -1621,6 +1621,16 @@ sup.reference:target
 .preserve-whitespace
   white-space-collapse preserve
 
+// Break-spaces utility: preserves spaces and tabs like pre, but allows
+// line wrapping at any whitespace character - useful for command output,
+// log blocks, and any content with significant trailing whitespace that
+// still needs to wrap on narrow viewports
+.white-space-break-spaces
+.break-spaces
+  white-space break-spaces
+  word-break break-word
+  overflow-wrap break-word
+
 // Table cells with code or commands
 .wikitable td code
 .infobox td code
