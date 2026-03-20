@@ -3259,23 +3259,23 @@ Last updated: 2026-03-20 04:15
 
 ## 🎬 Animation Timeline (New - 2026-03-18 Scout)
 
-- [ ] **`animation-timeline: view()` for View-Based Animations** (85%+ browser support)
+- [x] **`animation-timeline: view()` for View-Based Animations** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Animate elements as they enter/exit viewport
   - Fade-in for infoboxes, navboxes as they scroll into view
   - Pair with `animation-range` for fine control
   - Note: Wrap in `@css{}` for Stylus
-  - Commit: (pending)
+  - Commit: 610bf0a
 
 ## 🎯 Layout & Stacking (New)
 
-- [ ] **`outline` Shorthand for Focus Styling** (97%+ browser support)
-  - File: `src/components/focus.styl`
+- [x] **`outline` Shorthand for Focus Styling** (97%+ browser support)
+  - File: `src/components/modern-css.styl`, `src/components/navigation.styl`
   - Compact outline syntax: `outline: 2px solid var(--accent);`
   - Combine width, style, color in one declaration
   - Already have outline-offset and outline-style auto - add shorthand
   - Stylus: Works directly
-  - Commit: (pending)
+  - Commit: 610bf0a
 
 ## 📐 MathML Depth (New)
 
@@ -3402,26 +3402,29 @@ Last updated: 2026-03-20 04:15
   - Root vs user prompt distinction
   - Commit: cca8d22
 
-- [ ] **Configuration File Blocks** (CSS)
+- [x] **Configuration File Blocks** (CSS)
   - File: `src/components/archwiki.styl`
   - File path header
   - Syntax highlighting for configs
   - Comment styling
   - Variable/setting distinction
+  - Commit: cca8d22
 
-- [ ] **Installation Status Boxes** (CSS)
+- [x] **Installation Status Boxes** (CSS)
   - File: `src/components/archwiki.styl`
   - Installation status indicators
   - Available/Installed/Orphaned states
   - Package dependency diagrams
   - Service status indicators
+  - Commit: cca8d22
 
-- [ ] **Kernel Module Styling** (CSS)
+- [x] **Kernel Module Styling** (CSS)
   - File: `src/components/archwiki.styl`
   - Module info boxes
   - Module parameter tables
   - Blacklist indicators
   - Load at boot styling
+  - Commit: cca8d22
 
 - [x] **Systemd Unit Styling** (CSS)
   - File: `src/components/archwiki.styl`
