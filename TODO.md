@@ -471,8 +471,9 @@
 | 2026-03-16 | Multi-column layout utilities (column-rule, column-span, column-fill, columns) | 2c29491 |
 | 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
 | 2026-03-18 | Eighteenth scout | Added animation-timeline view(), outline shorthand, math-depth, steps() jump keywords |
+| 2026-03-20 | Fifty-fifth scout | Checked off implemented features: tab-size, text-rendering, font-feature-settings, anchor(), position-anchor, container-name, timeline-scope, named scroll/view timelines, outline shorthand, view-transition rule/class/groups/image-pairs/old/new |
 
-Last updated: 2026-03-19 19:42
+Last updated: 2026-03-20 01:59
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -1857,20 +1858,22 @@ Last updated: 2026-03-19 19:42
   - Stylus: Works directly
   - Commit: d6f1c9c
 
-- [ ] **`tab-size` for Code Block Tabs** (97%+ browser support)
-  - File: `src/components/code.styl`
+- [x] **`tab-size` for Code Block Tabs** (97%+ browser support)
+  - File: `src/components/code.styl`, `src/components/preferences.styl`
   - Control tab character width in code blocks
   - Example: `tab-size: 4;`
   - Apply to pre, code, .mw-code for consistent tab rendering
   - Stylus: Works directly
+  - Commit: (previous implementation)
 
-- [ ] **`text-rendering` for Text Quality** (97%+ browser support)
-  - File: `src/components/typography.styl`
+- [x] **`text-rendering` for Text Quality** (97%+ browser support)
+  - File: `src/critical.styl`, `src/components/optimizations.styl`
   - Control text rendering quality: auto, optimizeSpeed, optimizeLegibility, geometricPrecision
   - Example: `text-rendering: optimizeLegibility;` for readable body text
   - Example: `text-rendering: geometricPrecision;` for precise code/headings
   - Apply to body (optimizeLegibility), code (geometricPrecision)
   - Stylus: Works directly
+  - Commit: (previous implementation)
 
 - [ ] **`white-space: break-spaces`** (97%+ browser support)
   - File: `src/components/code.styl`, `src/components/content.styl`
@@ -1879,13 +1882,15 @@ Last updated: 2026-03-19 19:42
   - Useful for documentation showing command output with spaces
   - Stylus: Works directly
 
-- [ ] **`font-feature-settings` for OpenType** (97%+ browser support)
-  - File: `src/components/typography.styl`, `src/components/code.styl`
+- [x] **`font-feature-settings` for OpenType** (97%+ browser support)
+  - File: `src/components/content.styl`, `src/components/i18n.styl`, `src/components/optimizations.styl`
   - Low-level OpenType feature control (alternative to high-level font-variant-*)
+  - Used for "tnum" (tabular numbers), "calt" (contextual alternates), "liga" (standard ligatures), "pkna" (Proportional Kana)
   - Example: `font-feature-settings: "liga" 1, "calt" 1, "kern" 1;`
   - Enable discretionary ligatures, contextual alternates, kerning
   - Apply to code blocks for ligature support
   - Stylus: Works directly
+  - Commit: (previous implementation)
 
 ## 🎨 Blend & Composite (New)
 
@@ -1945,11 +1950,12 @@ Last updated: 2026-03-19 19:42
   - `@container style(--theme: dark) { ... }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **Container Name Scoping** (87%+ browser support)
+- [x] **Container Name Scoping** (87%+ browser support)
   - File: `src/components/modern-css.styl`
   - Name containers for targeted queries
   - `container-name: sidebar;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
 
 ## 🎨 SVG & Vector Enhancements (New - 2026-02-28 Scout 11)
@@ -2080,17 +2086,19 @@ Last updated: 2026-03-19 19:42
 
 ## 🎯 Anchor Positioning API (New - 2026-02-28 Scout 12)
 
-- [ ] **`anchor()` Function** (85%+ browser support)
-  - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
+- [x] **`anchor()` Function** (85%+ browser support)
+  - File: `src/components/ui-components.styl`
   - Position elements relative to anchors
   - `top: anchor(bottom);` for tooltips
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 493d374
 
-- [ ] **`position-anchor` Property** (85%+ browser support)
+- [x] **`position-anchor` Property** (85%+ browser support)
   - File: `src/components/ui-components.styl`
   - Define anchor element for positioned element
   - `position-anchor: --my-anchor;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 493d374
 
 - [ ] **`anchor-size()` Function** (85%+ browser support)
   - File: `src/components/ui-components.styl`
@@ -2164,23 +2172,28 @@ Last updated: 2026-03-19 19:42
 
 ## ⏱️ Timeline Scope (New)
 
-- [ ] **`timeline-scope` Property** (85%+ browser support)
+- [x] **`timeline-scope` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define named scroll timelines
   - `timeline-scope: --my-timeline;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
-- [ ] **Named Scroll Timelines** (85%+ browser support)
+- [x] **Named Scroll Timelines** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Create reusable scroll timelines
   - `scroll-timeline: --my-timeline inline;`
+  - Implemented: scroll-timeline-name, scroll-timeline-axis utilities
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
-- [ ] **Named View Timelines** (85%+ browser support)
+- [x] **Named View Timelines** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Create reusable view timelines
   - `view-timeline: --my-timeline;`
+  - Implemented: view-timeline-name, view-timeline-axis utilities
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
 ## 🔧 @property Expansion (New)
 
@@ -2319,11 +2332,12 @@ Last updated: 2026-03-19 19:42
 
 ## 🎬 View Transitions (New)
 
-- [ ] **`@view-transition` Rule** (85%+ browser support)
-  - File: `src/components/transitions.styl` (new file)
+- [x] **`@view-transition` Rule** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
   - Enable view transitions
   - `@view-transition { navigation: auto; }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
 - [ ] **`view-transition-name` Property** (85%+ browser support)
   - File: `src/components/transitions.styl`
@@ -2331,26 +2345,37 @@ Last updated: 2026-03-19 19:42
   - `view-transition-name: hero-image;`
   - Note: Wrap in `@css{}` for Stylus
 
+- [x] **`view-transition-class` Property** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
+  - Add classes to view transitions for styling
+  - Utility classes: .view-transition-hero, .view-transition-title, .view-transition-content, .view-transition-sidebar, .view-transition-toc, .view-transition-infobox, .view-transition-none
+  - Note: Wrap in `@css{}` for Stylus
+  - Commit: 956c72e
+
 - [ ] **`::view-transition` Pseudo-element** (85%+ browser support)
   - File: `src/components/transitions.styl`
   - Style transition container
   - `::view-transition { background: var(--bg); }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`::view-transition-group()`** (85%+ browser support)
-  - File: `src/components/transitions.styl`
-  - Style transition groups
+- [x] **`::view-transition-group()`** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
+  - Style transition groups for hero, title, content, sidebar, toc, infobox
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
-- [ ] **`::view-transition-image-pair()`** (85%+ browser support)
-  - File: `src/components/transitions.styl`
+- [x] **`::view-transition-image-pair()`** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
   - Style image pairs during transition
+  - Applied to hero, title, infobox pairs
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
-- [ ] **`::view-transition-old()` / `::view-transition-new()`** (85%+ browser support)
-  - File: `src/components/transitions.styl`
-  - Style old/new states
+- [x] **`::view-transition-old()` / `::view-transition-new()`** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
+  - Style old/new states with fade animations
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (previous implementation)
 
 ### View Transitions Level 2 (2026-03-19 Scout 54)
 
@@ -2740,10 +2765,12 @@ Last updated: 2026-03-19 19:42
   - Stylus: Works directly
   - Commit: 054df20
 
-- [ ] **`outline` Shorthand** (97%+ browser support)
-  - File: `src/components/focus.styl`
+- [x] **`outline` Shorthand** (97%+ browser support)
+  - File: `src/components/modern-css.styl`, `src/components/navigation.styl`
   - Compact outline syntax
   - `outline: 2px solid var(--accent);`
+  - Stylus: Works directly
+  - Commit: (previous implementation)
   - Stylus: Works directly
 
 ## 🖼️ Border Image (New)
