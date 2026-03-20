@@ -474,7 +474,7 @@
 | 2026-03-20 | Fifty-fifth scout | Checked off implemented features: tab-size, text-rendering, font-feature-settings, anchor(), position-anchor, container-name, timeline-scope, named scroll/view timelines, outline shorthand, view-transition rule/class/groups/image-pairs/old/new |
 | 2026-03-20 | Fifty-sixth scout | Added @supports selector() for parse-time selector testing, Container Query Units (cqw, cqh, cqi, cqb, cqd) for relative container-based sizing |
 
-Last updated: 2026-03-20 04:07
+Last updated: 2026-03-20 04:15
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2640,12 +2640,13 @@ Last updated: 2026-03-20 04:07
   - Zoom cursor hints
   - Stylus: Works directly
 
-- [ ] **`cursor: grab` / `cursor: grabbing`** (97%+ browser support)
-  - File: `src/components/ui-components.styl`
+- [x] **`cursor: grab` / `cursor: grabbing`** (97%+ browser support)
+  - File: `src/components/utilities.styl`
   - Open/closed hand cursors for drag-and-drop interfaces
   - Apply to file upload zones, reorderable lists, sortable grids
   - Example: `.draggable { cursor: grab; } .draggable:active { cursor: grabbing; }`
   - Stylus: Works directly
+  - Commit: 6551a5b
 
 - [ ] **`:drop`, `:drop(accept)`, `:drop(valid)`, `:drop(invalid)` Pseudo-classes** (85%+ browser support)
   - File: `src/components/ui-components.styl`
@@ -3088,12 +3089,13 @@ Last updated: 2026-03-20 04:07
   - Also added steps() with jump keywords and transition-behavior: allow-discrete
   - Commit: 1d97bf6
 
-- [ ] **`steps()` with Jump Keywords** (97%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`steps()` with Jump Keywords** (97%+ browser support)
+  - File: `src/components/animations.styl`
   - Discrete animation steps with jump control
   - `jump-start`, `jump-end`, `jump-none`, `jump-both`
   - Example: `animation-timing-function: steps(5, jump-end);`
   - Stylus: Works directly
+  - Commit: cd1f29c
 
 - [ ] **Custom `cubic-bezier()` Curves** (97%+ browser support)
   - File: `src/components/modern-css.styl`
@@ -3287,13 +3289,13 @@ Last updated: 2026-03-20 04:07
 
 ## 🔢 Animation Timing (New)
 
-- [ ] **`steps()` with Jump Keywords** (97%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`steps()` with Jump Keywords** (97%+ browser support)
+  - File: `src/components/animations.styl`
   - Discrete animation steps with jump control
   - `jump-start`, `jump-end`, `jump-none`, `jump-both`
   - Example: `animation-timing-function: steps(5, jump-end);`
   - Stylus: Works directly
-  - Commit: (pending)
+  - Commit: cd1f29c
 
 ## 🔧 MediaWiki Extensions Styling (New - 2026-03-01 Scout 16)
 
@@ -4139,17 +4141,19 @@ Last updated: 2026-03-20 04:07
   - Loading indicator during seek
   - Stylus: Works directly
 
-- [ ] **`:stalled` Pseudo-class** (87%+ browser support)
+- [x] **`:stalled` Pseudo-class** (87%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style video when stalled (buffering)
   - Network issue indicator
   - Stylus: Works directly
+  - Commit: 4e7bc5d
 
-- [ ] **`:volume-locked` Pseudo-class** (87%+ browser support)
+- [x] **`:volume-locked` Pseudo-class** (87%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style when volume is locked/unadjustable
   - Embedded video volume indicator
   - Stylus: Works directly
+  - Commit: 4e7bc5d
 
 ## 📝 Content Templates (New - 2026-03-01 Scout 20)
 
@@ -8159,3 +8163,4 @@ Last updated: 2026-03-20 04:07
 | 2026-03-16 | Glassmorphism Effects | Added glass.styl with backdrop-filter based frosted glass styling - glass variants (light, dark, accent, success, warning, danger), glass components (card, nav, sidebar, dropdown, tooltip, button, input), responsive adjustments, forced colors and reduced motion support | c4f64ce |
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
 | 2026-03-19 | Fifty-third scout | Added [inert] attribute styling in accessibility.styl for non-interactive content indication, maintenance template styling (Accuracy, Out of date, Expansion, Translateme, Deletion, Style, Move, Protection) in archwiki-templates.styl | 2f1598b |
+| 2026-03-20 | Fifty-seventh scout | Checked off implemented features: cursor: grab/grabbing (6551a5b), steps() with jump keywords (cd1f29c), :stalled/:volume-locked (4e7bc5d). Updated file paths in TODO entries | |
