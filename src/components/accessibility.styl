@@ -554,25 +554,23 @@ details > summary:focus-visible
 // Style inert content to visually indicate non-interactive state
 
 [inert]
-  opacity: 0.5
-  pointer-events: none
-  // Prevent text selection in inert areas
-  user-select: none
-  // Ensure inert sections are dimmed but not hidden
-  filter: grayscale(30%)
+  opacity 0.5
+  pointer-events none
+  user-select none
+  filter grayscale(30%)
 
 // Inert with more dramatic indication for modal-like contexts
 [inert][aria-hidden="true"]
-  opacity: 0.3
-  filter: grayscale(50%)
+  opacity 0.3
+  filter grayscale(50%)
 
 // Don't apply inert styling inside editable areas
-.mw-editform,
-textarea,
+.mw-editform
+textarea
 input:not([readonly])
   &[inert]
-    opacity: 0.7
-    filter: none
+    opacity 0.7
+    filter none
 
 // =============================================================================
 // REDUCED MOTION - Animation Control
