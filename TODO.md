@@ -2297,18 +2297,6 @@ Last updated: 2026-03-20 04:15
   - Hyphenation zone limit
   - Stylus: Works directly
   - Commit: 16eac85
-  - Stylus: Works directly
-
-- [ ] **`hyphenate-limit-lines`** (85%+ browser support)
-  - File: `src/components/typography.styl`
-  - Max consecutive hyphenated lines
-  - Stylus: Works directly
-
-- [ ] **`hyphenate-limit-zone`** (85%+ browser support)
-  - File: `src/components/typography.styl`
-  - Hyphenation zone limit
-  - Stylus: Works directly
-
 
 ## 🎨 Form Styling (New - 2026-03-01 Scout 1)
 
