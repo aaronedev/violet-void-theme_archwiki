@@ -12,6 +12,10 @@ and this project adheres to date-based versioning (YYYY.MM.DD).
   - View Transitions Level 2: `@media (view-transition)`, `view-transition-group/inset/clip/size` properties
   - CSS Conditional Level 5: `@supports font-tech/font-format/at-rule/named-feature`
   - CSS Environment Variables Level 1: `env(text-zoom)` for text zoom control (experimental)
+- Updated TODO with 64 new items (todo+)
+
+### Testing
+- Visual regression tests: 19 pass, 3 hover interaction timeouts
 
 ## [2026.03.19] - 2026-03-19
 
