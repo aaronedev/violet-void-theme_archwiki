@@ -428,7 +428,9 @@ details > summary:focus-visible
   // Soften borders
   table
   pre
-    border-color rgba(currentColor, 0.7) !important
+    @css {
+      border-color: color-mix(in srgb, currentColor 70%, transparent) !important;
+    }
 
 // =============================================================================
 // SCREEN READER ONLY UTILITIES
