@@ -588,6 +588,88 @@ table.mw-html-magic-mw-data-interface
     background rgba($arch-blue, 0.15)
     margin 0.5em 1.25em
 
+// ArchWiki Vector's mobile hamburger button (checkbox hack).
+// The visible hamburger button is a <label for="vector-main-menu-dropdown-checkbox">
+// that sits above an invisible <input type="checkbox">.  The checkbox intercepts
+// pointer events, so we style it directly.  The open state is driven by :checked.
+// Corrected selectors (was #mw-main-menu-btn which does not exist in Vector).
+#vector-main-menu-dropdown-checkbox
+  position fixed
+  top 0.5em
+  left 0.5em
+  width 44px
+  height 44px
+  padding 0
+  margin 0
+  opacity 0  // invisible but still receives pointer events
+  cursor pointer
+  z-index 1002
+  // Inherit label's flex centering so icon lands in the 44×44 hit box
+  background transparent
+  border none
+  box-sizing border-box
+
+  // Hover, focus, active — styled on the invisible checkbox via the label's
+  // .vector-dropdown-label container that wraps both elements
+  &:hover
+    outline none
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+// The visible label that wraps the hamburger icon.  Its :has(:checked) state
+// styles the icon into a ✕ when the menu is open.
+#vector-main-menu-dropdown-label
+  position fixed
+  top 0.5em
+  left 0.5em
+  width 44px
+  height 44px
+  background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
+  border 1px solid rgba($arch-blue, 0.35)
+  border-radius $border-radius-md
+  color $light
+  cursor pointer
+  z-index 1001  // just below the checkbox so clicks pass through to checkbox
+  display inline-flex
+  align-items center
+  justify-content center
+  transition background $transition-fast, border-color $transition-fast
+  padding-bottom env(safe-area-inset-top, 0)
+  padding-left env(safe-area-inset-left, 0)
+  box-shadow 0 2px 8px rgba(0, 0, 0, 0.35)
+  pointer-events none  // checkbox in front receives all events
+
+  @media (min-width: 769px)
+    display none  // hamburger is mobile-only (Vector feature)
+
+  // The hamburger icon (a .vector-icon <svg> inside the label)
+  > .vector-icon
+    color $light
+    width 20px
+    height 20px
+
+  // Hover state — pass through to checkbox's outline via the container
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.25), rgba($dark, 0.95))
+    border-color rgba($arch-blue, 0.6)
+
+  // Open state: when checkbox is checked, turn the icon into ✕
+  &:has(#vector-main-menu-dropdown-checkbox:checked)
+    background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($dark, 0.95))
+    border-color $arch-blue
+
+// The slide-out menu panel that appears when the hamburger is open.
+// Visible only when the controlling checkbox is checked.
+#vector-main-menu-unpinned-container
+  display none
+  visibility hidden
+
+  #vector-main-menu-dropdown-checkbox:checked ~ &
+    display block
+    visibility visible
+
 // Mobile menu toggle button
 .mobile-menu-toggle
   display none // Hidden on desktop
