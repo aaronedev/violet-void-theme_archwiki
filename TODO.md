@@ -7806,3 +7806,19 @@ Last updated: 2026-03-23 05:47
   - Fix H2/H3/H4 heading text color: headings inside content area (#content, article) are inheriting or being overridden with near-black color (rgb(16, 20, 24)). Ensure headings use theme text color (rgb(234, 236, 240) or equivalent theme variable). Suspect cause: MediaWiki Vector skin or ArchWiki base CSS sets dark color on content headings that overrides theme. May need higher-specificity selector or content-area heading reset.
   - Fix wikitable table backgrounds: .wikitable has light background (rgb(248, 249, 250)). Theme should override to dark background (e.g., rgb(24, 24, 24) or theme equivalent). Apply same treatment to table header cells (th) which likely also have light backgrounds.
   - The heading issue is the most critical — essentially all article body text headings are invisible on the dark background.
+
+
+### 2026-03-23 07:29
+- Review target: 40503bc (fix: replace hardcoded #1799d5 with $secondary-blue in navigation)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **$secondary-blue NOT resolved in compiled CSS (line 351)**: `dist/main.css` contains literal `color: $secondary-blue;` — Stylus variable not interpolated. Browser ignores or treats as custom property. The `:interest-source` headline color rule is non-functional.
+  - **Pre-existing unresolved vars in same block**: Same `@supports selector(:interest-source)` block has `rgba($secondary-blue, 0.15)` (line 299) and `rgba($secondary-blue, 0.3)` (line 314) also unresolved — predated 40503bc.
+  - **Build silently succeeds**: Stylus compiler emits no error for unresolved variable names inside `@supports selector()` blocks.
+  - **Heading fix (6087b91/aa10a51)**: Compiled CSS shows `color: #e7e7e7 !important` on content headings (html body .mw-body h1...h6, h1...h6). Should be visible. No post-fix screenshot to confirm — most recent screenshot predates the fix.
+  - **TODO closed without visual evidence**: `aa10a51` closes heading contrast TODO but no post-fix render evidence exists.
+- Implementer instructions:
+  - Fix `$secondary-blue` in navigation.styl `@supports selector(:interest-source)` block — inline actual hex `#c7b8ff` or fix Stylus variable interpolation in that context
+  - Provide screenshot of heading colors on ArchWiki confirming `#e7e7e7` visibility before closing heading contrast TODO
+  - Audit all `@supports selector()` blocks for unresolved Stylus variables
+
