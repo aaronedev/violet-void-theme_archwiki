@@ -18,6 +18,7 @@
 
 // Global main menu (Vector menu shown when the hamburger button is opened)
 // This styles the left-hand site navigation so it fits the dark, violet-toned header.
+#vector-main-menu-dropdown
 #vector-main-menu
 .vector-main-menu
   // Subtle gradient from the base colour towards a hint of Arch blue
@@ -27,6 +28,7 @@
   // in the cascade. !important needed because ArchWiki's stylesheet also uses
   // !important on its width declaration.
   width 200px !important
+  min-width 200px !important
 
   // Section headings within the main menu
   .vector-menu-heading
@@ -128,13 +130,17 @@
 
 // Outer wrapper for dropdown menus (e.g. the main menu opened via the
 // hamburger button).  Apply the theme's gradient, rounded corners and shadow.
+#vector-sticky-pinned-container .vector-dropdown-content
+body #vector-main-menu-dropdown .vector-dropdown-content
 .vector-dropdown-content
   menu-panel()
   // Width forces expansion at ArchWiki's 32px default; min-width alone is
   // insufficient since ArchWiki sets explicit width:32px which overrides min-width
   // in the cascade. !important needed because ArchWiki's stylesheet also uses
-  // !important on its width declaration.
+  // !important on its width declaration.  min-width creates a non-overridable
+  // floor that even a higher-specificity explicit width cannot shrink below.
   width 200px !important
+  min-width 200px !important
   // Scroll snap for smooth navigation menus on mobile
   scroll-snap-type y proximity
   overflow-y auto
@@ -368,12 +374,12 @@ header.vector-header
 // Sticky header table of contents dropdown styling
 .vector-sticky-header-toc .vector-dropdown-content
   menu-panel()
-
-  width max-content
   // Width forces expansion at ArchWiki's 32px default; min-width alone is
   // insufficient since ArchWiki sets explicit width:32px which overrides min-width
   // in the cascade. !important needed because ArchWiki's stylesheet also uses
-  // !important on its width declaration.
+  // !important on its width declaration.  min-width creates a non-overridable
+  // floor that even a higher-specificity explicit width cannot shrink below.
+  min-width 200px !important
   width 200px !important  // Prevent narrow collapse: was 32px
   // Scroll snap for sticky TOC dropdown
   scroll-snap-type y proximity
