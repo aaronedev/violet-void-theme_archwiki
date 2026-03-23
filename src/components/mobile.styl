@@ -603,14 +603,15 @@ table.mw-html-magic-mw-data-interface
   margin 0
   opacity 0  // invisible but still receives pointer events
   cursor pointer
-  z-index 1002
+  z-index 1001  // below label so label can receive hover events; clicks pass through via <label for>
   // Inherit label's flex centering so icon lands in the 44×44 hit box
   background transparent
   border none
   box-sizing border-box
 
-  // Hover, focus, active — styled on the invisible checkbox via the label's
-  // .vector-dropdown-label container that wraps both elements
+  // Hover, focus, active — the label (on top via z-index 1002) receives
+  // the hover events; checkbox below handles the click via <label for>.
+  // The outline goes on the label so it is visually visible.
   &:hover
     outline none
 
@@ -631,7 +632,7 @@ table.mw-html-magic-mw-data-interface
   border-radius $border-radius-md
   color $light
   cursor pointer
-  z-index 1001  // just below the checkbox so clicks pass through to checkbox
+  z-index 1002  // on top so it receives hover events; checkbox below handles clicks via <label for>
   display inline-flex
   align-items center
   justify-content center
@@ -639,7 +640,6 @@ table.mw-html-magic-mw-data-interface
   padding-bottom env(safe-area-inset-top, 0)
   padding-left env(safe-area-inset-left, 0)
   box-shadow 0 2px 8px rgba(0, 0, 0, 0.35)
-  pointer-events none  // checkbox in front receives all events
 
   @media (min-width 769px)
     display none  // hamburger is mobile-only (Vector feature)
@@ -650,7 +650,7 @@ table.mw-html-magic-mw-data-interface
     width 20px
     height 20px
 
-  // Hover state — pass through to checkbox's outline via the container
+  // Hover state — label is on top and receives events directly (z-index 1002)
   &:hover
     background linear-gradient(135deg, rgba($arch-blue, 0.25), rgba($dark, 0.95))
     border-color rgba($arch-blue, 0.6)
