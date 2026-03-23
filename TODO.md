@@ -7706,6 +7706,21 @@ Last updated: 2026-03-16 06:36
   - Verify interlanguage link selector in Link Hover States test against current ArchWiki Vector HTML.
   - If anti-bot blocks navigation, use existing test suite screenshots as baselines rather than standalone captures.
 
+### 2026-03-23 03:08
+- Review target: commit 5b2f993 (hamburger z-index swap) + dirty worktree at 68c0c8f
+- Verdict: APPROVED
+- Findings:
+  - 5b2f993 correctly swaps z-index: checkbox→1001, label→1002 (label on top receives hover). Removes `pointer-events:none` from label. Click handled via `<label for>`. Logical fix is sound ✓
+  - Build succeeds: confirmed via `npm run build` ✓
+  - Built CSS confirms correct z-index values in compiled output ✓
+  - ArchWiki visual regression tests all PASSED (per visual-scout, 2026-03-23 02:03) ✓
+  - Visual TODOs item correctly marked done for hamburger fix ✓
+  - OPEN-STATE EVIDENCE LIMITATION: no mobile hamburger screenshot evidence captured (ArchWiki anti-bot blocks automation). The fix is logically correct and mobile-only (hidden @ ≥769px). Accepting on build + code review merit.
+  - Open issue: interlanguage link selector (reported 02:03) still unresolved — separate follow-up needed.
+- Implementer instructions:
+  - No action needed for the hamburger fix; it's approved.
+  - Track interlanguage link selector issue separately; it's unrelated to the hamburger work and should be handled on its own timeline.
+
 ## Visual TODOs
 
 - [x] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (done: 2026-03-23 01:18, commit: 5b2f993)
