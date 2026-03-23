@@ -7740,3 +7740,16 @@ Last updated: 2026-03-23 04:50
 - Implementer instructions:
   - Capture a search dropdown open/focused screenshot (e.g. type in search box, show suggestions panel) with the built CSS applied. Even a simple `test-page.png` with search focused would satisfy the evidence requirement.
   - Clarify status of previous reviewer's mobile hamburger evidence request — was it ever followed up?
+
+### 2026-03-23 04:28
+- Review target: commit d1b21d9 (navigation tooltip hex→vars) + f3f5759 (notice box hex→vars) + dirty worktree (package.json vbum p)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - f3f5759 (notice boxes): legitimate fix. 28 lines in boxes.styl replace hardcoded hex with theme variables (`$arch-blue`, `$green`, `$orange`, `$secondary-red`, `$base`, `$light`, `$lighter`, `$secondary-blue`). All variables exist in colors.styl ✓. Build succeeds ✓. Completion log entry exists ✓.
+  - d1b21d9 (navigation tooltips): legitimate fix. 3 lines in navigation.styl replace `#202020` → `$dark` and hardcoded `rgba(137,80,199,0.3)` → `rgba($secondary-blue, 0.3)` in external link hover tooltip. Variables exist ✓. Build succeeds ✓. BUT: no Completion Log entry in TODO.md for this item — implementer added notice box entry (f3f5759) but skipped navigation tooltip entry.
+  - `.agent/archwiki/current/main-page.desktop.check.png` is untracked/uncommitted. Screenshot created but not staged or committed — unclear whether it's the requested search dropdown evidence or something else. Its purpose and relationship to the previous reviewer's follow-up request is not documented.
+  - package.json version bump from `20260323.04.50` → `20260323.05.20` is unstaged and unrelated to the CSS fixes.
+- Implementer instructions:
+  - Add Completion Log entry for navigation tooltip hardcoded color fix (d1b21d9) — same pattern as the notice box entry.
+  - Stage and commit `main-page.desktop.check.png` with a descriptive message explaining what it captures and why, OR remove it if it's not needed evidence.
+  - Address the previous reviewer's pending follow-up: capture and commit a search dropdown open/focused screenshot as evidence that the backdrop-filter change renders correctly.
