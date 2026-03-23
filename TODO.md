@@ -7997,6 +7997,23 @@ Last updated: 2026-03-23 10:52
   - Consider using a session with browser authentication or cookie to bypass Anubis
   - Anubis blocks automated DOM inspection on ArchWiki's Vector skin
 
+### 2026-03-23 16:32
+- Review target: ce82692, f9703d0, d528487 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - Three targeted CSS fixes address the Visual Scout's 13:46 findings: menu dropdown white bg (d528487), search panel transparent bg (f9703d0), search autocomplete menu missing bg (ce82692). All are correctly scoped and use theme variables.
+  - d528487: `menu-panel()` mixin background gains `!important` to override ArchWiki upstream white. Consistent with existing `!important` patterns in the codebase. Affects 5 call sites. Valid fix.
+  - f9703d0: `.vector-search-box` gets `linear-gradient(135deg, rgba($darker, 0.96), rgba($dark, 0.96)) !important` plus backdrop-filter blur. Targeted and themed.
+  - ce82692: `.cdx-menu.cdx-typeahead-search__menu` gains `gradient-surface()`. Minimal, scoped.
+  - Playwright injection issue (flagged 13:58, originally from 11:48 review) remains unresolved: all screenshot/test scripts still use `page.addStyleTag()` instead of appending a `<link>` element. This means screenshot artifacts cannot confirm the dark theme cascade is working correctly.
+  - Visual diffs in worktree (.agent/archwiki/diffs/*.png) were regenerated but cannot be independently verified as showing dark theme application due to the same injection problem.
+  - No before/after comparison evidence for the menu-open or search-active open states.
+- Implementer instructions:
+  - Fix Playwright injection BEFORE next CSS review. In scripts: visual-test.js, visual-test-rerun.js, cron-screenshot.js, take-screenshots.js, console-fixer.js — replace `page.addStyleTag({ content: css })` with `page.evaluate(() => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = './dist/main.css'; document.head.appendChild(l); })`.
+  - Same fix in tests/visual-regression.spec.js.
+  - After fixing injection: re-run screenshots, verify dark theme applies (check computed background on body, header, and dropdown elements), then generate new visual diffs with before/after for the menu-open and search-active states specifically.
+  - Commit CSS fixes and visual artifacts as separate commits for cleaner history.
+
 ### 2026-03-23 13:58
 - Review target: 92409d4 (fix: replace hardcoded gold/purple with theme vars in community.styl)
 - Verdict: NEEDS_FOLLOWUP
