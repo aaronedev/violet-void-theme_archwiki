@@ -7669,6 +7669,19 @@ Last updated: 2026-03-23 05:47
   - For 38cef91 hamburger: provide screenshot of mobile menu open state on actual ArchWiki Vector, OR verify Vector HTML uses these exact checkbox/label IDs.
   - For 5a47708: consider whether `--opacity`/`--scale`/etc. need immediate usage or can wait until a consumer is implemented.
 
+### 2026-03-23 06:54
+- Review target: aa10a51 (TODO close) + 6087b91 (heading CSS custom property fix)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - 6087b91 defines `--heading-color` and `--heading-color-secondary` on `:root` in both base.styl and headings.styl. These CSS variables were already referenced in headings.styl (h1/h3/h5 and h2/h4/h6 rules) but were never defined — making them resolve to `color: inherit` then fall back to initial (black). The fix completes the pattern and makes heading colors explicitly theme-driven. ✓
+  - Misleading TODO entry: the original TODO said "Need higher-specificity selector to override MediaWiki/Vector skin dark heading color." The 6087b91 fix does NOT add any selector specificity — it only adds CSS custom property definitions. Selector specificity was already addressed on 2026-03-14 by content.styl (commit 61f4d8e) which has `html body .mw-body h1,...{color:#e7e7e7 !important}` with massive specificity. The TODO was closed with the wrong justification.
+  - content.styl (commit 61f4d8e, 2026-03-14) already fixed heading contrast with high-specificity `!important` rule targeting `.mw-body`, `.mw-parser-output`, `#content`, `#mw-content-text` heading contexts. This was ~9 days before the visual scout's March 23 report.
+  - Visual evidence absent: no ArchWiki before/after screenshot, no live verification. The implementer closed the TODO without visual confirmation the issue is resolved.
+  - Build succeeds (version 20260323.06.56).
+- Implementer instructions:
+  - Provide a before/after screenshot of an actual ArchWiki article page (e.g., Pacman) showing H2/H3/H4 headings in the content area. The "before" state should show the near-black issue; "after" should show readable #e7e7e7 text.
+  - Clarify the TODO entry: the actual fix was "define missing CSS custom properties for heading colors" not "add higher-specificity selectors."
+
 ## Visual Scout Findings
 
 ### 2026-03-23 02:03
