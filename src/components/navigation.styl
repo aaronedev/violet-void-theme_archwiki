@@ -22,6 +22,8 @@
 .vector-main-menu
   // Subtle gradient from the base colour towards a hint of Arch blue
   menu-panel()
+  // Minimum width prevents narrow collapse (same fix as TOC dropdown which was 32px)
+  min-width 200px
 
   // Section headings within the main menu
   .vector-menu-heading
