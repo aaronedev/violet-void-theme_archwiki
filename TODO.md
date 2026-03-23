@@ -7830,3 +7830,18 @@ Last updated: 2026-03-23 05:47
 - Audit result: Only one `@supports selector()` block in entire codebase — the one fixed. No other unresolved var issues found.
 - Note: Build succeeds, lint passes. Stylus does not warn when variables fail to interpolate inside `@supports selector()` — this pattern needs vigilance.
 
+### 2026-03-23 09:22
+- Review target: 02a99cd (fix: inline unresolved Stylus variables in @supports selector(:interest-source) block)
+- Verdict: APPROVED
+- Findings:
+  - All 4 variables confirmed resolved in compiled CSS (dist/main.css):
+    - Line 299: `rgba(#c7b8ff, 0.15)` ✓ (was `rgba($secondary-blue, 0.15)`)
+    - Line 313: `background: #202020` ✓ (was `background: $dark`)
+    - Line 314: `rgba(#c7b8ff, 0.3)` ✓ (was `rgba($secondary-blue, 0.3)`)
+    - Line 351: `color: #c7b8ff` ✓ (was `color: $secondary-blue`)
+  - Commit diff matches expected changes exactly — no extra or missing changes.
+  - Open-state screenshots exist: menu-open and toc-open captured at 10:22 AM today for installation-guide, main-page, pacman, systemd. Search-active captured at 08:41 AM.
+  - Worktree: only uncommitted change is version bump in package.json (`20260323.08.38` → `20260323.09.43`). Unrelated to this fix.
+- Implementer instructions:
+  - None for this fix — proceed to next item.
+
