@@ -7727,6 +7727,8 @@ Last updated: 2026-03-23 05:47
 
 - [x] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (done: 2026-03-23 01:18, commit: 5b2f993)
 - [ ] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. (reported: 2026-03-23 02:03, source: visual-scout)
+- [ ] Fix H2/H3/H4 heading contrast on article pages: text color rgb(16,20,24) nearly invisible on body bg rgb(5,10,16). Affects ~100% of content headings (Installation_guide 27/28, Pacman 53/54, Firefox 87/88). Only H1 and TOC header are correctly colored. Need higher-specificity selector to override MediaWiki/Vector skin dark heading color. (reported: 2026-03-23 05:20, source: visual-scout)
+- [ ] Fix wikitable table background: tables use light bg rgb(248,249,250) with dark text, inconsistent with violet-void dark theme. Apply dark background (rgb(24,24,24) or theme equivalent) to .wikitable and th cells. (reported: 2026-03-23 05:20, source: visual-scout)
 
 ### 2026-03-23 03:43
 - Review target: commit 1565f32 (search dropdown backdrop-filter blur 10px→4px) + dirty worktree (package.json vbum p)
@@ -7754,3 +7756,40 @@ Last updated: 2026-03-23 05:47
   - Add Completion Log entry for navigation tooltip hardcoded color fix (d1b21d9) — same pattern as the notice box entry.
   - Stage and commit `main-page.desktop.check.png` with a descriptive message explaining what it captures and why, OR remove it if it's not needed evidence.
   - Address the previous reviewer's pending follow-up: capture and commit a search dropdown open/focused screenshot as evidence that the backdrop-filter change renders correctly.
+
+### 2026-03-23 05:20
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page (screenshot captured)
+  - https://wiki.archlinux.org/title/Systemd (screenshot + DOM analysis)
+  - https://wiki.archlinux.org/title/Pacman (screenshot + DOM analysis)
+  - https://wiki.archlinux.org/title/Installation_guide (screenshot + DOM analysis)
+  - https://wiki.archlinux.org/title/Firefox (screenshot + DOM analysis)
+- States checked:
+  - default (desktop 1440x900)
+  - default (mobile 375x667)
+  - menu-open (desktop, checkbox toggled)
+  - toc-open (desktop)
+- Findings:
+  - CRITICAL: H2/H3/H4 heading contrast: heading text color is rgb(16, 20, 24) on body background rgb(5, 10, 16) — both nearly black, headings nearly invisible. Affects ~100% of content headings on article pages. Installation_guide: 27/28 headings affected. Pacman: 53/54. Firefox: 87/88. Only H1 and "Contents" TOC header are properly colored (rgb(234, 236, 240)).
+  - MEDIUM: wikitable tables use light backgrounds (rgb(248, 249, 250)) with dark text (rgb(32, 33, 34)) — inconsistent with dark theme. Observed on Installation_guide (2 tables). Table text is readable but background doesn't match the violet-void dark palette.
+  - OK: Code blocks have dark background (rgb(24, 28, 32)) with light text (rgb(234, 236, 240)) — proper contrast.
+  - OK: Body/text contrast is correct (body bg: rgb(5, 10, 16), body color: rgb(234, 236, 240)).
+  - OK: No horizontal overflow detected on any page (scrollWidth === clientWidth on all pages).
+  - OK: Code blocks are dark-themed (good for dark theme consistency).
+  - PARTIAL: Menu checkbox (#vector-main-menu-dropdown-checkbox) found and toggleable, but sidebar (#mw-panel) stays display:none even when checked — likely requires JS event not triggered by Playwright checkbox toggle alone. TOC toggle button found and functional.
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.default.png
+  - .agent/archwiki/current/main-page.mobile.default.png
+  - .agent/archwiki/current/systemd.desktop.default.png
+  - .agent/archwiki/current/systemd.desktop.menu-open.png
+  - .agent/archwiki/current/systemd.desktop.toc-open.png
+  - .agent/archwiki/current/systemd.mobile.default.png
+  - .agent/archwiki/current/pacman.desktop.default.png
+  - .agent/archwiki/current/installation-guide.desktop.default.png
+  - .agent/archwiki/current/firefox.desktop.default.png
+- Implementer instructions:
+  - Fix H2/H3/H4 heading text color: headings inside content area (#content, article) are inheriting or being overridden with near-black color (rgb(16, 20, 24)). Ensure headings use theme text color (rgb(234, 236, 240) or equivalent theme variable). Suspect cause: MediaWiki Vector skin or ArchWiki base CSS sets dark color on content headings that overrides theme. May need higher-specificity selector or content-area heading reset.
+  - Fix wikitable table backgrounds: .wikitable has light background (rgb(248, 249, 250)). Theme should override to dark background (e.g., rgb(24, 24, 24) or theme equivalent). Apply same treatment to table header cells (th) which likely also have light backgrounds.
+  - The heading issue is the most critical — essentially all article body text headings are invisible on the dark background.
