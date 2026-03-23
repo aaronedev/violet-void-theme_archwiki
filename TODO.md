@@ -7635,3 +7635,63 @@ Last updated: 2026-03-16 06:36
 | 2026-03-16 | interpolate-size: allow-keywords | Added smooth auto-height transitions in animations.styl - enables height: 0 to height: auto animations without JavaScript, includes utility classes for accordions/dropdowns/collapsibles, MediaWiki patterns, reduced motion support, calc-size() alternative | e5a92b8 |
 | 2026-03-16 | Glassmorphism Effects | Added glass.styl with backdrop-filter based frosted glass styling - glass variants (light, dark, accent, success, warning, danger), glass components (card, nav, sidebar, dropdown, tooltip, button, input), responsive adjustments, forced colors and reduced motion support | c4f64ce |
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
+
+---
+
+## Reviewer Findings
+
+### 2026-03-23 01:22
+- Review target: commits 38cef91, da10605, 5a47708 (dirty worktree at 0e97123)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - 38cef91 `$font-code` → `$font-mono` and `$shadow-medium` → `$shadow-elevated`: variables are defined in layout.styl ✓. BUT hamburger button CSS uses Vector skin IDs (`#vector-main-menu-dropdown-checkbox`, `#vector-main-menu-dropdown-label`, `#vector-main-menu-unpinned-container`) that cannot be verified without rendered evidence or actual ArchWiki Vector HTML inspection.
+  - da10605 interest-source tooltip colors: replaces off-brand violet `rgba(108,92,231,...)` with theme `$arch-blue` `rgba(137,80,199,...)` and hardcoded `#1a1a2e` with theme `$dark` `#202020` ✓. Legitimate alignment fix.
+  - 5a47708 @property for `<number>` and `<angle>` syntax: properly uses `@css{}` wrapper matching existing patterns ✓. Adds `--opacity`, `--scale`, `--progress` (number) and `--rotation`, `--hue-rotate`, `--gradient-angle` (angle). However, none of these new properties are referenced anywhere in the codebase — they are added preemptively without usage. Minor concern: adds code with no immediate consumer.
+  - Build succeeds ✓ (confirmed via `npm run build`).
+- Implementer instructions:
+  - For 38cef91 hamburger: provide screenshot of mobile menu open state on actual ArchWiki Vector, OR verify Vector HTML uses these exact checkbox/label IDs.
+  - For 5a47708: consider whether `--opacity`/`--scale`/etc. need immediate usage or can wait until a consumer is implemented.
+
+## Visual Scout Findings
+
+### 2026-03-23 02:03
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page (screenshot captured)
+  - https://wiki.archlinux.org/title/Systemd (screenshot captured)
+  - https://wiki.archlinux.org/title/Pacman (screenshot captured)
+  - https://wiki.archlinux.org/title/Installation_guide (screenshot captured)
+  - https://wiki.archlinux.org/title/Firefox (test suite baseline)
+- States checked:
+  - default (desktop + mobile)
+  - menu-open (desktop)
+  - toc-open (desktop)
+  - responsive (tablet/mobile)
+- Findings:
+  - Playwright interaction test "Button Hover States" TIMED OUT: `#vector-main-menu-dropdown-checkbox` (z-index:1002, opacity:0) visually overlays `#vector-main-menu-dropdown-label` (z-index:1001, pointer-events:none). The invisible checkbox intercepts pointer events, blocking hover interaction with the visible button label. This is a real stacking/z-index layering bug.
+  - Playwright interaction test "Link Hover States" (interlanguage link) TIMED OUT: element not found or not visible on current ArchWiki Vector HTML. May indicate ArchWiki HTML structure changed or test targets stale selectors.
+  - ArchWiki visual regression tests (ArchWiki - Homepage, Search, Sidebar, Responsive, Mobile): all PASSED ✓
+  - Build succeeds: CSS compiles without errors ✓
+  - Navigation anti-bot (Cloudflare honeypot) blocks standalone browser automation; test suite screenshots from recent run (screenshots/ timestamped 2026-03-23 02:05) confirm real content renders correctly.
+  - Screenshot captures (archwiki visual scout run) show honeypot block page (ArchWiki Cloudflare protection); test suite screenshots from 02:05 are the authoritative baselines.
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.default.png
+  - .agent/archwiki/current/main-page.desktop.menu-open.png
+  - .agent/archwiki/current/main-page.desktop.toc-open.png
+  - .agent/archwiki/current/systemd.desktop.menu-open.png
+  - .agent/archwiki/current/pacman.desktop.menu-open.png
+  - .agent/archwiki/current/installation-guide.desktop.menu-open.png
+  - .agent/archwiki/current/installation-guide.desktop.toc-open.png
+  - .agent/archwiki/current/main-page.mobile.default.png
+  - .agent/archwiki/current/systemd.mobile.default.png
+  - screenshots/archwiki-*.png (test suite baselines, 2026-03-23 02:05)
+- Implementer instructions:
+  - Fix hamburger menu: change `#vector-main-menu-dropdown-checkbox` z-index to 1000 OR add `pointer-events:none` so clicks pass through to label. The label needs to be the interactive element.
+  - Verify interlanguage link selector in Link Hover States test against current ArchWiki Vector HTML.
+  - If anti-bot blocks navigation, use existing test suite screenshots as baselines rather than standalone captures.
+
+## Visual TODOs
+
+- [ ] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (reported: 2026-03-23 02:03, source: visual-scout)
+- [ ] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. (reported: 2026-03-23 02:03, source: visual-scout)
