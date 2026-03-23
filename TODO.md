@@ -7640,6 +7640,21 @@ Last updated: 2026-03-16 06:36
 
 ## Reviewer Findings
 
+### 2026-03-23 01:27
+- Review target: 5b2f993 (hamburger z-index fix) + f3ac212 (TODO update)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - Fix logic is sound: checkbox 1002→1001, label 1001→1002 with pointer-events:none removed from label. The label now sits on top and receives hover events directly; checkbox below still catches clicks via `<label for>`. ✓
+  - Visual evidence absent: all three desktop screenshots (default, menu-open, toc-open) are byte-identical (MD5 `890c33eeb8277b9867bab21bc0f89cff`). Cloudflare honeypot blocked the capture run — these are all the same blocked-page screenshot, not actual ArchWiki states.
+  - No mobile `menu-open` screenshot captured at all (only `.mobile.default.png` variants exist). Hamburger menu is a mobile feature; cannot verify the fix works on actual mobile without the open state.
+  - package.json shows version bump from `20260323.02.20` → `20260323.02.26` — unrelated to the fix, no action needed.
+  - Previous reviewer (2026-03-23 01:22) explicitly asked for: screenshot of mobile menu open state on actual ArchWiki Vector OR verification of Vector HTML checkbox IDs. Neither was provided.
+- Implementer instructions:
+  - Build the theme (`npm run build`), then run the capture script on a machine not blocked by Cloudflare, or use a Cloudflare-bypassed session, to capture `main-page.mobile.menu-open.png` showing the hamburger button hover working.
+  - Confirm the `#vector-main-menu-dropdown-checkbox` and `#vector-main-menu-dropdown-label` IDs match actual ArchWiki Vector HTML (or adjust selectors if Vector updated their markup).
+
+
+
 ### 2026-03-23 01:22
 - Review target: commits 38cef91, da10605, 5a47708 (dirty worktree at 0e97123)
 - Verdict: NEEDS_FOLLOWUP
