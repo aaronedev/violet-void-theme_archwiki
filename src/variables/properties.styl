@@ -180,6 +180,44 @@
     initial-value: 500ms;
   }
 
+  /* Number syntax for opacity, scale, progress */
+  @property --opacity {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 1;
+  }
+
+  @property --scale {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 1;
+  }
+
+  @property --progress {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  /* Angle syntax for rotation, hue-rotate, gradients */
+  @property --rotation {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @property --hue-rotate {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @property --gradient-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 135deg;
+  }
+
   /* Custom syntax: color or transparent */
   @property --theme-accent-default {
     syntax: '<color>';
