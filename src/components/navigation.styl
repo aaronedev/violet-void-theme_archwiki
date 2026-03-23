@@ -22,8 +22,11 @@
 .vector-main-menu
   // Subtle gradient from the base colour towards a hint of Arch blue
   menu-panel()
-  // Minimum width prevents narrow collapse (same fix as TOC dropdown which was 32px)
-  min-width 200px
+  // Width forces expansion at ArchWiki's 32px default; min-width alone is
+  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
+  // in the cascade. !important needed because ArchWiki's stylesheet also uses
+  // !important on its width declaration.
+  width 200px !important
 
   // Section headings within the main menu
   .vector-menu-heading
@@ -127,9 +130,11 @@
 // hamburger button).  Apply the theme's gradient, rounded corners and shadow.
 .vector-dropdown-content
   menu-panel()
-  // Minimum width prevents narrow/widget-like panels (e.g. sticky TOC
-  // dropdown or mobile menu) from collapsing to unusable dimensions.
-  min-width 200px
+  // Width forces expansion at ArchWiki's 32px default; min-width alone is
+  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
+  // in the cascade. !important needed because ArchWiki's stylesheet also uses
+  // !important on its width declaration.
+  width 200px !important
   // Scroll snap for smooth navigation menus on mobile
   scroll-snap-type y proximity
   overflow-y auto
@@ -365,7 +370,11 @@ header.vector-header
   menu-panel()
 
   width max-content
-  min-width 200px  // Prevent narrow collapse: sticky header TOC dropdown was 32px
+  // Width forces expansion at ArchWiki's 32px default; min-width alone is
+  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
+  // in the cascade. !important needed because ArchWiki's stylesheet also uses
+  // !important on its width declaration.
+  width 200px !important  // Prevent narrow collapse: was 32px
   // Scroll snap for sticky TOC dropdown
   scroll-snap-type y proximity
   overflow-y auto
