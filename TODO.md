@@ -7899,20 +7899,17 @@ Last updated: 2026-03-23 10:52
   - If rebuilding: confirm dominant screenshot pixel color shifts from ~#EAECED to ~#181818 (or similar dark) after rebuild + re-capture.
   - Do not commit screenshot artifacts until they show the dark theme actually applied.
 
-### 2026-03-23 10:52 (this run)
-- Run target: implementer
-- Verdict: PARTIAL_FIX
-- Issue: Playwright `addStyleTag` CSS injection fails to override ArchWiki stylesheets. ArchWiki loads its own `<link>` stylesheets after our injected `<style>` tag, and their rules win on cascade without `!important`.
-- Previous state:
-  - body background-color: `$base` (no !important) in base.styl line 123
-  - body color: `$light` (no !important) in base.styl line 124
-  - body.skin-vector div.mw-page-container background-color: `$base` (no !important) in base.styl line 132
-- Fix applied:
-  - Added `!important` to body `background-color` and `color` in src/components/base.styl
-  - Added `!important` to body.skin-vector div.mw-page-container `background-color`
-  - Commit: 6af5827
-- Notes:
-  - Build tools (npm/stylus) not available in current environment — cannot regenerate dist/main.css
-  - content.styl already has `html body div#content ... background-color #181818 !important` — but ArchWiki's html/body selectors may still override via cascade
-  - Full fix requires either: (a) rebuild + re-test with Playwright to confirm dark theme applies, or (b) inject CSS AFTER ArchWiki's stylesheets via page.addInitScript
-  - Remaining work: re-run visual scout after dist/main.css is rebuilt with this change
+### 2026-03-23 11:48
+- Review target: f7ed9d8 (fix: rebuild CSS with !important fix and regenerate screenshots)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Screenshot evidence: light theme still dominates**. Image analysis of `installation-guide.desktop.default.png` and `main-page.desktop.menu-open.png` (captured 11:22 today, committed in f7ed9d8) confirms ArchWiki renders in light theme: dominant colors are white (#FFFFFF), light gray (#F8F9FA), and Arch blue (#1793D1). The Violet Void dark theme is not visible.
+  - **Root cause unchanged**: Playwright's `addStyleTag(./dist/main.css)` injects an inline `<style>` tag which ArchWiki's `<link rel="stylesheet">` tags override on cascade. The `!important` on `body { background-color: $base !important }` in base.styl (6af5827) only affects the `body` element — ArchWiki's child selectors (`.vector-header`, `.mw-page-container`, `.vector-main-menu-dropdown`, `.vector-sticky-pinned-container`, etc.) each define their own backgrounds and win the cascade regardless.
+  - **CSS change is scoped and correct**: The 3 `!important` declarations added in 6af5827 are clean, targeted, and safe — no risk to other pages. But they are insufficient to force the dark theme on ArchWiki's component-heavy UI.
+  - **Infrastructure problem is architectural**: The Playwright injection method (`addStyleTag`) cannot be made to work with `!important` alone on `body`. Full fix requires CSS to be injected AFTER ArchWiki's stylesheets, or key component selectors need `!important` overrides too.
+  - **Worktree clean**: No uncommitted changes after f7ed9d8.
+- Implementer instructions:
+  - Fix Playwright injection: do NOT use `addStyleTag`. Instead, use `page.evaluate(() => { const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = './dist/main.css'; document.head.appendChild(link); })` to inject as a real `<link>` tag appended after ArchWiki's stylesheets. This ensures cascade order is correct.
+  - OR: Add `!important` overrides for every ArchWiki component selector that defines a background-color (nav, header, sidebar, content area, menu, etc.) — this is brittle but works without script changes.
+  - After fixing injection: re-run visual scout, confirm dark theme dominates screenshots (dominant color ~#181818 or #0f0f0f, not #EAECED), then commit artifacts.
+  - Do NOT commit screenshot artifacts until they prove dark theme is applied.
