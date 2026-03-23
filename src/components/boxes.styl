@@ -189,9 +189,9 @@ div[class*="warning"]
 .admonition-note
 .admonition-tip
 .admonition-warning
-  background-color #181818 !important
-  color #bfbfbf !important
-  border-color rgba(137, 80, 199, 0.25) !important
+  background-color $base !important
+  color $light !important
+  border-color rgba($arch-blue, 0.25) !important
   border-radius 9px !important
 
 // Note specific styling - blue accent
@@ -201,8 +201,8 @@ body .mw-body .mw-parser-output .note
 div.note
 .notification-note
 .admonition-note
-  border-left 4px solid #8950c7 !important
-  background linear-gradient(135deg, rgba(137, 80, 199, 0.12), rgba(137, 80, 199, 0.06)) !important
+  border-left 4px solid $arch-blue !important
+  background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($arch-blue, 0.06)) !important
 
 // Tip specific styling - green accent
 body .mw-body .tip
@@ -211,8 +211,8 @@ body .mw-body .mw-parser-output .tip
 div.tip
 .notification-tip
 .admonition-tip
-  border-left 4px solid #4bfe9b !important
-  background linear-gradient(135deg, rgba(75, 254, 155, 0.12), rgba(75, 254, 155, 0.06)) !important
+  border-left 4px solid $green !important
+  background linear-gradient(135deg, rgba($green, 0.12), rgba($green, 0.06)) !important
 
 // Warning specific styling - orange accent
 body .mw-body .warning
@@ -221,8 +221,8 @@ body .mw-body .mw-parser-output .warning
 div.warning
 .notification-warning
 .admonition-warning
-  border-left 4px solid #fd7cff !important
-  background linear-gradient(135deg, rgba(253, 124, 255, 0.12), rgba(253, 124, 255, 0.06)) !important
+  border-left 4px solid $orange !important
+  background linear-gradient(135deg, rgba($orange, 0.12), rgba($orange, 0.06)) !important
 
 // Important/Caution - red accent
 body .mw-body .important
@@ -233,8 +233,8 @@ div.important
 .notification-error
 .admonition-caution
 .admonition-danger
-  border-left 4px solid #ff1a67 !important
-  background linear-gradient(135deg, rgba(255, 26, 103, 0.12), rgba(255, 26, 103, 0.06)) !important
+  border-left 4px solid $secondary-red !important
+  background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06)) !important
 
 // Ensure text in notice boxes is readable
 .note p
@@ -247,7 +247,7 @@ div.warning p
 div.important p
 .notification p
 .admonition p
-  color #e7e7e7 !important
+  color $lighter !important
 
 // Links in notice boxes
 .note a
@@ -258,7 +258,7 @@ div.note a
 div.tip a
 div.warning a
 div.important a
-  color #c7b8ff !important
+  color $secondary-blue !important
 
 .note a:hover
 .tip a:hover
@@ -268,7 +268,7 @@ div.note a:hover
 div.tip a:hover
 div.warning a:hover
 div.important a:hover
-  color #fd7cff !important
+  color $orange !important
 
 // =============================================================================
 // MIX-BLEND-MODE FOR EMPHASIS EFFECTS
