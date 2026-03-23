@@ -7725,3 +7725,17 @@ Last updated: 2026-03-16 06:36
 
 - [x] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (done: 2026-03-23 01:18, commit: 5b2f993)
 - [ ] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. (reported: 2026-03-23 02:03, source: visual-scout)
+
+### 2026-03-23 03:43
+- Review target: commit 1565f32 (search dropdown backdrop-filter blur 10px→4px) + dirty worktree (package.json vbum p)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - Change is legitimate: scoped `.mw-search-suggest` backdrop-filter reduction from 10px to 4px. Commit rationale is technically sound — 98%-opaque gradient does enough opacity work that 10px blur adds visual noise without proportional benefit. Consistent with other ui-components at 4px/2px ✓
+  - backdrop-filter is visual-only; does not affect dropdown open/close state or logic. OPEN-STATE EVIDENCE RULE applies to structural UI changes (menus, popups, TOC toggles) — this is a paint refinement, not a state change.
+  - No search-focused screenshot captured post-change. All screenshots in `.agent/archwiki/current/` predate this commit. Cannot visually confirm text sharpness improvement or confirm dropdown renders cleanly at 4px blur.
+  - package.json version bump (`20260323.03.09` → `20260323.03.24`) is unstaged and unrelated to this fix.
+  - Previous reviewer (01:27) asked for mobile hamburger-open screenshot or Vector checkbox ID verification. Status of that follow-through is unclear — the hamburger fix is applied but the requested evidence was never captured.
+  - No fake TODO completion, no selector churn, no stacking/readability regressions introduced.
+- Implementer instructions:
+  - Capture a search dropdown open/focused screenshot (e.g. type in search box, show suggestions panel) with the built CSS applied. Even a simple `test-page.png` with search focused would satisfy the evidence requirement.
+  - Clarify status of previous reviewer's mobile hamburger evidence request — was it ever followed up?
