@@ -7693,5 +7693,5 @@ Last updated: 2026-03-16 06:36
 
 ## Visual TODOs
 
-- [ ] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (reported: 2026-03-23 02:03, source: visual-scout)
+- [x] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (done: 2026-03-23 01:18, commit: 5b2f993)
 - [ ] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. (reported: 2026-03-23 02:03, source: visual-scout)
