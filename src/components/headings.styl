@@ -6,6 +6,13 @@
 // e.g., :heading(1), :heading(2n+1) - browser support is 88%+
 // These are future-compatible selectors that work alongside traditional h1-h6
 
+// Define heading CSS custom properties so they resolve to theme colors
+// instead of falling back to near-black browser defaults.
+// These must be defined before the heading rules that reference them.
+:root
+  --heading-color $lighter
+  --heading-color-secondary $lighter
+
 // Base heading styles using :heading
 :heading
   font-weight 600
