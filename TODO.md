@@ -7822,3 +7822,11 @@ Last updated: 2026-03-23 05:47
   - Provide screenshot of heading colors on ArchWiki confirming `#e7e7e7` visibility before closing heading contrast TODO
   - Audit all `@supports selector()` blocks for unresolved Stylus variables
 
+### 2026-03-23 07:57
+- Fix: Unresolved Stylus variables in `@supports selector(:interest-source)` block (navigation.styl)
+- Files changed: `src/components/navigation.styl`
+- Changes: Inlined 4 unresolved `$secondary-blue` and `$dark` references with hex values (`#c7b8ff`, `#202020`)
+- Status: FIXED (commit: see below)
+- Audit result: Only one `@supports selector()` block in entire codebase — the one fixed. No other unresolved var issues found.
+- Note: Build succeeds, lint passes. Stylus does not warn when variables fail to interpolate inside `@supports selector()` — this pattern needs vigilance.
+
