@@ -473,6 +473,7 @@
 | 2026-03-23 | Replace hardcoded hex colors with theme variables in notice box overrides | f3f5759 |
 | 2026-03-23 | Replace hardcoded hex colors with theme variables in navigation tooltips | d1b21d9 |
 | 2026-03-23 | Replace hardcoded wiki brand hex colors in cross-wiki badges with theme variables | 42bb86c |
+| 2026-03-23 | Replace hardcoded #ffd700/#9d5ce5 with $gold/$arch-blue in community.styl | 92409d4 |
 
 Last updated: 2026-03-23 10:52
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
@@ -7980,3 +7981,63 @@ Last updated: 2026-03-23 10:52
   - Next run will have baselines for comparison
   - Consider using a session with browser authentication or cookie to bypass Anubis
   - Anubis blocks automated DOM inspection on ArchWiki's Vector skin
+
+### 2026-03-23 13:58
+- Review target: 92409d4 (fix: replace hardcoded gold/purple with theme vars in community.styl)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - 92409d4 is cosmetic: replaces hardcoded `#ffd700` → `$gold` and `#9d5ce5` → `$arch-blue`. Both variables already existed with identical values in `colors.styl`. No functional change.
+  - 91ba37f (fix: use CSS custom properties for .wikitable colors) is more meaningful: adds `!important` to `.wikitable`, `.wikitable th`, and `.wikitable td` background overrides, plus CSS custom properties for table colors. This is a targeted improvement for table override specificity.
+  - Minor regression in 91ba37f: replaced `$border-radius-md` (value 9px) with hardcoded `9px` instead of using the variable.
+  - Neither commit addresses the open Playwright injection issue (from review at 11:48): `addStyleTag` still used in test-screenshot.js and check-interactive.js, meaning the dark theme cascade problem documented in cf9a298 remains unresolved.
+  - Screenshot artifacts in worktree (.agent/archwiki/current/pacman.desktop.default.png, systemd.desktop.default.png) were regenerated but cannot confirm dark theme applies — same underlying injection problem.
+  - No before/after visual evidence for the table `!important` change on any ArchWiki page with actual wikitable content.
+- Implementer instructions:
+  - The CSS changes (91ba37f, 92409d4) are correct but insufficient. The Playwright injection must be fixed before next CSS review cycle.
+  - To fix injection: replace `page.addStyleTag({ path: './dist/main.css' })` with `page.evaluate(() => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = './dist/main.css'; document.head.appendChild(l); })` in both test-screenshot.js and check-interactive.js. This appends the stylesheet as a real `<link>` element after ArchWiki's stylesheets, ensuring correct cascade order.
+  - After fixing injection: re-run visual scout, verify screenshots show dark theme (dominant color ~#181818), then commit artifacts separately from source changes.
+
+## Visual Scout Findings
+
+### 2026-03-23 13:46
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+- States checked:
+  - default (desktop 1440x900)
+  - menu-open (desktop 1440x900)
+  - toc-open (desktop 1440x900)
+  - search-active (desktop 1440x900)
+  - default (mobile 375x667)
+  - menu-open (mobile 375x667)
+- Findings:
+  - 3 screenshots differ from baseline (pacman.default, pacman.menu-open, systemd.default) but pixel diff is noise-level (4-12 pixels AE)
+  - Menu dropdown `vector-dropdown-content` has white background `rgb(255, 255, 255)` instead of dark theme bg - major interactive state regression
+  - Search panel has transparent background `rgba(0, 0, 0, 0)` - may cause readability issues when content shows through
+  - `vector-pinned-container` (appearance panel) has white background `rgb(255, 255, 255)` - sticky/pinned interactive panels not themed
+  - No horizontal overflow detected in any state (viewport 1440px, scrollWidth 1440px)
+  - Main content area properly themed with `rgb(24, 24, 24)` dark background
+  - Header area properly themed with `rgb(5, 10, 16)` dark background
+  - Mobile viewport (375x667) shows no overflow issues and proper dark theme application
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.*.png
+  - .agent/archwiki/current/systemd.desktop.*.png
+  - .agent/archwiki/current/pacman.desktop.*.png
+  - .agent/archwiki/current/installation-guide.desktop.*.png
+  - .agent/archwiki/current/main-page.mobile.*.png
+  - .agent/archwiki/reports/scout-results.json
+- Implementer instructions:
+  - Apply dark theme background to `vector-dropdown-content` class to override white `rgb(255, 255, 255)`
+  - Apply dark/semi-opaque background to search panel (`vector-search-box`) to fix transparent bg
+  - Apply dark theme to `vector-pinned-container` for pinned/appearance panels
+  - Verify menu dropdown items are readable with sufficient contrast against dark background
+
+## Visual TODOs
+- [ ] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout)
+- [ ] Apply dark/semi-opaque background to search panel for readability (reported: 2026-03-23 13:46, source: visual-scout)
+- [ ] Theme `vector-pinned-container` (appearance panel) with dark background (reported: 2026-03-23 13:46, source: visual-scout)
+
