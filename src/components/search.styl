@@ -107,10 +107,13 @@ input.mw-searchButton:hover
   border-radius $border-radius-md
   box-shadow $shadow-elevated
   overflow hidden
-  backdrop-filter blur(10px)
+  // Reduce blur from 10px to 4px — the 98%-opaque background already obscures
+  // the backdrop sufficiently; 10px blur adds visual noise without meaningful
+  // frosted-glass benefit and causes text sharpness degradation.
+  backdrop-filter blur(4px)
 
   // Webkit backdrop fallback
-  -webkit-backdrop-filter blur(10px)
+  -webkit-backdrop-filter blur(4px)
 
 // =============================================================================
 // SUGGESTION ITEM STYLING
