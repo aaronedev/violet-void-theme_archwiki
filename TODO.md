@@ -470,8 +470,9 @@
 
 | 2026-03-16 | Multi-column layout utilities (column-rule, column-span, column-fill, columns) | 2c29491 |
 | 2026-03-16 | border-spacing for table cell gaps | 6b8420c |
+| 2026-03-23 | Replace hardcoded hex colors with theme variables in notice box overrides | f3f5759 |
 
-Last updated: 2026-03-16 06:36
+Last updated: 2026-03-23 04:50
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
