@@ -7931,6 +7931,21 @@ Last updated: 2026-03-23 10:52
 - Implementer instructions:
   - Provide a before/after screenshot of a page with active cite backlinks/reference hover in open state, to verify z-index 100 is sufficient and cite panels don't get hidden behind article content.
 
+### 2026-03-23 14:19
+- Review target: 2fbbcb8 (dirty worktree: updated diffs + package.json uncommitted)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - `d528487` fix is legitimate: `!important` on `menu-panel()` mixin background overrides upstream ArchWiki white at all 5 call sites. Correctly scoped.
+  - `79f7a00` fix is legitimate: 4 hardcoded hex → theme variables in content.styl. Clean replacement.
+  - Visual evidence not committed: worktree has updated `pacman.desktop.menu-open.png` and other diff screenshots (sized 872B → 195KB, indicating full captures), but they are uncommitted. No before/after evidence in the commit itself.
+  - `pacman.desktop.menu-open.png` is the key open-state artifact for the menu dropdown fix — it must be committed to prove the fix works.
+  - package.json version bump (20260323.12.47 → 20260323.15.12) is also uncommitted.
+  - Previous reviewer (12:38) asked for cite panel open-state evidence — still unaddressed.
+- Implementer instructions:
+  - Commit the updated diff screenshots, especially `pacman.desktop.menu-open.png` (menu-open state), to prove the dropdown background fix renders correctly.
+  - Commit the package.json version bump.
+  - Address the cite panel z-index open-state evidence request from 12:38 review.
+
 ## Visual Scout Findings
 
 ### 2026-03-23 12:47
