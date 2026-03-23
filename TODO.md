@@ -7914,3 +7914,18 @@ Last updated: 2026-03-23 10:52
   - OR: Add `!important` overrides for every ArchWiki component selector that defines a background-color (nav, header, sidebar, content area, menu, etc.) — this is brittle but works without script changes.
   - After fixing injection: re-run visual scout, confirm dark theme dominates screenshots (dominant color ~#181818 or #0f0f0f, not #EAECED), then commit artifacts.
   - Do NOT commit screenshot artifacts until they prove dark theme is applied.
+
+## Reviewer Findings
+
+### 2026-03-23 12:38
+- Review target: dcbf418 (fix: resolve undefined $z-dropdown to $cdx-z-index-dropdown in extensions)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - Undefined Stylus variable is a real bug: `$z-dropdown` was never defined as a Stylus variable — only `@property --z-dropdown` existed in `properties.styl`. The three usages in `extensions.styl` (cite-hover, cite-backlink, cite-panel) were silently compiling to nothing. Fix is legitimate.
+  - CSS rebuilt: `dist/main.css` updated at 12:28, matches the fix commit.
+  - No baselines for visual diff: `.agent/archwiki/baselines/` directory is empty — no prior screenshots to diff against.
+  - Missing open-state evidence for z-index change: cite panel, citation hover tooltip, and reference hover card now use `$cdx-z-index-dropdown` (value: 100). This is a meaningful stacking change — 100 may be too low for cite panels appearing above article content. No before/after for these specific open states.
+  - Wiki brand color refactor (42bb86c) is low-risk: hardcoded hex → named variables (`$wiki-wiktionary`, etc.) is appropriate for external brand colors. No risk to other pages.
+  - Mobile menu-open screenshots now present: previous reviewer asked for these and they now exist.
+- Implementer instructions:
+  - Provide a before/after screenshot of a page with active cite backlinks/reference hover in open state, to verify z-index 100 is sufficient and cite panels don't get hidden behind article content.
