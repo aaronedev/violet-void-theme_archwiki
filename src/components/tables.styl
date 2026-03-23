@@ -121,13 +121,26 @@ body .mw-body table tr:hover td
 .mw-parser-output table tr:hover td
   background-color rgba(137, 80, 199, 0.08) !important
 
-// Wiki tables
+// Wiki tables — use CSS custom properties (defined in :root above) to ensure
+// override of ArchWiki's :root CSS custom properties.  This is consistent with
+// the rest of tables.styl which uses var(--vv-table-*) throughout.
 .wikitable
-  background-color $base
-  color $light
+  background-color var(--vv-table-bg) !important
+  color var(--vv-table-text) !important
   margin 1em 0
   border none
-  border-radius $border-radius-md
+  border-radius 9px
+
+  th
+    background-color var(--vv-table-header-bg) !important
+    color var(--vv-table-header-text) !important
+
+  td
+    background-color var(--vv-table-bg) !important
+    color var(--vv-table-text) !important
+
+  tr:hover td
+    background-color rgba(137, 80, 199, 0.08) !important
   overflow hidden
   box-shadow $shadow-subtle
   border-collapse separate
