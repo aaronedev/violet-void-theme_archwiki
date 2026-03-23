@@ -473,7 +473,7 @@
 | 2026-03-23 | Replace hardcoded hex colors with theme variables in notice box overrides | f3f5759 |
 | 2026-03-23 | Replace hardcoded hex colors with theme variables in navigation tooltips | d1b21d9 |
 
-Last updated: 2026-03-23 05:47
+Last updated: 2026-03-23 10:52
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -7845,3 +7845,59 @@ Last updated: 2026-03-23 05:47
 - Implementer instructions:
   - None for this fix — proceed to next item.
 
+
+### 2026-03-23 09:45
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page (screenshot captured)
+  - https://wiki.archlinux.org/title/Systemd (screenshot captured)
+  - https://wiki.archlinux.org/title/Pacman (screenshot captured)
+  - https://wiki.archlinux.org/title/Installation_guide (screenshot captured)
+- States checked:
+  - default (desktop 1440x900)
+  - menu-open (desktop)
+  - toc-open (desktop)
+  - search-active (desktop)
+  - default (mobile 375x667)
+  - menu-open (mobile)
+- Findings:
+  - **CRITICAL INFRASTRUCTURE BROKEN**: Playwright `addStyleTag(./dist/main.css)` does NOT apply the Violet Void dark theme to ArchWiki live pages. Pixel analysis of all screenshots shows dominant color #EAECED (light gray) — confirming the LIGHT theme, not the dark theme. The injected `<style>` tag is being overridden by ArchWiki's own stylesheets loaded via `<link>` tags, which cascade after inline styles and win on specificity. This makes visual regression testing via this method unreliable.
+  - CSS has only 13 `!important` flags — insufficient to force override against ArchWiki's `!important` declarations.
+  - Visual diffing against previous run (which had the same limitation) shows pixel differences 78-99% similar — meaning page content changed slightly (live site), but theme was never applied in either run. No meaningful visual regression can be detected with this setup.
+  - Previous run (09:22) open-state screenshots exist but all show light theme — same infrastructure problem existed in prior run. The heading contrast fix (6087b91) cannot be visually confirmed from current screenshot evidence.
+  - Screenshot capture infrastructure itself works (20/20 captures succeeded, correct viewport dimensions).
+  - Worktree is dirty: modified `.agent/archwiki/current/*.png` files (previous screenshots) and `package.json` (version bump).
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.default.png
+  - .agent/archwiki/current/main-page.desktop.menu-open.png
+  - .agent/archwiki/current/main-page.desktop.toc-open.png
+  - .agent/archwiki/current/main-page.desktop.search-active.png
+  - .agent/archwiki/current/main-page.mobile.default.png
+  - .agent/archwiki/current/main-page.mobile.menu-open.png
+  - .agent/archwiki/current/systemd.desktop.*.png (4 states)
+  - .agent/archwiki/current/pacman.desktop.*.png (4 states)
+  - .agent/archwiki/current/installation-guide.desktop.*.png (4 states)
+  - .agent/archwiki/diffs/*.diff.png (pixel diffs vs previous run)
+- Implementer instructions:
+  - **Fix Playwright CSS injection**: `addStyleTag` is insufficient. Options: (1) Use `page.addInitScript` to inject CSS as a `<link>` tag with `id="violet-void-theme"` set AFTER ArchWiki's stylesheets, forcing cascade to win; (2) Use `page.evaluate` to inject a `<style id="violet-void">` at `document.head.lastChild` with `!important` overrides on key properties (background, color, border-color) for all major selectors; (3) Add sufficient `!important` flags to critical theme properties in the CSS to force override. Without fixing injection, screenshots cannot be used for visual regression testing of the dark theme.
+  - **Add key `!important` flags**: At minimum, add `!important` to: `html body { background-color: #181818 !important; color: #bfbfbf !important; }` and content area selectors. This is the minimal fix without changing the Playwright script.
+  - **Capture post-fix evidence**: After fixing injection, re-run scout and capture fresh screenshots proving dark theme applies (dominant pixel color should be ~#181818 or #0f0f0f, not #EAECED).
+
+### 2026-03-23 10:52 (this run)
+- Run target: implementer
+- Verdict: PARTIAL_FIX
+- Issue: Playwright `addStyleTag` CSS injection fails to override ArchWiki stylesheets. ArchWiki loads its own `<link>` stylesheets after our injected `<style>` tag, and their rules win on cascade without `!important`.
+- Previous state:
+  - body background-color: `$base` (no !important) in base.styl line 123
+  - body color: `$light` (no !important) in base.styl line 124
+  - body.skin-vector div.mw-page-container background-color: `$base` (no !important) in base.styl line 132
+- Fix applied:
+  - Added `!important` to body `background-color` and `color` in src/components/base.styl
+  - Added `!important` to body.skin-vector div.mw-page-container `background-color`
+  - Commit: 6af5827
+- Notes:
+  - Build tools (npm/stylus) not available in current environment — cannot regenerate dist/main.css
+  - content.styl already has `html body div#content ... background-color #181818 !important` — but ArchWiki's html/body selectors may still override via cascade
+  - Full fix requires either: (a) rebuild + re-test with Playwright to confirm dark theme applies, or (b) inject CSS AFTER ArchWiki's stylesheets via page.addInitScript
+  - Remaining work: re-run visual scout after dist/main.css is rebuilt with this change
