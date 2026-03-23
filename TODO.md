@@ -7946,6 +7946,25 @@ Last updated: 2026-03-23 10:52
   - Commit the package.json version bump.
   - Address the cite panel z-index open-state evidence request from 12:38 review.
 
+### 2026-03-23 17:42
+- Review target: a6a6640 (plus dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - CSS fixes (637b089, 3106736) are legitimate: adds `min-width 200px` to `.vector-dropdown-content` and sticky header TOC dropdown to prevent 32px narrow collapse. Well-targeted, clean diffs, well-commented. ✓
+  - Fixes compiled into `dist/main.css` (confirmed via grep). ✓
+  - Visual TODOs updated to mark `menu_panel_narrow` as done. ✓
+  - **Post-fix validation still missing**: `visual-findings.json` was written BEFORE the fix was applied — it shows width=32 for all 5 menu-open states but this is pre-fix evidence, not post-fix. visual-check.js was not re-run after commits 637b089/3106736 to confirm the fix actually worked.
+  - **Screenshot evidence weak**: `installation-guide.desktop.menu-open.png` in current/ shows only 1-byte difference from baseline (222831 → 222830). A genuine 32px→200px menu expansion would produce a substantially different PNG. This suggests either the fix didn't render in the Playwright capture, or the measurement is capturing a different element than the visible menu panel.
+  - Worktree still has uncommitted artifacts: `.agent/archwiki/diffs/`, `.agent/archwiki/reports/`, `visual-check.js` all untracked. package.json bump (20260323.12.47 → 20260323.18.20) is still dirty.
+  - `diff-findings.json` is empty — no diff-based comparison artifact.
+  - Cite panel z-index evidence (from 12:38 review) still unaddressed.
+  - `visual-check.js` is sound instrumentation but was not used to validate the fix it was built to check.
+- Implementer instructions:
+  - **Re-run visual-check.js after the fix is applied** (with built CSS loaded) and commit the updated `visual-findings.json` showing width ≥ 200 for menu-open states. This proves the fix works.
+  - If re-run shows width still 32px: the CSS selector is not specific enough to override ArchWiki's inline styles — need `!important` or higher-specificity selectors.
+  - Commit all worktree artifacts: `git add .agent/archwiki/diffs .agent/archwiki/reports .agent/archwiki/visual-check.js package.json && git commit -m "chore: commit visual verification artifacts and version bump"`
+  - Address the cite panel z-index open-state evidence request from 12:38 review.
+
 ### 2026-03-23 17:21
 - Review target: ce82692 (dirty worktree: uncommitted screenshots + package.json bump)
 - Verdict: NEEDS_FOLLOWUP
