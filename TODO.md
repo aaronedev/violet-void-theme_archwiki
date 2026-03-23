@@ -7981,6 +7981,24 @@ Last updated: 2026-03-23 10:52
   - Either fix `menu_panel_narrow` (z-index 50, 32px wide dropdown) or explicitly document it as a known limitation in the Visual TODOs section.
   - Address the cite panel z-index evidence request from 12:38 review.
 
+### 2026-03-23 18:17
+- Review target: 3106736 + dirty worktree (screenshot captures at 19:17)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - CSS fix is correct and compiles: `min-width: 200px !important` confirmed in `dist/main.css` for both `.vector-dropdown-content` and `.vector-sticky-header-toc .vector-dropdown-content`. ✓
+  - `visual-findings.json` still shows `width=32` for all 5 menu-open states — same pre-fix evidence. The previous reviewer (17:42) explicitly requested re-run after the fix; this was not done or the re-run produced the same stale result.
+  - `diff-findings.json` remains empty `[]` — no diff-based comparison was generated this run.
+  - Screenshot size comparison (baseline vs current): `installation-guide.desktop.menu-open.png` differs by only 1 byte (222831 → 222830). A genuine 32px→200px menu expansion would produce a substantially different PNG. This is weak evidence of a fix.
+  - **Root cause likely not fixed**: `min-width` only prevents shrinking below 200px — it does NOT force expansion if ArchWiki's stylesheet sets an explicit `width: 32px`. If ArchWiki sets `width: 32px` (or a smaller `max-width`) on `.vector-dropdown-content`, the `min-width` is ignored in the cascade. A proper fix likely needs `width: 200px !important` or higher-specificity selectors with explicit `width`, not just `min-width`.
+  - Worktree still has uncommitted artifacts: `.agent/archwiki/current/`, `.agent/archwiki/diffs/`, `.agent/archwiki/reports/`, `visual-check.js`, `package.json`.
+  - Cite panel z-index open-state evidence (requested at 12:38) still unaddressed.
+- Implementer instructions:
+  - Change `min-width: 200px` to `width: 200px !important` in navigation.styl for `.vector-dropdown-content` and the sticky header variant. `min-width` alone is insufficient to override an explicit `width: 32px` in the cascade.
+  - Re-run `node visual-check.js` after the CSS rebuild and commit the updated `visual-findings.json` showing width ≥ 200 for menu-open states.
+  - If width still 32px after `width: 200px !important`, check whether Playwright's `addStyleTag` injection is actually overriding ArchWiki's stylesheet (ArchWiki may load its CSS after the injected tag, causing the override to fail).
+  - Commit all worktree artifacts.
+  - Address the cite panel z-index evidence request from 12:38 review.
+
 ## Visual Scout Findings
 
 ### 2026-03-23 12:47
