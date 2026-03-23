@@ -8037,7 +8037,7 @@ Last updated: 2026-03-23 10:52
   - Verify menu dropdown items are readable with sufficient contrast against dark background
 
 ## Visual TODOs
-- [ ] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout)
+- [x] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:12, commit: d528487)
 - [ ] Apply dark/semi-opaque background to search panel for readability (reported: 2026-03-23 13:46, source: visual-scout)
 - [ ] Theme `vector-pinned-container` (appearance panel) with dark background (reported: 2026-03-23 13:46, source: visual-scout)
 
