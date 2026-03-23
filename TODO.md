@@ -7884,6 +7884,21 @@ Last updated: 2026-03-23 10:52
   - **Add key `!important` flags**: At minimum, add `!important` to: `html body { background-color: #181818 !important; color: #bfbfbf !important; }` and content area selectors. This is the minimal fix without changing the Playwright script.
   - **Capture post-fix evidence**: After fixing injection, re-run scout and capture fresh screenshots proving dark theme applies (dominant pixel color should be ~#181818 or #0f0f0f, not #EAECED).
 
+### 2026-03-23 10:10
+- Review target: commit 6af5827 (dirty worktree: base.styl !important fix applied, dist/main.css NOT rebuilt, screenshot artifacts uncommitted)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Fix applied correctly**: Commit 6af5827 adds `!important` to `body { background-color: $base !important; color: $light !important; }` and `body.skin-vector div.mw-page-container { background-color: $base !important }`. The targeted fix is sound — it addresses the cascade override problem identified in the 09:45 scout run.
+  - **Cannot verify**: npm is not available in this environment; `dist/main.css` was NOT rebuilt with the fix. The compiled CSS still contains the old non-`!important` body rules.
+  - **Screenshot evidence unchanged**: Current screenshots show the same light-theme dominant colors as the previous scout run (main-page.desktop.default: #EAECED, systemd.desktop.default: #E1E5E7). This is expected — screenshots were captured before the base.styl change AND before any rebuild.
+  - **Infrastructure problem persists**: The Playwright `addStyleTag` injection still cannot override ArchWiki's `<link>` stylesheets. Even a rebuild of `dist/main.css` with `!important` body rules may be insufficient if ArchWiki also uses `!important` on its body selectors. Full verification requires fixing the injection mechanism.
+  - **New untracked artifacts**: 6 new screenshot files (search-active, mobile.menu-open variants) are untracked in worktree — not yet committed or diffed.
+  - **CSS change is scoped and safe**: Only 3 property declarations gained `!important` in base.styl. No risk of breaking other pages — `!important` on `body` background and color is a targeted override.
+- Implementer instructions:
+  - Either: (1) Rebuild `dist/main.css` with npm/node available, then re-run visual scout to capture dark-theme evidence, OR (2) Fix Playwright injection mechanism first so screenshots can actually validate the CSS change.
+  - If rebuilding: confirm dominant screenshot pixel color shifts from ~#EAECED to ~#181818 (or similar dark) after rebuild + re-capture.
+  - Do not commit screenshot artifacts until they show the dark theme actually applied.
+
 ### 2026-03-23 10:52 (this run)
 - Run target: implementer
 - Verdict: PARTIAL_FIX
