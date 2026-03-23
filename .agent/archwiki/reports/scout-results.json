@@ -1,0 +1,126 @@
+[
+  {
+    "page": "main-page",
+    "state": "default",
+    "status": "ok",
+    "path": ".agent/archwiki/current/main-page.desktop.default.png"
+  },
+  {
+    "page": "main-page",
+    "state": "menu-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/main-page.desktop.menu-open.png"
+  },
+  {
+    "page": "main-page",
+    "state": "toc-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/main-page.desktop.toc-open.png"
+  },
+  {
+    "page": "main-page",
+    "state": "search-active",
+    "status": "ok",
+    "path": ".agent/archwiki/current/main-page.desktop.search-active.png"
+  },
+  {
+    "page": "systemd",
+    "state": "default",
+    "status": "ok",
+    "path": ".agent/archwiki/current/systemd.desktop.default.png"
+  },
+  {
+    "page": "systemd",
+    "state": "menu-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/systemd.desktop.menu-open.png"
+  },
+  {
+    "page": "systemd",
+    "state": "toc-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/systemd.desktop.toc-open.png"
+  },
+  {
+    "page": "systemd",
+    "state": "search-active",
+    "status": "ok",
+    "path": ".agent/archwiki/current/systemd.desktop.search-active.png"
+  },
+  {
+    "page": "pacman",
+    "state": "default",
+    "status": "ok",
+    "path": ".agent/archwiki/current/pacman.desktop.default.png"
+  },
+  {
+    "page": "pacman",
+    "state": "menu-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/pacman.desktop.menu-open.png"
+  },
+  {
+    "page": "pacman",
+    "state": "toc-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/pacman.desktop.toc-open.png"
+  },
+  {
+    "page": "pacman",
+    "state": "search-active",
+    "status": "ok",
+    "path": ".agent/archwiki/current/pacman.desktop.search-active.png"
+  },
+  {
+    "page": "installation-guide",
+    "state": "default",
+    "status": "ok",
+    "path": ".agent/archwiki/current/installation-guide.desktop.default.png"
+  },
+  {
+    "page": "installation-guide",
+    "state": "menu-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/installation-guide.desktop.menu-open.png"
+  },
+  {
+    "page": "installation-guide",
+    "state": "toc-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/installation-guide.desktop.toc-open.png"
+  },
+  {
+    "page": "installation-guide",
+    "state": "search-active",
+    "status": "ok",
+    "path": ".agent/archwiki/current/installation-guide.desktop.search-active.png"
+  },
+  {
+    "page": "main-page",
+    "state": "default",
+    "status": "ok",
+    "path": ".agent/archwiki/current/main-page.mobile.default.png",
+    "mobile": true
+  },
+  {
+    "page": "main-page",
+    "state": "menu-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/main-page.mobile.menu-open.png",
+    "mobile": true
+  },
+  {
+    "page": "systemd",
+    "state": "default",
+    "status": "ok",
+    "path": ".agent/archwiki/current/systemd.mobile.default.png",
+    "mobile": true
+  },
+  {
+    "page": "systemd",
+    "state": "menu-open",
+    "status": "ok",
+    "path": ".agent/archwiki/current/systemd.mobile.menu-open.png",
+    "mobile": true
+  }
+]
