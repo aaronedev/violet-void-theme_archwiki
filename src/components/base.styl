@@ -118,10 +118,11 @@ body
     &:hover
       background-color $arch-blue
 
-// Page shell
+// Page shell — !important needed to override ArchWiki's own stylesheets
+// which load after our injected <style> tag via addStyleTag in Playwright tests
 body
-  background-color $base
-  color $light
+  background-color $base !important
+  color $light !important
   font-family $font-sans
   -webkit-font-smoothing antialiased
   line-height 1.6
@@ -129,4 +130,4 @@ body
   overscroll-behavior-y contain
 
 body.skin-vector div.mw-page-container
-  background-color $base
+  background-color $base !important
