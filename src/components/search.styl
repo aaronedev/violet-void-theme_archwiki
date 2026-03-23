@@ -88,6 +88,21 @@ input.mw-searchButton:hover
   border-color $arch-blue !important
 
 // =============================================================================
+// SEARCH BOX CONTAINER
+// Apply dark semi-opaque background to the search panel container
+// Fixes transparent background issue for readability
+// =============================================================================
+
+.vector-search-box
+  background linear-gradient(135deg, rgba($darker, 0.96), rgba($dark, 0.96)) !important
+  border 1px solid rgba($arch-blue, 0.2) !important
+  border-radius $border-radius-md
+  backdrop-filter blur(4px)
+
+  // Webkit backdrop fallback
+  -webkit-backdrop-filter blur(4px)
+
+// =============================================================================
 // SEARCH SUGGESTIONS DROPDOWN
 // =============================================================================
 
