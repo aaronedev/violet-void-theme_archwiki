@@ -7946,6 +7946,22 @@ Last updated: 2026-03-23 10:52
   - Commit the package.json version bump.
   - Address the cite panel z-index open-state evidence request from 12:38 review.
 
+### 2026-03-23 17:21
+- Review target: ce82692 (dirty worktree: uncommitted screenshots + package.json bump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - `ce82692` fix is legitimate: adds `gradient-surface()` to `.cdx-menu.cdx-typeahead-search__menu` in navigation.styl — fills a missing background on the search autocomplete dropdown. Clean, scoped, matches existing pattern. ✓
+  - Worktree still has uncommitted changes from the previous review: screenshot files (872B → 195KB for pacman.menu-open, 5KB → 214KB for systemd.default) plus package.json bump to 20260323.17.20. Previous reviewer explicitly asked for commits — they were not made.
+  - New baseline screenshots now present in `.agent/archwiki/baselines/` (was empty at last review) — real 1440x900 PNG captures at 60-225KB each. ✓
+  - `visual-findings.json` shows `menu_panel_narrow` (width=32, zIndex=50) persisting across all 5 menu-open captures. This is the documented but unfixed issue — not new evidence of a fix.
+  - `diff-findings.json` is empty — no diff-based comparison between baseline and current.
+  - Cite panel z-index open-state evidence (requested 2026-03-23 12:38) still unaddressed.
+  - `visual-check.js` script is new tooling — captures screenshots via Playwright with proper ArchWiki User-Agent, sets stylesheet via `addStyleTag`, and checks `.vector-dropdown-content` for width/zIndex. Looks sound.
+- Implementer instructions:
+  - Commit the worktree screenshot files and package.json bump: `git add .agent/archwiki/ package.json && git commit -m "chore: commit visual verification screenshots and version bump"`
+  - Either fix `menu_panel_narrow` (z-index 50, 32px wide dropdown) or explicitly document it as a known limitation in the Visual TODOs section.
+  - Address the cite panel z-index evidence request from 12:38 review.
+
 ## Visual Scout Findings
 
 ### 2026-03-23 12:47
@@ -8072,4 +8088,5 @@ Last updated: 2026-03-23 10:52
 - [x] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:12, commit: d528487)
 - [x] Apply dark/semi-opaque background to search panel for readability (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:36, commit: f9703d0)
 - [x] Theme `vector-pinned-container` (appearance panel) with dark background (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:36, commit: d528487 via menu-panel() mixin)
+- [x] Fix sticky header TOC dropdown narrow collapse (menu_panel_narrow, 32px → 200px min-width) (reported: 2026-03-23, source: visual-scout, done: 2026-03-23 16:40, commit: 3106736)
 
