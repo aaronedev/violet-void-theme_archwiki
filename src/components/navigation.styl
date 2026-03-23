@@ -125,6 +125,9 @@
 // hamburger button).  Apply the theme's gradient, rounded corners and shadow.
 .vector-dropdown-content
   menu-panel()
+  // Minimum width prevents narrow/widget-like panels (e.g. sticky TOC
+  // dropdown or mobile menu) from collapsing to unusable dimensions.
+  min-width 200px
   // Scroll snap for smooth navigation menus on mobile
   scroll-snap-type y proximity
   overflow-y auto
