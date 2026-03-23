@@ -7727,7 +7727,7 @@ Last updated: 2026-03-23 05:47
 
 - [x] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (done: 2026-03-23 01:18, commit: 5b2f993)
 - [ ] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. (reported: 2026-03-23 02:03, source: visual-scout)
-- [ ] Fix H2/H3/H4 heading contrast on article pages: text color rgb(16,20,24) nearly invisible on body bg rgb(5,10,16). Affects ~100% of content headings (Installation_guide 27/28, Pacman 53/54, Firefox 87/88). Only H1 and TOC header are correctly colored. Need higher-specificity selector to override MediaWiki/Vector skin dark heading color. (reported: 2026-03-23 05:20, source: visual-scout)
+- [x] Fix H2/H3/H4 heading contrast on article pages: text color rgb(16,20,24) nearly invisible on body bg rgb(5,10,16). Affects ~100% of content headings (Installation_guide 27/28, Pacman 53/54, Firefox 87/88). Only H1 and TOC header are correctly colored. Need higher-specificity selector to override MediaWiki/Vector skin dark heading color. (done: 2026-03-23 06:41, commit: 6087b91)
 - [ ] Fix wikitable table background: tables use light bg rgb(248,249,250) with dark text, inconsistent with violet-void dark theme. Apply dark background (rgb(24,24,24) or theme equivalent) to .wikitable and th cells. (reported: 2026-03-23 05:20, source: visual-scout)
 
 ### 2026-03-23 03:43
