@@ -1411,7 +1411,7 @@ Last updated: 2026-03-23 10:52
 
 ## 🎯 MediaWiki 1.43+ Features (New)
 
-- [ ] **Discussion Tools Reply UI** (CSS)
+- [x] **Discussion Tools Reply UI** (CSS) (done: 2026-03-24 22:02, commit: dc6e178)
   - File: `src/components/discussion.styl`
   - New reply form styling
   - Topic subscription indicator
