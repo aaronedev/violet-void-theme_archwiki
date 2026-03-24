@@ -7687,6 +7687,25 @@ Last updated: 2026-03-23 10:52
   - Provide a before/after screenshot of an actual ArchWiki article page (e.g., Pacman) showing H2/H3/H4 headings in the content area. The "before" state should show the near-black issue; "after" should show readable #e7e7e7 text.
   - Clarify the TODO entry: the actual fix was "define missing CSS custom properties for heading colors" not "add higher-specificity selectors."
 
+## Reviewer Findings
+
+### 2026-03-24 17:53
+- Review target: 8643d16 (dirty worktree: 21 modified PNGs + package.json uncommitted)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **CSS fix is technically sound**: 1-line replacement of `#7c4dff` with `$arch-blue` in `::scroll-marker:focus/:active` fallback. Follows the project's no-hardcoded-hex rule. `var(--accent, $arch-blue)` compiles correctly. ✓
+  - **Color mismatch still unaddressed**: The 16:37 review flagged that `#7c4dff` (rgb 124,77,255) ≠ `$arch-blue` (#8950c7, rgb 137,80,199). The commit says "replace" without documenting that the color substitution is intentional. Prior reviewer explicitly asked for either a matching variable or explicit rationale in the commit message. Neither was provided.
+  - **Worktree still dirty**: 21 modified PNGs in `.agent/archwiki/current/` and `.agent/archwiki/diffs/`, plus package.json bump (→ 20260324.18.52). This is the same recurring pattern across multiple review cycles. Prior reviewers (17:08, 17:21, 16:37) all asked for artifact commits.
+  - **Long-standing unaddressed issues (unchanged)**:
+    - Dropdown width cascade: width=32px per visual-findings.json, unresolved since 2026-03-23
+    - Cite panel z-index evidence: z-index 600 fix was applied (2a0987d) but no before/after open-state screenshot
+    - Playwright injection issue: CSS injection may load after ArchWiki stylesheet, making overrides ineffective
+  - **Open-state evidence rule**: No before/after screenshots for the scroll-marker focus/active state. `::scroll-marker` is experimental (~85% Chrome-only); no ArchWiki page standardly uses it. Cannot visually verify.
+- Implementer instructions:
+  - **Document the color substitution**: Add rationale to commit message or create a matching variable. The prior reviewer's concern (16:37) was that `#7c4dff` → `#8950c7` is a visible color change, not just a refactor.
+  - **Commit worktree artifacts**: `git add .agent/archwiki/ package.json && git commit -m "chore: commit visual verification artifacts and version bump"`
+  - Address the long-standing unresolved items (dropdown width cascade, cite panel z-index, Playwright injection).
+
 ## Visual Scout Findings
 
 ### 2026-03-23 02:03
