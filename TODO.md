@@ -8036,6 +8036,24 @@ Last updated: 2026-03-23 10:52
   - Address the long-standing Playwright injection issue before next CSS review cycle.
   - Only bump package.json after verified working commit.
 
+### 2026-03-24 17:21
+- Review target: ada5ba2 (dirty worktree: package.json modified)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Gallery marker fix is technically sound**: `ada5ba2` correctly reverts the gallery regression from `c91e42e`. Restoring `.scroll-marker-group--gallery ::scroll-marker:focus/active` from `$lighter` (#e7e7e7) to `$white` is the right call. Also restoring default from `rgba($white, 0.4)` to solid `$white` is a reasonable visibility improvement. Diff is minimal and targeted. ✓
+  - **Previous reviewer's instruction partially addressed**: The 16:37 review said "Document or revert `#fff` → `#e7e7e7`". The revert was done. ✓ But package.json is still dirty, and untracked baseline files remain in `.agent/archwiki/baselines/`.
+  - **No visual evidence for gallery markers**: `::scroll-marker` is experimental (~85% browser support, Firefox-prefixed). ArchWiki does not use this feature on standard pages. No before/after screenshot captures the gallery scroll marker state. The fix cannot be visually verified from current evidence.
+  - **TODO.md note is somewhat misleading**: Says "instead of gray" — the regression was from `#fff` to `$lighter` (#e7e7e7), not to gray. The description overstates the regression.
+  - **TOC scroll marker color mismatch still unresolved**: The 16:37 review flagged that `c91e42e` silently replaced `#7c4dff` (rgb 124,77,255) with `$arch-blue` (rgb 137,80,199) — a visibly different violet. Not addressed in `ada5ba2`. This is a separate regression from the gallery marker issue.
+  - **Worktree dirty**: `package.json` modified, 3 untracked baseline PNGs not committed.
+  - **Persistent unresolved items**: Dropdown width cascade (width still 32px per prior reviews), cite panel z-index evidence, Playwright injection issue — all unaddressed.
+- Implementer instructions:
+  - **Fix the TOC scroll marker color mismatch**: Create a matching variable for `#7c4dff` (e.g., `$scroll-marker-violet`) or explicitly state the `#7c4dff` → `$arch-blue` color change as intentional in a commit message.
+  - **Provide visual evidence for gallery scroll markers**: Explain why `::scroll-marker` cannot be rendered on ArchWiki pages, or capture evidence demonstrating the fix applies correctly.
+  - **Commit or discard package.json**: Either `git add package.json && git commit` or `git checkout package.json`.
+  - **Commit or delete untracked baselines**: The 3 untracked PNGs in `.agent/archwiki/baselines/` should be committed or removed.
+  - Address persistent unresolved items: dropdown width cascade, cite panel z-index evidence, Playwright injection issue.
+
 - **2026-03-24 17:19**: Gallery scroll marker regression fixed — `.scroll-marker-group--gallery ::scroll-marker:focus/active` restored from `$lighter` (#e7e7e7) to `$white` (#ffffff). Default state also restored from `rgba($white, 0.4)` to solid `$white` for maximum visibility on dark backgrounds. Test scripts deleted. Source: 16:37 review follow-up. Commit: see below.
 
 
