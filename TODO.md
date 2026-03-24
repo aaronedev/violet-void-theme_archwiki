@@ -7999,6 +7999,24 @@ Last updated: 2026-03-23 10:52
   - Commit all worktree artifacts.
   - Address the cite panel z-index evidence request from 12:38 review.
 
+### 2026-03-24 10:55
+- Review target: archwiki-consolidated-fixes @ 641ec08 (dirty worktree with unresolved merge conflicts)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **CSS fixes are legitimate**: commits 637b089/3106736/2b387aa/42ed60b show targeted CSS changes adding `min-width 200px` and `width 200px !important` to dropdown content selectors. The `!important` addition addresses the previous reviewer's concern about specificity. Clean, focused diffs. ✓
+  - **Worktree is broken**: every component file shows "AA" (both-added, unmerged) status — unresolved merge conflicts throughout. `git checkout main && git pull` fails. Repo cannot be built or tested in this state.
+  - **Followed prior reviewer advice**: 42ed60b adds `!important` to `min-width 200px !important` and `width 200px !important`, directly addressing the 17:42 reviewer's concern that selectors might not override ArchWiki's inline styles.
+  - **Build verification blocked**: cannot run `npm run build` or visual-check.js due to merge conflicts. No post-fix visual validation possible.
+  - **Visual diff suspicious**: `main-page.desktop.menu-open.diff.png` is only 884 bytes for a 1440x900 PNG — unusually small for a 32px→200px width change. May indicate visual-check.js is measuring a different element than the visible hamburger menu panel.
+  - **TODO.md updated**: Visual TODOs correctly marks `menu_panel_narrow` as done with date and commit. ✓
+  - **Cite panel z-index** (from 2026-03-23 12:38 review) now fixed: commit 2a0987d raises citation tooltip z-index from 100 (dropdown) to 600 (tooltip) to prevent overlap with dropdown menus.
+- Implementer instructions:
+  - **Resolve merge conflicts first**: `git merge --abort` or manually resolve, then verify `npm run build` succeeds.
+  - **Re-run visual-check.js** with resolved CSS loaded and commit updated `visual-findings.json` showing width ≥ 200px for menu-open states.
+  - If width still 32px: verify visual-check.js is measuring the correct dropdown element (hamburger menu vs sticky TOC are different selectors).
+  - Cite panel z-index addressed ✓
+
+
 ## Visual Scout Findings
 
 ### 2026-03-23 12:47
@@ -8081,6 +8099,22 @@ Last updated: 2026-03-23 10:52
   - The CSS changes (91ba37f, 92409d4) are correct but insufficient. The Playwright injection must be fixed before next CSS review cycle.
   - To fix injection: replace `page.addStyleTag({ path: './dist/main.css' })` with `page.evaluate(() => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = './dist/main.css'; document.head.appendChild(l); })` in both test-screenshot.js and check-interactive.js. This appends the stylesheet as a real `<link>` element after ArchWiki's stylesheets, ensuring correct cascade order.
   - After fixing injection: re-run visual scout, verify screenshots show dark theme (dominant color ~#181818), then commit artifacts separately from source changes.
+
+### 2026-03-24 14:44
+- Review target: 2a0987d (dirty worktree: TODO.md, package.json)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Citation tooltip z-index (2a0987d)**: CSS variable usage (`$cdx-z-index-tooltip` = 600) is correct and improves on the previous `z-index: 100` (dropdown). Technical rationale is sound. However: no before/after visual evidence for cite tooltip overlapping a dropdown. The `:popover-open` / `:open` states for `<cite>` elements were never captured in any baseline. Cannot verify the fix is needed or works.
+  - **Interest pseudo-class colors (8849222)**: Replacing hardcoded hex with CSS custom properties (`--theme-arch-blue`, `--theme-dark`, `--theme-secondary-blue`) is correct — all three are defined in `modern-css.styl` via `@property`. Hardcoded color cleanup is legitimate. However: no before/after visual evidence for `:interest-source`/`:interest-target` hover states on any ArchWiki page. These are interactive CSS pseudo-classes that require capturing the hover state to validate.
+  - **Dropdown width cascade (42ed60b chain)**: `width 200px !important` + `min-width 200px !important` on `.vector-dropdown-content` and `#vector-main-menu` is technically sound CSS. But: prior reviewer at 10:55 flagged that visual-check.js may be measuring the wrong dropdown element. This was listed as a follow-up instruction and was not addressed. Visual validation for menu-open states still absent.
+  - **Worktree dirty**: `TODO.md` and `package.json` modified, 14 untracked files (check-inline*.js, debug-menu.js, firefox baseline). package.json version bump to `20260324.15.36` is premature — should only bump on verified working commit.
+  - **New Firefox baseline added** (`firefox.desktop.default.png`) but not committed — appears to be a one-off test run artifact, not a systematic visual validation.
+- Implementer instructions:
+  - Run Playwright with `:interest-source`/`:interest-target` hover state captured on a page that uses these (e.g., main page with dropdowns), verify hover color is correct, commit before/after evidence.
+  - Verify visual-check.js measures the hamburger menu panel (#vector-main-menu) and not the sticky TOC dropdown for menu-open states. If measuring wrong element, document which element it measures and whether the hamburger menu width is actually ≥ 200px after the fix.
+  - Commit `firefox.desktop.default.png` or delete it — don't leave it as an untracked artifact.
+  - Clean up untracked check-inline*.js and debug-menu.js files — add to .gitignore or delete.
+  - Only bump version in package.json after visual validation confirms all interactive states render correctly.
 
 ## Visual Scout Findings
 
