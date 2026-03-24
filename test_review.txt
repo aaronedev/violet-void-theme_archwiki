@@ -1,0 +1,14 @@
+Review the recent commits and current state of this ArchWiki Stylus theme repository. Focus on:
+1. Missing CSS variables or broken selectors in src/components/
+2. Accessibility issues
+3. Mobile responsiveness gaps.
+Return a concise list of the top 3 most important issues with specific file paths.
+
+Issues found:
+1. **Missing CSS Variables in Headings**: In `src/components/headings.styl`, several CSS custom properties (`--text-color`, `--border-color`, `--text-color-muted`) are used without fallbacks and without being defined in the `:root` scope of that file or `base.styl`.
+2. **Missing CSS Variables in Modern CSS**: In `src/components/modern-css.styl`, `var(--accent)` is used without a fallback, despite `--accent` not being defined in the component or globally.
+3. **Accessibility / Experimental Selectors**: In `src/components/headings.styl`, the `:heading` selector is used which is non-standard and not well supported, and there's no fallback for standard `h1, h2, h3, h4, h5, h6` elements.
+
+These are specific missing variable issues, broken selectors (due to experimental syntax without fallback) that are explicitly causing issues.
+
+I'll list these as the top 3 issues with specific file paths.
