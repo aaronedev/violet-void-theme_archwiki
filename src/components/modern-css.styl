@@ -92,7 +92,7 @@
     @scroll-state (snapped: y) {
       #toc li,
       .toc li {
-        outline: 2px solid var(--accent-color, #6c5ce7);
+        outline: 2px solid var(--accent-color);
         outline-offset: 2px;
       }
     }
@@ -117,16 +117,16 @@
   /* :snapped pseudo-class for elements that are snapped */
   @supports (selector(:snapped)) {
     :snapped {
-      outline: 2px solid var(--accent-color, #6c5ce7);
+      outline: 2px solid var(--accent-color);
       outline-offset: 2px;
     }
 
     :snapped-y {
-      border-left: 3px solid var(--accent-color, #6c5ce7);
+      border-left: 3px solid var(--accent-color);
     }
 
     :snapped-x {
-      border-top: 3px solid var(--accent-color, #6c5ce7);
+      border-top: 3px solid var(--accent-color);
     }
   }
 }
@@ -1032,6 +1032,11 @@ h4[id]
   --theme-comment $comment
   --theme-muted $muted
   --theme-cell-delim $cell-delim
+  // Theme-level accent and status colors
+  --accent-color $arch-blue
+  --success-color $green
+  // Border color for consistent theming
+  --border-color $dark
 
 // Example: Smooth color transitions using custom properties
 // These transitions now work because @property defines types
