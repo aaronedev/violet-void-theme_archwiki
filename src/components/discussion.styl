@@ -832,3 +832,691 @@
   .last-message-preview
     margin 0.5em -0.5em -0.5em
     border-radius 0
+
+// =============================================================================
+// MEDIAWIKI DISCUSSION TOOLS REPLY UI (1.43+)
+// =============================================================================
+
+// Reply button - appears inline next to comment
+.ext-discussiontools-reply
+.mw-discussiontools-reply
+.discussiontools-reply
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.25em 0.6em
+  background transparent
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $muted
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+  text-decoration none
+
+  &::before
+    content "↩"
+    font-size 0.9em
+
+  &:hover
+    background rgba($arch-blue, 0.1)
+    border-color rgba($arch-blue, 0.3)
+    color $secondary-blue
+
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
+  &:active
+    background rgba($arch-blue, 0.15)
+    transform translateY(1px)
+
+// Reply form container - appears when reply button is clicked
+.ext-discussiontools-replyform
+.mw-discussiontools-replyform
+.discussiontools-replyform
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-md
+  padding 1em
+  margin-top 0.75em
+  box-shadow $shadow-elevated
+  animation slideDown 0.25s ease-out
+
+  .replyform-header
+    display flex
+    align-items center
+    justify-content space-between
+    margin-bottom 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    .replyform-title
+      font-size 0.9em
+      font-weight 600
+      color $light
+      display flex
+      align-items center
+      gap 0.4em
+
+      &::before
+        content "↩"
+        color $arch-blue
+
+  textarea.replyform-textarea
+  .replyform-textarea
+    width 100%
+    min-height 100px
+    padding 0.75em 1em
+    background $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    line-height 1.5
+    resize vertical
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &::placeholder
+      color rgba($muted, 0.7)
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+    &:hover:not(:focus)
+      border-color rgba($arch-blue, 0.4)
+
+  .replyform-actions
+    display flex
+    align-items center
+    justify-content flex-end
+    gap 0.5em
+    margin-top 0.75em
+
+    .replyform-cancel
+      padding 0.35em 0.75em
+      background transparent
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $muted
+      font-size 0.85em
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background rgba($secondary-red, 0.08)
+        border-color rgba($secondary-red, 0.3)
+        color $secondary-red
+
+    .replyform-save
+    .replyform-submit
+      padding 0.35em 1em
+      background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+      border none
+      border-radius $border-radius-sm
+      color $white
+      font-size 0.85em
+      font-weight 600
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background linear-gradient(135deg, $secondary-blue, $arch-blue)
+        transform translateY(-1px)
+        box-shadow 0 3px 8px rgba($arch-blue, 0.3)
+
+      &:active
+        transform translateY(0)
+        box-shadow none
+
+      &:disabled
+        opacity 0.5
+        cursor not-allowed
+        transform none
+
+      &:focus-visible
+        outline 2px solid $secondary-blue
+        outline-offset 2px
+
+    .replyform-undo
+      padding 0.25em 0.5em
+      background transparent
+      border none
+      color $muted
+      font-size 0.8em
+      cursor pointer
+      transition color 0.2s ease
+      text-decoration underline
+      text-underline-offset 2px
+
+      &:hover
+        color $orange
+
+  .replyform-preview
+    margin-top 0.75em
+    padding 0.75em
+    background rgba($arch-blue, 0.05)
+    border 1px solid rgba($arch-blue, 0.15)
+    border-radius $border-radius-sm
+    font-size 0.9em
+    color $light
+    line-height 1.5
+
+    .preview-label
+      font-size 0.75em
+      color $muted
+      text-transform uppercase
+      letter-spacing 0.05em
+      margin-bottom 0.5em
+
+  .replyform-autocomplete
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    box-shadow $shadow-elevated
+    max-height 150px
+    overflow-y auto
+
+    .autocomplete-item
+      padding 0.5em 0.75em
+      cursor pointer
+      transition background 0.15s
+
+      &:hover
+        background rgba($arch-blue, 0.1)
+        color $secondary-blue
+
+      &.selected
+        background rgba($arch-blue, 0.15)
+
+// =============================================================================
+// TOPIC SUBSCRIPTION INDICATOR
+// =============================================================================
+
+.ext-discussiontools-subscription
+.mw-discussiontools-subscription
+.discussiontools-subscription
+  display inline-flex
+  align-items center
+  gap 0.3em
+  font-size 0.8em
+
+  &.discussiontools-subscribed
+  &.subscription-subscribed
+  &.watched
+    .subscription-icon
+      color $gold
+
+      &::before
+        content "🔔"
+
+    .subscription-label
+      color rgba($gold, 0.9)
+
+  &.discussiontools-unsubscribed
+  &.subscription-unsubscribed
+  &.unwatched
+    .subscription-icon
+      color $muted
+
+      &::before
+        content "🔕"
+
+    .subscription-label
+      color $muted
+
+  .subscription-icon
+    font-size 0.95em
+    transition color 0.2s ease
+
+  .subscription-label
+    font-weight 500
+    transition color 0.2s ease
+
+  &:hover
+    cursor pointer
+
+    .subscription-icon
+      color $arch-blue
+
+    .subscription-label
+      color $secondary-blue
+
+.ext-discussiontools-subscription-button
+.mw-discussiontools-subscription-button
+.subscription-button
+  display inline-flex
+  align-items center
+  gap 0.3em
+  padding 0.2em 0.5em
+  background transparent
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  color $muted
+  font-size 0.8em
+  cursor pointer
+  transition all 0.2s ease
+
+  &::before
+    font-size 0.9em
+
+  &:hover
+    background rgba($gold, 0.08)
+    border-color rgba($gold, 0.3)
+    color $gold
+
+  &.subscribed
+    background rgba($gold, 0.08)
+    border-color rgba($gold, 0.25)
+
+    &::before
+      content "🔔"
+
+    &:hover
+      background rgba($gold, 0.12)
+
+  &.unsubscribed
+    &::before
+      content "🔕"
+
+    &:hover
+      background rgba($gold, 0.08)
+      border-color rgba($gold, 0.3)
+
+.discussiontools-subscription-badge
+.subscription-badge
+  display inline-flex
+  align-items center
+  justify-content center
+  min-width 16px
+  height 16px
+  padding 0 4px
+  background-color $secondary-red
+  color white
+  font-size 0.65em
+  font-weight 700
+  border-radius 8px
+  animation pulse-badge 2s ease-in-out infinite
+
+.discussiontools-subscription-popup
+.subscription-popup
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  padding 0.75em 1em
+  font-size 0.85em
+  color $light
+  max-width 250px
+
+  .popup-title
+    font-weight 600
+    color $light
+    margin-bottom 0.5em
+    padding-bottom 0.4em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+  .popup-actions
+    display flex
+    gap 0.5em
+    margin-top 0.75em
+
+    button
+      flex 1
+      padding 0.35em 0.5em
+      border-radius $border-radius-sm
+      font-size 0.85em
+      cursor pointer
+      transition all 0.2s ease
+
+    .popup-watch
+      background rgba($gold, 0.15)
+      border 1px solid rgba($gold, 0.4)
+      color $gold
+
+      &:hover
+        background rgba($gold, 0.2)
+
+    .popup-unwatch
+      background transparent
+      border 1px solid $border-subtle
+      color $muted
+
+      &:hover
+        background rgba($secondary-red, 0.08)
+        border-color rgba($secondary-red, 0.3)
+        color $secondary-red
+
+// =============================================================================
+// NEW TOPICS BUTTON
+// =============================================================================
+
+.ext-discussiontools-newtopic
+.mw-discussiontools-newtopic
+.discussiontools-newtopic
+.discussiontools-newtopic-button
+  display inline-flex
+  align-items center
+  gap 0.4em
+  padding 0.4em 0.85em
+  background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+  border none
+  border-radius $border-radius-md
+  color $white
+  font-size 0.85em
+  font-weight 600
+  text-decoration none
+  cursor pointer
+  transition all 0.2s ease
+
+  &::before
+    content "+"
+    font-size 1.1em
+    font-weight 700
+
+  &:hover
+    background linear-gradient(135deg, $secondary-blue, $arch-blue)
+    transform translateY(-1px)
+    box-shadow 0 4px 12px rgba($arch-blue, 0.3)
+    color $white
+
+  &:active
+    transform translateY(0)
+    box-shadow none
+
+  &:focus-visible
+    outline 2px solid $secondary-blue
+    outline-offset 2px
+
+  &.newtopic-sm
+    padding 0.25em 0.5em
+    font-size 0.75em
+
+    &::before
+      font-size 0.95em
+
+.ext-discussiontools-newtopicform
+.mw-discussiontools-newtopicform
+.discussiontools-newtopicform
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.06))
+  border 1px solid rgba($arch-blue, 0.25)
+  border-radius $border-radius-lg
+  padding 1.25em
+  margin 1em 0
+  box-shadow $shadow-elevated
+  animation fadeIn 0.3s ease-out
+
+  .newtopicform-title
+    font-size 1em
+    font-weight 600
+    color $light
+    margin-bottom 1em
+    padding-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+    display flex
+    align-items center
+    gap 0.4em
+
+    &::before
+      content "+"
+      color $arch-blue
+      font-size 1.2em
+
+  input.newtopicform-subject
+  .newtopicform-subject
+    width 100%
+    padding 0.6em 0.85em
+    background $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    margin-bottom 0.75em
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &::placeholder
+      color rgba($muted, 0.7)
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  textarea.newtopicform-content
+  .newtopicform-content
+    width 100%
+    min-height 120px
+    padding 0.75em 1em
+    background $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-size 0.95em
+    line-height 1.5
+    resize vertical
+    transition border-color 0.2s, box-shadow 0.2s
+
+    &::placeholder
+      color rgba($muted, 0.7)
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.15)
+
+  .newtopicform-actions
+    display flex
+    align-items center
+    justify-content flex-end
+    gap 0.5em
+    margin-top 1em
+
+    .newtopicform-cancel
+      padding 0.4em 0.85em
+      background transparent
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $muted
+      font-size 0.85em
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background rgba($secondary-red, 0.08)
+        border-color rgba($secondary-red, 0.3)
+        color $secondary-red
+
+    .newtopicform-submit
+      padding 0.4em 1em
+      background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.85))
+      border none
+      border-radius $border-radius-sm
+      color $white
+      font-size 0.85em
+      font-weight 600
+      cursor pointer
+      transition all 0.2s ease
+
+      &:hover
+        background linear-gradient(135deg, $secondary-blue, $arch-blue)
+        transform translateY(-1px)
+        box-shadow 0 3px 8px rgba($arch-blue, 0.3)
+
+      &:disabled
+        opacity 0.5
+        cursor not-allowed
+        transform none
+
+      &:focus-visible
+        outline 2px solid $secondary-blue
+        outline-offset 2px
+
+// =============================================================================
+// DISCUSSION TOOLS: TOPIC LIST AND PAGE ELEMENTS
+// =============================================================================
+
+.discussiontools-topics
+.ext-discussiontools-topics
+  .topic-item
+    padding 0.75em 0
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+    transition background 0.2s ease
+
+    &:hover
+      background rgba($arch-blue, 0.03)
+
+    &:last-child
+      border-bottom none
+
+    .topic-title
+      font-size 1em
+      font-weight 600
+      color $lighter
+      text-decoration none
+      line-height 1.4
+
+      &:hover
+        color $arch-blue
+
+    .topic-meta
+      display flex
+      align-items center
+      gap 0.75em
+      margin-top 0.3em
+      font-size 0.8em
+      color $muted
+
+      .topic-author
+        color $secondary-blue
+        font-weight 500
+
+      .topic-time
+        font-variant-numeric tabular-nums
+
+    .topic-replies
+      display inline-flex
+      align-items center
+      gap 0.25em
+      font-size 0.8em
+      color $muted
+      margin-left auto
+
+      &::before
+        content "💬"
+        font-size 0.85em
+
+.discussiontools-undo
+.ext-discussiontools-undo
+  display flex
+  align-items center
+  gap 0.75em
+  padding 0.75em 1em
+  background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  font-size 0.85em
+  color $light
+  animation slideUp 0.3s ease-out
+
+  .undo-message
+    flex 1
+
+    strong
+      color $arch-blue
+
+  .undo-action
+    padding 0.3em 0.7em
+    background transparent
+    border 1px solid rgba($orange, 0.4)
+    border-radius $border-radius-sm
+    color $orange
+    font-size 0.85em
+    cursor pointer
+    transition all 0.2s ease
+
+    &:hover
+      background rgba($orange, 0.1)
+
+.discussiontools-loading
+.ext-discussiontools-loading
+  display flex
+  align-items center
+  justify-content center
+  gap 0.5em
+  padding 2em
+  color $muted
+  font-size 0.9em
+
+  &::before
+    content ''
+    width 18px
+    height 18px
+    border 2px solid rgba($arch-blue, 0.2)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 0.8s linear infinite
+
+// =============================================================================
+// KEYFRAMES (top level, referenced by animation properties above)
+// =============================================================================
+
+@keyframes slideDown
+  from
+    opacity 0
+    transform translateY(-8px)
+  to
+    opacity 1
+    transform translateY(0)
+
+@keyframes fadeIn
+  from
+    opacity 0
+    transform scale(0.98)
+  to
+    opacity 1
+    transform scale(1)
+
+@keyframes slideUp
+  from
+    opacity 0
+    transform translateY(10px)
+  to
+    opacity 1
+    transform translateY(0)
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+@keyframes pulse-badge
+  0%
+  100%
+    transform scale(1)
+  50%
+    transform scale(1.1)
+
+// =============================================================================
+// FOCUS-VISIBLE & REDUCED MOTION
+// =============================================================================
+
+.ext-discussiontools-reply:focus-visible
+.ext-discussiontools-newtopic:focus-visible
+.discussiontools-subscription:focus-visible
+  outline 2px solid $arch-blue
+  outline-offset 2px
+
+@media (prefers-reduced-motion reduce)
+  .ext-discussiontools-replyform
+  .discussiontools-replyform
+  .ext-discussiontools-newtopicform
+  .discussiontools-newtopicform
+  .discussiontools-undo
+  .ext-discussiontools-undo
+    animation none
+
+  .discussiontools-subscription-badge
+  .subscription-badge
+    animation none
