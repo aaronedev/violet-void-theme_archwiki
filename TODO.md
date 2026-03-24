@@ -8290,3 +8290,15 @@ Last updated: 2026-03-23 10:52
   - Commits look fine — variable fixes are real and scoped
   - Worktree artifacts can be committed separately if the implementer wants to preserve visual baselines
 
+### 2026-03-24 21:10
+- Review target: commit e723216 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **CRITICAL: Screenshot infrastructure is completely broken.** MD5 hash of all desktop screenshots is identical (`908f6b06e2d1d59a18340b829bab20a2`) across ALL pages (firefox, installation-guide, main-page, pacman, systemd) and ALL states (default, menu-open, toc-open, search-active). All mobile screenshots are also identical (`dc1f75d703a934b0b8deadba0f20a566`). Visual evidence is meaningless — every state variation produces the same render.
+  - e723216: `.host-context-light ::part(base)` `background #ffffff` → `$white` — partial fix. `color #333333` on the immediately following line was NOT converted to a variable. Hardcoded color remains in same selector block.
+  - Worktree has uncommitted screenshot + diff artifacts (same broken state).
+  - `color #333333` should be changed to `$text-color` or a corresponding variable — same mixin/section as the background fix.
+- Implementer instructions:
+  - Fix screenshot capture first — state variations (menu-open, toc-open, search-active) must produce visually distinct renders before any visual evidence is meaningful
+  - Complete the hardcoded color fix in `.host-context-light ::part(base)`: `color #333333` → `$text-color` (or appropriate variable)
+
