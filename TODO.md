@@ -8276,3 +8276,17 @@ Last updated: 2026-03-23 10:52
 - [x] Theme `vector-pinned-container` (appearance panel) with dark background (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:36, commit: d528487 via menu-panel() mixin)
 - [x] Fix sticky header TOC dropdown narrow collapse (menu_panel_narrow, 32px → 200px min-width) (reported: 2026-03-23, source: visual-scout, done: 2026-03-23 16:40, commit: 3106736)
 
+## Reviewer Findings
+
+### 2026-03-24 19:35
+- Review target: dirty worktree (visual test artifacts) + commits e676619, 26e29b4
+- Verdict: APPROVED
+- Findings:
+  - e676619: `.timeline-custom --timeline-color` hardcoded `#8950c7` → `$arch-blue` — clean, scoped, legitimate
+  - 26e29b4: `::scroll-marker` hardcoded `rgba(128,128,128, 0.4/0.7)` → `rgba($muted, ...)` — clean, scoped, legitimate
+  - Visual test run: 20/20 pages/states OK, 0 issues — no regressions from latest CSS variable fixes
+  - Worktree contains updated screenshots and diffs from the latest visual run; package.json version bumped to 20260324.19.59
+- Implementer instructions:
+  - Commits look fine — variable fixes are real and scoped
+  - Worktree artifacts can be committed separately if the implementer wants to preserve visual baselines
+
