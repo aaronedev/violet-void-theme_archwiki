@@ -8057,6 +8057,23 @@ Last updated: 2026-03-23 10:52
 
 - **2026-03-24 17:19**: Gallery scroll marker regression fixed — `.scroll-marker-group--gallery ::scroll-marker:focus/active` restored from `$lighter` (#e7e7e7) to `$white` (#ffffff). Default state also restored from `rgba($white, 0.4)` to solid `$white` for maximum visibility on dark backgrounds. Test scripts deleted. Source: 16:37 review follow-up. Commit: see below.
 
+### 2026-03-24 17:08
+- Review target: ad491af (dirty worktree: screenshot artifacts + package.json)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - CSS fixes are legitimate and compile: `c5389ba` replaces hardcoded hex colors (#7c4dff → #8950c7, #50b478 → #4bfe9b, etc.) in `::highlight()` blocks with theme-consistent values. `ada5ba2` restores gallery scroll markers to solid `$white`. Both are targeted, well-scoped. ✓
+  - No new CSS work since those two commits (17:20 today). Last meaningful new work was 48 minutes ago.
+  - Worktree screenshot artifacts generated today (17:49) include menu-open, search-active, toc-open states for 4 desktop pages — good coverage. But all desktop PNGs are exactly 78,232 bytes, suspiciously uniform. Baseline main-page is 149,414 bytes, pacman is 189,725 bytes. Size compression differences would be expected for real page changes. Needs verification these are not stale/placeholder captures.
+  - visual-check.js exists but no committed `visual-findings.json` showing post-fix width validation for the dropdown cascade (width=32px issue unresolved since 17:42 review on 2026-03-23).
+  - **Cite panel z-index evidence still unaddressed**: requested at 12:38 on 2026-03-23, carried through 4 review cycles. The z-index was changed (commit 2a0987d) but no before/after open-state screenshot proves the cite panel renders correctly above other content.
+  - **Recurring pattern (3 cycles running)**: artifact commit request unaddressed — package.json and screenshot files remain dirty across multiple review cycles.
+  - Build succeeds: `npm run build` passes, version bumped to 20260324.18.10. ✓
+- Implementer instructions:
+  - Commit worktree artifacts: `git add .agent/archwiki/ package.json && git commit -m "chore: commit visual verification artifacts and version bump"`
+  - Verify screenshot files (all 78,232 bytes) are genuine Playwright captures and not stale/placeholder files. If the Playwright injection issue prevents real CSS application, document this as a known limitation.
+  - Address cite panel z-index: provide before/after open-state screenshot OR explicitly document that z-index 600 (tooltip) is a sufficient fix with rationale.
+  - Resolve the dropdown width cascade: if width=32px persists after CSS fix, the Playwright injection approach may be loading ArchWiki CSS after the injected stylesheet, making all CSS overrides ineffective.
+
 
 ## Visual Scout Findings
 
