@@ -474,8 +474,9 @@
 | 2026-03-23 | Replace hardcoded hex colors with theme variables in navigation tooltips | d1b21d9 |
 | 2026-03-23 | Replace hardcoded wiki brand hex colors in cross-wiki badges with theme variables | 42bb86c |
 | 2026-03-23 | Replace hardcoded #ffd700/#9d5ce5 with $gold/$arch-blue in community.styl | 92409d4 |
+| 2026-03-24 | Replace hardcoded #7c3aed/#6c5ce7/#10b981 with CSS custom properties (--accent-color, --success-color, --border-color) in navigation.styl and modern-css.styl | 69e949e |
 
-Last updated: 2026-03-23 10:52
+Last updated: 2026-03-24 23:15
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
