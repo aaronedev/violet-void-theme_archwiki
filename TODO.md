@@ -8331,3 +8331,21 @@ Last updated: 2026-03-24 23:15
 - Implementer instructions:
   - Fix screenshot capture so that menu-open, toc-open, search-active states produce visually distinct renders before committing any visual artifacts
   - Verify: `md5sum .agent/archwiki/current/*.png` should show distinct hashes per state, not 16 files with the same hash
+
+### 2026-03-24 23:26
+- Review target: dirty worktree + commits 69e949e, 7613622, 484a565
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - 69e949e: `:snapped` selectors — hardcoded hex fallbacks (`#7c3aed`, `#6c5ce7`, `#10b981`) → CSS custom properties (`var(--accent-color)`, `var(--success-color)`) — clean, scoped, legitimate; `--accent-color` and `--success-color` defined in same commit
+  - 7613622: `.host-context-dark ::part(base)` — hardcoded `#1a1a1a`/`#e0e0e0` → `var(--component-bg, #1a1a1a)`/`var(--component-text, #e0e0e0)` — clean, scoped, legitimate
+  - 484a565: chore — TODO.md completion log only — no code impact
+  - CRITICAL (regression): Screenshot infrastructure is still broken. All 17 desktop current screenshots share identical MD5 `908f6b06e2d1d59a18340b829bab20a2`; all 3 mobile screenshots share `dc1f75d703a934b0b8deadba0f20a566`. State variations (menu-open, toc-open, search-active) produce zero visual distinction — same problem flagged at 21:10 and 21:47.
+  - The 22:03 review incorrectly stated "screenshot infrastructure is working" — the identical-hash problem persists unchanged; 21:47 correctly flagged this regression
+  - Baselines/ has legitimately distinct screenshots with unique hashes per page/state — the problem is specific to current/ capture
+  - Worktree contains new baselines/ (legit), broken current/ (all identical), many diff artifacts, and untracked `test-page.png` (non-standard artifact)
+  - CSS commits are real and scoped — no visual evidence needed for approval, but screenshot fix is blocking meaningful artifact commits
+- Implementer instructions:
+  - CSS commits 69e949e and 7613622 are APPROVED on code quality alone — no visual evidence required
+  - Fix screenshot capture: `md5sum .agent/archwiki/current/*.png` must show distinct hashes per state before any visual artifact commits
+  - Do not commit broken current/ screenshots — delete and re-capture after fixing capture pipeline
+  - Untracked `test-page.png` is not a standard test artifact — remove or justify
