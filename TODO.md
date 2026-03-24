@@ -8036,6 +8036,8 @@ Last updated: 2026-03-23 10:52
   - Address the long-standing Playwright injection issue before next CSS review cycle.
   - Only bump package.json after verified working commit.
 
+- **2026-03-24 17:19**: Gallery scroll marker regression fixed — `.scroll-marker-group--gallery ::scroll-marker:focus/active` restored from `$lighter` (#e7e7e7) to `$white` (#ffffff). Default state also restored from `rgba($white, 0.4)` to solid `$white` for maximum visibility on dark backgrounds. Test scripts deleted. Source: 16:37 review follow-up. Commit: see below.
+
 
 ## Visual Scout Findings
 
