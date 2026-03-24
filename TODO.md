@@ -1918,6 +1918,8 @@ Last updated: 2026-03-23 10:52
   - `::highlight(search-results) { background: yellow; }`
   - Note: Requires JS API pairing, wrap in `@css{}` for Stylus
   - Commit: 9a98043
+  - Updated: Replace hardcoded hex colors (#824cff, #50b878, #ff5050, #ffb432) with theme-consistent values ($arch-blue, $green, $secondary-red, $gold) in ::highlight() block — uses actual hex values since @css{} block does not interpolate Stylus variables
+  - Commit: c5389b2
 
 - [ ] **`highlight()` CSSOM Integration** (85%+ browser support)
   - File: `src/components/modern-css.styl`
