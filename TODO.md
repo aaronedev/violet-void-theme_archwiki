@@ -8016,6 +8016,24 @@ Last updated: 2026-03-23 10:52
   - If width still 32px: verify visual-check.js is measuring the correct dropdown element (hamburger menu vs sticky TOC are different selectors).
   - Cite panel z-index addressed ✓
 
+### 2026-03-24 16:37
+- Review target: c91e42e (dirty worktree: package.json uncommitted)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Color value mismatch — visual regression**: The commit replaces `rgba(124, 77, 255, 0.3)` with `rgba($arch-blue, 0.3)`. `#7c4dff` (rgb 124,77,255) is NOT the same as `$arch-blue = #8950c7` (rgb 137,80,199). These are visibly different violet shades. The replacement silently changes the scroll marker color from #7c4dff to #8950c7. Same issue for the focus/active fallback: `#7c4dff` → `#8950c7`.
+  - **Gallery marker regression**: `#fff` → `#e7e7e7` ($lighter) changes pure white gallery markers to light gray. The active/focus gallery marker color is now different with no justification.
+  - **Compiled CSS confirms the mismatch**: `dist/main.css` shows `rgba(137,80,199,0.3)` for `.scroll-marker-group--toc ::scroll-marker` and `var(--accent,#8950c7)` for focus/active. The Arch Blue value is correctly applied, but it replaces a different shade of violet with no rationale in the commit message.
+  - **No visual evidence**: No before/after screenshots of scroll markers in any state. `::scroll-marker` is experimental (~85% Chrome-only). No baseline screenshots exist for scroll marker states, making it impossible to verify the color substitution is intentional rather than accidental.
+  - **Worktree still dirty**: `package.json` uncommitted (version bump 20260324.16.38), 14 untracked test scripts (check-inline*.js, debug-menu.js), and 2 untracked baseline PNGs.
+  - **Pre-existing issues unaddressed**: Playwright injection issue persists from multiple prior reviews. Dropdown width cascade validation (32px→200px) still unresolved per prior reviews.
+- Implementer instructions:
+  - **Fix the color mismatch**: Either use a variable that matches the original `#7c4dff` (create `$scroll-marker-blue` if needed), or explicitly state in the commit message that `#7c4dff` → `#8950c7` is an intentional design change. Do not silently substitute a different color without rationale.
+  - **For gallery markers**: Document or revert `#fff` → `#e7e7e7`. Pure white → light gray is a visible change.
+  - **Commit or discard package.json changes**: Either commit the version bump or `git checkout package.json`.
+  - **Delete untracked test scripts**: `check-inline*.js` and `debug-menu.js` should be deleted or added to `.gitignore`.
+  - Address the long-standing Playwright injection issue before next CSS review cycle.
+  - Only bump package.json after verified working commit.
+
 
 ## Visual Scout Findings
 
