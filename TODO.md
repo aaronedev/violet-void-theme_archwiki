@@ -8349,3 +8349,21 @@ Last updated: 2026-03-24 23:15
   - Fix screenshot capture: `md5sum .agent/archwiki/current/*.png` must show distinct hashes per state before any visual artifact commits
   - Do not commit broken current/ screenshots — delete and re-capture after fixing capture pipeline
   - Untracked `test-page.png` is not a standard test artifact — remove or justify
+
+### 2026-03-25 00:22
+- Review target: dirty worktree (no new commits since 23:26 review)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - No new CSS commits since 23:26 review — same approved commits (69e949e, 7613622) still on deck
+  - CSS code from prior review remains APPROVED on code quality
+  - Worktree changes: only `.agent/archwiki/` files (capture-states.js, screenshots, diffs) — no production code touched
+  - capture-states.js: modified (not committed) with user-agent, improved selectors, search-active state — pipeline improvements in progress but not resolved
+  - **Firefox screenshot capture still broken**: all 4 firefox states (default/menu-open/search-active/toc-open) share hash `908f6b06e2d1d59a18340b829bab20a2` — recapture of default succeeded (78232 vs 62980 bytes) but menu-open/search-active/toc-open are still copies of default
+  - **Non-firefox pages ARE working**: installation-guide, main-page, pacman, systemd all show distinct hashes per state — pipeline is functional, issue is firefox-specific
+  - Other pages: distinct file sizes per state confirm pipeline works (e.g. systemd.desktop.default=210492, systemd.desktop.menu-open=216344)
+  - Several new untracked test artifacts (test-click.png, test-default.png, test-menu-open.png) in current/ — non-standard
+- Implementer instructions:
+  - Focus only on firefox capture — other pages are fine
+  - The firefox states (menu-open, search-active, toc-open) likely aren't triggering because the checkbox/button selectors don't match ArchWiki's current HTML
+  - Before recapturing: inspect firefox page HTML at https://wiki.archlinux.org in a real browser to find the actual selectors for menu, TOC, and search interactive elements
+  - Remove untracked test artifacts (test-*.png) or move them out of current/ before committing
