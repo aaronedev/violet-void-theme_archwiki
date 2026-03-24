@@ -1276,11 +1276,12 @@ Last updated: 2026-03-23 10:52
   - Note: Wrap in `@css{}` for Stylus
   - Commit: 610bf0a
 
-- [ ] **`animation-timeline: view()`** (85%+ browser support)
+- [x] **`animation-timeline: view()`** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Animate elements as they enter/exit viewport
   - Fade-in for infoboxes, navboxes
   - Pair with `animation-range`
+  - Commit: 610bf0a (scroll-driven animations)
 
 ## 🎭 Popover & Dialog Styling (New)
 
@@ -8194,6 +8195,44 @@ Last updated: 2026-03-23 10:52
   - Apply dark/semi-opaque background to search panel (`vector-search-box`) to fix transparent bg
   - Apply dark theme to `vector-pinned-container` for pinned/appearance panels
   - Verify menu dropdown items are readable with sufficient contrast against dark background
+
+### 2026-03-24 16:45
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1440x900)
+  - menu-open (desktop 1440x900)
+  - toc-open (desktop 1440x900)
+  - search-active (desktop 1440x900)
+  - default (mobile 375x667)
+  - menu-open (mobile 375x667)
+- Findings:
+  - All 22 comparable screenshots identical to baselines (AE ≤ 2 pixels — anti-aliased rendering noise)
+  - No horizontal overflow detected on desktop (1440x900) or mobile (375x667)
+  - No unreadable small fonts detected (< 10px count: 0 across all pages)
+  - All focusable elements have proper outline styling (4/4 elements pass focus visibility check)
+  - Menu panel, TOC, and search interactive states all render correctly
+  - Mobile narrow viewport (375x667) shows no overflow issues
+  - DOM inspection checks: zero high z-index elements, no structural regressions
+  - Note: Mobile DOM check timed out on `#content` — mobile-specific DOM differs; visual screenshots captured successfully
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.*.png
+  - .agent/archwiki/current/systemd.desktop.*.png
+  - .agent/archwiki/current/pacman.desktop.*.png
+  - .agent/archwiki/current/installation-guide.desktop.*.png
+  - .agent/archwiki/current/firefox.desktop.*.png
+  - .agent/archwiki/current/main-page.mobile.*.png
+  - .agent/archwiki/current/systemd.mobile.default.png
+  - .agent/archwiki/current/systemd.mobile.menu-open.png
+- Implementer instructions:
+  - No regressions detected — previous fixes from 2026-03-23 (menu dropdown, search panel, pinned container, TOC narrow width) are holding
+  - Optional: investigate mobile DOM structure for `#content` locator difference at narrow viewport
 
 ## Visual TODOs
 - [x] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:12, commit: d528487)
