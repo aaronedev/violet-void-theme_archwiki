@@ -8403,3 +8403,20 @@ Last updated: 2026-03-25 01:15
   - The firefox states (menu-open, search-active, toc-open) likely aren't triggering because the checkbox/button selectors don't match ArchWiki's current HTML
   - Before recapturing: inspect firefox page HTML at https://wiki.archlinux.org in a real browser to find the actual selectors for menu, TOC, and search interactive elements
   - Remove untracked test artifacts (test-*.png) or move them out of current/ before committing
+
+### 2026-03-25 02:33
+- Review target: dirty worktree + commit 4bc4e63 (advanced.styl board color fix)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **4bc4e63 CSS fix is legitimate**: Replacing `rgba(0,0,0,0.4)` → `rgba($darker, 0.4)`, `rgba(255,255,255,0.08)` → `rgba($white, 0.08)`, hardcoded `#505050/#0a0a0a/#ffffff/#d0d0d0` → `$board-black-light/$board-black-dark/$board-white-light/$board-white-dark`, and adding the 4 new `$board-*` variables. Clean, scoped, follows project pattern. APPROVED on code quality.
+  - **Visual diff evidence is unreliable for this cycle.** Dirty worktree shows `installation-guide.desktop.default.diff.png` jumped from 8340B (committed) to 226425B (dirty). The committed baseline capture is 225604B; newly captured current is 97654B — less than half the size, fundamentally different render. This is NOT caused by the chess/Go CSS (which doesn't apply to installation-guide). The diff inflation is from uncommitted `capture-states.js` changes (different TOC/menu selectors, different userAgent, click() vs check(), fresh navigation per page) combined with live-site variability.
+  - **capture-states.js is uncommitted.** The selector and logic improvements (search-active state, click()→check(), updated TOC selectors, resetStates() helper) are good but sitting in the worktree. Cannot evaluate the full capture fix without committing it.
+  - **completion log updated** (8d9e2e5): references commit 4bc4e63 correctly.
+  - **package.json version bump** (20260324→20260325): clean.
+  - **Many untracked new diff files** in worktree: `firefox.desktop.default.diff.png`, `installation-guide.desktop.menu-open/search-active/toc-open.diff.png`, `main-page.desktop.default/search-active/toc-open.diff.png`, etc. These are artifacts from the new capture run but not committed.
+- Implementer instructions:
+  - Commit `capture-states.js` separately with a descriptive message before the next capture run
+  - Re-capture all states AFTER committing capture-states.js — do not mix capture script changes with visual artifact commits
+  - Before committing visual artifacts: verify `md5sum` across states shows distinct hashes per state (not all identical)
+  - Do NOT attribute massive diff sizes to the CSS fix — the installation-guide default diff inflation is a capture artifact, not a CSS regression
+  - Once capture infrastructure is stable and re-committed, regenerate diffs cleanly and update only those
