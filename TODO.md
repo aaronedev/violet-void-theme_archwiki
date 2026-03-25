@@ -8481,6 +8481,25 @@ Last updated: 2026-03-25 14:28
   - Delete baselines/ directory
   - Remove: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/test-page.png .agent/archwiki/baselines/systemd-check.png`
 
+### 2026-03-25 16:05
+- Review target: 1d8783c (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **1d8783c (revert dialog backdrop colors)**: Correct and timely. 8bc6990 tried `rgba($red,0.5)`/`rgba($green,0.4)`/`rgba($arch-blue,0.5)` for OOUI modal backdrops, but $red=#a80065 (bright pink), $green=#4bfe9b (neon), $arch-blue=#8950c7 (purple) — all too bright at low opacity for readable modal overlays. 1d8783c correctly reverts to the original dark rgba values: rgba(127,29,29,0.85)/rgba(21,128,61,0.85)/rgba(29,78,216,0.85). Scoped, honest, no visual evidence needed for a revert.
+  - **8bc6990 was never documented as "done"**: The completion log shows only 2868eda (box-shadow) and c434ef9 (docs) — 8bc6990 was caught and reverted same day without reaching the completion log. This is good process discipline, not a failed implementation.
+  - **Worktree is extremely noisy**: mass-deleted baselines/ (20 files), modified current/ screenshots, deleted capture infrastructure files. Mixed state makes it impossible to verify any screenshot artifact work.
+  - **Firefox capture still broken**: all 4 firefox states share hash `908f6b06e2d1d59a18340b829bab20a2` — flagged at every review cycle since 2026-03-24 21:47 (8+ consecutive cycles).
+  - **capture-states.js still uncommitted**: flagged at every review cycle since 2026-03-25 00:22 — improvements present in worktree for 16+ hours.
+  - **baselines/ deleted from worktree**: 20 baseline screenshots removed — positive cleanup action.
+  - **Diffs/ directory deleted from worktree**: many diff artifacts removed — positive cleanup.
+  - **package.json version bump**: 20260324.23.15 → 20260325.16.04 — minor, no issue on a revert commit.
+  - **.gitignore updated**: updates screenshot/artifact exclusion comments and patterns — legitimate hygiene.
+- Implementer instructions:
+  - CSS (1d8783c): APPROVED — no action needed
+  - Commit capture-states.js separately before next capture run
+  - Re-capture firefox states with committed capture script, verify `md5sum` shows 4 distinct hashes
+  - Do not mix screenshot artifact changes with CSS commits
+
 ### 2026-03-25 04:53
 - Review target: 86b29b1 + dirty worktree (no new CSS commits since 86b29b1)
 - Verdict: NEEDS_FOLLOWUP
