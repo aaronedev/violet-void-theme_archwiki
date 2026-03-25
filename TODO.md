@@ -7648,6 +7648,24 @@ Last updated: 2026-03-24 23:15
 
 ## Reviewer Findings
 
+### 2026-03-25 01:00
+- Review target: 8fcbc1f (dirty worktree: capture-states.js + PNG artifacts uncommitted)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Latest CSS work is `91ba37f` (March 23)**: The wikitable CSS custom property fix (--vv-table-bg, --vv-table-text, --vv-table-header-bg, --vv-table-header-text) was committed 2 days ago and is still awaiting visual verification. `8fcbc1f` only marks it done in TODO — no new visual evidence provided.
+  - **Worktree contains no new CSS**: Only `capture-states.js` (tooling), PNG captures, and `package.json` version bump. Capture script improvements are real (user agent string added, better state selectors, `search-active` state added, proper state reset between captures).
+  - **Screenshots now show real ArchWiki content**: File sizes (226KB diffs, 225KB current) confirm Cloudflare blocking is resolved — these are not blocked-page screenshots. This is genuine progress.
+  - **Long-standing unaddressed items (unchanged since 2026-03-24 17:53)**:
+    - Dropdown width cascade: width=32px per visual-findings.json, unresolved since 2026-03-23
+    - Cite panel z-index: z-index 100 may be too low, no open-state before/after evidence
+    - Playwright injection ordering: CSS may load after ArchWiki stylesheet
+    - Hamburger menu on mobile: no open-state screenshot on actual ArchWiki
+  - **Worktree still dirty**: Same recurring pattern — visual artifacts left uncommitted across multiple cycles.
+- Implementer instructions:
+  - **Visually verify `91ba37f`**: Run capture script and confirm wikitable tables (e.g. installation-guide) now use dark backgrounds. Commit actual before/after diffs if the fix is confirmed.
+  - **Commit worktree**: `git add .agent/archwiki/ package.json && git commit -m "chore: commit visual verification artifacts"` to break the recurring dirty-worktree pattern.
+  - Address long-standing items or explicitly close each with rationale.
+
 ### 2026-03-23 01:27
 - Review target: 5b2f993 (hamburger z-index fix) + f3ac212 (TODO update)
 - Verdict: NEEDS_FOLLOWUP
@@ -8319,6 +8337,23 @@ Last updated: 2026-03-24 23:15
 
 
 ## Reviewer Findings
+
+### 2026-03-25 01:41
+- Review target: dirty worktree + commit 8fcbc1f (TODO.md-only)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - 8fcbc1f: TODO.md-only commit — marks wikitable table background fix as done (references 91ba37f, 2026-03-23). No new CSS.
+  - 91ba37f (the actual CSS fix, from 2026-03-23): `.wikitable` hardcoded Stylus vars `$base`/`$light` → `var(--vv-table-bg)`/`var(--vv-table-text)` with `!important` overrides. CSS custom properties defined in `:root` block in same file. Code quality is clean — APPROVED on code grounds. Note: completion log description says "hardcoded hex" but actual original used `$base`/`$light` (Stylus vars); description is slightly imprecise but fix is legitimate.
+  - No new CSS commits since 00:22 review. CSS commits 69e949e and 7613622 remain APPROVED on code quality.
+  - Firefox screenshot capture STILL broken: all 4 states share hash `908f6b06e2d1d59a18340b829bab20a2`. Unchanged since 00:22 review. This is now the 4th consecutive review cycle flagging this same issue.
+  - Positive: non-firefox pages show distinct hashes per state (installation-guide, main-page, pacman, systemd all distinct) — pipeline is working for those pages.
+  - Test artifacts still uncommitted: `test-click.png`, `test-default.png`, `test-menu-open.png`, `test-page.png` in current/; `systemd-check.png` and `test-page.png` in baselines/. Unchanged since 00:22.
+  - worktree also contains new untracked firefox state screenshots (firefox.desktop.menu-open/search-active/toc-open.png) — all identical to default, same broken state.
+- Implementer instructions:
+  - CSS (91ba37f, 69e949e, 7613622): APPROVED — no action needed
+  - Firefox is the ONLY remaining capture issue. The selectors in capture-states.js don't match ArchWiki's current HTML for the menu/TOC/search toggles in Firefox. Before running another capture: inspect https://wiki.archlinux.org in Firefox DevTools and find the actual checkbox/button selectors for the interactive states
+  - Do not commit any firefox screenshots until they show distinct hashes per state
+  - Remove test artifacts before any artifact commits: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/systemd-check.png`
 
 ### 2026-03-24 21:47
 - Review target: commit 7613622 (dirty worktree)
