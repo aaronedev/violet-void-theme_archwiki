@@ -251,7 +251,7 @@
   background $arch-blue
   border 2px solid $lighter
   border-radius 50%
-  box-shadow 0 2px 8px rgba(0, 0, 0, 0.4)
+  box-shadow 0 2px 8px rgba($darker, 0.4)
 
   // Marker with custom icon
   &.custom
@@ -479,7 +479,7 @@
 
       // Light square
       &.light
-        background rgba(255, 255, 255, 0.08)
+        background rgba($white, 0.08)
 
       // Dark square
       &.dark
@@ -512,11 +512,11 @@
 .chess-piece
   &.white
     color $white
-    text-shadow 0 1px 2px rgba(0, 0, 0, 0.5)
+    text-shadow 0 1px 2px rgba($darker, 0.5)
 
   &.black
     color $dark
-    text-shadow 0 0 2px rgba(255, 255, 255, 0.3)
+    text-shadow 0 0 2px rgba($white, 0.3)
 
 // Chess coordinate labels
 .chess-coordinates
@@ -620,13 +620,13 @@
   border-radius 50%
   position relative
   z-index 1
-  box-shadow 0 2px 4px rgba(0, 0, 0, 0.4)
+  box-shadow 0 2px 4px rgba($darker, 0.4)
 
   &.black
-    background radial-gradient(circle at 30% 30%, #505050, #0a0a0a)
+    background radial-gradient(circle at 30% 30%, $board-black-light, $board-black-dark)
 
   &.white
-    background radial-gradient(circle at 30% 30%, #ffffff, #d0d0d0)
+    background radial-gradient(circle at 30% 30%, $board-white-light, $board-white-dark)
 
 // Go move markers
 .go-move
@@ -1239,11 +1239,11 @@
 // Map markers
 .leaflet-marker-icon
   transition transform 200ms ease, filter 200ms ease
-  filter drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))
+  filter drop-shadow(0 2px 4px rgba($darker, 0.3))
 
   &:hover
     transform scale(1.15)
-    filter drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4))
+    filter drop-shadow(0 3px 6px rgba($darker, 0.4))
 
   // Marker shadow
   &.marker-cluster
