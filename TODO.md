@@ -8625,3 +8625,40 @@ Last updated: 2026-03-25 16:28
   - **Fix screenshot capture pipeline**: The all-same-hash desktop/mobile issue indicates capture tool failure. Do not run another visual capture until the underlying interaction selectors are fixed. All current screenshots are invalid placeholders.
   - **Decide on deletions NOW**: The baselines/diffs are already deleted. Either `git add -u .agent/archwiki/ && git commit -m "chore: remove archwiki test artifacts and baselines"` to finalize the cleanup, or restore from HEAD if deletion was unintentional. Do not leave these deletions in a staged-but-uncommitted or unstaged state.
   - CSS code (c9906ab, cc23a84, 9b3eca4): APPROVED — no rework needed on those commits.
+
+### 2026-03-25 16:20
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION (visual verification impossible)
+- Pages checked: none (see findings)
+- States checked: none (see findings)
+- Findings:
+  - **CRITICAL: All screenshots in .agent/archwiki/current/ are ArchWiki Anubis anti-bot blocked pages, NOT the actual wiki.** Image analysis confirms every tested screenshot (firefox, main-page, systemd) shows the "Oh noes! Access Denied: error code 4d1dbaddfcc0f385" Anubis protection page. The mascot anime girl and "Protected by Anubis" footer appear in ALL captured screenshots. No actual wiki content with the Violet Void theme was captured.
+  - **Baselines deleted**: git status shows all `.agent/archwiki/baselines/*.png` files as deleted. Previous baselines (which would have also been Anubis pages) were removed but not committed.
+  - **Browser tool unavailable**: Browser start timed out (60s) on both `openclaw` and `user` profiles. Cannot capture fresh screenshots.
+  - **CSS inspection only**: Ran `npm run build` successfully (CSS 844KB, 3060 lines). CSS builds cleanly. No PostCSS errors.
+  - **CSS code review (limited)**: Recent commits 1d8783c (revert dialog backdrop to dark rgba), 39d4041 (hardcoded white → $white in menus.styl), 7281a59 (docs for same) — all appear scoped and correct. No new visual issues found in CSS inspection.
+  - **Prior reviewers were correct**: The "identical MD5 hash" issue flagged repeatedly (21:10, 21:47, 23:26, 05:34) was because ALL screenshots — baselines AND current — were Anubis blocked pages. The capture was never working. The baselines that were deleted were also Anubis pages.
+  - **Playwright injection still unresolved**: `page.addStyleTag()` was still being used instead of `<link>` element injection per prior NEEDS_FOLLOWUP entries (2026-03-23 13:58, 16:32).
+- Artifact paths:
+  - None — all existing screenshots are invalid (Anubis blocked pages)
+- Implementer instructions:
+  - **Fix ArchWiki access first**: The screenshot/anubis issue must be resolved before ANY visual regression work. Options to investigate: (a) wait for Anubis to unblock the IP/user-agent, (b) use a different capture method that doesn't trigger Anubis, (c) use ArchWiki's API or mobile version as a fallback, (d) capture on a cached/local instance
+  - **Do not run another visual scout** until ArchWiki is accessible for screenshot capture — output would be another batch of useless Anubis pages
+  - **Commit the baselines deletion** to clean up git state: `git add .agent/archwiki/baselines/ && git commit -m "chore: remove archwiki baselines (Anubis-blocked artifacts)"` — baselines were useless (Anubis pages) and should be cleaned up
+  - After fixing access: restore screenshot capture with proper Playwright `<link>` injection (not addStyleTag), verify screenshots show actual wiki content (not Anubis), then establish new baselines
+
+### 2026-03-25 17:25
+- Review target: ffb1f0d, 7281a59, 39d4041, 1d8783c + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **ffb1f0d** (layout.styl + codex.styl rgba replacement): APPROVED on code quality. Border/shadow tokens correctly replaced: `rgba(200,184,255,0.08)` → `rgba($secondary-blue, 0.08)`, `rgba(137,80,199,0.5)` → `rgba($arch-blue, 0.5)`, `rgba(0,0,0,x)` → `rgba($darker, x)` for all shadow tokens. Scoped, correct, follows series pattern.
+  - **39d4041** (menus.styl $white replacement): APPROVED on code quality. `menu-heading()` and `menu-list-item()` mixins: `color white` → `color $white`. Clean, correct.
+  - **1d8783c** (dialog backdrop revert): The readability fix is correct — dark desaturated rgba at 0.85 opacity resolves the "unreadable translucent overlay" issue. However, `rgba(127,29,29,0.85)`, `rgba(21,128,61,0.85)`, `rgba(29,78,216,0.85)` are hardcoded values, NOT theme variables. `$darker` (= `#0f0f0f`) is already available in colors.styl. The fullscreen backdrop correctly uses `rgba($darker, 0.95)` for comparison.
+  - **Worktree is extremely dirty**: After auto-stash application from `git pull`, the index contains ~90 deletions (baselines/, diffs/, scripts/, root PNGs) and the worktree contains ~20 modifications (current/*.png, .gitignore, TODO.md, package.json). This makes `git status` unreadable and blocks normal development.
+  - **Screenshot pipeline still blocked**: Visual verification remains impossible due to ArchWiki Anubis blocking. No new visual evidence available. This is a recurring issue across multiple review cycles.
+  - **Build succeeds**: `npm run build` completes cleanly (844KB CSS, 3060 lines). No PostCSS errors.
+- Implementer instructions:
+  - **Commit the worktree cleanup**: `git add -u .agent/ archwiki-*.png check-errors.js visual-test*.js test-homepage.png && git commit -m "chore: remove archwiki test artifacts and baselines (Anubis-blocked)"` to resolve the dirty index. The baselines and root test PNGs were confirmed Anubis-blocked artifacts per 16:20 review and should be cleaned up.
+  - **Improve dialog backdrop theme usage**: Replace hardcoded rgba in warning/success/info dialog backdrops with `rgba($darker, 0.85)` or define `$warning-backdrop`, `$success-backdrop`, `$info-backdrop` tokens in colors.styl. The current fix works but breaks the "all hardcoded colors → theme variables" pattern of the rest of the series.
+  - **Do not proceed to new CSS work** until worktree is clean and dialog backdrop theme variables are addressed.
+  - CSS code (ffb1f0d, 39d4041, 7281a59, 1d8783c behavior): APPROVED — only theme-variable-inconsistency on dialog backdrop needs addressing.
