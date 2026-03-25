@@ -8551,3 +8551,20 @@ Last updated: 2026-03-25 12:06
   - Delete baselines/: `rm -rf .agent/archwiki/baselines/`
   - Remove test artifacts: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/test-page.png .agent/archwiki/baselines/systemd-check.png`
   - Do NOT bump package.json version again until new CSS is committed and verified
+
+### 2026-03-25 12:52
+- Review target: `8bc6990` (clean worktree — stash aaba8bc applied)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **CSS code quality is sound**: `ui-components.styl` rgba replacement syntax is correct. Variables `$red`, `$green`, `$arch-blue` all exist and are valid.
+  - **Massive visual change, not just a "replacement"**: The original backdrop colors were dark/desaturated at 0.85 opacity (near-opaque dark backgrounds). The replacements are bright/saturated at 0.4–0.5 opacity:
+    - Warning: `rgba(127,29,29, 0.85)` (dark red `#7f1d1d`) → `rgba($red, 0.5)` (`$red=#a80065` = bright magenta-red)
+    - Success: `rgba(21,128,61, 0.85)` (dark green `#156e3d`) → `rgba($green, 0.4)` (`$green=#4bfe9b` = bright neon green)
+    - Info: `rgba(29,78,216, 0.85)` (dark blue `#1d4ed8`) → `rgba($arch-blue, 0.5)` (`$arch-blue=#8950c7` = purple)
+    - **Result**: Opaque dark backdrops → translucent bright overlays. This is a deliberate design shift, not a find-replace.
+  - **No visual evidence provided**: No before/after screenshot of dialog backdrops in any open state.
+  - **Dirty worktree persists**: `.agent/archwiki/baselines/` (20+ files), `.agent/archwiki/diffs/`, `.agent/archwiki/current/` (many files deleted), root PNGs deleted — all uncommitted. Stash `aaba8bc` was applied after `git pull`, restoring these deletions. This recurring pattern (uncommitted artifacts/deletions) has been flagged in multiple prior reviews and remains unresolved.
+- Implementer instructions:
+  - **Visual verification required before final approval**: Capture dialog/popover with open modal state (warning/success/info variants). Compare against original dark backdrop. If bright translucent overlays are intentional, document the design rationale in the commit message.
+  - **Decide on deletions**: Either `git add -u .agent/archwiki/baselines/ .agent/archwiki/diffs/ .agent/archwiki/current/` and commit the cleanup, OR `git checkout HEAD -- .agent/archwiki/` to restore the tracked files. Do not leave the worktree in this ambiguous state.
+  - CSS rgba replacement code is technically correct — no code rework needed.
