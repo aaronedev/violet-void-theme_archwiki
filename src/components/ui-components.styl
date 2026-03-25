@@ -322,7 +322,7 @@ input[type="range"]
 
 // Backdrop for modal popovers
 [popover]::backdrop
-  background-color rgba(0, 0, 0, 0.5)
+  background-color rgba($darker, 0.5)
 
 // Native HTML dialog element
 dialog
@@ -337,7 +337,7 @@ dialog
   color $light
 
   &::backdrop
-    background-color rgba(0, 0, 0, 0.75)
+    background-color rgba($darker, 0.75)
 
   // Open state
   &[open]
@@ -356,11 +356,11 @@ dialog
 dialog:modal
   // Modal dialogs get a more prominent styling
   border 2px solid $arch-blue
-  box-shadow $shadow-elevated, 0 0 0 9999px rgba(0, 0, 0, 0.75)
+  box-shadow $shadow-elevated, 0 0 0 9999px rgba($darker, 0.75)
 
   // Modal backdrop gets enhanced treatment
   &::backdrop
-    background-color rgba(0, 0, 0, 0.85)
+    background-color rgba($darker, 0.85)
     backdrop-filter blur(4px)
 
   // Modal-specific animations
@@ -378,7 +378,7 @@ dialog:modal
 // Modeless dialogs (opened with dialog.show())
 dialog:not(:modal)
   &::backdrop
-    background-color rgba(0, 0, 0, 0.4)
+    background-color rgba($darker, 0.4)
 
 // ===========================================
 // Enhanced ::backdrop Styling
@@ -415,7 +415,7 @@ dialog.info:modal::backdrop
 
 // Full-screen backdrop for image viewers
 dialog.fullscreen:modal::backdrop
-  background-color rgba(0, 0, 0, 0.95)
+  background-color rgba($darker, 0.95)
 
 // Animated backdrop entry
 dialog.animated-backdrop:modal::backdrop
@@ -424,7 +424,7 @@ dialog.animated-backdrop:modal::backdrop
 // High contrast backdrop for accessibility
 @media (prefers-contrast more)
   dialog:modal::backdrop
-    background-color rgba(0, 0, 0, 0.95)
+    background-color rgba($darker, 0.95)
 
 // Reduced motion alternative
 @media (prefers-reduced-motion reduce)
@@ -450,7 +450,7 @@ dialog:modal::backdrop:focus-within
 .overlay
   position fixed
   inset 0
-  background-color rgba(0, 0, 0, 0.75)
+  background-color rgba($darker, 0.75)
   display flex
   align-items center
   justify-content center
@@ -756,7 +756,7 @@ dialog:open
 
 // Popover backdrop (when using dialog or popover with backdrop)
 .popover-backdrop
-  background-color rgba(0, 0, 0, 0.5)
+  background-color rgba($darker, 0.5)
   backdrop-filter blur(2px)
   position fixed
   inset 0
