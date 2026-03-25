@@ -8759,3 +8759,22 @@ Last updated: 2026-03-25 20:34
   - **Clean up ::highlight() invalid properties**: Remove `box-shadow` from `::highlight(search-current)`, `border-bottom` from `::highlight(annotation)` and `::highlight(warning)`, `border-inline-start` from `::highlight(quote)`. Keep only `background-color` and valid properties (color, text-decoration, text-shadow, -webkit-text-stroke-*). `::highlight(error)` text-decoration is fine.
   - **Resolve e426eb0 color-mix() opacity**: Either confirm in browser that `transparent 85%` produces acceptable visual result, or switch to `oklch(from var(--theme-arch-blue) l c h / 0.15)` which preserves original 15% opacity intent more faithfully.
   - **Stop adding new rgba work** until ::highlight() cleanup and e426eb0 are resolved.
+
+### 2026-03-25 22:43
+- Review target: 836fcc2 (dirty worktree: .gitignore + package.json uncommitted)
+- Verdict: APPROVED
+- Findings:
+  - `836fcc2`: `rgba(0,0,0,0.08)` → `rgba($darker, 0.08)` in scrollbar-track, `rgba(0,0,0,0.4)` → `rgba($dark, 0.4)` in progress box-shadow, `rgba(0,0,0,0.3/0.35/0.4)` → `rgba($darker, ...)` in mobile/modern-css — all valid `$darker`/`$dark` defined in colors.styl. 6 files, clean.
+  - `9abba3d`: `rgba(0,0,0,0.06)` → `rgba($darker, 0.06)` in forms.styl textarea/button hover box-shadows — clean, scoped.
+  - `3db2749`: `'white'` → `$white` in discussion.styl and community.styl — string literal correctly replaced with variable.
+  - `fe3417b`: Oklch alpha trailing zero cleanup (0.30→0.3, 0.60→0.6) in navigation.styl AND removal of invalid `border-radius`/`box-shadow`/`border-bottom`/`border-inline-start` from `::highlight()` blocks — these properties don't apply to ::highlight pseudo-element. Clean.
+  - `5c62883`: `color-mix(in srgb, var(...), transparent X%)` → `oklch(from var(...) l c h / alpha)` in navigation.styl `:interest-source`/`:interest-target` selectors — correct modern CSS substitution. Clean.
+  - `1d8783c` (revert): Replaced low-opacity `$red/$green/$arch-blue` modal backdrops with hardcoded hex at 0.85 — correct response to readability issue.
+  - `65be993`: Added `$dark-red`, `$dark-green`, `$dark-blue` to colors.styl and replaced hardcoded hex in dialog backdrops — properly resolved the readability issue from 1d8783c while keeping theme variables. Clean.
+  - No visual test artifacts in worktree (baseline/ current/ diffs/ absent) — clean.
+  - Uncommitted: .gitignore cleanup + package.json version bump (20260324→20260325) — cosmetic, no CSS impact.
+  - Firefox screenshot capture remains broken (identical MD5 hash across all states) — unchanged from prior cycles. Not a CSS issue.
+- Implementer instructions:
+  - All CSS is approved — no follow-up needed on code quality
+  - Version bump commit is fine to create separately from CSS commits
+  - Firefox screenshot tooling needs separate debugging if visual regression is needed
