@@ -484,8 +484,9 @@
 | 2026-03-25 | Replace hardcoded rgba(255,255,255,0.01) and rgba(255,255,255,0.02) with rgba($white, ...) in tables.styl zebra striping | 91d970b |
 | 2026-03-25 | Replace hardcoded rgba in background-texture-light/dark with theme variables ($lighter/$darker) in content.styl | 4ffcecf |
 | 2026-03-25 | Replace remaining hardcoded rgba(255,255,255) and rgba(0,0,0) with theme variables in effects.styl, ui-components.styl, search.styl, responsive-enhanced.styl, states.styl, modern-css.styl | be3c2b8 |
+| 2026-03-25 | Expand keyboard-inset support to all four sides (top/right/bottom/left) in mobile.styl with logical properties and multi-selector targeting | 04f6131 |
 
-Last updated: 2026-03-25 09:43
+Last updated: 2026-03-25 12:06
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2688,12 +2689,14 @@ Last updated: 2026-03-25 09:43
 
 ## 📱 Mobile Environment Variables (New)
 
-- [ ] **`env(keyboard-inset-*)` for Mobile Keyboards** (87%+ browser support)
+- [x] **`env(keyboard-inset-*)` for Mobile Keyboards** (87%+ browser support)
   - File: `src/components/mobile.styl`
   - `keyboard-inset-top`, `keyboard-inset-right`, `keyboard-inset-bottom`, `keyboard-inset-left`
   - Adjust edit form layout when virtual keyboard appears
+  - Expanded from single-bottom to all four sides; targets .mw-editform, #editform, inputs, textarea, select, .edit-actions, .mw-edittools, #searchform; uses logical properties for RTL; landscape side insets for #content and .mw-body
   - Example: `padding-bottom: env(keyboard-inset-bottom, 0);`
   - Stylus: Works directly
+  - Commit: 04f6131
 
 ## 🖥️ Display Capability Queries (New)
 
@@ -7657,6 +7660,19 @@ Last updated: 2026-03-25 09:43
 ---
 
 ## Reviewer Findings
+
+### 2026-03-25 11:41
+- Review target: `6f127a6` (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Code is correct**: Each rgba replacement (`rgba(0,0,0)` → `rgba($darker, α)`, `rgba(255,255,255)` → `rgba($white, α)`) is technically sound — `$darker=#0f0f0f`, `$white=#ffffff` verified in colors.styl. Commits `6f127a6`, `2d75e4e`, `be3c2b8`, `97de96d`, `91d970b`, `8b20753`, `124933f`, `86b29b1`, `bfada12` are all clean and scoped.
+  - **Partial cleanup only — 15+ files still have hardcoded rgba(0,0,0)**: `animations.styl:412`, `base.styl:108`, `content.styl:1082`, `forms-enhanced.styl:788`, `forms.styl:55,87`, `gadgets.styl:97`, `glass.styl:94,126`, `interwiki.styl:35`, `message-boxes.styl:361`, `mobile.styl:444,501,517,642,712`, `modern-css.styl:1587`, `notifications.styl:38`, `optimizations.styl:466`, `preferences.styl:93`. Cleanup batches are incomplete.
+  - **Worktree deletions of tracked files not committed**: `.agent/archwiki/baselines/` (committed at bd6e8d8), `.agent/archwiki/diffs/`, `.agent/archwiki/reports/`, root PNGs deleted from worktree but uncommitted. `.gitignore` updated to add `.agent/`. Baseline blobs still exist in git history.
+  - **Recurring dirty-worktree pattern**: Uncommitted artifacts in every review cycle for weeks.
+- Implementer instructions:
+  - Either commit the cleanup: `git add .gitignore && git add -u .agent/ && git commit -m "chore: remove stale visual-test artifacts and ignore .agent/"` — OR restore deleted tracked files and discard .gitignore change
+  - Decide whether to continue rgba sweep (15+ files remain) or formally close with rationale for remaining exceptions
+  - CSS rgba fixes are approved on code quality — no rework needed on committed changes
 
 ### 2026-03-25 01:00
 - Review target: 8fcbc1f (dirty worktree: capture-states.js + PNG artifacts uncommitted)
