@@ -1434,7 +1434,7 @@ Last updated: 2026-03-25 12:06
   - Context item menus
   - Citation dialog improvements
 
-- [ ] **Media Viewer Enhancements** (CSS)
+- [x] **Media Viewer Enhancements** (CSS) (done: 2026-03-25 13:23, commit: c9906ab)
   - File: `src/components/file-pages.styl`
   - Fullscreen viewer styling
   - Gallery navigation controls
