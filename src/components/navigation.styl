@@ -1908,7 +1908,7 @@ h6:hover .mw-editsection
     }
 
     .vector-menu-content li:interest-source {
-      background: color-mix(in srgb, var(--theme-arch-blue), transparent 85%);
+      background: oklch(from var(--theme-arch-blue) l c h / 0.15);
     }
 
     .mw-parser-output a.external,
@@ -1925,7 +1925,7 @@ h6:hover .mw-editsection
       transform: translateX(-50%);
       padding: 0.5em 0.75em;
       background: var(--theme-dark);
-      border: 1px solid color-mix(in srgb, var(--theme-secondary-blue), transparent 70%);
+      border: 1px solid oklch(from var(--theme-secondary-blue) l c h / 0.30);
       border-radius: 4px;
       font-size: 0.875em;
       white-space: nowrap;
@@ -1969,8 +1969,8 @@ h6:hover .mw-editsection
     }
 
     .mw-ui-input:interest-source {
-      border-color: color-mix(in srgb, var(--theme-arch-blue), transparent 40%);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-arch-blue), transparent 85%);
+      border-color: oklch(from var(--theme-arch-blue) l c h / 0.60);
+      box-shadow: 0 0 0 3px oklch(from var(--theme-arch-blue) l c h / 0.15);
     }
   }
 }
