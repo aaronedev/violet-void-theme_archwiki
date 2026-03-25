@@ -8726,3 +8726,22 @@ Last updated: 2026-03-25 20:34
 - Implementer instructions:
   - Provide browser screenshot showing `:interest-source` styled elements (dropdown item highlight, tooltip border, input focus border+shadow) rendering correctly with the new `color-mix()` colors.
   - If `color-mix()` produces noticeably different opacity than intended, consider `oklch(from var(--theme-arch-blue) l c h / 0.15)` as a closer replacement for the original rgba intent.
+
+### 2026-03-25 20:40
+- Review target: d0a22dc (::highlight oklch), c04f200, 4f765ad, 91d970b, 4ffcecf, 2868eda, be3c2b8
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **d0a22dc** (::highlight oklch conversion): Color replacements are correct. Mathematically sound conversions: `rgba(130,100,255,0.35)` → `oklch(65% 0.18 285 / 35%)`, etc. All 8 highlight types converted.
+  - **d0a22dc INVALID PROPERTIES**: `::highlight()` only supports `color`, `background-color`, `text-decoration`, `text-shadow`, and `-webkit-text-stroke-*` (per MDN). The commit carries over invalid properties from prior work: `box-shadow` on `::highlight(search-current)`, `border-bottom` on `::highlight(annotation)` and `::highlight(warning)`, `border-inline-start` on `::highlight(quote)`. Only `text-decoration` on `::highlight(error)` is valid. These are pre-existing issues but the oklch conversion didn't clean them up.
+  - **c04f200** (glass.styl rgba→$darker): APPROVED. `rgba(0,0,0,0.3)` → `rgba($darker, 0.3)`, `rgba(0,0,0,0.4)` → `rgba($darker, 0.4)`. Clean, scoped, correct.
+  - **4f765ad** (gradient-borders.styl #fff→$white): APPROVED. `-webkit-mask linear-gradient(#fff...)` → `$white`. Replaces hardcoded with theme var. Clean.
+  - **91d970b** (tables.styl rgba→$white): APPROVED. `rgba(255,255,255,0.02)` / `rgba(255,255,255,0.01)` → `rgba($white, ...)`. Zebra striping correctly updated.
+  - **4ffcecf** (content.styl background-texture): APPROVED. Background texture rgba correctly replaced with `$lighter/$darker` theme vars.
+  - **2868eda** (box-shadow rgba→$darker): APPROVED. `rgba(0,0,0,0.2)` → `rgba($darker, 0.2)` in animations.styl, content.styl, notifications.styl.
+  - **be3c2b8** (multiple files rgba→theme vars): APPROVED. Effects, ui-components, search, responsive-enhanced, states, modern-css. Scoped, correct.
+  - **e426eb0 (20:17 outstanding)**: `color-mix()` opacity deviation still unresolved. `transparent 85%` produces ~50% opacity, not 15%. Still needs browser verification or `oklch(from ...)` correction.
+  - **Build**: not re-run this cycle (clean last check per 19:42 review).
+- Implementer instructions:
+  - **Clean up ::highlight() invalid properties**: Remove `box-shadow` from `::highlight(search-current)`, `border-bottom` from `::highlight(annotation)` and `::highlight(warning)`, `border-inline-start` from `::highlight(quote)`. Keep only `background-color` and valid properties (color, text-decoration, text-shadow, -webkit-text-stroke-*). `::highlight(error)` text-decoration is fine.
+  - **Resolve e426eb0 color-mix() opacity**: Either confirm in browser that `transparent 85%` produces acceptable visual result, or switch to `oklch(from var(--theme-arch-blue) l c h / 0.15)` which preserves original 15% opacity intent more faithfully.
+  - **Stop adding new rgba work** until ::highlight() cleanup and e426eb0 are resolved.
