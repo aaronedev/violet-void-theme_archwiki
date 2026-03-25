@@ -482,8 +482,10 @@
 | 2026-03-25 | Replace hardcoded rgba(0,0,0) with rgba($darker) in dialog/popover backdrops in ui-components.styl | 86b29b1 |
 | 2026-03-25 | Replace hardcoded rgba(0,0,0,0.5) with rgba($darker, 0.5) in modal overlay background in positioning.styl | 124933f |
 | 2026-03-25 | Replace hardcoded rgba(255,255,255,0.01) and rgba(255,255,255,0.02) with rgba($white, ...) in tables.styl zebra striping | 91d970b |
+| 2026-03-25 | Replace hardcoded rgba in background-texture-light/dark with theme variables ($lighter/$darker) in content.styl | 4ffcecf |
+| 2026-03-25 | Replace remaining hardcoded rgba(255,255,255) and rgba(0,0,0) with theme variables in effects.styl, ui-components.styl, search.styl, responsive-enhanced.styl, states.styl, modern-css.styl | be3c2b8 |
 
-Last updated: 2026-03-25 07:30
+Last updated: 2026-03-25 09:43
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
