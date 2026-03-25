@@ -8494,3 +8494,20 @@ Last updated: 2026-03-25 05:51
   - Remove test-page.png, systemd-check.png, test-*.png — these were flagged before and not cleaned up
   - Commit capture-states.js first, then re-capture firefox states only, verify distinct hashes, then commit those 4 firefox screenshots
   - Do NOT commit all current/ screenshots at once — only firefox is new/broken
+
+### 2026-03-25 06:34
+- Review target: b9ce7d7 (dirty worktree: updated capture-states.js + many PNG artifacts)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **CSS fix is correct**: `rgba(0,0,0,0.3)` → `rgba($darker, 0.3)` in `a[data-title]` box-shadow. Scoped, single line, follows the established hardcoded-color→variable pattern. `$darker` is defined in the codebase.
+  - **Tooltip is NOT captured**: The `[data-title]` attribute targets hover tooltips (link preview tooltips in MediaWiki). The capture script has `default`, `menu-open`, `toc-open`, `search-active` — none of these trigger a link-hover tooltip. No "tooltip-open" or "link-hover" state exists. Cannot verify the box-shadow color change visually.
+  - **capture-states.js updated but still uncommitted**: Changes are real improvements (userAgent spoofing, better TOC selectors, proper state reset helper, added search-active state). Should be committed separately.
+  - **Worktree dirty — recurring pattern**: Every review cycle ends with uncommitted `.agent/archwiki/current/*.png`, `.agent/archwiki/diffs/*.png`, `capture-states.js`, and `package.json` changes. Last clean commit was `5f6cc1b` (reviewer findings).
+  - **Firefox screenshots**: At 03:24, firefox captures were broken (all identical hashes). Current worktree has `firefox.desktop.default.png` updated (78KB, different from previous). Still no firefox menu-open/search-active/toc-open states.
+  - **New untracked artifacts**: baselines/ directory (23 files), test-*.png files — these keep appearing and were flagged before.
+- Implementer instructions:
+  - **Add tooltip capture state**: In capture-states.js, add a `{ name: 'tooltip-open', fn: async () => { await page.locator('a[data-title]').first().hover(); await page.waitForTimeout(500); } }` state and capture at least one page in that state. Commit before/after tooltip screenshot diffs.
+  - **Commit capture-states.js first**: Separate the tooling fix from the visual artifacts. `git add .agent/archwiki/capture-states.js && git commit -m "chore: improve ArchWiki capture script with userAgent, resetStates helper, and search-active state"`
+  - **Commit only relevant screenshots**: If the firefox.desktop.default.png changed, commit just that. Do not mass-commit all current/ screenshots.
+  - **Clean up baselines/ and test-*.png**: Delete or document why baselines/ is needed. Remove test-*.png artifacts.
+  - **Do NOT bump package.json** until new CSS is committed (already committed: b9ce7d7).
