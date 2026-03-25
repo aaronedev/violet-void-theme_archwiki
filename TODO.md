@@ -480,8 +480,9 @@
 | 2026-03-25 | Replace hardcoded hex colors with theme variables in diff print styles and message-boxes print styles | c4bcfe7 |
 | 2026-03-25 | Replace hardcoded rgba(0,0,0,0.3) with rgba($darker, 0.3) in PageForms combo/multi-select dropdown box-shadows in extensions.styl | df3abb4 |
 | 2026-03-25 | Replace hardcoded rgba(0,0,0) with rgba($darker) in dialog/popover backdrops in ui-components.styl | 86b29b1 |
+| 2026-03-25 | Replace hardcoded rgba(0,0,0,0.5) with rgba($darker, 0.5) in modal overlay background in positioning.styl | 124933f |
 
-Last updated: 2026-03-25 04:45
+Last updated: 2026-03-25 05:51
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
