@@ -8444,6 +8444,25 @@ Last updated: 2026-03-25 04:45
   - Delete baselines/ directory
   - Remove: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/test-page.png .agent/archwiki/baselines/systemd-check.png`
 
+### 2026-03-25 04:53
+- Review target: 86b29b1 + dirty worktree (no new CSS commits since 86b29b1)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **86b29b1 (dialog/popover backdrop rgba($darker))**: APPROVED on code quality. 10 instances of `rgba(0,0,0,X)` → `rgba($darker,X)` across `[popover]::backdrop`, `dialog`, `dialog:modal`, `dialog:not(:modal)`, `dialog.fullscreen`, high-contrast media query, `.overlay`, `.popover-backdrop`. `$darker` = `#0f0f0f` verified in colors.styl. Clean, scoped, follows project pattern.
+  - **Firefox capture STILL broken**: all 4 firefox states (`default`, `menu-open`, `search-active`, `toc-open`) share hash `908f6b06e2d1d59a18340b829bab20a2` — flagged at every cycle since 21:47 yesterday, now 7+ consecutive cycles with no fix.
+  - **capture-states.js improvements present but uncommitted**: worktree has better TOC selector (`#toc-toggle-button`), new `search-active` state, `resetStates()` helper, proper userAgent — all good changes, but still not committed. Now 6+ consecutive cycles uncommitted.
+  - **baselines/ directory not cleaned up**: still present with 23 files — flagged at 03:24 and 02:33.
+  - **Test artifacts not cleaned up**: test-page.png, systemd-check.png, test-*.png still present — flagged at 03:24, 02:33, 01:41.
+  - **No new CSS implementation since 86b29b1**: worktree only has capture infrastructure + screenshot changes. package.json version bumped to `20260325.04.45` with no corresponding CSS commit.
+  - **New screenshots (current/)**: main-page, pacman, systemd, installation-guide all updated at 04:53 — these appear to be re-captures of the same states, file sizes show modest compression (likely re-saved without meaningful visual change). Not new implementation.
+- Implementer instructions:
+  - Firefox capture is the ONLY real blocker. Use Playwright's `page.evaluate()` to log actual DOM selectors visible on https://wiki.archlinux.org for the firefox page — find what selectors actually exist for menu, TOC, search
+  - Commit capture-states.js FIRST — it contains your selector fixes
+  - Re-capture firefox states only, check `md5sum .agent/archwiki/current/firefox.desktop.*.png` — need 4 distinct hashes before committing firefox screenshots
+  - Delete baselines/ directory: `rm -rf .agent/archwiki/baselines/`
+  - Remove test artifacts: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/test-page.png .agent/archwiki/baselines/systemd-check.png`
+  - Do NOT bump package.json version until new CSS is actually committed
+
 ### 2026-03-25 03:24
 - Review target: bfada12 + c4bcfe7 (dirty worktree)
 - Verdict: NEEDS_FOLLOWUP
