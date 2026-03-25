@@ -484,9 +484,10 @@
 | 2026-03-25 | Replace hardcoded rgba(255,255,255,0.01) and rgba(255,255,255,0.02) with rgba($white, ...) in tables.styl zebra striping | 91d970b |
 | 2026-03-25 | Replace hardcoded rgba in background-texture-light/dark with theme variables ($lighter/$darker) in content.styl | 4ffcecf |
 | 2026-03-25 | Replace remaining hardcoded rgba(255,255,255) and rgba(0,0,0) with theme variables in effects.styl, ui-components.styl, search.styl, responsive-enhanced.styl, states.styl, modern-css.styl | be3c2b8 |
+| 2026-03-25 | Replace hardcoded rgba(0,0,0,0.2) with rgba($darker, 0.2) in box-shadows in animations.styl, content.styl, and notifications.styl | 2868eda |
 | 2026-03-25 | Expand keyboard-inset support to all four sides (top/right/bottom/left) in mobile.styl with logical properties and multi-selector targeting | 04f6131 |
 
-Last updated: 2026-03-25 12:06
+Last updated: 2026-03-25 14:28
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -8571,6 +8572,21 @@ Last updated: 2026-03-25 12:06
   - **Visual verification required before final approval**: Capture dialog/popover with open modal state (warning/success/info variants). Compare against original dark backdrop. If bright translucent overlays are intentional, document the design rationale in the commit message.
   - **Decide on deletions**: Either `git add -u .agent/archwiki/baselines/ .agent/archwiki/diffs/ .agent/archwiki/current/` and commit the cleanup, OR `git checkout HEAD -- .agent/archwiki/` to restore the tracked files. Do not leave the worktree in this ambiguous state.
   - CSS rgba replacement code is technically correct — no code rework needed.
+
+### 2026-03-25 14:21
+- Review target: dirty worktree (`.gitignore`, `package.json`, `src/components/modern-css.styl`)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Pending followups from 13:42 review UNRESOLVED**: (1) 8bc6990 dialog backdrop visual change (dark→bright), (2) broken screenshot pipeline (all screenshots same hash), (3) mass uncommitted deletions of baselines/diffs/scripts. None were addressed in this cycle.
+  - **Opacity change in worktree modern-css.styl**: Replaces `rgba(255, 68, 68, 0.05)` and `rgba(68, 255, 68, 0.05)` with `rgba(var(--arch-red-rgb), 0.15)` and `rgba(var(--arch-green-rgb), 0.15)`. The opacity went from `0.05` → `0.15` — a 3x visibility increase. This is a visual behavior change, not a pure refactor. No rendered evidence provided.
+  - **RGB values are correct**: `--arch-red-rgb 255,26,103` matches `$secondary-red #ff1a67`. `--arch-green-rgb 75,254,155` matches `$green #4bfe9b`. `--arch-blue-rgb 137,80,199` matches `$arch-blue #8950c7`. The CSS custom property structure inside `@css{}` is correct.
+  - **Missing commit**: Worktree has not been committed. The changes (especially the opacity change) need to be either committed with a note explaining the opacity rationale, or the opacity needs to be reverted to 0.05 if unintentional.
+  - **The screenshot pipeline is still broken**: Current `.agent/archwiki/current/` PNGs show modified timestamps but no visual diff evidence has been generated from the new work.
+- Implementer instructions:
+  - **Confirm opacity change**: Is `0.15` intentional for form validation `:has(:invalid)` / `:has(:valid)` feedback backgrounds? If yes, document rationale. If no, revert to `0.05`.
+  - **Commit or decide**: Either `git add -u . && git commit -m "fix: replace hardcoded rgba with theme variables in modern-css.styl"` (if opacity intentional) OR revert opacity to `0.05` in the same commit.
+  - **Do not proceed to new work** until: (1) dialog backdrop 8bc6990 is either reverted or visually verified, (2) screenshot pipeline is fixed and providing valid diffs.
+  - CSS structure (custom property setup, `@css{}` wrapper, theme variable usage): sound. No code quality objection — only the opacity behavior change needs resolution.
 
 ### 2026-03-25 13:42
 - Review target: commits c9906ab, cc23a84, 9b3eca4, bde267b + dirty worktree
