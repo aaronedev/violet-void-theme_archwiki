@@ -604,7 +604,7 @@ video::cue
   color $lighter
 
   // Background for better readability
-  background-color rgba(0, 0, 0, 0.75)
+  background-color rgba($darker, 0.75)
 
   // Padding around text
   padding 0.2em 0.4em
@@ -614,7 +614,7 @@ video::cue
   line-height 1.4
 
   // Ensure contrast
-  text-shadow 0 1px 2px rgba(0, 0, 0, 0.8)
+  text-shadow 0 1px 2px rgba($darker, 0.8)
 
 // ::cue(:past) - Style captions that have already been displayed
 video::cue:past
@@ -623,7 +623,7 @@ video::cue:past
 // ::cue(:future) - Style upcoming captions
 video::cue:future
   color $lighter
-  background-color rgba(0, 0, 0, 0.85)
+  background-color rgba($darker, 0.85)
 
 // ::cue(.highlight) - Style highlighted cue regions (when using ::cue-region)
 video::cue(.highlight)
@@ -841,7 +841,7 @@ audio:stalled::after
 video:picture-in-picture
   // PiP window styling - typically a small floating window
   border 2px solid $arch-blue
-  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  box-shadow 0 4px 20px rgba($darker, 0.4)
   background-color $darker
 
   // Ensure video fills the PiP window
@@ -869,13 +869,13 @@ video:picture-in-picture::before
 // Audio in PiP mode (less common but possible)
 audio:picture-in-picture
   border 2px solid $arch-blue
-  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  box-shadow 0 4px 20px rgba($darker, 0.4)
   background-color $darker
   border-radius 8px
 
 // PiP controls overlay styling (when video supports custom controls)
 video:picture-in-picture::-webkit-media-controls
-  background linear-gradient(transparent, rgba(0, 0, 0, 0.7))
+  background linear-gradient(transparent, rgba($darker, 0.7))
 
 // Fullscreen + PiP combination - when video is fullscreen but also in PiP
 video:fullscreen:picture-in-picture
