@@ -108,7 +108,7 @@ table.wikitable tr:nth-child(even)
 .wikitable tr:nth-child(even)
 body .mw-body table tr:nth-child(even)
 .mw-parser-output table tr:nth-child(even)
-  background-color rgba(255, 255, 255, 0.02) !important
+  background-color rgba($white, 0.02) !important
 
 // Hover state
 table.wikitable tr:hover td
@@ -171,7 +171,7 @@ body .mw-body table tr:hover td
     white-space normal
 
   tr:nth-child(even)
-    background-color rgba(255, 255, 255, 0.01) // Zebra striping
+    background-color rgba($white, 0.01) // Zebra striping
 
   tr:hover td
     background-color rgba($arch-blue, 0.05)
@@ -252,7 +252,7 @@ table.styled-table
 
   // Zebra striping
   tbody tr:nth-child(even)
-    background-color rgba(255, 255, 255, 0.01)
+    background-color rgba($white, 0.01)
 
   // Row hover effect
   tbody tr:hover td
@@ -267,7 +267,7 @@ table.styled-table
   // the `th` definition above, but on hover they’ll get a subtle
   // violet tint instead of a white flash.
   tr:nth-child(even)
-    background-color rgba(255, 255, 255, 0.01) !important
+    background-color rgba($white, 0.01) !important
 
   tr:nth-child(odd)
     background-color transparent !important
@@ -414,13 +414,13 @@ table.results
   tbody tr:nth-child(even)
     // Apply a subtle zebra striping. Use !important on the cell to override
     // upstream .wrap backgrounds defined in Archweb.
-    background-color rgba(255, 255, 255, 0.01)
+    background-color rgba($white, 0.01)
 
   // Override row striping at the cell level to ensure `.wrap` cells inherit
   // the same background instead of the upstream light colour. Without this,
   // the description column remains light due to its `.wrap` class.
   tbody tr:nth-child(even) td
-    background-color rgba(255, 255, 255, 0.01) !important
+    background-color rgba($white, 0.01) !important
 
   tbody tr:nth-child(odd) td
     background-color transparent !important
@@ -438,7 +438,7 @@ table.results
   // browsers.  Then override the hover background to our subtle blue tint.
   tr:nth-child(even of :not([hidden]))
   tr:nth-child(even)
-    background-color rgba(255, 255, 255, 0.01) !important
+    background-color rgba($white, 0.01) !important
 
   tr:nth-child(odd of :not([hidden]))
   tr:nth-child(odd)
