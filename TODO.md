@@ -8422,3 +8422,22 @@ Last updated: 2026-03-25 03:19
   - Before committing visual artifacts: verify `md5sum` across states shows distinct hashes per state (not all identical)
   - Do NOT attribute massive diff sizes to the CSS fix — the installation-guide default diff inflation is a capture artifact, not a CSS regression
   - Once capture infrastructure is stable and re-committed, regenerate diffs cleanly and update only those
+
+### 2026-03-25 03:24
+- Review target: bfada12 + c4bcfe7 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **bfada12 (code block rgba($darker))**: APPROVED on code quality. Scoped replacement of `rgba(0,0,0,0.4)` → `rgba($darker, 0.4)` and `rgba(0,0,0,0.5)` → `rgba($darker, 0.5)` in two box-shadow declarations. Follows project pattern. Variables exist and are defined.
+  - **c4bcfe7 (print styles hardcoded colors)**: APPROVED on code quality. Replaces `#ccc/#e8f5e9/#4caf50/#ffebee/#f44336` with `$print-border/$print-bg/$green/$red` in diff.styl and message-boxes.styl print blocks. Also replaces `#f9f9f9/#aaa/#36c/#333/#0645ad` with `$print-bg/$print-border-light/$arch-blue/$print-text`. Variables verified: `$print-border`, `$print-border-light`, `$print-bg`, `$print-text` all exist in colors.styl.
+  - **Firefox capture still broken**: all 4 firefox states (default/menu-open/search-active/toc-open) share hash `908f6b06e2d1d59a18340b829bab20a2` — identical to the 02:33 review. The implementer was explicitly told to fix this at 02:33 and it was not fixed.
+  - **capture-states.js still uncommitted**: same issue flagged at 02:33. Improvements present (userAgent, search-active state, resetStates helper, improved TOC selectors) but not committed.
+  - **baselines/ directory introduced**: new untracked directory with 23 baseline files — non-standard artifact. Purpose unclear.
+  - **test artifacts untracked**: test-page.png, systemd-check.png, test-click.png, test-default.png, test-menu-open.png — these were flagged for removal at 02:33 and still present.
+  - **Other pages capture working**: installation-guide, main-page, pacman, systemd all show distinct hashes per state.
+  - **package.json version**: bumped cleanly to 20260325.03.22.
+- Implementer instructions:
+  - Firefox capture is the only blocker. Open https://wiki.archlinux.org in a real browser, inspect the actual HTML for menu/TOC/search elements, find working selectors, update capture-states.js and commit it
+  - Delete the baselines/ directory — it's an untracked non-standard artifact
+  - Remove test-page.png, systemd-check.png, test-*.png — these were flagged before and not cleaned up
+  - Commit capture-states.js first, then re-capture firefox states only, verify distinct hashes, then commit those 4 firefox screenshots
+  - Do NOT commit all current/ screenshots at once — only firefox is new/broken
