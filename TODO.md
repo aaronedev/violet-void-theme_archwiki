@@ -8571,3 +8571,21 @@ Last updated: 2026-03-25 12:06
   - **Visual verification required before final approval**: Capture dialog/popover with open modal state (warning/success/info variants). Compare against original dark backdrop. If bright translucent overlays are intentional, document the design rationale in the commit message.
   - **Decide on deletions**: Either `git add -u .agent/archwiki/baselines/ .agent/archwiki/diffs/ .agent/archwiki/current/` and commit the cleanup, OR `git checkout HEAD -- .agent/archwiki/` to restore the tracked files. Do not leave the worktree in this ambiguous state.
   - CSS rgba replacement code is technically correct — no code rework needed.
+
+### 2026-03-25 13:42
+- Review target: commits c9906ab, cc23a84, 9b3eca4, bde267b + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **8bc6990 dialog backdrop issue UNRESOLVED**: The modal ::backdrop color changes (dark/desaturated 0.85 → bright/saturated 0.4-0.5) from the previous review's NEEDS_FOLLOWUP remain in ui-components.styl with no visual evidence or rollback. The implementer proceeded to new work without addressing the pending followup.
+  - **Screenshot pipeline completely broken**: ALL desktop current screenshots share identical MD5 hash `05bf4ae73a0ba2615091e55a72188144` (76083B). ALL mobile current screenshots share hash `dc1f75d703a934b0b8deadba0f20a566` (69815B). This means every page/state variation (default, menu-open, search-active, toc-open) is the same placeholder/error image. No visual evidence is valid from this pipeline.
+  - **Worktree mass deletions uncommitted**: baselines/ (20 files), diffs/ (20 files), test scripts (capture-states.js, check-dom.js, check-interactive.js, scout-run.js, test-screenshot.js), root test PNGs — all deleted but not committed. This is the same "decide on deletions" issue flagged in the previous review, now with baselines/diffs permanently removed.
+  - **c9906ab (Media Viewer)**: APPROVED on code quality. 429 lines of legitimate mw-mmv styling. Proper theme variables ($darker, $arch-blue, $border-radius, etc.), backdrop-filter blur, animations (fade-in, slide-up, spin), mobile responsive, reduced motion. Well-structured.
+  - **cc23a84 (chessboard rgba fix)**: APPROVED on code quality. `rgba(137,80,199, 0.15)` → `rgba($arch-blue, 0.15)` in advanced.styl. Clean, scoped.
+  - **9b3eca4 (border-image-repeat utilities)**: APPROVED on code quality. 43 lines of utility classes for border-image-repeat. Clean.
+  - **bde267b (TODO.md doc-only)**: No code review needed.
+  - **.gitignore now covers .agent/**: The worktree adds `.agent/` to .gitignore, which prevents future artifact pollution from appearing in git status. Positive change but doesn't address the already-tracked files.
+- Implementer instructions:
+  - **Fix dialog backdrop FIRST** before proceeding: Either (a) revert 8bc6990's dialog backdrop changes to the original dark rgba values, or (b) capture warning/success/info dialog open states showing the new bright overlays are intentional and document rationale
+  - **Fix screenshot capture pipeline**: The all-same-hash desktop/mobile issue indicates capture tool failure. Do not run another visual capture until the underlying interaction selectors are fixed. All current screenshots are invalid placeholders.
+  - **Decide on deletions NOW**: The baselines/diffs are already deleted. Either `git add -u .agent/archwiki/ && git commit -m "chore: remove archwiki test artifacts and baselines"` to finalize the cleanup, or restore from HEAD if deletion was unintentional. Do not leave these deletions in a staged-but-uncommitted or unstaged state.
+  - CSS code (c9906ab, cc23a84, 9b3eca4): APPROVED — no rework needed on those commits.
