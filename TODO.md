@@ -487,8 +487,9 @@
 | 2026-03-25 | Replace hardcoded rgba(0,0,0,0.2) with rgba($darker, 0.2) in box-shadows in animations.styl, content.styl, and notifications.styl | 2868eda |
 | 2026-03-25 | Expand keyboard-inset support to all four sides (top/right/bottom/left) in mobile.styl with logical properties and multi-selector targeting | 04f6131 |
 | 2026-03-25 | Replace hardcoded color white with $white theme variable in menu-heading() and menu-list-item() hover in menus.styl mixins | 39d4041 |
+| 2026-03-25 | Replace hardcoded #fff with $white in -webkit-mask linear-gradient in gradient-borders.styl (.gradient-border and .gradient-border-animated) | 4f765ad |
 
-Last updated: 2026-03-25 19:06
+Last updated: 2026-03-25 20:29
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -8397,6 +8398,20 @@ Last updated: 2026-03-25 19:06
   - Firefox is the ONLY remaining capture issue. The selectors in capture-states.js don't match ArchWiki's current HTML for the menu/TOC/search toggles in Firefox. Before running another capture: inspect https://wiki.archlinux.org in Firefox DevTools and find the actual checkbox/button selectors for the interactive states
   - Do not commit any firefox screenshots until they show distinct hashes per state
   - Remove test artifacts before any artifact commits: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/systemd-check.png`
+
+### 2026-03-25 20:52
+- Review target: commit 4f765ad (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **4f765ad**: `-webkit-mask linear-gradient(#fff 0 0)` → `$white` in `.gradient-border::before` and `.gradient-border-animated::before` (gradient-borders.styl lines 51 and 84). `$white = #ffffff` verified in colors.styl, imported at top of file. Clean, scoped, follows the ongoing variable-replacement series pattern.
+  - Worktree changes: only .gitignore (comment cleanup + additional patterns), package.json (version bump to 20260325.20.34), TODO.md (completion log entry for 4f765ad). No production CSS beyond the commit.
+  - Firefox screenshot capture STILL broken: desktop `search-active`/`toc-open` share hash with `default` (8373727d86a3679a4de9181b87bde35d); mobile `menu-open`/`search-active`/`toc-open` share with `default` — 8+ consecutive review cycles, same persistent issue.
+  - Non-firefox pages: distinct hashes per state confirmed (menu-open differs from default, search-active differs from default). Pipeline functional for those pages.
+  - Test artifacts (`test-*.png`) still uncommitted in current/. Firefox screenshot capture issue unchanged.
+- Implementer instructions:
+  - CSS (4f765ad): APPROVED — no action needed
+  - Firefox capture remains the outstanding issue. Do not re-commit firefox screenshots until selectors match ArchWiki's actual Firefox HTML
+  - Minor worktree changes (.gitignore, package.json version) are ready to commit whenever implementer chooses
 
 ### 2026-03-24 21:47
 - Review target: commit 7613622 (dirty worktree)
