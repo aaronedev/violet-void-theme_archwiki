@@ -8512,3 +8512,23 @@ Last updated: 2026-03-25 07:30
   - **Commit only relevant screenshots**: If the firefox.desktop.default.png changed, commit just that. Do not mass-commit all current/ screenshots.
   - **Clean up baselines/ and test-*.png**: Delete or document why baselines/ is needed. Remove test-*.png artifacts.
   - **Do NOT bump package.json** until new CSS is committed (already committed: b9ce7d7).
+
+### 2026-03-25 09:08
+- Review target: dirty worktree (src/components/content.styl rgba replacements + capture infrastructure)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **content.styl change is legitimate**: Replaces hardcoded `rgba(255,255,255, 0.03)` → `rgba($lighter, 0.03)` in `.background-texture-light` and `rgba(0,0,0, 0.05)` → `rgba($darker, 0.05)` in `.background-texture-dark`. Both are theme-variable replacements consistent with the ongoing rgba hardcoded-color fix series. `$lighter = #e7e7e7`, `$darker = #0f0f0f`. The original `rgba(255,255,255 0.03)` was also missing the comma before alpha (Stylus shorthand) — the change fixes that syntax issue too.
+  - **No TODO.md entry for content.styl change**: The completion log has no entry for these replacements. Need a completion log entry and a commit.
+  - **Firefox capture STILL broken**: All 4 states (default/menu-open/search-active/toc-open) have identical file size: 78232 bytes. Previous cycle flagged at 06:34 had the same issue. The hash verification added to capture-states.js should have caught this — the worktree was run at 09:08 but results not inspected.
+  - **capture-states.js still uncommitted**: Running improvements in worktree but not committing. Now 8+ consecutive cycles. The new hash verification feature (added at 09:08) is itself uncommitted.
+  - **baselines/ directory persistent**: 23 baseline files still present. Flagged at 03:24, 02:33, 01:41, 06:34 — never cleaned up.
+  - **Test artifacts persistent**: test-*.png files still present. Same flagging history as baselines/.
+  - **package.json version bumped without new CSS**: Now at `20260325.08.38` — bumped again despite no new CSS committed since 86b29b1 (the content.styl worktree change is uncommitted).
+- Implementer instructions:
+  - Commit content.styl with a descriptive message: `fix: replace hardcoded rgba in background-texture-light/dark with theme variables in content.styl`
+  - Add TODO.md completion log entry for the content.styl rgba fix
+  - Run the hash verification output from capture-states.js — read it and act on it. The script now logs duplicates. If firefox still has identical hashes, do NOT commit firefox screenshots until fixed.
+  - Commit capture-states.js separately: `git add .agent/archwiki/capture-states.js && git commit -m "chore: ArchWiki capture script — hash verification, search-active state, resetStates helper"`
+  - Delete baselines/: `rm -rf .agent/archwiki/baselines/`
+  - Remove test artifacts: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/test-page.png .agent/archwiki/baselines/systemd-check.png`
+  - Do NOT bump package.json version again until new CSS is committed and verified
