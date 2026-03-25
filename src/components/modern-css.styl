@@ -2955,53 +2955,56 @@ h4[id]
 // This provides native text highlighting without modifying DOM
 // stylelint-disable-next-line selector-type-no-unknown
 @css {
+  /* Highlight color tokens - theme-consistent oklch values (85%+ browser support) */
+  /* ::highlight() pseudo-element support: Chrome 105+, Edge 105+, Safari (pending) */
+
   /* Search results highlight - found text in page search */
   ::highlight(search-results) {
-    background-color: rgba(130, 100, 255, 0.35);
+    background-color: oklch(65% 0.18 285 / 35%);
     color: inherit;
     border-radius: 2px;
   }
 
   /* Current/active search match highlight */
   ::highlight(search-current) {
-    background-color: rgba(255, 150, 50, 0.5);
+    background-color: oklch(68% 0.16 55 / 50%);
     color: inherit;
     border-radius: 2px;
-    box-shadow: 0 0 0 2px rgba(255, 150, 50, 0.3);
+    box-shadow: 0 0 0 2px oklch(68% 0.16 55 / 35%);
   }
 
   /* Annotation highlight - user-added notes/marks */
   ::highlight(annotation) {
-    background-color: rgba(137, 80, 199, 0.25);
-    border-bottom: 2px solid #8950c7;
+    background-color: oklch(58% 0.16 282 / 25%);
+    border-bottom: 2px solid oklch(58% 0.16 282);
   }
 
   /* Selection-like highlight for custom selections */
   ::highlight(custom-selection) {
-    background-color: rgba(100, 200, 150, 0.3);
+    background-color: oklch(68% 0.14 158 / 30%);
   }
 
   /* Quote highlight - for citation/reference highlighting */
   ::highlight(quote) {
-    background-color: rgba(75, 254, 155, 0.2);
-    border-inline-start: 3px solid #4bfe9b;
+    background-color: oklch(72% 0.16 168 / 20%);
+    border-inline-start: 3px solid oklch(72% 0.16 168);
   }
 
   /* Error highlight for validation errors */
   ::highlight(error) {
-    background-color: rgba(255, 26, 103, 0.25);
-    text-decoration: underline wavy #ff1a67;
+    background-color: oklch(58% 0.18 18 / 25%);
+    text-decoration: underline wavy oklch(58% 0.18 18);
   }
 
   /* Warning highlight for caution items */
   ::highlight(warning) {
-    background-color: rgba(255, 215, 0, 0.3);
-    border-bottom: 2px dashed #ffd700;
+    background-color: oklch(78% 0.14 88 / 30%);
+    border-bottom: 2px dashed oklch(78% 0.14 88);
   }
 
   /* Link highlight - for discovered links within content */
   ::highlight(link-found) {
-    background-color: rgba(80, 140, 255, 0.2);
+    background-color: oklch(65% 0.16 268 / 20%);
     text-decoration: underline;
   }
 }
