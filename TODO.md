@@ -488,7 +488,7 @@
 | 2026-03-25 | Expand keyboard-inset support to all four sides (top/right/bottom/left) in mobile.styl with logical properties and multi-selector targeting | 04f6131 |
 | 2026-03-25 | Replace hardcoded color white with $white theme variable in menu-heading() and menu-list-item() hover in menus.styl mixins | 39d4041 |
 
-Last updated: 2026-03-25 16:28
+Last updated: 2026-03-25 19:06
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -8662,3 +8662,22 @@ Last updated: 2026-03-25 16:28
   - **Improve dialog backdrop theme usage**: Replace hardcoded rgba in warning/success/info dialog backdrops with `rgba($darker, 0.85)` or define `$warning-backdrop`, `$success-backdrop`, `$info-backdrop` tokens in colors.styl. The current fix works but breaks the "all hardcoded colors → theme variables" pattern of the rest of the series.
   - **Do not proceed to new CSS work** until worktree is clean and dialog backdrop theme variables are addressed.
   - CSS code (ffb1f0d, 39d4041, 7281a59, 1d8783c behavior): APPROVED — only theme-variable-inconsistency on dialog backdrop needs addressing.
+
+
+### 2026-03-25 19:06
+- Review target: d7005ca, ae13078 + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **d7005ca** (pwa/mobile/preferences rgba→$darker): APPROVED on code quality. `rgba(0,0,0,x)` → `rgba($darker, x)` correctly applied in pwa.styl, mobile.styl, preferences.styl. Scoped, correct, follows series pattern.
+  - **ae13078** (interwiki/gadgets rgba→$darker): APPROVED on code quality. `rgba(0,0,0,x)` → `rgba($darker, x)` correctly applied in interwiki.styl and gadgets.styl. Scoped, correct.
+  - **Build succeeds**: `npm run build` completes cleanly (844KB CSS).
+  - **PREVIOUS 17:25 FOLLOWUPS STILL UNRESOLVED**:
+    1. **Dialog backdrop hardcoded rgba still present**: `ui-components.styl` lines 400-402 still show `rgba(127,29,29,0.85)`, `rgba(21,128,61,0.85)`, `rgba(29,78,216,0.85)` — same hardcoded values flagged 3 reviews ago. Not addressed.
+    2. **Worktree still extremely dirty**: 90+ uncommitted deletions (baselines/, diffs/, scripts/, root PNGs) and 20+ modified files (current/*.png, .gitignore, package.json, TODO.md). Git status is unreadable. The `git add -u .agent/ && git commit` step from 17:25 was never run.
+  - **Pattern concern**: Three consecutive review cycles (13:42→16:20→17:25→now) have identified the same two issues (dialog backdrop rgba, worktree cleanup) without resolution, while implementer continues to new rgba replacements in other files.
+  - **Screenshot pipeline still blocked**: ArchWiki Anubis blocking prevents visual verification. No new evidence available.
+- Implementer instructions:
+  - **Address the dialog backdrop NOW**: Replace `rgba(127,29,29,0.85)` / `rgba(21,128,61,0.85)` / `rgba(29,78,216,0.85)` in ui-components.styl lines 400-402 with theme-consistent values. Use `rgba($darker, 0.85)` for all three variants (per the 17:25 suggestion), or define semantic tokens if color-differentiation per dialog type is intentional. Document the design decision.
+  - **Commit the worktree cleanup**: `git add -u .agent/ archwiki-*.png check-errors.js visual-test*.js test-homepage.png && git commit -m "chore: remove archwiki test artifacts and baselines"` — this has been pending since the 16:20 review.
+  - **Stop adding new rgba replacements** until the dialog backdrop and worktree cleanup are resolved. The series is being undermined by incomplete follow-through.
+  - CSS code (d7005ca, ae13078): APPROVED — only the two outstanding followups block approval of the overall direction.
