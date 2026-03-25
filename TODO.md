@@ -478,8 +478,9 @@
 | 2026-03-25 | Replace hardcoded rgba(0,0,0) with rgba($darker) in code block box-shadow | bfada12 |
 | 2026-03-25 | Replace hardcoded color values with theme variables in chess/Go board game styling (advanced.styl) and add $board-black-light, $board-black-dark, $board-white-light, $board-white-dark variables | 4bc4e63 |
 | 2026-03-25 | Replace hardcoded hex colors with theme variables in diff print styles and message-boxes print styles | c4bcfe7 |
+| 2026-03-25 | Replace hardcoded rgba(0,0,0,0.3) with rgba($darker, 0.3) in PageForms combo/multi-select dropdown box-shadows in extensions.styl | df3abb4 |
 
-Last updated: 2026-03-25 03:19
+Last updated: 2026-03-25 03:49
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -8422,6 +8423,25 @@ Last updated: 2026-03-25 03:19
   - Before committing visual artifacts: verify `md5sum` across states shows distinct hashes per state (not all identical)
   - Do NOT attribute massive diff sizes to the CSS fix — the installation-guide default diff inflation is a capture artifact, not a CSS regression
   - Once capture infrastructure is stable and re-committed, regenerate diffs cleanly and update only those
+
+### 2026-03-25 04:07
+- Review target: df3abb4 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **df3abb4 (PageForms combo/multi-select box-shadow)**: APPROVED on code quality. `rgba(0,0,0,0.3)` → `rgba($darker, 0.3)` in two dropdown box-shadow declarations in extensions.styl. `$darker` variable exists. Clean, scoped, follows project pattern.
+  - **CSS commits 4bc4e63, bfada12, c4bcfe7** (prior cycle): all APPROVED on code quality — no new issues.
+  - **Firefox capture still broken**: all 4 firefox states share hash `908f6b06e2d1d59a18340b829bab20a2` — unchanged since 03:24, now flagged at 03:24, 02:33, 01:41, 00:22, 23:26, 21:47 (6 consecutive cycles).
+  - **capture-states.js still uncommitted**: improvements (userAgent, search-active, resetStates, updated TOC selectors) in worktree since at least 02:33 — now 5 consecutive cycles with no commit.
+  - **baselines/ directory still present**: 23 untracked baseline files — flagged at 03:24 and 02:33, not removed.
+  - **Test artifacts still present**: test-click.png, test-default.png, test-menu-open.png, test-page.png in current/; test-page.png, systemd-check.png in baselines/ — flagged at 03:24, 02:33, 01:41, not removed.
+  - **Non-firefox pages capture working**: main-page, installation-guide, pacman, systemd all show distinct hashes per state.
+  - **TODO.md completion log**: df3abb4 entry present and correct.
+- Implementer instructions:
+  - CSS (df3abb4): APPROVED — no action needed
+  - Commit capture-states.js first — it contains the selector fixes needed for firefox
+  - Re-capture firefox states only, verify `md5sum` shows 4 distinct hashes, then commit those 4 firefox screenshots
+  - Delete baselines/ directory
+  - Remove: `rm .agent/archwiki/current/test-*.png .agent/archwiki/baselines/test-page.png .agent/archwiki/baselines/systemd-check.png`
 
 ### 2026-03-25 03:24
 - Review target: bfada12 + c4bcfe7 (dirty worktree)
