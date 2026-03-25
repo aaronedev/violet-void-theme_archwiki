@@ -8727,6 +8727,20 @@ Last updated: 2026-03-25 20:34
   - Provide browser screenshot showing `:interest-source` styled elements (dropdown item highlight, tooltip border, input focus border+shadow) rendering correctly with the new `color-mix()` colors.
   - If `color-mix()` produces noticeably different opacity than intended, consider `oklch(from var(--theme-arch-blue) l c h / 0.15)` as a closer replacement for the original rgba intent.
 
+### 2026-03-25 21:30
+- Review target: commits fe3417b, 5c62883, 3db2749 (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **fe3417b** (trailing zero cleanup): `oklch(... / 0.30)` → `oklch(... / 0.3)` and `... / 0.60)` → `... / 0.6)` in navigation.styl. Stylelint-compliant. Cosmetic but correct.
+  - **5c62883** (::highlight() invalid props + color-mix→oklch): RESOLVES TWO outstanding items from 20:40 review. Removes `border-radius` from `::highlight(search-results)`, `border-radius`+`box-shadow` from `::highlight(search-current)`, `border-bottom` from `::highlight(annotation)`, `border-inline-start` from `::highlight(quote)`, `border-bottom` from `::highlight(warning)` — all correct removals (none are valid ::highlight() properties). Also converts `color-mix(in srgb, var(--theme-arch-blue), transparent 85%)` → `oklch(from var(--theme-arch-blue) l c h / 0.15)` in navigation.styl, directly addressing the e426eb0 opacity deviation flagged in the 20:40 review. APPROVED.
+  - **3db2749** ('white' → $white): `color white` → `color $white` in community.styl (badge/thread styling) and discussion.styl (new-message indicator). Unquoted `white` is Stylus color keyword; `$white = #ffffff` verified in colors.styl. Scoped, correct. APPROVED.
+  - Worktree: only .gitignore (comment cleanup + patterns) and package.json (version bump to 20260325.21.26). No production CSS changes.
+  - Firefox screenshot capture still broken: all interactive states share identical hash with default — now 9+ consecutive cycles unchanged.
+- Implementer instructions:
+  - All three commits: APPROVED, no action needed
+  - Firefox capture remains the only outstanding issue. Do not re-commit firefox screenshots until they show distinct hashes per state
+  - Minor worktree changes (.gitignore, package.json) are ready to commit whenever implementer chooses
+
 ### 2026-03-25 20:40
 - Review target: d0a22dc (::highlight oklch), c04f200, 4f765ad, 91d970b, 4ffcecf, 2868eda, be3c2b8
 - Verdict: NEEDS_FOLLOWUP
