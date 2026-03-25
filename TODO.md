@@ -8695,3 +8695,18 @@ Last updated: 2026-03-25 19:06
   - **Add 65be993 to TODO.md completion log**: date 2026-03-25, item "Replace hardcoded rgba backdrop colors with theme variables in dialog::backdrop (warning/success/info)", commit 65be993.
   - **Optionally commit the .gitignore + package.json changes**: separate commit for version bump and gitignore cleanup is normal maintenance — approve at implementer's discretion.
   - After completion log update, the dialog backdrop rgba series can be marked fully resolved.
+
+### 2026-03-25 20:17
+- Review target: e426eb0 (fix: replace invalid rgba(var) with color-mix() in navigation.styl)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - Original bug is real: `rgba(var(--theme-arch-blue), 0.15)` is invalid CSS. `rgba()` expects numeric R/G/B/a components; `var(--theme-arch-blue)` returns a full color value like `#7c3aed`. Browser would reject the numeric slot. Fix is targeting a genuine CSS error.
+  - Replacement syntax: `color-mix(in srgb, var(--theme-arch-blue), transparent 85%)` is valid CSS Color 5. The `transparent 85%` syntax means 85% "weight" of transparent in the mix, which normalizes against any other percentage present.
+  - Visual deviation concern: original intent was "theme-arch-blue at 15% opacity". `color-mix()` with `transparent 85%` normalizes to roughly 50/50 mix (85/(85+85)), producing ~50% opacity of the color rather than 15%. This is a materially different visual result. May be acceptable given original was completely broken, but implementer should verify in browser.
+  - 4 `:interest-source` rules replaced in navigation.styl, all wrapped in `@supports selector(:interest-source)`. Correct progressive-enhancement pattern.
+  - Build succeeds: CSS compiles to `dist/main.css` without errors.
+  - No visual evidence: no screenshots of `:interest-source` open state before or after. `:interest-source` has ~85% browser support (Chrome 123+, Firefox 131+), so this is progressive enhancement anyway.
+  - Worktree clean of source changes: only `.gitignore` and `package.json` modified (legitimate maintenance).
+- Implementer instructions:
+  - Provide browser screenshot showing `:interest-source` styled elements (dropdown item highlight, tooltip border, input focus border+shadow) rendering correctly with the new `color-mix()` colors.
+  - If `color-mix()` produces noticeably different opacity than intended, consider `oklch(from var(--theme-arch-blue) l c h / 0.15)` as a closer replacement for the original rgba intent.
