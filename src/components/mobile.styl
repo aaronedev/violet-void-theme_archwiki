@@ -313,7 +313,7 @@ table.mw-html-magic-mw-data-interface
       // Header cells need higher z-index
       thead th:first-child
         z-index 3
-        background $base-secondary
+        background $darker
 
 // Priority-based column hiding for very small screens
 // Uses data-priority attribute for column importance
@@ -374,7 +374,7 @@ table.mw-html-magic-mw-data-interface
         border 1px solid $border-subtle
         border-radius 4px
         padding 0.5em
-        background $base-secondary
+        background $darker
 
       th
       td
@@ -388,7 +388,7 @@ table.mw-html-magic-mw-data-interface
         &::before
           content attr(data-label)
           font-weight 600
-          color $text-muted
+          color $muted
           margin-right 0.5em
           font-size 0.85em
 
@@ -399,8 +399,8 @@ table.mw-html-magic-mw-data-interface
     justify-content space-between
     padding 0.25em 0.5em
     font-size 0.75em
-    color $text-muted
-    background $base-secondary
+    color $muted
+    background $darker
     border-radius 4px 4px 0 0
 
     .scroll-position

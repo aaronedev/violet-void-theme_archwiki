@@ -1,3 +1,6 @@
+@import "../variables/colors"
+@import "../variables/layout"
+@import "../mixins/gradients"
 // =============================================================================
 // WIKIDATA ITEM DISPLAY - Property/Value Pairs and Related Styling
 // =============================================================================
@@ -9,7 +12,7 @@
 .wikidata-item
   margin 1.5em 0
   padding 1em
-  background $bg-secondary
+  background $darker
   border 1px solid $border-subtle
   border-radius $border-radius-md
 
@@ -62,7 +65,7 @@
     &::after
       content ':'
       margin-left 0.15em
-      color $text-muted
+      color $muted
 
   // Property value
   .property-value
@@ -73,7 +76,7 @@
 
     // Links within values
     a
-      color $accent
+      color $arch-blue
       text-decoration none
 
       &:hover
@@ -96,7 +99,7 @@
   border 1px solid rgba($arch-blue, 0.3)
   border-radius $border-radius-sm
   font-size 0.75em
-  color $text-muted
+  color $muted
 
   // Source icon
   &::before
@@ -104,7 +107,7 @@
     display inline-block
     width 0.75em
     height 0.75em
-    background $text-muted
+    background $muted
     mask-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 2v6h6M16 13H8M16 17H8M10 9H8'/%3E%3C/svg%3E")
     mask-size contain
     mask-repeat no-repeat
@@ -122,11 +125,11 @@
 
   label
     font-size 0.85em
-    color $text-muted
+    color $muted
 
   select
     padding 0.35em 0.75em
-    background $bg-tertiary
+    background $darker
     border 1px solid $border-subtle
     border-radius $border-radius-sm
     color $light
@@ -148,7 +151,7 @@
   align-items center
   gap 0.15em
   font-size 0.8em
-  color $text-muted
+  color $muted
   text-decoration none
 
   &:hover
@@ -165,13 +168,13 @@
 // STATEMENT RANK INDICATORS
 // =============================================================================
 .rank-preferred
-  color $success
+  color $green
 
 .rank-normal
-  color $text-muted
+  color $muted
 
 .rank-deprecated
-  color $warning
+  color $orange
   text-decoration line-through
 
 // SNAK TYPE STYLING
@@ -181,13 +184,13 @@
     color $light
 
   &.value-number
-    color $accent
+    color $arch-blue
 
   &.value-coordinate
-    color $info
+    color $secondary-blue
 
   &.value-time
-    color $text-muted
+    color $muted
     font-family $font-mono
 
   &.value-url
@@ -195,7 +198,7 @@
     word-break break-all
 
   &.value-entity
-    color $success
+    color $green
 
 // QUANTITY Styling
 // =============================================================================
@@ -206,14 +209,14 @@
 
   .quantity-amount
     font-weight 600
-    color $accent
+    color $arch-blue
 
   .quantity-unit
-    color $text-muted
+    color $muted
     font-size 0.9em
 
   .quantity-bound
-    color $text-muted
+    color $muted
     font-size 0.85em
 
 // MONOLINGUAL TEXT
@@ -225,7 +228,7 @@
 
   .language-code
     font-size 0.75em
-    color $text-muted
+    color $muted
     text-transform uppercase
 
   .text-content
@@ -244,11 +247,11 @@
     color $arch-blue
 
   .longitude
-    color $accent
+    color $arch-blue
 
   .globe-name
     font-size 0.8em
-    color $text-muted
+    color $muted
 
 // TABLE WIKIDATA
 // =============================================================================
@@ -258,7 +261,7 @@ table.wikidata-table
   margin 1em 0
 
   th
-    background $bg-tertiary
+    background $darker
     padding 0.75em
     text-align left
     font-weight 600

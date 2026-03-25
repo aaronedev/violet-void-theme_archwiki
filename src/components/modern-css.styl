@@ -92,7 +92,7 @@
     @scroll-state (snapped: y) {
       #toc li,
       .toc li {
-        outline: 2px solid var(--accent-color, #6c5ce7);
+        outline: 2px solid var(--accent-color, #8950c7);
         outline-offset: 2px;
       }
     }
@@ -117,16 +117,16 @@
   /* :snapped pseudo-class for elements that are snapped */
   @supports (selector(:snapped)) {
     :snapped {
-      outline: 2px solid var(--accent-color, #6c5ce7);
+      outline: 2px solid var(--accent-color, #8950c7);
       outline-offset: 2px;
     }
 
     :snapped-y {
-      border-left: 3px solid var(--accent-color, #6c5ce7);
+      border-left: 3px solid var(--accent-color, #8950c7);
     }
 
     :snapped-x {
-      border-top: 3px solid var(--accent-color, #6c5ce7);
+      border-top: 3px solid var(--accent-color, #8950c7);
     }
   }
 }
@@ -343,21 +343,21 @@ h4[id]
   /* Highlight form containers with invalid inputs */
   .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:invalid) {
     background: rgba(255, 68, 68, 0.05);
-    border-left: 3px solid var(--arch-red, #ff4444);
+    border-left: 3px solid var(--arch-red, #a80065);
     padding-left: 0.5em;
   }
 
   /* Success state for valid inputs */
   .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:valid:not(:placeholder-shown)) {
     background: rgba(68, 255, 68, 0.05);
-    border-left: 3px solid var(--arch-green, #44ff44);
+    border-left: 3px solid var(--arch-green, #4bfe9b);
     padding-left: 0.5em;
   }
 
   /* OOUI form validation */
   .oo-ui-fieldLayout:has(.oo-ui-inputWidget input:invalid) {
     background: rgba(255, 68, 68, 0.05);
-    border-left: 3px solid var(--arch-red, #ff4444);
+    border-left: 3px solid var(--arch-red, #a80065);
     padding-left: 0.5em;
   }
 
@@ -419,7 +419,7 @@ h4[id]
   /* Highlight sections containing code */
   .mw-heading:has(+ .mw-parser-output pre),
   .mw-heading:has(+ .mw-parser-output code) {
-    border-left: 3px solid var(--arch-blue, #1793d1);
+    border-left: 3px solid var(--arch-blue, #c7b8ff);
     padding-left: 0.5em;
   }
 
@@ -437,7 +437,7 @@ h4[id]
 
   /* Table of contents with active section */
   #toc:has(a.active) {
-    border-left: 3px solid var(--arch-blue, #1793d1);
+    border-left: 3px solid var(--arch-blue, #c7b8ff);
   }
 
   /* Message boxes with icons */
@@ -449,7 +449,7 @@ h4[id]
 
   /* Form sections with required fields */
   .mw-htmlform-field:has([required]) {
-    border-left: 2px solid var(--arch-blue, #1793d1);
+    border-left: 2px solid var(--arch-blue, #c7b8ff);
   }
 
   /* Highlight template documentation */
@@ -1849,7 +1849,7 @@ h4[id]
 @media (monochrome 0)
   // Not monochrome - full color
   .mono-adapt
-    color $text
+    color $light
     background $base
 
 
@@ -1919,10 +1919,10 @@ h4[id]
 
 :host([variant="secondary"])
   background $base
-  color $text
+  color $light
 
 :host([variant="danger"])
-  background $error-red
+  background $secondary-red
   color $light
 
 // Size variants via host attributes

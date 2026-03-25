@@ -371,15 +371,15 @@ table.diff
 // Print-friendly diff
 @media print
   .diff
-    border 1px solid #ccc
+    border 1px solid $border-subtle
 
     .diff-addedline
-      background-color #e8f5e9
-      border-left 3px solid #4caf50
+      background-color rgba($green, 0.15)
+      border-left 3px solid $green
 
     .diff-deletedline
-      background-color #ffebee
-      border-left 3px solid #f44336
+      background-color rgba($secondary-red, 0.15)
+      border-left 3px solid $secondary-red
 
     .diffchange
       background-color inherit
