@@ -488,8 +488,9 @@
 | 2026-03-25 | Expand keyboard-inset support to all four sides (top/right/bottom/left) in mobile.styl with logical properties and multi-selector targeting | 04f6131 |
 | 2026-03-25 | Replace hardcoded color white with $white theme variable in menu-heading() and menu-list-item() hover in menus.styl mixins | 39d4041 |
 | 2026-03-25 | Replace hardcoded #fff with $white in -webkit-mask linear-gradient in gradient-borders.styl (.gradient-border and .gradient-border-animated) | 4f765ad |
+| 2026-03-25 | Replace hardcoded rgba values with oklch() in ::highlight() pseudo-element selectors in modern-css.styl - all 8 highlight types now use modern oklch() color syntax with / alpha for better color management (85%+ browser support) | d0a22dc |
 
-Last updated: 2026-03-25 20:29
+Last updated: 2026-03-25 20:34
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
