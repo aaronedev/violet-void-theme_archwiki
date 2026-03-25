@@ -372,6 +372,49 @@
 // REDUCED MOTION
 // =============================================================================
 
+// =============================================================================
+// BORDER-IMAGE-REPEAT UTILITIES
+// =============================================================================
+
+// Browser support: 97%+
+// Controls how border images are tiled/repeated
+// Values: stretch (default), repeat, round, space
+
+.border-image-repeat-stretch
+  border-image-repeat stretch
+
+.border-image-repeat-repeat
+  border-image-repeat repeat
+
+.border-image-repeat-round
+  border-image-repeat round
+
+.border-image-repeat-space
+  border-image-repeat space
+
+// Two-value syntax: <horizontal> <vertical>
+.border-image-repeat-repeat-stretch
+  border-image-repeat repeat stretch
+
+.border-image-repeat-round-stretch
+  border-image-repeat round stretch
+
+.border-image-repeat-space-stretch
+  border-image-repeat space stretch
+
+.border-image-repeat-stretch-repeat
+  border-image-repeat stretch repeat
+
+.border-image-repeat-stretch-round
+  border-image-repeat stretch round
+
+.border-image-repeat-stretch-space
+  border-image-repeat stretch space
+
+// =============================================================================
+// REDUCED MOTION
+// =============================================================================
+
 @media (prefers-reduced-motion reduce)
   .gradient-border-animated::before
     animation none
