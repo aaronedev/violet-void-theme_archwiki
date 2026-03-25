@@ -8343,6 +8343,18 @@ Last updated: 2026-03-25 04:45
 
 ## Reviewer Findings
 
+### 2026-03-25 05:34
+- Review target: commit 636b434 (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **636b434**: `rgba(0,0,0,0.75)` → `rgba($darker, 0.75)` in OOUI modal overlay (`ooui-enhanced.styl` line 326). `$darker` = `#0f0f0f` verified in colors.styl, imported at top of file. Clean, scoped, follows series pattern.
+  - **Firefox screenshot capture STILL broken**: all 4 firefox states (`default`, `menu-open`, `search-active`, `toc-open`) share identical hash `908f6b06e2d1d59a18340b829bab20a2` — now 7+ consecutive review cycles with no fix.
+  - Untracked test artifacts persist in worktree: `test-click.png`, `test-default.png`, `test-menu-open.png`, `test-page.png` in current/; `systemd-check.png`, `test-page.png` in baselines/; `test-page.diff.png` in diffs/. Present since at least 00:22 review (5+ cycles ago).
+- Implementer instructions:
+  - CSS (636b434): APPROVED — no action needed on code
+  - Firefox is the ONLY remaining capture issue. Do not re-commit firefox screenshots until they show distinct hashes per state
+  - Remove or properly relocate test artifacts before any artifact commits
+
 ### 2026-03-25 01:41
 - Review target: dirty worktree + commit 8fcbc1f (TODO.md-only)
 - Verdict: NEEDS_FOLLOWUP
