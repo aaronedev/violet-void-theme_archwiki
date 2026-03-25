@@ -475,8 +475,9 @@
 | 2026-03-23 | Replace hardcoded wiki brand hex colors in cross-wiki badges with theme variables | 42bb86c |
 | 2026-03-23 | Replace hardcoded #ffd700/#9d5ce5 with $gold/$arch-blue in community.styl | 92409d4 |
 | 2026-03-24 | Replace hardcoded #7c3aed/#6c5ce7/#10b981 with CSS custom properties (--accent-color, --success-color, --border-color) in navigation.styl and modern-css.styl | 69e949e |
+| 2026-03-25 | Replace hardcoded color values with theme variables in chess/Go board game styling (advanced.styl) and add $board-black-light, $board-black-dark, $board-white-light, $board-white-dark variables | 4bc4e63 |
 
-Last updated: 2026-03-24 23:15
+Last updated: 2026-03-25 01:15
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
