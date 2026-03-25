@@ -2602,15 +2602,18 @@ Last updated: 2026-03-25 12:06
   - `border-image: url(border.png) 30 round;`
   - Stylus: Works directly
 
-- [ ] **`border-image-slice` for SVG Borders** (97%+ browser support)
-  - File: `src/components/decorative.styl`
+- [x] **`border-image-slice` for SVG Borders** (97%+ browser support)
+  - File: `src/components/gradient-borders.styl`
   - Slice SVG for borders
   - Stylus: Works directly
+  - Commit: (previous sessions)
 
-- [ ] **`border-image-repeat: round`** (97%+ browser support)
-  - File: `src/components/decorative.styl`
+- [x] **`border-image-repeat: round`** (97%+ browser support)
+  - File: `src/components/gradient-borders.styl`
   - Round border image tiles
+  - Also implemented: stretch, repeat, space, and two-value combinations
   - Stylus: Works directly
+  - Commit: 9b3eca4
 
 ## 📋 Table Enhancements (New)
 
