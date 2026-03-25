@@ -490,7 +490,7 @@
 | 2026-03-25 | Replace hardcoded #fff with $white in -webkit-mask linear-gradient in gradient-borders.styl (.gradient-border and .gradient-border-animated) | 4f765ad |
 | 2026-03-25 | Replace hardcoded rgba values with oklch() in ::highlight() pseudo-element selectors in modern-css.styl - all 8 highlight types now use modern oklch() color syntax with / alpha for better color management (85%+ browser support) | d0a22dc |
 
-Last updated: 2026-03-25 20:34
+Last updated: 2026-03-26 00:41
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -8778,3 +8778,23 @@ Last updated: 2026-03-25 20:34
   - All CSS is approved — no follow-up needed on code quality
   - Version bump commit is fine to create separately from CSS commits
   - Firefox screenshot tooling needs separate debugging if visual regression is needed
+
+### 2026-03-26 00:41
+- Review target: 5af7131 (dirty worktree with .gitignore, package.json)
+- Verdict: APPROVED
+- Findings:
+  - **5af7131** (notifications.styl `white` → `$white`): APPROVED. `color white` → `color $white` on two selectors: `.mw-echo-badge .mw-echo-notifications-count` (notification badge) and `.mw-echo-badge .mw-echo-notification-badge .mw-echo-selectboon-count` (probably a typo in original but functionally the badge counter). `$white = #ffffff` confirmed in colors.styl. Clean, scoped, correct.
+  - **Other hardcoded `white` values still present**: `rg 'color white' src/` finds 5 remaining instances in source files:
+    - `focus.styl:107` — `color white` on `&:focus` focus indicator overlay
+    - `personal.styl:754` — `color white` on `.save-preferences-btn`
+    - `pwa.styl:265` — `color white` on `.install-button`
+    - `manifest.styl:70` — `--pwa-splash-text-color white` (CSS custom property, acceptable)
+    - `manifest.styl:122` — `color white` (manifest, acceptable as literal)
+    - `theme/print.styl:24` — `background-color white !important` (print stylesheet)
+    - These were NOT targeted by 5af7131 which only touched notifications.styl. Not a regression from this commit.
+  - **Worktree**: clean of source changes — only `.gitignore` (adds `.mcp.json`, `.ripgreprc` patterns) and `package.json` (version bump to `20260326.00.41`) modified. Both legitimate.
+  - **Build**: succeeds without errors.
+- Implementer instructions:
+  - 5af7131 is approved — no action needed on notifications.styl
+  - **Optionally**: replace remaining `color white` in focus.styl, personal.styl, pwa.styl with `$white` in a follow-up pass — these are same-class fixes as 5af7131 and trivial to batch
+  - Commit the .gitignore + package.json version bump when ready (separate from CSS commits is fine)
