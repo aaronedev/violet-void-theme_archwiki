@@ -7067,6 +7067,7 @@ Last updated: 2026-03-25 09:43
 | 2026-03-15 | Implementer | @font-feature-values for named font feature values with @stylistic, @historical-forms, @styleset, @character-variant, @swash, @ornaments, @annotation, plus utility classes for common ligature controls (97%+ browser support) | d132c6a |
 | 2026-03-15 | Implementer | @media (aspect-ratio) for viewport aspect ratio detection to adjust layouts for ultra-wide (21/9), standard (16/9), square (1/1), and tall (9/16) displays (97%+ browser support) | fc89714 |
 | 2026-03-15 | Implementer | ::backdrop for Modal Overlays - enhanced backdrop styling with warning/danger/success/info variants, themed backdrops with blur/saturate, fullscreen backdrops, animated entries, high contrast and reduced motion support, light mode adjustments (97%+ browser support) | 6e17a6d |
+| 2026-03-25 | Implementer | Replace hardcoded rgba(0,0,0) with rgba($darker) in file-pages.styl for video caption (::cue) backgrounds, text-shadow, and picture-in-picture overlay box-shadows and gradients (6 replacements) | 97de96d |
 
 ---
 
