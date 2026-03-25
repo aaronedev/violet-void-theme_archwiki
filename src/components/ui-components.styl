@@ -434,11 +434,11 @@ dialog.animated-backdrop:modal::backdrop
 // Light mode adjustments
 @media (prefers-color-scheme light)
   dialog:modal::backdrop
-    background-color rgba(255, 255, 255, 0.8)
+    background-color rgba($white, 0.8)
     backdrop-filter blur(4px)
 
   dialog:not(:modal)::backdrop
-    background-color rgba(255, 255, 255, 0.5)
+    background-color rgba($white, 0.5)
 
 // Backdrop focus trap indicator (accessibility)
 dialog:modal::backdrop:focus-within

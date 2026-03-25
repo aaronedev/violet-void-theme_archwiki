@@ -1421,9 +1421,9 @@ h4[id]
 @media (video-dynamic-range hdr)
   // Enhanced video player colors for HDR displays
   :root
-    --video-player-bg rgba(0, 0, 0, 0.95)
+    --video-player-bg rgba($darker, 0.95)
     --video-progress-hdr linear-gradient(90deg, oklch(55% 0.25 280), oklch(70% 0.28 150))
-    --video-controls-hdr rgba(255, 255, 255, 0.15)
+    --video-controls-hdr rgba($white, 0.15)
 
   // Video element enhancements
   video
@@ -1434,7 +1434,7 @@ h4[id]
   .mw-video-player
     // Brighter controls for HDR
     .video-controls
-      background linear-gradient(transparent, rgba(0, 0, 0, 0.8))
+      background linear-gradient(transparent, rgba($darker, 0.8))
 
     // Enhanced progress bar
     .video-progress
@@ -1444,14 +1444,14 @@ h4[id]
     .hdr-indicator
       display inline-flex
       background oklch(55% 0.25 280)
-      color white
+      color $white
 
 // Standard dynamic range (SDR) fallback
 @media (video-dynamic-range standard)
   :root
-    --video-player-bg rgba(0, 0, 0, 0.85)
+    --video-player-bg rgba($darker, 0.85)
     --video-progress-hdr linear-gradient(90deg, #8950c7, #c7b8ff)
-    --video-controls-hdr rgba(255, 255, 255, 0.1)
+    --video-controls-hdr rgba($white, 0.1)
 
 // =============================================================================
 // :IS() FOR SELECTOR GROUPING

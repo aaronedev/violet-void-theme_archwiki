@@ -1,4 +1,6 @@
 // Effect mixins for consistent animations and shadows
+@import '../variables/colors'
+
 hover-lift($offset = -2px, $shadow = $shadow-elevated)
   &:hover
     transform translateY($offset)
@@ -20,7 +22,7 @@ button-ripple()
     width 0
     height 0
     border-radius 50%
-    background rgba(255, 255, 255, 0.06)
+    background rgba($white, 0.06)
     transform translate(-50%, -50%)
     transition width 0.4s, height 0.4s
 
