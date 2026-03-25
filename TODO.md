@@ -486,8 +486,9 @@
 | 2026-03-25 | Replace remaining hardcoded rgba(255,255,255) and rgba(0,0,0) with theme variables in effects.styl, ui-components.styl, search.styl, responsive-enhanced.styl, states.styl, modern-css.styl | be3c2b8 |
 | 2026-03-25 | Replace hardcoded rgba(0,0,0,0.2) with rgba($darker, 0.2) in box-shadows in animations.styl, content.styl, and notifications.styl | 2868eda |
 | 2026-03-25 | Expand keyboard-inset support to all four sides (top/right/bottom/left) in mobile.styl with logical properties and multi-selector targeting | 04f6131 |
+| 2026-03-25 | Replace hardcoded color white with $white theme variable in menu-heading() and menu-list-item() hover in menus.styl mixins | 39d4041 |
 
-Last updated: 2026-03-25 14:28
+Last updated: 2026-03-25 16:28
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
