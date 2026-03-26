@@ -8849,3 +8849,17 @@ Last updated: 2026-03-26 05:45
   - **The `:state()` block was reverted from modern-css.styl.** It won't work in ArchWiki's DOM context (`:state()` only works with custom elements using ElementInternals.states; Vector uses standard HTML elements).
   - If `:state()` is needed for ArchWiki, the correct approach requires custom elements (Web Components) with `ElementInternals.states` — which Vector does not use. Alternative: use standard attribute selectors like `[state="loading"]` instead of `:state(loading)` if that's the intended semantic.
   - `.gitignore` and `package.json` can be committed separately as cleanup: `git add .gitignore package.json && git commit -m "chore: clean up ignore patterns and bump version"`
+
+### 2026-03-26 05:52
+- Review target: b743e9f + 9d59791 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **b743e9f** (cubic-bezier utilities): APPROVED on code quality. 192 lines added to modern-css.styl. Standard easings, spring/bounce, smooth/sharp, slide/fade curves. Reduced-motion overrides for spring/bounce/sharp. Stylus syntax correct — `cubic-bezier()` is standard CSS, no @css{} wrapper needed.
+  - **9d59791** (light mode dialog backdrop): SCOPED but UNVERIFIED. `rgba($white, 0.8)` → `rgba($darker, 0.7)` for light-mode `dialog:modal::backdrop`; adds blur to non-modal. `$darker = #0f0f0f` confirmed. No open-state screenshot evidence (dialog open, light mode active). OPEN-STATE EVIDENCE RULE applies.
+  - **Slide classes missing reduced-motion**: `.slide-left`, `.slide-right`, `.slide-up`, `.slide-down` have no `@media (prefers-reduced-motion reduce)` override. Sliding motion can trigger vestibular disorders — should match spring/bounce/sharp treatment.
+  - **TODO.md completion log**: b743e9f entry already present (2026-03-26). 9d59791 has no completion log entry (prior entry 86b29b1 was a different commit, 2026-03-25).
+  - **Worktree**: .gitignore and package.json modified (unrelated to CSS).
+- Implementer instructions:
+  - 9d59791: capture light-mode screenshot of dialog in OPEN STATE before/after — do not approve without open-state evidence
+  - b743e9f: add reduced-motion overrides for `.slide-left`, `.slide-right`, `.slide-up`, `.slide-down` inside the existing `@media (prefers-reduced-motion reduce)` block
+  - Add completion log entry for 9d59791 separately
