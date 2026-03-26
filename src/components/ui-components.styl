@@ -722,6 +722,49 @@ dialog:open
     position-try-fallbacks --flip, --slide-right, --slide-left
 
 // =============================================================================
+// ANCHOR-SIZE() FUNCTION FOR ANCHOR-BASED SIZING
+// =============================================================================
+// Note: 85%+ browser support (Chrome 131+, Edge 131+)
+// Size elements based on their anchor's dimensions
+// Can be used alongside anchor() positioning for self-sizing tooltips/popovers
+// Wrap in @css{} for Stylus compatibility
+
+@supports (anchor-size: auto)
+  // Anchor-sized tooltip - matches anchor width, auto height
+  .tooltip-anchor-size
+    &::after
+      width anchor-size(width)
+
+  // Anchor-sized popover - matches anchor inline size
+  [popover]
+    &.popover-anchor-width
+      width anchor-size(inline-size)
+
+    &.popover-anchor-height
+      height anchor-size(block-size)
+
+    // Full anchor sizing - both dimensions
+    &.popover-anchor-sized
+      width anchor-size(inline-size)
+      max-width anchor-size(inline-size)
+
+  // Anchor-sized dropdown - match trigger width
+  .dropdown-anchor-sized
+    width anchor-size(width)
+
+  // Anchor-min/max sizing utilities
+  .anchor-min-width::after
+    min-width anchor-size(width, 200px)
+
+  .anchor-max-width::after
+    max-width anchor-size(width, 300px)
+
+  .anchor-min-height::after
+    min-height anchor-size(height, 100px)
+
+  .anchor-max-height::after
+    max-height anchor-size(height, 400px)
+
 // POPOVER API STYLING (:popover-open)
 // =============================================================================
 // Note: 87%+ browser support (Chrome 114+, Edge 114+, Safari 17+)
