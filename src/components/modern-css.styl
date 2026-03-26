@@ -1337,18 +1337,18 @@ h4[id]
   @supports (@scope) {
     /* Infobox scoped styles */
     @scope (.infobox) {
-      th { background: rgba(137, 80, 199, 0.1); }
-      td { border-color: rgba(137, 80, 199, 0.2); }
+      th { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.1); }
+      td { border-color: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.2); }
     }
 
     /* Wikitable scoped styles */
     @scope (.wikitable) {
-      th { background: rgba(137, 80, 199, 0.08); }
+      th { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.08); }
     }
 
     /* Navigation scoped styles */
     @scope (.vector-menu) {
-      li:hover { background: rgba(137, 80, 199, 0.05); }
+      li:hover { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.05); }
     }
   }
 }
