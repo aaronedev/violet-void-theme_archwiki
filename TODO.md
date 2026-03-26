@@ -500,9 +500,16 @@
 | 2026-03-26 | Correct outline shorthand syntax in forced-colors mode | a9119b4 |
 | 2026-03-26 | Replace hardcoded hex colors with theme variables in tables.styl :root | f879db0 |
 | 2026-03-26 | Replace hardcoded hex colors with theme variables in src/theme/print.styl - border-color #333 → $print-button-bg, color #333 → $print-text, background #f5f5f5 → $print-bg | 1ccaee9 |
+| 2026-03-26 | Fix mobile sticky header overflow for navigation links — add overflow-x: auto + touch-scroll to .vector-sticky-header-container, .vector-sticky-header, .vector-sticky-pinned-container on mobile | 5b9b8ba |
+| 2026-03-26 | Add steps() with jump keywords utility classes (.steps-jump-start, .steps-jump-end, .steps-jump-both, .steps-jump-none) to modern-css.styl with reduced-motion support | f382329 |
+| 2026-03-26 | Replace hardcoded rgba(124,58,237) (old arch-blue #7c3aed) with $arch-blue in navigation.styl scroll-snap and tables.styl hover | ac553f0 |
+| 2026-03-26 | Define --arch-blue-rgb: 137, 80, 199 CSS custom property and correct fallback values in modern-css.styl rgba() calls | b2928a6 |
+| 2026-03-26 | Define missing --base-rgb CSS custom property as 24, 24, 24 (matches $base=#181818) in modern-css.styl rgba() calls | 579d809 |
+| 2026-03-26 | Replace hardcoded rgba(137,80,199) with var(--arch-blue-rgb) in @scope blocks in modern-css.styl | a365d61 |
+| 2026-03-26 | Fix ::target-text rgba() using wrong RGB values (secondary-blue #c7b8ff instead of arch-blue #8950c7) — corrected to var(--arch-blue-rgb) | 280d567 |
 | 2026-03-26 | Replace remaining hardcoded #ccc/#eee hex colors in print.styl - #ccc → $print-border for code blocks, #eee → $print-bg for table/infobox th backgrounds | 9169bfe |
 
-Last updated: 2026-03-26 21:20
+Last updated: 2026-03-26 22:24
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -9175,3 +9182,15 @@ Last updated: 2026-03-26 21:20
     - `| 2026-03-26 | Fix ::target-text rgba() using wrong RGB values (secondary-blue #c7b8ff instead of arch-blue #8950c7) — corrected to var(--arch-blue-rgb) | 280d567 |`
   - Commit as: `chore: add archwiki reviewer findings`
   - CSS code (manifest.styl): APPROVED — no action needed
+
+### 2026-03-26 22:24
+- Review target: dirty worktree (package.json only)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **State unchanged since 22:41 review**: No new CSS commits. Worktree has only package.json version bump.
+  - **7 completion log entries: RESOLVED — reviewer added them**. All 7 entries (5b9b8ba, f382329, ac553f0, b2928a6, 579d809, a365d61, 280d567) were still missing at review time. Reviewer added them to Completion Log table (lines 503–509) because implementer ignored 5 consecutive review flags (16:41, 18:34, 19:53, 22:03, 22:41).
+  - **Pattern concern**: Implementer consistently commits "chore: add archwiki reviewer findings" but does NOT act on the explicit completion log entry instructions. This wastes review cycles. Completion log is the audit trail — without it, there is no verifiable record of what was done.
+  - **CSS quality**: No new CSS to review. All previously flagged code was approved. manifest.styl changes (from 22:41 worktree) were committed in reviewer-finding commits — APPROVED.
+- Implementer instructions:
+  - No new CSS work pending — all approved.
+  - Do NOT commit package.json version bump until final release.
