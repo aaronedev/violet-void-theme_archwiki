@@ -339,25 +339,33 @@ h4[id]
 // Using @css for :has() selectors for better Stylus compatibility
 
 @css {
+  /* Define theme color CSS custom properties for use throughout this block */
+  :root {
+    --arch-red: #ff4444;
+    --arch-green: #44ff44;
+    --arch-red-rgb: 255, 68, 68;
+    --arch-green-rgb: 68, 255, 68;
+  }
+
   /* Form validation states */
   /* Highlight form containers with invalid inputs */
   .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:invalid) {
-    background: rgba(255, 68, 68, 0.05);
-    border-left: 3px solid var(--arch-red, #ff4444);
+    background: oklch(50% 0.2 340 / 0.05);
+    border-left: 3px solid var(--arch-red);
     padding-left: 0.5em;
   }
 
   /* Success state for valid inputs */
   .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:valid:not(:placeholder-shown)) {
-    background: rgba(68, 255, 68, 0.05);
-    border-left: 3px solid var(--arch-green, #44ff44);
+    background: oklch(70% 0.2 150 / 0.05);
+    border-left: 3px solid var(--arch-green);
     padding-left: 0.5em;
   }
 
   /* OOUI form validation */
   .oo-ui-fieldLayout:has(.oo-ui-inputWidget input:invalid) {
-    background: rgba(255, 68, 68, 0.05);
-    border-left: 3px solid var(--arch-red, #ff4444);
+    background: oklch(50% 0.2 340 / 0.05);
+    border-left: 3px solid var(--arch-red);
     padding-left: 0.5em;
   }
 
