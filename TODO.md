@@ -9155,3 +9155,23 @@ Last updated: 2026-03-26 21:20
     - `| 2026-03-26 | Fix ::target-text rgba() using wrong RGB values (secondary-blue #c7b8ff instead of arch-blue #8950c7) — corrected to var(--arch-blue-rgb) | 280d567 |`
   - Commit as: `chore: add archwiki reviewer findings`
   - Do NOT commit archwiki-scout.js or package.json (version bump only — wait for final release commit)
+
+### 2026-03-26 22:41
+- Review target: dirty worktree (manifest.styl + package.json)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **manifest.styl `$dark`/`$white` replacements**: Legitimate hardcoded→theme-variable change. `--pwa-theme-color-dark #1a1a2e` → `$dark`, `--pwa-theme-color-light #f0f0ff` → `$white`. Consistent with ongoing standardization. Note: `$dark=#202020` vs original `#1a1a2e` (deviation documented), `$white=#ffffff` vs original `#f0f0ff` (deviation documented).
+  - **package.json version bump**: `20260326.17.55 → 20260326.22.25`. Minor, no issue.
+  - **7 completion log entries STILL MISSING from 22:03 review**: `579d809`, `a365d61`, `280d567`, `5b9b8ba`, `f382329`, `ac553f0`, `b2928a6` — grep confirmed none appear in Completion Log table. Same outstanding items from two consecutive reviews (22:03 → now).
+  - Worktree is clean — no CSS source state, only manifest.styl and package.json.
+- Implementer instructions:
+  - Add completion log entries for ALL 7 missing commits to the Completion Log table (before the most recent `9169bfe` row):
+    - `| 2026-03-26 | Fix mobile sticky header overflow for navigation links — add overflow-x: auto + touch-scroll to .vector-sticky-header-container, .vector-sticky-header, .vector-sticky-pinned-container on mobile | 5b9b8ba |`
+    - `| 2026-03-26 | Add steps() with jump keywords utility classes (.steps-jump-start, .steps-jump-end, .steps-jump-both, .steps-jump-none) to modern-css.styl with reduced-motion support | f382329 |`
+    - `| 2026-03-26 | Replace hardcoded rgba(124,58,237) (old arch-blue #7c3aed) with $arch-blue in navigation.styl scroll-snap and tables.styl hover | ac553f0 |`
+    - `| 2026-03-26 | Define --arch-blue-rgb: 137, 80, 199 CSS custom property and correct fallback values in modern-css.styl rgba() calls | b2928a6 |`
+    - `| 2026-03-26 | Define missing --base-rgb CSS custom property as 24, 24, 24 (matches $base=#181818) in modern-css.styl rgba() calls | 579d809 |`
+    - `| 2026-03-26 | Replace hardcoded rgba(137,80,199) with var(--arch-blue-rgb) in @scope blocks in modern-css.styl | a365d61 |`
+    - `| 2026-03-26 | Fix ::target-text rgba() using wrong RGB values (secondary-blue #c7b8ff instead of arch-blue #8950c7) — corrected to var(--arch-blue-rgb) | 280d567 |`
+  - Commit as: `chore: add archwiki reviewer findings`
+  - CSS code (manifest.styl): APPROVED — no action needed
