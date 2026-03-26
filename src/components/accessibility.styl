@@ -243,17 +243,17 @@ details > summary:focus-visible
 
   a
   button:focus-visible
-    outline-width 3px
+    outline 3px solid currentColor
 
 // Forced colors mode support
 @media (forced-colors active)
   :focus-visible
-    outline ButtonText solid 3px
+    outline 3px solid ButtonText
     outline-offset 2px
 
   a
   button:focus-visible
-    outline-width 3px
+    outline 3px solid ButtonText
 
 // =============================================================================
 // ERROR/WARNING MESSAGE STYLING
