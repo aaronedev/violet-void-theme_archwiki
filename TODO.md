@@ -8990,3 +8990,23 @@ Last updated: 2026-03-26 11:10
   - **Fix the outstanding completion log gaps**: (1) add `| 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |` to the completion log, (2) correct the hash `1c7e3d5` → `6173365` in the existing 6173365 entry.
   - **Investigate the dialog open-state for 9d59791**: either capture a dialog-open screenshot that proves the backdrop change works in light mode, or document why it cannot be captured (e.g., no ArchWiki page triggers a dialog in the test URLs).
   - **Screenshot pipeline root cause**: must be investigated and fixed before any more visual evidence is collected. Check if dist/main.css is non-empty, check if ArchWiki returns a non-wiki page, try alternative URL patterns.
+
+### 2026-03-26 12:54
+- Review target: f573d93 + a02596f + 1e2f368 (dirty worktree: package.json version bump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **f573d93** (architectural fix for 99ce91f): APPROVED. Correctly addresses the prior reviewer architectural concern. Moved `--arch-red`/`--arch-green` CSS custom property definitions from `:root {}` inside `@css {}` to standalone `@property` blocks at file level — follows the existing `@property --theme-red` pattern in the same file. Also converted hardcoded `#ff4444`/`#44ff44` to `oklch()` values. The `@css {}` block now only contains the `:has()` selectors, which is the correct split. Implementation is sound.
+  - **a02596f** (reduce light-mode dialog backdrop opacity): Directionally correct — 0.7 → 0.5 for modal, 0.4 → 0.3 for modeless. `$darker = #0f0f0f` at 50% opacity = 50% gray overlay, which is more readable than 70% for light-mode light-theme content. Code is scoped and correct. However: OPEN-STATE EVIDENCE RULE applies. No screenshot of dialog OPEN in light mode has ever been captured. The capture script has no `dialog-open` state. This is now the 5th consecutive review flagging the dialog open-state as unverified (`9d59791` at 05:52, 08:36, 09:34, 11:09, now 12:54).
+  - **1e2f368** (TODO.md completion log for a02596f): Documentation only, not CSS.
+  - **Prior flags from 11:09 review — resolution status**:
+    1. `99ce91f` completion log: ✅ NOW PRESENT in file (found at 2026-03-26 row)
+    2. `6173365` hash wrong (`1c7e3d5`): ✅ NOW CORRECT (`6173365` confirmed present)
+    3. `9d59791` dialog open-state: ❌ STILL UNVERIFIED — compounded by a02596f adding another opacity change (0.7 → 0.5) without open-state evidence
+  - **Screenshot pipeline**: Still producing identical hashes across all states per prior reviews (20+ consecutive failures). Not re-verified this cycle — assume broken.
+  - **Architectural fix for 99ce91f**: Resolved. The `@property` blocks with `oklch()` values are properly structured. No further action needed on that item.
+  - **capture.js has no `dialog-open` state**: The capture script (`STATES: ['default', 'menu-open', 'toc-open', 'search-active']`) cannot trigger or capture a dialog open state. Any dialog-related visual evidence requires either adding `dialog-open` to the capture script or manual testing.
+  - Worktree clean of source changes — only `package.json` version bump (`20260326.12.14 → 20260326.12.45`).
+- Implementer instructions:
+  - **Document the dialog open-state gap**: The `dialog:modal::backdrop` change in `a02596f` (and `9d59791` before it) lacks open-state evidence. Add a comment to `ui-components.styl` near the dialog backdrop rules noting: (a) ArchWiki's Vector skin does not use native `<dialog>` elements in its default article or special page templates, making automated open-state capture impossible with current tooling, and (b) the backdrop values `rgba($darker, 0.5)` for modal and `rgba($darker, 0.3)` for modeless were chosen for light-mode readability over white backgrounds.
+  - **Add `dialog-open` to capture.js if ArchWiki has any page that triggers a native dialog element**: Check if Special:Preferences, Special:CreateAccount, or any other special page uses `<dialog>`. If so, add `{ name: 'dialog-open', fn: async () => { /* open a real dialog element */ } }` to STATES and capture it. If no native dialog exists in ArchWiki, document this fact.
+  - **Commit the package.json version bump**: `git add package.json && git commit -m "chore: verbump 20260326.12.45"` — it's a minor maintenance item.
