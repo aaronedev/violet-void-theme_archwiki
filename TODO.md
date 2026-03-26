@@ -9089,3 +9089,19 @@ Last updated: 2026-03-26 15:25
   2. Add completion log entry for `f382329`: `| 2026-03-26 | Add steps() with jump keywords utility classes (.steps-jump-start, .steps-jump-end, .steps-jump-both, .steps-jump-none) to modern-css.styl with reduced-motion support | f382329 |`
   3. Address the `5b9b8ba` open-state evidence: either (a) describe what was overflowing (e.g., which nav link, which device width) in the completion log, or (b) confirm this was a speculative CSS hygiene item with no specific bug report.
   4. Commit as `chore: add archwiki reviewer findings`.
+
+### 2026-03-26 18:24
+- Review target: `b2928a6` + dirty worktree
+- Verdict: APPROVED
+- Findings:
+  - **`b2928a6`** (define `--arch-blue-rgb` + correct fallback): APPROVED. Defines `--arch-blue-rgb: 137, 80, 199;` as a CSS custom property in modern-css.styl. Corrects fallback in two `rgba()` calls from the old arch-blue `23, 147, 209` to the new arch-blue `#8950c7` (`137, 80, 199`). Scoped, correct, clean diff (5 insertions, 2 changes). Build-valid CSS.
+  - **`ac553f0`** (replace hardcoded rgba with `$arch-blue`): APPROVED. Replaces `rgba(124, 58, 237, 0.1)` → `rgba($arch-blue, 0.1)` in `.scroll-snap-item-snapped.snapped` (navigation.styl) and two instances of `rgba(137, 80, 199, 0.08)` → `rgba($arch-blue, 0.08)` in table hover (tables.styl). Note: `rgba(124, 58, 237, 0.1)` was an incorrect hardcoded value — `124, 58, 237` is `#7c3aed` (old arch-blue), not the current `#8950c7` — so this fix also corrects a stale color value. Clean series-consistent implementation.
+  - **Screenshot capture CATASTROPHICALLY broken — new regression**: ALL 40 screenshots now share only 2 hashes (desktop: `8373727d86a3679a4de9181b87bde35d`, mobile: `9eae55c241c315cf782d196f60747970`). This includes firefox AND all other pages (installation-guide, main-page, pacman, systemd). Previously only Firefox was broken (all 4 firefox states identical). Now ALL pages/states are identical. Pipeline is completely non-functional. This is 20+ consecutive cycles documented.
+  - **Test artifacts**: baselines/ and diffs/ are empty — cleaned up. current/ contains only standard screenshots, no test-*.png artifacts. Clean state.
+  - **Prior 16:41 completion log items still missing**: `5b9b8ba` and `f382329` have no completion log entries (flagged in prior review). `b2928a6` and `ac553f0` also lack completion log entries.
+  - Worktree only has package.json version bump (`20260326.18.23`) — no CSS state, clean.
+- Implementer instructions:
+  - CSS (b2928a6, ac553f0): APPROVED — no action needed on code quality
+  - **Screenshot pipeline is the only blocker**: ALL pages are producing identical screenshots. Before the next visual scout run: investigate why the entire capture is returning the same image for every URL — check if ArchWiki is returning a block/captcha, if the CSS injection is working, if the URL routing is correct
+  - Add completion log entries for `5b9b8ba`, `f382329`, `ac553f0`, `b2928a6`
+  - Commit as `chore: add archwiki reviewer findings`
