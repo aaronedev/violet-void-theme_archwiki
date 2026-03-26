@@ -22,18 +22,14 @@ select
 textarea
 [tabindex]
   &:focus
-    outline-style auto
-    outline-width 2px
-    outline-color var(--accent-color, $arch-blue)
+    outline 2px auto var(--accent-color, $arch-blue)
 
 // Focus visible polyfill for older browsers
 :focus:not(:focus-visible)
   outline none
 
 :focus-visible
-  outline-style auto
-  outline-width 2px
-  outline-color var(--accent-color, $arch-blue)
+  outline 2px auto var(--accent-color, $arch-blue)
   outline-offset 2px
 
 // =============================================================================
@@ -71,15 +67,13 @@ textarea
 button
 .mw-ui-button
   &:focus-visible
-    outline-width 3px
+    outline 3px auto
     outline-offset 2px
 
 // Links in content - subtle but visible
 .mw-body-content a
   &:focus-visible
-    outline-width 2px
-    outline-style auto
-    outline-color var(--accent-color, $arch-blue)
+    outline 2px auto var(--accent-color, $arch-blue)
     background-color rgba($arch-blue, 0.1)
 
 // Table headers with sorting - focus indicator

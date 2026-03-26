@@ -496,8 +496,9 @@
 | 2026-03-26 | Reduce light-mode dialog backdrop opacity from rgba($darker, 0.7) to rgba($darker, 0.5) for modal and rgba($darker, 0.3) for modeless - 87→135 brightness over white for readable dimming | a02596f |
 | 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |
 | 2026-03-26 | Replace deprecated/renamed Stylus variables across 23 component files | 9d052e2 |
+| 2026-03-26 | Replace longhand outline properties with shorthand in focus.styl where outline-offset is default (0) | 681cb50 |
 
-Last updated: 2026-03-26 11:10
+Last updated: 2026-03-26 13:50
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -2622,11 +2623,12 @@ Last updated: 2026-03-26 11:10
   - Stylus: Works directly
   - Commit: 054df20
 
-- [ ] **`outline` Shorthand** (97%+ browser support)
+- [x] **`outline` Shorthand** (97%+ browser support)
   - File: `src/components/focus.styl`
   - Compact outline syntax
   - `outline: 2px solid var(--accent);`
   - Stylus: Works directly
+  - Commit: 681cb50
 
 ## 🖼️ Border Image (New)
 
