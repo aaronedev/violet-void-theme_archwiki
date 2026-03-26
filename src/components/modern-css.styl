@@ -1027,6 +1027,19 @@ h4[id]
     initial-value: oklch(87% 0.37 145);
   }
 
+  /* Dropcap color for ::first-letter decorative gradient (sky blue gradient) */
+  @property --dropcap-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: oklch(70% 0.15 230);
+  }
+
+  @property --dropcap-color-secondary {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: oklch(55% 0.18 240);
+  }
+
   /* RGB decomposition of $arch-blue (#8950c7 = rgb(137, 80, 199)) for use in rgba() */
   --arch-blue-rgb: 137, 80, 199;
 
