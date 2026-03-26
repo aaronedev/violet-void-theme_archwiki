@@ -490,8 +490,9 @@
 | 2026-03-25 | Replace hardcoded #fff with $white in -webkit-mask linear-gradient in gradient-borders.styl (.gradient-border and .gradient-border-animated) | 4f765ad |
 | 2026-03-25 | Replace hardcoded rgba values with oklch() in ::highlight() pseudo-element selectors in modern-css.styl - all 8 highlight types now use modern oklch() color syntax with / alpha for better color management (85%+ browser support) | d0a22dc |
 | 2026-03-26 | Replace hardcoded #666/#333 hex colors with theme variables in print-enhanced.styl @page rules and blockquote borders - uses var(--print-text) and $print-button-bg | 1b42310 |
+| 2026-03-26 | Add custom cubic-bezier() easing curve utility classes to modern-css.styl - standard easings, spring/bounce, smooth/sharp, slide/fade curves with reduced-motion support | b743e9f |
 
-Last updated: 2026-03-26 03:56
+Last updated: 2026-03-26 05:45
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
@@ -2911,11 +2912,12 @@ Last updated: 2026-03-26 03:56
   - Example: `animation-timing-function: steps(5, jump-end);`
   - Stylus: Works directly
 
-- [ ] **Custom `cubic-bezier()` Curves** (97%+ browser support)
+- [x] **Custom `cubic-bezier()` Curves** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define custom easing curves
   - Example: `transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);`
   - Stylus: Works directly
+  - Commit: b743e9f
 
 ## 📐 Advanced @property Types (New)
 
@@ -8829,3 +8831,21 @@ Last updated: 2026-03-26 03:56
   - 1b42310 is approved.
   - No follow-up needed for this specific change.
   - Print styles remain a gap in the visual testing pipeline — screenshot tooling captures screen only, not `@media print`. Acceptable limitation for this review cycle.
+
+### 2026-03-26 04:06
+- Review target: dirty worktree (src/components/modern-css.styl `:state()` additions + .gitignore + package.json)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`:state()` implementation is fundamentally broken for ArchWiki use case**: The `:state()` CSS Custom State Pseudo-Class only works on custom elements that expose states via `ElementInternals.states`. Standard HTML elements (everything in ArchWiki Vector skin) cannot use `:state()` because Vector does not use custom elements with the Custom State API. A bare `:state(loading)` selector matches nothing in ArchWiki's real DOM.
+  - **Misleading usage comment**: Comment says `my-element:state(loading)` but implementation uses bare `:state(loading)` as a standalone selector (no element prefix). The comment describes correct usage; the implementation doesn't follow it.
+  - **`+ .loading` adjacent sibling combinator pattern is nonsensical**: `:state(loading) + .loading { opacity 0.5 }` would match a `.loading` class element immediately following a `:state(loading)` element — but `:state(loading)` never matches anything, making this dead code.
+  - **`&::after` inside nested `.content` block is misplaced**: `&` refers to `.content`, so `&::after` generates `.content::after` — a pseudo-element on `.content`, not on the `:state()` pseudo-class. Semantic mismatch.
+  - **TODO.md already has `:state()` as unchecked future item**: This worktree doesn't correspond to any claimed completion in TODO.md — it's new work-in-progress. The implementation is not production-ready.
+  - **Sub-issue: `:state()` is already listed as unchecked in TODO.md future section**: The feature is not committed, not verified, and not claimed done. This worktree is the first attempt at it.
+  - **`.gitignore` changes**: Legitimate cleanup — reorganizes ignore patterns, adds `.agent/`, editor backup files. Not CSS. Not controversial.
+  - **`package.json`**: Version bump `20260326.04.48`. Minor metadata, not a code change.
+  - **Prior review**: Latest committed work `1b42310` (print-enhanced.styl hardcoded colors) was APPROVED at 2026-03-26 04:26 — no regression from this worktree.
+- Implementer instructions:
+  - **The `:state()` block was reverted from modern-css.styl.** It won't work in ArchWiki's DOM context (`:state()` only works with custom elements using ElementInternals.states; Vector uses standard HTML elements).
+  - If `:state()` is needed for ArchWiki, the correct approach requires custom elements (Web Components) with `ElementInternals.states` — which Vector does not use. Alternative: use standard attribute selectors like `[state="loading"]` instead of `:state(loading)` if that's the intended semantic.
+  - `.gitignore` and `package.json` can be committed separately as cleanup: `git add .gitignore package.json && git commit -m "chore: clean up ignore patterns and bump version"`
