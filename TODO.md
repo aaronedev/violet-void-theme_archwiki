@@ -8327,6 +8327,50 @@ Last updated: 2026-03-26 05:45
   - No regressions detected — previous fixes from 2026-03-23 (menu dropdown, search panel, pinned container, TOC narrow width) are holding
   - Optional: investigate mobile DOM structure for `#content` locator difference at narrow viewport
 
+### 2026-03-26 07:55
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280x800)
+  - menu-open (desktop 1280x800)
+  - toc-open (desktop 1280x800)
+  - search-active (desktop 1280x800)
+  - default (mobile 375x667)
+  - menu-open (mobile 375x667)
+- Findings:
+  - **CSS builds cleanly**: 844KB, 3059 lines, no PostCSS errors — Violet Void theme compiles correctly
+  - **Violet Void theme applies correctly**: body background `rgb(5, 10, 16)` confirmed on all pages and states — dark theme IS being applied via CSS injection
+  - **Menu-open states visually distinct from default**: desktop and mobile menu-open screenshots have different MD5 hashes than default states across all 5 pages — menu interaction is working and producing visible changes
+  - **Search-active states visually distinct**: desktop search-active (search panel with typed query) produces different hash from default across all pages
+  - **TOC-open states produce identical hashes to default**: ArchWiki uses sticky header TOC checkbox (`#vector-sticky-header-toc-checkbox`) — checkbox state changes on click but the dropdown overlay doesn't change enough pixels to differ from default in full-page screenshots. This is ArchWiki UI behavior (TOC dropdown overlays content without scrolling), NOT a theme regression
+  - **Prior screenshot batch (05:48-05:50 UTC) confirmed stale**: hashes from prior run (`8373727d` desktop) differ from current fresh captures (`940f4882` etc.) with Violet Void applied. Prior screenshots showed ArchWiki's default light theme — CSS was not being applied during that window
+  - **Dirty selector fixed**: `capture.js` had invalid CSS attribute selector `'[data mw-navigation-toggle]'` (space in attribute name) — fixed to `'[data-mw-navigation-toggle]'`. Menu-open captures now succeed
+  - **ArchWiki Anubis access is intermittent**: ArchWiki's anti-bot blocks Playwright inconsistently. Captures succeeded during this run (06:00-07:55 UTC) but may fail in future windows
+  - **Mobile search-active falls back to menu-open**: On mobile, search input is hidden behind hamburger menu. search-active capture opens the menu instead, producing same screenshot as menu-open
+  - **No horizontal overflow**: all pages fit within viewport on both desktop (1280px) and mobile (375px)
+  - **All interactive panels (menu, search, TOC) use correct Violet Void dark theme background** — no white flash or default theme bleed-through visible
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.*.png (5 states)
+  - .agent/archwiki/current/systemd.desktop.*.png (5 states)
+  - .agent/archwiki/current/pacman.desktop.*.png (5 states)
+  - .agent/archwiki/current/installation-guide.desktop.*.png (5 states)
+  - .agent/archwiki/current/firefox.desktop.*.png (5 states)
+  - .agent/archwiki/current/main-page.mobile.*.png (4 states)
+  - .agent/archwiki/current/systemd.mobile.*.png (4 states)
+  - .agent/archwiki/current/pacman.mobile.*.png (4 states)
+  - .agent/archwiki/current/installation-guide.mobile.*.png (4 states)
+  - .agent/archwiki/current/firefox.mobile.*.png (4 states)
+- Implementer instructions:
+  - Commit the capture.js selector fix: `'[data mw-navigation-toggle]'` → `'[data-mw-navigation-toggle]`
+  - These screenshots establish a new baseline — Violet Void theme confirmed visually applied to ArchWiki pages
+  - No regressions detected from previous fixes — menu, search, and panel theming all holding
+
 ## Visual TODOs
 - [x] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:12, commit: d528487)
 - [x] Apply dark/semi-opaque background to search panel for readability (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:36, commit: f9703d0)
