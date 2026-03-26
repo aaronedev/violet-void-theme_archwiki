@@ -380,7 +380,7 @@ h4[id]
 
   /* Highlight navigation items with active links */
   .vector-menu-content li:has(a.mw-selflink) {
-    background: rgba(var(--arch-blue-rgb, 23, 147, 209), 0.1);
+    background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.1);
     font-weight: 600;
   }
 
@@ -454,7 +454,7 @@ h4[id]
 
   /* Highlight template documentation */
   .mw-parser-output:has(.template-documentation) {
-    border: 1px dashed rgba(var(--arch-blue-rgb, 23, 147, 209), 0.3);
+    border: 1px dashed rgba(var(--arch-blue-rgb, 137, 80, 199), 0.3);
     padding: 1em;
     margin: 1em 0;
   }
@@ -1026,6 +1026,9 @@ h4[id]
     inherits: true;
     initial-value: oklch(87% 0.37 145);
   }
+
+  /* RGB decomposition of $arch-blue (#8950c7 = rgb(137, 80, 199)) for use in rgba() */
+  --arch-blue-rgb: 137, 80, 199;
 }
 
 // Apply custom properties to root
