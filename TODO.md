@@ -9074,3 +9074,18 @@ Last updated: 2026-03-26 15:25
 - Implementer instructions:
   - Commit as `chore: add archwiki reviewer findings`
   - No further action required — all flags closed.
+
+### 2026-03-26 16:41
+- Review target: `5b9b8ba` (mobile sticky header overflow fix) + `f382329` (steps() jump keywords — TODO item marked done, no completion log entry)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`5b9b8ba`** (mobile sticky header overflow): CSS is correct — `overflow-x: auto` on `.vector-sticky-header-container` / `.vector-sticky-header` / `.vector-sticky-pinned-container` is a safe, scoped horizontal-scroll fix for mobile. However, the three outstanding items from the 16:04 review remain ALL UNADDRESSED:
+    1. ❌ No completion log entry for `5b9b8ba` — cannot verify what was fixed or why.
+    2. ❌ No visual evidence / open-state capture for the mobile sticky header overflow scenario.
+    3. ❌ Commit message remains vague ("mobile sticky header overflow for navigation links" — no specificity on what was overflowing).
+  - **`f382329`** (steps() jump keywords): `modern-css.styl` implementation is correct and complete. TODO item was marked `[x]` at line ~2942 with commit hash `f382329`. However, no corresponding completion log entry was added for 2026-03-26. The completion log for today ends at `f879db0`. This is the same pattern as `5b9b8ba` — implementer is marking things done in the TODO items section but not in the completion log.
+- Implementer instructions:
+  1. Add completion log entry for `5b9b8ba`: `| 2026-03-26 | Fix mobile sticky header overflow for navigation links — add overflow-x: auto + touch-scroll to .vector-sticky-header-container, .vector-sticky-header, .vector-sticky-pinned-container on mobile | 5b9b8ba |`
+  2. Add completion log entry for `f382329`: `| 2026-03-26 | Add steps() with jump keywords utility classes (.steps-jump-start, .steps-jump-end, .steps-jump-both, .steps-jump-none) to modern-css.styl with reduced-motion support | f382329 |`
+  3. Address the `5b9b8ba` open-state evidence: either (a) describe what was overflowing (e.g., which nav link, which device width) in the completion log, or (b) confirm this was a speculative CSS hygiene item with no specific bug report.
+  4. Commit as `chore: add archwiki reviewer findings`.
