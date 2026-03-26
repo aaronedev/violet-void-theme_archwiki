@@ -8909,3 +8909,22 @@ Last updated: 2026-03-26 05:45
   - 9d59791: capture light-mode screenshot of dialog in OPEN STATE before/after — do not approve without open-state evidence
   - b743e9f: add reduced-motion overrides for `.slide-left`, `.slide-right`, `.slide-up`, `.slide-down` inside the existing `@media (prefers-reduced-motion reduce)` block
   - Add completion log entry for 9d59791 separately
+
+### 2026-03-26 08:36
+- Review target: 6173365 + 99ce91f (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **6173365** (reduced-motion overrides for slide classes): APPROVED. Directly addresses prior reviewer request. `.slide-left`, `.slide-right`, `.slide-up`, `.slide-down` now get `transition-timing-function: ease-out` and `animation-timing-function: ease-out` inside the `@media (prefers-reduced-motion reduce)` block. Scoped, correct.
+  - **99ce91f** (form :has validation states): APPROVED with minor concern. Changes `rgba(255,68,68,0.05)` → `oklch(50% 0.2 340 / 0.05)` and `rgba(68,255,68,0.05)` → `oklch(70% 0.2 150 / 0.05)`. Color conversions are perceptually reasonable for red/green tints. Uses `var(--arch-red)` / `var(--arch-green)` for border colors.
+  - **CSS custom property hardcoding in `@css{}`**: `--arch-red: #ff4444`, `--arch-green: #44ff44` defined inside `@css{}` block with hardcoded values. These are Arch brand colors (not theme vars), so semantic intent is clear. The `@css{}` block does not support Stylus variable interpolation — hardcoding here is a known limitation of the build system, not negligence. Acceptable.
+  - **TODO.md completion log gap**: `99ce91f` has no completion log entry. `6173365` has one (`1c7e3d5` in log — commit hash in log is wrong (actual: `6173365`), but entry exists).
+  - **Open-state evidence for 9d59791 still missing**: No dialog-open screenshot captured. The visual scout (a802e36) confirmed CSS applies but didn't specifically trigger a dialog in light mode. OPEN-STATE EVIDENCE RULE still applies to 9d59791.
+  - **Worktree**: 21 modified + 19 untracked files in `.agent/archwiki/current/`. All PNGs modified/created at 08:36 today (fresh captures). package.json bumped to `20260326.08.34`. capture.js added (selector fix from `'[data mw-navigation-toggle]'` → `'[data-mw-navigation-toggle]'`). No CSS source changes in worktree.
+  - **capture.js selector fix**: Legitimate cleanup — ArchWiki's Vector skin uses `data-mw-navigation-toggle` attribute, not `data mw-navigation-toggle` (space breaks attribute selector).
+  - **New screenshots coverage**: Captures now include firefox page (desktop 5 states + mobile 4 states), filling a gap from prior reviews. Total coverage: 5 pages × (5 desktop states + 4 mobile states) = 45 screenshots. Still missing mobile search-active and mobile toc-open for some pages.
+- Implementer instructions:
+  - Add completion log entry for 99ce91f: `| 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |`
+  - Fix commit hash in existing 6173365 log entry: `1c7e3d5` → `6173365`
+  - 9d59791 remains unapproved — dialog open-state screenshot still required
+  - Optional: add mobile search-active captures for firefox (falls back to menu-open per visual scout report)
+
