@@ -500,8 +500,9 @@
 | 2026-03-26 | Correct outline shorthand syntax in forced-colors mode | a9119b4 |
 | 2026-03-26 | Replace hardcoded hex colors with theme variables in tables.styl :root | f879db0 |
 | 2026-03-26 | Replace hardcoded hex colors with theme variables in src/theme/print.styl - border-color #333 → $print-button-bg, color #333 → $print-text, background #f5f5f5 → $print-bg | 1ccaee9 |
+| 2026-03-26 | Replace remaining hardcoded #ccc/#eee hex colors in print.styl - #ccc → $print-border for code blocks, #eee → $print-bg for table/infobox th backgrounds | 9169bfe |
 
-Last updated: 2026-03-26 21:15
+Last updated: 2026-03-26 21:20
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
