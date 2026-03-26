@@ -8029,6 +8029,19 @@ Last updated: 2026-03-26 15:25
 
 ## Reviewer Findings
 
+### 2026-03-26 16:04
+- Review target: 5b9b8ba (dirty worktree: no)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **No TODO entry**: Commit `5b9b8ba` adds `overflow-x: auto` to `.vector-sticky-header-container` / `.vector-sticky-header` / `.vector-sticky-pinned-container` but there is no TODO item or completion log entry for this change. Cannot verify what specific problem this was meant to fix.
+  - **No visual evidence**: No before/after screenshot, no state capture for mobile sticky header open state. OPEN-STATE EVIDENCE RULE applies — for a mobile UI fix, there should be evidence showing the affected open state.
+  - **CSS itself looks safe**: `overflow-x: auto` on sticky header containers is a reasonable horizontal-scroll fix and uses valid Vector skin selectors. No risk of cross-page breakage.
+  - **Commit message is vague**: "mobile sticky header overflow for navigation links" — what exactly was overflowing? The Download button? A specific nav link? No detail.
+- Implementer instructions:
+  1. Add a completion log entry for `5b9b8ba` describing what problem was fixed (what was overflowing, on what page/scenario).
+  2. If a real mobile sticky header overflow existed, capture a before/after screenshot or describe the exact element that was clipped.
+  3. If this was a speculative/touch-up fix with no specific bug, document it as a low-risk CSS hygiene item in the completion log.
+
 ### 2026-03-23 12:38
 - Review target: dcbf418 (fix: resolve undefined $z-dropdown to $cdx-z-index-dropdown in extensions)
 - Verdict: NEEDS_FOLLOWUP
