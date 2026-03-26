@@ -1708,7 +1708,7 @@ h6:hover .mw-editsection
 .scroll-snap-item-snapped
   &.snapped
     scroll-snap-align center
-    background-color rgba(124, 58, 237, 0.1)
+    background-color rgba($arch-blue, 0.1)
 
   &.snapped-x
     scroll-snap-align center
@@ -1995,7 +1995,7 @@ h6:hover .mw-editsection
 // that can overflow and clip text (e.g. "Download" being cut off).
 // Allow horizontal scrolling for the sticky header to prevent this.
 // Browser support: 97%+
-@media (max-width: 768px)
+@media (max-width 768px)
   .vector-sticky-header-container
   .vector-sticky-header
     overflow-x auto
