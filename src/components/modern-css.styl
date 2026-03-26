@@ -339,14 +339,6 @@ h4[id]
 // Using @css for :has() selectors for better Stylus compatibility
 
 @css {
-  /* Define theme color CSS custom properties for use throughout this block */
-  :root {
-    --arch-red: #ff4444;
-    --arch-green: #44ff44;
-    --arch-red-rgb: 255, 68, 68;
-    --arch-green-rgb: 68, 255, 68;
-  }
-
   /* Form validation states */
   /* Highlight form containers with invalid inputs */
   .mw-htmlform-field:not(.mw-htmlform-autoinfuse-lazy):has(:invalid) {
@@ -1020,6 +1012,19 @@ h4[id]
     syntax: '<color>';
     inherits: true;
     initial-value: #252525;
+  }
+
+  /* Arch-specific form validation colors - bright red/green for form state indicators */
+  @property --arch-red {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: oklch(57% 0.26 25);
+  }
+
+  @property --arch-green {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: oklch(87% 0.37 145);
   }
 }
 
