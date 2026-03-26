@@ -24,7 +24,7 @@
     background-color white !important
     background-image none !important
     color black !important
-    border-color #333 !important
+    border-color $print-button-bg !important
     box-shadow none !important
     text-shadow none !important
     // Optimize for B&W printing
@@ -192,7 +192,7 @@
     &[href^="http"]:not([href*="archlinux.org"])::after
       content " (" attr(href) ")"
       font-size 0.85em
-      color #333 !important
+      color $print-text !important
       word-break break-all
 
     // Wiki links - don't show URL
@@ -215,7 +215,7 @@
     font-size 10pt
     border 1px solid #ccc
     padding 0.2em 0.4em
-    background #f5f5f5 !important
+    background $print-bg !important
     print-color-adjust exact
     -webkit-print-color-adjust exact
     white-space pre-wrap
@@ -229,12 +229,12 @@
   table
   .wikitable
     border-collapse collapse
-    border 1px solid #333
+    border 1px solid $print-button-bg
     font-size 10pt
 
   th
   td
-    border 1px solid #333
+    border 1px solid $print-button-bg
     padding 0.2em 0.5em
 
   th
@@ -251,7 +251,7 @@
   .infobox
   .mw-infobox
   table.infobox
-    border 1px solid #333
+    border 1px solid $print-button-bg
     float none !important
     margin 0 0 1em 1em
     max-width 100%
@@ -282,7 +282,7 @@
 
   h2
     font-size 16pt
-    border-bottom 1px solid #333
+    border-bottom 1px solid $print-button-bg
 
   h3
     font-size 14pt
@@ -303,7 +303,7 @@
   .tmbox
   .imbox
   .dmbox
-    border 1px solid #333
+    border 1px solid $print-button-bg
     margin 0.5em 0
     padding 0.5em
     // Preserve colors for message boxes in print
