@@ -8945,3 +8945,20 @@ Last updated: 2026-03-26 05:45
   - **Do NOT commit any screenshots from this worktree** — every single one is an identical placeholder/error image. Committing them would corrupt the baseline.
   - **Consider switching to a different ArchWiki instance or cached version** if Anubis is permanently blocking automated access.
 
+
+### 2026-03-26 11:09
+- Review target: dirty worktree (no new CSS commits since last review)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **No new CSS commits** since the last review. Worktree contains only: (a) another broken screenshot run at 11:09, (b) package.json version bump to `20260326.09.04`, (c) reviewer findings commit.
+  - **Screenshot pipeline STILL broken after second run at 11:09**: ALL 40 PNGs share only 2 MD5 hashes — the same catastrophic failure documented in the previous 6+ consecutive reviews. Desktop: 76277 bytes identical across 5 pages × 4 states. Mobile: 69444 bytes identical across 5 pages × 4 states. Second re-run at 11:09 confirms the issue is NOT fixed by repeated execution.
+  - **Pending items from previous review still UNRESOLVED**:
+    1. `99ce91f` completion log entry still missing (was missing at 08:36, still missing now)
+    2. `6173365` completion log entry has wrong hash `1c7e3d5` (still `1c7e3d5` in log instead of `6173365`)
+    3. `9d59791` dialog open-state screenshot still missing (UNVERIFIED since that review)
+  - **No implementation work to review** — only pipeline artifacts and version bump.
+- Implementer instructions:
+  - **Do NOT re-run the screenshot pipeline again.** It has now failed identically 20+ times. Running it again wastes cycles and confirms nothing new.
+  - **Fix the outstanding completion log gaps**: (1) add `| 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |` to the completion log, (2) correct the hash `1c7e3d5` → `6173365` in the existing 6173365 entry.
+  - **Investigate the dialog open-state for 9d59791**: either capture a dialog-open screenshot that proves the backdrop change works in light mode, or document why it cannot be captured (e.g., no ArchWiki page triggers a dialog in the test URLs).
+  - **Screenshot pipeline root cause**: must be investigated and fixed before any more visual evidence is collected. Check if dist/main.css is non-empty, check if ArchWiki returns a non-wiki page, try alternative URL patterns.
