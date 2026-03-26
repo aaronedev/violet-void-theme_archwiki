@@ -9010,3 +9010,17 @@ Last updated: 2026-03-26 13:50
   - **Document the dialog open-state gap**: The `dialog:modal::backdrop` change in `a02596f` (and `9d59791` before it) lacks open-state evidence. Add a comment to `ui-components.styl` near the dialog backdrop rules noting: (a) ArchWiki's Vector skin does not use native `<dialog>` elements in its default article or special page templates, making automated open-state capture impossible with current tooling, and (b) the backdrop values `rgba($darker, 0.5)` for modal and `rgba($darker, 0.3)` for modeless were chosen for light-mode readability over white backgrounds.
   - **Add `dialog-open` to capture.js if ArchWiki has any page that triggers a native dialog element**: Check if Special:Preferences, Special:CreateAccount, or any other special page uses `<dialog>`. If so, add `{ name: 'dialog-open', fn: async () => { /* open a real dialog element */ } }` to STATES and capture it. If no native dialog exists in ArchWiki, document this fact.
   - **Commit the package.json version bump**: `git add package.json && git commit -m "chore: verbump 20260326.12.45"` — it's a minor maintenance item.
+
+### 2026-03-26 14:15
+- Review target: `2c61ad0`, `a9119b4`, `f879db0` (dirty worktree — main branch)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`2c61ad0`** (outline longhand→shorthand in focus.styl): APPROVED. Correct CSS shorthand consolidation. Build passes.
+  - **`a9119b4`** (correct outline shorthand syntax in forced-colors mode): APPROVED. `outline 3px solid ButtonText` uses correct width-style-color order. Build passes.
+  - **`f879db0`** (replace hardcoded hex with theme vars in tables.styl :root): APPROVED. `$secondary-blue` correctly resolves to `rgba(199,184,255,0.08)` in compiled CSS. Build passes.
+  - **Stale completion log**: entry for the focus.styl outline task references `681cb50`, which no longer exists in git history. `681cb50` is absent from `git log --all`. The actual current commit for that work is `2c61ad0`. Completion log has NOT been updated for any of the three recent commits.
+- Implementer instructions:
+  - Update the completion log entry for the outline shorthand focus.styl task: replace `681cb50` with `2c61ad0`
+  - Add completion log entries for `a9119b4` (forced-colors outline fix) and `f879db0` (tables.styl theme vars)
+  - Commit as `chore: add archwiki reviewer findings`
+
