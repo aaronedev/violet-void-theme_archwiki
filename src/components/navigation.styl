@@ -1987,3 +1987,22 @@ h6:hover .mw-editsection
 
 
 
+
+// =============================================================================
+// MOBILE STICKY HEADER OVERFLOW FIX
+// =============================================================================
+// On small mobile screens (< 768px), the sticky header shows navigation links
+// that can overflow and clip text (e.g. "Download" being cut off).
+// Allow horizontal scrolling for the sticky header to prevent this.
+// Browser support: 97%+
+@media (max-width: 768px)
+  .vector-sticky-header-container
+  .vector-sticky-header
+    overflow-x auto
+    -webkit-overflow-scrolling touch
+    scroll-behavior smooth
+
+  // Also handle the pinned container that holds navigation links
+  .vector-sticky-pinned-container
+    overflow-x auto
+    -webkit-overflow-scrolling touch
