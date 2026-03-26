@@ -494,8 +494,33 @@
 | 2026-03-26 | Add reduced-motion overrides for slide classes (.slide-left, .slide-right, .slide-up, .slide-down) to match spring/bounce/sharp treatment in modern-css.styl | 1c7e3d5 |
 | 2026-03-26 | Use darker backdrop for light mode dialog overlays - rgba($white, 0.8) to rgba($darker, 0.7) for dialog:modal::backdrop, add blur to non-modal dialogs | 9d59791 |
 
-Last updated: 2026-03-26 05:45
+Last updated: 2026-03-26 10:44
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
+
+---
+
+## Reviewer Findings
+
+### 2026-03-26 10:44
+- Review target: 9d052e2 + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`9d052e2`** (23-file deprecated variable replacement): SUBSTANTIVE but UNREVIEWED. Replaces `$bg`, `$purple`, `$breakpoint-sm` and similar non-existent/renamed variables across `advisory.styl`, `community.styl`, `content.styl`, `extensions.styl`, `forms-enhanced.styl`, `mobile.styl`, `translation.styl`, `wikidata.styl`, and 14 other files. Directionally correct (theme variable standardization). No visual evidence reviewed.
+  - **`99ce91f`** completion log entry STILL MISSING (flagged in 08:36 and 11:09 reviews — third consecutive flag).
+  - **`6173365`** hash STILL WRONG in completion log: `1c7e3d5` instead of `6173365` (third consecutive flag).
+  - **`9d59791`** dialog open-state STILL UNVERIFIED: `rgba($white, 0.8)` → `rgba($darker, 0.7)` for light-mode modal backdrop. `rgba($darker) = #0f0f0f` at 70% opacity is very dark for a light-mode overlay. No open-state screenshot. OPEN-STATE EVIDENCE RULE applies.
+  - **Architectural concern in `99ce91f`**: Defines `--arch-red: #ff4444` and `--arch-green: #44ff44` inside `:root { }` within `@css {}` block. These hardcoded hex values bypass the theme's `$red`/`$green` Stylus variables. The `:root { }` inside `@css {}` is an unusual pattern — CSS custom properties should be defined at file level, not nested inside `@css {}` blocks. Also note: `--arch-red` is not the same hue as the theme's `$arch-red` variable if one exists.
+  - **Screenshot pipeline**: still broken per prior reviews. `9d052e2` has no visual evidence collected.
+  - **`c979384` ignore**: no-op marker, not reviewed.
+  - **`70d306b` verbump**: package.json version bump, not implementation work.
+- Implementer instructions:
+  - **Fix the three recurrent flags** that have appeared in 3+ consecutive reviews:
+    1. Add completion log entry for `99ce91f`: `| 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |`
+    2. Fix `6173365` hash: change `1c7e3d5` → `6173365` in the existing completion log entry
+    3. Address `9d59791` open-state: either capture a light-mode dialog-open screenshot showing the `rgba($darker, 0.7)` backdrop is readable, or document why ArchWiki test URLs don't trigger a dialog element that could demonstrate this.
+  - **Architectural fix for `99ce91f`**: Move `--arch-red` and `--arch-green` CSS custom property definitions OUT of the `@css {}` block's `:root {}` and define them as standalone `@property` blocks at file level (see existing `@property --theme-red { ... }` pattern in same file). Use `@css {}` only for the `:has()` selectors themselves, not for property definitions.
+  - **Add completion log entry for `9d052e2`**: `| 2026-03-26 | Replace deprecated/renamed Stylus variables across 23 component files | 9d052e2 |`
+  - **Do NOT push** the worktree or screenshots until the pipeline is root-caused and fixed.
 
 ## 🔤 Typography Polish (New)
 
