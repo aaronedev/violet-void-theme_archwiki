@@ -2936,12 +2936,13 @@ Last updated: 2026-03-26 13:50
   - Also added steps() with jump keywords and transition-behavior: allow-discrete
   - Commit: 1d97bf6
 
-- [ ] **`steps()` with Jump Keywords** (97%+ browser support)
+- [x] **`steps()` with Jump Keywords** (97%+ browser support)
   - File: `src/components/modern-css.styl`
   - Discrete animation steps with jump control
   - `jump-start`, `jump-end`, `jump-none`, `jump-both`
   - Example: `animation-timing-function: steps(5, jump-end);`
   - Stylus: Works directly
+  - Commit: f382329
 
 - [x] **Custom `cubic-bezier()` Curves** (97%+ browser support)
   - File: `src/components/modern-css.styl`
