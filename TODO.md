@@ -493,6 +493,7 @@
 | 2026-03-26 | Add custom cubic-bezier() easing curve utility classes to modern-css.styl - standard easings, spring/bounce, smooth/sharp, slide/fade curves with reduced-motion support | b743e9f |
 | 2026-03-26 | Add reduced-motion overrides for slide classes (.slide-left, .slide-right, .slide-up, .slide-down) to match spring/bounce/sharp treatment in modern-css.styl | 6173365 |
 | 2026-03-26 | Use darker backdrop for light mode dialog overlays - rgba($white, 0.8) to rgba($darker, 0.7) for dialog:modal::backdrop, add blur to non-modal dialogs | 9d59791 |
+| 2026-03-26 | Reduce light-mode dialog backdrop opacity from rgba($darker, 0.7) to rgba($darker, 0.5) for modal and rgba($darker, 0.3) for modeless - 87→135 brightness over white for readable dimming | a02596f |
 | 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |
 | 2026-03-26 | Replace deprecated/renamed Stylus variables across 23 component files | 9d052e2 |
 
