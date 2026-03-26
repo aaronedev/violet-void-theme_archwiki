@@ -413,7 +413,7 @@ h4[id]
   /* Infobox rows with images */
   .infobox tr:has(img) {
     text-align: center;
-    background: rgba(var(--base-rgb, 25, 25, 35), 0.3);
+    background: rgba(var(--base-rgb, 24, 24, 24), 0.3);
   }
 
   /* Highlight sections containing code */
@@ -430,7 +430,7 @@ h4[id]
 
   /* Categories box with items */
   .mw-normal-catlinks:has(ul li) {
-    background: rgba(var(--base-rgb, 25, 25, 35), 0.2);
+    background: rgba(var(--base-rgb, 24, 24, 24), 0.2);
     padding: 0.5em;
     border-radius: 4px;
   }
@@ -1029,6 +1029,9 @@ h4[id]
 
   /* RGB decomposition of $arch-blue (#8950c7 = rgb(137, 80, 199)) for use in rgba() */
   --arch-blue-rgb: 137, 80, 199;
+
+  /* RGB decomposition of $base (#181818 = rgb(24, 24, 24)) for use in rgba() */
+  --base-rgb: 24, 24, 24;
 }
 
 // Apply custom properties to root
