@@ -1015,3 +1015,147 @@ td .aur
 td .grp
   font-size 0.9em
   padding 0.1em 0.3em
+
+// =============================================================================
+// HEADER-CODE BLOCK TEMPLATE ({{hc}})
+// Two-pane code block: header + output
+// Known issue: breaks in lists/indented context — fixed with proper nesting handling
+// Browser support: 97%+
+// =============================================================================
+
+// Header-code block container (two-pane: header + content)
+.hc
+.hc-container
+.header-code-block
+  display flex
+  flex-direction column
+  margin 1em 0
+  border-radius $border-radius-md
+  overflow hidden
+  box-shadow 0 2px 8px rgba($darker, 0.3)
+  border 1px solid rgba($arch-blue, 0.15)
+
+  // Collapse top margin when first child in list
+  &:first-child
+    margin-top 0
+
+  // Collapse bottom margin when last child in list
+  &:last-child
+    margin-bottom 0
+
+  // When nested inside list items — prevent margin doubling
+  li > &
+  li > * > &
+    margin-top 0.25em
+    margin-bottom 0.25em
+
+  // Full-width within list items
+  li &
+    width 100%
+    box-sizing border-box
+
+// Header pane (command/filename description)
+.hc-header
+.hc-header-pane
+.header-code-header
+  background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($secondary-blue, 0.06))
+  border-bottom 1px solid rgba($arch-blue, 0.2)
+  padding 0.5em 1em
+  font-family $font-mono
+  font-size 0.85em
+  color $light
+  display flex
+  align-items center
+  gap 0.5em
+
+  // Prompt indicator
+  &::before
+    content '$'
+    color $arch-blue
+    font-weight 600
+    margin-right 0.25em
+
+  // Root command variant
+  &.root
+  &.root-command
+  &.hc-root
+    background linear-gradient(135deg, rgba($secondary-red, 0.1), rgba($dark-red, 0.06))
+    border-bottom-color rgba($secondary-red, 0.2)
+
+    &::before
+      content '#'
+      color $secondary-red
+
+  // Filename variant (no prompt)
+  &.filename
+  &.hc-filename
+    &::before
+      content ''
+
+    &::after
+      content '📄'
+      margin-right 0.35em
+
+  // Warning/important variant
+  &.warning
+  &.hc-warning
+    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.04))
+    border-bottom-color rgba($orange, 0.2)
+    color $orange
+
+    &::before
+      content '⚠'
+      color $orange
+
+// Content pane (code/output)
+.hc-content
+.hc-content-pane
+.header-code-content
+  background linear-gradient(135deg, $darker 0%, $dark 100%)
+  padding 1em
+  overflow-x auto
+
+  // Nested command block inside content
+  .command-block
+  pre.terminal
+  pre.code
+  .mw-highlight
+    margin 0
+    border-radius 0
+    border none
+    box-shadow none
+
+  // Output styling within header-code
+  .output
+    color $light
+    opacity 0.85
+
+  // Error styling
+  .error
+    color $secondary-red
+
+  // Success styling
+  .success
+    color $green
+
+// Header-code block inside lists — prevent collapse
+ol .hc
+ol .hc-container
+ul .hc
+ul .hc-container
+li .hc
+li .hc-container
+  overflow visible
+  margin-left 0
+  margin-right 0
+
+// Nested list inside header-code content
+.hc-content
+.hc-content-pane
+  ol
+  ul
+    margin 0.5em 0
+
+    ol
+    ul
+      margin 0.25em 0
