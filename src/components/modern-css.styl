@@ -3008,6 +3008,198 @@ h4[id]
   background-color rgba($arch-blue, 0.25)
   color inherit
 
+// =============================================================================
+// CUSTOM CUBIC-BEZIER EASING CURVES - Utility Classes
+// =============================================================================
+// Common easing curve presets via cubic-bezier()
+// Browser support: 97%+
+// Usage: class="ease-in-out" or style="transition: cubic-bezier(...)"
+// These provide smoother alternatives to named timing functions
+
+// =============================================================================
+// EASING CURVE UTILITIES
+// Standard easing curves (replicate CSS named easings)
+// =============================================================================
+
+// Linear - constant speed throughout
+.ease-linear
+  transition-timing-function linear
+  animation-timing-function linear
+
+// Ease (default browser) - subtle acceleration and deceleration
+.ease
+  transition-timing-function cubic-bezier(0.25, 0.1, 0.25, 1)
+  animation-timing-function cubic-bezier(0.25, 0.1, 0.25, 1)
+
+// Ease-in - slow start, fast end (like ease-in)
+.ease-in
+  transition-timing-function cubic-bezier(0.42, 0, 1, 1)
+  animation-timing-function cubic-bezier(0.42, 0, 1, 1)
+
+// Ease-out - fast start, slow end (like ease-out)
+.ease-out
+  transition-timing-function cubic-bezier(0, 0, 0.58, 1)
+  animation-timing-function cubic-bezier(0, 0, 0.58, 1)
+
+// Ease-in-out - slow start and end (like ease-in-out)
+.ease-in-out
+  transition-timing-function cubic-bezier(0.42, 0, 0.58, 1)
+  animation-timing-function cubic-bezier(0.42, 0, 0.58, 1)
+
+// =============================================================================
+// SPECIALIZED EASING CURVES
+// Common animation patterns
+// =============================================================================
+
+// Ease-out-start - fast then slow (decelerating)
+.ease-out-start
+  transition-timing-function cubic-bezier(0, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0, 0, 0.2, 1)
+
+// Ease-in-end - slow then fast (accelerating)
+.ease-in-end
+  transition-timing-function cubic-bezier(0.4, 0, 1, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 1, 1)
+
+// Ease-in-out-start - slow start, fast middle, slow end
+.ease-in-out-start
+  transition-timing-function cubic-bezier(0, 0, 0.3, 1)
+  animation-timing-function cubic-bezier(0, 0, 0.3, 1)
+
+// Ease-in-out-end - slow start, fast middle, slow end
+.ease-in-out-end
+  transition-timing-function cubic-bezier(0.7, 0, 1, 1)
+  animation-timing-function cubic-bezier(0.7, 0, 1, 1)
+
+// =============================================================================
+// SPRING / BOUNCE EASING
+// Elastic feel with overshoot
+// =============================================================================
+
+// Gentle spring - subtle bounce
+.spring-gentle
+  transition-timing-function cubic-bezier(0.34, 1.56, 0.64, 1)
+  animation-timing-function cubic-bezier(0.34, 1.56, 0.64, 1)
+
+// Spring - noticeable bounce
+.spring
+  transition-timing-function cubic-bezier(0.68, -0.55, 0.265, 1.55)
+  animation-timing-function cubic-bezier(0.68, -0.55, 0.265, 1.55)
+
+// Bounce-in - energetic entry with overshoot
+.bounce-in
+  transition-timing-function cubic-bezier(0.175, 0.885, 0.32, 1.275)
+  animation-timing-function cubic-bezier(0.175, 0.885, 0.32, 1.275)
+
+// Bounce-out - energetic exit with overshoot
+.bounce-out
+  transition-timing-function cubic-bezier(0.34, 1.56, 0.64, 1)
+  animation-timing-function cubic-bezier(0.34, 1.56, 0.64, 1)
+
+// =============================================================================
+// SMOOTH CURVES
+// Gentle, professional transitions
+// =============================================================================
+
+// Smooth - very gentle, professional feel
+.smooth
+  transition-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+
+// Smooth-in - smooth acceleration
+.smooth-in
+  transition-timing-function cubic-bezier(0.4, 0, 0.6, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.6, 1)
+
+// Smooth-out - smooth deceleration
+.smooth-out
+  transition-timing-function cubic-bezier(0, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0, 0, 0.2, 1)
+
+// Smooth-in-out - smooth acceleration and deceleration
+.smooth-in-out
+  transition-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+
+// =============================================================================
+// SHARP CURVES
+// Quick, snappy transitions
+// =============================================================================
+
+// Sharp - quick snap
+.sharp
+  transition-timing-function cubic-bezier(0.4, 0, 0.6, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.6, 1)
+
+// Sharp-in - sharp acceleration
+.sharp-in
+  transition-timing-function cubic-bezier(0.4, 0, 1, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 1, 1)
+
+// Sharp-out - sharp deceleration
+.sharp-out
+  transition-timing-function cubic-bezier(0, 0, 0.6, 1)
+  animation-timing-function cubic-bezier(0, 0, 0.6, 1)
+
+// =============================================================================
+// SLIDE / MOTION CURVES
+// Directional movement patterns
+// =============================================================================
+
+// Slide-left - accelerate right to left
+.slide-left
+  transition-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+
+// Slide-right - accelerate left to right
+.slide-right
+  transition-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+
+// Slide-up - accelerate bottom to top
+.slide-up
+  transition-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+
+// Slide-down - accelerate top to bottom
+.slide-down
+  transition-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+  animation-timing-function cubic-bezier(0.4, 0, 0.2, 1)
+
+// =============================================================================
+// FADE CURVES
+// Opacity-focused transitions
+// =============================================================================
+
+// Fade-in - subtle fade with gentle entry
+.fade-in
+  transition-timing-function ease-out
+  animation-timing-function ease-out
+
+// Fade-out - subtle fade with gentle exit
+.fade-out
+  transition-timing-function ease-in
+  animation-timing-function ease-in
+
+// =============================================================================
+// REDUCED MOTION OVERRIDES
+// Ensure smooth experience for motion-sensitive users
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .spring-gentle
+  .spring
+  .bounce-in
+  .bounce-out
+    transition-timing-function ease-out
+    animation-timing-function ease-out
+
+  .sharp
+  .sharp-in
+  .sharp-out
+    transition-timing-function ease-out
+    animation-timing-function ease-out
+
 // Reduced motion for highlights
 @media (prefers-reduced-motion reduce)
   .highlight-pulse
