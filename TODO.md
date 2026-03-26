@@ -491,6 +491,8 @@
 | 2026-03-25 | Replace hardcoded rgba values with oklch() in ::highlight() pseudo-element selectors in modern-css.styl - all 8 highlight types now use modern oklch() color syntax with / alpha for better color management (85%+ browser support) | d0a22dc |
 | 2026-03-26 | Replace hardcoded #666/#333 hex colors with theme variables in print-enhanced.styl @page rules and blockquote borders - uses var(--print-text) and $print-button-bg | 1b42310 |
 | 2026-03-26 | Add custom cubic-bezier() easing curve utility classes to modern-css.styl - standard easings, spring/bounce, smooth/sharp, slide/fade curves with reduced-motion support | b743e9f |
+| 2026-03-26 | Add reduced-motion overrides for slide classes (.slide-left, .slide-right, .slide-up, .slide-down) to match spring/bounce/sharp treatment in modern-css.styl | 1c7e3d5 |
+| 2026-03-26 | Use darker backdrop for light mode dialog overlays - rgba($white, 0.8) to rgba($darker, 0.7) for dialog:modal::backdrop, add blur to non-modal dialogs | 9d59791 |
 
 Last updated: 2026-03-26 05:45
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
