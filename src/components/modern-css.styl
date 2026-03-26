@@ -3195,6 +3195,43 @@ h4[id]
   animation-timing-function ease-in
 
 // =============================================================================
+// STEPS() WITH JUMP KEYWORDS - Discrete Animations
+// Browser support: 97%+
+// Discrete animations that change at boundaries without interpolation
+// Unlike cubic-bezier/ease curves which interpolate, steps() jumps between values
+// jump-start: first jump occurs at start of animation (no hold at beginning)
+// jump-end: last jump occurs at end of animation (no hold at end) - DEFAULT
+// jump-both: jumps occur at start and end (no hold at either end)
+// jump-none: holds at both ends before jumping (opposite of jump-both)
+// Use for: frame-by-frame animations, sprite sheets, countdown timers,
+// progress indicators, typewriter effects, pixel-art animations
+// =============================================================================
+
+// Steps-jump-start - no hold at beginning, first jump immediately
+.steps-jump-start
+  animation-timing-function steps(5, jump-start)
+
+// Steps-jump-end - no hold at end, last jump at end
+.steps-jump-end
+  animation-timing-function steps(5, jump-end)
+
+// Steps-jump-both - no hold at either end (jumps at both boundaries)
+.steps-jump-both
+  animation-timing-function steps(5, jump-both)
+
+// Steps-jump-none - holds at both ends (most common, like pause before/after)
+.steps-jump-none
+  animation-timing-function steps(5, jump-none)
+
+// Reduced motion: disable step animations for sensitive users
+@media (prefers-reduced-motion reduce)
+  .steps-jump-start
+  .steps-jump-end
+  .steps-jump-both
+  .steps-jump-none
+    animation none
+
+// =============================================================================
 // REDUCED MOTION OVERRIDES
 // Ensure smooth experience for motion-sensitive users
 // =============================================================================
