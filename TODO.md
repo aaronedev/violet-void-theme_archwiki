@@ -496,9 +496,11 @@
 | 2026-03-26 | Reduce light-mode dialog backdrop opacity from rgba($darker, 0.7) to rgba($darker, 0.5) for modal and rgba($darker, 0.3) for modeless - 87→135 brightness over white for readable dimming | a02596f |
 | 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |
 | 2026-03-26 | Replace deprecated/renamed Stylus variables across 23 component files | 9d052e2 |
-| 2026-03-26 | Replace longhand outline properties with shorthand in focus.styl where outline-offset is default (0) | 681cb50 |
+| 2026-03-26 | Replace longhand outline properties with shorthand in focus.styl where outline-offset is default (0) | 2c61ad0 |
+| 2026-03-26 | Correct outline shorthand syntax in forced-colors mode | a9119b4 |
+| 2026-03-26 | Replace hardcoded hex colors with theme variables in tables.styl :root | f879db0 |
 
-Last updated: 2026-03-26 13:50
+Last updated: 2026-03-26 15:25
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -2629,7 +2631,7 @@ Last updated: 2026-03-26 13:50
   - Compact outline syntax
   - `outline: 2px solid var(--accent);`
   - Stylus: Works directly
-  - Commit: 681cb50
+  - Commit: 2c61ad0
 
 ## 🖼️ Border Image (New)
 
@@ -9043,3 +9045,19 @@ Last updated: 2026-03-26 13:50
   - Add completion log entry for `a9119b4`: `| 2026-03-26 | Correct outline shorthand syntax in forced-colors mode | a9119b4 |`
   - Add completion log entry for `f879db0`: `| 2026-03-26 | Replace hardcoded hex colors with theme variables in tables.styl :root | f879db0 |`
   - Commit as `chore: add archwiki reviewer findings`
+
+### 2026-03-26 16:25
+- Review target: `1ad47af` (clean worktree — package.json version bump only)
+- Verdict: APPROVED
+- Findings:
+  - Outstanding flags from 15:52 review — ALL ADDRESSED in this session:
+    1. ✅ Stale `681cb50` → `2c61ad0` in completion log (line 499)
+    2. ✅ Stale `681cb50` → `2c61ad0` in task item (line ~5178)  
+    3. ✅ Completion log entry added for `a9119b4` (forced-colors outline fix)
+    4. ✅ Completion log entry added for `f879db0` (tables.styl theme vars)
+  - **`1ad47af`** (mark steps() done in TODO): no-op chore commit. Correct.
+  - Worktree is clean (package.json version bump only — expected).
+  - No new implementation work since last review.
+- Implementer instructions:
+  - Commit as `chore: add archwiki reviewer findings`
+  - No further action required — all flags closed.
