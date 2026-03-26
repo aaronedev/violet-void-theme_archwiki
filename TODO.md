@@ -9105,3 +9105,14 @@ Last updated: 2026-03-26 15:25
   - **Screenshot pipeline is the only blocker**: ALL pages are producing identical screenshots. Before the next visual scout run: investigate why the entire capture is returning the same image for every URL — check if ArchWiki is returning a block/captcha, if the CSS injection is working, if the URL routing is correct
   - Add completion log entries for `5b9b8ba`, `f382329`, `ac553f0`, `b2928a6`
   - Commit as `chore: add archwiki reviewer findings`
+
+### 2026-03-26 18:34
+- Review target: `132fa9f` + dirty worktree
+- Verdict: APPROVED
+- Findings:
+  - **`132fa9f`** (replace undefined `$bg` with `$dark` in focus ring): APPROVED. `$bg` is never defined as a standalone variable in any Stylus variables file — only `$bg-primary`, `$bg-secondary`, `$bg-tertiary` exist. `$dark = #202020` is defined in `src/variables/colors.styl`. The `.focus-ring` box-shadow (`0 0 0 3px $bg, 0 0 0 5px $arch-blue`) was generating invalid CSS. Replacement with `$dark` is semantically correct for a dark-theme gap effect. Scoped one-line fix. Build-valid CSS.
+  - **Worktree**: package.json version bump only (`20260326.17.55` → `20260326.19.22`), no CSS state.
+  - **No completion log needed**: This was a typo/undefined-variable fix, not a new feature. No TODO entry required.
+  - **No open-state evidence needed**: Bug fix, not an interactive UI state change.
+- Implementer instructions:
+  - None — fix is clean and complete.
