@@ -508,8 +508,10 @@
 | 2026-03-26 | Replace hardcoded rgba(137,80,199) with var(--arch-blue-rgb) in @scope blocks in modern-css.styl | a365d61 |
 | 2026-03-26 | Fix ::target-text rgba() using wrong RGB values (secondary-blue #c7b8ff instead of arch-blue #8950c7) — corrected to var(--arch-blue-rgb) | 280d567 |
 | 2026-03-26 | Replace remaining hardcoded #ccc/#eee hex colors in print.styl - #ccc → $print-border for code blocks, #eee → $print-bg for table/infobox th backgrounds | 9169bfe |
+| 2026-03-26 | Fix: add {{hc}} header-code block template styling with list-context fix — prevents collapse in ol/ul/li contexts | ebb84bd |
+| 2026-03-27 | Replace hardcoded hex colors in ::first-letter drop cap with CSS custom properties (--dropcap-color, --dropcap-color-secondary) using oklch() | ace5a8a |
 
-Last updated: 2026-03-26 22:24
+Last updated: 2026-03-27 00:35
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -7345,13 +7347,13 @@ Last updated: 2026-03-26 22:24
 
 ## 🆕 ArchWiki Template:hc Styling (New - 2026-03-10 Scout 37)
 
-- [ ] **Template:hc (Header-Code Block) Styling** (CSS, 97%+ browser support)
+- [x] **Template:hc (Header-Code Block) Styling** (CSS, 97%+ browser support) (done: 2026-03-26 23:51, commit: ebb84bd)
   - File: `src/components/archwiki-templates.styl`
   - Two-pane code block: header + output
   - Header pane styling (filename, command)
   - Content pane styling (code/output)
   - Visual separator between panes
-  - Known issue: breaks in lists/indented context
+  - Fixed: list/indented context handling (margin collapse, overflow, width)
   - Stylus: Works directly
 
 ## 🆕 ArchWiki Interlanguage Links (New - 2026-03-10 Scout 37)
