@@ -9025,3 +9025,20 @@ Last updated: 2026-03-26 13:50
   - Add completion log entries for `a9119b4` (forced-colors outline fix) and `f879db0` (tables.styl theme vars)
   - Commit as `chore: add archwiki reviewer findings`
 
+
+### 2026-03-26 15:52
+- Review target: `b4c44f7`, `7818535` (clean worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`b4c44f7`** (anchor-size() CSS function): APPROVED. Clean implementation with `@supports` guard, proper fallback lengths, and consistent utility class naming. Build passes without errors. Stylus parses `anchor-size()` directly — `@css{}` wrapper not required for this particular syntax (build confirms). Completion log entry added in `7818535`.
+  - **`7818535`** (completion log update): Confirms `b4c44f7` in completion log with correct timestamp 2026-03-26 15:47.
+  - **Outstanding from 14:15 review — STILL NOT ADDRESSED**:
+    1. Stale hash `681cb50` in completion log — still present, should be `2c61ad0`
+    2. Missing completion log entry for `a9119b4`
+    3. Missing completion log entry for `f879db0`
+  - The implementer committed the reviewer findings to TODO.md (`c1b3384`) but did not action the three completion log fixes in the implementer instructions.
+- Implementer instructions:
+  - Fix the stale `681cb50` → `2c61ad0` in the completion log row: `| 2026-03-26 | Replace longhand outline properties with shorthand in focus.styl where outline-offset is default (0) | 681cb50 |` → `| 2026-03-26 | Replace longhand outline properties with shorthand in focus.styl where outline-offset is default (0) | 2c61ad0 |`
+  - Add completion log entry for `a9119b4`: `| 2026-03-26 | Correct outline shorthand syntax in forced-colors mode | a9119b4 |`
+  - Add completion log entry for `f879db0`: `| 2026-03-26 | Replace hardcoded hex colors with theme variables in tables.styl :root | f879db0 |`
+  - Commit as `chore: add archwiki reviewer findings`
