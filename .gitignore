@@ -37,3 +37,4 @@ tests/integration/stylus/
 tests/integration/stylus/*
 !tests/integration/stylus/.gitkeep
 /.code/agents
+/.agent/archwiki/current
