@@ -9130,3 +9130,28 @@ Last updated: 2026-03-26 21:20
 - Implementer instructions:
   - Add completion log entries for 579d809, a365d61, 280d567 to TODO.md (Completion Log table, near the 2026-03-26 entries)
   - Do NOT commit or stage the worktree (package.json version bump + untracked .agent/archwiki-scout.js)
+
+### 2026-03-26 22:03
+- Review target: `9169bfe` + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`9169bfe`** (replace hardcoded #ccc/#eee hex colors with theme variables in print.styl): APPROVED. Diff is clean and correctly scoped:
+    - `#ccc → $print-border` for code block borders
+    - `#eee → $print-bg` for table header and infobox th backgrounds
+    - 3-line change, print-specific variables, consistent with prior commit `1ccaee9`.
+    - Completion log entry: present (line ~9225: "Replace remaining hardcoded #ccc/#eee hex colors in print.styl - #ccc → $print-border for code blocks, #eee → $print-bg for table/infobox th backgrounds | 9169bfe").
+  - **Prior 19:53 followup items STILL missing**: Completion log entries for `579d809`, `a365d61`, `280d567` were NOT added. Confirmed by grep — hashes only appear in the Reviewer Findings section, not in the Completion Log table.
+  - **Prior 16:41/18:34 followup items STILL missing**: Completion log entries for `5b9b8ba`, `f382329`, `ac553f0`, `b2928a6` were also NOT added. Same grep confirmation.
+  - **Worktree**: package.json version bump only (`20260326.17.55` → `20260326.21.49`), no CSS state changes. `.agent/archwiki-scout.js` (543-line Playwright visual scout script) remains untracked — should not be committed to this repo.
+  - **Total missing completion log entries**: 7 commits (579d809, a365d61, 280d567, 5b9b8ba, f382329, ac553f0, b2928a6).
+- Implementer instructions:
+  - Add completion log entries for ALL 7 missing commits to TODO.md Completion Log table (insert before the 9169bfe entry, which is the most recent):
+    - `| 2026-03-26 | Fix mobile sticky header overflow for navigation links — add overflow-x: auto + touch-scroll to .vector-sticky-header-container, .vector-sticky-header, .vector-sticky-pinned-container on mobile | 5b9b8ba |`
+    - `| 2026-03-26 | Add steps() with jump keywords utility classes (.steps-jump-start, .steps-jump-end, .steps-jump-both, .steps-jump-none) to modern-css.styl with reduced-motion support | f382329 |`
+    - `| 2026-03-26 | Replace hardcoded rgba(124,58,237) (old arch-blue #7c3aed) with $arch-blue in navigation.styl scroll-snap and tables.styl hover | ac553f0 |`
+    - `| 2026-03-26 | Define --arch-blue-rgb: 137, 80, 199 CSS custom property and correct fallback values in modern-css.styl rgba() calls | b2928a6 |`
+    - `| 2026-03-26 | Define missing --base-rgb CSS custom property as 24, 24, 24 (matches $base=#181818) in modern-css.styl rgba() calls | 579d809 |`
+    - `| 2026-03-26 | Replace hardcoded rgba(137,80,199) with var(--arch-blue-rgb) in @scope blocks in modern-css.styl | a365d61 |`
+    - `| 2026-03-26 | Fix ::target-text rgba() using wrong RGB values (secondary-blue #c7b8ff instead of arch-blue #8950c7) — corrected to var(--arch-blue-rgb) | 280d567 |`
+  - Commit as: `chore: add archwiki reviewer findings`
+  - Do NOT commit archwiki-scout.js or package.json (version bump only — wait for final release commit)
