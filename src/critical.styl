@@ -33,7 +33,7 @@
   background-color $base
 
   // Above-fold text color
-  color $text
+  color $light
 
   // Prevent layout shift
   overflow-y scroll
@@ -102,7 +102,7 @@
 // Skeleton loading state
 .skeleton
   // Animated placeholder
-  background linear-gradient(90deg, $bg-secondary 25%, lighten($bg-secondary, 5%) 50%, $bg-secondary 75%)
+  background linear-gradient(90deg, $base 25%, lighten($base, 5%) 50%, $base 75%)
   background-size 200% 100%
   animation skeleton-loading 1.5s infinite
 
@@ -205,8 +205,8 @@
   line-height 1.6
 
   // Colors
-  background-color $bg-primary
-  color $text
+  background-color $base
+  color $light
 
 // Critical inline - navigation
 .critical-nav
@@ -214,7 +214,7 @@
   align-items center
   justify-content space-between
   padding 0.5rem 1rem
-  background-color $bg-secondary
+  background-color $base
   border-bottom 1px solid $border-subtle
 
 // Critical inline - heading
@@ -223,7 +223,7 @@
   font-weight 700
   line-height 1.2
   margin-bottom 1rem
-  color $heading
+  color $light
 
 // Critical inline - paragraph
 .critical-p
@@ -331,7 +331,7 @@
 @media (prefers-reduced-motion reduce)
   .skeleton
     animation none
-    background $bg-secondary
+    background $base
 
   .fade-in
     transition none

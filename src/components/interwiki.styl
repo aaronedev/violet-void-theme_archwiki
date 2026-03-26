@@ -79,7 +79,7 @@
     .preview-title
       font-weight 600
       font-size 0.9rem
-      color $text
+      color $light
       flex 1
       overflow hidden
       text-overflow ellipsis
@@ -161,19 +161,19 @@ a.external.text
     border-left 3px solid $secondary-red
 
   &.wikinews
-    border-left 3px solid $purple
+    border-left 3px solid $arch-blue
 
   &.wikisource
-    border-left 3px solid $yellow
+    border-left 3px solid $gold
 
   &.wikiquote
-    border-left 3px solid $cyan
+    border-left 3px solid $term-cyan
 
   &.wikimedia-commons
     border-left 3px solid $arch-blue
 
 // Mobile adjustments
-@media (max-width $breakpoint-sm)
+@media (max-width 768px)
   .interwiki-preview
     width calc(100vw - 32px)
     max-width calc(100vw - 32px)

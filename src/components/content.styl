@@ -1769,7 +1769,7 @@ dd
 // ===== Background Blend Mode for Cards =====
 // Card with subtle texture effect
 .card-background-blend
-  background-color $surface
+  background-color $base
   background-image radial-gradient(circle at 50% 0%, rgba($arch-blue, 0.08) 0%, transparent 70%)
   background-blend-mode normal, screen
   background-position center top
@@ -1788,14 +1788,14 @@ dd
 // ===== Background Blend Mode for Info Boxes =====
 // Info box with subtle gradient blend
 .infobox-background-blend
-  background linear-gradient(135deg, $surface 0%, rgba($arch-blue, 0.03) 100%)
+  background linear-gradient(135deg, $base 0%, rgba($arch-blue, 0.03) 100%)
   background-blend-mode normal, overlay
-  background-color $surface
+  background-color $base
 
 // ===== Background Blend Mode for Navigation =====
 // Nav with background blend
 .nav-background-blend
-  background-color $nav-bg
+  background-color $darker
   background-image linear-gradient(180deg, rgba($arch-blue, 0.05) 0%, transparent 20%)
   background-blend-mode normal, screen
 

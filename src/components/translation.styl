@@ -26,7 +26,7 @@
   .translation-title
     font-size 1.25rem
     font-weight 600
-    color $text
+    color $light
 
   .translation-actions
     display flex
@@ -40,7 +40,7 @@
 
   .source-language
     font-weight 600
-    color $text-muted
+    color $muted
 
   .language-arrow
     color $arch-blue
@@ -48,7 +48,7 @@
 
   .target-language
     font-weight 600
-    color $text
+    color $light
 
 // Translation Progress
 .translation-progress-container
@@ -56,7 +56,7 @@
 
 .translation-progress-bar
   height 8px
-  background $bg-secondary
+  background $base
   border-radius 4px
   overflow hidden
 
@@ -67,17 +67,17 @@
     transition width 0.3s ease
 
   .translation-progress-complete
-    background linear-gradient(135deg, $success, lighten($success, 10%))
+    background linear-gradient(135deg, $green, lighten($green, 10%))
 
   .translation-progress-partial
-    background linear-gradient(135deg, $warning, lighten($warning, 10%))
+    background linear-gradient(135deg, $gold, lighten($gold, 10%))
 
 .translation-progress-label
   display flex
   justify-content space-between
   margin-top 0.25rem
   font-size 0.75rem
-  color $text-muted
+  color $muted
 
 // Translation Stats
 .translation-stats
@@ -87,7 +87,7 @@
   margin 1rem 0
 
   .stat-card
-    background $bg-secondary
+    background $base
     padding 0.75rem
     border-radius $border-radius-sm
     text-align center
@@ -99,7 +99,7 @@
 
     .stat-label
       font-size 0.75rem
-      color $text-muted
+      color $muted
 
 // Outdated Indicator
 .translation-outdated
@@ -107,10 +107,10 @@
   align-items center
   gap 0.25rem
   padding 0.25rem 0.5rem
-  background rgba($warning, 0.15)
-  border 1px solid $warning
+  background rgba($gold, 0.15)
+  border 1px solid $gold
   border-radius 4px
-  color $warning
+  color $gold
   font-size 0.75rem
   font-weight 500
 
@@ -129,20 +129,20 @@
   font-weight 500
 
   &.status-translated
-    background rgba($success, 0.15)
-    color $success
+    background rgba($green, 0.15)
+    color $green
 
   &.status-needs-translation
     background rgba($arch-blue, 0.15)
     color $arch-blue
 
   &.status-outdated
-    background rgba($warning, 0.15)
-    color $warning
+    background rgba($gold, 0.15)
+    color $gold
 
   &.status-untranslated
-    background rgba($text-muted, 0.15)
-    color $text-muted
+    background rgba($muted, 0.15)
+    color $muted
 
 // Translation Table
 .translation-table
@@ -157,13 +157,13 @@
 
   th
     font-weight 600
-    color $text-muted
+    color $muted
     font-size 0.75rem
     text-transform uppercase
     letter-spacing 0.5px
 
   tr:hover
-    background $bg-secondary
+    background $base
 
 // Language Selector
 .translation-language-selector
@@ -175,10 +175,10 @@
   .language-dropdown
     flex 1
     padding 0.5rem
-    background $bg-secondary
+    background $base
     border 1px solid $border-subtle
     border-radius $border-radius-sm
-    color $text
+    color $light
     font-size 0.9rem
     cursor pointer
 
@@ -189,7 +189,7 @@
 
 // Translation Review Panel
 .translation-review-panel
-  background $bg-secondary
+  background $base
   border-radius $border-radius-lg
   padding 1rem
   margin 1rem 0
@@ -214,12 +214,12 @@
 
       h4
         font-size 0.75rem
-        color $text-muted
+        color $muted
         margin-bottom 0.25rem
         text-transform uppercase
 
       p
-        color $text
+        color $light
         line-height 1.5
 
 // Translation Actions
