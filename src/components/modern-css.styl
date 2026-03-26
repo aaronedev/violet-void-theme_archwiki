@@ -2161,7 +2161,7 @@ h4[id]
 
 @css {
   ::target-text {
-    background-color: rgba(199, 146, 234, 0.3); /* --arch-blue with alpha */
+    background-color: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.3); /* --arch-blue with alpha */
     color: inherit;
     text-shadow: none;
   }
@@ -2169,7 +2169,7 @@ h4[id]
   /* Dark mode variant */
   @media (prefers-color-scheme: dark) {
     ::target-text {
-      background-color: rgba(199, 146, 234, 0.4);
+      background-color: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.4);
     }
   }
 }
