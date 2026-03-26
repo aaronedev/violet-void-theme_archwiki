@@ -2322,7 +2322,7 @@ h4[id]
 
     /* Highlight elements with dynamic background */
     .highlight[data-highlight-color] {
-      background-color: attr(data-highlight-color type(<color>), rgba(137, 80, 199, 0.2));
+      background-color: attr(data-highlight-color type(<color>), rgba(var(--arch-blue-rgb, 137, 80, 199), 0.2));
     }
 
     /* Navigation items with dynamic active color */
@@ -2554,7 +2554,7 @@ h4[id]
         background-color: transparent;
       }
       to {
-        background-color: rgba(108, 92, 231, 0.05);
+        background-color: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.05);
       }
     }
   }
