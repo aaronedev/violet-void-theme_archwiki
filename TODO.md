@@ -2069,11 +2069,12 @@ Last updated: 2026-03-26 13:50
   - `position-anchor: --my-anchor;`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`anchor-size()` Function** (85%+ browser support)
+- [x] **`anchor-size()` Function** (85%+ browser support) (done: 2026-03-26 15:47, commit: b4c44f7)
   - File: `src/components/ui-components.styl`
   - Size elements based on anchor
   - `width: anchor-size(width);`
-  - Note: Wrap in `@css{}` for Stylus
+  - @supports guard for Stylus compatibility
+  - Utility classes: `.tooltip-anchor-size`, `.popover-anchor-*`, `.dropdown-anchor-sized`, `.anchor-min/max-*`
 
 - [x] **`@position-try` Fallbacks** (85%+ browser support)
   - File: `src/components/ui-components.styl`
