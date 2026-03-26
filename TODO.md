@@ -9116,3 +9116,15 @@ Last updated: 2026-03-26 15:25
   - **No open-state evidence needed**: Bug fix, not an interactive UI state change.
 - Implementer instructions:
   - None — fix is clean and complete.
+
+### 2026-03-26 19:53
+- Review target: 280d567, a365d61, 579d809 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - `280d567`: `::target-text` was using `rgba(199, 146, 234, ...)` (secondary-blue #c7b8ff RGB) — wrong value. Fixed to `rgba(var(--arch-blue-rgb, 137, 80, 199), ...)`. Genuine bug fix. RGB 137,80,199 = #8950c7 = $arch-blue ✓
+  - `a365d61`: @scope block hardcoded `rgba(137, 80, 199, ...)` → CSS var pattern. Correctly scoped. No visual artifacts available for open-state verification.
+  - `579d809`: `--base-rgb` was referenced but never defined. Defined as `24, 24, 24` — matches `$base = #181818` ✓. Fallback values corrected accordingly.
+  - No completion log entries for any of the 3 commits in TODO.md — implementer must add them.
+- Implementer instructions:
+  - Add completion log entries for 579d809, a365d61, 280d567 to TODO.md (Completion Log table, near the 2026-03-26 entries)
+  - Do NOT commit or stage the worktree (package.json version bump + untracked .agent/archwiki-scout.js)
