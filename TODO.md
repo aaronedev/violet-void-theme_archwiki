@@ -8928,3 +8928,20 @@ Last updated: 2026-03-26 05:45
   - 9d59791 remains unapproved — dialog open-state screenshot still required
   - Optional: add mobile search-active captures for firefox (falls back to menu-open per visual scout report)
 
+### 2026-03-26 09:34
+- Review target: dirty worktree (no new CSS commits since 08:36 review)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **No new CSS commits** since the 08:36 review. Worktree contains only screenshot artifacts and package.json version bump. No new implementation work to review.
+  - **Screenshot pipeline CATASTROPHICALLY broken**: ALL 40 screenshots share only 2 MD5 hashes — every single capture is identical. Desktop: 20 screenshots across 5 pages × 4 states all share hash `8373727d86a3679a4de9181b87bde35d`. Mobile: 20 screenshots all share hash `9eae55c241c315cf782d196f60747970`. File sizes are also identical within each group (76277B desktop, 69444B mobile). State variations (default, menu-open, toc-open, search-active) produce zero visual distinction. This is 10+ consecutive review cycles with the same identical-hash problem — flagged at 21:10, 21:47, 23:26, 00:22, 01:41, 02:33, 03:24, 04:07, 04:53, 05:34, 06:34, 09:08, 12:52, 13:42, 16:05, 16:20, 17:25, 19:06, 20:17, 20:40, 21:30, 22:43, 00:41, 01:16, 04:26, 05:52, 08:36.
+  - **This is a total capture failure.** The pipeline produces the same placeholder/error image for every URL, viewport, and state. Visual evidence from these screenshots is completely meaningless.
+  - **Possible root causes**: (1) Anubis anti-bot blocking all automated access to ArchWiki, (2) ArchWiki requiring JavaScript interaction that Playwright cannot complete, (3) CSS injection via `<style>` tag appended to `<head>` not overriding ArchWiki's stylesheets as intended.
+  - **CSS quality** (6173365, 99ce91f): No change since 08:36 — both remain APPROVED on code quality. No regression from current worktree.
+  - **Pending followups from 08:36 review UNRESOLVED**: (1) 99ce91f completion log entry missing, (2) 6173365 commit hash wrong in log (`1c7e3d5` should be `6173365`), (3) 9d59791 dialog open-state screenshot still missing.
+- Implementer instructions:
+  - **Stop running screenshot capture until the pipeline is fixed.** Every re-run since 2026-03-24 has produced the same identical-hash result. Running it again with the same method will not change anything.
+  - **Root-cause investigation required**: Before any more capture attempts, determine why ALL screenshots are identical: (a) check if `dist/main.css` exists and is non-empty, (b) check if ArchWiki returns a captcha/blocked page instead of wiki content, (c) check if the `<style>` injection is actually overriding ArchWiki styles, (d) try using ArchWiki's mobile URL variant or API endpoint as an alternative.
+  - **Fix the 08:36 pending items**: (1) Add completion log entry for 99ce91f, (2) fix commit hash in 6173365 log entry, (3) address 9d59791 dialog open-state.
+  - **Do NOT commit any screenshots from this worktree** — every single one is an identical placeholder/error image. Committing them would corrupt the baseline.
+  - **Consider switching to a different ArchWiki instance or cached version** if Anubis is permanently blocking automated access.
+
