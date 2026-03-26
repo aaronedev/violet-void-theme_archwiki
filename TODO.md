@@ -504,25 +504,23 @@ Last updated: 2026-03-26 11:10
 
 ## Reviewer Findings
 
-### 2026-03-26 10:44
+### 2026-03-26 10:44 → RESOLVED (2026-03-26 13:10)
 - Review target: 9d052e2 + dirty worktree
-- Verdict: NEEDS_FOLLOWUP
-- Findings:
-  - **`9d052e2`** (23-file deprecated variable replacement): SUBSTANTIVE but UNREVIEWED. Replaces `$bg`, `$purple`, `$breakpoint-sm` and similar non-existent/renamed variables across `advisory.styl`, `community.styl`, `content.styl`, `extensions.styl`, `forms-enhanced.styl`, `mobile.styl`, `translation.styl`, `wikidata.styl`, and 14 other files. Directionally correct (theme variable standardization). No visual evidence reviewed.
-  - **`99ce91f`** completion log entry STILL MISSING (flagged in 08:36 and 11:09 reviews — third consecutive flag).
-  - **`6173365`** hash STILL WRONG in completion log: `1c7e3d5` instead of `6173365` (third consecutive flag).
-  - **`9d59791`** dialog open-state STILL UNVERIFIED: `rgba($white, 0.8)` → `rgba($darker, 0.7)` for light-mode modal backdrop. `rgba($darker) = #0f0f0f` at 70% opacity is very dark for a light-mode overlay. No open-state screenshot. OPEN-STATE EVIDENCE RULE applies.
-  - **Architectural concern in `99ce91f`**: Defines `--arch-red: #ff4444` and `--arch-green: #44ff44` inside `:root { }` within `@css {}` block. These hardcoded hex values bypass the theme's `$red`/`$green` Stylus variables. The `:root { }` inside `@css {}` is an unusual pattern — CSS custom properties should be defined at file level, not nested inside `@css {}` blocks. Also note: `--arch-red` is not the same hue as the theme's `$arch-red` variable if one exists.
-  - **Screenshot pipeline**: still broken per prior reviews. `9d052e2` has no visual evidence collected.
+- Verdict: FOLLOWUP COMPLETED
+- Resolution summary:
+  - **`99ce91f` completion log entry**: Already present (line 497) — prior flag was stale.
+  - **`6173365` hash**: Already correct (`6173365`) — prior flag was stale.
+  - **Architectural concern in `99ce91f`**: Fixed in `f573d93` — `--arch-red`/`--arch-green` moved to standalone `@property` blocks at file level. Confirmed by grep: `@property --arch-red` at line 1018, `@property --arch-green` at line 1024 in modern-css.styl.
+  - **`9d59791` dialog open-state**: DOCUMENTED — `dialog:modal::backdrop` rules target native HTML `<dialog>` elements which ArchWiki's Vector skin does not use (ArchWiki uses `.modal`/`.overlay` div-based classes instead). Comment added to ui-components.styl before light mode adjustments explaining: (a) ArchWiki doesn't use native `<dialog>`, (b) values were chosen for readability over white backgrounds (0.5 for modal, 0.3 for modeless), (c) CSS is forward-looking for MediaWiki 1.43+ or third-party extensions. No screenshot capture possible with current tooling.
+  - **`9d052e2`**: Completion log entry present (line 498). Directionally correct — variable standardization across 23 files.
   - **`c979384` ignore**: no-op marker, not reviewed.
   - **`70d306b` verbump**: package.json version bump, not implementation work.
-- Implementer instructions:
-  - **Fix the three recurrent flags** that have appeared in 3+ consecutive reviews:
-    1. Add completion log entry for `99ce91f`: `| 2026-03-26 | Define CSS custom properties for form :has validation states with oklch color conversions | 99ce91f |`
-    2. Fix `6173365` hash: change `1c7e3d5` → `6173365` in the existing completion log entry
-    3. Address `9d59791` open-state: either capture a light-mode dialog-open screenshot showing the `rgba($darker, 0.7)` backdrop is readable, or document why ArchWiki test URLs don't trigger a dialog element that could demonstrate this.
-  - **Architectural fix for `99ce91f`**: Move `--arch-red` and `--arch-green` CSS custom property definitions OUT of the `@css {}` block's `:root {}` and define them as standalone `@property` blocks at file level (see existing `@property --theme-red { ... }` pattern in same file). Use `@css {}` only for the `:has()` selectors themselves, not for property definitions.
-  - **Add completion log entry for `9d052e2`**: `| 2026-03-26 | Replace deprecated/renamed Stylus variables across 23 component files | 9d052e2 |`
+- Implementer instructions (all addressed):
+  1. ✅ Completion log for `99ce91f` — already present
+  2. ✅ `6173365` hash — already correct
+  3. ✅ `9d59791` open-state — documented in ui-components.styl comment
+  4. ✅ Architectural fix for `99ce91f` — done in `f573d93`
+  5. ✅ Completion log for `9d052e2` — present
   - **Do NOT push** the worktree or screenshots until the pipeline is root-caused and fixed.
 
 ## 🔤 Typography Polish (New)

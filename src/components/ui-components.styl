@@ -431,7 +431,15 @@ dialog.animated-backdrop:modal::backdrop
   dialog::backdrop
     transition none
 
-// Light mode adjustments
+// Light mode adjustments for native <dialog> element backdrops
+// NOTE: ArchWiki (Vector skin) does not use native <dialog> elements in its
+// default article or special page templates. The actual modal/overlay UI uses
+// .modal and .overlay classes (see below) which have separate styling.
+// These dialog:modal::backdrop rules are forward-looking for MediaWiki 1.43+
+// or third-party extensions that may use native <dialog> elements.
+// Backdrop values chosen for readability over white content backgrounds:
+//   modal:     rgba($darker, 0.5) = ~50% gray over white, readable dimming
+//   modeless:  rgba($darker, 0.3) = ~30% gray, lighter touch
 @media (prefers-color-scheme light)
   dialog:modal::backdrop
     background-color rgba($darker, 0.5)
