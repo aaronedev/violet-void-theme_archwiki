@@ -489,8 +489,9 @@
 | 2026-03-25 | Replace hardcoded color white with $white theme variable in menu-heading() and menu-list-item() hover in menus.styl mixins | 39d4041 |
 | 2026-03-25 | Replace hardcoded #fff with $white in -webkit-mask linear-gradient in gradient-borders.styl (.gradient-border and .gradient-border-animated) | 4f765ad |
 | 2026-03-25 | Replace hardcoded rgba values with oklch() in ::highlight() pseudo-element selectors in modern-css.styl - all 8 highlight types now use modern oklch() color syntax with / alpha for better color management (85%+ browser support) | d0a22dc |
+| 2026-03-26 | Replace hardcoded #666/#333 hex colors with theme variables in print-enhanced.styl @page rules and blockquote borders - uses var(--print-text) and $print-button-bg | 1b42310 |
 
-Last updated: 2026-03-26 00:41
+Last updated: 2026-03-26 03:56
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ## 🔤 Typography Polish (New)
