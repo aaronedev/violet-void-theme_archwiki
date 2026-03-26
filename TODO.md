@@ -499,8 +499,9 @@
 | 2026-03-26 | Replace longhand outline properties with shorthand in focus.styl where outline-offset is default (0) | 2c61ad0 |
 | 2026-03-26 | Correct outline shorthand syntax in forced-colors mode | a9119b4 |
 | 2026-03-26 | Replace hardcoded hex colors with theme variables in tables.styl :root | f879db0 |
+| 2026-03-26 | Replace hardcoded hex colors with theme variables in src/theme/print.styl - border-color #333 → $print-button-bg, color #333 → $print-text, background #f5f5f5 → $print-bg | 1ccaee9 |
 
-Last updated: 2026-03-26 15:25
+Last updated: 2026-03-26 21:15
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
