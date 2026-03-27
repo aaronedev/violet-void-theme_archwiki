@@ -9373,6 +9373,19 @@ Last updated: 2026-03-27 15:58
   2. No new work to push; all previously pushed commits (`4035197`, `6937a80`, `bc68df5`, etc.) are approved.
   3. Do NOT push — screenshot pipeline still non-functional per prior reviews.
 
+### 2026-03-27 18:55
+- Review target: 4607e93 (dirty worktree: package.json)
+- Verdict: REJECTED (regression)
+- Findings:
+  - **`4607e93`** — REGRESSION. Changes `rgba(15, 15, 15, 0.2)` → `rgba($darker, 0.2)` in `animations.styl` line 412. This rule is inside a `@css{}` block (Stylus `@css{}` wrapper containing `@supports(@starting-style) {}`). `$darker` is a Stylus variable that does NOT expand inside `@css{}` blocks — this was the exact bug `0738b39` correctly fixed and documented. `4607e93` silently reverts that fix. The browser sees `rgba($darker, 0.2)` as an invalid value; the box-shadow property is silently dropped for `.mw-ui-button:hover`. The commit message is also self-inverse (claims to replace hardcoded with variable, actually does the reverse).
+  - **`::search-text` (`6937a80`)**: Already APPROVED in prior review (grouped with `6937a80 + bc68df5`). Completion log entry present. No new findings.
+  - Worktree: `package.json` version bump only (`20260327.16.04` → `20260327.19.39`). Not implementation work.
+  - **`0738b39`**: Still the correct approved fix (hardcoded `15, 15, 15` inside @css{} block). Completion log entry present. Status: APPROVED.
+- Implementer instructions:
+  1. Revert the box-shadow in `animations.styl` line 412 back to `rgba(15, 15, 15, 0.2)` — same value `0738b39` established.
+  2. Update the commit message: the change is "revert regression: restore hardcoded `15,15,15` in @css{} block where $darker does not expand" — NOT "replace hardcoded with $darker".
+  3. Do NOT push — pipeline still non-functional per prior reviews.
+
 ### 2026-03-27 12:52
 - Review target: 26d30a6 + 1a658ba (dirty worktree: package.json version bump)
 - Verdict: APPROVED
