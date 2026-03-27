@@ -193,6 +193,13 @@ body #vector-main-menu-dropdown .vector-dropdown-content
 // Apply dark gradient, border and shadow to pinned containers
 .vector-pinned-container
   menu-panel()
+  // Width forces expansion at ArchWiki's 32px default; min-width alone is
+  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
+  // in the cascade. !important needed because ArchWiki's stylesheet also uses
+  // !important on its width declaration.  min-width creates a non-overridable
+  // floor that even a higher-specificity explicit width cannot shrink below.
+  width 200px !important
+  min-width 200px !important
 
 // Keep the sticky wrapper neutral so empty containers do not render a panel
 .vector-sticky-pinned-container
