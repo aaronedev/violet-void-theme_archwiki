@@ -520,7 +520,9 @@
 | 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |
 | 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
 
-Last updated: 2026-03-27 14:44
+| 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | chore: define missing legacy variable aliases |
+
+Last updated: 2026-03-27 14:50
 
 ### 2026-03-27 14:44
 - Review target: dirty worktree (package.json + _fonts.styl + colors.styl)
