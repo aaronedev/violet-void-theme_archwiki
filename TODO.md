@@ -9386,6 +9386,9 @@ Last updated: 2026-03-27 15:58
   2. Update the commit message: the change is "revert regression: restore hardcoded `15,15,15` in @css{} block where $darker does not expand" — NOT "replace hardcoded with $darker".
   3. Do NOT push — pipeline still non-functional per prior reviews.
 
+- [x] **Revert regression `4607e93`: restore hardcoded `rgba(15,15,15,0.2)` in `animations.styl` line 412** (done: 2026-03-27 20:15)
+  - Reverted `$darker` → `rgba(15, 15, 15, 0.2)` in `@css{}` block (line 412). `$darker` Stylus variable does NOT expand inside `@css{}` blocks — browser sees invalid value and silently drops `box-shadow` property. Same value as `0738b39` established. Build succeeds. Worktree change only — no new commit.
+
 ### 2026-03-27 12:52
 - Review target: 26d30a6 + 1a658ba (dirty worktree: package.json version bump)
 - Verdict: APPROVED
