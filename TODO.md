@@ -9228,3 +9228,17 @@ Last updated: 2026-03-27 02:05
 - Implementer instructions:
   - Housekeeping ready to commit: `git add TODO.md package.json && git commit -m "chore: add archwiki reviewer findings"` — completion log and version bump are legitimate maintenance.
   - `.agent/archwiki-scout.js` should not be committed to this repo — it belongs in a separate tooling repo if needed at all.
+
+### 2026-03-27 04:22
+- Review target: 0738b39 + dirty worktree (navigation.styl)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`0738b39`**: Replaces `$darker` with hardcoded RGB `15, 15, 15` in `animations.styl` `@css{}` block. Correct fix — `$darker` is a Stylus variable that does not interpolate inside `@css{}` blocks; literal RGB is the correct workaround. Code is sound.
+  - **`0738b39` completion log**: MISSING. Not in Completion Log table. Needs entry.
+  - **Worktree `navigation.styl`**: Adds `width: 200px !important` + `min-width: 200px !important` to `.vector-pinned-container` to override ArchWiki's `width: 32px !important`. Attempt to fix pinned menu expansion. **OPEN-STATE EVIDENCE RULE violated** — no before/after screenshot evidence showing the menu open state before and after. Cannot approve interactive UI fix without open-state evidence.
+  - **`d23a98b` completion log**: Already present (line ~529). No action needed.
+  - **Firefox screenshot infra**: Still broken per prior reviews — hash `908f6b06e2d1d59a18340b829bab20a2` identical across all states. Affects ability to provide open-state evidence.
+- Implementer instructions:
+  1. Add completion log entry for `0738b39`: "Replace `$darker` with hardcoded RGB literal `15, 15, 15` in `animations.styl` `@css{}` block — `$darker` Stylus var does not expand inside `@css{}` blocks"
+  2. For `navigation.styl` worktree fix: Either (a) provide open-state before/after screenshots proving the pinned menu was 32px and is now 200px+, or (b) document WHY screenshots cannot capture this specific element (e.g. ArchWiki pinned container requires login/session state)
+  3. Do NOT push until screenshot infrastructure is resolved
