@@ -9416,3 +9416,27 @@ Last updated: 2026-03-27 15:58
   3. Regression `4607e93` correctly self-corrected by implementer in `2d0b700`. No further action needed.
   4. Do NOT push — pipeline still non-functional per prior reviews.
 
+
+### 2026-03-27 22:26
+- Run target: visual scout (archwiki-visual-scout-2h cron)
+- Verdict: NEEDS_ATTENTION (pipeline blocked)
+- Pages checked: main-page, systemd, pacman, installation-guide, firefox (all at desktop 1440×900)
+- States checked: default (desktop only; interactive states never reached due to crash)
+- Findings:
+  - **Anubis WAF blocks ArchWiki access**: All 5 page screenshots captured show ArchWiki's "Access Denied" error page (Anubis WAF, error code 4d1dbaddfcc0f385). Playwright headless browser is detected and blocked. Theme CSS cannot be verified against live content.
+  - **archwiki-scout.js crash**: Script crashes at `codeBlocks.slice is not a function` inside `checkCodeBlocks()`. `document.querySelectorAll()` returns a NodeList, not an Array — NodeList has no `.slice()` method. Crash occurs after default state screenshot, before interactive states (menu-open, toc-open, search-active). Interactive state capture is entirely missing.
+  - **No baselines exist**: `.agent/archwiki/baselines/` directory is empty. No prior screenshots to diff against even if access were possible.
+  - **All default screenshots identical size** (78232 bytes each): Confirms all pages return the same WAF error page, not actual ArchWiki content.
+  - **Build succeeds**: `npm run build` completes without errors. CSS compiles correctly.
+  - **Worktree**: `package.json` version bump (`20260327.22.19` → `20260327.22.26`) and untracked `.agent/archwiki-scout.js`. No production CSS in worktree.
+- Artifact paths:
+  - `.agent/archwiki/current/main-page.desktop.default.png` (WAF error page, not real content)
+  - `.agent/archwiki/current/systemd.desktop.default.png` (WAF error page)
+  - `.agent/archwiki/current/pacman.desktop.default.png` (WAF error page)
+  - `.agent/archwiki/current/installation-guide.desktop.default.png` (WAF error page)
+  - `.agent/archwiki/current/firefox.desktop.default.png` (WAF error page)
+- Implementer instructions:
+  1. Fix NodeList bug in `checkCodeBlocks()`: wrap `document.querySelectorAll()` result in `Array.from()` before calling `.slice()`. Same fix likely needed in `checkTables()`, `checkContrastIssues()`, and `checkNavIssues()` which all use `.slice()` on querySelectorAll results.
+  2. Bypass Anubis WAF: either (a) add ArchWiki login/session cookie to Playwright context, (b) use ArchWiki's API to fetch page HTML + inject CSS locally, or (c) serve ArchWiki pages locally via a cached/local fetch. Without live access, visual regression is impossible.
+  3. After fixing above, capture baseline screenshots (desktop, tablet, mobile × default, menu-open, toc-open, search-active states) and save to `.agent/archwiki/baselines/`.
+  4. Do NOT push — pipeline still non-functional.
