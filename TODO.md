@@ -521,9 +521,9 @@
 | 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
 | 2026-03-27 | Add ::search-text pseudo-element styling for browser-native "Find in page" search results — violet oklch background with border-radius for theme-consistent highlight appearance (87%+ browser support) | 6937a80 |
 
-| 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | chore: define missing legacy variable aliases |
+| 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | 4035197 |
 
-Last updated: 2026-03-27 14:50
+Last updated: 2026-03-27 15:58
 
 ### 2026-03-27 14:44
 - Review target: dirty worktree (package.json + _fonts.styl + colors.styl)
