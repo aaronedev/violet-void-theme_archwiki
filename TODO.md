@@ -513,6 +513,7 @@
 | 2026-03-27 | Replace stale rgba(108,92,231,0.05) in @keyframes references-appear and hardcoded rgba(137,80,199,0.2) fallback in .highlight attr() — missed by 69e949e sweep | e35278c |
 | 2026-03-27 | Correct --arch-blue fallback from #1793d1 (Wikipedia blue) to #8950c7 (correct Arch blue) in 3 :has() selectors in modern-css.styl | d45d813 |
 | 2026-03-27 | Remove hardcoded #ccc/#e8e8e8 hex fallbacks from var() calls in column-rule utilities and content.styl — theme vars always defined | 18299f7 |
+| 2026-03-27 | Replace hardcoded hex colors in light-dark() adaptive utilities with theme CSS custom properties (--theme-dark, --theme-lighter, --theme-white) | d23a98b |
 
 Last updated: 2026-03-27 02:05
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
