@@ -520,7 +520,22 @@
 | 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |
 | 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
 
-Last updated: 2026-03-27 12:52
+Last updated: 2026-03-27 14:44
+
+### 2026-03-27 14:44
+- Review target: dirty worktree (package.json + _fonts.styl + colors.styl)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Worktree changes**: Define 4 missing Stylus variables that are referenced in CSS but were never defined: `$font-ui` (→ `$system-font-stack` in `_fonts.styl`), `$accent` (→ `$arch-blue` in `colors.styl`), `$purple` (→ `$arch-blue`), `$bg-secondary` (→ `$dark`). Used in: `critical.styl` ($bg-secondary x3), `wikidata.styl` ($accent x4, $bg-secondary x1), `translation.styl` ($bg-secondary x5), `extensions.styl` ($font-ui x1, $accent x3), `lua.styl` ($purple x2), `interwiki.styl` ($purple x1), `templates.styl` ($purple x5), `advisory.styl` ($purple x4), `history.styl` ($purple x2).
+  - **Build**: `npm run build` succeeds, generates `dist/main.css`. No compilation errors.
+  - **No completion log entries**: these variable definitions are uncommitted and not yet in the completion log. Cannot approve as final until logged and committed.
+  - **No open-state evidence needed**: variable definitions don't affect interactive UI states.
+  - **`package.json`**: version bump `20260327.05.47` → `20260327.14.47` (build script auto-bumped to 14:47).
+  - **Redundancy check**: `$bg-secondary` was referenced in CSS but never defined; worktree adds it as alias to `$dark`. Correct — `$dark = #202020` is the intended secondary background value based on usage context.
+- Implementer instructions:
+  1. Add completion log entries for each variable definition (can be combined into one entry): "Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) — used throughout CSS but never defined; now alias to established theme variables."
+  2. Commit with `chore: define missing legacy variable aliases` then update version and completion log in the same commit.
+  3. Do NOT push until screenshot pipeline is root-caused.
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
