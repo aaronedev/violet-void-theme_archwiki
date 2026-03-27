@@ -518,8 +518,9 @@
 | 2026-03-27 | Force .vector-pinned-container width to 200px to override ArchWiki explicit 32px default | 9598b52 |
 | 2026-03-27 | Un-nest `@supports(animation-timeline:view())` from `@supports(scroll-start:0)` wrapper in navigation.styl — both feature queries must be independently checked by the browser | 6c0331f |
 | 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |
+| 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
 
-Last updated: 2026-03-27 06:22
+Last updated: 2026-03-27 12:32
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
