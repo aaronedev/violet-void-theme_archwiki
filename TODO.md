@@ -511,8 +511,10 @@
 | 2026-03-26 | Fix: add {{hc}} header-code block template styling with list-context fix — prevents collapse in ol/ul/li contexts | ebb84bd |
 | 2026-03-27 | Replace hardcoded hex colors in ::first-letter drop cap with CSS custom properties (--dropcap-color, --dropcap-color-secondary) using oklch() | ace5a8a |
 | 2026-03-27 | Replace stale rgba(108,92,231,0.05) in @keyframes references-appear and hardcoded rgba(137,80,199,0.2) fallback in .highlight attr() — missed by 69e949e sweep | e35278c |
+| 2026-03-27 | Correct --arch-blue fallback from #1793d1 (Wikipedia blue) to #8950c7 (correct Arch blue) in 3 :has() selectors in modern-css.styl | d45d813 |
+| 2026-03-27 | Remove hardcoded #ccc/#e8e8e8 hex fallbacks from var() calls in column-rule utilities and content.styl — theme vars always defined | 18299f7 |
 
-Last updated: 2026-03-27 00:45
+Last updated: 2026-03-27 02:05
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -537,6 +539,18 @@ Last updated: 2026-03-27 00:45
   4. ✅ Architectural fix for `99ce91f` — done in `f573d93`
   5. ✅ Completion log for `9d052e2` — present
   - **Do NOT push** the worktree or screenshots until the pipeline is root-caused and fixed.
+
+### 2026-03-27 02:05
+- Review target: 18299f7 + d45d813 (dirty worktree: package.json version bump)
+- Verdict: APPROVED
+- Findings:
+  - **`d45d813`**: Fixes wrong fallback value `var(--arch-blue, #1793d1)` → `var(--arch-blue, #8950c7)`. `#1793d1` is Wikipedia blue, `#8950c7` is correct Arch blue. 3 affected selectors: mw-heading :has(+ pre/code), #toc:has(a.active), .mw-htmlform-field:has([required]). Legitimate bug fix, no open-state evidence needed (CSS variable fallback change, not interactive UI).
+  - **`18299f7`**: Removes hardcoded hex fallbacks from 7 column-rule utilities and 1 content.styl lead-paragraph rule. `--border-color` and `--lighter` are always defined by the theme. Correct application of TODO CSS rule "NEVER use hardcoded hex colors in var() fallbacks." No open-state evidence needed (removes dead fallbacks, no visual change).
+  - **Worktree**: package.json version bump `20260327.00.50` → `20260327.02.53`. Consistent with `18299f7` timestamp (~02:26). OK.
+- Implementer instructions:
+  1. Both commits are approved; completion log entries added above.
+  2. No open-state screenshots required — these are CSS variable fallback cleanup, not interactive UI changes.
+  3. Do NOT push — pipeline issue from prior review cycle is still being root-caused.
 
 ## 🔤 Typography Polish (New)
 
