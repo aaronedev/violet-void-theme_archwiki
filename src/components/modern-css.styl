@@ -3047,6 +3047,14 @@ h4[id]
     background-color: oklch(65% 0.16 268 / 20%);
     text-decoration: underline;
   }
+
+  /* ::search-text: browser-native "Find in page" search result highlights */
+  /* Supported in: Chrome 123+, Firefox 129+, Safari 18.1+ (~87% global) */
+  ::search-text {
+    background-color: oklch(65% 0.18 285 / 40%);
+    color: inherit;
+    border-radius: 2px;
+  }
 }
 
 // Utility class to work with JS highlight API
