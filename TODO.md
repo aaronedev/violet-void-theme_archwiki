@@ -517,6 +517,7 @@
 | 2026-03-27 | Replace $darker Stylus var with hardcoded RGB 15,15,15 in animations.styl @css{} block — $darker does not expand inside @css{} blocks | 0738b39 |
 | 2026-03-27 | Force .vector-pinned-container width to 200px to override ArchWiki explicit 32px default | 9598b52 |
 | 2026-03-27 | Un-nest `@supports(animation-timeline:view())` from `@supports(scroll-start:0)` wrapper in navigation.styl — both feature queries must be independently checked by the browser | 6c0331f |
+| 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |
 
 Last updated: 2026-03-27 06:22
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
@@ -9290,5 +9291,6 @@ Last updated: 2026-03-27 06:22
   - Worktree: only `package.json` version bump (`20260327.06.29 → 20260327.07.04`) — minor maintenance, no CSS state.
   - Screenshot pipeline: confirmed broken (Anubis blocking) per prior reviews. Not re-verified.
 - Implementer instructions:
-  1. Add completion log entry for `99ae785`: `| 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |`
+  1. ✅ Completion log entry for `99ae785`: Added above (line ~520). All reviewer action items now complete.
+  2. No new commits since `ff78d8a` — all implementation from this cycle is approved and documented.
   2. Commit as `chore: add archwiki reviewer findings`
