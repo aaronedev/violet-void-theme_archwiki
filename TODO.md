@@ -519,7 +519,7 @@
 | 2026-03-27 | Un-nest `@supports(animation-timeline:view())` from `@supports(scroll-start:0)` wrapper in navigation.styl — both feature queries must be independently checked by the browser | 6c0331f |
 | 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |
 | 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
-| 2026-03-27 | Add ::search-text pseudo-element styling for browser-native "Find in page" search results — violet oklch background with border-radius for theme-consistent highlight appearance (87%+ browser support) | local |
+| 2026-03-27 | Add ::search-text pseudo-element styling for browser-native "Find in page" search results — violet oklch background with border-radius for theme-consistent highlight appearance (87%+ browser support) | 6937a80 |
 
 | 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | chore: define missing legacy variable aliases |
 
@@ -7446,7 +7446,7 @@ Last updated: 2026-03-27 14:50
   - Example: `details::details-content { padding: 1em; }`
   - Stylus: Works directly
 
-- [x] **`::search-text` Pseudo-element** (CSS, 87%+ browser support) (done: 2026-03-27 15:32, commit: pending)
+- [x] **`::search-text` Pseudo-element** (CSS, 87%+ browser support) (done: 2026-03-27 15:32, commit: 6937a80)
   - File: `src/components/modern-css.styl`
   - Style browser "Find in page" search results
   - Custom highlight color for in-page search
