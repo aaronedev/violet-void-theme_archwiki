@@ -516,8 +516,9 @@
 | 2026-03-27 | Replace hardcoded hex colors in light-dark() adaptive utilities with theme CSS custom properties (--theme-dark, --theme-lighter, --theme-white) | d23a98b |
 | 2026-03-27 | Replace $darker Stylus var with hardcoded RGB 15,15,15 in animations.styl @css{} block — $darker does not expand inside @css{} blocks | 0738b39 |
 | 2026-03-27 | Force .vector-pinned-container width to 200px to override ArchWiki explicit 32px default | 9598b52 |
+| 2026-03-27 | Un-nest `@supports(animation-timeline:view())` from `@supports(scroll-start:0)` wrapper in navigation.styl — both feature queries must be independently checked by the browser | 6c0331f |
 
-Last updated: 2026-03-27 05:38
+Last updated: 2026-03-27 06:22
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -9244,3 +9245,33 @@ Last updated: 2026-03-27 05:38
   1. Add completion log entry for `0738b39`: "Replace `$darker` with hardcoded RGB literal `15, 15, 15` in `animations.styl` `@css{}` block — `$darker` Stylus var does not expand inside `@css{}` blocks"
   2. For `navigation.styl` worktree fix: Either (a) provide open-state before/after screenshots proving the pinned menu was 32px and is now 200px+, or (b) document WHY screenshots cannot capture this specific element (e.g. ArchWiki pinned container requires login/session state)
   3. Do NOT push until screenshot infrastructure is resolved
+
+### 2026-03-27 06:18
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION (visual verification impossible)
+- Pages checked: none (see findings)
+- States checked: none (see findings)
+- Findings:
+  - **CRITICAL: ArchWiki Anubis anti-bot blocks all Playwright access.** Playwright test confirms page title "Oh noes! Access Denied: error code 4d1dbaddfcc0f385" — Anubis block page renders instead of actual wiki content. Body background is `rgb(249, 245, 215)` (Anubis block page cream), not ArchWiki content.
+  - **All existing screenshots are Anubis block pages**: Desktop screenshots average 76277 bytes, mobile 69444 bytes. These are the block page PNGs, not wiki content. This is the same catastrophic failure documented in 20+ consecutive review cycles.
+  - **CSS builds cleanly**: `dist/main.css` is 854KB, 3060 lines, builds without PostCSS errors. Violet Void theme compiles correctly.
+  - **Visual diffing unavailable**: Cannot capture actual ArchWiki pages, so cannot verify: (1) dropdown width cascade, (2) cite panel z-index, (3) hamburger menu open state, (4) any interactive panel state, (5) heading contrast fix (6087b91), (6) wikitable table background fix (91ba37f).
+  - **Anubis blocks headless browsers**: Cloudflare's Anubis WAF detects `navigator.webdriver=true` and other Playwright/Selenium signals. Cannot bypass without significant effort (proxy rotation, browser fingerprint spoofing, etc.).
+  - **Screenshot infrastructure has been broken since at least 2026-03-23**: All prior visual scout runs since then have produced meaningless block-page screenshots.
+- Artifact paths:
+  - None — all existing screenshots are invalid Anubis block pages
+- Implementer instructions:
+  - **Screenshot pipeline is completely non-functional** due to Anubis blocking. Visual regression testing via Playwright on ArchWiki is not viable.
+  - Consider: (1) Use ArchWiki'snight-mode/enabled parameter which serves a pre-rendered dark theme, (2) test on a local MediaWiki instance with ArchWiki content, (3) use ArchWiki's API to fetch rendered page HTML and apply CSS manually, (4) accept that visual regression testing on live ArchWiki is blocked and focus on code review + manual spot-checks only.
+  - CSS quality: No new CSS committed since last review. Previous CSS commits were approved on code quality grounds.
+
+### 2026-03-27 06:22
+- Review target: 6c0331f + 9598b52 + 0738b39 (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`6c0331f`**: Un-nests `@supports(animation-timeline:view())` from the `scroll-start:0` wrapper in `navigation.styl`. Correct CSS logic fix — previously, browsers that support `animation-timeline:view()` but NOT `scroll-start:0` would never evaluate the view-based animation rules. Now both feature queries are independent. The `animation-timeline:view()` block is checked at root level inside its own `@supports`. Legitimate fix, no open-state evidence needed.
+  - **`9598b52`**: Adds `width: 200px !important` + `min-width: 200px !important` to `.vector-pinned-container` to override ArchWiki's `width: 32px !important` cascade. `!important` usage is proportionate — ArchWiki's own stylesheet also uses `!important` on width, so this is a documented override pattern. **Open-state evidence rule**: no before/after screenshots of the pinned menu open state. However, the visual scout run at 06:18 in this same worktree documents that ArchWiki's Anubis anti-bot blocks ALL Playwright access — screenshot pipeline is confirmed non-functional. Cascade logic is sound; approved on code review grounds.
+  - **`0738b39`**: Replaces `$darker` Stylus variable with hardcoded `15, 15, 15` in `animations.styl` `@css{}` block. Correct — `$darker` is a Stylus var that does not interpolate inside `@css{}` blocks. Completion log entry present (line ~9255).
+- Implementer instructions:
+  1. Add completion log entry for `6c0331f`: "Un-nest `@supports(animation-timeline:view())` from `@supports(scroll-start:0)` wrapper in navigation.styl — both feature queries must be independently checked by the browser"
+  2. Do NOT push — pipeline/screenshot issue persists (Anubis blocking); implementer should continue code-quality-only commits until infrastructure is resolved
