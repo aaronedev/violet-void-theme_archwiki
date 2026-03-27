@@ -514,8 +514,10 @@
 | 2026-03-27 | Correct --arch-blue fallback from #1793d1 (Wikipedia blue) to #8950c7 (correct Arch blue) in 3 :has() selectors in modern-css.styl | d45d813 |
 | 2026-03-27 | Remove hardcoded #ccc/#e8e8e8 hex fallbacks from var() calls in column-rule utilities and content.styl — theme vars always defined | 18299f7 |
 | 2026-03-27 | Replace hardcoded hex colors in light-dark() adaptive utilities with theme CSS custom properties (--theme-dark, --theme-lighter, --theme-white) | d23a98b |
+| 2026-03-27 | Replace $darker Stylus var with hardcoded RGB 15,15,15 in animations.styl @css{} block — $darker does not expand inside @css{} blocks | 0738b39 |
+| 2026-03-27 | Force .vector-pinned-container width to 200px to override ArchWiki explicit 32px default | 9598b52 |
 
-Last updated: 2026-03-27 02:05
+Last updated: 2026-03-27 05:38
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
