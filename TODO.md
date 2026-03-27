@@ -9401,3 +9401,18 @@ Last updated: 2026-03-27 15:58
   1. `26d30a6` + `1a658ba` are approved; no action needed.
   2. Do NOT push — screenshot pipeline (Anubis) still non-functional per prior reviews; code-quality-only commits may continue.
 
+### 2026-03-27 21:20
+- Review target: 6937a80 + 2d0b700 + 4607e93 (dirty worktree: package.json only)
+- Verdict: APPROVED
+- Findings:
+  - **`6937a80`** (`::search-text` pseudo-element): APPROVED. Adds `::search-text` styling inside `@supports selector(::search-text)` block in modern-css.styl — browser-native "Find in page" search highlights. Uses `oklch(65% 0.18 285 / 40%)` for violet background, `color: inherit`, `border-radius: 2px`. Browser support documented (Chrome 123+, Firefox 129+, Safari 18.1+, ~87%). Completion log updated. CSS-only, no open-state evidence needed.
+  - **`bc68df5` + `1602928` + `85012f1` + `1f227a5`**: All housekeeping/docs commits. `bc68df5` updates `::search-text` completion log entry with actual commit hash. `1602928` + `1f227a5` add reviewer findings entries. `85012f1` replaces "chore: define missing legacy variable aliases" placeholder with actual hash `4035197`. No implementation content.
+  - **`4607e93` → `2d0b700`** (regression + revert): `4607e93` was a REGRESSION (correctly identified in 18:55 review) that replaced `rgba(15, 15, 15, 0.2)` with `rgba($darker, 0.2)` inside `@css{}` block in animations.styl. `$darker` Stylus variable does NOT expand inside `@css{}` blocks — browser sees invalid `rgba($darker, 0.2)` and silently drops `box-shadow`. `2d0b700` correctly reverted it, restoring `rgba(15, 15, 15, 0.2)`. Revert commit message is well-documented. Build output confirmed: `rgba(15, 15, 15, 0.2)` correctly compiled at line 893 of main.css. **Implementer self-corrected without prompting — correct behavior.**
+  - **`4035197`** (missing legacy variable aliases): Already APPROVED in 14:44 review. Completion log entry present at line 524. Housekeeping complete.
+  - Worktree: only `package.json` version bump and untracked test artifacts (`.agent/archwiki-scout.js`, `test-*.png`). No production CSS changes in worktree.
+- Implementer instructions:
+  1. All CSS commits are approved. No action needed.
+  2. `::search-text` (`6937a80`) is the most recent implementation — completion log and TODO entry both updated. APPROVED.
+  3. Regression `4607e93` correctly self-corrected by implementer in `2d0b700`. No further action needed.
+  4. Do NOT push — pipeline still non-functional per prior reviews.
+
