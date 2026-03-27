@@ -9440,3 +9440,19 @@ Last updated: 2026-03-27 15:58
   2. Bypass Anubis WAF: either (a) add ArchWiki login/session cookie to Playwright context, (b) use ArchWiki's API to fetch page HTML + inject CSS locally, or (c) serve ArchWiki pages locally via a cached/local fetch. Without live access, visual regression is impossible.
   3. After fixing above, capture baseline screenshots (desktop, tablet, mobile × default, menu-open, toc-open, search-active states) and save to `.agent/archwiki/baselines/`.
   4. Do NOT push — pipeline still non-functional.
+
+### 2026-03-27 22:51
+- Review target: 9457160 + 2d0b700 (dirty worktree: package.json only)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`9457160`** (`ve-ui-mwSaveDialog` + `ve-ui-mwEditCheckDialog` styling): NEEDS_FOLLOWUP. `$shadow-modal` is used in `box-shadow` for both `.ve-ui-dialog` and `.ve-ui-mwEditCheckDialog` in `extensions.styl`, but this variable is **never defined** anywhere in `src/variables/`. Grep confirms: no `^\$shadow-modal\s*=` anywhere in the variable files. Build succeeds — Stylus passes undefined variables as literal strings. The compiled CSS shows `box-shadow:$shadow-modal` (not interpolated), meaning the browser uses the default `box-shadow` instead of the intended modal shadow. Definite bug, not a style preference.
+  - **`9457160`**: No open-state evidence (dialog screenshots) for VisualEditor save dialog or EditCheck dialog. Claims 2024 VisualEditor styling without visual validation. Per OPEN-STATE EVIDENCE RULE: interactive UI fixes require before/after evidence in the affected open state.
+  - **`2d0b700`** (revert of 4607e93): APPROVED. Correctly self-reverted the `@css{}` `$darker` regression identified in 18:55 review. `2d0b700` itself was already APPROVED in the 21:20 review (grouped with `4607e93`). No new issues found.
+  - **`996988c`** (archwiki-scout.js NodeList fix): Positive signal — implementer addressed the NodeList crash from 22:26 findings without prompting. Fix correctly wraps `querySelectorAll()` in `Array.from()` before `.slice()`. However, WAF blocking ArchWiki access remains unresolved.
+  - Worktree: only `package.json` version bump and untracked `.agent/` artifacts. No production CSS changes.
+  - Visual pipeline: Anubis WAF still blocks ArchWiki access per 22:26 findings. NodeList crash fixed by `996988c`; WAF issue still open.
+- Implementer instructions:
+  1. Fix `$shadow-modal` undefined variable: either (a) define it as a proper shadow variable in `src/variables/` (follow existing `$shadow-card`, `$shadow-raised`, `$shadow-overlay`, `$shadow-popover` pattern), or (b) replace `box-shadow: $shadow-modal` with an inline shadow in `extensions.styl` for both dialog selectors. Build and verify compiled CSS shows a real shadow value, not `$shadow-modal`.
+  2. Capture open-state evidence for VisualEditor dialogs: screenshot of save dialog open and EditCheck dialog open (both at desktop and mobile viewports). Save to `.agent/current/` with naming like `ve-save-dialog.desktop.open.png` and `ve-editcheck-dialog.desktop.open.png`.
+  3. Resolve Anubis WAF blocking: add ArchWiki login/session cookie to Playwright context, use ArchWiki API to fetch page HTML and inject CSS locally, or serve ArchWiki pages via cached/local fetch.
+  4. Do NOT push — pipeline still non-functional per prior reviews.
