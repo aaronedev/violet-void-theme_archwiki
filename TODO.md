@@ -1515,7 +1515,7 @@ Last updated: 2026-03-27 15:58
   - Topic subscription indicator
   - New topics button styling
 
-- [ ] **VisualEditor 2024 Updates** (CSS)
+- [x] **VisualEditor 2024 Updates** (CSS) (done: 2026-03-27 21:11, commit: <local>)
   - File: `src/components/extensions.styl`
   - Updated toolbar styling
   - Context item menus

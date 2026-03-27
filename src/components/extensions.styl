@@ -146,6 +146,74 @@
   justify-content flex-end
   gap 0.5em
 
+// VisualEditor save dialog (2024 updates)
+.ve-ui-mwSaveDialog
+  // Save dialog-specific theming
+  .ve-ui-mwDialog-content
+    padding 1.25em
+
+  // Change summary in save dialog
+  .ve-ui-mwSaveDialog-summary
+    margin-bottom 1em
+
+    .oo-ui-inputWidget
+    .oo-ui-textInputWidget
+      background rgba($dark, 0.6)
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      color $light
+
+      &:focus
+        border-color $arch-blue
+        box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+  // License notice in save dialog
+  .ve-ui-mwSaveDialog-license
+    font-size 0.8rem
+    color $muted
+    padding 0.5em 0
+    border-top 1px solid rgba($border-subtle, 0.5)
+    margin-top 0.75em
+
+    a
+      color $secondary-blue
+      text-decoration none
+
+      &:hover
+        text-decoration underline
+
+  // Save dialog action buttons
+  .ve-ui-mwSaveDialog-actions
+    display flex
+    justify-content flex-end
+    gap 0.5em
+    padding-top 0.75em
+
+// VisualEditor EditCheck dialog (2024 anti-disinformation feature)
+.ve-ui-mwEditCheckDialog
+.ve-ui-editCheckDialog
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  box-shadow $shadow-modal
+
+  .ve-ui-mwDialog-title
+  .ve-ui-dialog-title
+    color $light
+
+  // EditCheck specific content styling
+  .editcheck-content
+    padding 1em
+    color $light
+
+  // Warning styling for EditCheck issues
+  .editcheck-warning
+    background rgba($orange, 0.1)
+    border 1px solid rgba($orange, 0.3)
+    border-radius $border-radius-sm
+    padding 0.75em
+    color $orange
+
 // VisualEditor edit surface / editing area
 .ve-ui-surface-editor
 .ve-ui-mwEditSurface
