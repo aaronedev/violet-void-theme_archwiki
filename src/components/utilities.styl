@@ -943,26 +943,28 @@ tr.collapsed
   columns auto
 
 // column-rule utilities
+// Uses --border-color theme variable; falls back to --border-color which is
+// always defined by the theme (set to $dark = #202020 in modern-css.styl)
 .column-rule
-  column-rule 1px solid var(--border-color, #ccc)
+  column-rule 1px solid var(--border-color)
 
 .column-rule-thin
-  column-rule 1px solid var(--border-color, #ccc)
+  column-rule 1px solid var(--border-color)
 
 .column-rule-medium
-  column-rule 2px solid var(--border-color, #ccc)
+  column-rule 2px solid var(--border-color)
 
 .column-rule-thick
-  column-rule 3px solid var(--border-color, #ccc)
+  column-rule 3px solid var(--border-color)
 
 .column-rule-dashed
-  column-rule 1px dashed var(--border-color, #ccc)
+  column-rule 1px dashed var(--border-color)
 
 .column-rule-dotted
-  column-rule 1px dotted var(--border-color, #ccc)
+  column-rule 1px dotted var(--border-color)
 
 .column-rule-double
-  column-rule 3px double var(--border-color, #ccc)
+  column-rule 3px double var(--border-color)
 
 .column-rule-none
   column-rule none
