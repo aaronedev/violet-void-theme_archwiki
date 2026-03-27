@@ -1527,11 +1527,11 @@ Last updated: 2026-03-27 15:58
   - Gallery navigation controls
   - Metadata panel styling
 
-- [ ] **Echo Notifications Redesign** (CSS)
+- [x] **Echo Notifications Redesign** (CSS) (done: 2026-03-27 20:43, commit: b47ce83)
   - File: `src/components/notifications.styl` (new file)
   - Notification badge styling
   - Notification panel cards
-  - Mark as read indicators
+  - Mark as read indicators (fix: add missing position:relative to .notification-item for unread indicator ::before)
 
 - [ ] **Minerva Mobile Improvements** (CSS)
   - File: `src/components/mobile.styl`
