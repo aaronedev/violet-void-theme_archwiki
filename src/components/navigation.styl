@@ -1653,19 +1653,26 @@ h6:hover .mw-editsection
   .scroll-to-end
     scroll-padding-block-start 100%
 
-  // View-based scroll timeline (alternative to scroll())
-  @supports (animation-timeline: view())
-    .animate-on-entry
-      animation-timeline view()
-      animation-range entry 0% cover 50%
+// =============================================================================
+// VIEW-BASED ANIMATION TIMELINE
+// =============================================================================
+// Animate elements based on scroll position using view() timeline.
+// These are independent from scroll-start/0 and should be checked separately.
+// Browser support: 85%+ (Chrome 115+)
+// Note: Wrap in @supports for browser compatibility
 
-    .animate-on-exit
-      animation-timeline view()
-      animation-range cover 50% exit 100%
+@supports (animation-timeline: view())
+  .animate-on-entry
+    animation-timeline view()
+    animation-range entry 0% cover 50%
 
-    .animate-on-cross
-      animation-timeline view()
-      animation-range cross 0% cross 100%
+  .animate-on-exit
+    animation-timeline view()
+    animation-range cover 50% exit 100%
+
+  .animate-on-cross
+    animation-timeline view()
+    animation-range cross 0% cross 100%
 
 
 // =============================================================================
