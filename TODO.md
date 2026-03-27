@@ -510,8 +510,9 @@
 | 2026-03-26 | Replace remaining hardcoded #ccc/#eee hex colors in print.styl - #ccc → $print-border for code blocks, #eee → $print-bg for table/infobox th backgrounds | 9169bfe |
 | 2026-03-26 | Fix: add {{hc}} header-code block template styling with list-context fix — prevents collapse in ol/ul/li contexts | ebb84bd |
 | 2026-03-27 | Replace hardcoded hex colors in ::first-letter drop cap with CSS custom properties (--dropcap-color, --dropcap-color-secondary) using oklch() | ace5a8a |
+| 2026-03-27 | Replace stale rgba(108,92,231,0.05) in @keyframes references-appear and hardcoded rgba(137,80,199,0.2) fallback in .highlight attr() — missed by 69e949e sweep | e35278c |
 
-Last updated: 2026-03-27 00:35
+Last updated: 2026-03-27 00:45
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
@@ -9196,3 +9197,19 @@ Last updated: 2026-03-27 00:35
 - Implementer instructions:
   - No new CSS work pending — all approved.
   - Do NOT commit package.json version bump until final release.
+
+### 2026-03-27 00:10
+- Review target: e35278c (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`e35278c`** (replace stale arch-blue rgba values): APPROVED. Two targeted replacements in modern-css.styl:
+    1. `.highlight[data-highlight-color]` fallback: `rgba(137, 80, 199, 0.2)` → `rgba(var(--arch-blue-rgb, 137, 80, 199), 0.2)` — uses the CSS custom property defined in b2928a6, preserves fallback.
+    2. `@keyframes references-appear to {}`: `rgba(108, 92, 231, 0.05)` → `rgba(var(--arch-blue-rgb, 137, 80, 199), 0.05)` — fixes stale hardcoded arch-blue value missed by prior sweeps.
+  - Both replacements are scoped, use the established `--arch-blue-rgb` CSS custom property, and follow the ongoing hardcoded-color→variable series.
+  - Worktree: TODO.md completion log entry for e35278c already added (line ~512), package.json version bump (`20260326.22.25` → `20260327.00.50`). Both correct.
+  - No open-state or visual evidence required — targeted CSS variable replacements, not interactive UI changes.
+  - `.agent/archwiki-scout.js` (543 lines, untracked): visual scout script, not committed. Recurring flagged artifact from prior reviews. Should remain uncommitted.
+  - Screenshot pipeline status: not re-verified this cycle. Last confirmed broken (all-identical-hash) per 09:34 2026-03-26 review. No new visual evidence expected.
+- Implementer instructions:
+  - Housekeeping ready to commit: `git add TODO.md package.json && git commit -m "chore: add archwiki reviewer findings"` — completion log and version bump are legitimate maintenance.
+  - `.agent/archwiki-scout.js` should not be committed to this repo — it belongs in a separate tooling repo if needed at all.
