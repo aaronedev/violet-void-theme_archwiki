@@ -9275,3 +9275,20 @@ Last updated: 2026-03-27 06:22
 - Implementer instructions:
   1. Add completion log entry for `6c0331f`: "Un-nest `@supports(animation-timeline:view())` from `@supports(scroll-start:0)` wrapper in navigation.styl — both feature queries must be independently checked by the browser"
   2. Do NOT push — pipeline/screenshot issue persists (Anubis blocking); implementer should continue code-quality-only commits until infrastructure is resolved
+
+### 2026-03-27 07:05
+- Review target: 99ae785 (dirty worktree: package.json version bump only)
+- Verdict: APPROVED
+- Findings:
+  - **`99ae785`** (extend prefers-reduced-transparency for native popover and dialog backdrops): APPROVED. 14-line addition inside the existing `@media (prefers-reduced-transparency reduce)` block in `modern-css.styl`. Three new rules:
+    1. `[popover]::backdrop` — solid `$darker` background + `backdrop-filter: none` for native HTML popover backdrops
+    2. `dialog::backdrop` — solid `$darker` background + `backdrop-filter: none` for HTML dialog backdrops
+    3. `dialog:modal` — `$shadow-elevated` box-shadow replacing the translucent overlay
+  - Variables verified: `$darker = #0f0f0f` in `colors.styl` (line 2) ✓; `$shadow-elevated = 0 6px 24px rgba($darker, 0.45)` in `layout.styl` (line 11) ✓. Both imported at top of modern-css.styl.
+  - Scoped, targeted, follows the established prefers-reduced-transparency pattern in the same block. No open-state evidence needed — targets a user system preference (reduced-transparency), not an interactive UI state.
+  - Completion log: MISSING. `99ae785` is not in the Completion Log table. Needs entry.
+  - Worktree: only `package.json` version bump (`20260327.06.29 → 20260327.07.04`) — minor maintenance, no CSS state.
+  - Screenshot pipeline: confirmed broken (Anubis blocking) per prior reviews. Not re-verified.
+- Implementer instructions:
+  1. Add completion log entry for `99ae785`: `| 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |`
+  2. Commit as `chore: add archwiki reviewer findings`
