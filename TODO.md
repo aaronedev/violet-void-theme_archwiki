@@ -9266,6 +9266,28 @@ Last updated: 2026-03-27 06:22
   - Consider: (1) Use ArchWiki'snight-mode/enabled parameter which serves a pre-rendered dark theme, (2) test on a local MediaWiki instance with ArchWiki content, (3) use ArchWiki's API to fetch rendered page HTML and apply CSS manually, (4) accept that visual regression testing on live ArchWiki is blocked and focus on code review + manual spot-checks only.
   - CSS quality: No new CSS committed since last review. Previous CSS commits were approved on code quality grounds.
 
+### 2026-03-27 10:21
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION (visual verification impossible — confirmed unchanged)
+- Pages checked: none (Anubis block)
+- States checked: none (Anubis block)
+- Findings:
+  - **Anubis blocks ALL Playwright access (confirmed unchanged)**: All 40 screenshots captured today are identical "Access Denied" block pages (hash `8373727d` desktop, `9eae55c2` mobile). The 4 interactive states (default, menu-open, toc-open, search-active) are visually identical — all showing the Anubis block page.
+  - **Theme CSS builds cleanly**: `dist/main.css` is present and valid (854KB, version `20260327.10.11`).
+  - **Interactive state targeting is untestable**: Since ArchWiki content is inaccessible, cannot verify whether menu-open, toc-open, or search-active state selectors actually trigger visual changes on ArchWiki's Vector skin.
+  - **No change from prior run**: This is consistent with the 06:18 run and all prior visual scout runs since 2026-03-23. The issue is not worsening but remains fully unresolved.
+  - **Dirty worktree**: `package.json` version bump only (`20260327.05.47 → 20260327.10.11`). No CSS changes.
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — all 40 screenshots are Anubis block pages, not ArchWiki content
+- Implementer instructions:
+  - **Screenshot pipeline remains completely non-functional** due to Anubis WAF blocking headless browsers. This has persisted for 4+ days across dozens of runs.
+  - **Recommended paths forward** (no change from prior):
+    1. Test on a local MediaWiki + Vector skin instance with ArchWiki content dumps
+    2. Use ArchWiki's `?action=render` or API to fetch page HTML, then apply CSS in isolated environment
+    3. Use ArchWiki's night mode URL parameter if available
+    4. Accept that live ArchWiki visual regression is blocked and focus on: (a) code review of CSS cascade logic, (b) manual spot-checks via real browser with theme injected, (c) unit tests for CSS custom property application
+  - No CSS implementation work is blocked — all prior CSS commits were approved on code quality review. The screenshot infrastructure failure does not prevent CSS development.
+
 ### 2026-03-27 06:22
 - Review target: 6c0331f + 9598b52 + 0738b39 (dirty worktree)
 - Verdict: APPROVED
