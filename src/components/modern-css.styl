@@ -315,6 +315,20 @@ h4[id]
   #vector-main-menu
     background $darker !important
 
+  // Native HTML popover backdrops - solid backgrounds for readability
+  [popover]::backdrop
+    background-color $darker !important
+    backdrop-filter none !important
+
+  // HTML dialog backdrops - solid backgrounds
+  dialog::backdrop
+    background-color $darker !important
+    backdrop-filter none !important
+
+  // Modal dialog overlay - remove translucent overlay shadow
+  dialog:modal
+    box-shadow $shadow-elevated !important
+
 // =============================================================================
 
 // FIELD SIZING - Auto-Growing Textareas
