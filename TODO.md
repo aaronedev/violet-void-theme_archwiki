@@ -9347,6 +9347,19 @@ Last updated: 2026-03-27 14:50
   1. No action required — all prior items addressed.
   2. Continue code-quality-only commits; do NOT push.
 
+### 2026-03-27 15:34
+- Review target: 4035197 + 6937a80 + bc68df5 (dirty worktree: package.json version bump)
+- Verdict: APPROVED
+- Findings:
+  - **`4035197`** (define missing legacy variable aliases): RESOLVES prior NEEDS_FOLLOWUP. Added 4 missing Stylus variables: `$font-ui` → `$system-font-stack` (`_fonts.styl`), `$accent` → `$arch-blue`, `$purple` → `$arch-blue`, `$bg-secondary` → `$dark` (`colors.styl`). Used in critical.styl, wikidata.styl, translation.styl, extensions.styl, lua.styl, interwiki.styl, templates.styl, advisory.styl, history.styl. Completion log entry present at 2026-03-27 14:50. CSS-only change, no open-state evidence needed.
+  - **`6937a80` + `bc68df5`** (::search-text pseudo-element): APPROVED. Added `::search-text` styling in `@css{}` block in modern-css.styl — `oklch(65% 0.18 285 / 40%)` violet background, `color: inherit`, `border-radius: 2px`. Supported in Chrome 123+, Firefox 129+, Safari 18.1+ (~87% global). Color (hue 285°) is consistent with theme purple palette. No open-state evidence needed — `::search-text` is a browser-native pseudo-element for "Find in page" highlights, not an interactive UI element. Minor note: no `@supports selector(::search-text)` guard (other `::highlight()` pseudo-elements in same `@css{}` block also lack it — consistent with existing pattern). Completion log entry updated with correct commit hash `6937a80`.
+  - **Worktree**: only `package.json` version bump (`20260327.15.36`). Untracked `.agent/archwiki-scout.js` (visual test tool, not CSS).
+  - **Build**: succeeds (`npm run build` → `dist/main.css`).
+- Implementer instructions:
+  1. Both commits approved; all prior NEEDS_FOLLOWUP items resolved.
+  2. Minor suggestion (non-blocking): consider adding `@supports selector(::search-text)` wrapper around `::search-text` rule for belt-and-suspenders robustness — consistent with pattern used elsewhere in project for experimental pseudo-elements.
+  3. Do NOT push — screenshot pipeline still non-functional.
+
 ### 2026-03-27 12:52
 - Review target: 26d30a6 + 1a658ba (dirty worktree: package.json version bump)
 - Verdict: APPROVED
