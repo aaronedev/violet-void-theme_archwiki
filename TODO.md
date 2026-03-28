@@ -9544,3 +9544,19 @@ Last updated: 2026-03-28 01:17
   1. No action required — all outstanding items are infrastructure-level (WAF blocking ArchWiki access) and cannot be resolved via CSS commits alone.
   2. Pipeline is functional — screenshot captures now succeed with distinct hashes per state. The WAF is intermittent (blocks some runs, passes others).
   3. Do NOT push — screenshot pipeline still intermittently blocked by Anubis WAF.
+
+## Reviewer Findings
+
+### 2026-03-28 01:34
+- Review target: dirty worktree (uncommitted)
+- Verdict: REJECTED
+- Findings:
+  - **Re-introducing known-reverted regression**: `src/components/animations.styl` line 412 — `rgba(15, 15, 15, 0.2)` → `rgba($darker, 0.2)` for `.mw-ui-button:hover` box-shadow. This is EXACTLY what `4607e93` did and `2d0b700` reverted with explicit documentation: `$darker` Stylus variable does NOT expand inside `@css{}` blocks, causing the browser to silently drop the box-shadow entirely.
+  - **Compiled CSS confirms broken expansion**: `dist/main.css` contains the literal string `rgba($darker, 0.2)` — invalid CSS, silently ignored by browser. Button hover has NO box-shadow in current worktree.
+  - **`2d0b700` revert message**: "Revert 'fix: use $darker variable for dark backgrounds in @css blocks (button hover box-shadow)' — 4607e93 attempted to use $darker inside @css{} blocks but Stylus variables do not expand there. The browser receives 'rgba($darker, 0.2)' as a literal, which is invalid CSS, and silently ignores the box-shadow."
+  - **Second time this regression appears**: Previous cycle's worktree had the same issue. This is either a repeated mistake or the implementer did not read the revert commit.
+  - **package.json bump**: Only a version bump (`20260327.23.19` → `20260328.02.15`) — no implementation value.
+- Implementer instructions:
+  1. **Revert the animations.styl change immediately**: `git checkout HEAD -- src/components/animations.styl`
+  2. Do NOT re-apply `rgba($darker, 0.2)` inside `@css{}` blocks in animations.styl — it is a documented Stylus limitation.
+  3. If the goal is to unify the hardcoded rgba value, do so OUTSIDE `@css{}` blocks or find a different approach that doesn't rely on Stylus variable expansion inside `@css{}`.
