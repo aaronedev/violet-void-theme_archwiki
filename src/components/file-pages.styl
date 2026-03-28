@@ -698,6 +698,40 @@ audio:paused
   // Dimmed state for paused content
   filter brightness(0.95)
 
+// :seeking - Video/audio currently seeking/scrubbing through timeline
+// Browser support: 87%+ (Chrome 113+, Firefox 113+, Safari 16+)
+video:seeking
+audio:seeking
+  // Slightly reduced opacity during seek
+  opacity 0.85
+
+  // Seek indicator overlay
+  .video-play-overlay
+    background-color rgba($base, 0.4)
+
+  // Seek progress indicator
+  &::before
+    content ""
+    position absolute
+    top 50%
+    left 50%
+    width 36px
+    height 36px
+    margin -18px 0 0 -18px
+    border 3px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 0.8s linear infinite
+
+  // Show time position tooltip
+  .seek-time
+    opacity 1
+    visibility visible
+
+  // Cursor change indicates seeking
+  video::-webkit-media-controls
+    cursor pointer
+
 // :buffering - Video/audio currently buffering/loading
 video:buffering
 audio:buffering
