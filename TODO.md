@@ -2471,11 +2471,12 @@ Last updated: 2026-03-28 11:54
   - `scale: 1.5;`
   - Stylus: Works directly
 
-- [ ] **`transform-origin` Expansion** (97%+ browser support)
-  - File: `src/components/ui-components.styl`
-  - Already used - verify coverage
-  - `transform-origin: center top;`
+- [x] **`transform-origin` Expansion** (97%+ browser support)
+  - File: `src/components/modern-css.styl`
+  - 11 utility classes: top, bottom, left, right, center, top-left, top-right, bottom-left, bottom-right, top-center, bottom-center
+  - Companion to existing translate/rotate/scale utilities
   - Stylus: Works directly
+  - Commit: 884b5b4
 
 ## 🎨 Filter Expansion (New)
 
