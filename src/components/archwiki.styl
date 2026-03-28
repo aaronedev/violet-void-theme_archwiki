@@ -533,3 +533,37 @@ pre.terminal
       content ' [blacklisted]'
       font-size 0.8em
       color $secondary-red
+
+// =============================================================================
+// INTERLANGUAGE LINKS (Language Switcher)
+// =============================================================================
+// Language switcher portlet (#p-lang) in sidebar — links to other language
+// versions of the same article. No prior dedicated theme coverage.
+
+#p-lang
+  // Interlanguage link items
+  .interlanguage-link
+    a
+      color $arch-blue
+      text-decoration none
+      transition color $transition-fast, background-color $transition-fast
+      padding 0.2em 0.5em
+      border-radius $border-radius-sm
+      display block
+
+      &:hover
+        color $lighter
+        background rgba($arch-blue, 0.15)
+
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset 2px
+
+    // Currently-selected language (active)
+    &.selected a
+      color $lighter
+      font-weight 600
+
+      &:hover
+        color $lighter
+        background rgba($arch-blue, 0.2)
