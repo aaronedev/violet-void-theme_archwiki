@@ -2054,8 +2054,193 @@ input.pf-datetime-picker
   outline 2px solid $arch-blue
   outline-offset 2px
 
+// =============================================================================
+// ECHO NOTIFICATIONS STYLING
+// =============================================================================
+// MediaWiki Echo extension - real-time notification system
+// Browser support: 97%+
+// Echo classes: mw-echo-*, notification-echo-*
+
+// Echo notification container
+.mw-echo-notification
+.mw-echo-notification-read
+.mw-echo-notification-unread
+  list-style none
+  border-bottom 1px solid $border-subtle
+  padding 0.75em 1em
+  transition background-color 0.15s ease
+
+  &:last-child
+    border-bottom none
+
+  // Notification content
+  .mw-echo-notification-primary
+    display flex
+    align-items flex-start
+    gap 0.75em
+
+  // Notification icon
+  .mw-echo-notification-icon
+    flex-shrink 0
+    width 24px
+    height 24px
+    display flex
+    align-items center
+    justify-content center
+    border-radius $border-radius-sm
+
+  // Notification content body
+  .mw-echo-notification-body
+    flex 1
+    min-width 0
+
+  // Notification title/text
+  .mw-echo-notification-content
+    color $lighter
+    font-size 0.9rem
+    line-height 1.4
+
+    // Notification link
+    a
+      color $arch-blue
+      text-decoration none
+
+      &:hover
+        text-decoration underline
+
+  // Timestamp
+  .mw-echo-notification-time
+    color $muted
+    font-size 0.8rem
+    font-variant-numeric tabular-nums
+
+  // Secondary info (agent, etc.)
+  .mw-echo-notification-secondary-info
+    color $muted
+    font-size 0.8rem
+
+// Unread notification state
+.mw-echo-notification-unread
+  background rgba($arch-blue, 0.05)
+
+  // Bold title for unread
+  .mw-echo-notification-content
+    font-weight 600
+
+  // Blue left border indicator
+  border-inline-start 3px solid $arch-blue
+  padding-inline-start calc(1em - 3px)
+
+// Read notification state
+.mw-echo-notification-read
+  background transparent
+
+  .mw-echo-notification-content
+    font-weight normal
+    color $light
+
+// Alert type (serious - needs attention)
+.mw-echo-alert
+  // Alert icon background
+  .mw-echo-notification-icon
+    background rgba($secondary-red, 0.15)
+    color $secondary-red
+
+// Notice type (informational)
+.mw-echo-notice
+  // Notice icon background
+  .mw-echo-notification-icon
+    background rgba($arch-blue, 0.15)
+    color $arch-blue
+
+// Email notification indicator
+.mw-echo-email
+  // Email icon in notification
+  .mw-echo-notification-icon
+    background rgba($gold, 0.15)
+    color $gold
+
+// Notification badge (header icon)
+.mw-echo-notification-badge
+.mw-echo-notification-badge-nojs
+  // Badge container
+  display inline-flex
+  align-items center
+  justify-content center
+  position relative
+
+  // Unread count
+  &::after
+    content attr(data-value)
+    position absolute
+    top -4px
+    inset-inline-end -4px
+    min-width 16px
+    height 16px
+    padding 0 4px
+    background $secondary-red
+    color $white
+    font-size 0.65rem
+    font-weight 700
+    border-radius 8px
+    display flex
+    align-items center
+    justify-content center
+
+  // Hide when no unread
+  &:empty::after
+  &[data-value="0"]::after
+    display none
+
+// Bundled notifications (multiple of same type)
+.mw-echo-notification-bundle
+  // Bundle container
+  .mw-echo-notification-bundle-header
+    font-size 0.85rem
+    font-weight 600
+    color $lighter
+    padding-bottom 0.5em
+    margin-bottom 0.5em
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+  // Bundle count
+  .mw-echo-notification-bundle-count
+    color $arch-blue
+
+// Notification drop-down panel
+.mw-echo-dropdown
+.mw-echo-notifications
+  // Panel container
+  background $dark
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  box-shadow $shadow-elevated
+  max-height 400px
+  overflow-y auto
+
+  // Panel header
+  .mw-echo-dropdown-header
+    padding 0.75em 1em
+    border-bottom 1px solid $border-subtle
+    font-weight 600
+    color $lighter
+
+  // Notification list
+  .mw-echo-notification-list
+    list-style none
+    padding 0
+    margin 0
+
 // Reduced motion
 @media (prefers-reduced-motion reduce)
-  .CodeMirror-foldgutter-open:after
-  .CodeMirror-foldgutter-folded:after
+  .mw-echo-notification
     transition none
+
+// Touch-friendly sizing
+@media (pointer coarse)
+  .mw-echo-notification
+    padding 1em
+
+    .mw-echo-notification-icon
+      width 32px
+      height 32px
