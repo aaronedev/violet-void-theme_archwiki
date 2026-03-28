@@ -618,6 +618,41 @@ for selector, index in copy-button-selectors
     content "▶"
     font-size 0.7em
 
+// -----------------------------------------------------------------------------
+// Font Variant Ligatures Utilities
+// Fine-grained control over ligature features in code blocks.
+// 97%+ browser support, works directly in Stylus.
+// Base code blocks use 'contextual' which enables standard contextual substitutions.
+// These utilities allow explicit control over specific ligature types.
+
+// Enable all common ligatures (fi, fl, ff, ffi, ffl)
+.font-ligatures-common
+  font-variant-ligatures common-ligatures
+
+// Disable common ligatures - useful for code readability
+.font-ligatures-no-common
+  font-variant-ligatures no-common-ligatures
+
+// Enable discretionary ligatures (publisher-specific stylistic alternates)
+.font-ligatures-discretionary
+  font-variant-ligatures discretionary-ligatures
+
+// Enable historical ligatures (older spellings, æ, œ)
+.font-ligatures-historical
+  font-variant-ligatures historical-ligatures
+
+// Disable all ligatures
+.font-ligatures-none
+  font-variant-ligatures no-common-ligatures no-discretionary-ligatures no-historical-ligatures no-alternates
+
+// Full ligatures: common + discretionary + historical
+.font-ligatures-full
+  font-variant-ligatures common-ligatures discretionary-ligatures historical-ligatures
+
+// -----------------------------------------------------------------------------
+// Interactive Hints
+// -----------------------------------------------------------------------------
+
 @keyframes fade-in
   from
     opacity 0
