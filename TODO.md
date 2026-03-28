@@ -9634,3 +9634,21 @@ Last updated: 2026-03-28 04:41
 - Implementer instructions:
   1. Add Completion Log table entry for `8a84ffc`: "Add font-variant-ligatures utility classes — 6 utility classes for fine-grained control over code block ligatures. Commit: 8a84ffc"
   2. Commit with `chore: add archwiki reviewer findings` (do NOT push — pipeline still non-functional per prior cycles).
+
+### 2026-03-28 10:50
+- Review target: f266358 (dirty worktree)
+- Verdict: REJECTED
+- Findings:
+  - **`f266358` is a REGRESSION — THIRD occurrence**: Replaces `rgba(15, 15, 15, 0.2)` with `rgba($darker, 0.2)` in `animations.styl` line 415. This line is inside the `@css{}` block that opens at line 16 and closes at line 423. `$darker` is a Stylus variable that does NOT expand inside `@css{}` blocks — the Stylus compiler passes it through as a literal string.
+  - **Compiled CSS confirms broken output**: `dist/main.css` line 893 contains `box-shadow: 0 2px 4px rgba($darker, 0.2);` — the literal `$darker` token. Browser silently ignores this box-shadow declaration. Button hover effect is broken.
+  - **This is the THIRD re-introduction of this exact regression**:
+    1. `4607e93` introduced `rgba($darker, 0.2)` inside `@css{}` → `2d0b700` reverted it
+    2. `8351e84` re-introduced it → `453301b` reverted it again
+    3. `f266358` re-introduces it AGAIN
+  - **The Completion Log entry for `453301b` explicitly documents**: "Fix regression: restore rgba(15,15,15,0.2) in button hover box-shadow — $darker does not expand inside @css{} blocks in Stylus (confirmed limitation, was previously fixed in 2d0b700)". This warning was in the log and was still bypassed.
+  - **Worktree**: only `.agent/` untracked screenshot artifacts and `package.json` version bump — no other CSS state.
+- Implementer instructions:
+  1. **Revert immediately**: `git checkout 453301b -- src/components/animations.styl` to restore the hardcoded `rgba(15, 15, 15, 0.2)` at line 415. This is the state `453301b` left it in — confirmed working.
+  2. **Do NOT change `rgba($darker, 0.2)` inside `@css{}` blocks in `animations.styl`** — this is a documented Stylus limitation. The `@css{}` wrapper prevents Stylus variable expansion. If you want to use `$darker` values inside `@css{}`, you must inline the RGB components (e.g., `rgba(15, 15, 15, 0.2)`) not the variable name.
+  3. **Add a comment in the source** above the `rgba($darker, 0.2)` line explaining why it uses the literal value: `// NOTE: $darker does not expand inside @css{} blocks — use literal RGB value here`
+  4. The `@css{}` block limitation applies to ALL component files — check before using any Stylus variable inside `@css{}` wrappers.
