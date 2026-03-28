@@ -9607,3 +9607,16 @@ Last updated: 2026-03-28 04:41
   1. **Revert the animations.styl regression**: `git checkout 2d0b700 -- src/components/animations.styl` OR manually restore `rgba(15, 15, 15, 0.2)` at line 412 in `src/components/animations.styl`. This is the state `2d0b700` left it in — hardcoded value works, `$darker` does not inside `@css{}`.
   2. Do NOT re-introduce `rgba($darker, 0.2)` inside any `@css{}` block — this is a confirmed Stylus limitation with explicit prior documentation.
   3. To properly fix this, the `@starting-style {}` block would need to move OUTSIDE the `@css{}` wrapper, or the hardcoded rgba value must stay.
+
+### 2026-03-28 07:37
+- Review target: 2d4a579 + 453301b (dirty worktree: package.json version bump only)
+- Verdict: APPROVED
+- Findings:
+  - **`2d4a579` — Echo bundle header border opacity fix**: Correct. `$border-subtle = rgba($secondary-blue, 0.08)` in `src/variables/layout.styl:7`. Applying `rgba($border-subtle, 0.5)` stacked another 0.5 multiplier on the 8% opacity, yielding ~4% effective opacity — near invisible. Fix uses `$border-subtle` directly (the intended 8%). CSS logic verified. Completion log entry present (line 505). No open-state evidence needed (styling fix, not interactive UI).
+  - **`453301b` — animations.styl @css{} re-regression fix**: Correct. `8351e84` re-introduced the exact `$darker` inside `@css{}` regression that `2d0b700` had already fixed and documented. Verified: `rgba($darker, 0.2)` at line 412 IS inside the `@css{}` block (lines 16–423) — `$darker` does not expand inside `@css{}` blocks in Stylus. `453301b` correctly restores `rgba(15, 15, 15, 0.2)`. Grep confirms no remaining `$darker` inside `@css{}` blocks in any component file. Completion log entry present (line 504).
+  - **Build**: `npm run build` succeeds. `dist/main.css` generated.
+  - **Worktree**: only `package.json` version bump (`20260328.02.44` → `20260328.07.39`) — no new implementation. Build script auto-bumped.
+  - **Recurring pattern**: `8351e84` was the second re-introduction of the `$darker`/`@css{}` bug (after `4607e93`). Completion log table entry for `8351e84` is misleading — it claimed a "fix" that was actually a regression. Future implementer work should explicitly check whether prior commits are inside `@css{}` blocks before touching Stylus variable usage in animations.styl or similar files.
+- Implementer instructions:
+  1. Both commits approved. Completion log already updated.
+  2. Do NOT push — upstream pipeline still being root-caused.
