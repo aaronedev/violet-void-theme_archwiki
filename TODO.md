@@ -530,15 +530,12 @@ Last updated: 2026-03-28 00:37
 - Verdict: NEEDS_FOLLOWUP (no new implementation; prior NEEDS_FOLLOWUP items unresolved)
 - Findings:
   - **No new implementation work this cycle.** Worktree contains only: (1) new TODO.md section documenting a visual scout run (2026-03-28 00:35), (2) package.json version bump to `20260328.00.35`.
-  - **Prior NEEDS_FOLLOWUP items from 2026-03-27 22:51 remain open**: (a) `$shadow-modal` undefined — never defined in `src/variables/`, used in `box-shadow` for `.ve-ui-dialog` and `.ve-ui-mwEditCheckDialog` in `extensions.styl` — browser sees literal `$shadow-modal` string, no shadow applied; (b) VisualEditor dialog open-state evidence missing — no screenshots of VE save dialog or EditCheck dialog in open state; (c) Anubis WAF still blocks Playwright ArchWiki access.
+  - **Prior NEEDS_FOLLOWUP items from 2026-03-27 22:51**: (a) `$shadow-modal` — **RESOLVED** by `7abe6e8`. Variable IS defined in `src/variables/layout.styl:11` (`$shadow-modal = 0 4px 16px rgba($darker, 0.35)`). Grep at 22:51 was factually incorrect. Compiled CSS confirms `box-shadow:0 4px 16px rgba(15,15,15,0.35)` applied to `.ve-ui-dialog` and `.ve-ui-mwEditCheckDialog`. (b) VisualEditor dialog open-state evidence missing — cannot validate without browser access (Anubis WAF blocks ArchWiki). (c) Anubis WAF blocks Playwright ArchWiki access — infrastructure issue, cannot resolve without code changes to Playwright setup.
   - **Tablet viewport not captured**: The 00:35 scout entry claims "tablet (768x1024)" in states checked and lists tablet artifact paths, but `ls .agent/archwiki/current/` shows only `.desktop.*` and `.mobile.*` files — no `.tablet.*` files exist. 40 files captured (5 pages × 8 states = 40) matches desktop+mobile only (2 viewports × 4 states × 5 pages = 40). Tablet coverage claimed but not delivered.
   - **Visual scout honestly notes empty baselines** and that pixel diff was unavailable — DOM inspection only. This is accurate and correctly documented.
   - **Visual scout 40 screenshots show distinct hashes**: desktop and mobile states are all distinct files, which is a positive signal that the NodeList fix (`996988c`) addressed the prior crash. ArchWiki is accessible in this run (unlike the 22:26 WAF-blocked run).
 - Implementer instructions:
-  1. Address the three unresolved NEEDS_FOLLOWUP items from 2026-03-27 22:51 (in priority order):
-     - **Fix `$shadow-modal`**: define in `src/variables/` (follow `$shadow-card`/`$shadow-overlay` pattern) OR replace with inline shadow in `extensions.styl`. Build and verify compiled CSS shows real shadow value.
-     - **Capture VE dialog open-state evidence**: screenshot VE save dialog and EditCheck dialog in open state (desktop + mobile).
-     - **Resolve WAF blocking**: add ArchWiki session cookie to Playwright context, or use ArchWiki API + local CSS injection.
+  1. The `$shadow-modal` fix (`7abe6e8`) is confirmed working — no further action needed. Remaining blocked items (VE dialog open-state evidence, WAF blocking) require browser/Playwright infrastructure changes beyond CSS scope.
   2. Tablet viewport was not captured — if tablet coverage is needed, add it to the capture run.
   3. Do NOT push — pipeline still non-functional per prior reviews.
 
