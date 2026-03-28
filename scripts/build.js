@@ -56,7 +56,9 @@ const tryAutoCommit = (newVersion) => {
   }
 
   try {
-    execFileSync('git', ['rev-parse', '--is-inside-work-tree'], { stdio: 'ignore' })
+    execFileSync('git', ['rev-parse', '--is-inside-work-tree'], {
+      stdio: 'ignore',
+    })
   } catch {
     console.log('Skipping auto-commit: not a git repo')
     return
@@ -70,7 +72,9 @@ const tryAutoCommit = (newVersion) => {
     return
   }
 
-  const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' }).trim()
+  const status = execFileSync('git', ['status', '--porcelain'], {
+    encoding: 'utf8',
+  }).trim()
   if (!status) {
     console.log('Skipping auto-commit: working tree clean')
     return
@@ -97,9 +101,13 @@ const tryAutoCommit = (newVersion) => {
   // dist/main.css is gitignored - don't force add
   // tryAddFile('dist/main.css', { forceIfIgnored: true })
 
-  const stagedAfterAdd = execFileSync('git', ['diff', '--cached', '--name-only'], {
-    encoding: 'utf8',
-  }).trim()
+  const stagedAfterAdd = execFileSync(
+    'git',
+    ['diff', '--cached', '--name-only'],
+    {
+      encoding: 'utf8',
+    }
+  ).trim()
   if (!stagedAfterAdd) {
     console.log('Skipping auto-commit: nothing staged after add')
     return

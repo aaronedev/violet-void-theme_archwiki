@@ -9672,6 +9672,32 @@ Last updated: 2026-03-28 14:39
   3. **Add a comment in the source** above the `rgba($darker, 0.2)` line explaining why it uses the literal value: `// NOTE: $darker does not expand inside @css{} blocks — use literal RGB value here`
   4. The `@css{}` block limitation applies to ALL component files — check before using any Stylus variable inside `@css{}` wrappers.
 
+### 2026-03-28 15:46
+- Run target: visual scout
+- Verdict: CLEAN (infrastructure blocked)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open
+  - mobile.default, tablet.default
+- Findings:
+  - **Anubis WAF blocking confirmed** — all 20 screenshots show "Access Denied" error page, not ArchWiki content. Violet Void theme was not applied to any page. Same infrastructure issue as prior cycles (documented in 2026-03-28 16:03 review and earlier).
+  - **DOM checks returned 0 findings** — but this is because the DOM was the Anubis error page, not ArchWiki content. Error page has no nav, no TOC, no tables, no search, etc.
+  - **State capture still broken** — prior review noted all 4 states (default/menu-open/search-active/toc-open) produce byte-identical screenshots for each page/viewport combination. Today's run shows desktop.menu-open files are same hash as desktop.default (both are "Access Denied" — still broken but not a new regression).
+  - **Artifact paths**:
+    - `.agent/current/main-page.desktop.default.png`
+    - `.agent/current/main-page.desktop.menu-open.png`
+    - `.agent/reports/scout-1774712785652.json`
+- Implementer instructions:
+  1. WAF blocking cannot be resolved via CSS changes — requires Playwright/browser infrastructure changes (user-agent spoofing, proxy rotation, or similar).
+  2. State capture automation remains broken — 4 states produce identical output. Prior followup recommendations (increase delay, check visibility state after click) were not addressed.
+  3. No CSS review needed this cycle — no ArchWiki content was rendered.
+  4. Do NOT push.
+
 ### 2026-03-28 16:03
 - Review target: dirty worktree (tooling/script reformatting only)
 - Verdict: NEEDS_FOLLOWUP
