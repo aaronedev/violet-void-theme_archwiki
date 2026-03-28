@@ -2912,11 +2912,12 @@ Last updated: 2026-03-28 04:41
   - Added utility classes: .small-caps, .all-small-caps, .petite-caps, .all-petite-caps, .unicase, .titling-caps
   - Commit: d14fbf7
 
-- [ ] **`font-variant-ligatures` for Ligatures** (97%+ browser support)
+- [x] **`font-variant-ligatures` for Ligatures** (97%+ browser support) (done: 2026-03-28 07:49, commit: 8a84ffc)
   - File: `src/variables/colors.styl`, `src/components/code.styl`
   - `common-ligatures`, `discretionary-ligatures`, `historical-ligatures`
   - Control code font ligatures
   - Stylus: Works directly
+  - Added 6 utility classes: .font-ligatures-common, .font-ligatures-no-common, .font-ligatures-discretionary, .font-ligatures-historical, .font-ligatures-none, .font-ligatures-full
 
 - [x] **`font-variant-east-asian` for CJK Typography** (97%+ browser support)
   - File: `src/components/typography.styl`
