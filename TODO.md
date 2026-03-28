@@ -521,6 +521,7 @@
 | 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
 | 2026-03-27 | Add ::search-text pseudo-element styling for browser-native "Find in page" search results — violet oklch background with border-radius for theme-consistent highlight appearance (87%+ browser support) | 6937a80 |
 | 2026-03-28 01:42 | Replace missed hardcoded rgba(15,15,15,0.2) with rgba($darker,0.2) in button hover box-shadow in animations.styl — follow-up to 2868eda sweep | 8351e84 |
+| 2026-03-28 06:20 | Fix regression: restore rgba(15,15,15,0.2) in button hover box-shadow — $darker does not expand inside @css{} blocks in Stylus (confirmed limitation, was previously fixed in 2d0b700) | 453301b |
 
 | 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | 4035197 |
 
