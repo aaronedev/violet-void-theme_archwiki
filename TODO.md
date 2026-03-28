@@ -9671,3 +9671,20 @@ Last updated: 2026-03-28 14:39
   2. **Do NOT change `rgba($darker, 0.2)` inside `@css{}` blocks in `animations.styl`** — this is a documented Stylus limitation. The `@css{}` wrapper prevents Stylus variable expansion. If you want to use `$darker` values inside `@css{}`, you must inline the RGB components (e.g., `rgba(15, 15, 15, 0.2)`) not the variable name.
   3. **Add a comment in the source** above the `rgba($darker, 0.2)` line explaining why it uses the literal value: `// NOTE: $darker does not expand inside @css{} blocks — use literal RGB value here`
   4. The `@css{}` block limitation applies to ALL component files — check before using any Stylus variable inside `@css{}` wrappers.
+
+### 2026-03-28 16:03
+- Review target: dirty worktree (tooling/script reformatting only)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **No new CSS implementation this cycle.** Worktree contains only script reformatting: `.agent/archwiki-scout.js`, `.agent/archwiki/capture.js`, `package.json`, and 6 files in `scripts/`. All changes are whitespace/formatting (arrow functions, semicolons, line breaks) — no functional logic changes.
+  - **Open-state screenshots are broken — identical hashes across all states**: `.agent/archwiki/current/` contains 40 screenshots (5 pages × 2 viewports × 4 states) all captured at 14:48 today. MD5 reveals all 4 states for each page/viewport are byte-identical:
+    - `firefox.desktop.{default,menu-open,search-active,toc-open}` → hash `8373727d86a3679a4de9181b87bde35d`
+    - `firefox.mobile.{default,menu-open,search-active,toc-open}` → hash `9eae55c241c315cf782d196f60747970`
+    - Same pattern for all 5 pages. The state capture automation is not triggering UI state changes before screenshot — every state renders as the default.
+  - **Root cause is not in the worktree's script changes**: the worktree `.agent/archwiki-scout.js` and `.agent/archwiki/capture.js` diffs show only formatting, no logic changes. The committed version has the same state-capture logic.
+  - **Possible causes** (not resolvable via read-only review): (a) ArchWiki's Vector skin UI elements respond differently in headless Playwright vs. real browser, (b) CSS injection timing — `waitUntil: 'networkidle'` may not wait long enough for JS-driven UI to initialize, (c) the 300ms `delay()` after click is insufficient for the menu/TOC/search animation to complete and render, (d) the injected CSS is overriding ArchWiki's JS-triggered visibility classes.
+  - **Last approved CSS commit**: `42d5a4c` (overflow-wrap for infobox labels) — APPROVED at 14:39. No new CSS since.
+- Implementer instructions:
+  1. **Debug the state capture failure** before the next review cycle. Add `await delay(1000)` after each click/toggle and before capture to allow animations to complete. Alternatively, check whether ArchWiki's JS is actually executing in the Playwright context (add a DOM check after click: verify the menu element has `visibility: visible` or `display: block`).
+  2. If ArchWiki's UI is genuinely incompatible with headless state capture, document this as a known limitation and stop generating open-state screenshots until the tooling is fixed — do not deliver broken evidence.
+  3. Do NOT push — no CSS changes to push.
