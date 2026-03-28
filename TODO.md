@@ -524,7 +524,7 @@
 
 | 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | 4035197 |
 
-Last updated: 2026-03-28 01:42
+Last updated: 2026-03-28 04:41
 
 ### 2026-03-28 00:37
 - Review target: dirty worktree (TODO.md visual scout entry + package.json version bump)
@@ -9561,3 +9561,47 @@ Last updated: 2026-03-28 01:42
   1. **Revert the animations.styl change immediately**: `git checkout HEAD -- src/components/animations.styl`
   2. Do NOT re-apply `rgba($darker, 0.2)` inside `@css{}` blocks in animations.styl — it is a documented Stylus limitation.
   3. If the goal is to unify the hardcoded rgba value, do so OUTSIDE `@css{}` blocks or find a different approach that doesn't rely on Stylus variable expansion inside `@css{}`.
+
+### 2026-03-28 03:37
+- Run target: visual scout
+- Verdict: CLEAN (DOM checks) | NEEDS_ATTENTION (known CSS regression persists)
+- Pages checked:
+  - Main_page
+  - Systemd
+  - Pacman
+  - Installation_guide
+  - Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - mobile.default
+  - tablet.default
+- Findings:
+  - DOM-level checks (nav overflow, overlay z-index, code block overflow, table overflow, search state, menu state): 0 issues across all 5 pages × 4 states.
+  - 20 screenshots captured successfully — all with distinct file sizes confirming real page renders.
+  - **Known CSS regression persists**: `dist/main.css` line ~893 still contains literal `rgba($darker, 0.2)` in `.mw-ui-button:hover/.cdx-button:hover` box-shadow. `$darker = #0f0f0f` is defined in `src/variables/colors.styl` and properly imported. This is NOT inside an `@css{}` block so prior reviewer explanation does not apply — variable should expand. Regression was already documented in 2026-03-28 01:34 reviewer findings; implementer instructions not followed.
+  - Worktree is dirty: `package.json` version bump only (`20260328.02.44` → `20260328.04.17`) — no new implementation.
+- Artifact paths:
+  - `.agent/current/main-page.desktop.default.png` (78KB)
+  - `.agent/current/main-page.desktop.menu-open.png` (78KB)
+  - `.agent/current/systemd.desktop.default.png` (75KB)
+  - `.agent/current/pacman.mobile.default.png` (69KB)
+  - `.agent/reports/scout-1774669129191.json`
+- Implementer instructions:
+  1. **Fix the `$darker` variable expansion issue** in `src/components/animations.styl` line ~412 — verify that `rgba($darker, 0.2)` compiles to a valid `rgba()` value in `dist/main.css`. If Stylus is not expanding `$darker` here despite it being regular Stylus (not inside `@css{}`), try using the explicit color value `rgba(15, 15, 15, 0.2)` temporarily to confirm the box-shadow works, then investigate why the variable isn't expanding.
+  2. Do NOT push until the box-shadow regression is resolved.
+
+## Reviewer Findings
+
+### 2026-03-28 04:41
+- Review target: 74ae851 + dirty worktree (TODO.md, package.json)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`74ae851` is a legitimate fix**: Replacing undefined `$text-muted` → `$muted` and undefined `$base-secondary` → `$bg-secondary` across `mobile.styl`, `translation.styl`, `wikidata.styl`, and `lazy.styl`. Both `$muted` and `$bg-secondary` are valid defined variables. Clean, correct fix.
+  - **`8351e84` re-introduced the exact regression that `2d0b700` explicitly fixed and documented**: `$darker` does NOT expand inside Stylus `@css{}` blocks — the `@starting-style` containing `rgba($darker, 0.2)` is inside the large `@css{}` block (lines 16–648). Compiled CSS confirms: `box-shadow: 0 2px 4px rgba($darker, 0.2);` is invalid CSS. Browser silently drops the box-shadow on button hover. `2d0b700` already documented this.
+  - **Scout's 03:37 finding has wrong diagnosis**: Claimed "This is NOT inside an `@css{}` block" — it IS. The `@starting-style` block is nested inside the outer `@css{}` block at line 16. This incorrect diagnosis led to implementer instruction to "investigate why the variable isn't expanding" — the reason is already documented in `2d0b700`.
+  - **Worktree has version bump (`20260328.04.17`) and updated TODO.md** — no new implementation beyond `74ae851`.
+- Implementer instructions:
+  1. **Revert the animations.styl regression**: `git checkout 2d0b700 -- src/components/animations.styl` OR manually restore `rgba(15, 15, 15, 0.2)` at line 412 in `src/components/animations.styl`. This is the state `2d0b700` left it in — hardcoded value works, `$darker` does not inside `@css{}`.
+  2. Do NOT re-introduce `rgba($darker, 0.2)` inside any `@css{}` block — this is a confirmed Stylus limitation with explicit prior documentation.
+  3. To properly fix this, the `@starting-style {}` block would need to move OUTSIDE the `@css{}` wrapper, or the hardcoded rgba value must stay.
