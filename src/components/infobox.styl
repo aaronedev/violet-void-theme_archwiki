@@ -49,6 +49,11 @@
       color $muted
       font-size 0.85em
       font-weight 500
+      // Allow long labels to wrap on narrow viewports; flex-shrink: 0
+      // combined with no word-break would cause overflow in tight spaces
+      overflow-wrap break-word
+      word-break break-word
+      hyphens auto
 
     .infobox-data
       flex 1
