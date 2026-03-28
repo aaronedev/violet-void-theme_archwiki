@@ -520,10 +520,11 @@
 | 2026-03-27 | Extend prefers-reduced-transparency for native popover and dialog backdrops — solid backgrounds and no blur for [popover]::backdrop, dialog::backdrop, dialog:modal in modern-css.styl | 99ae785 |
 | 2026-03-27 | Remove hardcoded hex fallbacks (#8950c7) from var(--arch-blue) in 3 :has() selectors in modern-css.styl — --arch-blue CSS custom property always defined by theme | 26d30a6 |
 | 2026-03-27 | Add ::search-text pseudo-element styling for browser-native "Find in page" search results — violet oklch background with border-radius for theme-consistent highlight appearance (87%+ browser support) | 6937a80 |
+| 2026-03-28 01:42 | Replace missed hardcoded rgba(15,15,15,0.2) with rgba($darker,0.2) in button hover box-shadow in animations.styl — follow-up to 2868eda sweep | 8351e84 |
 
 | 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | 4035197 |
 
-Last updated: 2026-03-28 01:17
+Last updated: 2026-03-28 01:42
 
 ### 2026-03-28 00:37
 - Review target: dirty worktree (TODO.md visual scout entry + package.json version bump)
