@@ -9621,3 +9621,15 @@ Last updated: 2026-03-28 04:41
 - Implementer instructions:
   1. Both commits approved. Completion log already updated.
   2. Do NOT push — upstream pipeline still being root-caused.
+
+### 2026-03-28 08:57
+- Review target: 8a84ffc + 4883c54 (dirty worktree: package.json version bump)
+- Verdict: APPROVED
+- Findings:
+  - **`8a84ffc` — font-variant-ligatures utility classes**: Correct. 6 utility classes added to `src/components/code.styl` (lines 621–653): `.font-ligatures-common`, `.font-ligatures-no-common`, `.font-ligatures-discretionary`, `.font-ligatures-historical`, `.font-ligatures-none`, `.font-ligatures-full`. All use valid `font-variant-ligatures` values. `no-alternates` in `.font-ligatures-none` is a valid CSS value. No open-state evidence needed — utility classes are targeted and additive, no risk of breaking existing page rendering.
+  - **`4883c54` — TODO.md checkbox update**: Correct. `font-variant-ligatures` item marked `[x]` with commit hash and timestamp. Added 6-class detail line. Build succeeds (`npm run build` → `dist/main.css`). No compilation errors.
+  - **Completion log table entry missing**: `8a84ffc` (07:49) has no entry in the Completion Log table (last entry: `2026-03-28 06:20` | `453301b`). This is an administrative omission, not a CSS quality issue. CSS implementation is clean and approved.
+  - **Worktree**: only `package.json` version bump (`20260328.02.44` → `20260328.08.51`) — build script auto-bumped.
+- Implementer instructions:
+  1. Add Completion Log table entry for `8a84ffc`: "Add font-variant-ligatures utility classes — 6 utility classes for fine-grained control over code block ligatures. Commit: 8a84ffc"
+  2. Commit with `chore: add archwiki reviewer findings` (do NOT push — pipeline still non-functional per prior cycles).
