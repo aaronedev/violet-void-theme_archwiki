@@ -530,8 +530,22 @@
 | 2026-03-28 11:54 | Fix regression: restore rgba(15,15,15,0.2) for button hover box-shadow inside @css{} block in animations.styl — f266358 re-introduced $darker which does not expand inside @css{} blocks | a8b8b88 |
 
 | 2026-03-28 13:28 | Interlanguage Links (Language Switcher) Styling | Add #p-lang portlet styling for per-article language variant links — hover, focus-visible, active states with theme variables | 7e7d955 |
+| 2026-03-28 14:39 | overflow-wrap for infobox labels | Add overflow-wrap, word-break, hyphens to .infobox-label to prevent overflow on narrow viewports where flex-shrink: 0 would otherwise cause label text to overflow | 42d5a4c |
 
-Last updated: 2026-03-28 13:28
+Last updated: 2026-03-28 14:39
+
+### 2026-03-28 14:39
+- Review target: 42d5a4c (overflow-wrap for infobox labels)
+- Verdict: APPROVED
+- Findings:
+  - `.infobox-label` has `flex 0 0 40%` — flex-shrink: 0 means it won't shrink below 40% width. Long labels in narrow viewports could overflow without wrapping.
+  - Fix adds `overflow-wrap: break-word`, `word-break: break-word`, `hyphens: auto` — all standard CSS, 97%+ browser support.
+  - Fix is scoped to `.infobox-label` only — no cascade risk to other elements.
+  - No theme variables involved (text wrapping fix), no open-state evidence needed.
+  - Worktree contains only tooling/script changes (not CSS implementation).
+- Implementer instructions:
+  1. Commit reviewed and approved — completion log entry added above.
+  2. No further action needed for this fix.
 
 ### 2026-03-28 00:37
 - Review target: dirty worktree (TODO.md visual scout entry + package.json version bump)
