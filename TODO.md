@@ -531,8 +531,23 @@
 
 | 2026-03-28 13:28 | Interlanguage Links (Language Switcher) Styling | Add #p-lang portlet styling for per-article language variant links — hover, focus-visible, active states with theme variables | 7e7d955 |
 | 2026-03-28 14:39 | overflow-wrap for infobox labels | Add overflow-wrap, word-break, hyphens to .infobox-label to prevent overflow on narrow viewports where flex-shrink: 0 would otherwise cause label text to overflow | 42d5a4c |
+| 2026-03-28 19:00 | :seeking pseudo-class for video/audio | Add :seeking pseudo-class for video/audio scrub states — opacity reduction, seek overlay, spinner animation, cursor feedback | 7903c4c |
 
-Last updated: 2026-03-28 14:39
+Last updated: 2026-03-28 19:25
+
+### 2026-03-28 19:25
+- Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
+- Verdict: APPROVED
+- Findings:
+  - Adds `video:seeking` and `audio:seeking` styling: opacity 0.85, `.video-play-overlay` backdrop, `::before` spinner (border-top-color: `$arch-blue`), `.seek-time` visibility, `cursor: pointer` on webkit controls.
+  - Follows exact same pattern as `:buffering` (line 735) and `:paused` (line 691) already in file — no new risks introduced.
+  - All colors use theme vars: `$base`, `$border-subtle`, `$arch-blue` — no hardcoded hex values.
+  - `animation spin` references an existing keyframe defined in multiple files — verified present.
+  - Build compiles cleanly.
+  - **Open-state evidence not applicable**: `:seeking` is a transient user-interaction-only pseudo-class (only applies while user is actively scrubbing media). Cannot be captured in static screenshots. Consistent with `:buffering`/`:paused` treatment.
+- Implementer instructions:
+  1. Commit reviewed and approved — completion log entry present.
+  2. No further action needed.
 
 ### 2026-03-28 14:39
 - Review target: 42d5a4c (overflow-wrap for infobox labels)
@@ -4029,11 +4044,12 @@ Last updated: 2026-03-28 14:39
 
 ## 📺 Media State Pseudo-Classes (New)
 
-- [ ] **`:seeking` Pseudo-class** (87%+ browser support)
+- [x] **`:seeking` Pseudo-class** (87%+ browser support)
   - File: `src/components/file-pages.styl`
   - Style video when seeking
   - Loading indicator during seek
-  - Stylus: Works directly
+  - Opacity reduction, seek overlay, spinner animation, cursor feedback
+  - Commit: 7903c4c
 
 - [ ] **`:stalled` Pseudo-class** (87%+ browser support)
   - File: `src/components/file-pages.styl`
