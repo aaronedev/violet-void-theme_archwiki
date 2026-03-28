@@ -3211,13 +3211,13 @@ Last updated: 2026-03-28 19:25
   - Control math display style (`normal`, `compact`)
   - Stylus: Works directly
 
-- [ ] **`math-depth` Property** (87%+ browser support)
-  - File: `src/components/content.styl`
+- [x] **`math-depth` Property** (87%+ browser support) (done: 2026-03-29 00:23, commit: c6958f6)
+  - File: `src/components/typography.styl`
   - Control math nesting depth styling
   - Stylus: Works directly
 
-- [ ] **`math-shift` Property** (87%+ browser support)
-  - File: `src/components/content.styl`
+- [x] **`math-shift` Property** (87%+ browser support) (done: 2026-03-29 00:23, commit: c6958f6)
+  - File: `src/components/typography.styl`
   - Control math shift style
   - Stylus: Works directly
 
