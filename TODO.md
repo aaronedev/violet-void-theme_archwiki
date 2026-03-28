@@ -3204,7 +3204,7 @@ Last updated: 2026-03-28 04:41
   - Diff highlighting
   - Commit: addee2c
 
-- [ ] **Extension:Echo Notifications** (CSS)
+- [x] **Extension:Echo Notifications** (CSS) (done: 2026-03-28 04:54, commit: baf7586)
   - File: `src/components/extensions.styl`
   - Notification badge styling
   - Notification panel
