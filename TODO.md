@@ -523,7 +523,7 @@
 
 | 2026-03-27 14:50 | Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) | Define 4 missing Stylus variables referenced in CSS but never defined; now alias to established theme variables. | 4035197 |
 
-Last updated: 2026-03-28 00:37
+Last updated: 2026-03-28 01:17
 
 ### 2026-03-28 00:37
 - Review target: dirty worktree (TODO.md visual scout entry + package.json version bump)
@@ -9515,3 +9515,18 @@ Last updated: 2026-03-28 00:37
   2. Capture open-state evidence for VisualEditor dialogs: screenshot of save dialog open and EditCheck dialog open (both at desktop and mobile viewports). Save to `.agent/current/` with naming like `ve-save-dialog.desktop.open.png` and `ve-editcheck-dialog.desktop.open.png`.
   3. Resolve Anubis WAF blocking: add ArchWiki login/session cookie to Playwright context, use ArchWiki API to fetch page HTML and inject CSS locally, or serve ArchWiki pages via cached/local fetch.
   4. Do NOT push — pipeline still non-functional per prior reviews.
+
+### 2026-03-28 01:17
+- Review target: commit 706e614 (dirty worktree: package.json version bump only)
+- Verdict: APPROVED
+- Findings:
+  - **706e614** (docs: correct shadow-modal NEEDS_FOLLOWUP): Reviewer self-correct. The 22:51 review incorrectly flagged `$shadow-modal` as undefined. 706e614 documents that `7abe6e8` already correctly defined `$shadow-modal = 0 4px 16px rgba($darker, 0.35)` in `src/variables/layout.styl:11`. Honest correction — approved.
+  - **Visual scout 00:36 (scout-1774654584721.json)**: 0 findings, all 5 pages × 3 viewports clean. Distinct screenshots confirmed for all states. Screenshot pipeline is functional again — previously blocked by Anubis WAF (22:26, 06:18, 10:21 runs) and NodeList crash (`996988c` fixed).
+  - **Tablet viewport now captured**: Prior review (00:37) flagged tablet as missing. Current artifacts at 00:36 include `*.tablet.default.png` for all 5 pages — tablet gap resolved.
+  - **Worktree**: only `package.json` version bump (`20260327.23.19` → `20260328.01.16`) — no CSS source changes.
+  - **Open-state evidence for VE dialogs (9d59791, a02596f)**: Still unverifiable due to ArchWiki WAF. Documented as infrastructure limitation in prior review. Not blocking.
+  - No new implementation CSS commits this cycle. All prior CSS commits remain approved.
+- Implementer instructions:
+  1. No action required — all outstanding items are infrastructure-level (WAF blocking ArchWiki access) and cannot be resolved via CSS commits alone.
+  2. Pipeline is functional — screenshot captures now succeed with distinct hashes per state. The WAF is intermittent (blocks some runs, passes others).
+  3. Do NOT push — screenshot pipeline still intermittently blocked by Anubis WAF.
