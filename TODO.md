@@ -529,7 +529,9 @@
 
 | 2026-03-28 11:54 | Fix regression: restore rgba(15,15,15,0.2) for button hover box-shadow inside @css{} block in animations.styl — f266358 re-introduced $darker which does not expand inside @css{} blocks | a8b8b88 |
 
-Last updated: 2026-03-28 11:54
+| 2026-03-28 13:28 | Interlanguage Links (Language Switcher) Styling | Add #p-lang portlet styling for per-article language variant links — hover, focus-visible, active states with theme variables | 7e7d955 |
+
+Last updated: 2026-03-28 13:28
 
 ### 2026-03-28 00:37
 - Review target: dirty worktree (TODO.md visual scout entry + package.json version bump)
