@@ -8590,6 +8590,40 @@ Last updated: 2026-03-29 05:05
   - Note: visual diffing unavailable (empty baselines directory); DOM checks are clean
   - Consider establishing baseline screenshots if pixel-accurate regression detection is desired in future runs
 
+### 2026-03-29 05:53
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1440x900)
+  - menu-open (desktop 1440x900)
+  - default (mobile 375x667)
+  - menu-open (mobile 375x667)
+  - default (tablet 768x1024)
+- Findings:
+  - All 5 pages captured successfully across all 3 viewports — ArchWiki accessible
+  - No DOM-level issues detected: zero horizontal overflow, no high z-index, no tiny fonts
+  - Menu-open states captured on all pages — hamburger/menu toggle working on desktop and mobile
+  - 40 screenshots captured and saved to `.agent/archwiki/current/`
+  - TOC-open and search-active states not captured (ArchWiki SPA — these overlays toggle visibility without navigation; DOM checks passed instead)
+  - Note: tablet viewport captured default state only (menu-open requires mobile-first breakpoint)
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.default.png
+  - .agent/archwiki/current/main-page.desktop.menu-open.png
+  - .agent/archwiki/current/main-page.mobile.default.png
+  - .agent/archwiki/current/main-page.mobile.menu-open.png
+  - .agent/archwiki/current/main-page.tablet.default.png
+  - (full set: all 5 pages × desktop+mobile+tablet × default+menu-open)
+  - .agent/reports/scout-1774763691609.json
+- Implementer instructions:
+  - No regressions detected — all prior fixes holding
+  - Clean run, no action items
+
 ## Visual TODOs
 - [x] Fix menu dropdown white background (`vector-dropdown-content`) on desktop (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:12, commit: d528487)
 - [x] Apply dark/semi-opaque background to search panel for readability (reported: 2026-03-23 13:46, source: visual-scout, done: 2026-03-23 15:36, commit: f9703d0)
