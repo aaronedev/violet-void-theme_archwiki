@@ -2243,4 +2243,353 @@ input.pf-datetime-picker
 
     .mw-echo-notification-icon
       width 32px
+
+// =============================================================================
+// FLOW / STRUCTUREDDISCUSSIONS STYLING
+// =============================================================================
+// MediaWiki Flow extension (StructuredDiscussions) - discussion board system
+// Flow provides threaded discussions with topics, posts, and moderation tools
+// Browser support: 97%+ (uses standard MediaWiki classes)
+// Note: Flow is deprecated in MediaWiki 1.35+ (replaced by DiscussionTools)
+// but styling is retained for wikis still using the extension
+
+// Board container
+.flow-board
+  margin 1em 0
+
+// Board header
+.flow-board-header
+.flow-board-header
+  padding 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md $border-radius-md 0 0
+  margin-bottom 0
+
+  .flow-board-title
+    font-size 1.25em
+    font-weight 600
+    color $lighter
+    margin 0
+
+// Topic list container
+.flow-topic-list
+  list-style none
+  padding 0
+  margin 0
+  border 1px solid $border-subtle
+  border-top none
+  border-radius 0 0 $border-radius-md $border-radius-md
+  background $dark
+
+// Individual topic
+.flow-topic
+  padding 1em
+  border-bottom 1px solid $border-subtle
+  transition background-color 0.15s ease
+
+  &:last-child
+    border-bottom none
+    border-radius 0 0 $border-radius-md $border-radius-md
+
+  &:hover
+    background-color rgba($arch-blue, 0.05)
+
+  // Alternating background
+  &:nth-child(even)
+    background-color rgba($darker, 0.3)
+
+// Topic title bar
+.flow-topic-titlebar
+  display flex
+  align-items flex-start
+  justify-content space-between
+  gap 1em
+  margin-bottom 0.5em
+
+// Topic title
+.flow-topic-title
+.flow-topic-title-link
+  font-size 1.05em
+  font-weight 600
+  color $secondary-blue
+  text-decoration none
+  line-height 1.4
+
+  &:hover
+    color $arch-blue
+    text-decoration underline
+
+// Topic summary (initial post excerpt)
+.flow-topic-summary
+.flow-topic-content
+  font-size 0.9em
+  color $muted
+  line-height 1.5
+  margin 0.25em 0 0.5em 0
+  overflow hidden
+  display -webkit-box
+  -webkit-line-clamp 2
+  -webkit-box-orient vertical
+
+  // Wiki links within summary
+  a
+    color $arch-blue
+
+// Topic metadata (author, timestamp)
+.flow-topic-meta
+.flow-topic-meta-row
+  font-size 0.8em
+  color $muted
+  display flex
+  align-items center
+  flex-wrap wrap
+  gap 0.5em
+  margin-top 0.5em
+
+  .flow-topic-author
+    color $lighter
+    font-weight 500
+
+  .flow-topic-timestamp
+    color $muted
+    font-variant-numeric tabular-nums
+
+  .flow-topic-replies
+    color $muted
+
+    &::before
+      content '· '
+      color $border-subtle
+
+// Individual post within topic
+.flow-post
+  padding 0.75em 0
+  border-top 1px solid rgba($border-subtle, 0.5)
+  margin-top 0.5em
+
+  &:first-child
+    border-top none
+    margin-top 0
+    padding-top 0
+
+// Post header (author, timestamp)
+.flow-post-header
+.flow-post-author
+  font-size 0.85em
+  font-weight 600
+  color $secondary-blue
+  margin-right 0.5em
+
+  &.flow-post-author-anonymous
+    color $muted
+    font-weight normal
+
+.flow-post-timestamp
+  font-size 0.8em
+  color $muted
+  font-variant-numeric tabular-nums
+
+// Post content
+.flow-post-content
+.flow-post-body
+  font-size 0.95em
+  color $lighter
+  line-height 1.6
+  margin 0.5em 0
+
+  // Wiki markup in posts
+  p
+    margin 0.5em 0
+
+    &:first-child
+      margin-top 0
+
+    &:last-child
+      margin-bottom 0
+
+  // Code in posts
+  code
+    font-family $font-mono
+    font-size 0.9em
+    background rgba($arch-blue, 0.1)
+    padding 0.1em 0.3em
+    border-radius $border-radius-sm
+    color $arch-blue
+
+  pre
+    font-family $font-mono
+    font-size 0.85em
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    padding 0.75em
+    margin 0.5em 0
+    overflow-x auto
+    white-space pre-wrap
+    word-wrap break-word
+
+// Post actions (reply, like, etc.)
+.flow-post-actions
+.flow-action
+  display flex
+  align-items center
+  gap 0.75em
+  margin-top 0.5em
+  font-size 0.8em
+
+  a
+  button
+    color $muted
+    text-decoration none
+    padding 0.25em 0.5em
+    border-radius $border-radius-sm
+    transition all 0.15s ease
+    background none
+    border none
+    cursor pointer
+    font-size inherit
+
+    &:hover
+      color $arch-blue
+      background rgba($arch-blue, 0.1)
+
+    &:active
+      transform scale(0.97)
+
+// Reply to topic
+.flow-reply-form
+.flow-reply-area
+  margin-top 1em
+  padding 1em
+  background rgba($darker, 0.5)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  .flow-reply-title
+    font-size 0.85em
+    font-weight 600
+    color $muted
+    margin-bottom 0.5em
+    text-transform uppercase
+    letter-spacing 0.05em
+
+  textarea
+  input
+    width 100%
+    padding 0.5em 0.75em
+    background $base
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $lighter
+    font-family inherit
+    font-size 0.95em
+    resize vertical
+    min-height 80px
+
+    &:focus
+      outline none
+      border-color $arch-blue
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.15)
+
+    &::placeholder
+      color $muted
+
+// Moderation links
+.flow-moderation
+.flow-moderation-link
+  font-size 0.75em
+  color $muted
+  text-decoration none
+  padding 0.15em 0.4em
+  border-radius $border-radius-sm
+
+  &:hover
+    color $secondary-red
+    background rgba($secondary-red, 0.1)
+
+// Collapsed/expandable topic
+.flow-collapsible
+.flow-collapsed
+  .flow-topic-summary
+  .flow-topic-content
+    -webkit-line-clamp 1
+
+  .flow-topic-expand
+    color $arch-blue
+    font-size 0.8em
+    cursor pointer
+    margin-top 0.25em
+    display inline-block
+
+    &:hover
+      text-decoration underline
+
+// New topic button
+.flow-new-topic
+.flow-board-create
+  display inline-flex
+  align-items center
+  gap 0.5em
+  padding 0.5em 1em
+  background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.8))
+  border 1px solid rgba($arch-blue, 0.4)
+  border-radius $border-radius-md
+  color $darker
+  font-weight 600
+  font-size 0.9em
+  text-decoration none
+  transition all 0.2s ease
+  cursor pointer
+
+  &:hover
+    transform translateY(-1px)
+    box-shadow $shadow-elevated
+
+  &:active
+    transform translateY(0)
+
+// Loading state
+.flow-loading
+.flow-ajax-loading
+  display flex
+  align-items center
+  justify-content center
+  padding 2em
+  color $muted
+
+  &::before
+    content ''
+    width 20px
+    height 20px
+    border 2px solid $border-subtle
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 0.8s linear infinite
+    margin-right 0.75em
+
+@keyframes spin
+  to
+    transform rotate(360deg)
+
+// Reduced motion support
+@media (prefers-reduced-motion reduce)
+  .flow-topic
+    transition none
+
+  .flow-post-actions a,
+  .flow-post-actions button
+    transition none
+
+  .flow-loading::before
+    animation none
+
+// Touch-friendly on mobile
+@media (pointer coarse)
+  .flow-post-actions
+    gap 1em
+
+    a
+    button
+      padding 0.5em 0.75em
       height 32px
