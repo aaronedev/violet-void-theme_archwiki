@@ -9963,3 +9963,17 @@ Last updated: 2026-03-29 11:16
   1. No visual regressions detected — theme is clean across all inspected states.
   2. Worktree remains dirty (package.json + mobile.styl) — see prior REJECTED review for follow-up items.
   3. Do NOT push — prior pipeline/blocker items unresolved per last review cycle.
+
+### 2026-03-29 10:15
+- Review target: 1e02650 (Minerva Mobile TOC) + 395bf53 (isolation:isolate)
+- Verdict: NEEDS_FOLLOWUP (Minerva), APPROVED (isolation)
+- Findings:
+  - **`1e02650` Minerva Mobile TOC**: 302 lines added to mobile.styl. All styles correctly scoped to `@media (max-width 768px)`. Theme vars used throughout ($arch-blue, $darker, $border-subtle, $secondary-blue, $border-radius-*, $cdx-z-index-dropdown, $shadow-elevated). No hardcoded hex. Touch targets ≥44px (48px FAB, 44px back-to-top). Safe area insets included. prefers-reduced-motion respected. Implementation scope is correct and follows accessibility guidelines.
+  - **`1e02650` open-state evidence MISSING**: All `.mobile.toc-open.png` screenshots in `.agent/archwiki/current/` have timestamps 05:51–05:53 UTC. Commit `1e02650` was made at 09:17 UTC. Screenshots were captured ~3.5 hours BEFORE the CSS was added. These show the default ArchWiki Minerva mobile TOC, not the new FAB + slide-up drawer + accordion TOC + back-to-top. Cannot verify open-state rendering.
+  - **Auto-commit `855af8d`**: Just package.json version bump triggered by `npm run build` during this session. Not a new implementation.
+  - **`395bf53` isolation:isolate**: Adds `isolation: isolate` to 4 overlay elements (tooltip, dialog:modal::backdrop, dialog:open, dialog:fullscreen exit button). No visual change — only stacking context behavior. No open-state evidence required. APPROVED.
+- Implementer instructions:
+  1. Re-capture `.mobile.toc-open.png` screenshots AFTER the Minerva CSS is live. The key evidence is: (a) FAB visible in bottom-right on mobile default state, (b) TOC drawer slides up when FAB is tapped, (c) Back-to-top appears on scroll.
+  2. Compare before (current pre-implementation screenshots) vs after (new screenshots) to verify FAB + drawer + back-to-top are rendering correctly.
+  3. Commit updated screenshots and add completion log entry confirming Minerva Mobile TOC is verified.
+  4. Do NOT push until open-state evidence is captured and verified.
