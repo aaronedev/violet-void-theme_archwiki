@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-03-27 22:13",
+  "pages": ["main-page", "systemd", "pacman", "installation-guide", "firefox"],
+  "viewports": ["desktop", "tablet", "mobile"],
+  "findings": [
+    {
+      "page": "pacman",
+      "error": "page.goto: Target page, context or browser has been closed\nCall log:\n  - navigating to \"https://wiki"
+    },
+    {
+      "page": "installation-guide",
+      "error": "page.goto: Target page, context or browser has been closed"
+    },
+    {
+      "page": "firefox",
+      "error": "page.goto: Target page, context or browser has been closed"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "withIssues": 0,
+    "clean": 3
+  }
+}

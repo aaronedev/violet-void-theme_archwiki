@@ -935,6 +935,19 @@ img.hq
 .columns-balanced
   column-fill balance
 
+// Columns shorthand utilities — combines column-count and column-width in one property
+// Syntax: columns <column-count> <column-width>
+// Browser support: 97%+
+// Use when you want explicit count AND width; falls back gracefully on older browsers
+.columns-shorthand
+  columns 2 20em
+
+.columns-shorthand-3-15ch
+  columns 3 15ch
+
+.columns-shorthand-auto
+  columns auto 15em
+
 // Related articles grid
 .related-articles
   column-count 3
