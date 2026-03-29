@@ -1,0 +1,465 @@
+// Email-related styling for Violet Void ArchWiki
+// Email confirmation, preferences, and preview features
+// Browser support: 97%+ for most features
+
+@import '../variables/colors'
+@import '../variables/layout'
+@import '../mixins/gradients'
+@import '../mixins/effects'
+
+// =============================================================================
+// EMAIL CONFIRMATION UI
+// =============================================================================
+
+// Email confirmation status container
+.mw-email-confirmation
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 2em
+  margin 1em 0
+  max-width 600px
+
+  // Success state - email confirmed
+  &.mw-email-confirmation-valid
+    background linear-gradient(135deg, $base, rgba($green, 0.06))
+    border-color rgba($green, 0.3)
+
+    &::before
+      content '✓'
+      display block
+      width 48px
+      height 48px
+      margin 0 auto 1em
+      background rgba($green, 0.15)
+      border-radius 50%
+      line-height 48px
+      text-align center
+      font-size 1.5rem
+      color $green
+
+  // Pending state - awaiting confirmation
+  &.mw-email-confirmation-pending
+    background linear-gradient(135deg, $base, rgba($orange, 0.06))
+    border-color rgba($orange, 0.3)
+
+    &::before
+      content '⏳'
+      display block
+      width 48px
+      height 48px
+      margin 0 auto 1em
+      background rgba($orange, 0.15)
+      border-radius 50%
+      line-height 48px
+      text-align center
+      font-size 1.5rem
+
+  // Error state - confirmation failed
+  &.mw-email-confirmation-invalid
+    background linear-gradient(135deg, $base, rgba($secondary-red, 0.06))
+    border-color rgba($secondary-red, 0.3)
+
+    &::before
+      content '!'
+      display block
+      width 48px
+      height 48px
+      margin 0 auto 1em
+      background rgba($secondary-red, 0.15)
+      border-radius 50%
+      line-height 48px
+      text-align center
+      font-size 1.5rem
+      font-weight bold
+      color $secondary-red
+
+  // Confirmation code display
+  .mw-email-confirmation-code
+    font-family $font-mono
+    font-size 1.1em
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    margin 1em 0
+    text-align center
+    letter-spacing 0.1em
+    color $secondary-blue
+    word-break break-all
+
+// Resend confirmation email button
+.mw-email-resend
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-md
+  padding 0.75em 1.5em
+  color $arch-blue
+  cursor pointer
+  font-size 0.95em
+  transition all $transition-fast
+  margin-top 0.5em
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
+    border-color $arch-blue
+    box-shadow 0 0 8px rgba($arch-blue, 0.2)
+
+  &:active
+    transform translateY(1px)
+
+  &:disabled
+    opacity 0.5
+    cursor not-allowed
+    transform none
+
+// =============================================================================
+// EMAIL INPUT FORM
+// =============================================================================
+
+// Email input field
+.mw-email-input
+  input[type="email"]
+  input[name="email"]
+  input[name="wpEmail"]
+    background $darker
+    color $light
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    padding 0.75em 1em
+    font-size 1em
+    width 100%
+    max-width 400px
+    transition border-color $transition-fast, box-shadow $transition-fast
+
+    &::placeholder
+      color $muted
+
+    &:focus
+      border-color $arch-blue
+      box-shadow 0 0 0 3px rgba($arch-blue, 0.2)
+      outline none
+
+    &:invalid:not(:placeholder-shown)
+      border-color $secondary-red
+      box-shadow 0 0 0 3px rgba($secondary-red, 0.15)
+
+    &:valid:not(:placeholder-shown)
+      border-color $green
+
+// Email change form wrapper
+.mw-email-change-form
+  background $base
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin 1em 0
+
+  .form-label
+    display block
+    font-size 0.9em
+    font-weight 600
+    color $light
+    margin-bottom 0.5em
+
+  .form-help
+    font-size 0.8em
+    color $muted
+    margin-top 0.25em
+
+  .form-error
+    font-size 0.85em
+    color $secondary-red
+    margin-top 0.5em
+
+// =============================================================================
+// EMAIL PREFERENCES
+// =============================================================================
+
+// Email preferences panel
+.mw-email-prefs
+  background $base
+  border 1px solid $border-subtle
+  border-radius $border-radius-lg
+  padding 1.5em
+  margin 1em 0
+
+  // Preference section header
+  h4
+    font-size 1em
+    font-weight 600
+    color $light
+    margin 1.5em 0 0.75em
+    padding-bottom 0.5em
+    border-bottom 1px solid $border-subtle
+
+    &:first-child
+      margin-top 0
+
+  // Individual preference item
+  .mw-email-pref-item
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0.75em 0
+    border-bottom 1px solid rgba($border-subtle, 0.5)
+
+    &:last-child
+      border-bottom none
+
+    .pref-label
+      font-size 0.95em
+      color $light
+
+    .pref-description
+      font-size 0.8em
+      color $muted
+      margin-top 0.25em
+
+    // Toggle switch for email preferences
+    input[type="checkbox"]
+      width 20px
+      height 20px
+      accent-color $arch-blue
+
+    // Radio buttons for frequency selection
+    input[type="radio"]
+      accent-color $arch-blue
+
+// Email digest frequency options
+.mw-email-frequency
+  display flex
+  flex-direction column
+  gap 0.5em
+  margin-top 0.75em
+
+  label
+    display flex
+    align-items center
+    gap 0.5em
+    font-size 0.9em
+    color $light
+    cursor pointer
+
+    input[type="radio"]
+      width 16px
+      height 16px
+
+// Quiet hours settings for email
+.mw-quiet-hours
+  background rgba($arch-blue, 0.04)
+  border 1px solid rgba($arch-blue, 0.15)
+  border-radius $border-radius-md
+  padding 1em
+  margin-top 1em
+
+  .quiet-hours-label
+    font-size 0.9em
+    font-weight 600
+    color $light
+    margin-bottom 0.75em
+
+  .quiet-hours-range
+    display flex
+    align-items center
+    gap 0.75em
+
+    input[type="time"]
+      background $darker
+      border 1px solid $border-subtle
+      border-radius $border-radius-sm
+      padding 0.4em 0.6em
+      color $light
+      font-size 0.9em
+
+      &:focus
+        border-color $arch-blue
+        outline none
+
+    .range-separator
+      color $muted
+      font-size 0.9em
+
+// Unsubscribe link
+.mw-email-unsubscribe
+  font-size 0.85em
+  color $muted
+  margin-top 1.5em
+  padding-top 1em
+  border-top 1px solid $border-subtle
+
+  a
+    color $arch-blue
+    text-decoration none
+
+    &:hover
+      text-decoration underline
+
+// =============================================================================
+// EMAIL TEMPLATE PREVIEW
+// =============================================================================
+
+// Email preview container (for wiki email templates)
+.mw-email-preview
+  background $darker
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  padding 1.5em
+  margin 1em 0
+  max-width 650px
+  font-family $font-mono
+  font-size 0.9em
+  line-height 1.6
+
+  // Email header
+  .email-header
+    border-bottom 1px solid $border-subtle
+    padding-bottom 1em
+    margin-bottom 1em
+
+    .email-to
+      color $muted
+      font-size 0.85em
+      margin-bottom 0.5em
+
+    .email-subject
+      color $light
+      font-size 1em
+      font-weight 600
+
+  // Email body
+  .email-body
+    color rgba($light, 0.9)
+
+    // Variable placeholders highlighted
+    .email-var
+      background rgba($arch-blue, 0.15)
+      border-radius 2px
+      padding 0.1em 0.3em
+      color $secondary-blue
+      font-size 0.9em
+
+  // Email footer
+  .email-footer
+    border-top 1px solid $border-subtle
+    padding-top 1em
+    margin-top 1em
+    font-size 0.8em
+    color $muted
+
+// Test send button
+.mw-email-test-send
+  background linear-gradient(135deg, rgba($arch-blue, 0.1), rgba($arch-blue, 0.05))
+  border 1px solid rgba($arch-blue, 0.3)
+  border-radius $border-radius-sm
+  padding 0.5em 1em
+  color $arch-blue
+  cursor pointer
+  font-size 0.85em
+  transition all $transition-fast
+  margin-top 0.5em
+
+  &:hover
+    background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
+    border-color $arch-blue
+
+  &:active
+    transform translateY(1px)
+
+// =============================================================================
+// EMAIL NOTIFICATION BANNERS
+// =============================================================================
+
+// Email verification needed banner
+.mw-email-verification-needed
+  background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+  border 1px solid rgba($orange, 0.3)
+  border-radius $border-radius-md
+  padding 1em 1.25em
+  margin 1em 0
+  display flex
+  align-items flex-start
+  gap 0.75em
+
+  .banner-icon
+    flex-shrink 0
+    width 24px
+    height 24px
+    background rgba($orange, 0.15)
+    border-radius 50%
+    display flex
+    align-items center
+    justify-content center
+    font-size 0.85rem
+    color $orange
+
+  .banner-content
+    flex 1
+
+    .banner-title
+      font-size 0.95em
+      font-weight 600
+      color $light
+      margin-bottom 0.25em
+
+    .banner-text
+      font-size 0.85em
+      color $muted
+      line-height 1.4
+
+    a
+      color $arch-blue
+      text-decoration none
+
+      &:hover
+        text-decoration underline
+
+// Email sent confirmation
+.mw-email-sent
+  background linear-gradient(135deg, rgba($green, 0.08), rgba($green, 0.04))
+  border 1px solid rgba($green, 0.25)
+  border-radius $border-radius-md
+  padding 1.25em
+  margin 1em 0
+  text-align center
+
+  .sent-icon
+    font-size 2rem
+    margin-bottom 0.5em
+
+  .sent-title
+    font-size 1em
+    font-weight 600
+    color $green
+    margin-bottom 0.5em
+
+  .sent-message
+    font-size 0.9em
+    color $muted
+    line-height 1.5
+
+// =============================================================================
+// MOBILE EMAIL STYLES
+// =============================================================================
+
+@media (max-width $breakpoint-md)
+  .mw-email-confirmation
+    padding 1.25em
+
+    &::before
+      width 40px
+      height 40px
+      font-size 1.25rem
+
+  .mw-email-prefs
+    padding 1em
+
+  .mw-email-preview
+    padding 1em
+    font-size 0.85em
+
+  .mw-email-input
+    input[type="email"]
+    input[name="email"]
+    input[name="wpEmail"]
+      max-width 100%
