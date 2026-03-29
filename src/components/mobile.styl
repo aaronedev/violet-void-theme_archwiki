@@ -1011,3 +1011,305 @@ body.menu-open
   #catlinks
   .catlinks
     padding-bottom calc(1em + env(safe-area-inset-bottom))
+
+// =============================================================================
+// MOBILE TOC - FLOATING BUTTON, COLLAPSIBLE PANEL, SECTION JUMP
+// =============================================================================
+
+// Floating TOC button — fixed position bottom-right on mobile
+// Tapping opens the TOC panel. Uses .toc-open checkbox hack or JS toggle.
+.toc-fab
+.toc-floating-button
+#toc-fab
+  @media (max-width 768px)
+    position fixed
+    bottom calc(2em + env(safe-area-inset-bottom))
+    right calc(1em + env(safe-area-inset-right))
+    z-index $cdx-z-index-dropdown
+    // Touch target minimum 44x44px
+    min-width 48px
+    min-height 48px
+    width 48px
+    height 48px
+    display flex
+    align-items center
+    justify-content center
+    background linear-gradient(135deg, $arch-blue, rgba($arch-blue, 0.75))
+    border 1px solid rgba($arch-blue, 0.4)
+    border-radius 50%
+    box-shadow $shadow-elevated
+    cursor pointer
+    touch-action manipulation
+    // Prevent double-tap zoom
+    user-select none
+    -webkit-tap-highlight-color transparent
+    transition transform 0.2s ease, box-shadow 0.2s ease
+
+    &:hover
+      transform scale(1.05)
+      box-shadow $shadow-elevated, 0 0 0 3px rgba($arch-blue, 0.25)
+
+    &:active
+      transform scale(0.95)
+
+    // TOC icon (list/bars)
+    &::before
+      content "☰"
+      color $darker
+      font-size 1.25rem
+      font-weight 700
+      line-height 1
+
+    // Hide on pages with no TOC
+    html .no-toc &
+      display none
+
+// TOC panel — slide-up drawer on mobile (triggered by fab or hamburger)
+.toc-panel
+.toc-mobile-panel
+.vector-toc-panel
+  @media (max-width 768px)
+    position fixed
+    bottom 0
+    left 0
+    right 0
+    z-index $cdx-z-index-dropdown
+    background linear-gradient(180deg, $base 0%, rgba($darker, 0.98) 100%)
+    border-top 2px solid rgba($arch-blue, 0.4)
+    border-radius $border-radius-lg $border-radius-lg 0 0
+    box-shadow 0 -4px 24px rgba($darker, 0.5)
+    max-height 60vh
+    overflow-y auto
+    overscroll-behavior contain
+    scrollbar-gutter stable
+    padding 1em
+    padding-bottom calc(1em + env(safe-area-inset-bottom))
+    padding-left unquote("max(1em, env(safe-area-inset-left))")
+    padding-right unquote("max(1em, env(safe-area-inset-right))")
+    // Entrance animation
+    transform translateY(100%)
+    transition transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+
+    // When opened (checkbox hack or JS class)
+    &.open
+    .toc-panel.open &
+      transform translateY(0)
+
+    // Panel header
+    &::before
+      content attr(data-panel-title)
+      display block
+      font-weight 700
+      font-size 1rem
+      color $secondary-blue
+      margin-bottom 0.75em
+      padding-bottom 0.5em
+      border-bottom 1px solid rgba($border-subtle, 0.4)
+
+    // Close button
+    .toc-panel-close
+    .toc-close
+      position absolute
+      top 0.75em
+      right calc(0.75em + env(safe-area-inset-right))
+      min-width 36px
+      min-height 36px
+      display flex
+      align-items center
+      justify-content center
+      background rgba($arch-blue, 0.1)
+      border 1px solid rgba($arch-blue, 0.3)
+      border-radius $border-radius-sm
+      color $secondary-blue
+      font-size 1rem
+      cursor pointer
+      touch-action manipulation
+
+      &:hover
+        background rgba($arch-blue, 0.2)
+
+// Collapsible TOC sections on mobile — accordion-style
+.toc-panel
+  @media (max-width 768px)
+    // Top-level sections
+    > ul
+    > ol
+      list-style none
+      padding 0
+      margin 0
+
+    // Each TOC section/group
+    li
+      border-bottom 1px solid rgba($border-subtle, 0.2)
+
+      &:last-child
+        border-bottom none
+
+    // Section toggle button (collapses sub-sections)
+    .toc-section-toggle
+      display flex
+      align-items center
+      justify-content space-between
+      width 100%
+      padding 0.6em 0.75em
+      background rgba($arch-blue, 0.05)
+      border none
+      border-radius $border-radius-sm
+      color $lighter
+      font-size 0.9rem
+      font-weight 600
+      cursor pointer
+      touch-action manipulation
+      text-align left
+
+      &:hover
+        background rgba($arch-blue, 0.1)
+        color $secondary-blue
+
+      // Rotate chevron when section is open
+      &::after
+        content "›"
+        font-size 1.1rem
+        color rgba($arch-blue, 0.6)
+        transition transform 0.2s ease
+        transform rotate(0deg)
+
+      &.open::after
+        transform rotate(90deg)
+
+    // Nested list (sub-sections) — hidden by default on mobile
+    ul
+    ol
+      max-height 0
+      overflow hidden
+      transition max-height 0.3s ease
+
+      &.open
+        max-height 400px
+        overflow-y auto
+
+    // Individual TOC entry
+    > ul > li > a
+    .toc-entry
+      display block
+      padding 0.5em 0.75em
+      color $lighter
+      font-size 0.875rem
+      text-decoration none
+      border-radius $border-radius-sm
+      transition background-color 0.15s ease
+
+      &:hover
+        background rgba($arch-blue, 0.1)
+        color $secondary-blue
+
+      // Active/current section
+      &.active
+      &[aria-current="true"]
+        background rgba($arch-blue, 0.15)
+        color $arch-blue
+        font-weight 600
+
+// Section jump links — fixed position shortcuts for jumping between TOC sections
+.section-jump
+.section-jump-links
+  @media (max-width 768px)
+    display flex
+    flex-wrap wrap
+    gap 0.5em
+    padding 0.75em
+    background rgba($arch-blue, 0.04)
+    border 1px solid rgba($border-subtle, 0.3)
+    border-radius $border-radius-md
+    margin 0.75em 0
+
+    a
+      display inline-flex
+      align-items center
+      padding 0.35em 0.6em
+      background $darker
+      border 1px solid rgba($arch-blue, 0.3)
+      border-radius $border-radius-sm
+      color $secondary-blue
+      font-size 0.8rem
+      font-weight 500
+      text-decoration none
+      white-space nowrap
+      touch-action manipulation
+      transition all 0.15s ease
+
+      &:hover
+        background rgba($arch-blue, 0.15)
+        border-color rgba($arch-blue, 0.5)
+        color $arch-blue
+
+// Back to top button — floating fixed button on mobile
+.back-to-top
+.back-to-top-button
+#back-to-top
+.back-to-top-fab
+  @media (max-width 768px)
+    position fixed
+    bottom calc(6em + env(safe-area-inset-bottom))
+    right calc(1em + env(safe-area-inset-right))
+    z-index $cdx-z-index-dropdown
+    // 44px touch target minimum
+    min-width 44px
+    min-height 44px
+    width 44px
+    height 44px
+    display flex
+    align-items center
+    justify-content center
+    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.15))
+    border 1px solid rgba($border-subtle, 0.4)
+    border-radius 50%
+    box-shadow $shadow-elevated
+    cursor pointer
+    touch-action manipulation
+    user-select none
+    -webkit-tap-highlight-color transparent
+    opacity 0
+    pointer-events none
+    transform translateY(8px)
+    transition opacity 0.25s ease, transform 0.25s ease
+
+    // Show when page is scrolled
+    &.visible
+    .scrolled &
+      opacity 1
+      pointer-events auto
+      transform translateY(0)
+
+    &:hover
+      background rgba($arch-blue, 0.2)
+      border-color rgba($arch-blue, 0.4)
+      transform translateY(-2px)
+
+    // Arrow up icon
+    &::before
+      content "↑"
+      color $secondary-blue
+      font-size 1.25rem
+      font-weight 700
+      line-height 1
+
+    // Smooth scroll on tap
+    scroll-behavior smooth
+
+// Reduce clutter on very small screens — hide FABs if space is tight
+@media (max-width 360px)
+  .toc-fab
+  .toc-floating-button
+  #toc-fab
+    bottom calc(1.5em + env(safe-area-inset-bottom))
+    right calc(0.75em + env(safe-area-inset-right))
+    width 44px
+    height 44px
+
+  .back-to-top
+  .back-to-top-button
+  #back-to-top
+  .back-to-top-fab
+    bottom calc(5em + env(safe-area-inset-bottom))
+    right calc(0.75em + env(safe-area-inset-right))
