@@ -534,7 +534,9 @@
 | 2026-03-28 19:00 | :seeking pseudo-class for video/audio | Add :seeking pseudo-class for video/audio scrub states — opacity reduction, seek overlay, spinner animation, cursor feedback | 7903c4c |
 | 2026-03-29 05:05 | @font-face Descriptor Utility Classes | Add font-display, size-adjust, ascent-override, descent-override, line-gap-override utility classes in src/utilities/_fonts.styl — enables fine-grained FOUT control and font metric matching (97%+ browser support) | 174494f |
 
-Last updated: 2026-03-29 05:05
+| 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
+
+Last updated: 2026-03-29 11:16
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -1606,11 +1608,16 @@ Last updated: 2026-03-29 05:05
   - Notification panel cards
   - Mark as read indicators (fix: add missing position:relative to .notification-item for unread indicator ::before)
 
-- [ ] **Minerva Mobile Improvements** (CSS)
+- [x] **Minerva Mobile Improvements** (CSS) (done: 2026-03-29 11:16, commit: 1e02650)
   - File: `src/components/mobile.styl`
-  - Updated mobile menu styling
-  - Touch-friendly edit buttons
-  - Improved hamburger menu
+  - Mobile TOC floating action button (FAB) in bottom-right
+  - Slide-up collapsible TOC panel drawer
+  - Accordion-style TOC section navigation
+  - Section jump shortcut links
+  - Back-to-top floating button with scroll visibility
+  - Touch targets ≥44px for accessibility
+  - Safe area inset support for notched devices
+  - Reduced motion support
 
 
 ## 📐 Modern Layout Techniques (New - 2026-02-28 Scout 8)
