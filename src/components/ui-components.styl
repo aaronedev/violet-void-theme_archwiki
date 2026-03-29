@@ -278,6 +278,7 @@ input[type="range"]
 .tooltip
 [data-tooltip]
   position relative
+  isolation isolate
 
   &::after
     content attr(data-tooltip)
@@ -463,6 +464,7 @@ dialog:modal::backdrop:focus-within
   display flex
   align-items center
   justify-content center
+  isolation isolate
   z-index 9999
 
   .modal-content
@@ -812,6 +814,7 @@ dialog:open
   backdrop-filter blur(2px)
   position fixed
   inset 0
+  isolation isolate
   z-index 999
 
 // Focus-visible for popover elements
@@ -1068,6 +1071,7 @@ dialog:fullscreen
   position fixed
   top 1rem
   right 1rem
+  isolation isolate
   z-index 99999
   gradient-surface()
   padding 0.5rem 1rem
