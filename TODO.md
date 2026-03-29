@@ -3475,8 +3475,8 @@ Last updated: 2026-03-29 05:05
   - Pagination controls
   - Redirect indicator
 
-- [ ] **Special:RecentChanges Styling** (CSS)
-  - File: `src/components/special.styl`
+- [x] **Special:RecentChanges Styling** (CSS) (done: 2026-03-29 04:20, commit: a63ac37)
+  - File: `src/components/special-pages.styl`
   - Change list styling
   - Filter dropdown styling
   - Namespace filter chips
@@ -9820,3 +9820,23 @@ Last updated: 2026-03-29 05:05
   1. Add completion log entry for `5627997`: `"fix: add missing $shadow-lg variable used by notification components — $shadow-lg = 0 8px 32px rgba($darker, 0.5) in layout.styl, resolves undefined variable references in notifications.styl"`
   2. Document `email.styl` (465 lines, email confirmation/preferences/preview UI) — add feature entry to appropriate section (Email Features section already exists in TODO.md but all items unchecked) and add to completion log when committed.
   3. Do NOT push — pipeline status unchanged.
+
+### 2026-03-29 04:38
+- Review target: a63ac37 (Special:RecentChanges styling) + dirty worktree (TODO.md, package.json)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`a63ac37` — 369-line Special:RecentChanges implementation**: Comprehensive coverage of `.mw-recentchanges-table`, `.rc-list`, change timestamps, page titles, change type indicators (bot/minor/new/patrol), diff/history links, filter controls, log entries, change size, pagination. Theme variables used throughout (`$arch-blue`, `$secondary-blue`, `$green`, `$gold`, `$orange`, `$muted`, `$darker`, `$border-subtle`). Build succeeds.
+  - **Selector typo — patron indicator will NOT apply**: In `src/components/special-pages.styl` line ~1343, the rule `&.mw-tag patrol` has a SPACE between `mw-tag` and `patrol`. This produces CSS selector `.mw-tag-new.mw-tag patrol { ... }` — a descendant combinator targeting a `<patrol>` element inside `.mw-tag-new`. MediaWiki's patrol class is `.mw-tag-patrol` (single hyphenated class, no space). The intended styling (`rgba($gold, 0.15)` background, gold color) will never match any element. Should be `&.mw-tag-patrol` with a hyphen, no space.
+  - **`&.mw-tag-nomination`**: Used correctly — MediaWiki tags can nest, so `.mw-tag-new .mw-tag-nomination` (descendant) is plausible for combined tags (e.g., new page that was patrol-nominated). Less certain but not obviously wrong.
+  - **TODO.md update**: Correctly marks Special:RecentChanges `[x]`, changes file from non-existent `special.styl` to existing `special-pages.styl`, and adds commit hash. Good cleanup.
+  - **No completion log table entry**: The completion log table (bottom of TODO.md, last entry: `2026-03-28 | ... | a63ac37`) actually does have the entry for this commit. Wait — let me re-check. The completion log at line ~503 has `| 2026-03-29 04:20 | @font-face Descriptor Utility Classes | 174494f |`. The `a63ac37` commit message itself says "done: 2026-03-29 04:20" but the timestamp doesn't appear in the completion log table — only in the TODO feature entry. Let me verify.
+  - **Open-state evidence**: No Special:RecentChanges page screenshots in `.agent/current/`. The visual capture runs cover only article pages (main-page, systemd, pacman, installation-guide, firefox). Special pages are not in the capture list. This is a known limitation — the scouting infrastructure only targets article pages, not Special:RecentChanges.
+  - **`@extend .mw-changeslist-diff` in `.rc-history-link`**: Correct — `.mw-changeslist-diff` is defined immediately above in the same commit. Stylus `@extend` works within the same file.
+  - **`animation spin` keyframe**: Correctly references `spin` defined in multiple other files (`discussion.styl`, `ui-components.styl`, etc.). Not defined in `special-pages.styl`, but imported globally.
+  - **No hardcoded hex colors**: All color references use theme variables or `rgba()` with theme variable arguments. Good.
+  - **Worktree**: Only TODO.md (checkbox + file path fix) and package.json (`20260329.06.21`). No new implementation in worktree.
+- Implementer instructions:
+  1. **Fix the selector typo**: In `src/components/special-pages.styl`, change `&.mw-tag patrol` to `&.mw-tag-patrol` (hyphen, no space). Verify the compiled CSS produces `.mw-tag-new.mw-tag-patrol { ... }` with a single hyphenated class.
+  2. Commit the typo fix with `fix: correct mw-tag-patrol selector typo in Special:RecentChanges styling`.
+  3. Add completion log entry if not already present: `| 2026-03-29 | Special:RecentChanges Styling | Add comprehensive RC page styling — change list items, timestamps, type indicators, filters, pagination | a63ac37 |`
+  4. Do NOT push — pipeline unchanged from prior cycles.
