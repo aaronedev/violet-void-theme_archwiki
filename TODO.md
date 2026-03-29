@@ -9917,3 +9917,29 @@ Last updated: 2026-03-29 05:05
   2. Add completion log entry for Flow styling (`9a1791e`) OR remove the Flow styling if ArchWiki doesn't use Flow (deprecated extension, replaced by DiscussionTools).
   3. Scout + commit the mobile.styl worktree changes as a separate review cycle.
   4. Do NOT push until all three items are resolved.
+
+### 2026-03-29 08:56
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open, mobile.default, tablet.default (5 pages × 4 states = 20 screenshots)
+- Findings:
+  - 0 visual issues detected across all pages and viewports
+  - No horizontal overflow, overlay conflicts, nav wrapping, TOC issues, search issues, code overflow, or table clipping
+- Artifact paths:
+  - `.agent/current/main-page.desktop.default.png`
+  - `.agent/current/main-page.desktop.menu-open.png`
+  - `.agent/current/main-page.mobile.default.png`
+  - `.agent/current/main-page.tablet.default.png`
+  - (and same pattern for systemd, pacman, installation-guide, firefox)
+  - `.agent/reports/scout-1774771063243.json`
+- Implementer instructions:
+  1. No visual regressions detected — theme is clean across all inspected states.
+  2. Worktree remains dirty (package.json + mobile.styl) — see prior REJECTED review for follow-up items.
+  3. Do NOT push — prior pipeline/blocker items unresolved per last review cycle.
