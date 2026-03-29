@@ -1227,3 +1227,372 @@
   color $muted
   font-size 0.85em
   margin-left auto
+
+// =============================================================================
+// SPECIAL:RECENTCHANGES STYLING
+// =============================================================================
+
+// Recent changes container
+.mw-recentchanges-table
+.rc-list
+  list-style none
+  padding 0
+  margin 1em 0
+
+// Individual change list item (li within ul)
+.mw-recentchanges-table > tbody > tr
+.rc-list > li
+.rc-item
+  padding 0.75em 1em
+  margin 0.25em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.02))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  transition all 0.2s ease
+
+  &:hover
+    background linear-gradient(135deg, $base, rgba($arch-blue, 0.05))
+    border-color rgba($arch-blue, 0.2)
+    box-shadow $shadow-subtle
+
+// Change timestamp
+.mw-changeslist-date
+.rc-time
+.change-time
+  font-size 0.85em
+  color $muted
+  font-variant-numeric tabular-nums
+  white-space nowrap
+  min-width 7em
+
+// Page title link in recent changes
+.mw-contributions-title
+.rc-title
+.change-title
+  font-weight 500
+  margin-bottom 0.25em
+
+  a
+    color $secondary-blue
+    text-decoration none
+    border-bottom 1px solid transparent
+    transition all 0.2s ease
+
+    &:hover
+      color $arch-blue
+      border-bottom-color rgba($arch-blue, 0.3)
+
+    &:visited
+      color rgba($secondary-blue, 0.7)
+
+// Change type indicator
+.mw-changeslist-group
+.rc-group
+.change-type
+  display inline-block
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  font-size 0.75em
+  font-weight 500
+
+  &.mw-tag-bot
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  &.mw-tag-minor
+    background rgba($muted, 0.15)
+    color $muted
+
+  &.mw-tag-new
+    background rgba($green, 0.15)
+    color $green
+
+  &.mw-tag-nomination
+    background rgba($orange, 0.15)
+    color $orange
+
+  &.mw-tag patrol
+    background rgba($gold, 0.15)
+    color $gold
+
+// Bot edit indicator
+.mw-tag-bot
+.rc-bot
+  background rgba($arch-blue, 0.15)
+  color $secondary-blue
+  padding 0.1em 0.4em
+  border-radius $border-radius-sm
+  font-size 0.75em
+  font-weight 500
+
+// Minor edit indicator
+.mw-tag-minor
+.rc-minor
+  color $muted
+  font-size 0.8em
+
+  &::before
+    content "— "
+    color $border-subtle
+
+// New page indicator
+.mw-tag-new
+.rc-new
+  color $green
+  font-weight 500
+
+// Patrol indicator (unpatrolled changes)
+.mw-tag-patrol
+.rc-unpatrolled
+  display inline-flex
+  align-items center
+  gap 0.25em
+  background rgba($gold, 0.15)
+  color $gold
+  padding 0.1em 0.4em
+  border-radius $border-radius-sm
+  font-size 0.75em
+  font-weight 500
+
+// Log entries (special log pages)
+.mw-log-list
+.rc-log-list
+  list-style none
+  padding 0
+
+  li
+    padding 0.5em 1em
+    margin 0.25em 0
+    background $darker
+    border-left 3px solid $border-subtle
+    border-radius 0 $border-radius-sm $border-radius-sm 0
+
+    &.mw-log-event-deleted
+      border-left-color $secondary-red
+
+    &.mw-log-event-blocked
+      border-left-color $orange
+
+    &.mw-log-event-protected
+      border-left-color $arch-blue
+
+// Recent changes filters
+.rcfilters-container
+.change-filters
+  padding 1em
+  margin-bottom 1em
+  background linear-gradient(135deg, rgba($darker, 0.8), rgba($dark, 0.8))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+// Filter checkboxes in recent changes
+.mw-recentchanges-table input[type="checkbox"]
+.rc-filter-checkbox
+  accent-color $arch-blue
+  width 1em
+  height 1em
+
+// Filter labels
+.rc-filter-label
+.filter-label
+  font-size 0.9em
+  color $lighter
+  cursor pointer
+
+  &:hover
+    color $secondary-blue
+
+// Change list grouping header
+.mw-changeslist-groupheader
+.rc-group-header
+  padding 0.5em 1em
+  margin-top 1em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+  color $secondary-blue
+  font-weight 500
+  font-size 0.9em
+
+// User link in recent changes
+.mw-changeslist-links
+.rc-user
+.change-user
+  a
+    color $secondary-blue
+    text-decoration none
+    font-size 0.9em
+
+    &:hover
+      color $arch-blue
+      text-decoration underline
+
+// Diff link styling in recent changes
+.mw-changeslist-diff
+.rc-diff-link
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.2em 0.6em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+  color $secondary-blue
+  font-size 0.8em
+  text-decoration none
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($arch-blue, 0.2)
+    border-color rgba($arch-blue, 0.3)
+    color $arch-blue
+
+// History link styling
+.mw-changeslist-history
+.rc-history-link
+  @extend .mw-changeslist-diff
+
+// Change size indicator
+.mw-changeslist-size
+.rc-size
+  font-size 0.8em
+  font-variant-numeric tabular-nums
+
+  &.mw-plus-minus-possible
+    color $green
+
+  &.mw-plus-minus-negatives
+    color $secondary-red
+
+// Auto-review/patrol link
+.mw-changeslist-review
+.rc-review-link
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.15em 0.5em
+  background rgba($green, 0.1)
+  border 1px solid rgba($green, 0.2)
+  border-radius $border-radius-sm
+  color $green
+  font-size 0.75em
+  text-decoration none
+  cursor pointer
+  transition all 0.2s ease
+
+  &:hover
+    background rgba($green, 0.2)
+    border-color rgba($green, 0.3)
+
+// Namespace and title in recent changes list
+.mw-title
+.rc-page
+  color $secondary-blue
+
+// Comment/summary in recent changes
+.mw-changeslist-comment
+.rc-comment
+.change-comment
+  font-size 0.85em
+  color $muted
+  font-style italic
+  margin-top 0.25em
+
+  .mw-tag
+    background rgba($arch-blue, 0.1)
+    color $secondary-blue
+    padding 0.05em 0.3em
+    border-radius 2px
+    font-size 0.9em
+    font-style normal
+
+// Watch/unwatch link in recent changes
+.mw-changeslist-watch
+.rc-watch-link
+  font-size 0.75em
+  color $muted
+  text-decoration none
+
+  &:hover
+    color $secondary-blue
+    text-decoration underline
+
+// Empty recent changes message
+.mw-recentchanges-empty
+.rc-empty
+  padding 2em
+  text-align center
+  color $muted
+  background $darker
+  border-radius $border-radius-md
+
+// Recent changes loading indicator
+.rc-loading
+.mw-ajax-loader
+  display flex
+  align-items center
+  justify-content center
+  padding 2em
+  color $muted
+
+  &::before
+    content ""
+    width 1.5em
+    height 1.5em
+    border 2px solid rgba($arch-blue, 0.2)
+    border-top-color $arch-blue
+    border-radius 50%
+    animation spin 1s linear infinite
+    margin-right 0.75em
+
+// Pagination in recent changes
+.rc-pagination-top
+.rc-pagination-bottom
+  display flex
+  justify-content center
+  gap 0.5em
+  padding 1em
+  margin 1em 0
+
+  a
+    padding 0.4em 0.8em
+    background $darker
+    border 1px solid $border-subtle
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    font-size 0.9em
+    transition all 0.2s ease
+
+    &:hover
+      background rgba($arch-blue, 0.1)
+      border-color rgba($arch-blue, 0.3)
+      color $arch-blue
+
+  .current
+    background $arch-blue
+    border-color $arch-blue
+    color $darker
+    cursor default
+
+// Enhanced recent changes list on mobile
+@media (max-width 768px)
+  .mw-recentchanges-table
+    .mw-changeslist-date
+      font-size 0.75em
+      min-width 5em
+
+    .mw-contributions-title
+      font-size 0.95em
+
+    .mw-changeslist-diff
+    .mw-changeslist-history
+      padding 0.15em 0.4em
+      font-size 0.75em
+
+    .mw-tag-bot
+    .mw-tag-minor
+    .mw-tag-new
+    .mw-tag-patrol
+      font-size 0.7em
+      padding 0.1em 0.3em
