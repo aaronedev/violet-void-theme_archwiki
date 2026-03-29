@@ -7932,6 +7932,19 @@ Last updated: 2026-03-29 11:16
   - **Commit worktree artifacts**: `git add .agent/archwiki/ package.json && git commit -m "chore: commit visual verification artifacts and version bump"`
   - Address the long-standing unresolved items (dropdown width cascade, cite panel z-index, Playwright injection).
 
+### 2026-03-29 09:36
+- Review target: 1e02650 (Minerva Mobile TOC — mobile.styl +302 lines)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - CSS adds `.toc-fab`, `.toc-panel`, `.section-jump-links`, `.back-to-top` with mobile-first responsive design, 44px+ touch targets, safe area insets, prefers-reduced-motion. All rgba() calls use theme variables ($arch-blue, $darker, $border-subtle). No hardcoded hex values. ✓ Build compiles cleanly. ✓
+  - **MISSING open-state evidence**: No screenshots of mobile TOC open state captured AFTER the commit (11:17). The `.agent/archwiki/current/mobile.toc-open.png` files are from 05:51–05:53 — over 5 hours before the commit. Scout report at 07:57 also predates the commit and shows 0 findings (doesn't validate new implementation).
+  - OPEN-STATE EVIDENCE RULE violated: This is an interactive UI fix (collapsible TOC panel, FAB, accordion sections). The TODO's own rule requires TOC open state screenshots for approval. Cannot verify the new interactive elements render correctly in open state without browser access, but the required evidence has not been provided.
+  - `.open::after { transform rotate(90deg) }` accordion chevron requires JS to toggle `.open` class — correct CSS-only pattern for state toggle, but means the rotated chevron is invisible without JS interaction captured in a screenshot.
+- Implementer instructions:
+  1. Capture the mobile TOC open state after this commit — screenshot of `.toc-panel` open on a mobile viewport is required per the OPEN-STATE EVIDENCE RULE.
+  2. If ArchWiki doesn't have actual TOC FAB/panel elements in its HTML (these may be aspirational selectors), document that clearly in the commit message and update the TODO completion entry to note the selectors are theme infrastructure, not driven by existing ArchWiki markup.
+  3. Do NOT push until open-state evidence is available or the selector intent is clarified.
+
 ## Visual Scout Findings
 
 ### 2026-03-23 02:03
