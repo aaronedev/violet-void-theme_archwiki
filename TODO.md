@@ -785,6 +785,13 @@ Last updated: 2026-03-28 19:25
   - Fade-only alternatives to slide animations
   - Instant transitions where appropriate
 
+- [x] **[inert] Attribute Styling** (97%+ browser support)
+  - Browser support: 97%+ (Chrome 102+, Firefox 112+, Safari 16.4+)
+  - File: `src/components/accessibility.styl`
+  - opacity 0.5 + pointer-events none + user-select none + grayscale(30%) for standard inert content
+  - Modal-like variant: opacity 0.3 + grayscale(50%) for [inert][aria-hidden="true"]
+  - Editable-area exceptions restore opacity 0.7 without grayscale for `.mw-editform[inert]`, `textarea[inert]`, `input:not([readonly])[inert]`
+
 ## 🖨️ Print Enhancements (New)
 
 - [x] **Print-Only Link URLs** (100% browser support)
@@ -7818,6 +7825,8 @@ Last updated: 2026-03-28 19:25
 | 2026-03-16 | interpolate-size: allow-keywords | Added smooth auto-height transitions in animations.styl - enables height: 0 to height: auto animations without JavaScript, includes utility classes for accordions/dropdowns/collapsibles, MediaWiki patterns, reduced motion support, calc-size() alternative | e5a92b8 |
 | 2026-03-16 | Glassmorphism Effects | Added glass.styl with backdrop-filter based frosted glass styling - glass variants (light, dark, accent, success, warning, danger), glass components (card, nav, sidebar, dropdown, tooltip, button, input), responsive adjustments, forced colors and reduced motion support | c4f64ce |
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
+| 2026-03-28 | Font-Variant-Ligatures Utility Classes | Added 6 utility classes in code.styl for fine-grained control over code block ligatures - common-ligatures, no-common-ligatures, discretionary-ligatures, historical-ligatures, no-historical-ligatures, all-ligatures (97%+ browser support) | 8a84ffc |
+| 2026-03-28 | [inert] Attribute Styling | Added [inert] attribute styling in accessibility.styl for non-interactive content indication - opacity 0.5 + grayscale(30%) for standard inert, opacity 0.3 + grayscale(50%) for inert+aria-hidden modal-like variant, exceptions for editable areas restoring opacity 0.7 without grayscale (97%+ browser support) | daa080a |
 
 ---
 
@@ -9769,7 +9778,7 @@ Last updated: 2026-03-28 19:25
   - **Build**: `npm run build` succeeds — no compilation errors.
   - **CSS quality**: No hardcoded hex colors, no risky patterns. Stylus nesting syntax (`&[inert]` nested under `.mw-editform`, `textarea`, `input:not([readonly])`) expands correctly to compound selectors. Follows existing codebase patterns.
   - **Open-state evidence not required**: `inert` is a state attribute applied programmatically by JS; it is not a transient UI state like a menu or popup that requires user interaction to capture. Static application of `[inert]` to document sections is testable without a screenshot.
-  - **NOT documented in TODO.md**: `[inert]` feature is absent from both the completion log and the feature sections. Implementer has not added it.
+  - **NOT documented in TODO.md**: `[inert]` feature is absent from both the completion log and the feature sections. Implementer has not added it. **[RESOLVED]**: Added completion log entry (2026-03-28 | [inert] Attribute Styling | ...) and feature entry in Accessibility Improvements section.
   - **NOT committed**: `accessibility.styl` change is in dirty worktree only.
   - **TODO.md update**: Implementer appended their own visual scout findings (19:46 entry) documenting that the CSS injection pipeline is broken in the visual testing script. This is correctly documented — implementer is reporting a tooling issue, not a CSS implementation.
   - **package.json**: Version bump `20260328.19.03` → `20260328.20.45`. Consistent with implementer activity timestamp.
