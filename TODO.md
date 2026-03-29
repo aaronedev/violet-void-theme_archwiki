@@ -3597,28 +3597,28 @@ Last updated: 2026-03-29 05:05
 
 ## 🏷️ ArchWiki Badges & Labels (New)
 
-- [ ] **Content Status Badges** (CSS)
+- [x] **Content Status Badges** (CSS) (done: 2026-03-29 08:46, commit: 505ea60)
   - File: `src/components/badges.styl`
   - Stub badge
   - Featured article badge
   - Good article badge
   - A-class badge
 
-- [ ] **Quality Labels** (CSS)
+- [x] **Quality Labels** (CSS) (done: 2026-03-29 08:46, commit: 505ea60)
   - File: `src/components/badges.styl`
   - Accuracy rating
   - Completeness rating
   - Style rating
   - Up-to-date indicator
 
-- [ ] **ArchWiki-Specific Badges** (CSS)
+- [x] **ArchWiki-Specific Badges** (CSS) (done: 2026-03-29 08:46, commit: 505ea60)
   - File: `src/components/badges.styl`
   - Official Arch badge
   - Community maintained badge
   - Outdated warning badge
   - Translation needed badge
 
-- [ ] **Technical Level Indicators** (CSS)
+- [x] **Technical Level Indicators** (CSS) (done: 2026-03-29 08:46, commit: 505ea60)
   - File: `src/components/badges.styl`
   - Beginner level
   - Intermediate level

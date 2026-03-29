@@ -1,0 +1,358 @@
+// ArchWiki Badges & Labels
+// Content status badges, quality labels, and technical level indicators
+// Browser support: 97%+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// =============================================================================
+// CONTENT STATUS BADGES
+// =============================================================================
+// Badges indicating article quality and status levels
+
+// Stub badge — articles that need expansion
+.stub
+  display inline-block
+  font-size 0.75em
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 0.05em
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background rgba($orange, 0.15)
+  color $orange
+  border 1px solid rgba($orange, 0.3)
+  vertical-align middle
+  line-height 1.4
+
+  // Stub with icon
+  &::before
+    content '📝'
+    margin-right 0.3em
+    font-size 0.9em
+
+// Featured article badge
+.featured-article
+  display inline-flex
+  align-items center
+  gap 0.4em
+  font-size 0.8em
+  font-weight 600
+  padding 0.2em 0.6em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($gold, 0.2), rgba($gold, 0.1))
+  color $gold
+  border 1px solid rgba($gold, 0.4)
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &::before
+    content '★'
+    font-size 1em
+
+// Good article badge
+.good-article
+  display inline-flex
+  align-items center
+  gap 0.4em
+  font-size 0.8em
+  font-weight 600
+  padding 0.2em 0.6em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($green, 0.15), rgba($green, 0.08))
+  color $green
+  border 1px solid rgba($green, 0.3)
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &::before
+    content '✓'
+    font-size 0.95em
+
+// A-Class article badge
+.a-class
+  display inline-flex
+  align-items center
+  gap 0.4em
+  font-size 0.8em
+  font-weight 600
+  padding 0.2em 0.6em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
+  color $secondary-blue
+  border 1px solid rgba($secondary-blue, 0.3)
+  text-transform uppercase
+  letter-spacing 0.05em
+
+  &::before
+    content 'A'
+    font-weight 700
+
+// Disambiguation badge
+.disambiguation
+  display inline-block
+  font-size 0.75em
+  font-weight 500
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background rgba($muted, 0.15)
+  color $muted
+  border 1px solid rgba($muted, 0.25)
+  font-style italic
+
+// Redirect badge
+.mw-redirect
+  display inline-block
+  font-size 0.75em
+  font-weight 500
+  padding 0.1em 0.4em
+  border-radius $border-radius-sm
+  background rgba($secondary-blue, 0.1)
+  color $secondary-blue
+  border 1px solid rgba($secondary-blue, 0.2)
+  vertical-align super
+  font-style italic
+
+// =============================================================================
+// ARCHWIKI-SPECIFIC BADGES
+// =============================================================================
+
+// Official Arch badge — maintained by Arch Linux team
+.badge-official
+  display inline-flex
+  align-items center
+  gap 0.35em
+  font-size 0.75em
+  font-weight 600
+  padding 0.2em 0.55em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
+  color $arch-blue
+  border 1px solid rgba($arch-blue, 0.35)
+
+  &::before
+    content '🏠'
+    font-size 0.9em
+
+// Community maintained badge
+.badge-community
+  display inline-flex
+  align-items center
+  gap 0.35em
+  font-size 0.75em
+  font-weight 500
+  padding 0.2em 0.55em
+  border-radius $border-radius-sm
+  background rgba($muted, 0.12)
+  color $muted
+  border 1px solid rgba($muted, 0.25)
+
+  &::before
+    content '👥'
+    font-size 0.9em
+
+// Outdated warning badge
+.badge-outdated
+  display inline-flex
+  align-items center
+  gap 0.35em
+  font-size 0.75em
+  font-weight 600
+  padding 0.2em 0.55em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+  color $secondary-red
+  border 1px solid rgba($secondary-red, 0.3)
+
+  &::before
+    content '⚠'
+    font-size 0.9em
+
+// Translation needed badge
+.badge-translation-needed
+  display inline-flex
+  align-items center
+  gap 0.35em
+  font-size 0.75em
+  font-weight 500
+  padding 0.2em 0.55em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($gold, 0.15), rgba($gold, 0.08))
+  color $gold
+  border 1px solid rgba($gold, 0.3)
+
+  &::before
+    content '🌐'
+    font-size 0.9em
+
+// In progress badge
+.badge-in-progress
+  display inline-flex
+  align-items center
+  gap 0.35em
+  font-size 0.75em
+  font-weight 500
+  padding 0.2em 0.55em
+  border-radius $border-radius-sm
+  background rgba($arch-blue, 0.12)
+  color $secondary-blue
+  border 1px solid rgba($secondary-blue, 0.25)
+
+  &::before
+    content '✏'
+    font-size 0.9em
+
+// =============================================================================
+// TECHNICAL LEVEL INDICATORS
+// =============================================================================
+// Skill/difficulty level indicators for articles
+
+// Beginner level — accessible to new users
+.level-beginner
+  display inline-flex
+  align-items center
+  gap 0.3em
+  font-size 0.75em
+  font-weight 500
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($green, 0.12), rgba($green, 0.06))
+  color $green
+  border 1px solid rgba($green, 0.25)
+
+  &::before
+    content '⬢'
+    font-size 0.85em
+    opacity 0.8
+
+// Intermediate level — requires some experience
+.level-intermediate
+  display inline-flex
+  align-items center
+  gap 0.3em
+  font-size 0.75em
+  font-weight 500
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($gold, 0.12), rgba($gold, 0.06))
+  color $gold
+  border 1px solid rgba($gold, 0.25)
+
+  &::before
+    content '⬢⬢'
+    font-size 0.75em
+    opacity 0.8
+
+// Advanced level — experienced users only
+.level-advanced
+  display inline-flex
+  align-items center
+  gap 0.3em
+  font-size 0.75em
+  font-weight 600
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($orange, 0.15), rgba($orange, 0.08))
+  color $orange
+  border 1px solid rgba($orange, 0.3)
+
+  &::before
+    content '⬢⬢⬢'
+    font-size 0.75em
+
+// Expert level — for power users and developers
+.level-expert
+  display inline-flex
+  align-items center
+  gap 0.3em
+  font-size 0.75em
+  font-weight 600
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+  color $secondary-red
+  border 1px solid rgba($secondary-red, 0.3)
+
+  &::before
+    content '⬢⬢⬢'
+    font-size 0.75em
+    font-weight 700
+
+// =============================================================================
+// WIKIPROJECT BADGES
+// =============================================================================
+// WikiProject activity and quality indicators
+
+.wikiproject-badge
+  display inline-flex
+  align-items center
+  gap 0.3em
+  font-size 0.75em
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  background rgba($dark, 0.6)
+  border 1px solid $border-subtle
+  color $muted
+
+  // Active project
+  &.active
+    background rgba($green, 0.1)
+    border-color rgba($green, 0.25)
+    color $green
+
+  // Inactive project
+  &.inactive
+    opacity 0.6
+
+// =============================================================================
+// STATUS LABELS
+// =============================================================================
+// General status labels used throughout the wiki
+
+.status-label
+  display inline-block
+  font-size 0.75em
+  font-weight 500
+  padding 0.15em 0.5em
+  border-radius $border-radius-sm
+  line-height 1.4
+  vertical-align middle
+
+  // Standard variants
+  &.status-new
+    background rgba($arch-blue, 0.12)
+    color $secondary-blue
+    border 1px solid rgba($secondary-blue, 0.2)
+
+  &.status-reviewed
+    background rgba($green, 0.1)
+    color $green
+    border 1px solid rgba($green, 0.2)
+
+  &.status-redirect
+    background rgba($muted, 0.1)
+    color $muted
+    border 1px solid rgba($muted, 0.2)
+
+  &.status-delete
+    background rgba($secondary-red, 0.1)
+    color $secondary-red
+    border 1px solid rgba($secondary-red, 0.2)
+
+  &.status-protected
+    background rgba($gold, 0.1)
+    color $gold
+    border 1px solid rgba($gold, 0.2)
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce)
+  .badge-official
+  .badge-community
+  .badge-outdated
+  .badge-translation-needed
+  .badge-in-progress
+  .level-beginner
+  .level-intermediate
+  .level-advanced
+  .level-expert
+    transition none
