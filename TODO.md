@@ -2676,11 +2676,12 @@ Last updated: 2026-03-29 05:05
   - Stylus: Works directly
   - Commit: 2c29491
 
-- [ ] **`columns` Shorthand** (97%+ browser support)
+- [x] **`columns` Shorthand** (97%+ browser support) (done: 2026-03-29 08:23, commit: 2d09528)
   - File: `src/components/content.styl`
   - Column count + width
   - `columns: 3 20ch;`
   - Stylus: Works directly
+  - Added `.columns-shorthand`, `.columns-shorthand-3-15ch`, `.columns-shorthand-auto` utility classes using the CSS `columns` shorthand
 
 ## 🔲 Visibility & Opacity (New)
 
