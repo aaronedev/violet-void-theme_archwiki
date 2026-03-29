@@ -532,8 +532,9 @@
 | 2026-03-28 13:28 | Interlanguage Links (Language Switcher) Styling | Add #p-lang portlet styling for per-article language variant links — hover, focus-visible, active states with theme variables | 7e7d955 |
 | 2026-03-28 14:39 | overflow-wrap for infobox labels | Add overflow-wrap, word-break, hyphens to .infobox-label to prevent overflow on narrow viewports where flex-shrink: 0 would otherwise cause label text to overflow | 42d5a4c |
 | 2026-03-28 19:00 | :seeking pseudo-class for video/audio | Add :seeking pseudo-class for video/audio scrub states — opacity reduction, seek overlay, spinner animation, cursor feedback | 7903c4c |
+| 2026-03-29 05:05 | @font-face Descriptor Utility Classes | Add font-display, size-adjust, ascent-override, descent-override, line-gap-override utility classes in src/utilities/_fonts.styl — enables fine-grained FOUT control and font metric matching (97%+ browser support) | 174494f |
 
-Last updated: 2026-03-28 19:25
+Last updated: 2026-03-29 05:05
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -1956,12 +1957,13 @@ Last updated: 2026-03-28 19:25
   - Stylus: Works directly
   - Commit: {hash}
 
-- [ ] **`@font-face` Descriptors** (97%+ browser support)
-  - File: `src/variables/_fonts.styl` (new file)
+- [x] **`@font-face` Descriptors** (97%+ browser support)
+  - File: `src/utilities/_fonts.styl` (new file)
   - `font-display: swap` for FOUT prevention
   - `size-adjust` for metric matching
   - `ascent-override`, `descent-override`, `line-gap-override`
   - Stylus: Works directly
+  - Commit: 174494f
 
 - [x] **`text-emphasis` for Ruby/Emphasis** (90%+ browser support)
   - File: `src/components/typography.styl`
