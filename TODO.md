@@ -9891,3 +9891,15 @@ Last updated: 2026-03-29 05:05
 - Implementer instructions:
   - Commit locally: `fix: correct mw-tag-patrol selector typo in Special:RecentChanges styling`
   - Do NOT push
+
+### 2026-03-29 08:31
+- Review target: 2d09528 (columns shorthand utilities) + 7cb745e (completion log update)
+- Verdict: APPROVED
+- Findings:
+  - **`2d09528`**: Adds 3 `columns` shorthand utility classes to `content.styl`: `.columns-shorthand` (columns 2 20em), `.columns-shorthand-3-15ch` (columns 3 15ch), `.columns-shorthand-auto` (columns auto 15em). Plain CSS `columns` shorthand — no @css{} wrapper, no theme variable dependencies, no open-state evidence needed. Consistent with existing `column-fill balance` utilities in the same file.
+  - **`813e951` (patrol selector fix)**: Already approved in prior `07:13` review cycle. Worktree from that cycle produced the commit `813e951`. No new review needed — resolved.
+  - **Scout**: 0 findings across 40 desktop+mobile states (5 pages × 4 states × 2 viewports). scout-results.json confirms all "ok".
+  - **Worktree**: package.json bump `20260329.05.04` → `20260329.08.23` — time-based, no semantic version change.
+- Implementer instructions:
+  1. Both commits reviewed and approved. No further action needed.
+  2. Do NOT push — pipeline issue from prior review cycles still unresolved.
