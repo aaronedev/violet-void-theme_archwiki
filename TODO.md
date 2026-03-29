@@ -9787,3 +9787,17 @@ Last updated: 2026-03-28 19:25
   2. Also add `[inert]` to the appropriate feature section in TODO.md under Accessibility or a new Interactivity section.
   3. Commit with `chore: add archwiki reviewer findings` (same message pattern as prior commits).
   4. Do NOT push — pipeline status unchanged from prior review.
+
+### 2026-03-29 03:04
+- Review target: c6958f6 + daa080a + 5627997 (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`c6958f6`** (math-depth/math-shift): 29 lines in `typography.styl` — 4 `.math-depth-*` utilities (auto, increase, decrease) + 2 `.math-shift-*` utilities (normal, compact) for MathML rendering. Browser support 87%+ accurate. Completion log entry present (line 3221-3226). No open-state evidence needed (CSS property utilities, not interactive UI).
+  - **`daa080a`** (inert): 28 lines in `accessibility.styl` — `[inert]`, `[inert][aria-hidden="true"]`, and nested exceptions for editable areas. Completion log entry present (line 7829). Feature entry present (line 788-793). Already reviewed/resolved in prior cycle per reviewer findings line 9781.
+  - **`5627997`** ($shadow-lg): Adds `$shadow-lg = 0 8px 32px rgba($darker, 0.5)` to `layout.styl`. Referenced by `.notification-panel` (line 112) and `.mw-echo-notification-popup` (line 385) in `notifications.styl`. Variable was missing, notification components were using undefined var — legitimate fix. Build succeeds. **Missing completion log entry** — needs to be added.
+  - **Worktree**: `package.json` version bump to `20260329.03.04` (build auto-bump). `email.styl` untracked (465 lines of email UI CSS) — not committed, not in completion log. Scout run captured 5 pages × 4 states = 20 desktop entries, all status: ok. Build compiles cleanly.
+  - **Open-state evidence**: N/A for all three — math utilities, inert attribute, and variable definitions don't require open-state evidence.
+- Implementer instructions:
+  1. Add completion log entry for `5627997`: `"fix: add missing $shadow-lg variable used by notification components — $shadow-lg = 0 8px 32px rgba($darker, 0.5) in layout.styl, resolves undefined variable references in notifications.styl"`
+  2. Document `email.styl` (465 lines, email confirmation/preferences/preview UI) — add feature entry to appropriate section (Email Features section already exists in TODO.md but all items unchecked) and add to completion log when committed.
+  3. Do NOT push — pipeline status unchanged.
