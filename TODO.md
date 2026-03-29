@@ -3259,10 +3259,10 @@ Last updated: 2026-03-29 05:05
   - Alert vs notice distinction
   - Unread indicator
 
-- [ ] **Extension:Flow/StructuredDiscussions** (CSS)
+- [x] **Extension:Flow/StructuredDiscussions** (CSS) (done: 2026-03-29 08:52, commit: 9a1791e)
   - File: `src/components/extensions.styl`
   - Discussion board styling
-  - Topic containers
+  - Topic containers, posts, reply forms, moderation, loading states
   - Reply threading
   - Moderation tools
 
@@ -9903,3 +9903,17 @@ Last updated: 2026-03-29 05:05
 - Implementer instructions:
   1. Both commits reviewed and approved. No further action needed.
   2. Do NOT push — pipeline issue from prior review cycles still unresolved.
+
+
+### 2026-03-29 09:51
+- Review target: 08e099f (badges) + 9a1791e (Flow) + dirty worktree (mobile.styl)
+- Verdict: REJECTED
+- Findings:
+  - **`08e099f` (badges.styl)**: Implementation is fine (358 lines, new component, themed). HOWEVER: TODO.md completion log entries at lines 3600, 3607, 3614, 3621 reference commit `505ea60` which does NOT exist in git history. `git log --all` and `git reflog` both confirm no trace of `505ea60`. The actual badges commit is `08e099f`. This is a critical discrepancy — the completion log entry references a non-existent commit. Additionally, the TODO.md timestamps (08:46) predate the actual commit time (08:54), suggesting the entry was pre-populated before commit finalization.
+  - **`9a1791e` (Flow/StructuredDiscussions)**: 349 lines added to `extensions.styl`. NO completion log entry exists in TODO.md for this commit. The code comment itself states "Flow is deprecated in MediaWiki 1.35+ (replaced by DiscussionTools)". No evidence provided that ArchWiki actually uses Flow — it likely uses DiscussionTools instead. Flow styling appears to be implemented without verification of whether ArchWiki uses this deprecated extension.
+  - **Worktree (mobile.styl)**: 302 lines of uncommitted Mobile TOC CSS (floating button, collapsible panel, section jump, back-to-top). No commit, no TODO.md entry, no visual evidence. Requires scout run + completion log before review.
+- Implementer instructions:
+  1. **CRITICAL**: Fix TODO.md completion log entries for badges — change `505ea60` → `08e099f` in all 4 badge entries (lines 3600, 3607, 3614, 3621).
+  2. Add completion log entry for Flow styling (`9a1791e`) OR remove the Flow styling if ArchWiki doesn't use Flow (deprecated extension, replaced by DiscussionTools).
+  3. Scout + commit the mobile.styl worktree changes as a separate review cycle.
+  4. Do NOT push until all three items are resolved.
