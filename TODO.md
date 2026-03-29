@@ -2004,12 +2004,12 @@ Last updated: 2026-03-29 11:16
   - Stylus: Works directly
   - Commit: 91913db
 
-- [ ] **`isolation: isolate` Stacking Contexts** (97%+ browser support)
+- [x] **`isolation: isolate` Stacking Contexts** (97%+ browser support) (done: 2026-03-29 09:46, commit: 395bf53)
   - File: `src/components/ui-components.styl`
   - Create isolated stacking contexts
   - Prevent z-index conflicts
   - Stylus: Works directly
-  - Note: Already in modern-css.styl, verify coverage
+  - Note: Added isolation:isolate to modal/overlay, popover-backdrop, fullscreen exit button, and tooltip elements to create isolated stacking contexts for high z-index overlay components.
 
 - [ ] **`all` Shorthand for Resets** (97%+ browser support)
   - File: `src/utilities/_reset.styl` (new file)
