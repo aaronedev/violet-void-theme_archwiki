@@ -9788,6 +9788,23 @@ Last updated: 2026-03-28 19:25
   3. Commit with `chore: add archwiki reviewer findings` (same message pattern as prior commits).
   4. Do NOT push — pipeline status unchanged from prior review.
 
+### 2026-03-29 04:18
+- Review target: 180b80a (feat: add email component styles for confirmation, preferences, and preview)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Email CSS implementation is solid**: 465 lines in `src/components/email.styl` covering confirmation states (valid/pending/invalid), email input forms, preferences panel, template preview, and notification banners. Build compiles cleanly. No hardcoded hex colors — all theme variables (`$arch-blue`, `$green`, `$secondary-red`, `$darker`, etc.). Proper Stylus nesting for compound selectors. Appropriate use of `linear-gradient(135deg, ...)` for all gradient-button variants.
+  - **`<local>` placeholder in TODO.md**: All three email feature entries show `commit: <local>` instead of `180b80a`. This was committed as-is — the implementer never replaced the placeholder. TODO.md in commit `180b80a` already has this bug.
+  - **Completion log missing email entries**: The completion log (bottom of TODO.md) ends at `2026-03-28 | [inert] Attribute Styling | ... | daa080a`. The three email features (dated `2026-03-29 03:55` in feature entries) have no corresponding completion log entries.
+  - **Worktree clean**: Only untracked files (reports/, screenshots/) — no dirty CSS or TODO.md state.
+- Implementer instructions:
+  1. Replace `commit: <local>` with `180b80a` for all three Email Features items in TODO.md feature entries.
+  2. Add completion log entries for the three email features:
+     - `| 2026-03-29 | Email Confirmation UI | Added .mw-email-confirmation styles in email.styl — valid/pending/invalid states, code display, resend button, mobile responsive (465 lines total) | 180b80a |`
+     - `| 2026-03-29 | Email Preferences | Added .mw-email-prefs, .mw-email-change-form, quiet-hours, email frequency styles in email.styl | 180b80a |`
+     - `| 2026-03-29 | Email Preview | Added .mw-email-preview with header/body/footer/variable placeholder styling in email.styl | 180b80a |`
+  3. Commit with `chore: add archwiki reviewer findings`
+  4. Do NOT push — pipeline unchanged.
+
 ### 2026-03-29 03:04
 - Review target: c6958f6 + daa080a + 5627997 (dirty worktree)
 - Verdict: APPROVED
