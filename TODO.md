@@ -10011,3 +10011,17 @@ Last updated: 2026-03-29 12:19
   1. Add completion log entry for the selector migration: `e3c20d1 | ArchWiki migrated #p-lang → #p-lang-btn; update interlanguage link selector to match new ArchWiki HTML structure`
   2. No further action needed — the fix is correct.
   3. Do NOT push.
+
+### 2026-03-30 13:04
+- Review target: 7b8e2c3 (remove non-animatable backdrop-filter from backdrop-fade-in keyframes)
+- Verdict: APPROVED
+- Findings:
+  - Correct fix: `backdrop-filter` is not on the CSS spec's list of interpolable properties, so animating it in `@keyframes` has no effect — the browser simply ignores it. Only `opacity` was actually being animated.
+  - The actual blur effect is applied via the base style rule on `dialog::backdrop` elements (already set via `backdrop-filter blur(8px)` on `.dialog.themed:modal::backdrop` and similar rules), so removing it from the keyframe does not remove the blur — it just removes the dead/non-functional animation step.
+  - Keyframe now correctly animates only `opacity: 0 → 1` for the backdrop fade-in.
+  - NOTE added explaining the animatable limitation — good documentation practice.
+  - No open-state evidence needed: the fix removes dead animation code, does not affect visual rendering of any UI state.
+  - No completion log entry expected: this is a bug-fix to an existing animation keyframe, not a new CSS feature.
+- Implementer instructions:
+  1. No further action needed — fix is correct and minimal.
+  2. Do NOT push.
