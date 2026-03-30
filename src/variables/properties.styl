@@ -238,6 +238,26 @@
     inherits: false;
     initial-value: none;
   }
+
+  /* Integer syntax for stepped animations and counters */
+  @property --step {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --count {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 1;
+  }
+
+  /* Time syntax for animatable duration properties */
+  @property --duration-var {
+    syntax: '<time>';
+    inherits: false;
+    initial-value: 300ms;
+  }
 }
 
 // Utility classes using @property definitions - these can now be transitioned

@@ -3129,29 +3129,33 @@ Last updated: 2026-03-30 13:39
 
 ## 📐 Advanced @property Types (New)
 
-- [ ] **`@property` with `<number>` Syntax** (93%+ browser support)
-  - File: `src/variables/colors.styl`
+- [x] **`@property` with `<number>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
   - Animate numeric custom properties (0-1 range)
   - Example: `@property --opacity { syntax: '<number>'; initial-value: 1; inherits: false; }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
-- [ ] **`@property` with `<integer>` Syntax** (93%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`@property` with `<integer>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
   - Animate integer values for stepped effects
   - Example: `@property --step { syntax: '<integer>'; initial-value: 0; inherits: false; }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (this session)
 
-- [ ] **`@property` with `<angle>` Syntax** (93%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`@property` with `<angle>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
   - Animate rotation custom properties
   - Example: `@property --rotation { syntax: '<angle>'; initial-value: 0deg; inherits: false; }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 841bb1f
 
-- [ ] **`@property` with `<time>` Syntax** (93%+ browser support)
-  - File: `src/components/modern-css.styl`
+- [x] **`@property` with `<time>` Syntax** (93%+ browser support)
+  - File: `src/variables/properties.styl`
   - Animate duration custom properties
   - Example: `@property --duration { syntax: '<time>'; initial-value: 0.3s; inherits: false; }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: (this session)
 
 ## 🔤 Advanced @font-feature-values (New)
 
@@ -7877,6 +7881,7 @@ Last updated: 2026-03-30 13:39
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
 | 2026-03-28 | Font-Variant-Ligatures Utility Classes | Added 6 utility classes in code.styl for fine-grained control over code block ligatures - common-ligatures, no-common-ligatures, discretionary-ligatures, historical-ligatures, no-historical-ligatures, all-ligatures (97%+ browser support) | 8a84ffc |
 | 2026-03-28 | [inert] Attribute Styling | Added [inert] attribute styling in accessibility.styl for non-interactive content indication - opacity 0.5 + grayscale(30%) for standard inert, opacity 0.3 + grayscale(50%) for inert+aria-hidden modal-like variant, exceptions for editable areas restoring opacity 0.7 without grayscale (97%+ browser support) | daa080a |
+| 2026-03-30 | @property integer/time syntax | Added @property with <integer> syntax (--step, --count) and <time> syntax (--duration-var) in properties.styl - enables animatable integer counters and duration custom properties (93%+ browser support) | (local) |
 
 ---
 
