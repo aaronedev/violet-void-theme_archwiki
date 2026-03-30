@@ -83,6 +83,7 @@ async function capturePage(browser, pageInfo, viewport, state) {
       }
     } else if (state === 'toc-open') {
       const selectors = [
+        '.vector-toc-toggle', // Vector skin (desktop + mobile) — primary ArchWiki selector
         '#toc-toggle-button',
         '#toc-toggle',
         '.toc-toggle',
