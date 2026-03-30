@@ -538,8 +538,9 @@
 | 2026-03-29 | Extension:Flow/StructuredDiscussions Styling | Add comprehensive Flow extension styling in extensions.styl — topic list, post, header, actions, separator, avatar, sidebar (349 lines) | 9a1791e |
 | 2026-03-29 | Email Features Styling | Add email.styl — email confirmation UI (valid/pending/invalid states), email preferences panel, email preview (465 lines total) | 180b80a |
 | 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
+| 2026-03-30 12:29 | Remove non-animatable backdrop-filter from backdrop-fade-in keyframes | backdrop-filter is not CSS-animatable; removed from @keyframes to-state — opacity animates correctly, backdrop-filter blur already set as base style on dialog::backdrop | 7b8e2c3 |
 
-Last updated: 2026-03-29 12:19
+Last updated: 2026-03-30 13:39
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -646,6 +647,20 @@ Last updated: 2026-03-29 12:19
   2. Tablet viewport captured — implementer follow-through on prior NEEDS_FOLLOWUP confirmed.
   3. Remaining blockers (VE dialog open-state, WAF) are infrastructure issues outside CSS scope.
   4. Do NOT push.
+
+### 2026-03-30 13:39
+- Review target: 7b8e2c3 (remove non-animatable backdrop-filter from backdrop-fade-in keyframes)
+- Verdict: APPROVED
+- Findings:
+  - **`backdrop-filter` is not CSS-animatable** — confirmed against the CSS spec's list of interpolable properties. The prior `to { backdrop-filter: blur(4px); }` in `@keyframes backdrop-fade-in` had zero effect; only `opacity` was actually animating.
+  - **Fix is technically correct**: `backdrop-filter: blur(4px)` moved to base style on `dialog::backdrop` elements; `@keyframes` now only animates `opacity: 0 → 1` which is valid and functional.
+  - **Scoped change**: only `src/components/ui-components.styl` (2 lines diff) + version bump. No cascade risk.
+  - **NOTE comment added** explaining the animatable limitation — good documentation practice.
+  - **No open-state evidence needed**: the visual output was already correct; this was a no-op animation cleanup.
+  - Build compiles cleanly.
+- Implementer instructions:
+  1. Completion log entry added above (7b8e2c3, 2026-03-30 12:29).
+  2. No further action needed.
 
 ## 🔤 Typography Polish (New)
 
