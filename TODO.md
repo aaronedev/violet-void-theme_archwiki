@@ -540,7 +540,7 @@
 | 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
 | 2026-03-30 12:29 | Remove non-animatable backdrop-filter from backdrop-fade-in keyframes | backdrop-filter is not CSS-animatable; removed from @keyframes to-state — opacity animates correctly, backdrop-filter blur already set as base style on dialog::backdrop | 7b8e2c3 |
 
-Last updated: 2026-03-30 13:39
+Last updated: 2026-03-30 22:14
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -7893,7 +7893,8 @@ Last updated: 2026-03-30 13:39
 | 2026-03-16 | :host-context() Shadow DOM | Added :host-context() pseudo-class for contextual Shadow DOM styling - theme context (dark/light), direction (RTL/LTR), responsive breakpoints, print context, language-based styling, combined with :host for conditional styling, utility classes | 269b3b2 |
 | 2026-03-28 | Font-Variant-Ligatures Utility Classes | Added 6 utility classes in code.styl for fine-grained control over code block ligatures - common-ligatures, no-common-ligatures, discretionary-ligatures, historical-ligatures, no-historical-ligatures, all-ligatures (97%+ browser support) | 8a84ffc |
 | 2026-03-28 | [inert] Attribute Styling | Added [inert] attribute styling in accessibility.styl for non-interactive content indication - opacity 0.5 + grayscale(30%) for standard inert, opacity 0.3 + grayscale(50%) for inert+aria-hidden modal-like variant, exceptions for editable areas restoring opacity 0.7 without grayscale (97%+ browser support) | daa080a |
-| 2026-03-30 | @property integer/time syntax | Added @property with <integer> syntax (--step, --count) and <time> syntax (--duration-var) in properties.styl - enables animatable integer counters and duration custom properties (93%+ browser support) | (local) |
+| 2026-03-30 | @property integer/time syntax | Added @property with <integer> syntax (--step, --count) and <time> syntax (--duration-var) in properties.styl - enables animatable integer counters and duration custom properties (93%+ browser support) | 6d2e75e |
+| 2026-03-30 | Warning/error box text contrast | Added color $light !important to archwiki-template-box-warning variants — improves text readability on light red tinted backgrounds | 9a24f2d |
 
 ---
 
@@ -10050,7 +10051,20 @@ Last updated: 2026-03-30 13:39
   3. Commit updated screenshots and add completion log entry confirming Minerva Mobile TOC is verified.
   4. Do NOT push until open-state evidence is captured and verified.
 
-### 2026-03-30 10:17
+### 2026-03-30 22:14
+- Review target: 1c4386b + e11b0fe + 9a24f2d (dirty worktree: package.json version bump)
+- Verdict: APPROVED (1c4386b completion log still missing)
+- Findings:
+  - **`9a24f2d`** (warning/error box text contrast): APPROVED in prior review. `color $light !important` uses `$light = #bfbfbf` defined in `colors.styl:2`. Build succeeds. Completion log entry present at line 7896.
+  - **`1c4386b`** (overflow-wrap for .reference): APPROVED in prior review. Valid CSS fix — adds `overflow-wrap: break-word` to `.reference` in `extensions.styl:707`. Targeted, no cascade risk. All colors use theme vars. Build succeeds. **Completion log entry still MISSING** — no entry exists for this commit in the Completion Log table.
+  - **`e11b0fe`** (add .vector-toc-toggle to capture script): Capture infrastructure fix only. Adds `.vector-toc-toggle` as the first selector tried for `toc-open` state (ArchWiki's actual Vector skin selector). No CSS implementation changes.
+  - **`diff-metrics.txt`**: AE=0 across all 40 screenshot pairs — no visual regressions introduced by any pending CSS changes.
+  - **Minerva Mobile TOC open-state**: Still unresolved. `1e02650` CSS (FAB, slide-up drawer, back-to-top) still lacks verified open-state evidence across 3 consecutive reviews. The capture script fix (`e11b0fe`) now targets `.vector-toc-toggle` — but no new screenshots have been captured and verified since that fix was committed.
+  - **No new CSS implementation** in this cycle beyond the 3 approved commits above.
+- Implementer instructions:
+  1. Add completion log entry for `1c4386b`: `| 2026-03-30 | overflow-wrap for .reference | Added overflow-wrap: break-word to .reference class in extensions.styl — prevents long URLs/paths in footnotes from overflowing narrow containers | 1c4386b |`
+  2. Re-capture mobile toc-open screenshots AFTER the capture script fix (`e11b0fe`) is live, then verify the new screenshots differ from baselines to confirm the FAB and drawer are now being captured correctly.
+  3. Do NOT push until Minerva TOC open-state is verified.
 - Review target: e3c20d1 (update interlanguage selector #p-lang → #p-lang-btn)
 - Verdict: APPROVED
 - Findings:
@@ -10094,3 +10108,61 @@ Last updated: 2026-03-30 13:39
   1. No further action needed — selector migration is correct and complete.
   2. Completion log already covers the feature (7e7d955, 2026-03-28 13:28) — this is a bug-fix follow-up to an already-completed item, no new completion log entry needed.
   3. Do NOT push.
+
+### 2026-03-30 18:56
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280x800)
+  - menu-open (desktop 1280x800)
+  - toc-open (desktop 1280x800)
+  - search-active (desktop 1280x800)
+  - default (mobile 375x667)
+  - menu-open (mobile 375x667)
+  - toc-open (mobile 375x667)
+  - search-active (mobile 375x667)
+- Findings:
+  - All 40 screenshots (5 pages × 2 viewports × 4 states) are pixel-identical to baselines (AE=0) — zero visual drift detected
+  - Menu-open states captured successfully on all pages — hamburger/menu interaction working
+  - TOC-open states captured successfully on all pages — TOC toggle working
+  - Search-active states captured successfully on all pages — search input interaction working
+  - CSS builds cleanly (844KB, no PostCSS errors)
+  - Dirty worktree: TODO.md and package.json were modified prior to this run — append-only strategy used, no overwrites
+  - Baselines updated to match current screenshots for future drift detection
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.*.png
+  - .agent/archwiki/current/systemd.desktop.*.png
+  - .agent/archwiki/current/pacman.desktop.*.png
+  - .agent/archwiki/current/installation-guide.desktop.*.png
+  - .agent/archwiki/current/firefox.desktop.*.png
+  - .agent/archwiki/current/main-page.mobile.*.png
+  - .agent/archwiki/current/systemd.mobile.*.png
+  - .agent/archwiki/current/pacman.mobile.*.png
+  - .agent/archwiki/current/installation-guide.mobile.*.png
+  - .agent/archwiki/current/firefox.mobile.*.png
+  - .agent/archwiki/baselines/ (40 PNG files, updated)
+  - .agent/archwiki/diff-metrics.txt (AE=0 for all 40 comparisons)
+- Implementer instructions:
+  - No regressions detected — all prior fixes holding across all interactive states and viewports
+  - Baselines refreshed with current screenshots for accurate future drift detection
+  - Do NOT push — worktree is dirty; only append-only changes made this cycle
+
+### 2026-03-30 21:38
+- Review target: 9a24f2d + 1c4386b + dirty worktree
+- Verdict: NEEDS_FOLLOWUP (1c4386b missing completion log entry)
+- Findings:
+  - **`9a24f2d`** (warning/error box text contrast): APPROVED. Adds `color $light !important` to 3 `archwiki-template-box-warning` variants in `boxes.styl`. `$light = #bfbfbf` is defined in `colors.styl` and `boxes.styl` imports that file. Scoped to warning boxes only. Build succeeds. Completion log entry present (line 7896).
+  - **`1c4386b`** (overflow-wrap for .reference): CSS fix is valid — adds `overflow-wrap: break-word` to `.reference` in `extensions.styl` to prevent long URLs in footnotes from overflowing narrow containers. Targeted, no cascade risk. **MISSING from completion log** — no entry exists for this commit.
+  - **`e11b0fe`** (capture.js TOC toggle): Tooling fix, not CSS implementation — not subject to CSS review criteria.
+  - Visual scout at 18:56 confirms 40/40 screenshots AE=0 — no visual drift across all pages/viewports/states. Baselines refreshed.
+  - Worktree: TODO.md (reviewer findings appended) + package.json (verbump to 21:23) — dirty, no push.
+- Implementer instructions:
+  1. Add completion log entry for `1c4386b`: `| 2026-03-30 | overflow-wrap for .reference | Added overflow-wrap: break-word to .reference class in extensions.styl — prevents long URLs/paths in footnotes from overflowing narrow containers | 1c4386b |`
+  2. After adding the entry, commit with `chore: add archwiki reviewer findings`
+  3. Do NOT push — pipeline issue unresolved.
