@@ -8005,7 +8005,7 @@ Last updated: 2026-03-29 12:19
 ## Visual TODOs
 
 - [x] Fix hamburger menu checkbox z-index/pointer-events: checkbox (z:1002) intercepts hover on label (z:1001, pointer-events:none). Change checkbox to z-index:1000 or add pointer-events:none. (done: 2026-03-23 01:18, commit: 5b2f993)
-- [ ] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. (reported: 2026-03-23 02:03, source: visual-scout)
+- [x] Verify/update interlanguage link selector in hover test; element not found suggests ArchWiki HTML structure may have changed. ArchWiki migrated portlet ID from #p-lang to #p-lang-btn. (done: 2026-03-29 14:57, commit: e3c20d1)
 - [x] Fix H2/H3/H4 heading contrast on article pages: text color rgb(16,20,24) nearly invisible on body bg rgb(5,10,16). Affects ~100% of content headings (Installation_guide 27/28, Pacman 53/54, Firefox 87/88). Only H1 and TOC header are correctly colored. Need higher-specificity selector to override MediaWiki/Vector skin dark heading color. (done: 2026-03-23 06:41, commit: 6087b91)
 - [x] Fix wikitable table background: tables use light bg rgb(248,249,250) with dark text, inconsistent with violet-void dark theme. Apply dark background (rgb(24,24,24) or theme equivalent) to .wikitable and th cells. (done: 2026-03-25 00:51, commit: 91ba37f)
 
@@ -9967,6 +9967,21 @@ Last updated: 2026-03-29 12:19
   2. Worktree remains dirty (package.json + mobile.styl) — see prior REJECTED review for follow-up items.
   3. Do NOT push — prior pipeline/blocker items unresolved per last review cycle.
 
+### 2026-03-29 14:39
+- Review target: 1e02650 (Minerva Mobile TOC) + 08e099f (badges) + 9a1791e (Flow) + 180b80a (email)
+- Verdict: NEEDS_FOLLOWUP (Minerva TOC), APPROVED (badges, Flow, email)
+- Findings:
+  - **`1e02650` Minerva Mobile TOC — OPEN-STATE EVIDENCE STILL MISSING (3rd cycle)**: Screenshots in `.agent/archwiki/current/` for mobile toc-open captured at 14:04–14:06 local time — well after commit at 11:17. ALL 5 mobile toc-open screenshots (firefox, installation-guide, main-page, pacman, systemd) are byte-for-byte identical (`9eae55c241c315cf782d196f60747970`) to baselines. No visual change whatsoever. The new FAB, slide-up drawer, and back-to-top are not rendering on ArchWiki. Prior reviews at 09:51 and 10:15 flagged the same issue. The CSS selectors (`.toc-fab`, `.toc-panel`, `.vector-toc-panel`) may not match ArchWiki's actual Minerva Mobile HTML structure.
+  - **`08e099f` badges.styl**: 358-line new component file. No hardcoded hex colors. All theme vars (`$arch-blue`, `$border-subtle`, `$border-radius-*`, `$cdx-zapez-*`). New component — no baseline to compare, no open-state evidence needed. Completion log entry present (line 537). APPROVED.
+  - **`9a1791e` Flow/StructuredDiscussions**: 349 lines added to extensions.styl. Flow is deprecated (replaced by DiscussionTools in MW 1.35+), but ArchWiki may run older MW versions. Code quality fine. No open-state evidence needed for new extension styling. Completion log entry present (line 538). APPROVED.
+  - **`180b80a` email.styl**: 465-line new component file. New component (email confirmation/preferences/preview UI). Completion log entry present (line 539). APPROVED.
+- Implementer instructions:
+  1. **Root-cause the Minerva Mobile TOC selector mismatch**: ArchWiki serves Minerva Neue skin on mobile. The new CSS targets `.toc-fab`, `.toc-panel`, `.vector-toc-panel`, `.back-to-top` — verify these selectors actually match Minerva Mobile's HTML. If Minerva already has its own TOC with different classes, the new CSS will never apply.
+  2. Do NOT add more CSS until the selector issue is diagnosed and confirmed.
+  3. Once confirmed working, re-capture `.mobile.toc-open.png` screenshots showing the FAB in bottom-right and the drawer in open state.
+  4. Commit screenshots and update completion log entry.
+  5. Do NOT push until open-state evidence confirms the FAB + drawer is rendering.
+
 ### 2026-03-29 10:15
 - Review target: 1e02650 (Minerva Mobile TOC) + 395bf53 (isolation:isolate)
 - Verdict: NEEDS_FOLLOWUP (Minerva), APPROVED (isolation)
@@ -9980,3 +9995,19 @@ Last updated: 2026-03-29 12:19
   2. Compare before (current pre-implementation screenshots) vs after (new screenshots) to verify FAB + drawer + back-to-top are rendering correctly.
   3. Commit updated screenshots and add completion log entry confirming Minerva Mobile TOC is verified.
   4. Do NOT push until open-state evidence is captured and verified.
+
+### 2026-03-30 10:17
+- Review target: e3c20d1 (update interlanguage selector #p-lang → #p-lang-btn)
+- Verdict: APPROVED
+- Findings:
+  - ArchWiki migrated the interlanguage links portlet ID from `#p-lang` to `#p-lang-btn`. This is a legitimate HTML structure change confirmed by the visual-scout (element not found in prior runs).
+  - The fix is minimal and scoped: only the ID selector changed in `archwiki.styl:540`. All CSS properties are identical — only the comment and selector ID were updated.
+  - All colors use theme variables: `$arch-blue`, `$lighter`, `$border-radius-sm`, `$transition-fast` — no hardcoded hex values.
+  - The interlanguage link styles (hover, focus-visible, selected state) are unchanged and remain correctly applied via `.interlanguage-link a` which is still a valid ArchWiki class.
+  - No open-state evidence needed: selector migration affects page load display of language-variant links, not an interactive toggle or popup.
+  - The commit correctly updates the comment to document the migration reason.
+  - **Missing**: Completion log entry for the selector migration fix itself. The `7e7d955` entry covers the initial implementation; `e3c20d1` is a follow-up bug fix that needs its own log entry.
+- Implementer instructions:
+  1. Add completion log entry for the selector migration: `e3c20d1 | ArchWiki migrated #p-lang → #p-lang-btn; update interlanguage link selector to match new ArchWiki HTML structure`
+  2. No further action needed — the fix is correct.
+  3. Do NOT push.
