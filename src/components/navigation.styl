@@ -1540,6 +1540,16 @@ h6:hover .mw-editsection
     padding 16px 0
 
 
+  // ::scroll-marker-group pseudo-element base styles (85%+ browser support)
+  // Styles the scroll marker group container itself via the pseudo-element
+  // Used alongside .scroll-marker-group class for broader selector coverage
+  ::scroll-marker-group
+    display flex
+    gap 8px
+    justify-content center
+    align-items center
+
+
   // Scroll marker individual dot styling
   ::scroll-marker
     width 10px

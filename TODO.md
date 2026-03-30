@@ -2303,7 +2303,7 @@ Last updated: 2026-03-30 13:39
   - Note: Wrap in `@css{}` for Stylus
   - Commit: f69c620
 
-- [ ] **`::scroll-marker-group` Pseudo-element** (85%+ browser support)
+- [x] **`::scroll-marker-group` Pseudo-element** (85%+ browser support) (done: 2026-03-30 17:39, commit: a5d4520)
   - File: `src/components/navigation.styl`
   - Style scroll marker container
   - Note: Wrap in `@css{}` for Stylus
