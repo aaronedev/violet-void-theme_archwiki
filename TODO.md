@@ -10155,6 +10155,38 @@ Last updated: 2026-03-30 22:14
   - Baselines refreshed with current screenshots for accurate future drift detection
   - Do NOT push — worktree is dirty; only append-only changes made this cycle
 
+### 2026-03-30 22:40
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - menu-open (desktop 1280×800)
+  - toc-open (desktop 1280×800)
+  - search-active (desktop 1280×800)
+  - default (mobile 375×667)
+  - menu-open (mobile 375×667)
+  - toc-open (mobile 375×667)
+  - search-active (mobile 375×667)
+- Findings:
+  - All 40/40 screenshots pixel-identical to baselines (AE=0) — zero visual drift
+  - Menu-open, TOC-open, search-active, and default states all clean across desktop and mobile
+  - CSS rebuilt (844KB) — build clean, no PostCSS errors
+  - Dirty worktree: prior modified files (reports JSONs, package.json) — append-only strategy maintained
+- Artifact paths:
+  - .agent/archwiki/current/*.desktop.*.png (20 files)
+  - .agent/archwiki/current/*.mobile.*.png (20 files)
+  - .agent/archwiki/baselines/ (40 PNG files)
+  - .agent/archwiki/diff-metrics.txt (AE=0 for all 40 comparisons)
+- Implementer instructions:
+  - No regressions — all interactive states holding
+  - Do NOT push — worktree dirty, append-only only
+
 ### 2026-03-30 21:38
 - Review target: 9a24f2d + 1c4386b + dirty worktree
 - Verdict: NEEDS_FOLLOWUP (1c4386b missing completion log entry)
