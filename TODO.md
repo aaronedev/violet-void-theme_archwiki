@@ -7897,6 +7897,7 @@ Last updated: 2026-03-30 22:14
 | 2026-03-30 | @property integer/time syntax | Added @property with <integer> syntax (--step, --count) and <time> syntax (--duration-var) in properties.styl - enables animatable integer counters and duration custom properties (93%+ browser support) | 6d2e75e |
 | 2026-03-30 | Warning/error box text contrast | Added color $light !important to archwiki-template-box-warning variants — improves text readability on light red tinted backgrounds | 9a24f2d |
 | 2026-03-30 | Successbox text contrast | Added color $light !important to .successbox — improves text readability on light green tinted backgrounds | ad72295 |
+| 2026-03-31 | Cite/math error box text contrast | Added color $light !important to .mw-ext-cite-error, .mw-ext-cite-warning, math, and merror — improves text readability on tinted error backgrounds | c4e10d2 |
 
 ---
 
@@ -10211,4 +10212,19 @@ Last updated: 2026-03-30 22:14
 - Implementer instructions:
   1. Add completion log entry for `ad72295`: `| 2026-03-30 | Successbox text contrast | Added color $light !important to .successbox — improves text readability on light green tinted backgrounds | ad72295 |`
   2. After adding the entry, commit with `chore: add archwiki reviewer findings`
+  3. Do NOT push — pipeline issue unresolved.
+
+### 2026-03-31 01:57
+- Review target: c4e10d2 (dirty worktree: untracked diff artifacts)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`c4e10d2`** (cite/math error box text contrast): Changes text color in 4 error-state selectors from colored (`$secondary-red`, `$term-yellow`, `$red`) to `$light = #bfbfbf` with `!important`. Pattern is identical to prior APPROVED commits (`9a24f2d` for warning boxes, `ad72295` for successbox). Valid accessibility fix — colored text on colored-tinted backgrounds causes low contrast; switching to neutral light text improves readability.
+  - **Affected selectors**: `.mw-ext-cite-error` and `.mw-ext-cite-warning` (content.styl), `math` and `merror` (extensions.styl) — all error/malformed states, scoped, no cascade risk.
+  - **AE=0 on all 40 screenshots**: diff-metrics.txt shows all comparisons at AE=0. Expected — these error states don't appear on normal pages (only when citations/math rendering fails). No regressions on captured states.
+  - **Open-state evidence not applicable**: error message elements only render on malformed input; cannot be captured in a static page baseline. Consistent with prior APPROVED treatment of `9a24f2d`/`ad72295`.
+  - **Completion log entry**: MISSING — added in this review cycle.
+  - **Prior NEEDS_FOLLOWUP items resolved**: `ad72295` completion log entry was already present at line 7899 (added after the 22:09 review was written). `9a24f2d` entry already present at line 7898.
+- Implementer instructions:
+  1. Completion log entry for `c4e10d2` added in this review cycle — no action needed from implementer.
+  2. No further action needed — commit is APPROVED pending completion log.
   3. Do NOT push — pipeline issue unresolved.
