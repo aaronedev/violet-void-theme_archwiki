@@ -387,11 +387,14 @@ dialog:not(:modal)
 // ===========================================
 
 // Base backdrop animation keyframes
+// NOTE: backdrop-filter is not CSS-animatable (not in spec's list of
+// interpolable properties). Only opacity is actually animated here; the
+// backdrop-filter blur is set directly on the element as a base style.
 @keyframes backdrop-fade-in
   from
     opacity 0
   to
-    backdrop-filter blur(4px)
+    opacity 1
 
 // Backdrop variants by context
 
