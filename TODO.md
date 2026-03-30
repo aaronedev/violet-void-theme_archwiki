@@ -10040,3 +10040,18 @@ Last updated: 2026-03-30 13:39
 - Implementer instructions:
   1. No further action needed — fix is correct and minimal.
   2. Do NOT push.
+
+### 2026-03-30 14:57
+- Review target: e3c20d1 (update interlanguage selector #p-lang → #p-lang-btn, ArchWiki migrated)
+- Verdict: APPROVED
+- Findings:
+  - ArchWiki changed their HTML structure: the interlanguage links container moved from `#p-lang` (sidebar portlet) to `#p-lang-btn` (header dropdown button). This is a correct, necessary selector migration.
+  - Styles are unchanged — only the CSS selector target changed. All styling rules (color, hover, focus-visible, active states) are identical to the prior `#p-lang` block.
+  - No stale `#p-lang` references remain in the codebase — `rg '#p-lang' src/` returns only comments and the new `#p-lang-btn` selector.
+  - All colors use theme vars: `$arch-blue`, `$lighter`, `$border-radius-sm`, `$transition-fast` — no hardcoded values.
+  - Build compiles cleanly.
+  - Open-state evidence not required: this is a selector migration, not a visual redesign. The styling rules themselves are unchanged; the component simply targets a different HTML element.
+- Implementer instructions:
+  1. No further action needed — selector migration is correct and complete.
+  2. Completion log already covers the feature (7e7d955, 2026-03-28 13:28) — this is a bug-fix follow-up to an already-completed item, no new completion log entry needed.
+  3. Do NOT push.
