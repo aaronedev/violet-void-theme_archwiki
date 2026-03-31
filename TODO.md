@@ -541,7 +541,7 @@
 | 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
 | 2026-03-30 12:29 | Remove non-animatable backdrop-filter from backdrop-fade-in keyframes | backdrop-filter is not CSS-animatable; removed from @keyframes to-state — opacity animates correctly, backdrop-filter blur already set as base style on dialog::backdrop | 7b8e2c3 |
 
-Last updated: 2026-03-30 22:14
+Last updated: 2026-03-31 04:40
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -7902,6 +7902,7 @@ Last updated: 2026-03-30 22:14
 | 2026-03-31 | LEGACY badge text contrast | Added color $light to .badge-legacy in advisory.styl — $muted (#7a7a7a) on rgba($muted,0.2) ~#2c2c2c = 2.9:1 contrast (WCAG fail); $light (#c0c0c0) = 6.2:1 (WCAG pass) | 87db5e0 |
 | 2026-03-31 | Bot/deprecated badge text contrast | Added color $light to bot and deprecated badge selectors across discussion.styl, user-pages.styl, special-pages.styl, template-doc.styl — $muted on rgba($muted,0.15-0.2) ~2.5-2.9:1 (WCAG fail); $light = 6.2:1 (WCAG pass) | 2a726f3 |
 | 2026-03-31 | SDR video gradient CSS vars | Added --arch-blue and --secondary-blue CSS custom properties at :root, used in SDR video progress gradient instead of hardcoded hex values — enables consistent theming in color-gamut and @supports contexts | dc48167 |
+| 2026-03-31 | display: inline flow utilities | Add display utilities (inline flow, inline flow-root, block flow) with @supports fallbacks for Chrome 129+, Safari 17.5+, Firefox not yet — 85%+ browser support | f1c27cb |
 
 ---
 
