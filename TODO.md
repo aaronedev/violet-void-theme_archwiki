@@ -7903,6 +7903,7 @@ Last updated: 2026-03-31 04:40
 | 2026-03-31 | Bot/deprecated badge text contrast | Added color $light to bot and deprecated badge selectors across discussion.styl, user-pages.styl, special-pages.styl, template-doc.styl — $muted on rgba($muted,0.15-0.2) ~2.5-2.9:1 (WCAG fail); $light = 6.2:1 (WCAG pass) | 2a726f3 |
 | 2026-03-31 | SDR video gradient CSS vars | Added --arch-blue and --secondary-blue CSS custom properties at :root, used in SDR video progress gradient instead of hardcoded hex values — enables consistent theming in color-gamut and @supports contexts | dc48167 |
 | 2026-03-31 | display: inline flow utilities | Add display utilities (inline flow, inline flow-root, block flow) with @supports fallbacks for Chrome 129+, Safari 17.5+, Firefox not yet — 85%+ browser support | f1c27cb |
+| 2026-03-31 | Extend prefers-reduced-transparency for .modal/.overlay/.popover-backdrop | Add .modal, .overlay, and .popover-backdrop to @media (prefers-reduced-transparency reduce) block in modern-css.styl — solid $darker backgrounds and no backdrop-filter for users with transparency sensitivity | 53efc06 |
 
 ---
 
