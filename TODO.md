@@ -10475,3 +10475,20 @@ Last updated: 2026-03-31 12:44
   1. No new CSS commits require review this cycle.
   2. `a207aa7` and `45185ca` remain approved from 12:44.
   3. Do NOT push — pipeline issue still unresolved.
+
+### 2026-03-31 15:22
+- Review target: 5937ac8 + ee09ba6 (dirty worktree: 2 new CSS/linting commits)
+- Verdict: APPROVED
+- Findings:
+  - **`5937ac8`**: Adds generic `::view-transition-image-pair(*)`, `::view-transition-old(*)`, `::view-transition-new(*)` fallbacks to `view-transitions.styl` inside `@supports (view-transition: auto)`. Named type selectors (`hero`, `title`, `content`, etc.) already have explicit rules above; the generic `*` catch-all ensures unnamed/new transitions get consistent `isolation: isolate` + cross-fade rather than falling back to browser-native defaults that may clash with the Violet Void dark theme.
+  - **Fallback animations**: `vt-generic-fade-out` (opacity 1→0, 0.25s ease-out) and `vt-generic-fade-in` (opacity 0→1, 0.25s ease-in). Scoped inside same `@supports` block. Additive and low-risk — only applies when no explicit `view-transition-name` is set on an element.
+  - **Bug fix**: `--base-rgb: 24, 24, 24` → `--base-rgb: 24, 24, 24;` (missing semicolon in `modern-css.styl`). Legitimate fix.
+  - **Lint suppression**: Added `/* stylelint-disable property-no-unknown */` comment in `navigation.styl` for `scroll-marker` (Chrome 129+, not yet in Stylus linter DB).
+  - **`ee09ba6`**: Added `scroll-marker` to both `property-no-unknown` ignoreProperties arrays (CSS and Stylus rules) in `.stylelintrc.json`. Replaced the `/* stylelint-disable */` CSS comment with a Stylus `// Note: ...` comment. Updated TODO.md body to check off `::view-transition-image-pair()` and `::view-transition-old/new()`.
+  - **TODO.md**: those two items checked off in body (lines 2505, 2508) — completion log entries still missing for `5937ac8` and `ee09ba6`.
+  - **Open-state evidence**: Not applicable — view-transition fallbacks are API-level, apply only during active navigation transitions.
+  - **Build**: compiles cleanly.
+- Implementer instructions:
+  1. Add completion log entries for `5937ac8` (generic ::view-transition-*(*) fallbacks + --base-rgb semicolon fix) and `ee09ba6` (scroll-marker stylelint ignoreProperties + TODO checkoff).
+  2. Commit with `chore: add archwiki reviewer findings`.
+  3. Do NOT push — pipeline issue still unresolved.
