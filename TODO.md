@@ -10530,3 +10530,17 @@ Last updated: 2026-03-31 15:22
 - Implementer instructions:
   1. No new CSS commits to review — nothing to approve or reject this cycle.
   2. Do NOT push — pipeline issue still unresolved.
+
+### 2026-03-31 21:01
+- Review target: 5937ac8 + ee09ba6 (worktree: package.json version bump to 20260331.21.05)
+- Verdict: APPROVED
+- Findings:
+  - **`5937ac8`**: Adds generic `::view-transition-image-pair(*) { isolation: isolate; }` + `::view-transition-old/new(*)` with `vt-generic-fade-out/in` keyframe animations. Wildcard `*` applies to any `view-transition-name` without explicit rules — named selectors (`hero`, `title`, `content`, etc.) already defined above in the same file and take precedence via specificity. `isolation: isolate` is safe. Opacity fade (0 → 1 / 1 → 0) at 0.25s is consistent with the existing `vt-fade-out` duration. Browser support: 85%+ (Chrome 111+). All within `@supports (view-transition-name: anything)` block — no cascade leakage.
+  - **`5937ac8` (附带)**: Missing semicolon on `--base-rgb` in `modern-css.styl` — trivial typo fix. stylelint `/* stylelint-disable */` comment for `scroll-marker` property — correct workaround for unsupported property.
+  - **`ee09ba6`**: Adds `scroll-marker` to `property-no-unknown` `ignoreProperties` in both `.stylelintrc.json` rules (CSS + Stylus variants). Replaces `/* stylelint-disable */` CSS comment with Stylus `// Note: ...` comment. Completion log updated (lines ~9808-9826). Correct.
+  - **Open-state evidence**: Not applicable — view-transition pseudo-elements fire during page navigation, not on persistent interactive UI. Consistent with how `::view-transition-old/new(root)` etc. are handled. Scout reports (17:04, 17:05) show 0 findings across 5 pages × 3 viewports. Pipeline functional.
+  - **Stacking/readability risk**: Low — `isolation: isolate` creates a stacking context, `opacity` fade is a standard animation. No risk of regressions.
+  - Build compiles cleanly.
+- Implementer instructions:
+  1. Both commits reviewed and approved. Completion log entries present and accurate.
+  2. Do NOT push — pipeline issue remains unroot-caused.
