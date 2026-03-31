@@ -9967,6 +9967,18 @@ Last updated: 2026-03-31 06:18
 
 ## Reviewer Findings
 
+### 2026-03-31 08:16
+- Review target: 040f46c (dirty worktree: build verbump)
+- Verdict: APPROVED
+- Findings:
+  - `040f46c`: Fixes hardcoded `rgba(24, 24, 24, 0.85)` in `::view-transition` from `3a7c15b` — replaced with `rgba(var(--base-rgb, 24, 24, 24), 0.85)`. `--base-rgb` is defined at line 2099 in compiled CSS as `24, 24, 24`. Proper fallback maintained.
+  - `3a7c15b` (original addition): `::view-transition { position: fixed; inset: 0; z-index: 2147483647; }` + `::view-transition-group(*) { isolation: isolate; }`. Scoped to view-transition API only (Chrome 111+). No cascade risk.
+  - **TODO.md completion log**: `::view-transition Container Pseudo-element` entry correctly references `3a7c15b`. Follow-up fix `040f46c` is corrective — completion log tracking feature addition commits is acceptable.
+  - **Open-state evidence not applicable**: View Transitions API is transient during navigation. Cannot be captured in static screenshots. Consistent with other API-level features in the codebase.
+  - **Build**: compiles cleanly. All 40 screenshots (5 pages × desktop+mobile × 4 states) show AE=0 vs baselines. Pipeline green.
+- Implementer instructions:
+  1. Review done — no action needed.
+
 ### 2026-03-29 07:13
 - Review target: dirty worktree (src/components/special-pages.styl + package.json)
 - Verdict: APPROVED
