@@ -540,8 +540,9 @@
 | 2026-03-29 | Email Features Styling | Add email.styl — email confirmation UI (valid/pending/invalid states), email preferences panel, email preview (465 lines total) | 180b80a |
 | 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
 | 2026-03-30 12:29 | Remove non-animatable backdrop-filter from backdrop-fade-in keyframes | backdrop-filter is not CSS-animatable; removed from @keyframes to-state — opacity animates correctly, backdrop-filter blur already set as base style on dialog::backdrop | 7b8e2c3 |
+| 2026-03-31 06:18 | ::view-transition Container Pseudo-element | Add ::view-transition container overlay styling — dark rgba(24,24,24,0.85) background, max z-index, isolation for transition groups in view-transitions.styl | 3a7c15b |
 
-Last updated: 2026-03-31 04:40
+Last updated: 2026-03-31 06:18
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -2486,9 +2487,10 @@ Last updated: 2026-03-31 04:40
   - `view-transition-name: hero-image;`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`::view-transition` Pseudo-element** (85%+ browser support)
-  - File: `src/components/transitions.styl`
-  - Style transition container
+- [x] **`::view-transition` Pseudo-element** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
+  - Style transition container overlay with dark theme background (rgba(24,24,24,0.85)), max z-index, and isolation for transition groups
+  - Commit: 3a7c15b
   - `::view-transition { background: var(--bg); }`
   - Note: Wrap in `@css{}` for Stylus
 
