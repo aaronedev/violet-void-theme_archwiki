@@ -329,6 +329,19 @@ h4[id]
   dialog:modal
     box-shadow $shadow-elevated !important
 
+  // .modal/.overlay - ArchWiki overlay classes (rgba($darker, 0.75))
+  .modal
+  .overlay
+    background-color $darker !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  // .popover-backdrop - ArchWiki popover backdrop (rgba($darker, 0.5) + blur)
+  .popover-backdrop
+    background-color $darker !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
 // =============================================================================
 
 // FIELD SIZING - Auto-Growing Textareas
