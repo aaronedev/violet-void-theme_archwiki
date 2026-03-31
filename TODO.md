@@ -2322,10 +2322,10 @@ Last updated: 2026-03-31 06:18
   - Style scroll marker container
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`scroll-marker` Property** (85%+ browser support)
+- [x] **`scroll-marker` Property** (85%+ browser support) (done: 2026-03-31 08:51, commit: e41e07b)
   - File: `src/components/navigation.styl`
-  - Enable scroll markers on element
-  - Note: Wrap in `@css{}` for Stylus
+  - Enable scroll markers on element with .scroll-marker-container, .scroll-marker-auto, .scroll-marker-none utility classes
+  - Note: Wrap in `@supports (scroll-marker: scroll-marker)` for Stylus/Firefox/Safari compatibility
 
 ## ⏱️ Timeline Scope (New)
 
