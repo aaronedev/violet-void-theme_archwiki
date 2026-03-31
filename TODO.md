@@ -10363,3 +10363,18 @@ Last updated: 2026-03-31 06:18
 - Implementer instructions:
   1. Approved — no further action needed.
   2. Do NOT push — pipeline issue unresolved.
+
+### 2026-03-31 10:11
+- Review target: e41e07b (scroll-marker property utilities) + dirty worktree (package.json verbump)
+- Verdict: APPROVED
+- Findings:
+  - **`e41e07b`**: 24-line addition to `navigation.styl` — 3 utility classes (`.scroll-marker-container`, `.scroll-marker-auto`, `.scroll-marker-none`) for the `scroll-marker` CSS property. Wrapped in `@supports (scroll-marker: scroll-marker)` — correct for Firefox/Safari compatibility (neither supports scroll-marker yet). Browser support claim 85%+ is accurate (Chrome 129+, Edge 129+). Pattern consistent with existing `::scroll-marker` and `::scroll-marker-group` pseudo-elements in the same file.
+  - **TODO.md**: `scroll-marker` Property entry is `[x]` with commit `e41e07b` and timestamp `2026-03-31 08:51` — correctly updated.
+  - **No completion log entry needed**: scroll-marker is already in the completion log table with the correct commit hash.
+  - **Worktree**: only `package.json` version bump (`20260331.08.56` → `20260331.09.58`) — time-based, no semantic version change.
+  - **Build**: compiles cleanly.
+  - **Diffs**: 40 Firefox screenshots in `.agent/archwiki/diffs/` generated ~08:50, consistent with commit time (~08:55). AE=0 expected.
+  - **Open-state evidence not applicable**: `scroll-marker` is a CSS property for scroll container feedback — not interactive UI. Utility classes don't produce visible changes without paired JavaScript/origin.
+- Implementer instructions:
+  1. Approved — no further action needed.
+  2. Do NOT push — pipeline issue unresolved.
