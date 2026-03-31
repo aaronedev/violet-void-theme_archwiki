@@ -214,6 +214,32 @@
   ::view-transition-image-pair(infobox) {
     isolation: isolate;
   }
+
+  /* Generic fallback for any named transition not explicitly styled above.
+     Applies isolation and a neutral cross-fade so unnamed/new transitions
+     are visually consistent with the theme rather than using browser defaults. */
+  ::view-transition-image-pair(*) {
+    isolation: isolate;
+  }
+
+  /* Generic fallback animations for unnamed or miscellaneous named transitions.
+     Simple cross-fade prevents jarring flicker for any view-transition-name
+     that does not have an explicit ::view-transition-old/new rule. */
+  ::view-transition-old(*) {
+    animation: vt-generic-fade-out 0.25s ease-out forwards;
+  }
+
+  ::view-transition-new(*) {
+    animation: vt-generic-fade-in 0.25s ease-in forwards;
+  }
+
+  @keyframes vt-generic-fade-out {
+    to { opacity: 0; }
+  }
+
+  @keyframes vt-generic-fade-in {
+    from { opacity: 0; }
+  }
 }
 
 // Utility classes for applying view-transition-class in HTML
