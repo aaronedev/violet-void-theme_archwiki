@@ -541,9 +541,10 @@
 | 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
 | 2026-03-30 12:29 | Remove non-animatable backdrop-filter from backdrop-fade-in keyframes | backdrop-filter is not CSS-animatable; removed from @keyframes to-state — opacity animates correctly, backdrop-filter blur already set as base style on dialog::backdrop | 7b8e2c3 |
 | 2026-03-31 06:18 | ::view-transition Container Pseudo-element | Add ::view-transition container overlay styling — dark rgba(24,24,24,0.85) background, max z-index, isolation for transition groups in view-transitions.styl | 3a7c15b |
-| 2026-03-31 12:29 | view-transition-name Property Utilities | Add view-transition-name utility classes in view-transitions.styl — .view-vt-name-hero, .view-vt-name-title, .view-vt-name-content, .view-vt-name-sidebar, .view-vt-name-toc, .view-vt-name-infobox, .view-vt-name-root for naming elements in view transitions (85%+ browser support) | — |
+| 2026-03-31 11:58 | :active-view-transition Pseudo-class | Add :active-view-transition pseudo-class styling — cursor: wait during navigation, isolation for content/hero transitions, z-index layering for hero/sidebar/toc (hero: 1000, sidebar: 200, toc: 150) | a207aa7 |
+| 2026-03-31 12:29 | view-transition-name Property Utilities | Add view-transition-name utility classes in view-transitions.styl — .view-vt-name-hero, .view-vt-name-title, .view-vt-name-content, .view-vt-name-sidebar, .view-vt-name-toc, .view-vt-name-infobox, .view-vt-name-root for naming elements in view transitions (85%+ browser support) | 45185ca |
 
-Last updated: 2026-03-31 12:29
+Last updated: 2026-03-31 12:44
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -5484,18 +5485,18 @@ Last updated: 2026-03-31 12:29
 
 ## 🎬 View Transition Pseudo-Classes (New)
 
-- [ ] **`:active-view-transition` Pseudo-Class** (85%+ browser support)
-  - File: `src/animations/view-transitions.styl`
+- [x] **`:active-view-transition` Pseudo-Class** (85%+ browser support) (done: 2026-03-31 11:58, commit: a207aa7)
+  - File: `src/components/view-transitions.styl`
   - Matches root element when a view transition is in progress
-  - Example: `:root:active-view-transition { opacity: 0.9; }`
+  - Example: `:root:active-view-transition { cursor: wait; }`
   - Page transition overlay effects
   - Cross-fade page navigation
   - Stylus: Works directly
 
-- [ ] **`:active-view-transition-type()` Pseudo-Class** (85%+ browser support)
-  - File: `src/animations/view-transitions.styl`
+- [x] **`:active-view-transition-type()` Pseudo-Class** (85%+ browser support) (done: 2026-03-31 11:58, commit: a207aa7)
+  - File: `src/components/view-transitions.styl`
   - Matches when specific view transition type is active
-  - Example: `:root:active-view-transition-type(slide) { ... }`
+  - Example: `:root:active-view-transition-type(content) { isolation: isolate; }`
   - Different transition styles per navigation direction
   - Named transition variations
   - Stylus: Works directly
@@ -10442,3 +10443,22 @@ Last updated: 2026-03-31 12:29
 - Implementer instructions:
   1. No new CSS commits require review this cycle.
   2. Do NOT push — pipeline issue still unresolved.
+
+### 2026-03-31 12:44
+- Review target: a207aa7 + 45185ca (clean worktree after build verbump)
+- Verdict: APPROVED
+- Findings:
+  - **`a207aa7`** (fix: `:active-view-transition` pseudo-class): Adds `:root:active-view-transition { cursor: wait; }` + named type selectors (`content`, `hero`, `sidebar`, `toc`, `none`) with `isolation: isolate` and z-index layering (`hero: 1000`, `sidebar: 200`, `toc: 150`). Properly wrapped in `@css { @supports (selector(:active-view-transition)) { ... } }` — correct for Firefox compat. Implementation quality confirmed (per prior 12:02 review, which set status to NEEDS_FOLLOWUP for incomplete TODO.md entries only).
+  - **`45185ca`** (feat: `view-transition-name` utilities): Adds 7 utility classes (`.view-vt-name-hero/title/content/sidebar/toc/infobox/root`). `view-transition-name` is a CSS property handled directly by Stylus — no `@css{}` wrapper needed, correctly noted in commit message. Mirrors existing `.view-transition-none` pattern. Additive, scoped, no cascade risk. `45185ca` completion log entry had commit hash `—` — corrected to `45185ca`.
+  - **Prior NEEDS_FOLLOWUP resolved**: `a207aa7` was marked NEEDS_FOLLOWUP at 12:02 due to incomplete TODO.md entries. This review resolves those:
+    - Fixed `:active-view-transition` (line 5487): marked `[x]`, commit `a207aa7`, path `src/components/view-transitions.styl`.
+    - Fixed `:active-view-transition-type()` (line 5495): marked `[x]`, commit `a207aa7`, path `src/components/view-transitions.styl`.
+    - Added missing completion log entry for `a207aa7` with descriptive summary.
+    - Fixed commit hash in `view-transition-name` completion log entry (was `—`, now `45185ca`).
+  - **Open-state evidence**: Not applicable — both `:active-view-transition` and `view-transition-name` are API-level/naming features that only apply during active navigation transitions. Cannot be captured in static screenshots. Consistent with how `:seeking`, `:buffering`, and other transient pseudo-classes are treated.
+  - **Build**: compiles cleanly.
+  - **TODO.md**: updated (checked off 2 items, added 1 completion log entry, corrected 1 commit hash).
+- Implementer instructions:
+  1. TODO.md updates done (this review cycle).
+  2. Commit with `chore: add archwiki reviewer findings`.
+  3. Do NOT push — pipeline issue still unresolved.
