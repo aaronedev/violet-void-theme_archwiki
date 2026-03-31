@@ -3338,12 +3338,13 @@ Last updated: 2026-03-31 15:22
   - Reply threading
   - Moderation tools
 
-- [ ] **Extension:Cite Styling** (CSS)
+- [x] **Extension:Cite Styling** (CSS)
   - File: `src/components/extensions.styl`
   - Reference list formatting
   - Cite error styling
   - Reference tooltip
   - Backlink styling
+  - Commit: da55c63 (initial), c4e10d2 (contrast fix)
 
 - [x] **Extension:PageForms Styling** (CSS)
   - File: `src/components/extensions.styl`
