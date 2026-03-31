@@ -238,3 +238,57 @@
 // Disable transitions for specific elements
 .view-transition-none
   view-transition-class none
+
+// =============================================================================
+// :active-view-transition PSEUDO-CLASS - Style Page During Active Navigation
+// =============================================================================
+// Matches the root element when a view transition is actively occurring
+// Browser support: 85%+ (Chrome 117+, Edge 117+)
+// Note: Firefox does not yet support :active-view-transition
+// @supports wrapper prevents errors in unsupported browsers
+
+@css {
+  @supports (selector(:active-view-transition)) {
+    /* Subtle visual indicator that a transition is in progress */
+    :root:active-view-transition {
+      cursor: wait;
+    }
+
+    /* Dim non-transitioned content slightly during cross-fade transitions */
+    :root:active-view-transition-type(content) {
+      ::view-transition-group(content),
+      ::view-transition-old(content),
+      ::view-transition-new(content) {
+        isolation: isolate;
+      }
+    }
+
+    /* Hero transitions get full attention - disable other distractions */
+    :root:active-view-transition-type(hero) {
+      /* Ensure hero image-pair has maximum contrast during transition */
+      ::view-transition-image-pair(hero) {
+        isolation: isolate;
+        z-index: 1000;
+      }
+    }
+
+    /* Sidebar transitions - give sidebar priority */
+    :root:active-view-transition-type(sidebar) {
+      ::view-transition-group(sidebar) {
+        z-index: 200;
+      }
+    }
+
+    /* TOC transitions during navigation */
+    :root:active-view-transition-type(toc) {
+      ::view-transition-group(toc) {
+        z-index: 150;
+      }
+    }
+
+    /* Generic fallback for any named transition class */
+    :root:active-view-transition-type(none) {
+      /* No special styling needed for suppressed transitions */
+    }
+  }
+}
