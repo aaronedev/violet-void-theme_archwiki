@@ -10544,3 +10544,27 @@ Last updated: 2026-03-31 15:22
 - Implementer instructions:
   1. Both commits reviewed and approved. Completion log entries present and accurate.
   2. Do NOT push — pipeline issue remains unroot-caused.
+
+### 2026-03-31 21:11
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800 + mobile 375×667)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - All 40/40 captures identical to baselines (AE=0) — no visual drift detected
+  - Pixel-perfect match across all pages, viewports, and interactive states
+  - No menu panel width collapse, nav label wrapping, popup compression, or overlay overlap
+  - Build version 20260331.21.05 applied cleanly
+- Artifact paths:
+  - .agent/archwiki/current/ (40 PNG screenshots)
+  - .agent/archwiki/baselines/ (40 PNG baselines)
+  - .agent/archwiki/diff-metrics.txt
