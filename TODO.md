@@ -9979,6 +9979,22 @@ Last updated: 2026-03-31 06:18
 - Implementer instructions:
   1. Review done — no action needed.
 
+### 2026-03-31 12:02
+- Review target: a207aa7 + 44f09d8 (dirty worktree from build verbump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`a207aa7` implementation quality**: Sound. `:root:active-view-transition { cursor: wait; }` provides user-facing navigation feedback. Named group isolation (`content`/`hero`) and z-index layering (`hero: 1000`, `sidebar: 200`, `toc: 150`) prevent stacking conflicts. `@supports (selector(...))` guard is correct for Firefox. `@css{}` wrapper appropriate for native CSS pseudo-class.
+  - **No open-state evidence required**: `:active-view-transition` only fires during active browser navigation — cannot be captured in static screenshots. Consistent with how other transient pseudo-classes (`:seeking`, `:buffering`) were handled.
+  - **TODO.md incompleteness — two issues**:
+    1. **`:active-view-transition-type()` still unchecked**: The item at line 5493 (`[ ]`) is NOT marked done, but `a207aa7` implements it fully (`:root:active-view-transition-type(content/hero/sidebar/toc/none)`). Only the base `:active-view-transition` item (line 7739) was checked off.
+    2. **Wrong file path in TODO entry**: The unchecked `:active-view-transition-type()` item at line 5493 lists `src/animations/view-transitions.styl` — correct path is `src/components/view-transitions.styl`.
+  - Build compiles cleanly.
+- Implementer instructions:
+  1. Mark `:active-view-transition-type()` as `[x]` in TODO.md with commit `a207aa7`.
+  2. Fix the file path in that entry: `src/animations/view-transitions.styl` → `src/components/view-transitions.styl`.
+  3. Commit with `chore: add archwiki reviewer findings`.
+  4. Do NOT push — pipeline issue from prior review cycles.
+
 ### 2026-03-29 07:13
 - Review target: dirty worktree (src/components/special-pages.styl + package.json)
 - Verdict: APPROVED
