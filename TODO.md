@@ -543,8 +543,10 @@
 | 2026-03-31 06:18 | ::view-transition Container Pseudo-element | Add ::view-transition container overlay styling — dark rgba(24,24,24,0.85) background, max z-index, isolation for transition groups in view-transitions.styl | 3a7c15b |
 | 2026-03-31 11:58 | :active-view-transition Pseudo-class | Add :active-view-transition pseudo-class styling — cursor: wait during navigation, isolation for content/hero transitions, z-index layering for hero/sidebar/toc (hero: 1000, sidebar: 200, toc: 150) | a207aa7 |
 | 2026-03-31 12:29 | view-transition-name Property Utilities | Add view-transition-name utility classes in view-transitions.styl — .view-vt-name-hero, .view-vt-name-title, .view-vt-name-content, .view-vt-name-sidebar, .view-vt-name-toc, .view-vt-name-infobox, .view-vt-name-root for naming elements in view transitions (85%+ browser support) | 45185ca |
+| 2026-03-31 15:08 | Generic ::view-transition-*(**) fallbacks | Add ::view-transition-image-pair(*), ::view-transition-old(*), ::view-transition-new(*) generic fallbacks for unnamed transitions — isolation: isolate + cross-fade (vt-generic-fade-out/in keyframes) ensures consistent styling for view transitions without explicit view-transition-name | 5937ac8 |
+| 2026-03-31 15:12 | scroll-marker stylelint ignoreProperties | Add scroll-marker to property-no-unknown ignoreProperties in .stylelintrc.json (CSS and Stylus rules) — scroll-marker supported in Chrome 129+ but not yet in Stylus linter DB; replace /* stylelint-disable */ comment with // Note: comment | ee09ba6 |
 
-Last updated: 2026-03-31 12:44
+Last updated: 2026-03-31 15:22
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -10478,17 +10480,28 @@ Last updated: 2026-03-31 12:44
 
 ### 2026-03-31 15:22
 - Review target: 5937ac8 + ee09ba6 (dirty worktree: 2 new CSS/linting commits)
-- Verdict: APPROVED
+- Verdict: APPROVED (completion log entries since added — fully resolved)
 - Findings:
   - **`5937ac8`**: Adds generic `::view-transition-image-pair(*)`, `::view-transition-old(*)`, `::view-transition-new(*)` fallbacks to `view-transitions.styl` inside `@supports (view-transition: auto)`. Named type selectors (`hero`, `title`, `content`, etc.) already have explicit rules above; the generic `*` catch-all ensures unnamed/new transitions get consistent `isolation: isolate` + cross-fade rather than falling back to browser-native defaults that may clash with the Violet Void dark theme.
   - **Fallback animations**: `vt-generic-fade-out` (opacity 1→0, 0.25s ease-out) and `vt-generic-fade-in` (opacity 0→1, 0.25s ease-in). Scoped inside same `@supports` block. Additive and low-risk — only applies when no explicit `view-transition-name` is set on an element.
   - **Bug fix**: `--base-rgb: 24, 24, 24` → `--base-rgb: 24, 24, 24;` (missing semicolon in `modern-css.styl`). Legitimate fix.
   - **Lint suppression**: Added `/* stylelint-disable property-no-unknown */` comment in `navigation.styl` for `scroll-marker` (Chrome 129+, not yet in Stylus linter DB).
   - **`ee09ba6`**: Added `scroll-marker` to both `property-no-unknown` ignoreProperties arrays (CSS and Stylus rules) in `.stylelintrc.json`. Replaced the `/* stylelint-disable */` CSS comment with a Stylus `// Note: ...` comment. Updated TODO.md body to check off `::view-transition-image-pair()` and `::view-transition-old/new()`.
-  - **TODO.md**: those two items checked off in body (lines 2505, 2508) — completion log entries still missing for `5937ac8` and `ee09ba6`.
+  - **TODO.md**: completion log entries for `5937ac8` and `ee09ba6` now present in worktree. Fully resolved.
   - **Open-state evidence**: Not applicable — view-transition fallbacks are API-level, apply only during active navigation transitions.
   - **Build**: compiles cleanly.
 - Implementer instructions:
-  1. Add completion log entries for `5937ac8` (generic ::view-transition-*(*) fallbacks + --base-rgb semicolon fix) and `ee09ba6` (scroll-marker stylelint ignoreProperties + TODO checkoff).
-  2. Commit with `chore: add archwiki reviewer findings`.
-  3. Do NOT push — pipeline issue still unresolved.
+  1. Commit with `chore: add archwiki reviewer findings`.
+  2. Do NOT push — pipeline issue still unresolved.
+
+### 2026-03-31 16:43
+- Review target: dirty worktree (TODO.md completion log updates + package.json verbump)
+- Verdict: APPROVED
+- Findings:
+  - Worktree contains only: (1) completion log entries for `5937ac8` (generic ::view-transition-*(**) fallbacks) and `ee09ba6` (scroll-marker stylelint ignoreProperties), (2) `package.json` verbump from build.
+  - Both completion log entries are accurate and correctly reference the commit hashes.
+  - `npm run build` succeeds: `dist/main.css` contains all 5 view-transition commits' CSS (`3a7c15b`, `a207aa7`, `45185ca`, `5937ac8`, `ee09ba6`). `::view-transition` container overlay, `:active-view-transition` support, utility classes, generic fallbacks, and `@keyframes vt-generic-fade-out/in` all verified present in compiled output.
+  - No new implementation since last review. All prior findings fully resolved.
+- Implementer instructions:
+  1. Commit with `chore: add archwiki reviewer findings`.
+  2. Do NOT push — pipeline issue still unresolved.
