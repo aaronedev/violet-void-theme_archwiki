@@ -2502,12 +2502,12 @@ Last updated: 2026-03-31 12:44
   - Style transition groups
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`::view-transition-image-pair()`** (85%+ browser support)
+- [x] **`::view-transition-image-pair()`** (85%+ browser support)
   - File: `src/components/transitions.styl`
   - Style image pairs during transition
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`::view-transition-old()` / `::view-transition-new()`** (85%+ browser support)
+- [x] **`::view-transition-old()` / `::view-transition-new()`** (85%+ browser support)
   - File: `src/components/transitions.styl`
   - Style old/new states
   - Note: Wrap in `@css{}` for Stylus
