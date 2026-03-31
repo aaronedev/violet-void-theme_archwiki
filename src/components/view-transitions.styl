@@ -240,6 +240,42 @@
   view-transition-class none
 
 // =============================================================================
+// view-transition-name PROPERTY - Name Elements for Transition Targeting
+// =============================================================================
+// Assigns a name to an element for view transition pseudo-element targeting
+// Browser support: 85%+ (Chrome 111+, Edge 111+)
+// Use with ::view-transition-group(), ::view-transition-old(), ::view-transition-new()
+// These are distinct from view-transition-class utilities above - both can be used together
+
+// Hero image/view-transition-name
+.view-vt-name-hero
+  view-transition-name hero
+
+// Page title view-transition-name
+.view-vt-name-title
+  view-transition-name title
+
+// Main article content view-transition-name
+.view-vt-name-content
+  view-transition-name content
+
+// Sidebar view-transition-name
+.view-vt-name-sidebar
+  view-transition-name sidebar
+
+// Table of contents view-transition-name
+.view-vt-name-toc
+  view-transition-name toc
+
+// Infobox view-transition-name
+.view-vt-name-infobox
+  view-transition-name infobox
+
+// Root/named view-transition-name for full-page transitions
+.view-vt-name-root
+  view-transition-name root
+
+// =============================================================================
 // :active-view-transition PSEUDO-CLASS - Style Page During Active Navigation
 // =============================================================================
 // Matches the root element when a view transition is actively occurring

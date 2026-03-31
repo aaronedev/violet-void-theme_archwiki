@@ -541,8 +541,9 @@
 | 2026-03-29 11:16 | Minerva Mobile Improvements (Mobile TOC) | Mobile TOC floating button, collapsible panel, section jump links, back-to-top button — touch targets ≥44px, safe area insets, reduced motion | 1e02650 |
 | 2026-03-30 12:29 | Remove non-animatable backdrop-filter from backdrop-fade-in keyframes | backdrop-filter is not CSS-animatable; removed from @keyframes to-state — opacity animates correctly, backdrop-filter blur already set as base style on dialog::backdrop | 7b8e2c3 |
 | 2026-03-31 06:18 | ::view-transition Container Pseudo-element | Add ::view-transition container overlay styling — dark rgba(24,24,24,0.85) background, max z-index, isolation for transition groups in view-transitions.styl | 3a7c15b |
+| 2026-03-31 12:29 | view-transition-name Property Utilities | Add view-transition-name utility classes in view-transitions.styl — .view-vt-name-hero, .view-vt-name-title, .view-vt-name-content, .view-vt-name-sidebar, .view-vt-name-toc, .view-vt-name-infobox, .view-vt-name-root for naming elements in view transitions (85%+ browser support) | — |
 
-Last updated: 2026-03-31 06:18
+Last updated: 2026-03-31 12:29
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
@@ -2481,11 +2482,12 @@ Last updated: 2026-03-31 06:18
   - `@view-transition { navigation: auto; }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`view-transition-name` Property** (85%+ browser support)
-  - File: `src/components/transitions.styl`
+- [x] **`view-transition-name` Property** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
   - Name elements for transitions
   - `view-transition-name: hero-image;`
-  - Note: Wrap in `@css{}` for Stylus
+  - Added utility classes: `.view-vt-name-hero`, `.view-vt-name-title`, `.view-vt-name-content`, `.view-vt-name-sidebar`, `.view-vt-name-toc`, `.view-vt-name-infobox`, `.view-vt-name-root`
+  - Note: Stylus supports this directly without `@css{}` wrapper
 
 - [x] **`::view-transition` Pseudo-element** (85%+ browser support)
   - File: `src/components/view-transitions.styl`
