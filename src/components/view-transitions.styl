@@ -7,6 +7,22 @@
     navigation: auto;
   }
 
+  // View transition container - the overlay wrapper for all transitions
+  // Styled to match the Violet Void dark theme
+  // Browser support: 85%+ (Chrome 111+, Edge 111+)
+  ::view-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    background: rgba(24, 24, 24, 0.85); /* $base=#181818 */
+  }
+
+  // Ensure each transition group creates its own stacking context
+  // for clean layering during the transition
+  ::view-transition-group(*) {
+    isolation: isolate;
+  }
+
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation-duration: 0.3s;
