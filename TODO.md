@@ -2768,10 +2768,11 @@ Last updated: 2026-03-30 22:14
   - Accessibility: use with caution
   - Stylus: Works directly
 
-- [ ] **`display: inline flow` Multi-Keyword** (97%+ browser support)
-  - File: `src/components/layout.styl`
-  - Explicit display keywords
-  - Stylus: Works directly
+- [x] **`display: inline flow` Multi-Keyword** (85%+ browser support)
+  - File: `src/utilities/display.styl`
+  - Explicit display keywords: inline flow, inline flow-root, block flow
+  - With `@supports` fallbacks for Chrome 129+, Safari 17.5+
+  - Commit: (this session)
 
 
 ## 🎬 Animation Properties (New - 2026-03-01 Scout 4)
@@ -10281,3 +10282,20 @@ Last updated: 2026-03-30 22:14
   2. No open-state evidence needed — all are targeted element fixes not visible in captured page baselines.
   3. Do NOT push — pipeline issue unresolved.
 
+
+### 2026-03-31 04:27
+- Review target: dirty worktree (src/utilities/display.styl + main.styl import + modern-css.styl semicolon fix + version bump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **New file `src/utilities/display.styl`** implements `display: inline flow`, `display: inline flow-root`, `display: block flow`, `.flow-root`, `.inline-flow`, `.inline-flow-root`, and legacy aliases. Proper `@supports` fallbacks throughout. Build compiles cleanly.
+  - **`.flow-root` is duplicated**: Already defined in `src/components/utilities.styl` (`display flow-root`). The new file adds a second `.flow-root` class. In CSS this is not an error (last rule wins) but it's redundant. Needs one removed.
+  - **Browser support claim is wrong in TODO**: TODO entry says `display: inline flow` is "97%+ browser support". `display: inline flow` only landed in Chrome 129+ and Safari 17.5+; Firefox has NOT shipped it. Correct figure is ~85%+. File-level comment in display.styl is accurate (85%+); the TODO entry needs correction.
+  - **TODO location discrepancy**: TODO entry says file should be `src/components/layout.styl` which does not exist. Implementer correctly placed it in `src/utilities/display.styl` instead — better organization. This is actually a TODO inaccuracy, not an implementer error.
+  - **No completion log entry added** for `display: inline flow` implementation.
+  - **modern-css.styl change**: trailing `;` removed from `--base-rgb` declaration — cosmetic Stylus syntax normalization. Functionally identical.
+- Implementer instructions:
+  1. Remove redundant `.flow-root` class from `src/utilities/display.styl` (keep it in `src/components/utilities.styl` where it already exists), OR remove it from `utilities.styl` and keep only the one in `display.styl`.
+  2. Update TODO entry for `display: inline flow` to correct browser support: 85%+ (Chrome 129+, Safari 17.5+, Firefox not yet).
+  3. Add completion log entry: `display: inline flow Multi-Keyword` — `src/utilities/display.styl` (new file) — `@supports` fallbacks for Chrome 129+, Safari 17.5+.
+  4. Commit with `chore: add display utilities (inline flow, inline flow-root, block flow)`.
+  5. Do NOT push.

@@ -1,0 +1,66 @@
+// =============================================================================
+// Display Utilities - Modern CSS display keyword support
+// Browser support: 85%+ (Chrome 129+, Safari 17.5+, Firefox not yet)
+// =============================================================================
+// `display: inline flow` is the modern equivalent of `display: inline` but
+// with proper flow-root behavior. Unlike `inline-block`, it follows the CSS
+// Display spec's flow-based terminology.
+// Usage:
+//   <span class="inline-flow">inline flow container</span>
+//   <span class="inline-flow-root">inline flow-root container</span>
+
+// -----------------------------------------------------------------------------
+// Inline flow - creates an inline-level flow container
+// Acts like inline-block but uses the modern flow-based display keywords.
+// Falls back to inline-block in unsupported browsers.
+// -----------------------------------------------------------------------------
+
+.inline-flow
+  @supports (display: inline flow)
+    display inline flow
+
+  @supports not (display: inline flow)
+    display inline-block
+
+// -----------------------------------------------------------------------------
+// Inline flow-root - explicitly creates an inline-level flow root
+// Use when you need an explicit flow root in an inline formatting context.
+// Falls back to inline-block in unsupported browsers.
+// -----------------------------------------------------------------------------
+
+.inline-flow-root
+  @supports (display: inline flow-root)
+    display inline flow-root
+
+  @supports not (display: inline flow-root)
+    display inline-block
+
+// -----------------------------------------------------------------------------
+// Display utility variants
+// -----------------------------------------------------------------------------
+
+// Block flow - explicit block-level flow container
+.block-flow
+  @supports (display: block flow)
+    display block flow
+
+  @supports not (display: block flow)
+    display block
+
+// Inline block (legacy alias for reference)
+.inline-block
+  display inline-block
+
+// Block (explicit)
+.block
+  display block
+
+// Flex inline
+.inline-flex
+  display inline-flex
+
+// Grid inline
+.inline-grid
+  display inline-grid
+
+// Note: .flow-root is already defined in src/components/utilities.styl
