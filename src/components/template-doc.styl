@@ -362,7 +362,7 @@
 
   &.badge-deprecated
     background-color rgba($muted, 0.15)
-    color $muted
+    color $light  // $muted on rgba($muted,0.15) ~2.5:1 (WCAG fail); $light = 6.2:1 (WCAG pass)
 
   &.badge-suggested
     background-color rgba($term-yellow, 0.15)
