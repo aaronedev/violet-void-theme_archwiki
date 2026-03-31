@@ -7736,7 +7736,7 @@ Last updated: 2026-03-31 06:18
   - Example: `details:open summary { font-weight: bold; }`
   - Stylus: Works directly
 
-- [ ] **`:active-view-transition` Pseudo-class** (CSS, 85%+ browser support)
+- [x] **`:active-view-transition` Pseudo-class** (CSS, 85%+ browser support) (done: 2026-03-31 11:58, commit: a207aa7)
   - File: `src/components/view-transitions.styl`
   - Matches root element during an active view transition
   - Style page during navigation animation
