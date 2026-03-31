@@ -10228,3 +10228,37 @@ Last updated: 2026-03-30 22:14
   1. Completion log entry for `c4e10d2` added in this review cycle — no action needed from implementer.
   2. No further action needed — commit is APPROVED pending completion log.
   3. Do NOT push — pipeline issue unresolved.
+
+### 2026-03-31 00:42
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - menu-open (desktop 1280×800)
+  - toc-open (desktop 1280×800)
+  - search-active (desktop 1280×800)
+  - default (mobile 375×667)
+  - menu-open (mobile 375×667)
+  - toc-open (mobile 375×667)
+  - search-active (mobile 375×667)
+- Findings:
+  - All 40/40 screenshots pixel-identical to baselines (AE=0) — zero visual drift across all pages, viewports, and states
+  - Menu-open, TOC-open, search-active, and default states all clean across desktop and mobile
+  - CSS builds cleanly (844KB, no PostCSS errors)
+  - CSS injection via `<style>` tag appended after ArchWiki stylesheets — cascade order correct, Violet Void theme overrides applied
+  - Pipeline fully functional: all 4 interactive states produce distinct screenshots per page/viewport
+  - Dirty worktree: only package.json (modified) and untracked diff artifacts — append-only strategy maintained
+- Artifact paths:
+  - .agent/archwiki/current/*.desktop.*.png (20 files)
+  - .agent/archwiki/current/*.mobile.*.png (20 files)
+  - .agent/archwiki/baselines/ (40 PNG files)
+  - .agent/archwiki/diff-metrics.txt (AE=0 for all 40 comparisons)
+- Implementer instructions:
+  - No regressions — all interactive states holding across all pages and viewports
+  - Do NOT push — worktree dirty; only append-only changes made this cycle
