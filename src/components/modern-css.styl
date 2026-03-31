@@ -1386,6 +1386,13 @@ h4[id]
 
 // Detect wide-gamut (P3) displays and provide enhanced colors
 // Browser support: 93%+
+
+// Base CSS custom properties — defined at :root for all displays
+// These serve as fallbacks; P3-capable browsers override via the @supports block below
+:root
+  --arch-blue $arch-blue
+  --secondary-blue $secondary-blue
+
 @supports (color: color(display-p3 1 1 1))
   @media (color-gamut p3)
     // More vibrant accent colors on capable hardware
@@ -1496,7 +1503,7 @@ h4[id]
 @media (video-dynamic-range standard)
   :root
     --video-player-bg rgba($darker, 0.85)
-    --video-progress-hdr linear-gradient(90deg, #8950c7, #c7b8ff)
+    --video-progress-hdr linear-gradient(90deg, var(--arch-blue), var(--secondary-blue))
     --video-controls-hdr rgba($white, 0.1)
 
 // =============================================================================
