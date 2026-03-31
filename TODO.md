@@ -10300,3 +10300,35 @@ Last updated: 2026-03-31 04:40
   3. Add completion log entry: `display: inline flow Multi-Keyword` — `src/utilities/display.styl` (new file) — `@supports` fallbacks for Chrome 129+, Safari 17.5+.
   4. Commit with `chore: add display utilities (inline flow, inline flow-root, block flow)`.
   5. Do NOT push.
+
+### 2026-03-31 02:42
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - menu-open (desktop 1280×800)
+  - toc-open (desktop 1280×800)
+  - search-active (desktop 1280×800)
+  - default (mobile 375×667)
+  - menu-open (mobile 375×667)
+  - toc-open (mobile 375×667)
+  - search-active (mobile 375×667)
+- Findings:
+  - All 40/40 screenshots pixel-identical to baselines (AE=0) — zero visual drift across all pages, viewports, and states
+  - Menu-open, TOC-open, search-active, and default states all clean across desktop and mobile
+  - CSS builds cleanly (844KB, no PostCSS errors)
+  - Pipeline fully functional: all 4 interactive states produce distinct screenshots per page/viewport
+- Artifact paths:
+  - .agent/archwiki/current/*.desktop.*.png (20 files)
+  - .agent/archwiki/current/*.mobile.*.png (20 files)
+  - .agent/archwiki/baselines/ (40 PNG files)
+  - .agent/archwiki/diff-metrics.txt (AE=0 for all 40 comparisons)
+- Implementer instructions:
+  - No regressions — all interactive states holding across all pages and viewports
+  - Do NOT push — worktree dirty; only append-only changes made this cycle
