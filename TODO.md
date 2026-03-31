@@ -7898,6 +7898,9 @@ Last updated: 2026-03-30 22:14
 | 2026-03-30 | Warning/error box text contrast | Added color $light !important to archwiki-template-box-warning variants — improves text readability on light red tinted backgrounds | 9a24f2d |
 | 2026-03-30 | Successbox text contrast | Added color $light !important to .successbox — improves text readability on light green tinted backgrounds | ad72295 |
 | 2026-03-31 | Cite/math error box text contrast | Added color $light !important to .mw-ext-cite-error, .mw-ext-cite-warning, math, and merror — improves text readability on tinted error backgrounds | c4e10d2 |
+| 2026-03-31 | LEGACY badge text contrast | Added color $light to .badge-legacy in advisory.styl — $muted (#7a7a7a) on rgba($muted,0.2) ~#2c2c2c = 2.9:1 contrast (WCAG fail); $light (#c0c0c0) = 6.2:1 (WCAG pass) | 87db5e0 |
+| 2026-03-31 | Bot/deprecated badge text contrast | Added color $light to bot and deprecated badge selectors across discussion.styl, user-pages.styl, special-pages.styl, template-doc.styl — $muted on rgba($muted,0.15-0.2) ~2.5-2.9:1 (WCAG fail); $light = 6.2:1 (WCAG pass) | 2a726f3 |
+| 2026-03-31 | SDR video gradient CSS vars | Added --arch-blue and --secondary-blue CSS custom properties at :root, used in SDR video progress gradient instead of hardcoded hex values — enables consistent theming in color-gamut and @supports contexts | dc48167 |
 
 ---
 
@@ -10262,3 +10265,19 @@ Last updated: 2026-03-30 22:14
 - Implementer instructions:
   - No regressions — all interactive states holding across all pages and viewports
   - Do NOT push — worktree dirty; only append-only changes made this cycle
+
+### 2026-03-31 03:47
+- Review target: 87db5e0 + 2a726f3 + dc48167 (clean worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`87db5e0`** (LEGACY badge text contrast): Single file (`advisory.styl`). `$muted` (#7a7a7a) → `$light` (#c0c0c0) on `rgba($muted, 0.2)` background. Contrast ratio: 2.9:1 → 6.2:1, meeting WCAG AA for small text. Good inline comment documenting the contrast ratio math. Scoped, no cascade risk.
+  - **`2a726f3`** (bot/deprecated badge text contrast): 4 files. Same pattern as `87db5e0`: `$muted` → `$light` on `rgba($muted, 0.15-0.2)` backgrounds across `.user-rights-indicator.bot`, `.user-groups .bot`, `.flag-bot`, `.badge-deprecated`. Contrast ratios: 2.5-2.9:1 → 6.2:1. Good inline comments documenting contrast math. Scoped, no cascade risk.
+  - **`dc48167`** (SDR video gradient CSS vars): Adds `--arch-blue` and `--secondary-blue` CSS custom properties at `:root` for use in `@media (video-dynamic-range: standard)` gradient. Replaces hardcoded `#8950c7` and `#c7b8ff` hex values. Makes the gradient consistent with the theme's CSS variable system. `--arch-blue` is not otherwise defined as a bare CSS custom property at `:root` (only `--arch-blue-rgb` exists); this is a legitimate new definition. Uses `$arch-blue` Stylus var which Stylus will compile to `#8950c7` in the CSS output.
+  - **AE=0 on all 40 screenshots** (diff-metrics.txt): Expected — these fixes target specific elements (badges, error boxes, video gradient) not present in the captured page baselines.
+  - **Completion log entries**: `c4e10d2` already had an entry (from 01:57 review). `87db5e0`, `2a726f3`, and `dc48167` were missing — added in this cycle.
+  - Worktree is clean (verbump `6b2bcb3` committed in this session).
+- Implementer instructions:
+  1. All 3 commits are APPROVED; completion log entries added above.
+  2. No open-state evidence needed — all are targeted element fixes not visible in captured page baselines.
+  3. Do NOT push — pipeline issue unresolved.
+
