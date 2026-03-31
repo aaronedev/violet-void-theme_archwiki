@@ -1630,6 +1630,30 @@ h6:hover .mw-editsection
 
 
 // =============================================================================
+// SCROLL-MARKER PROPERTY
+// =============================================================================
+// Enable scroll markers on scroll containers for CSS-only scroll snapping feedback
+// Browser support: 85%+ (Chrome 129+)
+// https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-marker
+// Note: Wrap in @supports for Stylus - Firefox/Safari don't yet support scroll-marker
+
+@supports (scroll-marker: scroll-marker)
+  // Enable scroll markers on a scroll container
+  // Pair with ::scroll-marker and ::scroll-marker-group pseudo-elements for styling
+  // Usage: Add .scroll-marker-container to any scrollable element
+  .scroll-marker-container
+    scroll-marker scroll-marker
+
+  // Auto scroll markers (browser decides which markers to show)
+  .scroll-marker-auto
+    scroll-marker auto
+
+  // Disable scroll markers on a container that would otherwise inherit them
+  .scroll-marker-none
+    scroll-marker none
+
+
+// =============================================================================
 // SCROLL START/END PROPERTIES
 // =============================================================================
 // Define scroll snap boundaries with scroll-start and scroll-end
