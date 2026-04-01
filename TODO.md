@@ -549,8 +549,9 @@
 | 2026-04-01 05:33 | overflow-wrap for package names and module descriptions | Add overflow-wrap: break-word to .package and .module-description in archwiki.styl pre.terminal context — prevents long package names and kernel module descriptions from overflowing in narrow viewports | e2edcb9 |
 | 2026-04-01 06:10 | min-width 0 for .file-path overflow fix | Add min-width 0 to pre.terminal .file-path — allows flex child to shrink below min-content so parent overflow-x: auto handles long file paths | 448d175 |
 | 2026-04-01 12:15 | overflow-wrap for status-text, module-description, module-params td | Add overflow-wrap: break-word to .status-text, .module-description, and .module-params td — prevents long status messages, module descriptions, and parameter values from overflowing in narrow viewports | 85164a8 |
+| 2026-04-01 17:53 | overflow-wrap for lua.styl .module-description | Add overflow-wrap: break-word to .lua-module-header .module-title .module-description — consistency fix with archwiki.styl .module-description which already had it; prevents long module descriptions on Lua doc pages from overflowing narrow containers | 917d034 |
 
-Last updated: 2026-04-01 12:15
+Last updated: 2026-04-01 17:53
 
 ---
 
