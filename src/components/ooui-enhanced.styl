@@ -502,6 +502,9 @@
   border-radius $border-radius-md
   box-shadow $shadow-elevated
   padding 1em
+  // Prevent width collapse - ArchWiki may set explicit narrow width
+  // min-width creates a non-overridable floor; matches .vector-pinned-container
+  min-width 200px
 
   // Popup arrow
   &.oo-ui-popupWidget-anchored
