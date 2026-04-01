@@ -54,12 +54,21 @@ textarea
   transition all $transition-fast
   box-shadow inset 0 1px 2px rgba($darker, 0.06)
   font-family $font-sans
+  // text-wrap: stable keeps lines stable while user is actively typing
+  // Prevents disorienting text reflow during editing
+  // Browser support: 85%+ (Chrome 117+, Firefox 121+, Safari 18+)
+  text-wrap stable
 
   &:focus-visible
     focus-ring()
 
   &::placeholder
     color rgba($light, 0.5)
+
+// Contenteditable elements (VisualEditor and similar)
+// Same stable wrapping behavior for consistent editing experience
+[contenteditable]
+  text-wrap stable
 
 input:disabled
 input:read-only

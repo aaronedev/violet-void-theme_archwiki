@@ -1528,6 +1528,8 @@ ruby.under
 // Browser support: 92%+
 // text-wrap: balance - Balances lines in headlines for better appearance
 // text-wrap: pretty - Prevents orphans in paragraphs (single words on last line)
+// text-wrap: stable - Keeps lines stable during editing; re-wraps on input commit
+// Browser support for stable: 85%+ (Chrome 117+, Firefox 121+, Safari 18+)
 
 // Balanced text for headlines - distributes words more evenly across lines
 // Great for headings, titles, and short blocks of text
@@ -1538,6 +1540,12 @@ ruby.under
 // Browser adjusts line breaks to avoid single words on last line
 .text-pretty
   text-wrap pretty
+
+// Stable text wrapping - prevents reflow during editing
+// Keeps lines stable while user is actively typing; browser re-wraps on input commit
+// Browser support: 85%+ (Chrome 117+, Firefox 121+, Safari 18+)
+.text-stable
+  text-wrap stable
 
 // Apply to all headings for better typography
 h1
