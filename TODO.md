@@ -3410,14 +3410,14 @@ Last updated: 2026-03-31 15:22
   - Comment styling
   - Variable/setting distinction
 
-- [ ] **Installation Status Boxes** (CSS)
+- [x] **Installation Status Boxes** (CSS) (done: 2026-04-01 03:22, commit: 78e2e04)
   - File: `src/components/archwiki.styl`
   - Installation status indicators
   - Available/Installed/Orphaned states
   - Package dependency diagrams
   - Service status indicators
 
-- [ ] **Kernel Module Styling** (CSS)
+- [x] **Kernel Module Styling** (CSS) (done: 2026-04-01 03:22, commit: 78e2e04)
   - File: `src/components/archwiki.styl`
   - Module info boxes
   - Module parameter tables
@@ -7912,6 +7912,8 @@ Last updated: 2026-03-31 15:22
 | 2026-03-31 | SDR video gradient CSS vars | Added --arch-blue and --secondary-blue CSS custom properties at :root, used in SDR video progress gradient instead of hardcoded hex values — enables consistent theming in color-gamut and @supports contexts | dc48167 |
 | 2026-03-31 | display: inline flow utilities | Add display utilities (inline flow, inline flow-root, block flow) with @supports fallbacks for Chrome 129+, Safari 17.5+, Firefox not yet — 85%+ browser support | f1c27cb |
 | 2026-03-31 | Extend prefers-reduced-transparency for .modal/.overlay/.popover-backdrop | Add .modal, .overlay, and .popover-backdrop to @media (prefers-reduced-transparency reduce) block in modern-css.styl — solid $darker backgrounds and no backdrop-filter for users with transparency sensitivity | 53efc06 |
+| 2026-04-01 | Installation Status Boxes | Added .install-status styling — Available/Installed/Orphaned/Out-of-date states with styled ::before icons, package name in Arch blue, full border-radius/padding/layout | 78e2e04 |
+| 2026-04-01 | Kernel Module Styling | Added .module-info box styling — module name/description, parameter tables, loaded/blacklisted state ::after indicators, border-left accent color per state | 78e2e04 |
 
 ---
 
