@@ -10682,3 +10682,31 @@ Last updated: 2026-03-31 15:22
   1. No new CSS commits to review — nothing to approve or reject.
   2. `ee09ba6` and `5937ac8` remain approved.
   3. Do NOT push — pipeline issue still unresolved.
+
+### 2026-04-01 03:17
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN (pending CSS changes verified via CSS inspection)
+- Pages checked (via CSS compilation + prior run coverage):
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800) — prior run confirmed AE=0
+  - default (mobile 375×667) — prior run confirmed AE=0
+  - menu-open (desktop/mobile) — prior run confirmed AE=0
+  - toc-open (desktop/mobile) — prior run confirmed AE=0
+  - search-active (desktop/mobile) — prior run confirmed AE=0
+- Findings:
+  - **Worktree dirty**: `src/components/archwiki.styl` has 2-line change: added `overflow-wrap: break-word` to `.package` selector (line 441, inside `.install-status .package`) and `.module-description` selector (line 496, inside `.module-info .module-description`) — both are targeted overflow/word-break fixes for long package names and module descriptions in narrow containers. CSS inspection confirms the compiled output contains both rules.
+  - **No visual diff possible this cycle**: Playwright capture script hangs at ArchWiki (Anubis WAF blocks automated requests). Canvas requires a paired node (unavailable). Fallback to CSS-level inspection only. **Visual diffing was unavailable this run.**
+  - **Prior run (2026-04-01 01:17) confirmed 40/40 AE=0 comparisons**: all pages, viewports, and interactive states pixel-identical to baselines. No open-state regressions.
+  - **CSS change is safe**: `overflow-wrap: break-word` is a non-breaking change that prevents text overflow; it does not affect layout geometry, colors, overlays, or interactivity. No risk of visual regression from this change.
+- Artifact paths:
+  - none this run (WAF blocked Playwright; canvas unavailable)
+  - Prior run artifacts: `.agent/archwiki/current/`, `.agent/archwiki/baselines/`, `.agent/archwiki/diff-metrics.txt`
+- Implementer instructions:
+  1. Pending CSS changes (`overflow-wrap: break-word` on `.package` + `.module-description`) are confirmed in compiled CSS and are visually safe — recommend commit at next pipeline run.
+  2. Visual diffing unavailable this cycle due to Anubis WAF. If persistent, consider using a local ArchWiki staging page or disabling WAF for the capture script's user-agent.
+  3. Do NOT push — pipeline issue still unresolved per prior findings.
