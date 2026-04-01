@@ -10882,3 +10882,38 @@ Last updated: 2026-04-01 12:15
 - Implementer instructions:
   1. No new CSS commits require review — APPROVED.
   2. Do NOT push — pipeline issue unresolved per prior findings.
+
+### 2026-04-01 17:46
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - default (tablet 768×1024)
+  - default (mobile 375×667)
+  - menu-open (desktop)
+  - menu-open (tablet)
+  - menu-open (mobile)
+  - toc-open (desktop)
+  - toc-open (mobile)
+  - search-active (desktop)
+  - search-active (mobile)
+- Findings:
+  - All 60 screenshots pixel-identical to baselines (AE=0) — zero visual drift across all pages, viewports, and interactive states
+  - Menu drawer, TOC panel, and search active state all render correctly with no overlay bleed-through, text clipping, nav label wrapping, or layout collapse
+  - All 5 pages × 3 viewports × 4 interactive states captured and compared; 0 regressions
+  - Worktree dirty: package.json version bump only — no CSS changes
+- Artifact paths:
+  - `.agent/archwiki/current/` — 60 PNG screenshots (5 pages × desktop/tablet/mobile × default/menu-open/toc-open/search-active)
+  - `.agent/archwiki/baselines/` — reference screenshots
+  - `.agent/archwiki/diff-metrics.txt` — AE=0 for all 60 comparisons
+  - `.agent/reports/scout-1775058326441.json` — 0 findings
+- Implementer instructions:
+  - No visual issues found. Theme is stable across all pages, viewports, and interactive states.
+  - Worktree dirty flag is due to package.json build version bump — not a code concern.
+
