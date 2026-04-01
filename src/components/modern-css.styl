@@ -2063,19 +2063,19 @@ h4[id]
 
 // Base :host-context() - style based on any ancestor matching selector
 :host-context(.dark-theme)
-  --component-bg #1a1a1a
-  --component-text #e0e0e0
+  --component-bg $dark
+  --component-text $lighter
 
 :host-context(.light-theme)
-  --component-bg #ffffff
-  --component-text #333333
+  --component-bg $white
+  --component-text $dark
 
 // :host-context() with functional selector - style when ancestor has class
 :host-context(.theme-primary)
-  --component-accent var(--theme-primary, #8b5cf6)
+  --component-accent var(--theme-primary, $arch-blue)
 
 :host-context(.theme-danger)
-  --component-accent var(--theme-danger, #ef4444)
+  --component-accent var(--theme-danger, $red)
 
 // :host-context() for direction-based styling
 :host-context([dir="rtl"])
