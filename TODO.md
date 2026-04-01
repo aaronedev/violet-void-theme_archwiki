@@ -3403,7 +3403,7 @@ Last updated: 2026-03-31 15:22
   - Root vs user prompt distinction
   - Commit: cca8d22
 
-- [ ] **Configuration File Blocks** (CSS)
+- [x] **Configuration File Blocks** (CSS)
   - File: `src/components/archwiki.styl`
   - File path header
   - Syntax highlighting for configs
@@ -10633,6 +10633,39 @@ Last updated: 2026-03-31 15:22
   1. No CSS changes need review — nothing to approve or reject from a CSS implementation standpoint.
   2. Correct the TODO.md "Visual Scout Findings" entry: remove "default (tablet)" from the states-checked list since no tablet artifacts were captured.
   3. Do NOT push — pipeline issue still unresolved.
+
+## Visual Scout Findings
+
+### 2026-04-01 01:17
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - default (mobile 375×667)
+  - menu-open (desktop)
+  - menu-open (mobile)
+  - toc-open (desktop)
+  - toc-open (mobile)
+  - search-active (desktop)
+  - search-active (mobile)
+- Findings:
+  - All 40/40 captures pixel-identical to baselines (AE=0) — zero visual drift
+  - Menu drawer, TOC panel, and search active state all render correctly across all 5 pages
+  - No overlay bleed-through, text clipping, nav label wrapping, or layout collapse
+  - Worktree dirty: package.json version bump only (20260331.18.54 → 20260401.00.53) — no CSS changes
+- Artifact paths:
+  - .agent/archwiki/current/ — 40 PNG screenshots (desktop + mobile, all 4 states)
+  - .agent/archwiki/baselines/ — reference screenshots
+  - .agent/archwiki/diff-metrics.txt — AE=0 for all 40 comparisons
+- Implementer instructions:
+  - No visual issues found. Theme is stable across all interactive states at desktop and mobile viewports.
+  - Worktree dirty flag is due to package.json build version bump — not a code concern.
 
 ### 2026-04-01 00:48
 - Review target: dirty worktree (package.json version bump 20260331.18.54 → 20260401.00.29)
