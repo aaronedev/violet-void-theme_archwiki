@@ -546,7 +546,40 @@
 | 2026-03-31 15:08 | Generic ::view-transition-*(**) fallbacks | Add ::view-transition-image-pair(*), ::view-transition-old(*), ::view-transition-new(*) generic fallbacks for unnamed transitions — isolation: isolate + cross-fade (vt-generic-fade-out/in keyframes) ensures consistent styling for view transitions without explicit view-transition-name | 5937ac8 |
 | 2026-03-31 15:12 | scroll-marker stylelint ignoreProperties | Add scroll-marker to property-no-unknown ignoreProperties in .stylelintrc.json (CSS and Stylus rules) — scroll-marker supported in Chrome 129+ but not yet in Stylus linter DB; replace /* stylelint-disable */ comment with // Note: comment | ee09ba6 |
 
-Last updated: 2026-03-31 15:22
+Last updated: 2026-04-01 07:40
+
+---
+
+## Visual Scout Findings
+
+### 2026-04-01 09:39
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - mobile.default
+  - tablet.default
+  - desktop.search-active (baseline)
+  - desktop.toc-open (baseline)
+  - mobile.search-active (baseline)
+  - mobile.toc-open (baseline)
+- Findings:
+  - All 40 screenshots: AE=0 vs baselines — no pixel differences detected
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow)
+  - Interactive state capture (TOC, search) not fully triggered by scout script on current ArchWiki UI selectors — baseline images exist for these states and are clean
+- Artifact paths:
+  - .agent/reports/scout-1775029232945.json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+  - Consider updating archwiki-scout.js to use more robust ArchWiki UI selectors for TOC/search-interactive states
 
 ### 2026-03-28 19:25
 - Review target: 7903c4c (`:seeking` pseudo-class for video/audio scrub states)
