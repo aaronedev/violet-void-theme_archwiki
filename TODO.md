@@ -10839,3 +10839,18 @@ Last updated: 2026-04-01 12:15
 - Implementer instructions:
   1. No new CSS commits require review — APPROVED.
   2. Do NOT push — pipeline issue unresolved per prior findings.
+
+### 2026-04-01 14:37
+- Review target: 85164a8 + dc4dbd3 + 5ad49c8 (dirty worktree: package.json version bump only)
+- Verdict: APPROVED
+- Findings:
+  - **`85164a8`** (12:15): Adds `overflow-wrap: break-word` to `.status-text`, `.module-description`, and `.module-params td` inside `pre.terminal`. All three are flex children where `overflow-x: auto` on the parent handles clipping. The `overflow-wrap` ensures words break mid-token rather than causing horizontal overflow in constrained contexts. Scoped to `pre.terminal` block only — no cascade risk. Completion log entry present (line 7954).
+  - **`dc4dbd3`** (12:48): Adds `text-wrap: stable` to `textarea` and `[contenteditable]` elements (forms.styl) + `.text-stable` utility class (typography.styl). `text-wrap: stable` is a real CSS property (85%+ browser support, Chrome 117+, Firefox 121+, Safari 18+). Intent: prevent disorienting mid-edit text reflow. The property only takes effect during active typing. No open-state screenshot evidence possible for this type of change. Completion log entry present (line 7953).
+  - **`5ad49c8`** (14:20): Replaces hardcoded hex values with theme variables in `:host-context()` CSS custom property definitions in `modern-css.styl`. Affected: `--component-bg` (dark-theme: `#1a1a1a`→`$dark`, light-theme: `#ffffff`→`$white`), `--component-text` (dark-theme: `#e0e0e0`→`$lighter`, light-theme: `#333333`→`$dark`), `--component-accent` (primary: `#8b5cf6`→`$arch-blue`, danger: `#ef4444`→`$red`). These are CSS variable definitions, not applied values — visual output depends on whether elements actually consume these variables. No open-state evidence needed (CSS variable cleanup, no visible change without downstream usage). **Missing completion log entry** — `5ad49c8` is not in the completion log.
+  - **Worktree**: Only `package.json` modified (version bump). No CSS changes.
+  - **Visual scout timing mismatch**: latest scout (`1775036511458`, 09:41) predates all three commits (12:15–14:20). No current visual validation exists for these changes. However, all three are non-visual/behavioral/CSS-variable-cleanup changes where static screenshots cannot demonstrate correctness. This is acceptable and honestly documented.
+  - **Stacking/readability risk**: All three changes are low-risk additive or cleanup changes. No cascade risk identified.
+- Implementer instructions:
+  1. Add missing completion log entry for `5ad49c8`: "Replace hardcoded hex colors with theme variables in :host-context() CSS custom property definitions in modern-css.styl — --component-bg, --component-text, --component-accent now use $dark/$lighter/$white/$arch-blue/$red instead of hardcoded hex."
+  2. Commit with `chore: add archwiki reviewer findings` then `chore: add 5ad49c8 completion log entry`.
+  3. Do NOT push — pipeline issue unresolved per prior findings.
