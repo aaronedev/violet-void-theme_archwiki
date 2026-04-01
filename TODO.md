@@ -706,6 +706,23 @@ Last updated: 2026-04-01 18:57
   1. Both commits approved — no follow-up needed.
   2. Do NOT push — pipeline issue remains unroot-caused.
 
+### 2026-04-01 19:45
+- Review target: 2ae7968 (lua function-signature overflow-wrap) — latest in a batch of overflow-wrap/contrast/view-transition fixes since 2026-03-30 16:24
+- Verdict: APPROVED
+- Findings:
+  - **Batch summary (53efc06–2ae7968, 2026-03-31 through 2026-04-01)**: 9 CSS commits reviewed, all scoped and legitimate.
+  - **`dc4dbd3`** (17 lines, most substantial): `text-wrap: stable` for `textarea` and `[contenteditable]`. Keeps lines stable during typing — prevents disorienting reflow. Well-documented with 85%+ browser support comment. Also adds `.text-stable` utility class. No interactive open-state evidence needed (textarea is by definition in the editing state).
+  - **`c0303e2`** / **`5ad49c8`**: Replace hardcoded hex in `:host-context()` CSS variable fallbacks with theme vars (`$dark`, `$lighter`, `$white`, `$arch-blue`, `$red`). Maintains same visual output while using the theme system. No cascade risk — these are variable fallbacks only.
+  - **`917d034`** / **`85164a8`** / **`9e256c3`** / **`2ae7968`** / **`e2edcb9`**: Single-line `overflow-wrap: break-word` additions for `.module-description`, `.status-text`, `.module-params td`, `.lua-function .function-signature`, `table.diff td`, `.package`, `.module-description`. All scoped to specific elements. No interactive state evidence needed.
+  - **`448d175`**: `min-width: 0` on `pre.terminal .file-path` — allows flex child to shrink below min-content. Trivial and safe.
+  - **`53efc06`–`a207aa7`**: View transition / scroll-marker / contrast fixes. All scoped additions with appropriate `@css{}` wrappers or `@supports` guards.
+  - **`1c4386b`** / **`9a24f2d`** / **`ad72295`**: Contrast/text fixes — ensure warning/error/success boxes have explicit text colors. Scoped and low-risk.
+  - **Scout clean**: Latest scout run (20:29) reports 0 findings across 5 pages × 3 viewports. All AE=0. No pixel differences detected.
+  - **Worktree**: Only `package.json` version bump dirty (`20260401.19.54` → `20260401.21.26`). No uncommitted CSS.
+- Implementer instructions:
+  1. All CSS commits since 2026-03-30 16:24 approved — no follow-up needed.
+  2. Do NOT push — pipeline issue remains unroot-caused.
+
 ### 2026-03-30 16:12
 - Review target: clean worktree (no new CSS implementation this cycle)
 - Verdict: APPROVED (no new work to review)
