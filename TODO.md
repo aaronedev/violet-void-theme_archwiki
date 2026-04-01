@@ -550,10 +550,12 @@
 | 2026-04-01 06:10 | min-width 0 for .file-path overflow fix | Add min-width 0 to pre.terminal .file-path — allows flex child to shrink below min-content so parent overflow-x: auto handles long file paths | 448d175 |
 | 2026-04-01 12:15 | overflow-wrap for status-text, module-description, module-params td | Add overflow-wrap: break-word to .status-text, .module-description, and .module-params td — prevents long status messages, module descriptions, and parameter values from overflowing in narrow viewports | 85164a8 |
 | 2026-04-01 17:53 | overflow-wrap for lua.styl .module-description | Add overflow-wrap: break-word to .lua-module-header .module-title .module-description — consistency fix with archwiki.styl .module-description which already had it; prevents long module descriptions on Lua doc pages from overflowing narrow containers | 917d034 |
-
-Last updated: 2026-04-01 17:53
+| 2026-04-01 18:29 | overflow-wrap for diff table cells | Add overflow-wrap: break-word to table.diff td in src/components/diff.styl — prevents long lines in diff views from overflowing narrow containers | 9e256c3 |
+| 2026-04-01 18:57 | overflow-wrap for Lua function signatures | Add overflow-wrap: break-word to .lua-function .function-signature in src/components/lua.styl — prevents long Lua function signatures with many parameters from overflowing narrow containers on Lua doc pages | 
 
 ---
+
+Last updated: 2026-04-01 18:57
 
 ## Visual Scout Findings
 
@@ -10678,6 +10680,21 @@ Last updated: 2026-04-01 17:53
   1. No CSS changes need review — nothing to approve or reject from a CSS implementation standpoint.
   2. Correct the TODO.md "Visual Scout Findings" entry: remove "default (tablet)" from the states-checked list since no tablet artifacts were captured.
   3. Do NOT push — pipeline issue still unresolved.
+
+### 2026-04-01 18:35
+- Review target: 9e256c3 (dirty worktree: package.json version bump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`9e256c3`** (18:29): adds `overflow-wrap: break-word` to `table.diff td` in `src/components/diff.styl`. Scoped one-line fix — prevents long lines in diff tables from overflowing narrow containers. Follows established pattern from prior overflow-wrap fixes (`85164a8`, `917d034`, `e2edcb9`, `448d175`). No theme vars needed (text wrapping only). Build compiles cleanly.
+  - **Scout report** (`scout-1775058326441.json`, 15:45): 0 findings across 5 pages × 3 viewports — CLEAN. AE=0 across all comparisons.
+  - **Open-state evidence not applicable**: diff table is a read-only view; no interactive open-state to capture. Consistent with prior diff-view styling (`b9d680c`) treatment.
+  - **Missing completion log entry**: `9e256c3` is NOT in the completion log. Last logged entry is `917d034` (17:53). Same gap pattern flagged for `5ad49c8` at 14:37 — implementer needs to add the completion log entry.
+  - **Worktree**: only `package.json` modified (version bump `20260401.08.17 → 20260401.18.29`) — consistent with build script auto-bump on commit.
+- Implementer instructions:
+  1. Add completion log entry for `9e256c3`: "overflow-wrap for diff table cells — add overflow-wrap: break-word to table.diff td in src/components/diff.styl — prevents long lines in diff views from overflowing narrow containers."
+  2. Update "Last updated" timestamp to 2026-04-01 18:35.
+  3. Commit with `chore: add archwiki reviewer findings` then `chore: update completion log for diff.styl overflow-wrap fix`.
+  4. Do NOT push — pipeline issue unresolved per prior findings.
 
 ## Visual Scout Findings
 
