@@ -322,6 +322,9 @@ pre.terminal
     display flex
     align-items center
     gap 0.5em
+    // Allow flex item to shrink below min-content size so parent
+    // overflow-x: auto can handle long file paths instead of overflowing
+    min-width 0
 
     &::before
       content '📄'
