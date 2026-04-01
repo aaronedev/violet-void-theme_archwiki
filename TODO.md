@@ -545,8 +545,10 @@
 | 2026-03-31 12:29 | view-transition-name Property Utilities | Add view-transition-name utility classes in view-transitions.styl — .view-vt-name-hero, .view-vt-name-title, .view-vt-name-content, .view-vt-name-sidebar, .view-vt-name-toc, .view-vt-name-infobox, .view-vt-name-root for naming elements in view transitions (85%+ browser support) | 45185ca |
 | 2026-03-31 15:08 | Generic ::view-transition-*(**) fallbacks | Add ::view-transition-image-pair(*), ::view-transition-old(*), ::view-transition-new(*) generic fallbacks for unnamed transitions — isolation: isolate + cross-fade (vt-generic-fade-out/in keyframes) ensures consistent styling for view transitions without explicit view-transition-name | 5937ac8 |
 | 2026-03-31 15:12 | scroll-marker stylelint ignoreProperties | Add scroll-marker to property-no-unknown ignoreProperties in .stylelintrc.json (CSS and Stylus rules) — scroll-marker supported in Chrome 129+ but not yet in Stylus linter DB; replace /* stylelint-disable */ comment with // Note: comment | ee09ba6 |
+| 2026-04-01 05:33 | overflow-wrap for package names and module descriptions | Add overflow-wrap: break-word to .package and .module-description in archwiki.styl pre.terminal context — prevents long package names and kernel module descriptions from overflowing in narrow viewports | e2edcb9 |
+| 2026-04-01 06:10 | min-width 0 for .file-path overflow fix | Add min-width 0 to pre.terminal .file-path — allows flex child to shrink below min-content so parent overflow-x: auto handles long file paths | 448d175 |
 
-Last updated: 2026-04-01 07:40
+Last updated: 2026-04-01 12:01
 
 ---
 
@@ -10805,3 +10807,30 @@ Last updated: 2026-04-01 07:40
   1. No new CSS commits require review — APPROVED.
   2. 86bbb93 (visual scout findings) is approved; ready to push when pipeline is cleared.
   3. Do NOT push — pipeline issue remains unresolved per prior findings.
+
+### 2026-04-01 11:26
+- Review target: dirty worktree (package.json version bump only; no new CSS)
+- Verdict: APPROVED (no new implementation this cycle)
+- Findings:
+  - **No new CSS implementation since 10:51 review.** Worktree dirty with only: package.json version bump `20260401.08.17 → 20260401.11.08` (build script auto-bump).
+  - **c4eab10** is a local-only reviewer findings commit (this cycle's meta-commit). **86bbb93** is also unpushed (visual scout findings from 09:39). Both approved but not yet on origin/main.
+  - **Prior CSS commits (448d175, e2edcb9)** — approved at 06:56, completion log entries added in this review cycle.
+  - **Scout report `scout-1775029232945.json`** (09:40): 0 findings across 5 pages × 3 viewports — CLEAN.
+  - **No open items**: all pending items from prior reviews are either resolved or infrastructure-blocked (Anubis WAF blocking Playwright visual diffing).
+- Implementer instructions:
+  1. No new CSS commits require review — APPROVED.
+  2. Completion log updated with `e2edcb9` and `448d175` entries.
+  3. Do NOT push — pipeline issue unresolved per prior findings.
+
+### 2026-04-01 12:01
+- Review target: dirty worktree (package.json version bump only; no new CSS)
+- Verdict: APPROVED (no new implementation this cycle)
+- Findings:
+  - **No new CSS implementation since 11:26 review.** Worktree dirty with only: package.json version bump `20260401.11.08 → 20260401.12.01` (build script auto-bump).
+  - **c4eab10** is the latest local commit (reviewer findings from 11:26). **86bbb93** (visual scout) also unpushed. Both approved but blocked by same pipeline issue.
+  - **Scout reports** (scout-1775036511458.json, 09:41): 0 findings across 5 pages × 3 viewports — CLEAN. All prior scout reports also 0 findings.
+  - **Last updated timestamp gap (fixed)**: completion log header now updated to 12:01 — previously 11:26 entry not reflected.
+  - **No open items**: Anubis WAF pipeline block remains the only infrastructure issue; not a CSS problem.
+- Implementer instructions:
+  1. No new CSS commits require review — APPROVED.
+  2. Do NOT push — pipeline issue unresolved per prior findings.
