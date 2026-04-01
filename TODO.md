@@ -10710,3 +10710,50 @@ Last updated: 2026-03-31 15:22
   1. Pending CSS changes (`overflow-wrap: break-word` on `.package` + `.module-description`) are confirmed in compiled CSS and are visually safe — recommend commit at next pipeline run.
   2. Visual diffing unavailable this cycle due to Anubis WAF. If persistent, consider using a local ArchWiki staging page or disabling WAF for the capture script's user-agent.
   3. Do NOT push — pipeline issue still unresolved per prior findings.
+
+### 2026-04-01 06:56
+- Review target: 448d175 + e2edcb9 (dirty worktree: package.json version bump)
+- Verdict: APPROVED
+- Findings:
+  - **`e2edcb9`** (`overflow-wrap: break-word` on `.package` and `.module-description`): Scoped to those two selectors only. Both are inside `pre.terminal .install-status` and `pre.terminal .module-info` contexts. Prevents long package names and module descriptions from overflowing in narrow containers. Uses theme var `$arch-blue`. No open-state evidence needed (CSS text-overflow fix, non-interactive).
+  - **`448d175`** (`min-width: 0` on `.file-path` inside `pre.terminal`): Correct CSS pattern. `pre.terminal` has `overflow-x: auto` at line 310; setting `min-width: 0` on the flex child `.file-path` allows it to shrink below min-content size so the parent's `overflow-x: auto` can activate for long file paths. Comment accurately describes the fix. No open-state evidence needed (layout/overflow fix, no interactive UI).
+  - **Commit message typo**: `e2edcb9` message says "module names" but diff changes `.module-description` (not `.module-name`). Intent is clear from context; cosmetic issue only.
+  - **Worktree**: package.json version bump `20260401.05.33` → `20260401.06.37` (build script auto-bump). No dirty `.styl` changes — both commits are cleanly applied.
+  - **Scout reports**: both `scout-1774976689200.json` and `scout-1774976758413.json` show 0 findings across 5 pages × 3 viewports.
+  - **Missing completion log entry**: `b7e4434` marked Configuration File Blocks `[x]` in implementation list but did NOT add a completion log entry. No date/commit for this item in the completion log. Minor documentation gap — does not block approval.
+- Implementer instructions:
+  1. Add completion log entry for Configuration File Blocks (commit `b7e4434`, date 2026-04-01, description of what was done).
+  2. No further action needed for `e2edcb9` or `448d175`.
+  3. Do NOT push — 18 unpushed commits, pipeline issue unresolved.
+
+### 2026-04-01 07:37
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop default
+  - desktop menu-open
+  - mobile default
+  - mobile menu-open
+  - tablet default
+  - (toc-open, search-active — prior run confirmed AE=0)
+- Findings:
+  - 40/40 pixel comparisons AE=0 — all screenshots identical to baselines
+  - No menu panel width collapse, nav label wrapping, popup compression, or overlay conflicts detected
+  - No interactive state regressions across desktop/mobile/tablet viewports
+  - ArchWiki accessible with 0 console errors in Chromium
+  - Build: `npm run build` succeeds cleanly, version `20260401.07.37`
+- Artifact paths:
+  - `.agent/archwiki/current/` — 40 PNG screenshots (desktop/mobile/tablet, default + menu-open)
+  - `.agent/archwiki/baselines/` — 40 baseline PNGs
+  - `.agent/archwiki/diff-metrics.txt` — all AE=0
+  - `.agent/reports/scout-1775021873503.json` — 0 findings
+- Implementer instructions:
+  1. Theme is visually clean across all captured states. No action needed.
+  2. If pushing, commit message: `chore: add archwiki visual scout findings`
+  3. Do NOT push — pipeline issue still unresolved per prior findings.
