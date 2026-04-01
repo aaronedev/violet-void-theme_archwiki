@@ -7950,6 +7950,10 @@ Last updated: 2026-04-01 12:15
 | 2026-03-31 | Extend prefers-reduced-transparency for .modal/.overlay/.popover-backdrop | Add .modal, .overlay, and .popover-backdrop to @media (prefers-reduced-transparency reduce) block in modern-css.styl — solid $darker backgrounds and no backdrop-filter for users with transparency sensitivity | 53efc06 |
 | 2026-04-01 | Installation Status Boxes | Added .install-status styling — Available/Installed/Orphaned/Out-of-date states with styled ::before icons, package name in Arch blue, full border-radius/padding/layout | 78e2e04 |
 | 2026-04-01 | Kernel Module Styling | Added .module-info box styling — module name/description, parameter tables, loaded/blacklisted state ::after indicators, border-left accent color per state | 78e2e04 |
+| 2026-04-01 | text-wrap stable for forms | Added text-wrap: stable to textarea and [contenteditable] elements in forms.styl — prevents disorienting text reflow during editing; also added .text-stable utility class in typography.styl | dc4dbd3 |
+| 2026-04-01 | overflow-wrap for status-text/module-params | Added overflow-wrap: break-word to .status-text, .module-description, and .module-params td — prevents long status messages, module descriptions, and parameter values from overflowing in narrow viewports | 85164a8 |
+| 2026-04-01 | file-path overflow fix | Added min-width: 0 to .file-path — prevents long file paths from causing overflow in narrow terminal/config blocks | 448d175 |
+| 2026-04-01 | overflow-wrap for package/module names | Added overflow-wrap: break-word to .package and .module-name inside pre.terminal — prevents long package/module names from overflowing in terminal blocks | e2edcb9 |
 
 ---
 
