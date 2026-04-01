@@ -10949,3 +10949,49 @@ Last updated: 2026-04-01 18:57
   2. No other action needed — all three CSS commits are approved.
   3. Do NOT push.
 
+
+### 2026-04-01 17:46
+- Run target: visual scout
+- Verdict: CLEAN (with caveat — interactive state capture gaps)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default ✓ (captured)
+  - desktop.menu-open ✓ (captured — selector matched ArchWiki hamburger)
+  - desktop.toc-open ✗ (NOT captured — `.toc-toggle, #toc-toggle, .mw-toc-toggle` selector mismatch, silently failed)
+  - desktop.search-active ✗ (NOT captured — ArchWiki search input selector mismatch, silently failed)
+  - mobile.default ✓ (captured)
+  - tablet.default ✓ (captured)
+- Findings:
+  - AE=0 across all desktop and mobile default/menu-open states vs baselines — no pixel drift
+  - **Interactive TOC and search states NOT captured this run** — ArchWiki selector drift: `.toc-toggle`/`.mw-toc-toggle` don't match current Vector skin HTML; search uses `#searchInput` but script targets `.cdx-search-input__input` which may not exist
+  - try/catch blocks silently swallow TOC/search failures — no "!" warning logged, making gaps invisible
+  - Report shows "clean: 0" (should be page count) — reporting bug in scout script
+  - Tablet baseline comparison uses file-hash match only (no AE computed for tablet states)
+- Artifact paths:
+  - `.agent/reports/scout-1775065633107.json` — 0 findings (interactive states not triggered)
+  - `.agent/archwiki/current/` — 40 PNG screenshots (desktop+mobile, all 5 pages, all 4 states)
+  - `.agent/archwiki/diff-metrics.txt` — AE=0 for desktop+mobile comparisons
+- Implementer instructions:
+  - ArchWiki selector drift suspected for TOC toggle and search input — update archwiki-scout.js selectors to match current Vector skin HTML
+  - Add explicit "!" logging when try/catch silently fails for TOC/search states
+  - Fix "clean: 0" reporting bug in scout script (findings vs pages count mismatch)
+  - No CSS changes needed — theme visually stable; issue is tooling coverage gap, not visual regression
+
+### 2026-04-01 19:49
+- Review target: dirty worktree (TODO.md scout findings + package.json version bump)
+- Verdict: APPROVED (no new CSS implementation this cycle)
+- Findings:
+  - **No new CSS implementation this cycle.** Worktree contains only: (1) TODO.md entry documenting visual scout run at 17:46, (2) package.json version bump `20260401.08.17` → `20260401.19.29`.
+  - Last CSS commit `2ae7968` (overflow-wrap for Lua function signatures) was approved in prior cycle — completion log entry present at line ~10947.
+  - Scout verdict CLEAN is credible: AE=0 across desktop+mobile default/menu-open states vs baselines, confirmed by `.agent/archwiki/diff-metrics.txt`. Selector drift for TOC/search is a tooling issue, not a CSS regression.
+  - No open-state evidence needed — no interactive UI CSS changes this cycle.
+- Implementer instructions:
+  1. No new CSS commits to review — nothing to approve or reject.
+  2. Scout findings honestly document tooling coverage gaps (TOC/search selectors stale, silent try/catch failures, "clean: 0" reporting bug) — no CSS action needed.
+  3. Do NOT push.
+
