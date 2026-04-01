@@ -382,6 +382,7 @@
 | 2026-03-15 | CSS Math Functions (round, abs, sign, rem, mod, sqrt, hypot, pow, log, exp, trig) | 65f896f |
 | 2026-03-15 | Collapsible sections print styles for details/summary | 053dd41 |
 | 2026-03-15 | Notification Preferences Panel (CSS) | fbf4cbba |
+| 2026-03-15 | CSS `all` property shorthand for resets (`.all-initial`, `.all-unset`, `.all-revert`, etc.) | 746b78b |
 | 2026-03-30 | overflow-wrap for .reference to prevent long URL overflow | 1c4386b |
 | 2026-03-14 | animation-timeline: scroll() for scroll-driven animations | 610bf0a |
 | 2026-03-14 | Timeline Extension Styling | 04e068d5 |
@@ -2105,11 +2106,12 @@ Last updated: 2026-04-01 12:15
   - Stylus: Works directly
   - Note: Added isolation:isolate to modal/overlay, popover-backdrop, fullscreen exit button, and tooltip elements to create isolated stacking contexts for high z-index overlay components.
 
-- [ ] **`all` Shorthand for Resets** (97%+ browser support)
-  - File: `src/utilities/_reset.styl` (new file)
+- [x] **`all` Shorthand for Resets** (97%+ browser support)
+  - File: `src/utilities/reset.styl`
   - Reset all properties at once
   - `all: unset;` or `all: revert;`
   - Stylus: Works directly
+  - Commit: 746b78b
 
 ## 🌏 Vertical Writing (New)
 
