@@ -371,6 +371,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-04-01 | .oo-ui-popupWidget min-width: 200px to prevent width collapse | 3d5e5a5 |
 | 2026-03-15 | initial-letter Drop Caps, Align, Wrap | 59c7703 |
 | 2026-03-15 | Admin Dashboard Styling (CSS) | ba55f4e |
 | 2026-03-15 | User Rights Management (CSS) | ba55f4e |
@@ -10679,6 +10680,35 @@ Last updated: 2026-04-01 18:57
 - Implementer instructions:
   - No visual issues found. Theme is stable across all interactive states.
   - Worktree dirty flag is due to package.json build version bump — not a code concern.
+
+### 2026-04-01 19:49
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open, desktop.toc-open, desktop.search-active
+  - mobile.default, mobile.menu-open, mobile.toc-open, mobile.search-active
+  - tablet.default (captured by script, but no .tablet.* files exist in current/)
+- Findings:
+  - All 40 screenshots AE=0 vs baselines — zero visual drift since last run
+  - diff-metrics.txt confirms: 40/40 files with AE=0 (desktop + mobile × 5 pages × 4 states)
+  - Menu drawer, TOC panel, and search active state all render cleanly — no overlay bleed, text clipping, or width collapse
+  - Worktree dirty: package.json version bump only — no CSS changes
+  - **Known gap**: tablet viewport not actually captured (0 `.tablet.*` files in current/). The scout script attempts tablet capture but all 40 files in current/ are desktop + mobile only. Also, tablet default is the only tablet state attempted (no menu-open/toc-open/search-active for tablet). Prior reviewer noted this same gap at 2026-03-31 21:38. See implementer instructions.
+  - **Artifact anomaly**: `test-inject` (no extension) in current/ — debug artifact, not a theme file
+- Artifact paths:
+  - .agent/archwiki/current/ — 40 PNG screenshots (desktop + mobile, all 4 states; tablet missing)
+  - .agent/archwiki/baselines/ — prior reference screenshots
+  - .agent/archwiki/reports/scout-1775068141821.json — latest structured report (0 findings)
+  - .agent/archwiki/diff-metrics.txt — AE=0 for all 40 comparisons
+- Implementer instructions:
+  - No visual issues found — theme is stable across all captured interactive states
+  - **Known gap unresolved since 2026-03-28**: tablet viewport screenshots are not being produced. Root cause: archwiki-scout.js captures `tablet.default` but produces no `.tablet.*` files. Likely ArchWiki Vector skin selectors differ at 768px width causing silent failure or ArchWiki serves different markup at tablet breakpoint. Investigate and fix tablet capture; also expand tablet states beyond just `default` to include menu-open, toc-open, search-active for complete tablet coverage
 
 ## Reviewer Findings
 
