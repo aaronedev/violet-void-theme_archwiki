@@ -551,7 +551,7 @@
 | 2026-04-01 12:15 | overflow-wrap for status-text, module-description, module-params td | Add overflow-wrap: break-word to .status-text, .module-description, and .module-params td — prevents long status messages, module descriptions, and parameter values from overflowing in narrow viewports | 85164a8 |
 | 2026-04-01 17:53 | overflow-wrap for lua.styl .module-description | Add overflow-wrap: break-word to .lua-module-header .module-title .module-description — consistency fix with archwiki.styl .module-description which already had it; prevents long module descriptions on Lua doc pages from overflowing narrow containers | 917d034 |
 | 2026-04-01 18:29 | overflow-wrap for diff table cells | Add overflow-wrap: break-word to table.diff td in src/components/diff.styl — prevents long lines in diff views from overflowing narrow containers | 9e256c3 |
-| 2026-04-01 18:57 | overflow-wrap for Lua function signatures | Add overflow-wrap: break-word to .lua-function .function-signature in src/components/lua.styl — prevents long Lua function signatures with many parameters from overflowing narrow containers on Lua doc pages | 
+| 2026-04-01 18:57 | overflow-wrap for Lua function signatures | Add overflow-wrap: break-word to .lua-function .function-signature in src/components/lua.styl — prevents long Lua function signatures with many parameters from overflowing narrow containers on Lua doc pages | 2ae7968 |
 
 ---
 
