@@ -7479,12 +7479,13 @@ Last updated: 2026-04-02 09:37
 
 ## 🆕 Text Typography Extended (New - 2026-03-10 Scout 35)
 
-- [ ] **`text-wrap: balance`** for Headlines (CSS, 87%+ browser support)
+- [x] **`text-wrap: balance`** for Headlines (CSS, 87%+ browser support)
   - File: `src/typography/headlines.styl`
   - Balance text lines in headings for better readability
   - Apply to h1, h2, infobox titles
   - Limit to 3-4 lines max for performance
   - Stylus: Works directly
+  - Done: 2026-04-02 23:18, commit: 749f6da
 
 - [ ] **`text-wrap: pretty`** for Paragraphs (CSS, 85%+ browser support)
   - File: `src/typography/paragraphs.styl`
