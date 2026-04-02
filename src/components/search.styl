@@ -207,6 +207,57 @@ em
     background-color rgba($orange, 0.12)
 
 // =============================================================================
+// REDIRECT INDICATORS IN SEARCH SUGGESTIONS
+// =============================================================================
+
+// Redirect page icon in suggestion dropdown
+// Pages that are redirects get a special redirect arrow indicator
+.suggestion-icon.redirect
+.search-type-icon.redirect
+  color $secondary-red
+
+  &::before
+    content "↪"
+    font-size 1em
+    font-weight 600
+
+// Redirect badge inline in suggestion results
+.suggestion-redirect-badge
+.search-redirect-badge
+  display inline-flex
+  align-items center
+  gap 0.2em
+  font-size 0.7em
+  font-weight 500
+  padding 0.1em 0.4em
+  border-radius $border-radius-sm
+  background rgba($secondary-red, 0.12)
+  color $secondary-red
+  border 1px solid rgba($secondary-red, 0.25)
+  vertical-align middle
+  margin-left 0.4em
+  font-style italic
+
+  &::before
+    content "↪ "
+    font-style normal
+
+// Redirect links within suggestion items get arrow suffix
+.suggestions-result
+.search-suggestion
+  a.mw-redirect
+    color $term-yellow
+
+    &::after
+      content " ↪"
+      font-size 0.75em
+      opacity 0.7
+      vertical-align middle
+
+    &:hover
+      color $term-bright-yellow
+
+// =============================================================================
 // CATEGORY BADGES WITH TABULAR-NUMS
 // =============================================================================
 
