@@ -11434,3 +11434,36 @@ Last updated: 2026-04-02 09:37
 - Implementer instructions:
   1. Add completion log entry for `03664ff`: "overflow-wrap for .package-name to prevent long package name overflow in terminal command blocks"
   2. Do NOT push — pipeline issue remains unroot-caused.
+
+### 2026-04-02 21:40
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - New CSS commit `749f6da` (adds .infobox-title to text-wrap balance selectors) produced no visible pixel difference — benign text wrapping change
+  - Worktree dirty: only package.json version bump (harmless auto-timestamp)
+  - Scout also captured tablet viewport (not in baselines — no comparison done)
+  - TOC/search-active state selectors not fully triggering capture on current ArchWiki UI (consistent with prior runs)
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-1775166029745.json
+  - diff-metrics.txt (40 AE=0)
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+  - Consider updating archwiki-scout.js selectors for TOC/search active states on current ArchWiki UI
