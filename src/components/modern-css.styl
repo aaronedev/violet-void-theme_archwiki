@@ -1072,6 +1072,9 @@ h4[id]
 
   /* RGB decomposition of $base (#181818 = rgb(24, 24, 24)) for use in rgba() */
   --base-rgb: 24, 24, 24;
+
+  /* RGB decomposition of $secondary-blue (#c7b8ff = rgb(199, 184, 255)) for use in rgba() */
+  --secondary-blue-rgb: 199, 184, 255;
 }
 
 // Apply custom properties to root
@@ -2209,31 +2212,31 @@ h4[id]
 
     /* Read-only state */
     :state(readonly) {
-      background: rgba(137, 80, 199, 0.05);
+      background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.05);
       border-style: dashed;
     }
 
     /* Checked/selected state */
     :state(checked) {
-      background: rgba(137, 80, 199, 0.15);
+      background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.15);
       border-color: var(--arch-blue);
     }
 
     /* Indeterminate state (like checkboxes) */
     :state(indeterminate) {
-      background: rgba(199, 184, 255, 0.1);
+      background: rgba(var(--secondary-blue-rgb, 199, 184, 255), 0.1);
       border-color: var(--secondary-blue);
     }
 
     /* Active/pressed state */
     :state(active) {
-      background: rgba(137, 80, 199, 0.2);
+      background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.2);
       transform: scale(0.98);
     }
 
     /* Expanded state (for collapsible elements) */
     :state(expanded) {
-      background: rgba(137, 80, 199, 0.08);
+      background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.08);
       border-left: 3px solid var(--arch-blue);
     }
 
