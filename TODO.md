@@ -3605,7 +3605,7 @@ Last updated: 2026-04-02 09:37
 
 ## 🔍 Search Enhancements (New)
 
-- [x] **Search Suggestions Panel** (CSS) (done: 2026-04-03 00:48, commit: 9c3d2f1)
+- [ ] **Search Suggestions Panel** (CSS)
   - File: `src/components/search.styl`
   - Autocomplete dropdown
   - Highlighted matches
