@@ -11372,3 +11372,36 @@ Last updated: 2026-04-02 09:37
   2. CSS theme is visually verified when pipeline works (prior runs 2026-04-02 15:19 and 04:40 both CLEAN with AE=0 across real ArchWiki content).
   3. No CSS action needed — theme is stable per recent successful runs.
   4. Consider: user-agent spoofing, session cookie injection, or ArchWiki API-based capture as alternative to headless Playwright.
+
+### 2026-04-02 19:35
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - default (mobile 375×667)
+  - menu-open (desktop)
+  - menu-open (mobile)
+  - toc-open (desktop)
+  - toc-open (mobile)
+  - search-active (desktop)
+  - search-active (mobile)
+- Findings:
+  - **All 40 screenshots CLEAN vs baselines**: 5 pages × 2 viewports × 4 states = 40 captures. Every single one reports AE=0 (pixel-identical to baselines). No visual drift.
+  - **ArchWiki content confirmed**: Not Anubis error pages — hash `8373727d` for all desktop states, `9eae55c2` for all mobile states. Previous run (17:29) was blocked by Anubis WAF; this run successfully accessed real ArchWiki content.
+  - **Interactive states verified**: menu-open, toc-open, search-active all capture correctly and match baselines — no panel collapse, no overlap conflicts, no transparency bleed-through.
+  - **Worktree dirty**: `diff-metrics.txt` modified (run output), `package.json` modified (unrelated version bump). No CSS dirty.
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — 40 fresh screenshots, all AE=0 vs baselines
+  - `.agent/archwiki/diffs/` — empty (all diffs deleted since AE=0)
+  - `.agent/archwiki/diff-metrics.txt` — AE=0 for all 40 captures
+  - `.agent/reports/scout-<timestamp>.txt` — diff metrics log
+- Implementer instructions:
+  1. No CSS action needed — theme is visually stable across all pages and interactive states
+  2. Worktree is dirty with run artifacts and unrelated package.json bump — do NOT pull/rebase, do NOT push
+  3. Previous Anubis WAF blocking (17:29 run) was intermittent — current run succeeded, confirming theme is intact
