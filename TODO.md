@@ -11324,3 +11324,51 @@ Last updated: 2026-04-02 09:37
   1. Add `warning` to the `.stylelintrc.json` `ignoreTypes` list per prior review (09:37) — this is the one remaining actionable item.
   2. Both commits approved — no further CSS review needed for `:state()` feature.
   3. Do NOT push — pipeline issue unresolved per prior findings.
+
+### 2026-04-02 17:54
+- Review target: b7b913a + dirty worktree
+- Verdict: APPROVED
+- Findings:
+  - **`b7b913a`**: Follow-up fix to `:state()` pseudo-class (`609d81d`). Adds `--secondary-blue-rgb: 199, 184, 255` (consistent with existing `--arch-blue-rgb`, `--base-rgb` pattern). Replaces 5 hardcoded rgba values with `rgba(var(--arch-blue-rgb, 137, 80, 199), alpha)` / `rgba(var(--secondary-blue-rgb, 199, 184, 255), alpha)`. Proper fallbacks present. Scoped to `:state()` block inside `@css{}` — no cascade risk.
+  - **Worktree**: Only TODO.md (this entry) and package.json dirty — no uncommitted CSS.
+  - **Scout run 17:29**: Anubis WAF correctly identified as blocking content capture. Scout honestly notes AE=0 = identical error pages, not clean content. Infrastructure issue outside CSS scope. Prior successful runs (04:40, 15:19) confirm theme visually stable.
+  - **`warning` in ignoreTypes**: Still unresolved from 09:37. Not addressed by `b7b913a`.
+- Implementer instructions:
+  1. `b7b913a` approved — completion log entry already present (14:49 review entry).
+  2. Add `warning` to `.stylelintrc.json` `ignoreTypes` — only remaining actionable item.
+  3. Do NOT push — pipeline issue unresolved.
+
+## Visual Scout Findings
+
+### 2026-04-02 17:29
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: NEEDS_ATTENTION (Anubis WAF blocking)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800)
+  - default (mobile 375×667)
+  - menu-open (desktop)
+  - menu-open (mobile)
+  - toc-open (desktop)
+  - toc-open (mobile)
+  - search-active (desktop)
+  - search-active (mobile)
+- Findings:
+  - **Anubis WAF blocks ArchWiki access**: All 40 screenshots captured show "Access Denied" error page (Anubis, error code 4d1dbaddfcc0f385) instead of actual ArchWiki content. Image analysis confirms: page title "Oh noes! Access Denied", body background rgb(249,245,215) (Anubis cream), no ArchWiki content visible. Violet Void theme cannot be visually verified against live ArchWiki content.
+  - **All 40 screenshots AE=0 vs baselines**: Pixel-identical because both current and baselines show the same Anubis error page. AE=0 is meaningless here — confirms identical error pages, not clean content.
+  - **Worktree dirty**: `package.json` modified (unrelated to this run).
+  - **Pipeline intermittent failure**: ArchWiki's Anubis anti-bot WAF is blocking headless Playwright. Previous runs (2026-04-02 15:19, 04:40) had successful content capture. Current run (17:29) is blocked. Anubis appears to rotate detection thresholds.
+  - **No CSS changes to review**: No new implementation since last committed CSS (`b7b913a`, approved 14:49).
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — all 40 screenshots are Anubis block pages, not ArchWiki content
+  - `.agent/archwiki/diffs/` — diffs exist but compare identical error-page screenshots (AE=0 meaning both are same error page)
+- Implementer instructions:
+  1. Anubis WAF blocking cannot be resolved via CSS commits — infrastructure/tooling issue.
+  2. CSS theme is visually verified when pipeline works (prior runs 2026-04-02 15:19 and 04:40 both CLEAN with AE=0 across real ArchWiki content).
+  3. No CSS action needed — theme is stable per recent successful runs.
+  4. Consider: user-agent spoofing, session cookie injection, or ArchWiki API-based capture as alternative to headless Playwright.
