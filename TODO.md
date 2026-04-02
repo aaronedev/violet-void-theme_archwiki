@@ -2538,17 +2538,6 @@ Last updated: 2026-04-02 03:12
   - Hyphenation zone limit
   - Stylus: Works directly
   - Commit: 16eac85
-  - Stylus: Works directly
-
-- [ ] **`hyphenate-limit-lines`** (85%+ browser support)
-  - File: `src/components/typography.styl`
-  - Max consecutive hyphenated lines
-  - Stylus: Works directly
-
-- [ ] **`hyphenate-limit-zone`** (85%+ browser support)
-  - File: `src/components/typography.styl`
-  - Hyphenation zone limit
-  - Stylus: Works directly
 
 
 ## 🎨 Form Styling (New - 2026-03-01 Scout 1)
@@ -2573,11 +2562,12 @@ Last updated: 2026-04-02 03:12
 
 ## 🎬 View Transitions (New)
 
-- [ ] **`@view-transition` Rule** (85%+ browser support)
-  - File: `src/components/transitions.styl` (new file)
+- [x] **`@view-transition` Rule** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
   - Enable view transitions
   - `@view-transition { navigation: auto; }`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: ff357a5
 
 - [x] **`view-transition-name` Property** (85%+ browser support)
   - File: `src/components/view-transitions.styl`
@@ -2593,18 +2583,19 @@ Last updated: 2026-04-02 03:12
   - `::view-transition { background: var(--bg); }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **`::view-transition-group()`** (85%+ browser support)
-  - File: `src/components/transitions.styl`
-  - Style transition groups
+- [x] **`::view-transition-group()`** (85%+ browser support)
+  - File: `src/components/view-transitions.styl`
+  - Style transition groups with isolation and z-index
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 3a7c15b
 
 - [x] **`::view-transition-image-pair()`** (85%+ browser support)
-  - File: `src/components/transitions.styl`
+  - File: `src/components/view-transitions.styl`
   - Style image pairs during transition
   - Note: Wrap in `@css{}` for Stylus
 
 - [x] **`::view-transition-old()` / `::view-transition-new()`** (85%+ browser support)
-  - File: `src/components/transitions.styl`
+  - File: `src/components/view-transitions.styl`
   - Style old/new states
   - Note: Wrap in `@css{}` for Stylus
 
