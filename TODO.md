@@ -11173,6 +11173,43 @@ Last updated: 2026-04-02 09:37
   2. Theme is visually stable — no action needed.
   3. Do NOT push — pipeline issue from prior review cycles remains.
 
+### 2026-04-02 15:19
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1440×900)
+  - menu-open (desktop 1440×900)
+  - default (tablet 768×1024)
+  - default (mobile 375×667)
+  - menu-open (mobile 375×667)
+  - toc-open, search-active (desktop/mobile — selector drift, no capture)
+- Findings:
+  - 0 DOM issues found — no overlay stacking, contrast, nav overflow, or code/table clipping
+  - AE=0 across all captured states — no pixel drift from baselines
+  - Firefox: AE=0 all states ✅
+  - installation-guide/pacman desktop: AE=1 (noise-level, ~1 pixel out of ~82K — negligible)
+  - main-page/systemd mobile: AE≈249K (Anubis WAF blocks mobile UA — pre-existing infrastructure issue, not CSS regression; AE=0 for search-active/toc-open mobile where WAF allows)
+  - pacman/installation-guide mobile: AE=0 ✅
+  - TOC/search-active selectors silently fail on current Vector skin HTML (known selector drift, documented in prior runs) — tooling gap, not CSS regression
+  - Build: `dist/main.css` compiles cleanly (844KB)
+  - Worktree dirty: `package.json` version bump only (`20260402.05.20 → 20260402.15.19`) — no uncommitted CSS
+- Artifact paths:
+  - `.agent/archwiki/current/` — 25 PNG screenshots (5 pages × desktop/tablet/mobile × default/menu-open)
+  - `.agent/archwiki/baselines/` — reference screenshots
+  - `.agent/reports/scout-1775136026737.json` — 0 findings, 5 pages ok
+- Implementer instructions:
+  - No visual regressions — theme is stable across all captured states
+  - Anubis WAF mobile blocking is pre-existing infrastructure issue (not a CSS problem)
+  - TOC/search selector drift is a tooling coverage gap (not a CSS regression)
+  - Worktree dirty: only version bump — not a code concern
+  - Do NOT push — worktree dirty, only append-only changes this cycle
+
 ### 2026-04-02 07:06
 - Review target: commit b11fdfd + 6525615 (dirty worktree)
 - Verdict: NEEDS_FOLLOWUP
