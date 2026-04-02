@@ -2148,6 +2148,145 @@ h4[id]
     font-size 1.125rem
 
 // =============================================================================
+// :state() Pseudo-class for Custom Element States
+// =============================================================================
+// Style internal states of custom elements (loading, error, disabled, etc.)
+// Browser support: 87%+ (Chrome 127+, Edge 127+)
+// Note: Requires custom elements to expose states via elementInternals.states
+// Use @css{} to bypass Stylus parsing since :state() is newer syntax
+
+@css {
+  @supports selector(:state(loading)) {
+    /* Generic loading state */
+    :state(loading) {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* Loading state with spinner indicator */
+    :state(loading)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1em;
+      height: 1em;
+      margin: -0.5em 0 0 -0.5em;
+      border: 2px solid var(--arch-blue);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* Generic error state */
+    :state(error) {
+      color: var(--error-red);
+      outline: 1px solid var(--error-red);
+    }
+
+    /* Error state with icon */
+    :state(error)::before {
+      content: '!';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.2em;
+      height: 1.2em;
+      background: var(--error-red);
+      color: var(--light);
+      border-radius: 50%;
+      font-size: 0.75em;
+      font-weight: bold;
+      margin-right: 0.25em;
+    }
+
+    /* Disabled state */
+    :state(disabled) {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    /* Read-only state */
+    :state(readonly) {
+      background: rgba(137, 80, 199, 0.05);
+      border-style: dashed;
+    }
+
+    /* Checked/selected state */
+    :state(checked) {
+      background: rgba(137, 80, 199, 0.15);
+      border-color: var(--arch-blue);
+    }
+
+    /* Indeterminate state (like checkboxes) */
+    :state(indeterminate) {
+      background: rgba(199, 184, 255, 0.1);
+      border-color: var(--secondary-blue);
+    }
+
+    /* Active/pressed state */
+    :state(active) {
+      background: rgba(137, 80, 199, 0.2);
+      transform: scale(0.98);
+    }
+
+    /* Expanded state (for collapsible elements) */
+    :state(expanded) {
+      background: rgba(137, 80, 199, 0.08);
+      border-left: 3px solid var(--arch-blue);
+    }
+
+    /* Collapsed state */
+    :state(collapsed) {
+      background: transparent;
+    }
+
+    /* Busy state (for async operations) */
+    :state(busy) {
+      opacity: 0.75;
+    }
+
+    /* Success state */
+    :state(success) {
+      color: var(--green);
+      outline: 1px solid var(--green);
+    }
+
+    /* Warning state */
+    :state(warning) {
+      color: var(--gold);
+      outline: 1px solid var(--gold);
+    }
+
+    /* Empty state */
+    :state(empty) {
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    /* Overflow state */
+    :state(overflow) {
+      color: var(--secondary-red);
+      text-overflow: ellipsis;
+    }
+
+    /* Utility classes for common :state() patterns */
+    .state-loading:has(:state(loading)) {
+      opacity: 0.7;
+    }
+
+    .state-error:has(:state(error)) {
+      color: var(--error-red);
+    }
+
+    .state-disabled:has(:state(disabled)) {
+      opacity: 0.5;
+    }
+  }
+}
+
+// =============================================================================
 // SYSTEM COLORS
 // =============================================================================
 
