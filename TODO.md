@@ -11419,3 +11419,17 @@ Last updated: 2026-04-02 09:37
   2. `warning`/`error` in ignoreTypes: no action needed, they were already there.
   3. Do NOT push — pipeline issue remains unroot-caused.
 
+
+### 2026-04-02 20:58
+- Review target: 03664ff (overflow-wrap for .package-name)
+- Verdict: APPROVED
+- Findings:
+  - **One-line scoped fix**: `overflow-wrap: break-word` on `.package-name` in `archwiki.styl`. Prevents long package names in terminal command blocks from overflowing narrow containers.
+  - **No cascade risk**: `.package-name` is a specific class inside `pre.terminal` context — targeted selector, no broad impact.
+  - **Build clean**: `npm run build` succeeds, no errors.
+  - **Scout clean**: 40/40 screenshots AE=0 vs baselines across all pages, viewports, and interactive states. Zero visual drift.
+  - **Completion log**: `03664ff` not yet in the completion log — needs entry.
+  - **No open-state evidence needed**: `overflow-wrap` is a text-layout property with no interactive UI state.
+- Implementer instructions:
+  1. Add completion log entry for `03664ff`: "overflow-wrap for .package-name to prevent long package name overflow in terminal command blocks"
+  2. Do NOT push — pipeline issue remains unroot-caused.
