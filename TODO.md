@@ -11186,6 +11186,23 @@ Last updated: 2026-04-02 06:52
   3. Consider wrapping the `details` in a proper `<tr class="table-collapsible-row">` structure or using CSS grid on the row instead of block-level flex to avoid browser reflow issues inside table contexts.
   4. The dirty worktree also contains `package.json` and `scout-results.json` changes — commit or discard separately.
 
+### 2026-04-02 07:41 (hostile review)
+- Review target: commit b11fdfd + 6525615 + clean worktree (styl confirmed clean)
+- Verdict: NEEDS_FOLLOWUP (confirmed, no change from prior hostile review entry at 07:06)
+- Findings:
+  - **Worktree is clean of CSS changes** — confirmed `git status --porcelain` shows only `scout-results.json` and `package.json` dirty, no `.styl` files modified. Same state as prior hostile review.
+  - **Independent code review of `b11fdfd` confirms prior hostile review findings:**
+    - `.table-collapsible-row details { display: flex; ... }` — `details` as direct child of `tr` violates HTML table model. `display: contents` on `.table-collapsible-row` makes the wrapper inert, but `details` (block) is still an invalid child of `tr`. Browser reflow handling is unpredictable across Chrome/Firefox/Safari.
+    - Priority classes use `display: none` inside `@media` queries — correct CSS, no cascade risk.
+    - No ArchWiki page with actual complex tables was used to validate these utilities. Scout 0 findings is meaningless here since the scout never visits a page with `.table-collapsible-row` or `.col-priority-*` applied.
+    - Completion log entry (2026-04-02 06:52) is present but does not constitute visual evidence.
+  - **CSS-only utilities require manual HTML application** — no evidence that wiki editors would apply these, or that they don't break existing table layouts when applied.
+- Implementer instructions:
+  1. Address the HTML table model issue: use `display: grid` on `tr` or restructure to avoid `details` inside `tr`. Alternatively, document clearly that these are manual utilities for wiki editors and not auto-applied.
+  2. Provide visual evidence (screenshot) of the collapsible rows working on an actual complex table page at mobile viewport.
+  3. Do NOT push — pipeline issue from prior reviews remains.
+  4. Commit locally with `chore: add archwiki reviewer findings` if updating TODO.md.
+
 ### 2026-04-02 06:23
 - Review target: dirty worktree (package.json version bump)
 - Verdict: APPROVED (no new implementation this cycle)
