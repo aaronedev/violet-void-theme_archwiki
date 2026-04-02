@@ -11239,3 +11239,19 @@ Last updated: 2026-04-02 09:37
 
 ## Implementer Next Step
 - Add `warning` (and `error` if applicable) to the `.stylelintrc.json` `ignoreTypes` list alongside the other `:state()` values already added in `6cc8909`
+
+### 2026-04-02 13:02 (hostile review)
+- Review target: b7b913a (fix: use CSS custom properties for :state() pseudo-class alpha colors)
+- Verdict: APPROVED
+- Findings:
+  - **CSS quality fix — hardcoded rgba replaced with CSS custom properties.** The commit replaces 5 hardcoded rgba values in the `:state()` pseudo-class block with `rgba(var(--arch-blue-rgb, ...), alpha)` and `rgba(var(--secondary-blue-rgb, ...), alpha)` patterns — consistent with the TODO.md CSS Rule "NEVER use hardcoded hex colors" and the established rgba(var(--*-rgb), alpha) pattern used throughout modern-css.styl.
+  - **New `--secondary-blue-rgb: 199, 184, 255`** added alongside existing `--arch-blue-rgb` and `--base-rgb`. Correct RGB decomposition of `$secondary-blue` (#c7b8ff). Fallback values are present and correct.
+  - **No open-state evidence needed**: `:state()` targets custom elements that expose states via `elementInternals.states` (Web Components API). ArchWiki's Vector skin uses standard HTML elements — `:state()` won't match anything in ArchWiki's live DOM without custom elements. This is a forward-looking CSS pattern, not an ArchWiki UI fix. Consistent with the 609d81d treatment.
+  - **Build compiles cleanly** (`npm run build` → `dist/main.css`). No PostCSS errors.
+  - **Scout clean**: `scout-1775112655118.json` (2026-04-02 06:50): 0 findings across 5 pages × 3 viewports. Last CSS commit with visual diff was `2ae7968` (2026-04-01 18:57) — scout has been consistently clean since then.
+  - **Completion log**: The initial `:state()` implementation (609d81d) was logged at 2026-04-02 09:25. b7b913a is a direct follow-up that replaces hardcoded values with the custom property pattern — arguably the same feature's quality improvement. No separate completion log entry for b7b913a, but the existing entry covers the feature. No separate entry needed for this type of refinement.
+  - **Worktree**: only `package.json` modified (version bump `20260402.09.27 → 20260402.12.58`). No dirty CSS.
+- Implementer instructions:
+  1. Commit reviewed and approved — no action needed. `:state()` is now fully implemented with CSS custom properties.
+  2. No separate completion log entry needed for this follow-up fix (it's part of the 609d81d `:state()` feature quality).
+  3. Do NOT push — pipeline issue unresolved per prior findings.
