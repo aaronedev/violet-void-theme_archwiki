@@ -38,7 +38,19 @@
           "none",
           "scroll-snap-container",
           "css",
-          "@css"
+          "@css",
+          "loading",
+          "disabled",
+          "readonly",
+          "checked",
+          "indeterminate",
+          "active",
+          "expanded",
+          "collapsed",
+          "busy",
+          "success",
+          "empty",
+          "overflow"
         ]
       }
     ],
