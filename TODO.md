@@ -11468,3 +11468,19 @@ Last updated: 2026-04-02 09:37
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
   - Consider updating archwiki-scout.js selectors for TOC/search active states on current ArchWiki UI
+
+### 2026-04-02 22:25
+- Review target: 9c04c2e + 6fa1917
+- Verdict: APPROVED
+- Findings:
+  - **`6fa1917`**: Replaces 22 hardcoded hex literals with CSS custom property references (`var(--arch-blue)`, `var(--red)`, etc.) inside `rgb(from ...)` relative color syntax in the `@css{} @supports (color: rgb(from red r g b))` block in `modern-css.styl`. The change is consistent with the theme's approach of using CSS custom properties as the single source of truth for color values.
+  - **CSS spec compliance**: `rgb(from var(--custom-prop) r g b)` is valid CSS Color 5 relative color syntax. Custom properties ARE allowed as the `<color>` origin in `rgb(from ...)`. Browser support: Chrome 111+, Safari 16.4+. The `@supports` guard ensures this only runs in supporting browsers — non-supporting browsers get no color variants, which is the same behavior as before (no variants vs. hardcoded variants).
+  - **`--comment-light` and `--muted-light`**: Use `var(--theme-comment, #6f0f6f)` and `var(--theme-muted, #7a7a7a)` with hex fallbacks for the rare case where theme vars aren't defined. This is a reasonable defensive approach.
+  - **Build**: `npm run build` succeeds, generates `dist/main.css`. No PostCSS errors.
+  - **Visual scout**: 0 findings across 5 pages × 3 viewports (desktop, tablet, mobile). AE=0 across all comparisons. As expected — this is a variable substitution, no visual change.
+  - **Completion log**: Entry present at line 7408 with commit hash `6fa1917` and accurate description. Date is `2026-04-03` (correct, matching commit date).
+  - **`9c04c2e`**: One-line `chore: log completion` commit — adds completion log entry to TODO.md. No CSS changes.
+  - **No open-state evidence needed**: This is a CSS variable refactor. The visual output is identical (same computed colors). Relative color syntax derives variants from the same source colors, just via custom property instead of hardcoded hex.
+- Implementer instructions:
+  1. Both commits approved. Completion log entry confirmed present.
+  2. Do NOT push — pipeline issue from prior reviews remains unroot-caused.
