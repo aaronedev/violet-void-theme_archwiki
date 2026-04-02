@@ -895,6 +895,154 @@ table
             margin-right 1em
 
 // =============================================================================
+// COLLAPSIBLE ROWS
+// Make table rows expandable/collapsible on mobile in card mode
+// Uses <details>/<summary> for native CSS-only expand/collapse
+// Browser support: 97%+
+// =============================================================================
+
+// Collapsible row wrapper - wrap table rows in <details> for expand/collapse
+.table-collapsible-row
+  display contents
+
+  // The <details> element inside a table must be styled carefully
+  details
+    display flex
+    flex-direction column
+    border 1px solid $border-subtle
+    border-radius $border-radius-md
+    background $base
+    overflow hidden
+    margin-bottom 0.5em
+
+    // Summary is the clickable header (always visible)
+    summary
+      display flex
+      align-items center
+      justify-content space-between
+      padding 0.75em 1em
+      cursor pointer
+      user-select none
+      list-style none
+      background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($arch-blue, 0.04))
+      border-bottom 1px solid $border-subtle
+      font-weight 500
+      color $lighter
+      transition background $transition-fast
+
+      // Custom expand/collapse indicator
+      &::after
+        content "+"
+        display inline-flex
+        align-items center
+        justify-content center
+        width 1.5em
+        height 1.5em
+        background rgba($arch-blue, 0.15)
+        border-radius $border-radius-sm
+        font-size 0.9em
+        color $arch-blue
+        font-weight 700
+        flex-shrink 0
+        transition transform $transition-fast
+
+      // Hide default marker
+      &::-webkit-details-marker
+        display none
+
+      &:hover
+        background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($arch-blue, 0.06))
+
+      // Focus visible for keyboard
+      &:focus-visible
+        outline 2px solid $arch-blue
+        outline-offset -2px
+
+    // Open state - rotate indicator
+    &[open] > summary::after
+      content "−"
+      transform rotate(0deg)
+
+    // Collapsed content (the detail rows)
+    > td
+      padding 0
+
+    // Nested row content
+    .row-detail
+      padding 0.75em 1em
+      border-top 1px solid rgba($border-subtle, 0.5)
+      color $light
+      font-size 0.9em
+      line-height 1.5
+
+      &:first-of-type
+        border-top none
+
+// In cards-mode on mobile, the details element is styled as a card row
+@media (max-width 480px)
+  .table-scroll-wrapper.cards-mode
+    .table-collapsible-row
+      details
+        margin-bottom 0
+
+        summary
+          &::after
+            // Indicator rotates on open
+            transform rotate(0deg)
+
+        &[open] > summary::after
+          transform rotate(180deg)
+
+// =============================================================================
+// PRIORITY-BASED COLUMN HIDING
+// Hide columns based on priority at different breakpoints
+// Apply .col-priority-1 (highest), .col-priority-2, .col-priority-3 (lowest)
+// to <th> or <td> elements in the HTML
+// Browser support: 97%+
+// =============================================================================
+
+// Priority 1: Always visible (never hidden)
+// Priority 2: Hide on small screens (< 768px)
+@media (max-width 768px)
+  .col-priority-2
+    display none
+
+// Priority 3: Hide on medium screens (< 1024px)
+@media (max-width 1024px)
+  .col-priority-3
+    display none
+
+// Priority 4: Hide on large screens (>= 1024px) - show only on mobile
+@media (min-width 1024px)
+  .col-priority-4
+    display none
+
+// Priority 5: Show only on mobile (< 480px)
+@media (min-width 480px)
+  .col-priority-5
+    display none
+
+// Priority 6: Extra low priority - hide everywhere except large screens
+@media (max-width 1200px)
+  .col-priority-6
+    display none
+
+// Utility class to mark a column header as the row identifier (never hides on mobile)
+.col-row-id
+  font-weight 600
+  color $arch-blue
+
+// In card mode, show all priority columns but visually de-emphasize lower priority
+@media (max-width 480px)
+  .table-scroll-wrapper.cards-mode
+    .col-priority-3
+    .col-priority-4
+    .col-priority-5
+    .col-priority-6
+      opacity 0.6
+      font-size 0.85em
+
+// =============================================================================
 // PERFORMANCE: table-layout: fixed
 // Use fixed table layout for faster rendering on large tables
 // Browser support: 97%+
