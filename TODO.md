@@ -10773,6 +10773,20 @@ Last updated: 2026-04-02 09:37
   3. Commit with `chore: add archwiki reviewer findings` then `chore: update completion log for diff.styl overflow-wrap fix`.
   4. Do NOT push — pipeline issue unresolved per prior findings.
 
+### 2026-04-02 17:20
+- Review target: b7b913a (CSS custom property fix for :state() pseudo-class alpha colors)
+- Verdict: APPROVED
+- Findings:
+  - **`b7b913a`** is a legitimate follow-up to `609d81d`. The original used hardcoded rgba values inside `@css{}` because Stylus variables don't expand in `@css{}` blocks (confirmed limitation, documented in prior commits `2868eda`, `0738b39`, `453301b`).
+  - Fix replaces `rgba(137, 80, 199, ...)` → `rgba(var(--arch-blue-rgb, 137, 80, 199), ...)` and `rgba(199, 184, 255, ...)` → `rgba(var(--secondary-blue-rgb, 199, 184, 255), ...)`. Fallbacks match prior hardcoded values exactly — no visual change.
+  - New `--secondary-blue-rgb: 199, 184, 255` defined alongside `--arch-blue-rgb` and `--base-rgb` in `:root` (line 1077). Both accessible as CSS custom properties from within `@css{}` block (line 2157+).
+  - Pattern is consistent with the established `rgba(var(--*-rgb), alpha)` approach used throughout `modern-css.styl` for alpha color values inside `@css{}`.
+  - Build compiles cleanly. Scout report (2026-04-02 13:20): 0 findings across 5 pages × 3 viewports. `diff-metrics.txt`: empty (no pixel drift).
+  - **No open-state evidence needed**: `:state()` is a CSS pseudo-class for custom element internals via `elementInternals.states`; ArchWiki does not currently use it in its standard UI. Consistent with `:open`, `:buffering`, `:paused` treatment — transient/interactive states verified when ArchWiki elements use them.
+- Implementer instructions:
+  1. Both `609d81d` (original) and `b7b913a` (fix) approved.
+  2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
 ## Visual Scout Findings
 
 ### 2026-04-01 01:17
