@@ -11255,3 +11255,21 @@ Last updated: 2026-04-02 09:37
   1. Commit reviewed and approved — no action needed. `:state()` is now fully implemented with CSS custom properties.
   2. No separate completion log entry needed for this follow-up fix (it's part of the 609d81d `:state()` feature quality).
   3. Do NOT push — pipeline issue unresolved per prior findings.
+
+### 2026-04-02 14:49
+- Review target: 609d81d (feat: add :state() pseudo-class for custom element states) + b7b913a (fix: use CSS custom properties for alpha colors)
+- Verdict: APPROVED
+- Findings:
+  - **`609d81d`** (09:26): 139 lines in `modern-css.styl` + 1 line in `base.styl`. Adds `:state()` pseudo-class styling for ArchWiki custom elements via `elementInternals.states`. Covers 14 states: loading, error, disabled, readonly, checked, indeterminate, active, expanded, collapsed, busy, success, warning, empty, overflow. Registers `--gold` in base.styl CSS custom properties list. Build compiles cleanly.
+  - **`b7b913a`** (12:48): Follow-up replacing 5 hardcoded rgba values with `rgba(var(--arch-blue-rgb,...))` and `rgba(var(--secondary-blue-rgb,...))`. Adds `--secondary-blue-rgb: 199, 184, 255`. Consistent with established pattern in modern-css.styl. APPROVED separately at 13:02 — reviewed here as the complete feature.
+  - **Correct @css{}/@supports wrapper**: `@css { @supports selector(:state(loading)) { ... } }` — correct pattern for Stylus compatibility with newer CSS syntax. No violation of TODO.md CSS rules.
+  - **No cascade risk**: All `:state()` rules are standalone selectors targeting element states directly. No cascade interactions with existing ArchWiki selectors.
+  - **No open-state evidence needed**: `:state()` is a Web Components API for custom elements. ArchWiki's Vector skin uses standard HTML — no custom elements with `elementInternals.states` are present. This is forward-looking CSS progressive enhancement, same category as the `::spelling-error`/`::grammar-error` treatment in TODO.md.
+  - **Scout**: 0 findings across 5 pages × 3 viewports (scout-1775112655118.json, 06:50 — predates both commits but `:state()` produces zero visual change on standard HTML pages).
+  - **Completion log**: Entry present at 2026-04-02 09:25 with commit `609d81d`. Correct.
+  - **Worktree**: only `package.json` dirty (version `20260402.14.50`). No dirty CSS.
+  - **Missing `warning` from ignoreTypes** (noted at 09:37): still unresolved. `b7b913a` doesn't address it.
+- Implementer instructions:
+  1. Add `warning` to the `.stylelintrc.json` `ignoreTypes` list per prior review (09:37) — this is the one remaining actionable item.
+  2. Both commits approved — no further CSS review needed for `:state()` feature.
+  3. Do NOT push — pipeline issue unresolved per prior findings.
