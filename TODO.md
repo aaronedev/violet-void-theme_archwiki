@@ -554,10 +554,11 @@
 | 2026-04-01 18:29 | overflow-wrap for diff table cells | Add overflow-wrap: break-word to table.diff td in src/components/diff.styl — prevents long lines in diff views from overflowing narrow containers | 9e256c3 |
 | 2026-04-01 18:57 | overflow-wrap for Lua function signatures | Add overflow-wrap: break-word to .lua-function .function-signature in src/components/lua.styl — prevents long Lua function signatures with many parameters from overflowing narrow containers on Lua doc pages | 2ae7968 |
 | 2026-04-02 06:52 | Responsive Table Cards — collapsible rows + priority-based column hiding | Add .table-collapsible-row with details/summary pattern for expandable table rows; add .col-priority-1 through .col-priority-6 utility classes for responsive column visibility at breakpoints (480/768/1024/1200px) | b11fdfd |
+| 2026-04-02 09:25 | :state() Pseudo-class for Custom Element States | Add :state() pseudo-class styling in modern-css.styl for ArchWiki custom elements exposing internal states via elementInternals.states — loading, error, disabled, readonly, checked, indeterminate, active, expanded, collapsed, busy, success, warning, empty, overflow states; also registers --gold CSS custom property in base.styl | 609d81d |
 
 ---
 
-Last updated: 2026-04-02 06:52
+Last updated: 2026-04-02 09:25
 
 ## Visual Scout Findings
 
@@ -3200,11 +3201,12 @@ Last updated: 2026-04-02 06:52
   - Style specific parts exposed by shadow DOM
   - Stylus: Works directly
 
-- [ ] **`:state()` for Custom Element States** (87%+ browser support)
+- [x] **`:state()` for Custom Element States** (87%+ browser support)
   - File: `src/components/modern-css.styl`
   - Style based on custom element internal state
   - `:state(loading)`, `:state(error)`
   - Stylus: Works directly
+  - Commit: 609d81d
 
 | 2026-03-01 | Fourteenth scout | Added input capability detection (hover, pointer, any-hover, any-pointer), mobile keyboard env vars, display capability queries (resolution, color-index, monochrome, grid), color preference queries (forced-colors, inverted-colors), viewport/aspect queries, scripting/update queries, advanced font variants (caps, ligatures, east-asian, position, emoji, language-override, @font-feature-values), ruby text support, web components/shadow DOM selectors (:defined, :host, ::slotted, ::part, :state) |
 
