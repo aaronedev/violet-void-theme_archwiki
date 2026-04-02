@@ -11131,3 +11131,49 @@ Last updated: 2026-04-02 03:12
   1. No new CSS commits require review.
   2. Do NOT push — pipeline unresolved per prior findings.
   3. Next review triggers on first new `.styl` commit or dirty worktree with implementation changes.
+
+### 2026-04-02 04:40
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All pages captured successfully at desktop (1280x800) and mobile (375x667)
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow)
+  - Worktree: only package.json version bump dirty (20260402.03.17 → 20260402.04.19) — no uncommitted CSS
+  - Build: dist/main.css exists and was used for capture
+  - All 40 current screenshots hash-identical to baselines — theme visually stable since last run
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - diff-metrics.txt (40 comparisons, all AE=0)
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+  - Worktree is clean (only version bump dirty, no CSS changes)
+
+### 2026-04-02 04:45
+- Review target: dirty worktree (new visual scout entry + package.json version bump)
+- Verdict: APPROVED (no new implementation this cycle)
+- Findings:
+  - **No new CSS implementation.** Worktree contains only: (1) new visual scout findings entry in TODO.md documenting a 2026-04-02 04:40 scout run, (2) package.json version bump `20260402.03.17` → `20260402.05.20`.
+  - **Scout verdict: CLEAN.** 40/40 baseline comparisons AE=0 — no pixel drift, no DOM issues, theme visually stable. This is consistent with the prior cycle (approved 2026-04-01 19:45, last CSS commit `2ae7968`).
+  - **Worktree is clean of CSS changes.** Only tooling version bump present. No uncommitted `.styl` file changes.
+  - Scout artifacts (.agent/archwiki/current/, baselines/, diff-metrics.txt) are all present and accounted for.
+- Implementer instructions:
+  1. No new CSS commits to review — nothing to approve or reject this cycle.
+  2. Theme is visually stable — no action needed.
+  3. Do NOT push — pipeline issue from prior review cycles remains.
