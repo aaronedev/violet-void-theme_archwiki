@@ -1257,42 +1257,42 @@ h4[id]
 @css {
   @supports (color: rgb(from red r g b)) {
     :root {
-      /* Arch-blue variants */
-      --arch-blue-light: rgb(from #8950c7 r g b / 0.5);
-      --arch-blue-lighter: rgb(from #8950c7 r g b / 0.3);
-      --arch-blue-dark: rgb(from #8950c7 calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
-      --arch-blue-darker: rgb(from #8950c7 calc(r * 0.6) calc(g * 0.6) calc(b * 0.6));
+      /* Arch-blue variants — use CSS custom properties for consistency */
+      --arch-blue-light: rgb(from var(--arch-blue) r g b / 0.5);
+      --arch-blue-lighter: rgb(from var(--arch-blue) r g b / 0.3);
+      --arch-blue-dark: rgb(from var(--arch-blue) calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
+      --arch-blue-darker: rgb(from var(--arch-blue) calc(r * 0.6) calc(g * 0.6) calc(b * 0.6));
 
       /* Secondary-blue variants */
-      --secondary-blue-muted: rgb(from #c7b8ff r g b / 0.6);
-      --secondary-blue-subtle: rgb(from #c7b8ff r g b / 0.3);
-      --secondary-blue-dark: rgb(from #c7b8ff calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
+      --secondary-blue-muted: rgb(from var(--secondary-blue) r g b / 0.6);
+      --secondary-blue-subtle: rgb(from var(--secondary-blue) r g b / 0.3);
+      --secondary-blue-dark: rgb(from var(--secondary-blue) calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
 
       /* Red variants */
-      --red-light: rgb(from #a80065 r g b / 0.5);
-      --red-dark: rgb(from #a80065 calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
+      --red-light: rgb(from var(--red) r g b / 0.5);
+      --red-dark: rgb(from var(--red) calc(r * 0.8) calc(g * 0.8) calc(b * 0.8));
 
       /* Secondary-red variants */
-      --secondary-red-muted: rgb(from #ff1a67 r g b / 0.6);
-      --secondary-red-subtle: rgb(from #ff1a67 r g b / 0.3);
+      --secondary-red-muted: rgb(from var(--secondary-red) r g b / 0.6);
+      --secondary-red-subtle: rgb(from var(--secondary-red) r g b / 0.3);
 
       /* Green variants */
-      --green-muted: rgb(from #4bfe9b r g b / 0.6);
-      --green-dark: rgb(from #4bfe9b calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
+      --green-muted: rgb(from var(--green) r g b / 0.6);
+      --green-dark: rgb(from var(--green) calc(r * 0.7) calc(g * 0.7) calc(b * 0.7));
 
       /* Orange variants */
-      --orange-muted: rgb(from #fd7cff r g b / 0.6);
-      --orange-subtle: rgb(from #fd7cff r g b / 0.3);
+      --orange-muted: rgb(from var(--orange) r g b / 0.6);
+      --orange-subtle: rgb(from var(--orange) r g b / 0.3);
 
       /* Base/UI variants */
-      --base-lighter-opaque: rgb(from #181818 r g b / 0.8);
-      --base-semi-transparent: rgb(from #181818 r g b / 0.5);
-      --light-muted: rgb(from #bfbfbf r g b / 0.7);
-      --light-subtle: rgb(from #bfbfbf r g b / 0.4);
+      --base-lighter-opaque: rgb(from var(--base) r g b / 0.8);
+      --base-semi-transparent: rgb(from var(--base) r g b / 0.5);
+      --light-muted: rgb(from var(--light) r g b / 0.7);
+      --light-subtle: rgb(from var(--light) r g b / 0.4);
 
       /* Comment/muted variants */
-      --comment-light: rgb(from #6f6f6f calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
-      --muted-light: rgb(from #7a7a7a calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
+      --comment-light: rgb(from var(--theme-comment, #6f6f6f) calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
+      --muted-light: rgb(from var(--theme-muted, #7a7a7a) calc(r * 1.2) calc(g * 1.2) calc(b * 1.2));
     }
   }
 }
