@@ -553,10 +553,11 @@
 | 2026-04-01 17:53 | overflow-wrap for lua.styl .module-description | Add overflow-wrap: break-word to .lua-module-header .module-title .module-description — consistency fix with archwiki.styl .module-description which already had it; prevents long module descriptions on Lua doc pages from overflowing narrow containers | 917d034 |
 | 2026-04-01 18:29 | overflow-wrap for diff table cells | Add overflow-wrap: break-word to table.diff td in src/components/diff.styl — prevents long lines in diff views from overflowing narrow containers | 9e256c3 |
 | 2026-04-01 18:57 | overflow-wrap for Lua function signatures | Add overflow-wrap: break-word to .lua-function .function-signature in src/components/lua.styl — prevents long Lua function signatures with many parameters from overflowing narrow containers on Lua doc pages | 2ae7968 |
+| 2026-04-02 06:52 | Responsive Table Cards — collapsible rows + priority-based column hiding | Add .table-collapsible-row with details/summary pattern for expandable table rows; add .col-priority-1 through .col-priority-6 utility classes for responsive column visibility at breakpoints (480/768/1024/1200px) | b11fdfd |
 
 ---
 
-Last updated: 2026-04-02 03:12
+Last updated: 2026-04-02 06:52
 
 ## Visual Scout Findings
 
@@ -3463,12 +3464,13 @@ Last updated: 2026-04-02 03:12
   - Shadow fade on edges
   - Scroll position indicator
 
-- [ ] **Responsive Table Cards** (CSS)
+- [x] **Responsive Table Cards** (CSS)
   - File: `src/components/tables.styl`
-  - Mobile card layout for tables
-  - Label-value pairs
-  - Collapsible rows
-  - Priority-based hiding
+  - Mobile card layout for tables — basic cards-mode already existed (line 865+)
+  - Label-value pairs — data-label attribute support already existed
+  - Collapsible rows — added .table-collapsible-row with details/summary pattern (148 lines)
+  - Priority-based hiding — added .col-priority-1 through .col-priority-6 utility classes
+  - Commit: b11fdfd
 
 ## 🏷️ ArchWiki-Specific Elements (New)
 
