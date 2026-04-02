@@ -11171,6 +11171,21 @@ Last updated: 2026-04-02 06:52
   2. Theme is visually stable — no action needed.
   3. Do NOT push — pipeline issue from prior review cycles remains.
 
+### 2026-04-02 07:06
+- Review target: commit b11fdfd + 6525615 (dirty worktree)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **New CSS: 148 lines added to `src/components/tables.styl`** — `.table-collapsible-row` (details/summary expand pattern) and `.col-priority-1` through `.col-priority-6` utility classes for responsive column visibility. Builds successfully, rules confirmed in compiled CSS. No actual duplicate in source.
+  - **No visual validation of new features.** Scout captured 5 pages × 4 generic states — all OK. But these pages have no complex tables requiring the new collapsible rows or priority-column utilities. The open-state evidence rule is not met for these new interactive/CSS-applied features.
+  - **CSS-only utilities, not automatic behavior.** `.table-collapsible-row` and `.col-priority-*` require manual class application in HTML. Without a page that exercises these (e.g., a page with a multi-column table that gets the priority classes applied), there's no evidence they work in context or that they don't break existing table rendering.
+  - **Last scout run (00:41 UTC) predates this commit (06:52 UTC).** The scout findings were 0/0 not because the new features are validated, but because they weren't on the tested pages.
+  - **CSS table model concern:** `.table-collapsible-row details { display: flex; ... }` places a `details` (block-level) as a direct child of `tr` (table-row). Browser handling of invalid HTML children inside tables is inconsistent; `display: contents` on `.table-collapsible-row` helps, but the `details` inside may still reflow incorrectly in some browsers.
+- Implementer instructions:
+  1. **Do not mark this complete until visual evidence exists** of the collapsible rows or priority column hiding actually working on a real ArchWiki table. Use a test page with a complex table, apply the utility classes, and capture the responsive states.
+  2. If the feature is purely a CSS utility library (intended to be applied manually by wiki editors), document that clearly in the component and update the completion criteria accordingly. Do not imply it auto-fixes table responsiveness.
+  3. Consider wrapping the `details` in a proper `<tr class="table-collapsible-row">` structure or using CSS grid on the row instead of block-level flex to avoid browser reflow issues inside table contexts.
+  4. The dirty worktree also contains `package.json` and `scout-results.json` changes — commit or discard separately.
+
 ### 2026-04-02 06:23
 - Review target: dirty worktree (package.json version bump)
 - Verdict: APPROVED (no new implementation this cycle)
