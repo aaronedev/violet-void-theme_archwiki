@@ -558,7 +558,7 @@
 
 ---
 
-Last updated: 2026-04-02 09:25
+Last updated: 2026-04-02 09:37
 
 ## Visual Scout Findings
 
@@ -11205,15 +11205,37 @@ Last updated: 2026-04-02 09:25
   3. Do NOT push — pipeline issue from prior reviews remains.
   4. Commit locally with `chore: add archwiki reviewer findings` if updating TODO.md.
 
-### 2026-04-02 06:23
-- Review target: dirty worktree (package.json version bump)
-- Verdict: APPROVED (no new implementation this cycle)
+### 2026-04-02 09:37 (hostile review)
+- Review target: 6cc8909 (stylelint :state() ignoreTypes) + e6000a2 (completion log + version)
+- Verdict: APPROVED
 - Findings:
-  - **No new CSS implementation.** Worktree contains only: (1) package.json version bump `20260402.05.20` → `20260402.06.22`, (2) new scout report artifacts in `.agent/reports/`.
-  - **Latest scout verdict: CLEAN.** Report `scout-1775090514591.json` (2026-04-02 00:41) shows 0 findings across 5 pages. Consistent with prior approved runs.
-  - **Worktree is clean of CSS changes.** No uncommitted `.styl` file changes. Last CSS commit remains `2ae7968` (approved 2026-04-01 19:45).
-  - **Visual stability confirmed** — theme remains in a clean state with no drift detected.
+  - **`6cc8909`**: Adds `:state()` pseudo-class argument values to stylelint `ignoreTypes` — `loading`, `disabled`, `readonly`, `checked`, `indeterminate`, `active`, `expanded`, `collapsed`, `busy`, `success`, `empty`, `overflow`. These are valid CSS `:state()` pseudo-class arguments per the CSS pseudo-classes spec. Stylelint was flagging them as unknown HTML element types. Legitimate tooling fix, scoped, no cascade risk. No visual evidence needed (linter config only).
+  - **`e6000a2`**: Updates completion log to mark `:state()` as `[x]` with commit `609d81d`, bumps version to `20260402.09.27`. Completion log entry is accurate and complete.
+  - **Incomplete :state() list in ignoreTypes**: The implementation in `609d81d` defines 14 states (loading, error, disabled, readonly, checked, indeterminate, active, expanded, collapsed, busy, success, warning, empty, overflow). The stylelint entry in `6cc8909` lists 12 states — missing `warning` and `error`. The `error` state may have been excluded intentionally since it's also a valid HTML element name. But `warning` is a custom state name used in the implementation and should be added to `ignoreTypes` to prevent false positives.
+  - **WAF noise in diff-metrics.txt**: Mobile screenshots for `main-page`, `systemd` show AE≈249K — the Anubis WAF is blocking Playwright's mobile user agent. The desktop screenshots are all AE=0. The baseline was captured with a non-blocked mobile UA; current captures are returning error pages. This is a pre-existing infrastructure issue, not a CSS regression. Scout correctly reports 0 findings because it uses DOM inspection, not pixel diff.
+  - **Missing :warning from ignoreTypes** is the one actionable gap in this review cycle.
 - Implementer instructions:
-  1. No new CSS commits to review — nothing to approve or reject this cycle.
-  2. Theme is visually stable per latest scout run.
-  3. Do NOT push — pipeline issue remains unroot-caused.
+  1. Add `warning` to the `ignoreTypes` list in `.stylelintrc.json` (and `error` if it causes false positives). Commit with `chore: add missing :state() argument to stylelint ignoreTypes`.
+  2. Do NOT push — pipeline issue from prior reviews remains.
+
+</final>
+## Review Target
+- 6cc8909 (stylelint :state() ignoreTypes) + e6000a2 (completion log + version)
+
+## Verdict
+- APPROVED
+
+## Top Findings
+- `:state()` ignoreTypes fix is legitimate — prevents stylelint false positives for valid CSS custom element state names
+- Missing `warning` (and potentially `error`) from the ignoreTypes list — `:state(warning)` is used in the implementation but not in the linter config
+- Mobile AE≈249K in diff-metrics.txt is Anubis WAF blocking Playwright mobile UA — pre-existing infrastructure issue, not CSS regression
+
+## TODO.md
+- updated
+
+## Git
+- branch: main
+- commit: 6cc8909
+
+## Implementer Next Step
+- Add `warning` (and `error` if applicable) to the `.stylelintrc.json` `ignoreTypes` list alongside the other `:state()` values already added in `6cc8909`
