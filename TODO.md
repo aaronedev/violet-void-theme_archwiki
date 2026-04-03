@@ -11651,3 +11651,37 @@ Last updated: 2026-04-03 10:50
   2. No further action needed for this cycle.
   3. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
 
+
+### 2026-04-03 14:02
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+  - tablet.default
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected across all desktop and mobile states
+  - All captured screenshots byte-for-byte identical to baselines (confirmed via file size comparison)
+  - 0 DOM-based issues found (overlay stacking, contrast, nav overflow, code blocks, tables, TOC, search)
+  - Worktree dirty (package.json, archwiki-templates.styl) — no CSS changes committed this cycle
+  - Tablet viewport: scout script logs "captured" but no .tablet.* files written to current/ (script-side issue, not theme regression)
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-1775217822830.json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+  - Tablet capture is a script-side issue (files not written despite log claims); theme stability unaffected
