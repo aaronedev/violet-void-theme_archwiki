@@ -555,10 +555,11 @@
 | 2026-04-01 18:57 | overflow-wrap for Lua function signatures | Add overflow-wrap: break-word to .lua-function .function-signature in src/components/lua.styl — prevents long Lua function signatures with many parameters from overflowing narrow containers on Lua doc pages | 2ae7968 |
 | 2026-04-02 06:52 | Responsive Table Cards — collapsible rows + priority-based column hiding | Add .table-collapsible-row with details/summary pattern for expandable table rows; add .col-priority-1 through .col-priority-6 utility classes for responsive column visibility at breakpoints (480/768/1024/1200px) | b11fdfd |
 | 2026-04-02 09:25 | :state() Pseudo-class for Custom Element States | Add :state() pseudo-class styling in modern-css.styl for ArchWiki custom elements exposing internal states via elementInternals.states — loading, error, disabled, readonly, checked, indeterminate, active, expanded, collapsed, busy, success, warning, empty, overflow states; also registers --gold CSS custom property in base.styl | 609d81d |
+| 2026-04-03 10:50 | Hanging-punctuation utility classes | Add 5 hanging-punctuation utility classes (.hanging-punctuation-first, .last, .first-last, .force-end, .allow-end) in typography.styl for fine-grained control beyond the base blockquote rule | 9f7aa42 |
 
 ---
 
-Last updated: 2026-04-03 06:19
+Last updated: 2026-04-03 10:50
 
 ## Visual Scout Findings
 
@@ -2294,11 +2295,12 @@ Last updated: 2026-04-03 06:19
   - Stylus: Works directly
   - Commit: 2f290ca
 
-- [ ] **`hanging-punctuation` Expansion** (95%+ browser support)
+- [x] **`hanging-punctuation` Expansion** (95%+ browser support)
   - File: `src/components/typography.styl`
-  - Already implemented - verify coverage
+  - Utility classes for fine-grained control: `.hanging-punctuation-first`, `.last`, `.first-last`, `.force-end`, `.allow-end`
   - `hanging-punctuation: first last;`
   - Stylus: Works directly
+  - Commit: 9f7aa42
 
 ## 🖼️ Object & Box (New)
 
@@ -11564,4 +11566,17 @@ Last updated: 2026-04-03 06:19
   - **Scout**: `scout-1775187843768.json` (03:42) — CLEAN. 40/40 AE=0 baseline comparisons. 5 new tablet captures added. DOM checks: 0 findings. Interactive states (menu-open) captured for desktop and mobile.
 - Implementer instructions:
   1. Commit approved — no follow-up needed.
+  2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
+### 2026-04-03 09:27 (hostile review)
+- Review target: 607208a (chore: version bump) — no CSS implementation since c567fd5
+- Verdict: APPROVED
+- Findings:
+  - **No new CSS implementation this cycle.** HEAD (`607208a`) is a version bump commit. No `.styl` files were modified. Worktree is clean — only untracked files (scout artifacts, reports).
+  - **Last CSS commit unchanged**: `c567fd5` (overflow-wrap for `.notification-title`) — approved at 06:19.
+  - **Visual scout clean**: `scout-1775187843768.json` (03:43): 0 findings across 5 pages × 3 viewports. 40 AE=0 baseline comparisons. Menu-open captured for desktop and mobile. DOM checks: 0 findings. ArchWiki content confirmed (not Anubis WAF block page).
+  - **Worktree clean for CSS purposes**: `git status --porcelain` shows only untracked files. No modified tracked files.
+  - **No open items remaining**: all pending items from prior reviews are resolved or infrastructure-blocked.
+- Implementer instructions:
+  1. No new CSS commits require review — nothing to approve or reject.
   2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
