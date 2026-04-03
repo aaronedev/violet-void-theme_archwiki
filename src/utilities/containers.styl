@@ -1,0 +1,120 @@
+// =============================================================================
+// Container Query Utilities - Component-Based Responsive Design
+// Browser support: 89%+ (Chrome 106+, Safari 16+, Firefox 110+)
+// =============================================================================
+// Container queries allow elements to respond to their own size rather than
+// the viewport. Use container-type to define a container, then @container
+// rules can query that container's dimensions.
+// Usage:
+//   <div class="container-inline">...</div>  becomes a container
+//   @container inline (min-width: 400px) { ... }
+// Named containers: Use container-name to create queryable named containers.
+//   <aside class="container-name-sidebar">...</aside>
+//   @container sidebar (max-width: 200px) { ... }
+// Note: container-name requires container-type to also be set.
+// =============================================================================
+
+// CONTAINER TYPE UTILITIES
+// inline-size: Query the inline (horizontal) dimension — most common choice.
+//   Acts like a block container in the block axis, queryable in inline axis.
+//   Use for: sidebars, cards, infoboxes that respond to their width.
+// block-size: Query the block (vertical) dimension.
+//   Use for: elements that respond to their height.
+// normal: Reset to normal flow behavior — used to opt out of a container.
+//   Use for: Resetting container behavior on nested elements.
+
+.container-inline
+  container-type inline-size
+
+.container-block
+  container-type block-size
+
+.container-normal
+  container-type normal
+
+// Short aliases
+.c-inline
+  container-type inline-size
+
+.c-block
+  container-type block-size
+
+.c-normal
+  container-type normal
+
+// NAMED CONTAINER UTILITIES
+// Named containers pair container-type with container-name so @container rules
+// can target them by name. Useful for reusable component patterns.
+// Named containers must always include container-type (without it, the
+// container-name has no effect and some browsers ignore it).
+// Utility naming convention: container-name-<name>
+// Each includes container-type: inline-size as the baseline query axis.
+
+.container-name-sidebar
+  container-type inline-size
+  container-name sidebar
+
+.container-name-content
+  container-type inline-size
+  container-name content
+
+.container-name-toc
+  container-type inline-size
+  container-name toc
+
+.container-name-infobox
+  container-type inline-size
+  container-name infobox
+
+.container-name-card
+  container-type inline-size
+  container-name card
+
+.container-name-modal
+  container-type inline-size
+  container-name modal
+
+// Short aliases (cn- prefix)
+.cn-sidebar
+  container-type inline-size
+  container-name sidebar
+
+.cn-content
+  container-type inline-size
+  container-name content
+
+.cn-toc
+  container-type inline-size
+  container-name toc
+
+.cn-infobox
+  container-type inline-size
+  container-name infobox
+
+.cn-card
+  container-type inline-size
+  container-name card
+
+.cn-modal
+  container-type inline-size
+  container-name modal
+
+// CONTAINER STYLE QUERY UTILITIES
+// @container style() queries check CSS custom property values on a container.
+// This enables theme-aware, state-aware, or context-aware components.
+// Usage:
+//   <div class="container-inline" style="--theme: dark">
+//   @container style(--theme: dark) { ... }
+// These utilities provide the container-type baseline; set the custom property
+// via inline style or CSS rule on the element itself.
+
+.container-style
+  container-type inline-size
+
+// CONTAINER RESET
+// Removes container behavior from children.
+// Useful when a nested element should NOT inherit parent container-type.
+
+.c-reset
+  container-type normal
+  container-name none
