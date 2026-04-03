@@ -11881,3 +11881,17 @@ Last updated: 2026-04-04 01:17
 - Implementer instructions:
   1. Commit `596d81f` approved — no further action needed.
   2. Do NOT push — pipeline issue remains unroot-caused.
+
+### 2026-04-04 01:41
+- Review target: 59eb4fe (prefers-reduced-transparency for OOUI modal dialog)
+- Verdict: APPROVED
+- Findings:
+  - **`59eb4fe`**: 4-line addition inside existing `prefers-reduced-transparency` media query block in `modern-css.styl`. Targets `.oo-ui-windowManager.oo-ui-windowManager-modal > .oo-ui-dialog` with `background-color: $darker !important`. Solid override for users with transparency reduction — replaces the translucent `rgba($darker, 0.75)` modal background.
+  - `!important` is appropriate here since OOUI dialogs have inline or higher-specificity rules for background-color.
+  - Scoped to the reduced-transparency query only — no effect for users without the preference.
+  - Uses theme variable `$darker` — consistent with rest of theme.
+  - Build succeeds (v20260404.01.42). Latest scout run (2026-04-03 20:19): 0 findings, AE=0 across all pages/viewports. Theme visually stable.
+  - `9726368` is docs-only (completion log entry for `59eb4fe`), not reviewed separately.
+- Implementer instructions:
+  1. Commit `59eb4fe` approved — no further action needed.
+  2. Do NOT push — pipeline issue remains unroot-caused.
