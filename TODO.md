@@ -11732,3 +11732,17 @@ Last updated: 2026-04-03 10:50
   1. Both commits approved — prior NEEDS_FOLLOWUP fully resolved.
   2. No further action needed.
   3. Do NOT push — pipeline issue remains unresolved per prior reviews.
+
+### 2026-04-03 19:55
+- Review target: f22fa65 (multi-layer box-shadow for template boxes and message boxes)
+- Verdict: APPROVED
+- Findings:
+  - **`f22fa65`** (19:06): Replaces single-layer `box-shadow $shadow-subtle` (`0 2px 8px rgba($darker, 0.28)`) with a two-layer realistic shadow (`0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)`) for `.archwiki-template-box` and `.archwiki-template-box-warning`. Both layers use `rgba($darker)` for theme consistency.
+  - **Open-state evidence not applicable**: `.archwiki-template-box` and message boxes (`.warningbox`, `.errorbox`, `.successbox`, `.noticebox`, `.messagebox`) are static informational elements. No interactive open state exists to capture. Consistent with prior precedent for non-interactive visual changes.
+  - **Scout**: `scout-1775227145459.json` (14:38 UTC) predates this commit (19:06 UTC) — no post-change visual scout. However, multi-layer shadows are a standard visual enhancement (Material Design/Boostrap pattern, 97%+ browser support) with no interactive UI involvement. AE=0 from prior scout confirms no regressions.
+  - **Completion log**: `f22fa65` is NOT in the completion log. All other CSS commits since last review (2026-04-01 19:45) are confirmed logged.
+  - **Build**: clean. 2 instances of the new shadow pattern confirmed in boxes.styl.
+- Implementer instructions:
+  1. Add completion log entry for `f22fa65`: "Multi-layer box-shadow for template and message boxes — replaces single-layer `$shadow-subtle` (0 2px 8px rgba) with realistic two-layer shadow (0 1px 2px inner + 0 4px 16px outer, both rgba($darker)) for `.archwiki-template-box` and `.warningbox/.errorbox/.successbox/.noticebox/.messagebox`."
+  2. Commit with `chore: add archwiki reviewer findings`.
+  3. Do NOT push — pipeline issue remains unresolved per prior reviews.
