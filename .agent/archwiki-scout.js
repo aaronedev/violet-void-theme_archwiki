@@ -239,9 +239,9 @@ async function checkSearchState(page) {
       })
     }
 
-    // Check search results dropdown
+    // Check search results dropdown (Codex Typeahead Search)
     const dropdowns = document.querySelectorAll(
-      '.cdx-search-input__suggestions, .search-results, .suggestions'
+      '.cdx-typeahead-search__dropdown, .cdx-search-input__suggestions, .search-results, .suggestions'
     )
     for (const dd of dropdowns) {
       const rect = dd.getBoundingClientRect()
@@ -424,7 +424,7 @@ async function run() {
       console.log('  → TOC state')
       try {
         const tocToggle = page
-          .locator('.toc-toggle, #toc-toggle, .mw-toc-toggle')
+          .locator('.vector-toc-toggle, .toc-toggle, #toc-toggle')
           .first()
         if ((await tocToggle.count()) > 0) {
           await tocToggle.click()
