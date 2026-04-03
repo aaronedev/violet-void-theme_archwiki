@@ -8015,6 +8015,9 @@ Last updated: 2026-04-03 10:50
 | 2026-04-01 | overflow-wrap for status-text/module-params | Added overflow-wrap: break-word to .status-text, .module-description, and .module-params td — prevents long status messages, module descriptions, and parameter values from overflowing in narrow viewports | 85164a8 |
 | 2026-04-01 | file-path overflow fix | Added min-width: 0 to .file-path — prevents long file paths from causing overflow in narrow terminal/config blocks | 448d175 |
 | 2026-04-01 | overflow-wrap for package/module names | Added overflow-wrap: break-word to .package and .module-name inside pre.terminal — prevents long package/module names from overflowing in terminal blocks | e2edcb9 |
+| 2026-04-03 | overflow-wrap for systemd unit name fields | Added overflow-wrap: break-word to .device-name, .timer-name, .socket-name, .path-name, .device-device-path, .mount-name, .automount-name, and .service-description — prevents long unit names from overflowing narrow containers | 7ef2426 |
+| 2026-04-03 | overflow-wrap for systemd-slice unit name fields | Added overflow-wrap: break-word to .slice-name and .resource-item in .systemd-slice — prevents long slice names and resource item text from overflowing narrow flex containers | 5b7c7a3 |
+| 2026-04-03 | overflow-wrap for .scope-name | Added overflow-wrap: break-word to .scope-name in .systemd-scope — prevents long scope names from overflowing narrow containers (consistent with other unit name fields) | e81e1b6 |
 
 ---
 
@@ -11700,3 +11703,18 @@ Last updated: 2026-04-03 10:50
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
   - Tablet capture is a script-side issue (files not written despite log claims); theme stability unaffected
+
+### 2026-04-03 17:20
+- Review target: 5b7c7a3 + 65c304f + 7ef2426 completion log gap
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`5b7c7a3`** (15:28): adds `overflow-wrap: break-word` to `.slice-name` (~line 584) and `.resource-item` (~line 596) in `archwiki-templates.styl`. Addresses the unstaged worktree item flagged in prior hostile review (15:16). Both selectors are within the `.systemd-slice` block — scoped, no cascade risk. Build compiles cleanly. **APPROVED**.
+  - **`65c304f`** (15:28): completion log entry for `5b7c7a3` — present at line 7414. Accurate description: "prevents long slice names and resource item text from overflowing narrow flex containers." Correct.
+  - **`7ef2426` completion log still MISSING**: The 15:16 hostile review explicitly instructed to add a completion log entry for `7ef2426`. This was NOT done. `7ef2426` (14:29) appears only in the reviewer findings section — not in the completion log table. This is the same pattern flagged in multiple prior reviews (completion log entries required within same commit cycle).
+  - **Scout**: `scout-1775227145459.json` (14:38 UTC) predates `5b7c7a3` (15:28 UTC) — no post-change scout run. However, `overflow-wrap` is a text-layout property with no interactive open-state; prior established batch of overflow-wrap fixes were approved without post-change visual evidence (consistent with prior hostile review precedent at 02:12, 06:19, 11:48).
+  - **Worktree**: clean — only untracked files (scout reports). No uncommitted CSS.
+  - **Build**: clean (`dist/main.css`, 844KB, no PostCSS errors).
+- Implementer instructions:
+  1. Add completion log entry for `7ef2426`: "overflow-wrap for systemd unit name fields — add overflow-wrap: break-word to .device-name, .timer-name, .socket-name, .path-name, .device-device-path, .mount-name, .automount-name, and .service-description in src/components/archwiki-templates.styl — prevents long unit names from overflowing narrow containers."
+  2. Commit with `chore: add archwiki reviewer findings`.
+  3. Do NOT push — pipeline issue remains unresolved per prior reviews.
