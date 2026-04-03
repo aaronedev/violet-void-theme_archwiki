@@ -10795,6 +10795,21 @@ Last updated: 2026-04-03 10:50
   1. Both `609d81d` (original) and `b7b913a` (fix) approved.
   2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
 
+### 2026-04-03 15:16
+- Review target: 7ef2426 (overflow-wrap for device/mount/automount unit name fields) + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`7ef2426`** (14:29): adds `overflow-wrap: break-word` to 8 unit name selectors in `archwiki-templates.styl`: `.device-name` (line ~276), `.timer-name` (~349), `.socket-name` (~398), `.path-name` (~443), `.device-device-path` (~479), `.mount-name` (~515), `.automount-name` (~554). Also includes `.service-description` in the same sweep — all within the systemd unit template block. Scope is appropriate, all using theme vars for colors. Pattern consistent with prior overflow-wrap batch (`e2edcb9`, `85164a8`, `917d034`, `9e256c3`, `2ae7968`). No hardcoded colors in the added property. Build compiles cleanly.
+  - **Scout run** (`scout-1775217822830.json`, 12:03 UTC) predates this commit (14:29 UTC) — does not capture post-change visual state. Prior scout run (`scout-1775210353153.json`, 09:58 UTC) also predates. **No post-change visual validation exists.**
+  - **Open-state evidence not applicable**: overflow-wrap is a text-layout property with no interactive open-state; consistent with prior overflow-wrap fixes treatment.
+  - **Completion log missing**: `7ef2426` is NOT in the completion log. Last logged entry is `9f7aa42` (10:50). This is the same pattern flagged in prior reviews — completion log entries must be added within the same commit cycle.
+  - **Worktree change** (unstaged): adds `overflow-wrap: break-word` to `.slice-name` in `archwiki-templates.styl` (~line 584). This is a **separate fix** — `.slice-name` is a systemd unit template class (for `.slice` units), distinct from the device/mount/automount units covered in `7ef2426`. The omission is real: commit message says "device, mount, and automount" but slice-name is also a systemd unit type and was missed. The worktree fix is legitimate but: (a) only 1 line and unstaged — not a full commit, (b) **no rendered evidence** (no screenshot of a page with slice-name content showing the fix works).
+- Implementer instructions:
+  1. Add completion log entry for `7ef2426` in TODO.md: "overflow-wrap for systemd unit name fields — add overflow-wrap: break-word to .device-name, .timer-name, .socket-name, .path-name, .device-device-path, .mount-name, .automount-name, and .service-description in src/components/archwiki-templates.styl — prevents long unit names from overflowing narrow containers."
+  2. For the worktree `.slice-name` fix: do NOT approve without visual evidence. If a page with `.slice-name` content exists on ArchWiki (e.g., a systemd.slice(5) man page), capture a before/after screenshot showing the overflow behavior and fix. Then commit as a separate fix.
+  3. Commit completion log addition with `chore: add archwiki reviewer findings`.
+  4. Do NOT push — pipeline issue unresolved per prior findings.
+
 ## Visual Scout Findings
 
 ### 2026-04-01 01:17
