@@ -753,6 +753,35 @@ samp
     hanging-punctuation first
 
 // =============================================================================
+// HANGING PUNCTUATION UTILITY CLASSES
+// =============================================================================
+
+// Fine-grained control over hanging punctuation for specific elements
+// Browser support: Chrome/Safari only (Firefox doesn't support)
+// These utilities allow applying hanging-punctuation to custom elements
+// beyond the default blockquote styling; unsupported browsers ignore silently
+
+// Hang only the first punctuation mark at line start
+.hanging-punctuation-first
+  hanging-punctuation first
+
+// Hang only the last punctuation mark at line end
+.hanging-punctuation-last
+  hanging-punctuation last
+
+// Hang both first and last punctuation marks
+.hanging-punctuation-first-last
+  hanging-punctuation first last
+
+// Force the last character to hang (even if it wouldn't normally)
+.hanging-punctuation-force-end
+  hanging-punctuation force-end
+
+// Allow the last character to hang if it would naturally do so
+.hanging-punctuation-allow-end
+  hanging-punctuation allow-end
+
+// =============================================================================
 // BOX-DECORATION-BREAK FOR MULTI-LINE INLINE STYLES
 // =============================================================================
 
