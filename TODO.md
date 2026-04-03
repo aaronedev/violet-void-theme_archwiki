@@ -11812,3 +11812,16 @@ Last updated: 2026-04-03 21:40
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable across all pages, viewports, and interactive states
   - Consider updating archwiki-scout.js to also capture mobile menu-open at tablet viewport (low priority — baselines exist and are clean)
+
+### 2026-04-03 23:09
+- Review target: f22fa65 (multi-layer box-shadow)
+- Verdict: APPROVED
+- Findings:
+  - Commit `f22fa65` correctly replaces single-layer `$shadow-subtle` with scoped two-layer shadow (`0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)`) for `.archwiki-template-box` and `.warningbox/.errorbox/.successbox/.noticebox/.messagebox` selector groups.
+  - Build succeeds (v20260403.23.11). Compiled CSS contains the multi-layer shadows.
+  - Change is properly scoped: `$shadow-subtle` remains in use across 15+ other files — no unintended side effects from variable removal.
+  - Scout run at 20:19 UTC confirms 0 visual drift across 40 baseline comparisons (AE=0). Pages checked lack warning/error boxes, so the scout cannot validate the specific shadow change — this is expected, not a gap.
+  - TODO.md completion log is accurate (commit hash, date/time, file path all match).
+- Implementer instructions:
+  - No action needed — f22fa65 is approved and visually clean.
+  - If follow-up validation of the actual shadow rendering on warning/error boxes is desired, a targeted page (e.g., a page containing `{{warning}}` or `{{error}}` templates) should be added to the scout capture list.
