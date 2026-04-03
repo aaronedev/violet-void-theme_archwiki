@@ -557,10 +557,11 @@
 | 2026-04-02 09:25 | :state() Pseudo-class for Custom Element States | Add :state() pseudo-class styling in modern-css.styl for ArchWiki custom elements exposing internal states via elementInternals.states — loading, error, disabled, readonly, checked, indeterminate, active, expanded, collapsed, busy, success, warning, empty, overflow states; also registers --gold CSS custom property in base.styl | 609d81d |
 | 2026-04-03 10:50 | Hanging-punctuation utility classes | Add 5 hanging-punctuation utility classes (.hanging-punctuation-first, .last, .first-last, .force-end, .allow-end) in typography.styl for fine-grained control beyond the base blockquote rule | 9f7aa42 |
 | 2026-04-03 19:06 | Multi-layer box-shadow for template and message boxes | Replace single-layer $shadow-subtle (0 2px 8px rgba) with realistic two-layer shadow (0 1px 2px inner + 0 4px 16px outer, both rgba($darker)) for .archwiki-template-box and .warningbox/.errorbox/.successbox/.noticebox/.messagebox | f22fa65 |
+| 2026-04-04 01:17 | prefers-reduced-transparency for OOUI modal dialog | Add .oo-ui-windowManager.oo-ui-windowManager-modal > .oo-ui-dialog to prefers-reduced-transparency media query — users with transparency reduction now get solid $darker background instead of translucent rgba($darker, 0.75) | 59eb4fe |
 
 ---
 
-Last updated: 2026-04-03 21:40
+Last updated: 2026-04-04 01:17
 
 ## Visual Scout Findings
 
