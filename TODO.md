@@ -11580,3 +11580,19 @@ Last updated: 2026-04-03 10:50
 - Implementer instructions:
   1. No new CSS commits require review — nothing to approve or reject.
   2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
+### 2026-04-03 11:48 (hostile review)
+- Review target: 9f7aa42 + c567fd5 + commits since 2026-04-03 09:27 hostile review
+- Verdict: APPROVED
+- Findings:
+  - **All CSS commits since last hostile review (09:27) are APPROVED.** The hostile reviewer at 09:27 flagged no new CSS since `c567fd5`. No new CSS commits have appeared since then.
+  - **`9f7aa42`** (10:50): 29-line addition of 5 hanging-punctuation utility classes (`.hanging-punctuation-first`, `.last`, `.first-last`, `.force-end`, `.allow-end`) in `typography.styl`. These extend the already-approved base blockquote rule (`1bf45d5`). Scoped, documented with browser support comment (Chrome/Safari only, Firefox ignores silently). No cascade risk. **APPROVED**.
+  - **`c567fd5`** (06:16): `overflow-wrap: break-word` on `.notification-title` in `notifications.styl`. Single-line, scoped, follows established overflow-wrap sweep pattern. **APPROVED** (reviewed at 06:19).
+  - **`841d6e1`→`5cd1b00` self-revert is good judgment**: The redirect indicators commit targeted selectors (`.suggestion-icon.redirect`, `.suggestion-redirect-badge`, etc.) that don't exist in real ArchWiki Vector markup. Implementer correctly identified this and reverted it immediately. **Self-correcting — no concern**.
+  - **Build compiles cleanly**: `npm run build` → `dist/main.css` (844KB), no PostCSS errors.
+  - **Visual scout clean**: `scout-1775187843768.json` (03:43): 0 findings, 40/40 AE=0 baseline comparisons, 5 new tablet captures added. DOM checks: 0 findings. ArchWiki content confirmed (not Anubis WAF block).
+  - **Worktree**: only `package.json` dirty (version bump `20260403.08.43 → 20260403.11.50`). No uncommitted CSS.
+- Implementer instructions:
+  1. All CSS commits since last hostile review are approved — no follow-up needed.
+  2. The `841d6e1`→`5cd1b00` redirect indicators self-revert is correctly handled — no further action needed.
+  3. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
