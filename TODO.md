@@ -11840,3 +11840,43 @@ Last updated: 2026-04-03 21:40
   2. Consider correcting the "87%+" TODO browser support figure to "89%+" to match the code comment.
   3. Do NOT push — pipeline issue remains unroot-caused.
 
+### 2026-04-04 00:23
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open, desktop.toc-open, desktop.search-active
+  - mobile.default, mobile.menu-open, mobile.toc-open, mobile.search-active
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — zero visual drift detected
+  - All interactive states (menu-open, toc-open, search-active) render cleanly on desktop and mobile
+  - No overlay bleed-through, text clipping, nav label wrapping, or width collapse detected
+  - Build succeeds (v20260404.00.24) — CSS compiles cleanly
+  - Worktree dirty: package.json version bump only (no CSS changes)
+- Artifact paths:
+  - .agent/archwiki/current/ — 41 PNG screenshots (5 pages × 4 states × 2 viewports + 1 extra)
+  - .agent/archwiki/baselines/ — reference screenshots
+  - .agent/reports/scout-1775247621523.json — prior report (0 findings)
+  - .agent/archwiki/diff-metrics.txt — AE=0 for all 40 comparisons
+- Implementer instructions:
+  - No visual issues found — theme is stable across all interactive states
+  - Worktree dirty flag is due to package.json build version bump — not a code concern
+
+
+### 2026-04-04 01:03
+- Review target: 596d81f (remove colons from margin-trim declarations for linter compliance)
+- Verdict: APPROVED
+- Findings:
+  - **`596d81f`**: 4 one-line changes in `src/utilities/spacing.styl`. Removes colons from `margin-trim:` declarations to use proper Stylus colon-less syntax: `margin-trim: block` → `margin-trim block`, etc. Stylus property syntax allows both but stylelint may prefer colon-less; either way this is a non-breaking syntax normalization.
+  - Build succeeds (`v20260404.01.04`). No visual output change — purely a source-formatting fix.
+  - Scoped to `src/utilities/spacing.styl` only. No cascade risk. No open-state evidence needed (utility class syntax, not interactive UI).
+  - Worktree contains only: (1) TODO.md visual scout entry (2026-04-04 00:23), (2) package.json version bump (`20260403.11.54` → `20260404.01.04`). No new CSS implementation to audit.
+  - Latest scout run (00:23): 40/40 AE=0 across all pages/viewports/states — theme visually stable.
+- Implementer instructions:
+  1. Commit `596d81f` approved — no further action needed.
+  2. Do NOT push — pipeline issue remains unroot-caused.
