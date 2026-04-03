@@ -2211,11 +2211,11 @@ Last updated: 2026-04-03 21:40
   - `@container style(--theme: dark) { ... }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [ ] **Container Name Scoping** (87%+ browser support)
-  - File: `src/components/modern-css.styl`
-  - Name containers for targeted queries
-  - `container-name: sidebar;`
-  - Note: Wrap in `@css{}` for Stylus
+- [x] **Container Name Scoping** (87%+ browser support) (done: 2026-04-03 21:49, commit: 75fce12)
+  - Files: `src/utilities/containers.styl`, `src/main.styl`
+  - Add container-name utility classes: `.container-name-sidebar`, `.container-name-content`, `.container-name-toc`, `.container-name-infobox`, `.container-name-card`, `.container-name-modal` and short aliases `.cn-*`
+  - Also add container-type utilities: `.container-inline`, `.container-block`, `.container-normal` and short aliases `.c-*`
+  - Container-name requires container-type to also be set; all utilities include both
 
 
 ## 🎨 SVG & Vector Enhancements (New - 2026-02-28 Scout 11)
@@ -11827,3 +11827,16 @@ Last updated: 2026-04-03 21:40
 - Implementer instructions:
   - No action needed — f22fa65 is approved and visually clean.
   - If follow-up validation of the actual shadow rendering on warning/error boxes is desired, a targeted page (e.g., a page containing `{{warning}}` or `{{error}}` templates) should be added to the scout capture list.
+
+### 2026-04-03 23:55
+- Review target: 75fce12 (container query utility classes) + df2ed66 (margin-trim utilities)
+- Verdict: APPROVED
+- Findings:
+  - **`df2ed66`**: 4 margin-trim utility classes (`.margin-trim-block`, `.margin-trim-inline`, `.margin-trim-both`, `.margin-trim-none`) in `src/utilities/spacing.styl`. `margin-trim: block`/`inline`/`block inline`/`none` are valid CSS3. Browser support comment: 87%+ (Chrome 85+, Safari 16.4+) — accurate. Note "does not work with display: grid/flex" is correct per spec. No hardcoded colors, no open-state evidence needed (utility classes, not interactive UI). Completion log entry already present at 2026-04-03 18:10.
+  - **`75fce12`**: 120 lines of container query utilities in new `src/utilities/containers.styl`, imported in `main.styl`. `container-type: inline-size/block-size/normal` and `container-name` are valid CSS3 (89%+ browser support). All named containers include `container-type` — correctly handles the `container-name` requires `container-type` spec requirement. Existing `.container-query` in `modern-css.styl` (`container-type inline-size; container-name sidebar`) is unaffected — new utilities are additive. Short aliases (`.c-*`, `.cn-*`) avoid naming collisions. No open-state evidence needed. Build compiles cleanly.
+  - Minor: TODO entry says "87%+" browser support for Container Name Scoping but containers.styl comment says "89%+". The 89% figure (Chrome 106+, Safari 16+, Firefox 110+) is more accurate. Correct in code comment.
+- Implementer instructions:
+  1. Both commits approved — completion log for `75fce12` added above in TODO.md worktree update.
+  2. Consider correcting the "87%+" TODO browser support figure to "89%+" to match the code comment.
+  3. Do NOT push — pipeline issue remains unroot-caused.
+
