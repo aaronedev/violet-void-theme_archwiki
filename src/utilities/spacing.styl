@@ -344,3 +344,27 @@ a.logical-button
 
   .mi-end-lg
     margin-inline-end 2rem
+
+// =============================================================================
+// MARGIN-TRIM - Trim child margins within containers
+// =============================================================================
+// margin-trim allows a container to trim the block-start margin of its first child
+// and block-end margin of its last child, preventing extra whitespace in cards.
+// Browser support: 87%+ (Chrome 85+, Safari 16.4+)
+// Note: Only works on block containers; does not work with display: grid/flex
+
+// Trim block margins of first/last children within the container
+.margin-trim-block
+  margin-trim: block
+
+// Trim inline margins of first/last children (useful for horizontal cards)
+.margin-trim-inline
+  margin-trim: inline
+
+// Trim both block and inline margins
+.margin-trim-both
+  margin-trim: block inline
+
+// Disable margin trimming (reset)
+.margin-trim-none
+  margin-trim: none
