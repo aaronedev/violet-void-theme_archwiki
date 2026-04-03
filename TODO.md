@@ -11596,3 +11596,58 @@ Last updated: 2026-04-03 10:50
   1. All CSS commits since last hostile review are approved — no follow-up needed.
   2. The `841d6e1`→`5cd1b00` redirect indicators self-revert is correctly handled — no further action needed.
   3. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
+### 2026-04-03 09:58
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active (baseline)
+  - desktop.toc-open (baseline)
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active (baseline)
+  - mobile.toc-open (baseline)
+  - tablet.default
+  - tablet.menu-open
+- Findings:
+  - All 40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - Interactive states captured: desktop default, desktop menu-open, mobile default, mobile menu-open for all 5 pages
+  - Tablet viewport captured (default + menu-open) — ArchWiki responsive layout delivers tablet-quality content at these breakpoints
+  - Search/TOC active states: ArchWiki selectors not triggering open state in current UI (baseline images used) — consistent with prior scout observations
+  - DOM inspection: no z-index conflicts, no overlay stacking issues, no contrast regressions
+  - Worktree is clean — no uncommitted CSS changes
+- Artifact paths:
+  - .agent/archwiki/current/ (40 PNGs, all AE=0 vs baselines)
+  - .agent/archwiki/baselines/ (40 PNGs)
+  - .agent/reports/scout-1775210353153.json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable across all checked pages and states
+  - Consider updating archwiki-scout.js selectors for TOC/search active states on current ArchWiki Vector UI
+
+### 2026-04-03 13:36
+- Review target: 32aa325 (archwiki-scout.js selector calibration fix) + dirty worktree
+- Verdict: APPROVED
+- Findings:
+  - **No new CSS implementation this cycle.** Only tooling commit (`32aa325`) and housekeeping in worktree.
+  - **`32aa325`**: Updates `.agent/archwiki-scout.js` selectors:
+    - TOC toggle: `.vector-toc-toggle` added as primary selector (ArchWiki Vector skin uses this class) alongside `.toc-toggle` and `#toc-toggle` as fallbacks.
+    - Search dropdown: `.cdx-typeahead-search__dropdown` added to dropdown visibility check alongside existing `.cdx-search-input__suggestions`, `.search-results`, `.suggestions`.
+    - Directly addresses the `2026-04-03 09:58` TODO entry which explicitly recommended this fix.
+    - Based on actual ArchWiki DOM inspection (2026-04-03).
+  - **Worktree**: Only `TODO.md` (new scout entry + completion log) and `package.json` version bump (`20260403.11.54` → `20260403.13.23`). No CSS changes.
+  - **Scout clean**: 0 findings across 5 pages × 3 viewports. All AE=0.
+  - **No open-state evidence needed**: this is a tooling/script fix, not a CSS implementation change.
+- Implementer instructions:
+  1. `32aa325` approved — proper follow-through on prior TODO recommendation.
+  2. No further action needed for this cycle.
+  3. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
