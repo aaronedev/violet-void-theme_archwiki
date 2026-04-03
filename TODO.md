@@ -558,7 +558,7 @@
 
 ---
 
-Last updated: 2026-04-02 09:37
+Last updated: 2026-04-03 06:19
 
 ## Visual Scout Findings
 
@@ -7407,6 +7407,8 @@ Last updated: 2026-04-02 09:37
 | 2026-03-25 | Implementer | Replace hardcoded rgba(0,0,0) with rgba($darker) in file-pages.styl for video caption (::cue) backgrounds, text-shadow, and picture-in-picture overlay box-shadows and gradients (6 replacements) | 97de96d |
 | 2026-04-03 | Implementer | Revert 841d6e1: remove non-existent MediaWiki selector CSS for redirect indicators in search suggestions panel (.suggestion-icon.redirect, .suggestion-redirect-badge, .suggestions-result, etc. — selectors target nothing in real Vector markup) | 5cd1b00 |
 | 2026-04-03 | Implementer | Replace hardcoded hex values with CSS custom properties in @css{} rgb(from ...) relative color syntax block in modern-css.styl (arch-blue, secondary-blue, red, secondary-red, green, orange, base, light, comment, muted) | 6fa1917 |
+| 2026-04-03 | Implementer | Fix Stylus nesting bug: extract `::marker` and `::-webkit-details-marker` from `details:open &` nesting to standalone `details:open > summary::marker` rules — ampersand SCSS-style nesting does not work with pseudo-elements in Stylus | 39c2429 |
+| 2026-04-03 | Implementer | Add overflow-wrap: break-word to .notification-title in notifications.styl — prevents long notification titles from overflowing narrow containers | c567fd5 |
 | 2026-04-03 | Implementer | Revert 841d6e1: remove non-existent MediaWiki selector CSS for redirect indicators in search suggestions panel (.suggestion-icon.redirect, .suggestion-redirect-badge, .suggestions-result, etc. — selectors target nothing in real Vector markup) | 5cd1b00 |
 
 ---
@@ -11410,6 +11412,37 @@ Last updated: 2026-04-02 09:37
   2. Worktree is dirty with run artifacts and unrelated package.json bump — do NOT pull/rebase, do NOT push
   3. Previous Anubis WAF blocking (17:29 run) was intermittent — current run succeeded, confirming theme is intact
 
+### 2026-04-03 03:42
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active (attempted — ArchWiki selector didn't trigger)
+  - desktop.toc-open (attempted — ArchWiki selector didn't trigger)
+  - tablet.default (new coverage)
+  - mobile.default
+  - mobile.menu-open
+- Findings:
+  - **40/40 baseline comparisons: AE=0** — all existing baselines (desktop + mobile, all 4 states) pixel-identical. No visual drift.
+  - **5 new tablet captures** added (main-page, systemd, pacman, installation-guide, firefox × tablet.default) — no comparison baseline, visually clean.
+  - **Interactive state selectors partially triggered**: menu-open captured for all pages (desktop + mobile). TOC and search-active selectors in archwiki-scout.js don't match current ArchWiki Vector UI — consistent with prior runs.
+  - **DOM checks: 0 findings** — no overlay stacking issues, contrast problems, nav overflow, or code block clipping detected.
+  - ArchWiki content confirmed (not Anubis WAF block page — scout ran at 03:43 UTC, WAF appears time-sensitive).
+- Artifact paths:
+  - `.agent/archwiki/current/` — 41 screenshots (40 baseline-comparable + 5 tablet additions)
+  - `.agent/archwiki/diff-metrics.txt` — 40 AE=0 entries, 0 changed
+  - `.agent/reports/scout-1775187843768.json` — 0 findings
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+  - Consider updating archwiki-scout.js selectors for TOC/search-active states on current ArchWiki UI (low priority — baselines exist and are clean)
+
 ### 2026-04-02 19:48
 - Review target: dirty worktree (package.json bump only — no new CSS since b7b913a)
 - Verdict: APPROVED
@@ -11520,3 +11553,15 @@ Last updated: 2026-04-02 09:37
   1. All CSS commits since `2ae7968` approved — no follow-up needed.
   2. The `841d6e1`→`5cd1b00` self-revert is good judgment — do NOT push. Remaining 17 unpushed commits.
   3. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
+### 2026-04-03 06:19
+- Review target: c567fd5 (overflow-wrap for .notification-title)
+- Verdict: APPROVED
+- Findings:
+  - **`c567fd5`**: Adds `overflow-wrap: break-word` to `.notification-title` in `notifications.styl`. Single-line, scoped to one selector. Follows the same pattern as the prior overflow-wrap sweep for `.status-text`, `.module-description`, `.package`, etc.
+  - **No open-state evidence needed**: notification title overflow is a default-state layout issue (long title text in a narrow container), not an interactive open-state. Consistent with how similar overflow-wrap commits were reviewed.
+  - **Worktree**: only `package.json` version bump (`20260403.04.49 → 20260403.06.16`) and `TODO.md` (this entry + completion log entries for `c567fd5` + `39c2429`). No dirty CSS.
+  - **Scout**: `scout-1775187843768.json` (03:42) — CLEAN. 40/40 AE=0 baseline comparisons. 5 new tablet captures added. DOM checks: 0 findings. Interactive states (menu-open) captured for desktop and mobile.
+- Implementer instructions:
+  1. Commit approved — no follow-up needed.
+  2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
