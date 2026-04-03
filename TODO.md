@@ -2189,17 +2189,19 @@ Last updated: 2026-04-03 21:40
   - Stylus: Works directly
   - Commit: 81111f8
 
-- [ ] **`text-combine-upright` for Tate-chu-yoko** (97%+ browser support)
+- [x] **`text-combine-upright` for Tate-chu-yoko** (97%+ browser support)
   - File: `src/components/i18n.styl`
   - Combine horizontal in vertical text
   - For numbers, dates in vertical text
   - Stylus: Works directly
+  - Commit: 81111f8
 
-- [ ] **`unicode-bidi` for Bidirectional** (97%+ browser support)
+- [x] **`unicode-bidi` for Bidirectional** (97%+ browser support)
   - File: `src/components/i18n.styl`
   - Control bidirectional text algorithm
   - `unicode-bidi: plaintext;`
   - Stylus: Works directly
+  - Commit: 81111f8
 
 ## 🎯 Container Style Queries (New)
 
@@ -7992,7 +7994,7 @@ Last updated: 2026-04-03 21:40
 | 2026-03-15 | @media (video-dynamic-range) | Added HDR video display support in modern-css.styl - enhanced video player colors, contrast and saturation filters, progress bar gradients, controls styling for HDR-capable displays, with standard dynamic range fallback | e3c5a45 |
 | 2026-03-15 | text-wrap-style Property | Added text-wrap-style utilities in typography.styl - balance for headings, pretty for paragraphs (92%+ browser support) | 2f290ca |
 | 2026-03-15 | Cargo Query Interface | Added src/components/cargo.styl with query builder styling, result table formatting with sorting/pagination, export options (CSV/JSON/XML/print), map view for spatial queries, error states and loading indicators | 7ec28b8 |
-| 2026-03-15 | Vertical Writing Mode | Added full vertical writing support in i18n.styl - .vertical-rl/.vertical-lr classes, text-orientation variants, CJK defaults, vertical list/table styling (97%+ browser support) | 81111f8 |
+| 2026-03-15 | Vertical Writing Mode | Added full vertical writing support in i18n.styl - .vertical-rl/.vertical-lr classes, text-orientation variants, CJK defaults, vertical list/table styling, text-combine-upright for Tate-chu-yoko, unicode-bidi for bidirectional text (97%+ browser support) | 81111f8 |
 | 2026-03-15 | ::highlight() Pseudo-element | Added ::highlight() pseudo-element styles in modern-css.styl for CSS Custom Highlight API - supports search-results, search-current, annotation, custom-selection, quote, error, warning, link-found highlight types (85%+ browser support) | 9a98043 |
 | 2026-03-15 | Masonry Layout for Galleries | Added masonry gallery layouts in file-pages.styl - native CSS masonry with @supports, CSS columns fallback, grid-based simulation with variable spans, dense packing, responsive breakpoints | bd0937b |
 | 2026-03-16 | Command Line Blocks | Added archwiki.styl with terminal prompt styling, command/output separation, copy button positioning, root vs user prompt distinction, config file blocks (INI/JSON/YAML), installation status boxes, kernel module styling | cca8d22 |
