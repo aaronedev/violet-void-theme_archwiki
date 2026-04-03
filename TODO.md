@@ -7411,7 +7411,7 @@ Last updated: 2026-04-03 10:50
 | 2026-04-03 | Implementer | Replace hardcoded hex values with CSS custom properties in @css{} rgb(from ...) relative color syntax block in modern-css.styl (arch-blue, secondary-blue, red, secondary-red, green, orange, base, light, comment, muted) | 6fa1917 |
 | 2026-04-03 | Implementer | Fix Stylus nesting bug: extract `::marker` and `::-webkit-details-marker` from `details:open &` nesting to standalone `details:open > summary::marker` rules — ampersand SCSS-style nesting does not work with pseudo-elements in Stylus | 39c2429 |
 | 2026-04-03 | Implementer | Add overflow-wrap: break-word to .notification-title in notifications.styl — prevents long notification titles from overflowing narrow containers | c567fd5 |
-| 2026-04-03 | Implementer | Revert 841d6e1: remove non-existent MediaWiki selector CSS for redirect indicators in search suggestions panel (.suggestion-icon.redirect, .suggestion-redirect-badge, .suggestions-result, etc. — selectors target nothing in real Vector markup) | 5cd1b00 |
+| 2026-04-03 | Implementer | Add overflow-wrap: break-word to .slice-name and .resource-item in systemd-slice units — prevents long slice names and resource item text from overflowing narrow flex containers | 5b7c7a3 |
 
 ---
 
