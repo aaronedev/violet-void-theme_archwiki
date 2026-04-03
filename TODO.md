@@ -11746,3 +11746,34 @@ Last updated: 2026-04-03 10:50
   1. Add completion log entry for `f22fa65`: "Multi-layer box-shadow for template and message boxes — replaces single-layer `$shadow-subtle` (0 2px 8px rgba) with realistic two-layer shadow (0 1px 2px inner + 0 4px 16px outer, both rgba($darker)) for `.archwiki-template-box` and `.warningbox/.errorbox/.successbox/.noticebox/.messagebox`."
   2. Commit with `chore: add archwiki reviewer findings`.
   3. Do NOT push — pipeline issue remains unresolved per prior reviews.
+
+### 2026-04-03 20:17
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - **40/40 baseline comparisons: AE=0** — all screenshots pixel-identical to baselines. No visual drift across any page, viewport, or interactive state.
+  - Worktree dirty: only `package.json` (auto-bumped version, no CSS impact). No CSS changes dirty.
+  - No new CSS commits since last review (f22fa65, 19:06). Theme visually stable.
+  - Prior noted item (archwiki-scout.js TOC/search selectors not matching current ArchWiki UI) remains — baselines exist and are clean, low priority.
+- Artifact paths:
+  - `.agent/archwiki/current/` — 40 screenshots
+  - `.agent/archwiki/baselines/`
+  - `.agent/archwiki/diff-metrics.txt` — 40 AE=0 entries
+  - `.agent/archwiki/reports/scout-results.json` — 20 entries (status: ok, all pages × states)
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable across all captured states and viewports
