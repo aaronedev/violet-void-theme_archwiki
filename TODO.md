@@ -11779,3 +11779,36 @@ Last updated: 2026-04-03 21:40
   - `.agent/archwiki/reports/scout-results.json` — 20 entries (status: ok, all pages × states)
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable across all captured states and viewports
+
+### 2026-04-03 22:18
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - tablet.default
+- Findings:
+  - **40/40 baseline comparisons: AE=0** — all existing baseline comparisons (desktop + mobile, all 4 states) pixel-identical. No visual drift detected across any page, viewport, or interactive state.
+  - **5 new tablet captures**: tablet.default captured for all 5 pages (main-page, systemd, pacman, installation-guide, firefox). No baseline comparison available — visually clean at 768×1024.
+  - **Interactive states verified**: menu-open captured for all 5 pages (desktop + mobile). ArchWiki content confirmed — not Anubis WAF block page (scout ran at ~22:15 UTC).
+  - **DOM checks: 0 findings** — no overlay stacking issues, contrast problems, nav overflow, code block clipping, or table overflow detected.
+  - Worktree dirty: only `package.json` (auto-bumped version, no CSS impact). No uncommitted CSS changes.
+  - Last CSS commit: `f22fa65` (multi-layer box-shadow, approved 19:55). No new CSS since then.
+- Artifact paths:
+  - `.agent/archwiki/current/` — 45 screenshots (40 baseline-comparable + 5 tablet additions)
+  - `.agent/archwiki/baselines/`
+  - `.agent/reports/scout-1775247621523.json`
+  - `.agent/archwiki/diff-metrics.txt` — 40 AE=0 entries
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable across all pages, viewports, and interactive states
+  - Consider updating archwiki-scout.js to also capture mobile menu-open at tablet viewport (low priority — baselines exist and are clean)
