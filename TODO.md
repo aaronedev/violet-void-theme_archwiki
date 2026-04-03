@@ -2318,11 +2318,12 @@ Last updated: 2026-04-03 21:40
   - `corner-shape: scoop;`
   - Note: Experimental, limited support
 
-- [ ] **`box-shadow` Multiple Layers** (97%+ browser support)
+- [x] **`box-shadow` Multiple Layers** (97%+ browser support) (done: 2026-04-03 19:06, commit: f22fa65)
   - File: `src/components/boxes.styl`
   - Already used - verify complex shadow usage
   - Multiple shadows for depth effects
   - Stylus: Works directly
+  - ✅ Implemented: Realistic two-layer shadow (0 1px 2px inner + 0 4px 16px outer) for .archwiki-template-box and .warningbox/.errorbox/.successbox/.noticebox/.messagebox
 
 ## 🌐 At-Risk / Experimental (New)
 
