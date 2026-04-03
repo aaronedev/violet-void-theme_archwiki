@@ -600,10 +600,12 @@ details:open
     color $secondary-blue
     font-weight 600
 
-    &::marker
-    &::-webkit-details-marker
-      color $secondary-blue
+// Summary marker inside open details - use separate rule to ensure correct nesting
+details:open > summary::marker
+details:open > summary::-webkit-details-marker
+  color $secondary-blue
 
+details:open
   // Optional: Add subtle animation indicator
   summary .details-toggle-icon
   summary .toggle-icon
