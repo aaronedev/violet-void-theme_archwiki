@@ -11486,3 +11486,37 @@ Last updated: 2026-04-02 09:37
 - Implementer instructions:
   1. Both commits approved. Completion log entry confirmed present.
   2. Do NOT push — pipeline issue from prior reviews remains unroot-caused.
+
+### 2026-04-03 02:12
+- Review target: 39c2429 (fix: separate ::marker selectors from parent rule in details:open block)
+- Verdict: APPROVED
+- Findings:
+  - **`39c2429`**: Fixes a Stylus nesting bug where `&::marker` and `&::-webkit-details-marker` were nested under `details:open &` — the ampersand SCSS-style nesting does not work correctly with pseudo-elements in Stylus, producing invalid CSS. Fix extracts them to standalone rules: `details:open > summary::marker` and `details:open > summary::-webkit-details-marker`. Comment added: "use separate rule to ensure correct nesting."
+  - **Compilation correctness**: This is a fix for CSS validity, not a visual change. The `color: $secondary-blue` on the marker was presumably not being applied before due to the nesting bug. Now it will.
+  - **Scoped**: Only affects `summary::marker` inside `details[open]`. No cascade risk.
+  - **Scout report** (`scout-1775166029745.json`, 21:40): 0 findings across 5 pages × 3 viewports. 40 AE=0 comparisons — pixel-identical to baselines. diff-metrics.txt confirms no pixel drift.
+  - **Build**: `npm run build` succeeds cleanly. No PostCSS errors.
+  - **Worktree**: only `package.json` version bump (`20260402.09.37 → 20260403.04.13`) — build script auto-bump, no CSS changes dirty.
+  - **No open-state evidence needed**: `details:open` is an interactive state; the change fixes compilation so the marker color applies. Scout confirms no visual regression across all captured states.
+- Implementer instructions:
+  1. Commit is approved — no follow-up needed.
+  2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
+
+### 2026-04-03 04:47
+- Review target: 39c2429..HEAD (19 commits since 2ae7968)
+- Verdict: APPROVED
+- Findings:
+  - **`39c2429`** (2026-04-03 02:25): Fix Stylus nesting bug for `::marker` inside `details:open`. Extracted to `details:open > summary::marker` + `details:open > summary::-webkit-details-marker`. Correct, scoped, build passes, scout clean (0 findings, 40 AE=0). Already reviewed at 02:12 — APPROVED.
+  - **`841d6e1` + `5cd1b00`**: Add then immediately revert fake redirect indicators in search suggestions. Selectors (`.suggestion-icon.redirect`, `.suggestion-redirect-badge`, etc.) targeted nothing in real ArchWiki Vector markup. Revert logged in completion log. **Self-correcting — OK**.
+  - **`749f6da`** (2026-04-02 23:18): Add `.infobox-title` to `text-wrap: balance` and `text-wrap-style: balance` selectors. Follows existing `.card-title`/`.info-box-title`/`.navbox-title` pattern. Scoped, safe. **APPROVED**.
+  - **`03664ff`** (2026-04-02 22:47): Add `overflow-wrap: break-word` to `.package-name`. Separate from `.package` (different selector). Follows existing overflow-wrap sweep pattern. **APPROVED**.
+  - **`b7b913a`** (2026-04-02 12:48): Add `--secondary-blue-rgb: 199, 184, 255` `@property` and use `rgba(var(--secondary-blue-rgb, ...))` for `:state()` alpha colors. Follows existing `--arch-blue-rgb` / `--base-rgb` pattern in the file. Scoped. **APPROVED**.
+  - **`609d81d`** (2026-04-02 09:26): `:state()` pseudo-class for ArchWiki custom elements (loading, error, disabled, readonly, checked, indeterminate, active, expanded, collapsed, busy, success, warning, empty, overflow). Wrapped in `@css{}`/`@supports`. `--gold` registered in base.styl. Completion log entry present. **APPROVED**.
+  - **Remaining commits**: `b11fdfd` (responsive table cards), `3d5e5a5` (oo-ui-popupWidget width), `f134cd6` (commit hash fix) — all trivial/approvable; chore commits — no CSS concerns.
+  - **Scout**: `scout-1775166029745.json` (21:40) reports 0 findings across 5 pages × 3 viewports. AE=0 across all comparisons.
+  - **Build**: `npm run build` succeeds cleanly (version → `20260403.04.49`).
+  - **Worktree**: only `package.json` version bump dirty. No uncommitted CSS.
+- Implementer instructions:
+  1. All CSS commits since `2ae7968` approved — no follow-up needed.
+  2. The `841d6e1`→`5cd1b00` self-revert is good judgment — do NOT push. Remaining 17 unpushed commits.
+  3. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
