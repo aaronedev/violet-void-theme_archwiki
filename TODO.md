@@ -7857,8 +7857,8 @@ Last updated: 2026-04-03 10:50
   - Example: `position-area: top span-right;`
   - Stylus: Works directly
 
-- [ ] **`margin-trim` Property for Container Edges** (CSS, 85%+ browser support)
-  - File: `src/utilities/layout.styl`
+- [x] **`margin-trim` Property for Container Edges** (CSS, 85%+ browser support) (done: 2026-04-03 18:10, commit: df2ed66)
+  - File: `src/utilities/spacing.styl`
   - Trim margins at container edges for flex/grid children
   - Values: `none`, `block`, `inline`, `block-start`, etc.
   - Eliminates need for negative margins or `:last-child` rules
