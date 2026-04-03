@@ -558,10 +558,11 @@
 | 2026-04-03 10:50 | Hanging-punctuation utility classes | Add 5 hanging-punctuation utility classes (.hanging-punctuation-first, .last, .first-last, .force-end, .allow-end) in typography.styl for fine-grained control beyond the base blockquote rule | 9f7aa42 |
 | 2026-04-03 19:06 | Multi-layer box-shadow for template and message boxes | Replace single-layer $shadow-subtle (0 2px 8px rgba) with realistic two-layer shadow (0 1px 2px inner + 0 4px 16px outer, both rgba($darker)) for .archwiki-template-box and .warningbox/.errorbox/.successbox/.noticebox/.messagebox | f22fa65 |
 | 2026-04-04 01:17 | prefers-reduced-transparency for OOUI modal dialog | Add .oo-ui-windowManager.oo-ui-windowManager-modal > .oo-ui-dialog to prefers-reduced-transparency media query — users with transparency reduction now get solid $darker background instead of translucent rgba($darker, 0.75) | 59eb4fe |
+| 2026-04-04 01:50 | border-collapse: separate with Spacing | Mark TODO entry as done — table.spacing-* utility classes with border-collapse: separate + border-spacing values already implemented in tables.styl (commit 6b8420c); entry was unchecked but feature was complete | 6b8420c |
 
 ---
 
-Last updated: 2026-04-04 01:17
+Last updated: 2026-04-04 01:50
 
 ## Visual Scout Findings
 
@@ -2950,11 +2951,12 @@ Last updated: 2026-04-04 01:17
   - Stylus: Works directly
   - Commit: 3cd2e71
 
-- [ ] **`border-collapse: separate` with Spacing** (97%+ browser support)
+- [x] **`border-collapse: separate` with Spacing** (97%+ browser support)
   - File: `src/components/tables.styl`
   - Separate borders with gaps
   - `border-collapse: separate; border-spacing: 2px;`
   - Stylus: Works directly
+  - Commit: 6b8420c
 
 - [x] **`border-spacing` for Gaps** (97%+ browser support)
   - File: `src/components/tables.styl`
