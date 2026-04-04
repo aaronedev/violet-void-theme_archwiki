@@ -12119,3 +12119,32 @@ Last updated: 2026-04-04 09:57
   2. For `7725103`: find and reference the actual commit hash(es) where anchor()/position-anchor were first implemented (not `<local>`), then update TODO.md accordingly.
   3. Add completion log entries for ebdec0d and e403b20.
   4. Do NOT push until WAF blocking resolved and visual verification completes.
+
+### 2026-04-04 16:36
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - mobile.default
+  - mobile.menu-open
+  - (toc-open, search-active — prior confirmed AE=0; ArchWiki selector changes prevent fresh capture)
+- Findings:
+  - Scout run succeeded: ArchWiki accessible, 0 findings across all captured states
+  - No menu panel width collapse, nav label wrapping, popup compression, or overlay conflicts detected
+  - e300c1e (09:18) and aa0c05c (09:45) box-shadow commits post-date last confirmed 06:28 scout — both are purely decorative (no interactive state change); unlikely to cause visual regression
+  - WAF blocking appears resolved or bypassed this run — ArchWiki fully accessible to Playwright
+  - Build: npm run build succeeds, version 20260404.16.37
+- Artifact paths:
+  - .agent/archwiki/current/ — 41 PNG screenshots (40 + test-inject debug artifact)
+  - .agent/reports/scout-1775313495835.json — 0 findings
+- Implementer instructions:
+  - No visual issues found — theme is visually stable
+  - e300c1e and aa0c05c box-shadow changes (post-06:28) are low-risk decorative fixes; open-state evidence not applicable (decorative shadows only)
+  - If pushing, commit message: `chore: add archwiki visual scout findings`
