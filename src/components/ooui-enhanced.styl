@@ -335,6 +335,9 @@
   box-shadow $shadow-elevated
   max-width 90vw
   max-height 90vh
+  // Prevent width collapse on dialogs with minimal content;
+  // matches .oo-ui-popupWidget treatment (min-width: 200px)
+  min-width 320px
 
   // Dialog header
   .oo-ui-dialog-header

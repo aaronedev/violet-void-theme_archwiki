@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-04-04 14:37",
+  "pages": [
+    "main-page",
+    "systemd",
+    "pacman",
+    "installation-guide",
+    "firefox"
+  ],
+  "viewports": [
+    "desktop",
+    "tablet",
+    "mobile"
+  ],
+  "findings": [],
+  "summary": {
+    "total": 0,
+    "withIssues": 0,
+    "clean": 0
+  }
+}
