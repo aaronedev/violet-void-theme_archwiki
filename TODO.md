@@ -2372,17 +2372,17 @@ Last updated: 2026-04-04 09:57
 
 ## 🎯 Anchor Positioning API (New - 2026-02-28 Scout 12)
 
-- [ ] **`anchor()` Function** (85%+ browser support)
-  - File: `src/components/navigation.styl`, `src/components/ui-components.styl`
+- [x] **`anchor()` Function** (85%+ browser support) (done: 2026-04-04 15:52, commit: <local>)
+  - File: `src/components/ui-components.styl`
   - Position elements relative to anchors
   - `top: anchor(bottom);` for tooltips
-  - Note: Wrap in `@css{}` for Stylus
+  - Used 18 times in tooltip and popover positioning; wrapped in `@supports` for `position-try-fallbacks`; Stylus supports `anchor()` directly without `@css{}`
 
-- [ ] **`position-anchor` Property** (85%+ browser support)
+- [x] **`position-anchor` Property** (85%+ browser support) (done: 2026-04-04 15:52, commit: <local>)
   - File: `src/components/ui-components.styl`
   - Define anchor element for positioned element
   - `position-anchor: --my-anchor;`
-  - Note: Wrap in `@css{}` for Stylus
+  - Used for `[data-anchor]` and `.tooltip-anchor` elements; Stylus supports `position-anchor` directly without `@css{}`
 
 - [x] **`anchor-size()` Function** (85%+ browser support) (done: 2026-03-26 15:47, commit: b4c44f7)
   - File: `src/components/ui-components.styl`
