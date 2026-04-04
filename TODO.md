@@ -12046,3 +12046,19 @@ Last updated: 2026-04-04 09:57
   1. Add completion log entry for `179f28a` in TODO.md "## Completion Log" section: document the `prefers-reduced-transparency` support for search suggestions dropdown.
   2. Do NOT push — pipeline issue (Anubis WAF) unresolved per prior findings.
 
+
+### 2026-04-04 11:42
+- Review target: 09db4fc (dirty worktree: package.json version bump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`09db4fc`** (11:17): Adds `overflow-wrap: break-word` to `pre.terminal` in `src/components/archwiki.styl`. `pre.terminal` has `white-space: pre-wrap` (line 123) and `word-break: break-all` (line 124); `overflow-wrap: break-word` is technically correct and follows the established overflow-wrap pattern across the codebase. `pre.code` shares the same block and also gains the property — appropriate since both are terminal-style blocks.
+  - **Commit message naming mismatch**: Message says "output-block for terminal output" but the diff adds to `pre.terminal`. The `.output-block` class (lines 127-137) is a separate selector that ALREADY has `overflow-wrap: break-word` in the base file. The message references the wrong selector.
+  - **Completion log missing**: `09db4fc` has no entry in the TODO.md "## Completion Log" section.
+  - **Visual validation**: Last scout run was `scout-1775284154075.json` at 06:28 today, before this commit at 11:17. No new visual evidence captured. Pipeline blocked by Anubis WAF.
+  - **Open-state evidence not applicable**: Text overflow CSS fix — non-interactive element. `overflow-wrap: break-word` only takes effect when content exceeds container width; no open/closed UI state involved.
+  - **Prior NEEDS_FOLLOWUP unresolved**: `179f28a` (prefers-reduced-transparency for search suggestions dropdown) was flagged at 11:07 as missing completion log entry. Still missing from completion log.
+- Implementer instructions:
+  1. Add completion log entry for `09db4fc`: "Add overflow-wrap: break-word to pre.terminal — prevents long terminal output lines from overflowing in narrow viewports."
+  2. Rename the commit message to clarify it targets `pre.terminal` (and `pre.code`, which shares the block), not `.output-block` which already has the property.
+  3. Add missing completion log entry for `179f28a` from the 11:07 review.
+  4. Do NOT push.
