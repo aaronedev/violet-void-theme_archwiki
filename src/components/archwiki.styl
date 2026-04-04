@@ -125,6 +125,7 @@ pre.terminal
   overflow-wrap break-word
 
 // Terminal output blocks (styled differently from input)
+// Note: matches pre.terminal/.terminal-block overflow handling for long unbroken lines
 .output-block
   background linear-gradient(135deg, rgba($dark, 0.7), rgba($darker, 0.7))
   border-left 3px solid rgba($secondary-blue, 0.15)
@@ -133,6 +134,8 @@ pre.terminal
   color $light
   font-family $font-mono
   font-size 0.9em
+  overflow-x auto
+  white-space pre-wrap
   overflow-wrap break-word
 
 // Interactive shell prompt
