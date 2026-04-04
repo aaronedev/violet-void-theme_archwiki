@@ -12275,6 +12275,35 @@ Last updated: 2026-04-04 22:16
 - Implementer instructions:
   - None — theme is visually stable across all interactive states. No regressions found.
 
+### 2026-04-04 22:37
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 — no visual drift detected
+  - All interactive states (menu-open, toc-open, search-active) render cleanly on desktop and mobile
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width collapse)
+  - Theme remains visually stable — no open-state regressions
+- Artifact paths:
+  - .agent/archwiki/current/ — 40 screenshots (5 pages × 2 viewports × 4 states)
+  - .agent/reports/scout-1775320620000.json — 0 findings
+- Implementer instructions:
+  - None — theme is visually stable across all interactive states
+
 ### 2026-04-04 22:16
 - Review target: 5b32086 + 629cf69 (overflow fixes for .output-block and .config-block)
 - Verdict: APPROVED
