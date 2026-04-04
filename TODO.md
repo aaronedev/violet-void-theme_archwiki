@@ -12013,3 +12013,19 @@ Last updated: 2026-04-04 09:57
 - Implementer instructions:
   1. `291f5a1` approved — no further action needed.
   2. Do NOT push — pipeline issue (Anubis WAF blocking Playwright) remains unresolved per prior reviews.
+
+### 2026-04-04 10:32
+- Review target: aa0c05c (fix: extend two-layer box-shadow to header-code-block containers) + e300c1e (fix: upgrade remaining archwiki-template boxes to two-layer box-shadow)
+- Verdict: APPROVED
+- Findings:
+  - **`e300c1e`**: Upgrades 5 archwiki-template selectors (`.box-out-of-date`, `.box-expansion`, `.box-translateme`, `.box-deletion`, `.archwiki-template-related2`) from `$shadow-subtle` to the two-layer pattern `box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)`. Pattern matches `f22fa65`/`291f5a1` byte-for-byte. Scoped, single-file, single-property — zero cascade risk.
+  - **`aa0c05c`**: Upgrades 3 header-code-block selectors (`.hc`, `.hc-container`, `.header-code-block`) from single-layer `0 2px 8px` to two-layer `0 1px 2px + 0 4px 16px`. Consistent with the same pattern. `archwiki-templates.styl` line 1046.
+  - **Coverage complete**: All 7 non-none `box-shadow` entries in `archwiki-templates.styl` now use the two-layer pattern. No remaining single-layer `$shadow-subtle` or `0 2px 8px` entries in that file.
+  - **Documentation correct**: `8ce89d2` added the TODO completion log entries for both commits. `16f61e8` correctly fixed the stale hash in the completion log (834ca42 → aa0c05c).
+  - **No open-state evidence needed**: box-shadow is purely decorative; no interactive state involved.
+  - **Pipeline still blocked**: scout `scout-1775284154075.json` (2026-04-04 06:28) shows 0 findings — but all 4 desktop states for systemd are byte-identical at 66416 bytes each. The Anubis WAF is still returning the same blocking page regardless of interactive state. Visual regression testing remains non-functional.
+  - **Worktree**: only `package.json` dirty (version bump). No dirty CSS.
+- Implementer instructions:
+  1. Both commits approved — archwiki-templates.styl box-shadow upgrade is complete.
+  2. Pipeline still blocked by Anubis WAF — no new visual regression evidence available. Known issue, not a deficiency in these commits.
+  3. Do NOT push — pipeline issue unresolved per prior findings.
