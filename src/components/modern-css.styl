@@ -346,23 +346,15 @@ h4[id]
     backdrop-filter none !important
     -webkit-backdrop-filter none !important
 
-  // Glass utility classes - disable frosted glass effect for reduced-transparency users
-  // .glass uses rgba($dark, 0.7) + backdrop-filter blur
-  // .glass-strong uses rgba($dark, 0.5) + stronger blur + saturate
-  .glass
+  // .glass-strong is defined only in modern-css.styl (not glass.styl), so it
+  // needs its own reduced-transparency override here. All other glass utility
+  // classes (.glass, .glass-dark, .glass-accent, .glass-subtle, .glass-card,
+  // etc.) are handled by the canonical prefers-reduced-transparency block in
+  // glass.styl — no duplication needed.
   .glass-strong
-  .glass-frosted
-  .glass-dark
-  .glass-accent
-  .glass-subtle
-  .glass-card
     background-color $dark !important
     backdrop-filter none !important
     -webkit-backdrop-filter none !important
-
-  .glass-card
-    border-color $border-subtle !important
-    box-shadow none !important
 
 // =============================================================================
 
