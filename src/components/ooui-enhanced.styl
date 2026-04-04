@@ -185,6 +185,9 @@
     margin-top 0.25em
     max-height 300px
     overflow-y auto
+    // Prevent width collapse - dropdown may have short content that would
+    // otherwise cause it to shrink below usable width; matches .oo-ui-popupWidget
+    min-width 200px
 
     .oo-ui-optionWidget
       padding 0.5em 0.75em
