@@ -661,6 +661,22 @@ Last updated: 2026-04-05 00:40
   - No CSS changes needed — theme is visually stable
   - Consider updating archwiki-scout.js to use more robust ArchWiki UI selectors for TOC/search-interactive states
 
+### 2026-04-05 01:25
+- Run target: overflow-wrap defect fix
+- Verdict: FIXED
+- Files changed:
+  - src/components/ooui-enhanced.styl
+- Changes:
+  - Added `overflow-wrap: break-word` to `.oo-ui-optionWidget` (dropdown menu options)
+  - Added `overflow-wrap: break-word` to `.oo-ui-menuOptionWidget` (menu select options)
+  - Added `overflow-wrap: break-word` to `.oo-ui-popupWidget-body` (popup content)
+- Rationale: OOUI dropdown/menu/popup widgets could overflow horizontally when containing long unbroken strings (URLs, package names). `overflow-wrap: break-word` ensures long words wrap safely within these constrained containers.
+- Validation:
+  - Build: ✓ (npm run build succeeds)
+  - Stylelint: ✓ (no errors on ooui-enhanced.styl)
+  - Compiled CSS: 4 instances of overflow-wrap:break-word confirmed in dist/main.css
+- Commit: c81ad8b
+
 ### 2026-04-05 00:37
 - Run target: visual scout
 - Verdict: CLEAN
