@@ -560,10 +560,11 @@
 | 2026-04-04 01:17 | prefers-reduced-transparency for OOUI modal dialog | Add .oo-ui-windowManager.oo-ui-windowManager-modal > .oo-ui-dialog to prefers-reduced-transparency media query — users with transparency reduction now get solid $darker background instead of translucent rgba($darker, 0.75) | 59eb4fe |
 | 2026-04-04 01:50 | border-collapse: separate with Spacing | Mark TODO entry as done — table.spacing-* utility classes with border-collapse: separate + border-spacing values already implemented in tables.styl (commit 6b8420c); entry was unchecked but feature was complete | 6b8420c |
 | 2026-04-04 09:18 | Extend two-layer box-shadow to remaining archwiki-template boxes | Replace single-layer $shadow-subtle with two-layer shadow (0 1px 2px + 0 4px 16px rgba($darker)) for .box-out-of-date, .box-expansion, .box-translateme, .box-deletion, and .archwiki-template-related2 — matches .box-accuracy treatment (f22fa65) | e300c1e |
+| 2026-04-04 09:44 | Extend two-layer box-shadow to header-code-block | Replace single-layer shadow (0 2px 8px rgba($darker, 0.3)) with two-layer shadow (0 1px 2px + 0 4px 16px rgba($darker)) for .hc, .hc-container, .header-code-block — consistent with all other archwiki-template boxes | 834ca42 |
 
 ---
 
-Last updated: 2026-04-04 09:18
+Last updated: 2026-04-04 09:44
 
 ## Visual Scout Findings
 
