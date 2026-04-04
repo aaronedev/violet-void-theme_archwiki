@@ -12029,3 +12029,20 @@ Last updated: 2026-04-04 09:57
   1. Both commits approved — archwiki-templates.styl box-shadow upgrade is complete.
   2. Pipeline still blocked by Anubis WAF — no new visual regression evidence available. Known issue, not a deficiency in these commits.
   3. Do NOT push — pipeline issue unresolved per prior findings.
+
+### 2026-04-04 11:07
+- Review target: 179f28a (fix: add prefers-reduced-transparency support for search suggestions dropdown)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`179f28a`** adds `@media (prefers-reduced-transparency: reduce)` override for `.mw-search-suggest`, `.search-suggestions`, `.suggestions`, `.suggestions-results`. Replaces `backdrop-filter: blur(4px)` and `linear-gradient(rgba(...))` background with solid `$darker` + no blur. In `src/components/search.styl` lines 1618-1627.
+  - **Pattern match**: consistent with `59eb4fe` (OOUI modal dialogs) and `modern-css.styl` line 310+ for other transparency overrides — same `!important` + `$darker` + `backdrop-filter: none` pattern.
+  - **Build succeeds**: v20260404.11.09 compiled. Compiled CSS confirms correct output: `@media (prefers-reduced-transparency:reduce){.mw-search-suggest,.search-suggestions,.suggestions,.suggestions-results{background:#0f0f0f !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}}`.
+  - **CSS validity**: Stylus nesting is valid — the comma-separated selectors within the media query are properly compiled as independent descendant selectors.
+  - **!important usage**: justified — MediaWiki Vector sets search suggestion background via inline JS styles; `!important` is necessary and consistent with the existing pattern in `59eb4fe` for OOUI dialogs.
+  - **Open state**: The search suggestions dropdown is an interactive open-state element. **No open-state evidence exists** for this fix — no before/after captures of the dropdown in open state with/without `prefers-reduced-transparency`. Pipeline blocked by Anubis WAF (per prior reviews).
+  - **Stacking/readability risk**: Low. The fix removes blur and uses solid `$darker` (#0f0f0f), which has good contrast. No risk of stacking regressions since this only affects the dropdown's own backdrop.
+  - **Completion log missing**: `179f28a` has no entry in the "## Completion Log" section of TODO.md. The implementer's completion log (`aae9758`) was for the box-shadow work, not this commit. This must be logged.
+- Implementer instructions:
+  1. Add completion log entry for `179f28a` in TODO.md "## Completion Log" section: document the `prefers-reduced-transparency` support for search suggestions dropdown.
+  2. Do NOT push — pipeline issue (Anubis WAF) unresolved per prior findings.
+
