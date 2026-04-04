@@ -574,10 +574,11 @@
 | 2026-04-04 16:22 | min-width 200px for .oo-ui-dropdownWidget-menu | Add min-width: 200px to oo-ui-dropdownWidget-menu to prevent width collapse on short content — matches .oo-ui-popupWidget treatment (3d5e5a5) | 4b1f3c5 |
 | 2026-04-04 19:00 | overflow-x auto and white-space pre-wrap for .output-block | Add overflow-x auto and white-space pre-wrap to .output-block — consistent with pre.terminal/.terminal-block overflow handling | 5b32086 |
 | 2026-04-04 19:30 | white-space pre-wrap and overflow-wrap break-word for .config-block | Add white-space pre-wrap and overflow-wrap break-word to .config-block in pre.terminal context — prevents long config lines from overflowing | 629cf69 |
+| 2026-04-05 00:28 | min-width 320px for .oo-ui-dialog | Add min-width: 320px to .oo-ui-dialog to prevent width collapse on narrow content — matches .oo-ui-popupWidget treatment (3d5e5a5) | 3b2e06d |
 
 ---
 
-Last updated: 2026-04-05 00:37
+Last updated: 2026-04-05 00:40
 
 ## Reviewer Findings
 
@@ -12361,3 +12362,16 @@ Last updated: 2026-04-05 00:37
 - Implementer instructions:
   1. No new CSS commits require review this cycle.
   2. Do NOT push — 36 unpushed commits ahead of origin/main, pipeline remains unroot-caused.
+
+### 2026-04-05 00:40
+- Review target: 3b2e06d (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`3b2e06d`** (00:28): Adds `min-width: 320px` to `.oo-ui-dialog` in `ooui-enhanced.styl`. Previously the dialog only had `max-width: 90vw` which allowed collapse to a very narrow width on minimal content. 320px matches the treatment for `.oo-ui-popupWidget` (min-width: 200px) — dialogs are larger containers so 320px is appropriate. Comment accurately reflects the rationale. 3-line scoped addition. Build compiles cleanly.
+  - **`629cf69`** / **`5b32086`**: Already in completion log and approved at 22:16.
+  - **Visual scout clean**: scout-1775342329471 (22:38) reports 0 findings across 5 pages × 3 viewports × 4 states (desktop/mobile). AE=0 across all 40 baseline comparisons. No DOM-based issues. No open-state regressions.
+  - **Completion log missing**: `3b2e06d` has no completion log entry yet — needs to be added.
+- Implementer instructions:
+  1. Add completion log entry for `3b2e06d`: "add min-width: 320px to .oo-ui-dialog to prevent width collapse on narrow content — matches .oo-ui-popupWidget treatment (3d5e5a5)."
+  2. Commit with `chore: add archwiki reviewer findings`.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
