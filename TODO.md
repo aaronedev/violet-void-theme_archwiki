@@ -11939,3 +11939,17 @@ Last updated: 2026-04-04 03:33
   1. No new CSS commits to review — nothing to approve or reject this cycle.
   2. Pipeline issue remains documented. Investigate Anubis WAF bypass when infrastructure time is available.
   3. Do NOT push — no new CSS to validate, and pipeline is non-functional anyway.
+
+### 2026-04-04 04:08 (hostile review)
+- Review target: 304883a (fix: resolve stylelint at-rule-empty-line-before errors in main.styl and view-transitions.styl) + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`304883a`** is a mixed commit: one legitimate fix + one bug.
+  - **Legitimate fix — `src/main.styl`**: Adds missing empty line before `@import 'utilities/containers'` inside the `domain("man.archlinux.org")` block. The original had no blank line between `@import 'utilities/_fonts'` and `@import 'utilities/containers'`. Correct — follows `@import` chain convention throughout the file. Build compiles cleanly.
+  - **Bug — `src/components/view-transitions.styl`**: Two separate comment lines were merged into one line with a space. Before: `// View transition container - the overlay wrapper for all transitions` (line 10) + `// Styled to match the Violet Void dark theme` (line 11) — two distinct, readable comment lines. After: `// View transition container - the overlay wrapper for all transitions  // Styled to match the Violet Void dark theme` — single mangled line. Same for lines 18-19: `// Ensure each transition group creates its own stacking context` + `// for clean layering during the transition` merged into one. This is a readability regression. The stylelint rule `at-rule-empty-line-before` applies to `@` rules, not to multi-line CSS comments — the rule was misapplied to these comment blocks.
+  - **Scout clean**: `scout-1775247621523.json` (2026-04-03 20:19) shows 0 findings across 5 pages × 3 viewports. But this scout predates `304883a` (2026-04-04 02:21) — no post-change visual validation exists. The comment formatting change produces zero visual output difference anyway.
+  - **No open-state evidence needed**: comment formatting is purely source-code hygiene, no runtime effect.
+  - **Worktree**: only `package.json` dirty (build version bump). No dirty CSS.
+- Implementer instructions:
+  1. Revert the comment-merging in `src/components/view-transitions.styl`: restore the two separate comment lines (lines 10-11 and 18-19). Keep the `src/main.styl` fix (empty line before `@import 'utilities/containers'`). Commit as `fix: restore multi-line comments in view-transitions.styl, fix missing @import empty line in main.styl`.
+  2. Do NOT push — pipeline issue unresolved per prior findings.
