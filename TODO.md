@@ -371,9 +371,9 @@
 
 | Date | Item | Commit |
 |------|------|--------|
-| 2026-04-04 | prefers-reduced-transparency support for glass utility classes — backdrop-filter:none and solid backgrounds for .glass variants | 2a67278 |
+| 2026-04-04 | prefers-reduced-transparency support for glass utility classes — backdrop-filter:none and solid backgrounds for .glass variants | 2a7402c |
 | 2026-04-04 | prefers-reduced-transparency support for search suggestions dropdown | 179f28a |
-| 2026-04-04 | overflow-wrap: break-word for pre.code, pre.terminal, and .terminal-block | 09db4fc |
+| 2026-04-04 | overflow-wrap: break-word for pre.code, pre.terminal, and .terminal-block | efc0dd7 |
 | 2026-04-01 | .oo-ui-popupWidget min-width: 200px to prevent width collapse | 3d5e5a5 |
 | 2026-03-15 | initial-letter Drop Caps, Align, Wrap | 59c7703 |
 | 2026-03-15 | Admin Dashboard Styling (CSS) | ba55f4e |
@@ -12148,3 +12148,20 @@ Last updated: 2026-04-04 09:57
   - No visual issues found — theme is visually stable
   - e300c1e and aa0c05c box-shadow changes (post-06:28) are low-risk decorative fixes; open-state evidence not applicable (decorative shadows only)
   - If pushing, commit message: `chore: add archwiki visual scout findings`
+
+### 2026-04-04 17:16
+- Review target: efc0dd7 (overflow-wrap), f75e305 (module-params), 7f25460 (search-box transparency), 2a7402c (glass-modern), ebdec0d (glass.styl), e403b20 (mbox shadows), c72556f (syntax fix), 4b1f3c5 (dropdown min-width)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - CSS commits are all individually sound: scoped, low-risk, no open-state interactive elements involved (overflow-wrap, transparency overrides, decorative shadows, min-width)
+  - Build compiles cleanly — no Stylus errors
+  - Visual scout (14:37): 0 findings across 5 pages, 3 viewports
+  - **Stale TODO.md completion log hashes (still unfixed from prior review)**:
+    - Line 374: `2a67278` → should be `2a7402c` (prefers-reduced-transparency for glass utilities)
+    - Line 376: `09db4fc` → should be `efc0dd7` (overflow-wrap for pre.code/terminal)
+    - Both now corrected in this review
+  - **Residual concern**: `2a7402c` adds 8 glass classes to `modern-css.styl` media query; `ebdec0d` adds 19 variants to `glass.styl`. Both compile. This is duplication — `modern-css.styl`'s partial set should be removed since `glass.styl` is the canonical home.
+- Implementer instructions:
+  1. Remove the glass utility `prefers-reduced-transparency` block from `modern-css.styl` (lines ~352-365) since `glass.styl` provides the complete implementation
+  2. Rebuild and verify no glass class overrides are lost
+  3. No new scout run needed — these are non-interactive CSS changes with zero visual findings
