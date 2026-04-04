@@ -11897,3 +11897,32 @@ Last updated: 2026-04-04 01:50
 - Implementer instructions:
   1. Commit `59eb4fe` approved — no further action needed.
   2. Do NOT push — pipeline issue remains unroot-caused.
+
+### 2026-04-04 02:23
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: NEEDS_ATTENTION
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open, desktop.toc-open, desktop.search-active
+  - mobile.default, mobile.menu-open, mobile.toc-open, mobile.search-active
+- Findings:
+  - **CRITICAL INFRASTRUCTURE FAILURE**: ArchWiki is blocking all Playwright captures with Anubis WAF (error code 4d1dbaddfcc0f385). Every screenshot — including `default`, `menu-open`, `toc-open`, and `search-active` states — is the identical Anubis "Access Denied" error page.
+  - **Prior "CLEAN" verdicts are invalidated**: Previous AE=0 findings were measuring pixel identity of the Anubis blocking page against itself, not actual ArchWiki content. The visual regression pipeline has been producing false negatives since at least 2026-04-03.
+  - **All interactive state hashes are identical**: For any given page+viewport, desktop.default == desktop.menu-open == desktop.toc-open == desktop.search-active (hash 8373727d). Mobile all match hash 9eae55c2. This is the Anubis error page, not ArchWiki.
+  - **Interactive state capture is non-functional**: The capture script runs without errors, but the Anubis WAF blocks ArchWiki before any interactive elements can be triggered. The state selectors (menu toggle, TOC toggle, search focus) cannot be verified.
+  - Build: v20260404.02.24 — CSS compiles cleanly.
+  - Worktree: package.json version bump only (pre-existing dirty state).
+- Artifact paths:
+  - .agent/archwiki/current/ — 41 PNG screenshots (all Anubis blocking pages)
+  - .agent/reports/scout-1775247621523.json — prior scout (wrongly reported 0 findings due to AE=0 on Anubis pages)
+- Implementer instructions:
+  1. Visual regression pipeline is broken — ArchWiki Anubis WAF blocks all Playwright captures. This is an infrastructure issue, not a CSS issue.
+  2. Prior scout findings claiming "CLEAN" / "AE=0" were measuring the Anubis blocking page, not ArchWiki. Those verdicts should be treated as UNKNOWN/UNVERIFIED.
+  3. To restore visual regression testing: investigate Anubis WAF bypass (e.g., Selenium with stealth mode, cookie/session pre-authentication, or a dedicated test environment with ArchWiki LocalSettings.php).
+  4. DOM/CSS inspection still possible via `page.evaluate()` even when Anubis blocks visual rendering — partial alternative until screenshot pipeline is restored.
+  5. Do NOT push — no new CSS implementation to validate.
