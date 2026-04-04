@@ -12105,3 +12105,17 @@ Last updated: 2026-04-04 09:57
 - Run target: visual scout (archwiki-visual-scout-2h)
 - Verdict: NEEDS_ATTENTION (Anubis WAF blocking)
 - [See 14:45 reviewer findings above — consolidated into that entry]
+
+### 2026-04-04 15:57
+- Review target: 7725103 + c72556f + dirty worktree (main, 16 unpushed commits)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`c72556f` REJECTED — CSS syntax regression**: Changed `@media (prefers-reduced-transparency: reduce)` → `@media (prefers-reduced-transparency reduce)` in glass.styl. The version without a colon is **invalid CSS media query syntax**. CSS Media Queries Level 4 requires `(feature: value)` form with colon separator. Browsers will ignore this rule entirely — users with `prefers-reduced-transparency: reduce` will see the glass effect instead of solid backgrounds. This reverses the accessibility fix from ebdec0d. The Stylus build passes silently because Stylus passes invalid CSS through unchanged; only browsers enforce syntax rules.
+  - **`7725103`** (15:53): Marks `anchor()` and `position-anchor` as implemented in TODO.md. Implementation is confirmed real — `anchor()` used 18× in ui-components.styl tooltip/popover positioning; `position-anchor` used for `[data-anchor]` and `.tooltip-anchor` elements. However: commit references use `<local>` placeholder instead of real hashes. Should point to the actual commit(s) where anchor()/position-anchor were added. Last actual implementation commits for these are not locally visible without git log inspection.
+  - **WAF blocking persists**: Last clean scout is still `1775284154075` (06:28). No post-change visual evidence for any of the 16 unpushed commits. This is unchanged from prior review.
+  - **Completion log**: c72556f added a regression; ebdec0d (glass transparency override) and e403b20 (message-boxes box-shadow) have no completion log entries. Per established pattern flagged in prior reviews, completion log must be added in the same commit cycle.
+- Implementer instructions:
+  1. **Revert c72556f immediately**: `git revert c72556f` or manually restore `@media (prefers-reduced-transparency: reduce)` in glass.styl (the colon is required).
+  2. For `7725103`: find and reference the actual commit hash(es) where anchor()/position-anchor were first implemented (not `<local>`), then update TODO.md accordingly.
+  3. Add completion log entries for ebdec0d and e403b20.
+  4. Do NOT push until WAF blocking resolved and visual verification completes.
