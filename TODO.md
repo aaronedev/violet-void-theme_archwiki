@@ -574,7 +574,7 @@
 
 ---
 
-Last updated: 2026-04-04 19:48
+Last updated: 2026-04-04 20:37
 
 ## Reviewer Findings
 
@@ -12247,3 +12247,28 @@ Last updated: 2026-04-04 19:48
 - Implementer instructions:
   1. All CSS commits approved — no further action needed on implementation.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-04 20:37
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - main-page
+  - systemd
+  - pacman
+  - installation-guide
+  - firefox
+- States checked:
+  - default (desktop 1280×800, mobile 375×667)
+  - menu-open (desktop, mobile)
+  - toc-open (desktop, mobile)
+  - search-active (desktop, mobile)
+- Findings:
+  - All 40 screenshots (5 pages × 2 viewports × 4 states) — AE=0 vs baselines. Zero pixel drift detected.
+  - Interactive states (menu-open, toc-open, search-active) all render cleanly with no width collapse, no overlap conflicts, no transparency bleed-through.
+  - Mobile narrow-width states also fully clean.
+- Artifact paths:
+  - .agent/archwiki/current/ — 40 fresh screenshots (40 files)
+  - .agent/archwiki/diffs/ — no diffs saved (all identical)
+  - .agent/archwiki/diff-metrics.txt — all AE=0
+- Implementer instructions:
+  - None — theme is visually stable across all interactive states. No regressions found.
