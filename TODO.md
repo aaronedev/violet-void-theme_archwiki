@@ -371,6 +371,8 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-04-04 | prefers-reduced-transparency support for search suggestions dropdown | 179f28a |
+| 2026-04-04 | overflow-wrap: break-word for pre.code, pre.terminal, and .terminal-block | 09db4fc |
 | 2026-04-01 | .oo-ui-popupWidget min-width: 200px to prevent width collapse | 3d5e5a5 |
 | 2026-03-15 | initial-letter Drop Caps, Align, Wrap | 59c7703 |
 | 2026-03-15 | Admin Dashboard Styling (CSS) | ba55f4e |
