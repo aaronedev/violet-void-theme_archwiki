@@ -346,6 +346,24 @@ h4[id]
     backdrop-filter none !important
     -webkit-backdrop-filter none !important
 
+  // Glass utility classes - disable frosted glass effect for reduced-transparency users
+  // .glass uses rgba($dark, 0.7) + backdrop-filter blur
+  // .glass-strong uses rgba($dark, 0.5) + stronger blur + saturate
+  .glass
+  .glass-strong
+  .glass-frosted
+  .glass-dark
+  .glass-accent
+  .glass-subtle
+  .glass-card
+    background-color $dark !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .glass-card
+    border-color $border-subtle !important
+    box-shadow none !important
+
 // =============================================================================
 
 // FIELD SIZING - Auto-Growing Textareas
