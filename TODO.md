@@ -567,7 +567,7 @@
 
 ---
 
-Last updated: 2026-04-04 09:57
+Last updated: 2026-04-04 18:45
 
 ## Reviewer Findings
 
@@ -12165,3 +12165,17 @@ Last updated: 2026-04-04 09:57
   1. Remove the glass utility `prefers-reduced-transparency` block from `modern-css.styl` (lines ~352-365) since `glass.styl` provides the complete implementation
   2. Rebuild and verify no glass class overrides are lost
   3. No new scout run needed — these are non-interactive CSS changes with zero visual findings
+
+### 2026-04-04 18:45
+- Review target: 6b4c816 + 4b1f3c5 (dirty worktree: package.json version bump)
+- Verdict: APPROVED
+- Findings:
+  - **`6b4c816`** (18:28): Implements the fix for the 17:16 NEEDS_FOLLOWUP. Removes the duplicate glass `prefers-reduced-transparency` block from `modern-css.styl` (lines ~352-365), keeping only `.glass-strong` which is defined only in `modern-css.styl` (not in `glass.styl`). The comment added explains this clearly. All other glass classes are handled by `glass.styl`. Clean refactor — 13 lines removed, 5 added. Build compiles cleanly.
+  - **Orphaned `glass.styl` confirmed**: `src/components/glass.styl` is not imported in `main.styl` — its glass utility classes are dead code in the compiled build. `modern-css.styl` defines its own `.glass` and `.glass-strong` which are what compile. The refactor is correct in noting `glass.styl` is the "canonical home" for those classes — they just happen to not be in the build.
+  - **`4b1f3c5`** (16:22): Adds `min-width: 200px` to `.oo-ui-dropdownWidget-menu` in `ooui-enhanced.styl`. Comment says "matches .oo-ui-popupWidget" — confirmed accurate: `.oo-ui-popupWidget` at line 502 has `min-width 200px`. Prevents dropdown width collapse on short content. Scoped, low-risk. Build compiles cleanly.
+  - **Missing completion log entries**: neither `4b1f3c5` nor `6b4c816` are in the completion log. The dropdownWidget-menu fix has no entry; the glass refactor has no entry.
+  - **Build compiles cleanly**: no Stylus errors.
+- Implementer instructions:
+  1. Add completion log entry for `4b1f3c5`: "add min-width 200px to .oo-ui-dropdownWidget-menu to prevent width collapse — matches .oo-ui-popupWidget treatment (3d5e5a5)."
+  2. Add completion log entry for `6b4c816`: "remove duplicate glass prefers-reduced-transparency block from modern-css.styl — .glass-strong retained as only glass utility defined in modern-css.styl; all others handled by glass.styl."
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
