@@ -577,7 +577,7 @@
 
 ---
 
-Last updated: 2026-04-04 22:16
+Last updated: 2026-04-05 00:37
 
 ## Reviewer Findings
 
@@ -659,6 +659,38 @@ Last updated: 2026-04-04 22:16
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
   - Consider updating archwiki-scout.js to use more robust ArchWiki UI selectors for TOC/search-interactive states
+
+### 2026-04-05 00:37
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured successfully at desktop (4 states) and mobile (4 states)
+  - ArchWiki accessible this run — no Anubis WAF blocks
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable — no open-state regressions detected
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-1775342329471.json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
 
 ### 2026-04-04 18:37
 - Run target: visual scout
