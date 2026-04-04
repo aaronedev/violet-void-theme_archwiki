@@ -208,3 +208,104 @@
   .glass-button
   .glass-input
     transition none
+
+// Reduced transparency support
+// Users who prefer reduced transparency get solid backgrounds without blur
+// Backdrop blur is non-essential decoration; solid backgrounds preserve legibility
+@media (prefers-reduced-transparency: reduce)
+  .glass
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.95)
+
+  .glass-light
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($lighter, 0.25)
+
+  .glass-dark
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background $dark
+
+  .glass-accent
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($arch-blue, 0.3)
+
+  .glass-success
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($green, 0.25)
+
+  .glass-warning
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($orange, 0.25)
+
+  .glass-danger
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($red, 0.25)
+
+  .glass-glow
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($arch-blue, 0.2)
+    box-shadow none
+
+  .glass-glow-strong
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($arch-blue, 0.25)
+    box-shadow none
+
+  .frosted
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.95)
+
+  .glass-subtle
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.75)
+
+  .glass-card
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.9)
+
+  .glass-overlay
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($darker, 0.9)
+
+  .glass-nav
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.95)
+
+  .glass-sidebar
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($dark, 0.95)
+
+  .glass-dropdown
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.98)
+
+  .glass-tooltip
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($dark, 0.98)
+
+  .glass-button
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($arch-blue, 0.3)
+
+  .glass-input
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($base, 0.8)
