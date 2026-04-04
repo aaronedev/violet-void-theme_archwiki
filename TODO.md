@@ -571,10 +571,12 @@
 | 2026-04-04 13:52 | prefers-reduced-transparency support for glass utility classes | 17 glass utility variants get solid backgrounds and no blur when prefers-reduced-transparency: reduce is set | ebdec0d |
 | 2026-04-04 14:50 | Fix colon syntax in prefers-reduced-transparency media query | Change @media (prefers-reduced-transparency: reduce) to correct @media (prefers-reduced-transparency reduce) in glass.styl | c72556f |
 | 2026-04-04 16:22 | min-width 200px for .oo-ui-dropdownWidget-menu | Add min-width: 200px to oo-ui-dropdownWidget-menu to prevent width collapse on short content — matches .oo-ui-popupWidget treatment (3d5e5a5) | 4b1f3c5 |
+| 2026-04-04 19:00 | overflow-x auto and white-space pre-wrap for .output-block | Add overflow-x auto and white-space pre-wrap to .output-block — consistent with pre.terminal/.terminal-block overflow handling | 5b32086 |
+| 2026-04-04 19:30 | white-space pre-wrap and overflow-wrap break-word for .config-block | Add white-space pre-wrap and overflow-wrap break-word to .config-block in pre.terminal context — prevents long config lines from overflowing | 629cf69 |
 
 ---
 
-Last updated: 2026-04-04 20:37
+Last updated: 2026-04-04 22:16
 
 ## Reviewer Findings
 
@@ -12272,3 +12274,16 @@ Last updated: 2026-04-04 20:37
   - .agent/archwiki/diff-metrics.txt — all AE=0
 - Implementer instructions:
   - None — theme is visually stable across all interactive states. No regressions found.
+
+### 2026-04-04 22:16
+- Review target: 5b32086 + 629cf69 (overflow fixes for .output-block and .config-block)
+- Verdict: APPROVED
+- Findings:
+  - **`5b32086`** (19:00): Adds `overflow-x: auto` + `white-space: pre-wrap` to `.output-block` in `archwiki.styl`. Comment explicitly notes consistency with `pre.terminal/.terminal-block`. Prevents long unbroken output lines from overflowing. Scoped 2-line addition. No open-state evidence needed (decorative overflow fix). Build compiles cleanly.
+  - **`629cf69`** (21:30): Adds `white-space: pre-wrap` + `overflow-wrap: break-word` to `.config-block` inside `pre.terminal`. Prevents long config key/value lines from overflowing narrow containers. Scoped 2-line addition inside an existing nested rule. No open-state evidence needed. Build compiles cleanly.
+  - **Both commits are consistent**: `.output-block` gets `overflow-x: auto` (horizontal scroll), `.config-block` gets `overflow-wrap: break-word` (line breaking). Both are appropriate for their content types (output vs. config text). No cascade risk.
+  - **Completion log updated**: `5b32086` and `629cf69` now logged.
+- Implementer instructions:
+  1. Both commits approved — completion log entries added.
+  2. No further action needed.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
