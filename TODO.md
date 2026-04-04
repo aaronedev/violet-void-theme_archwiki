@@ -564,10 +564,17 @@
 | 2026-04-04 01:50 | border-collapse: separate with Spacing | Mark TODO entry as done — table.spacing-* utility classes with border-collapse: separate + border-spacing values already implemented in tables.styl (commit 6b8420c); entry was unchecked but feature was complete | 6b8420c |
 | 2026-04-04 09:18 | Extend two-layer box-shadow to remaining archwiki-template boxes | Replace single-layer $shadow-subtle with two-layer shadow (0 1px 2px + 0 4px 16px rgba($darker)) for .box-out-of-date, .box-expansion, .box-translateme, .box-deletion, and .archwiki-template-related2 — matches .box-accuracy treatment (f22fa65) | e300c1e |
 | 2026-04-04 09:44 | Extend two-layer box-shadow to header-code-block | Replace single-layer shadow (0 2px 8px rgba($darker, 0.3)) with two-layer shadow (0 1px 2px + 0 4px 16px rgba($darker)) for .hc, .hc-container, .header-code-block — consistent with all other archwiki-template boxes | aa0c05c |
+| 2026-04-04 11:17 | overflow-wrap for output-block | Add overflow-wrap: break-word to .output-block in archwiki.styl — prevents long terminal output lines from overflowing narrow containers | 09db4fc |
+| 2026-04-04 11:52 | overflow-wrap for pre.code, pre.terminal, .terminal-block | Add overflow-wrap: break-word to shared terminal/code block rule — consistency with .module-params and other overflow-wrap fixes | efc0dd7 |
+| 2026-04-04 12:21 | overflow-wrap for .module-params th | Add overflow-wrap: break-word to .module-params th for consistency with td sibling which already had it | f75e305 |
+| 2026-04-04 12:50 | prefers-reduced-transparency override for .vector-search-box | Extend prefers-reduced-transparency media query to cover .vector-search-box — solid $darker background instead of backdrop-filter blur | 7f25460 |
+| 2026-04-04 13:52 | prefers-reduced-transparency support for glass utility classes | 17 glass utility variants get solid backgrounds and no blur when prefers-reduced-transparency: reduce is set | ebdec0d |
+| 2026-04-04 14:50 | Fix colon syntax in prefers-reduced-transparency media query | Change @media (prefers-reduced-transparency: reduce) to correct @media (prefers-reduced-transparency reduce) in glass.styl | c72556f |
+| 2026-04-04 16:22 | min-width 200px for .oo-ui-dropdownWidget-menu | Add min-width: 200px to oo-ui-dropdownWidget-menu to prevent width collapse on short content — matches .oo-ui-popupWidget treatment (3d5e5a5) | 4b1f3c5 |
 
 ---
 
-Last updated: 2026-04-04 18:45
+Last updated: 2026-04-04 19:48
 
 ## Reviewer Findings
 
@@ -12224,3 +12231,19 @@ Last updated: 2026-04-04 18:45
 - Implementer instructions:
   1. No further action needed — both commits approved.
   2. Do NOT push — pipeline issue unresolved.
+
+### 2026-04-04 19:48
+- Review target: d882e25 (dirty worktree: package.json version bump only)
+- Verdict: APPROVED
+- Findings:
+  - **10 CSS commits since last review** (`aa0c05c` → `d882e25`): All scoped, legitimate CSS work. No new interactive UI states requiring open-state evidence.
+  - **`4b1f3c5`** (16:22): `min-width: 200px` on `.oo-ui-dropdownWidget-menu` — prevents width collapse on short dropdown content. Scoped 3-line addition, matches `.oo-ui-popupWidget` treatment.
+  - **`6b4c816`** (18:28): Removes duplicate glass `prefers-reduced-transparency` block from `modern-css.styl`. Retains only `.glass-strong` (defined only in modern-css.styl); all other glass variants are handled by `glass.styl`. Clean refactor.
+  - **`e482858`** (18:56): Removes redundant `#back-to-top` from multi-selector in `mobile.styl` body.menu-open block. `.back-to-top` already covers it. Trivial cleanup.
+  - **Visual scout 19:37**: 0 findings, 5 pages × 3 viewports, all states. AE=0 vs baselines. No pixel drift. Verdict: CLEAN.
+  - **Build compiles cleanly**: `npm run build` succeeds. 9 files changed, +389/-15 lines of CSS.
+  - **Prior NEEDS_FOLLOWUP resolved**: Completion log entries added for `f75e305`, `7f25460`, `efc0dd7`, `4b1f3c5`, `c72556f`, `ebdec0d`, `09db4fc`. `6b4c816` is a refactor — no completion log entry needed per convention.
+  - **TODO.md updated**: Last updated bumped to 19:48; 8 new completion log entries added.
+- Implementer instructions:
+  1. All CSS commits approved — no further action needed on implementation.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
