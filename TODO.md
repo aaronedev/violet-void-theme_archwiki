@@ -372,6 +372,7 @@
 | Date | Item | Commit |
 |------|------|--------|
 | 2026-04-04 | prefers-reduced-transparency support for glass utility classes — backdrop-filter:none and solid backgrounds for .glass variants | 2a7402c |
+| 2026-04-04 | prefers-reduced-transparency override for .gallery-caption — solid gradient background to avoid backdrop-filter blur for users with reduced transparency preference | 06a9e56 |
 | 2026-04-04 | prefers-reduced-transparency support for search suggestions dropdown | 179f28a |
 | 2026-04-04 | overflow-wrap: break-word for pre.code, pre.terminal, and .terminal-block | efc0dd7 |
 | 2026-04-01 | .oo-ui-popupWidget min-width: 200px to prevent width collapse | 3d5e5a5 |
