@@ -12690,6 +12690,39 @@ Last updated: 2026-04-05 11:30
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
 
+### 2026-04-05 20:47
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default (1280×800)
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default (375×667)
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - **40/40 baseline comparisons: AE=0** — all desktop and mobile states pixel-identical to March 30th baselines. No visual drift across any page or interactive state.
+  - **ArchWiki content confirmed**: Desktop screenshots 1280×800/76277B, mobile 375×667/69444B — real content, not Anubis WAF block pages.
+  - **Interactive states verified**: menu-open, toc-open, search-active all captured successfully and pixel-match baselines — no panel collapse, no overlap conflicts, no transparency bleed-through, no nav label clipping.
+  - **Worktree clean**: Only `package.json` modified (build auto-bump `20260405.20.47`). No uncommitted CSS.
+  - **Build succeeds**: `npm run build` → `dist/main.css`, no PostCSS errors.
+  - **Last CSS commit**: `0f6d0eb` (z-index utility class for mobile TOC panels) — approved in prior review cycle. No new CSS since last scout run.
+- Artifact paths:
+  - `.agent/archwiki/current/` — 40 PNG screenshots (captured 18:48-18:50 UTC)
+  - `.agent/archwiki/baselines/` — 40 baseline PNGs (March 30th)
+  - `.agent/archwiki/diffs/` — 44 diff PNGs (AE=0, all blank/near-identical)
+  - `.agent/archwiki/reports/scout-results.json`
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable across all pages and interactive states
+
 ### 2026-04-05 18:54
 - Review target: `6e407bb` + dirty worktree (mobile.styl + utilities.styl refactoring)
 - Verdict: NEEDS_FOLLOWUP
