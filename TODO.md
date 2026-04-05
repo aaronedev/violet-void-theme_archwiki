@@ -12823,3 +12823,20 @@ Last updated: 2026-04-06 00:39
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
 
+
+### 2026-04-06 01:22
+- Review target: 0f6d0eb + 82776b2 + c05a920 + 84cca14 (dirty worktree: none — clean)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`0f6d0eb`** (2026-04-05 20:43): Adds `.z-1002` utility class reference to `.vector-toc-panel` in `mobile.styl`. The element already carries `.z-1002` from `utilities.styl` — this commit explicitly applies it inline. Legitimate, scoped. **Completion log entry MISSING** — not in the completion log table.
+  - **`82776b2`** (2026-04-05 22:47): Splits `.vector-toc-panel` into two rules — keeps `.toc-panel/.toc-mobile-panel/.vector-toc-panel` in one group with hardcoded `z-index: 1002` in `@media (max-width 768px)`, separates `.vector-toc-panel.z-1002` with comment noting `z-index` handled by utility class. Builds cleanly. **Completion log entry already present** (line 587) ✅.
+  - **`c05a920`** (2026-04-05 23:49): Removes `.vector-toc-panel` from the `@media (max-width 768px)` selector group (`.toc-panel`, `.toc-mobile-panel`, `.vector-toc-panel`). Rationale: `.vector-toc-panel` already carries `.z-1002` utility class — hardcoded `z-index: 1002` in the @media block was redundant. Builds cleanly. **Completion log entry MISSING** — only appears in reviewer findings sections, not the completion log table.
+  - **`84cca14`** (2026-04-05 21:48): Stylelint auto-fix. `mobile.styl` change (selector-list comma split) is fine. **`view-transitions.styl` change MERGES two separate comment lines into one** — this is a regression of the bug fixed in `0d4fec6` (2026-04-04 04:55). The prior hostile review explicitly flagged the same pattern in `304883a` as "readability regression." The stylelint rule `at-rule-empty-line-before` applies to `@` rules, not CSS comments — the auto-fix was misapplied to comment blocks. Two-line comments (`// line one` + `// line two`) are more readable than merged single-line (`// line one  // line two`). Build passes silently because Stylus passes comments through unchanged.
+  - **Scout clean**: 40/40 AE=0 across all pages, viewports, and interactive states (scout-1775399963045.json, 00:52). No visual regressions.
+- Implementer instructions:
+  1. **Fix `84cca14` comment regression**: manually restore the two separate comment lines in `src/components/view-transitions.styl` (lines 10-11 and 18-19), or add a stylelint exception for this file. Do NOT merge comment lines.
+  2. Add completion log entry for `0f6d0eb`: `| 2026-04-05 | z-index utility for mobile TOC panel | Apply .z-1002 utility class to .vector-toc-panel — replaces hardcoded z-index with utility class for consistency with z-index token system | 0f6d0eb |`
+  3. Add completion log entry for `c05a920`: `| 2026-04-05 | Remove redundant hardcoded z-index 1002 from .vector-toc-panel @media block | .vector-toc-panel now uses .z-1002 utility class — no need for hardcoded z-index inside @media (max-width 768px) block | c05a920 |`
+  4. Commit with `chore: add archwiki reviewer findings` then add the two completion log entries.
+  5. Do NOT push — pipeline issue unresolved per prior reviews.
+
