@@ -1596,3 +1596,408 @@
     .mw-tag-patrol
       font-size 0.7em
       padding 0.1em 0.3em
+
+// =============================================================================
+// SPECIAL:WATCHLIST STYLING
+// Watchlist items, unwatch toggles, edit counts, timestamps
+// Reuses structure similar to recent-changes since both share MW markup
+// =============================================================================
+
+// Watchlist container
+.mw-watchlist
+  // Watchlist page wrapper
+  &.mw-specialpages
+    padding 1em
+
+// Watchlist intro / stats bar
+.watchlist-intro
+.mw-watchlist-intro
+  display flex
+  flex-wrap wrap
+  align-items center
+  gap 0.75em
+  padding 0.75em 1em
+  margin-bottom 1em
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.03))
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+  font-size 0.9em
+  color $light
+
+  .watchlist-count
+  .mw-watchlist-count
+    font-weight 700
+    color $secondary-blue
+    font-variant-numeric tabular-nums
+
+  .watchlist-since
+  .mw-watchlist-since
+    color $muted
+    font-size 0.85em
+
+// Watchlist options / filter bar
+.watchlist-options
+.mw-watchlist-options
+  display flex
+  flex-wrap wrap
+  gap 0.5em
+  align-items center
+  padding 0.75em 1em
+  margin-bottom 1em
+  background rgba($dark, 0.4)
+  border 1px solid $border-subtle
+  border-radius $border-radius-md
+
+  // Namespace selector in watchlist
+  .namespace-selector
+  select[name="namespace"]
+    padding 0.4em 0.6em
+    background $darker
+    border 1px solid rgba($arch-blue, 0.2)
+    border-radius $border-radius-sm
+    color $light
+    font-size 0.85em
+    cursor pointer
+
+    &:focus
+      border-color $arch-blue
+      outline none
+      box-shadow 0 0 0 2px rgba($arch-blue, 0.2)
+
+// Watchlist change list (same structure as recentchanges)
+.watchlist-content
+.mw-watchlist-content
+.mw-changeslist
+.mw-changeslist-watchlist
+  // Date group headers within watchlist
+  .mw-changeslist-group
+  .watchlist-date-header
+    display flex
+    align-items center
+    gap 0.5em
+    padding 0.5em 0.75em
+    margin 1em 0 0.5em
+    background linear-gradient(135deg, rgba($arch-blue, 0.12), rgba($arch-blue, 0.05))
+    border 1px solid rgba($arch-blue, 0.2)
+    border-radius $border-radius-sm
+    font-size 0.8em
+    font-weight 700
+    color $secondary-blue
+    text-transform uppercase
+    letter-spacing 0.05em
+    font-variant-numeric tabular-nums
+
+    &::before
+      content '📋'
+      font-size 0.9em
+
+// Individual watchlist item
+.mw-watchlist-item
+.watchlist-item
+.mw-changeslist-item
+  display flex
+  flex-wrap wrap
+  gap 0.5em 1em
+  align-items baseline
+  padding 0.6em 0.75em
+  margin 0.2em 0
+  background linear-gradient(135deg, $base, rgba($arch-blue, 0.01))
+  border 1px solid $border-subtle
+  border-radius $border-radius-sm
+  transition all $transition-fast
+
+  &:hover
+    background linear-gradient(135deg, rgba($dark, 0.6), rgba($arch-blue, 0.05))
+    border-color rgba($arch-blue, 0.2)
+    box-shadow $shadow-subtle
+
+  // Page title in watchlist item
+  .mw-title
+  .mw-changeslist-title
+  .watchlist-title
+    color $lighter
+    text-decoration none
+    font-weight 500
+    font-size 0.95em
+    word-break break-word
+
+    &:hover
+      color $secondary-blue
+      text-decoration underline
+
+  // Change type indicators (edit, new, log, etc.)
+  .mw-tag-bot
+  .mw-tag-minor
+  .mw-tag-new
+  .mw-tag-patrol
+    display inline-flex
+    align-items center
+    gap 0.2em
+    padding 0.15em 0.4em
+    border-radius $border-radius-sm
+    font-size 0.7em
+    font-weight 600
+    text-transform uppercase
+    letter-spacing 0.03em
+    white-space nowrap
+
+  .mw-tag-bot
+    background rgba($arch-blue, 0.15)
+    color $secondary-blue
+
+  .mw-tag-minor
+    background rgba($muted, 0.15)
+    color $muted
+
+  .mw-tag-new
+    background rgba($green, 0.15)
+    color $green
+
+  .mw-tag-patrol
+    background rgba($orange, 0.15)
+    color $orange
+
+  // Diff link
+  .mw-changeslist-diff
+  .watchlist-diff-link
+    padding 0.2em 0.5em
+    background rgba($arch-blue, 0.08)
+    border 1px solid rgba($arch-blue, 0.15)
+    border-radius $border-radius-sm
+    color $secondary-blue
+    font-size 0.8em
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      background rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.3)
+      color $lighter
+
+    &::before
+      content 'diff'
+
+  // History link
+  .mw-changeslist-history
+  .watchlist-hist-link
+    padding 0.2em 0.5em
+    background rgba($arch-blue, 0.06)
+    border 1px solid rgba($arch-blue, 0.12)
+    border-radius $border-radius-sm
+    color $muted
+    font-size 0.8em
+    text-decoration none
+    transition all $transition-fast
+
+    &:hover
+      background rgba($arch-blue, 0.12)
+      color $light
+
+    &::before
+      content 'hist'
+
+// Timestamp within watchlist item
+.mw-changeslist-date
+.watchlist-timestamp
+  font-size 0.8em
+  color $muted
+  font-variant-numeric tabular-nums
+  white-space nowrap
+  min-width 6em
+
+// User name in watchlist item
+.mw-changeslist-links
+.watchlist-links
+  display flex
+  align-items center
+  gap 0.5em
+  flex-wrap wrap
+
+  .mw-userlink
+  .watchlist-user
+    color $secondary-blue
+    font-weight 500
+    text-decoration none
+
+    &:hover
+      color $lighter
+      text-decoration underline
+
+  // Change size
+  .mw-changeslist-size
+  .watchlist-size
+    font-size 0.8em
+    font-variant-numeric tabular-nums
+
+    &.mw-plus-minus-possibly-open
+    &.mw-plus-minus-negatively-open
+      font-weight 600
+
+    &.mw-plus-minus-possibly-open
+      color $green
+
+    &.mw-plus-minus-negatively-open
+      color $red
+
+// Watchlist item - edit count badge
+.watchlist-edits
+.mw-watchlist-edits
+.edit-count
+  display inline-flex
+  align-items center
+  gap 0.25em
+  padding 0.15em 0.5em
+  background rgba($arch-blue, 0.1)
+  border 1px solid rgba($arch-blue, 0.2)
+  border-radius $border-radius-sm
+  font-size 0.75em
+  color $secondary-blue
+  font-variant-numeric tabular-nums
+
+  &::before
+    content '✏'
+    font-size 0.85em
+
+// Unwatch / watch toggle button
+.watchlist-toggle
+.mw-watchlist-toggle
+.unwatch-button
+.watch-button
+  padding 0.3em 0.6em
+  background rgba($red, 0.08)
+  border 1px solid rgba($red, 0.2)
+  border-radius $border-radius-sm
+  color $red
+  font-size 0.8em
+  font-weight 500
+  cursor pointer
+  transition all $transition-fast
+  text-decoration none
+
+  &:hover
+    background rgba($red, 0.15)
+    border-color rgba($red, 0.4)
+    color lighten($red, 10%)
+
+  // Unwatch state (already watching)
+  &.unwatch
+  &.mw-unwatch
+    background rgba($red, 0.12)
+    border-color rgba($red, 0.25)
+    color $red
+
+    &::before
+      content '★ ' // star = watching
+
+  // Watch state (not watching)
+  &.watch
+  &.mw-watch
+    background rgba($green, 0.08)
+    border-color rgba($green, 0.2)
+    color $green
+
+    &::before
+      content '☆ ' // empty star = not watching
+
+    &:hover
+      background rgba($green, 0.15)
+      border-color rgba($green, 0.4)
+      color lighten($green, 10%)
+
+// Watchlist empty state
+.watchlist-empty
+.mw-watchlist-empty
+.no-items
+  padding 2em
+  text-align center
+  color $muted
+  font-style italic
+  background rgba($dark, 0.3)
+  border 1px dashed $border-subtle
+  border-radius $border-radius-md
+
+  &::before
+    content '📭'
+    display block
+    font-size 2em
+    margin-bottom 0.5em
+    opacity 0.4
+
+// Watchlist pagination
+.watchlist-nav
+.mw-watchlist-nav
+.pagination
+  display flex
+  align-items center
+  justify-content center
+  gap 0.25em
+  margin-top 1.5em
+  padding 0.75em 0
+
+  a
+  span
+    display inline-flex
+    align-items center
+    justify-content center
+    min-width 2.25em
+    padding 0.4em 0.6em
+    border-radius $border-radius-sm
+    font-size 0.9em
+    text-decoration none
+    transition all $transition-fast
+    font-variant-numeric tabular-nums
+
+  a
+    color $light
+    background rgba($arch-blue, 0.08)
+    border 1px solid rgba($arch-blue, 0.15)
+
+    &:hover
+      background rgba($arch-blue, 0.18)
+      border-color rgba($arch-blue, 0.3)
+      color $lighter
+
+  span.current
+    background linear-gradient(135deg, rgba($arch-blue, 0.3), rgba($arch-blue, 0.2))
+    border 1px solid $arch-blue
+    color $lighter
+    font-weight 600
+
+  span.disabled
+    color $muted
+    background rgba($dark, 0.2)
+    border-color transparent
+    cursor not-allowed
+    opacity 0.5
+
+// Watchlist bottom nav (older/newer)
+.mw-watchlist-bottom-nav
+  display flex
+  justify-content space-between
+  align-items center
+  padding 1em 0
+  margin-top 1em
+  border-top 1px solid $border-subtle
+
+  .mw-prevlink
+  .mw-nextlink
+    padding 0.5em 1em
+    background rgba($arch-blue, 0.08)
+    border 1px solid rgba($arch-blue, 0.2)
+    border-radius $border-radius-sm
+    color $secondary-blue
+    text-decoration none
+    font-size 0.9em
+    transition all $transition-fast
+
+    &:hover:not(.disabled)
+      background rgba($arch-blue, 0.15)
+      border-color rgba($arch-blue, 0.35)
+      color $lighter
+
+    &.disabled
+      color $muted
+      background transparent
+      border-color transparent
+      cursor not-allowed
+      opacity 0.5
