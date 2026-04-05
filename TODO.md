@@ -575,10 +575,12 @@
 | 2026-04-04 19:00 | overflow-x auto and white-space pre-wrap for .output-block | Add overflow-x auto and white-space pre-wrap to .output-block — consistent with pre.terminal/.terminal-block overflow handling | 5b32086 |
 | 2026-04-04 19:30 | white-space pre-wrap and overflow-wrap break-word for .config-block | Add white-space pre-wrap and overflow-wrap break-word to .config-block in pre.terminal context — prevents long config lines from overflowing | 629cf69 |
 | 2026-04-05 00:28 | min-width 320px for .oo-ui-dialog | Add min-width: 320px to .oo-ui-dialog to prevent width collapse on narrow content — matches .oo-ui-popupWidget treatment (3d5e5a5) | 3b2e06d |
+| 2026-04-05 01:34 | overflow-wrap for OOUI option/popup widgets | Add overflow-wrap: break-word to .oo-ui-optionWidget, .oo-ui-menuOptionWidget, and .oo-ui-popupWidget-body — prevents long unbroken strings from overflowing in dropdown/menu/popup widgets | c81ad8b |
+| 2026-04-05 03:34 | prefers-reduced-transparency for OOUI dropdown menus | Add .oo-ui-dropdownWidget-menu to @media (prefers-reduced-transparency reduce) block — solid opaque background instead of translucent gradient for dropdown menus when users prefer reduced transparency | 316a2ee |
 
 ---
 
-Last updated: 2026-04-05 00:40
+Last updated: 2026-04-05 03:47
 
 ## Reviewer Findings
 
@@ -676,6 +678,20 @@ Last updated: 2026-04-05 00:40
   - Stylelint: ✓ (no errors on ooui-enhanced.styl)
   - Compiled CSS: 4 instances of overflow-wrap:break-word confirmed in dist/main.css
 - Commit: c81ad8b
+
+### 2026-04-05 03:47
+- Review target: 316a2ee (prefers-reduced-transparency for OOUI dropdown menus)
+- Verdict: APPROVED
+- Findings:
+  - ```316a2ee``` (03:34): Adds `.oo-ui-dropdownWidget-menu` to the `@media (prefers-reduced-transparency reduce)` block in `modern-css.styl`. Dropdown menus now get solid `` background + `backdrop-filter: none` when users prefer reduced transparency — consistent with existing treatment for `.vector-dropdown-content` and `.oo-ui-popupWidget-popup` in the same block.
+  - **Pattern correct**: exactly matches the established treatment in the same block (solid background, no backdrop-filter). No new cascade risk — scoped to a single selector in an existing @media block.
+  - **No hardcoded colors**: uses `$base` theme variable. Build compiles cleanly.
+  - **Accessibility fix**: fixes unreadable translucent popup backgrounds for users with transparency reduction preference.
+  - **Completion log updated**: added entries for `c81ad8b` (01:34, overflow-wrap for OOUI widgets) and `316a2ee` (03:34, this commit).
+  - **Worktree**: only `package.json` dirty (build verbump). No uncommitted CSS.
+- Implementer instructions:
+  1. Both `c81ad8b` and `316a2ee` approved — completion log entries added above.
+  2. Do NOT push — pipeline issue remains unroot-caused per prior reviews.
 
 ### 2026-04-05 00:37
 - Run target: visual scout
