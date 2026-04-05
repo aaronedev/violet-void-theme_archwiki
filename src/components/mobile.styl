@@ -704,7 +704,8 @@ table.mw-html-magic-mw-data-interface
     visibility visible
 
 // Mobile menu toggle button
-.mobile-menu-toggle
+// Follows z-index scale: z-1002 = above slide-menu (z-1001)
+.mobile-menu-toggle.z-1002
   display none // Hidden on desktop
   position fixed
   top 0.5em
@@ -717,7 +718,6 @@ table.mw-html-magic-mw-data-interface
   color $light
   font-size 1.25em
   cursor pointer
-  z-index 1002
   align-items center
   justify-content center
   transition all $transition-fast
@@ -736,14 +736,14 @@ table.mw-html-magic-mw-data-interface
     display flex
 
 // Menu overlay/backdrop
-.mobile-menu-overlay
+// Uses z-1000 to match .mobile-bottom-nav stacking level
+.mobile-menu-overlay.z-1000
   position fixed
   top 0
   left 0
   right 0
   bottom 0
   background rgba($darker, 0.6)
-  z-index 1000
   opacity 0
   visibility hidden
   transition all $transition-medium
