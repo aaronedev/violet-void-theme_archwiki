@@ -578,10 +578,12 @@
 | 2026-04-05 01:34 | overflow-wrap for OOUI option/popup widgets | Add overflow-wrap: break-word to .oo-ui-optionWidget, .oo-ui-menuOptionWidget, and .oo-ui-popupWidget-body — prevents long unbroken strings from overflowing in dropdown/menu/popup widgets | c81ad8b |
 | 2026-04-05 03:34 | prefers-reduced-transparency for OOUI dropdown menus | Add .oo-ui-dropdownWidget-menu to @media (prefers-reduced-transparency reduce) block — solid opaque background instead of translucent gradient for dropdown menus when users prefer reduced transparency | 316a2ee |
 | 2026-04-05 06:46 | prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast | Add prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast utility classes — solid rgba($base, 0.95) and rgba($darker, 0.9) backgrounds with backdrop-filter: none for users who prefer reduced transparency | 1ac6b81 |
+| 2026-04-05 07:51 | increase TOC FAB and panel z-index to 1002 above mobile nav | Increase z-index to 1002 for .vector-sticky-pinned-container TOC FAB button and .mobile-toc-panel — above mobile-bottom-nav (1000) and mobile-slide-menu (1001) to prevent mobile nav overlay occlusion | 8d4003f |
+| 2026-04-05 08:50 | prefers-reduced-transparency override for dialog:modal and dialog.info:modal backdrops | Add @media (prefers-reduced-transparency reduce) { backdrop-filter: none } to dialog:modal and dialog.info:modal::backdrop — consistent with all other backdrop-filter transparency overrides in the codebase | bfc59df |
 
 ---
 
-Last updated: 2026-04-05 07:17
+Last updated: 2026-04-05 08:55
 
 ## Reviewer Findings
 
@@ -10974,6 +10976,19 @@ Last updated: 2026-04-05 07:17
   3. Commit completion log addition with `chore: add archwiki reviewer findings`.
   4. Do NOT push — pipeline issue unresolved per prior findings.
 
+### 2026-04-05 08:55
+- Review target: 8d4003f + bfc59df (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`8d4003f`** (07:51): Increases z-index to 1002 for `.vector-sticky-pinned-container` TOC FAB and `.mobile-toc-panel`. The hardcoded value `1002` is documented in the commit as sitting above `mobile-bottom-nav` (1000) and `mobile-slide-menu` (1001) — confirmed by grep against mobile.styl where those values are defined. Acceptable hardcoded z-index for stacking fix — pattern consistent with other layering overrides in the file.
+  - **`bfc59df`** (08:50): Adds `@media (prefers-reduced-transparency reduce) { backdrop-filter: none }` to `dialog:modal::backdrop` and `dialog.info:modal::backdrop`. Pattern matches all other transparency overrides in the same block. Uses theme vars (`$darker`, `$arch-blue`). `dialog:modal` rules are documented as forward-looking for MediaWiki 1.43+ (per existing comment at line ~355 in ui-components.styl) — same treatment as the light-mode dialog overrides approved at 2026-03-26 10:44.
+  - **Scout clean**: `scout-1775371325.json` (06:37 UTC, 40/40 AE=0) confirms no visual drift across all pages and interactive states.
+  - **Worktree**: TODO.md (scout findings + completion log updates), package.json (verbump), diff PNGs (scout artifacts) — all uncommitted. No uncommitted CSS.
+- Implementer instructions:
+  1. Both commits approved — completion log entries added above.
+  2. Commit with `chore: add archwiki reviewer findings` (includes completion log + scout findings).
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ## Visual Scout Findings
 
 ### 2026-04-01 01:17
@@ -12479,3 +12494,35 @@ Last updated: 2026-04-05 07:17
   1. Add completion log entry (will need commit hash — see step 2): "Add prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast utility classes — solid rgba($base, 0.95) and rgba($darker, 0.9) backgrounds with backdrop-filter: none for users who prefer reduced transparency."
   2. Commit with `chore: add archwiki reviewer findings` (this adds the reviewer findings to TODO.md). After committing, add the completion log entry referencing the commit hash.
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-05 06:37
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All interactive states captured successfully (menu-open, toc-open, search-active) for desktop and mobile
+  - ArchWiki accessible — no Anubis WAF blocks this run
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable across all pages and states
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-$(date +%s).json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
