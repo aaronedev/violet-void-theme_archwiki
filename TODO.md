@@ -580,10 +580,11 @@
 | 2026-04-05 06:46 | prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast | Add prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast utility classes — solid rgba($base, 0.95) and rgba($darker, 0.9) backgrounds with backdrop-filter: none for users who prefer reduced transparency | 1ac6b81 |
 | 2026-04-05 07:51 | increase TOC FAB and panel z-index to 1002 above mobile nav | Increase z-index to 1002 for .vector-sticky-pinned-container TOC FAB button and .mobile-toc-panel — above mobile-bottom-nav (1000) and mobile-slide-menu (1001) to prevent mobile nav overlay occlusion | 8d4003f |
 | 2026-04-05 08:50 | prefers-reduced-transparency override for dialog:modal and dialog.info:modal backdrops | Add @media (prefers-reduced-transparency reduce) { backdrop-filter: none } to dialog:modal and dialog.info:modal::backdrop — consistent with all other backdrop-filter transparency overrides in the codebase | bfc59df |
+| 2026-04-05 09:22 | prefers-reduced-transparency for interwiki preview, mmv overlay, and mw-overlay-loading | Add prefers-reduced-transparency for .interwiki-preview, .mw-mmv-overlay, and .mw-overlay-loading — solid backgrounds instead of backdrop-filter blur for users preferring reduced transparency | 7e1726e |
 
 ---
 
-Last updated: 2026-04-05 08:55
+Last updated: 2026-04-05 10:20
 
 ## Reviewer Findings
 
@@ -12541,3 +12542,15 @@ Last updated: 2026-04-05 08:55
   1. Add completion log entries for `7e1726e` ("add prefers-reduced-transparency for interwiki preview, mmv overlay, and mw-overlay-loading"), `bfc59df` ("add prefers-reduced-transparency to dialog:modal and dialog.themed:modal backdrops"), and `8d4003f` ("increase TOC FAB and panel z-index to 1002 above mobile nav").
   2. Commit with `chore: add archwiki reviewer findings`.
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-05 10:20
+- Review target: 7e1726e + bfc59df + 8d4003f (follow-up from 07:44; dirty worktree: scout artifacts)
+- Verdict: APPROVED
+- Findings:
+  - **Follow-up complete**: Completion log now has entries for all 3 commits. `8d4003f` (07:51) and `bfc59df` (08:50) were already present from prior cycle. `7e1726e` (09:22) added this cycle — "add prefers-reduced-transparency for .interwiki-preview, .mw-mmv-overlay, and .mw-overlay-loading."
+  - **Scout clean**: `scout-1775371325.json` (06:37 UTC, 2026-04-05) — 0 findings, 40/40 AE=0. All interactive states (menu-open, toc-open, search-active) captured for both desktop and mobile. Mobile interactive state coverage is now complete (mobile search-active and toc-open diffs are now captured for all 5 pages — previously only desktop had these).
+  - **Worktree**: Only `.agent/` artifacts and `package.json` dirty. No uncommitted CSS.
+  - **TODO.md updated**: Last updated bumped to 10:20; `7e1726e` completion log entry added.
+- Implementer instructions:
+  1. Commit with `chore: add archwiki reviewer findings`.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
