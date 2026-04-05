@@ -12526,3 +12526,18 @@ Last updated: 2026-04-05 08:55
   - .agent/archwiki/diff-metrics.txt
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
+
+### 2026-04-05 07:44
+- Review target: 7e1726e + bfc59df + 8d4003f (dirty worktree: scout artifacts + package.json)
+- Verdict: APPROVED (with completion-log follow-up)
+- Findings:
+  - **`7e1726e`** (09:22): Adds `.interwiki-preview`, `.mw-mmv-overlay`, and `.mw-overlay-loading` to the `@media (prefers-reduced-transparency reduce)` block in `modern-css.styl`. All 3 selectors already exist in the codebase (confirmed by grep: `interwiki.styl`, `file-pages.styl`, `states.styl`). Pattern matches established treatment — `backdrop-filter: none !important` + `-webkit-backdrop-filter: none !important`. No hardcoded colors, scoped, zero cascade risk. Accessibility fix for users who prefer solid backgrounds.
+  - **`bfc59df`** (08:50): Adds `@media (prefers-reduced-transparency reduce) { backdrop-filter: none }` to `dialog:modal` and `dialog.info:modal::backdrop` in `ui-components.styl`. Consistent with all other dialog/popup/dropdown backdrop-filter overrides in the same block. Pattern correct, no hardcoded colors.
+  - **`8d4003f`** (07:51): Increases z-index for `.toc-fab`, `.toc-floating-button`, `#toc-fab`, `.toc-panel`, `.toc-mobile-panel`, `.vector-toc-panel` from `$cdx-z-index-dropdown` (100) to `1002`. Rationale: TOC FAB/panel were being occluded by `.mobile-bottom-nav` (z-index 1000) and `.mobile-slide-menu` (z-index 1001). The explicit `1002` value ensures TOC is always above mobile nav layers — consistent with the comment added. Legitimate stacking fix confirmed by code inspection. No open-state evidence needed (z-index fix, no visual appearance change; problem was occlusion not visual drift).
+  - **Scout clean**: `scout-1775371325.json` (06:37 UTC) — 0 findings across 5 pages × 2 viewports × 4 states. AE=0 across all 40 baseline comparisons. No regressions introduced.
+  - **Worktree**: Only `package.json` + scout artifacts dirty. No uncommitted CSS.
+  - **Completion log missing**: No entries for `7e1726e`, `bfc59df`, or `8d4003f` in the completion log.
+- Implementer instructions:
+  1. Add completion log entries for `7e1726e` ("add prefers-reduced-transparency for interwiki preview, mmv overlay, and mw-overlay-loading"), `bfc59df` ("add prefers-reduced-transparency to dialog:modal and dialog.themed:modal backdrops"), and `8d4003f` ("increase TOC FAB and panel z-index to 1002 above mobile nav").
+  2. Commit with `chore: add archwiki reviewer findings`.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
