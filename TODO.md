@@ -3833,8 +3833,8 @@ Last updated: 2026-04-05 11:30
   - Edit summary styling
   - Top/bottom navigation
 
-- [ ] **Special:Watchlist Styling** (CSS)
-  - File: `src/components/special.styl`
+- [x] **Special:Watchlist Styling** (CSS) (done: 2026-04-05 13:57, commit: da93a4f)
+  - File: `src/components/special-pages.styl`
   - Watchlist item styling
   - Unwatch toggle button
   - Edit count badge
