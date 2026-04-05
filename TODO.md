@@ -12614,3 +12614,16 @@ Last updated: 2026-04-05 11:30
   - `.agent/archwiki/diff-metrics.txt` — 40 AE=0 entries, 0 changed
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable across all pages and interactive states
+
+---
+
+**Completion Log Entry — 2026-04-05 14:20**
+- Fix: Replaced non-expanding `rgba($darker, 0.2)` with hardcoded `rgba(15, 15, 15, 0.2)` in button hover box-shadow inside `@css{}` block in `animations.styl`
+- Root cause: Stylus does not expand variables inside `@css{}` blocks; the literal `$darker` token was output in compiled CSS
+- Confirmed by: `453301b` (same fix for same reason), `8351e84` (original introduction of `$darker` in `@css{}`), `fb5daf1` (regression reintroducing `$darker`)
+- Commit: `9ff25c5`
+- Validation: Built CSS, verified `rgba(15, 15, 15, 0.2)` now appears at line 893 of dist/main.css
+- Implementer instructions:
+  - Avoid using Stylus variables (`$darker`, `$lighter`, etc.) inside `@css{}` blocks — they do not expand
+  - Use hardcoded values directly in `@css{}` blocks
+  - The `@css{}` block at line 14 of animations.styl wraps the entire `@supports (@starting-style)` block which contains this rule
