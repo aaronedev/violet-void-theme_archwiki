@@ -577,10 +577,11 @@
 | 2026-04-05 00:28 | min-width 320px for .oo-ui-dialog | Add min-width: 320px to .oo-ui-dialog to prevent width collapse on narrow content — matches .oo-ui-popupWidget treatment (3d5e5a5) | 3b2e06d |
 | 2026-04-05 01:34 | overflow-wrap for OOUI option/popup widgets | Add overflow-wrap: break-word to .oo-ui-optionWidget, .oo-ui-menuOptionWidget, and .oo-ui-popupWidget-body — prevents long unbroken strings from overflowing in dropdown/menu/popup widgets | c81ad8b |
 | 2026-04-05 03:34 | prefers-reduced-transparency for OOUI dropdown menus | Add .oo-ui-dropdownWidget-menu to @media (prefers-reduced-transparency reduce) block — solid opaque background instead of translucent gradient for dropdown menus when users prefer reduced transparency | 316a2ee |
+| 2026-04-05 06:46 | prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast | Add prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast utility classes — solid rgba($base, 0.95) and rgba($darker, 0.9) backgrounds with backdrop-filter: none for users who prefer reduced transparency | 1ac6b81 |
 
 ---
 
-Last updated: 2026-04-05 04:56
+Last updated: 2026-04-05 07:17
 
 ## Reviewer Findings
 
