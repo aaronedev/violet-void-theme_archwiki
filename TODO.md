@@ -589,6 +589,21 @@ Last updated: 2026-04-05 11:30
 
 ## Reviewer Findings
 
+### 2026-04-05 14:57
+- Review target: 9ff25c5 + 44aef36 (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`9ff25c5`** (14:24): Replaces `rgba($darker, 0.2)` with `rgba(15, 15, 15, 0.2)` for `.mw-ui-button:hover` and `.cdx-button:hover` inside an `@css{}` block in `animations.styl`. Correct and necessary — Stylus does not expand `$darker` inside `@css{}` blocks; the literal `$darker` token was being output in compiled CSS. This is the 5th recurrence of this exact regression (prior: `453301b`, `8351e84`, `a8b8b88`, `fb5daf1`). The fix is correct — the hardcoded `rgba(15, 15, 15, 0.2)` is equivalent to what `$darker` expands to in regular contexts.
+  - **`44aef36`** (14:25): Documents the fix, root cause, and prevention guidance in TODO.md completion log. Notes that Stylus variables must not be used inside `@css{}` blocks. Good housekeeping, though documentation alone doesn't prevent recurrence (same pattern reappeared 5 times despite prior documentation).
+  - **No remaining `$darker` in `@css{}` blocks**: `rg '@css' src/ -A3 | rg '\$darker'` returns nothing. The regression is fully cleaned up.
+  - **Build succeeds**: `dist/main.css` line 893 confirms `box-shadow: 0 2px 4px rgba(15, 15, 15, 0.2)`.
+  - **Scout clean**: `scout-1775371325.json` (06:37 UTC) reports 0 issues, 40/40 AE=0. All interactive states captured. No visual drift.
+  - **Worktree**: only `.agent/archwiki/diffs/*.diff.png` (visual scout artifacts) + `package.json` verbump dirty. No uncommitted CSS.
+- Implementer instructions:
+  1. Both commits approved — completion log entry present in `44aef36`.
+  2. The recurring `$darker`/`@css{}` regression has no structural prevention mechanism — documentation is the only current defense. No automated lint rule exists to catch this.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-05 11:30
 - Review target: fb5daf1 (button hover box-shadow $darker variable)
 - Verdict: APPROVED
