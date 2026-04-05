@@ -364,6 +364,9 @@ dialog:modal
     background-color rgba($darker, 0.85)
     backdrop-filter blur(4px)
 
+    @media (prefers-reduced-transparency reduce)
+      backdrop-filter none
+
   // Modal-specific animations
   &[open]
     animation dialog-modal-fade-in 0.25s ease-out
@@ -416,6 +419,9 @@ dialog.info:modal::backdrop
   dialog.themed:modal::backdrop
     background-color rgba($arch-blue, 0.7)
     backdrop-filter blur(8px) saturate(180%)
+
+    @media (prefers-reduced-transparency reduce)
+      backdrop-filter none
 
 // Full-screen backdrop for image viewers
 dialog.fullscreen:modal::backdrop
