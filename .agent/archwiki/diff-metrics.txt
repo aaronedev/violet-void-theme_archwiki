@@ -1,3 +1,7 @@
+# Violet Void ArchWiki — Visual Scout Diff Metrics
+# Last updated: 2026-04-05 10:37 UTC
+# 40/40 screenshots — AE=0 vs baselines — CLEAN
+
 firefox.desktop.default.png: AE=0
 firefox.desktop.menu-open.png: AE=0
 firefox.desktop.search-active.png: AE=0
