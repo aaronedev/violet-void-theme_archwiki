@@ -12738,3 +12738,39 @@ Last updated: 2026-04-05 11:30
   2. Add a completion log entry for the mobile.styl refactoring (separate from the `6e407bb` entry): "Refactor mobile.styl overlay z-index values to use .z-1000/.z-1001/.z-1002 utility classes"
   3. If keeping `.z-100`/`.z-500`, confirm no other file uses them before removing; they duplicate Codex token scale.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-05 20:50
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured at desktop (4 states) and mobile (4 states) = 40 screenshots
+  - Diff artifacts present: 44 diff PNGs in .agent/archwiki/diffs/ — all AE=0, visually blank
+  - DOM inspection (check-dom.js + check-interactive.js): no horizontal overflow, no high-Z elements, no dark-text-on-dark-panel issues
+  - ArchWiki accessible — no Anubis WAF blocks this run
+  - Worktree clean — no uncommitted CSS
+  - No duplicate findings from prior runs (scout 20:50 vs prior 18:54 both CLEAN)
+- Artifact paths:
+  - .agent/archwiki/current/ (41 PNGs including test-inject.png)
+  - .agent/archwiki/baselines/ (40 PNGs)
+  - .agent/archwiki/diffs/ (44 diff PNGs, AE=0)
+  - .agent/archwiki/reports/scout-results.json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable across all pages and interactive states
+
