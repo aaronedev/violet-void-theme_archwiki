@@ -391,6 +391,23 @@ h4[id]
     backdrop-filter none !important
     -webkit-backdrop-filter none !important
 
+  // Search box container — backdrop-filter blur(4px) on semi-opaque background
+  // Needs solid background for users with reduced transparency preference
+  .vector-search-box
+    background linear-gradient(135deg, rgba($darker, 0.96), rgba($dark, 0.96)) !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  // Search suggestions dropdown — backdrop-filter blur(4px) on 98%-opaque background
+  // Needs solid background for users with reduced transparency preference
+  .mw-search-suggest
+  .search-suggestions
+  .suggestions
+  .suggestions-results
+    background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98)) !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
 // =============================================================================
 
 // FIELD SIZING - Auto-Growing Textareas
