@@ -12569,3 +12569,35 @@ Last updated: 2026-04-05 11:30
 - Implementer instructions:
   1. Commit with `chore: add archwiki reviewer findings`.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-05 10:37
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All interactive states captured successfully (menu-open, toc-open, search-active) for desktop and mobile
+  - All 5 pages × 2 viewports × 4 states = 40 screenshots — all AE=0
+  - ArchWiki accessible — no Anubis WAF blocks this run
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable across all pages and interactive states
+  - Worktree dirty: only artifact files (diff PNGs, diff-metrics.txt) and package.json
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — 40 screenshots
+  - `.agent/archwiki/diff-metrics.txt` — 40 AE=0 entries, 0 changed
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable across all pages and interactive states
