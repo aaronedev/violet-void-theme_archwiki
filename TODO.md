@@ -12449,3 +12449,18 @@ Last updated: 2026-04-05 04:56
   1. Add completion log entry for `3b2e06d`: "add min-width: 320px to .oo-ui-dialog to prevent width collapse on narrow content — matches .oo-ui-popupWidget treatment (3d5e5a5)."
   2. Commit with `chore: add archwiki reviewer findings`.
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-05 04:07
+- Review target: dirty worktree (uncommitted: glass.styl + modern-css.styl)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Worktree changes**: Adds `.backdrop-frosted-bright` and `.backdrop-frosted-contrast` to the `@media (prefers-reduced-transparency reduce)` block in both `glass.styl` and `modern-css.styl`. These frosted glass utility classes (defined in `navigation.styl`) use `backdrop-filter: blur(...)` and need solid-background overrides for users who prefer reduced transparency — exactly the same treatment as the existing `.glass`, `.glass-strong`, `.gallery-caption`, etc. in the same block.
+  - **Pattern correct**: Both files add the same two selectors with `backdrop-filter: none`, `-webkit-backdrop-filter: none`, and solid `rgba()` backgrounds. `glass.styl` uses `rgba($base, 0.95)` for bright and `rgba($darker, 0.9)` for contrast. `modern-css.styl` mirrors this with `!important` overrides. Consistent with the established pattern throughout the block.
+  - **Compiled CSS verified**: `dist/main.css` contains both rules in the `@media (prefers-reduced-transparency:reduce)` block with correct rgba values (`rgba(24,24,24,0.95)` and `rgba(15,15,15,0.9)`).
+  - **Build compiles cleanly**: `npm run build` succeeds.
+  - **No open-state evidence needed**: `prefers-reduced-transparency` is a media-query-based accessibility fix — no interactive open-state capture required (same rationale as all other `prefers-reduced-transparency` entries in the completion log).
+  - **Completion log missing**: No completion log entry for this work. `TODO.md` mentions `.backdrop-frosted-*` was added (completion log 2026-04-04) but does not have an entry for the `prefers-reduced-transparency` override for these specific classes.
+- Implementer instructions:
+  1. Add completion log entry (will need commit hash — see step 2): "Add prefers-reduced-transparency override for .backdrop-frosted-bright and .backdrop-frosted-contrast utility classes — solid rgba($base, 0.95) and rgba($darker, 0.9) backgrounds with backdrop-filter: none for users who prefer reduced transparency."
+  2. Commit with `chore: add archwiki reviewer findings` (this adds the reviewer findings to TODO.md). After committing, add the completion log entry referencing the commit hash.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
