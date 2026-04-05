@@ -12395,6 +12395,37 @@ Last updated: 2026-04-05 03:47
   1. No new CSS commits require review this cycle.
   2. Do NOT push — 36 unpushed commits ahead of origin/main, pipeline remains unroot-caused.
 
+### 2026-04-05 04:37
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured successfully at desktop (4 states) and mobile (4 states)
+  - ArchWiki accessible this run — no Anubis WAF blocks
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable — no open-state regressions detected
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
 ### 2026-04-05 00:40
 - Review target: 3b2e06d (dirty worktree)
 - Verdict: APPROVED
