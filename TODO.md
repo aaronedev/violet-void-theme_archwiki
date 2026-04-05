@@ -583,12 +583,27 @@
 | 2026-04-05 08:50 | prefers-reduced-transparency override for dialog:modal and dialog.info:modal backdrops | Add @media (prefers-reduced-transparency reduce) { backdrop-filter: none } to dialog:modal and dialog.info:modal::backdrop — consistent with all other backdrop-filter transparency overrides in the codebase | bfc59df |
 | 2026-04-05 09:22 | prefers-reduced-transparency for interwiki preview, mmv overlay, and mw-overlay-loading | Add prefers-reduced-transparency for .interwiki-preview, .mw-mmv-overlay, and .mw-overlay-loading — solid backgrounds instead of backdrop-filter blur for users preferring reduced transparency | 7e1726e |
 | 2026-04-05 11:26 | Use $darker variable in button hover box-shadow | Replace hardcoded rgba(15,15,15,0.2) with rgba($darker,0.2) for .mw-ui-button:hover and .cdx-button:hover — follows established $darker variable expansion pattern (same fix appeared in 2868eda, 8351e84, a8b8b88) | fb5daf1 |
+| 2026-04-05 20:13 | Replace hardcoded z-index values with utility classes for mobile-menu-toggle and mobile-menu-overlay | Add .z-1002 to .mobile-menu-toggle and .z-1000 to .mobile-menu-overlay — removes inline z-index declarations in mobile.styl. Follows z-index utility class pattern established in prior refactors. | 991eaf1 |
+| 2026-04-05 22:47 | Fix redundant z-index 1002 inside @media for .vector-toc-panel.z-1002 | Split TOC panel selector group — .toc-panel/.toc-mobile-panel/.vector-toc-panel retain hardcoded z-index 1002 inside @media; .vector-toc-panel.z-1002 (which carries .z-1002 utility class) has z-index removed from @media to avoid duplication. | 82776b2 |
 
 ---
 
-Last updated: 2026-04-05 11:30
+Last updated: 2026-04-06 00:39
 
 ## Reviewer Findings
+
+### 2026-04-06 00:39
+- Review target: c05a920 (remove redundant hardcoded z-index 1002 from .vector-toc-panel @media block)
+- Verdict: APPROVED
+- Findings:
+  - **`c05a920`** (22:47): Removes `.vector-toc-panel` from selector group inside `@media (max-width: 768px)` in `mobile.styl` — the group was setting `z-index: 1002` for `.toc-panel, .toc-mobile-panel, .vector-toc-panel`. Rationale: `.vector-toc-panel` already carries `.z-1002` utility class which provides `z-index: 1002` globally; the hardcoded z-index inside the @media block was redundant duplication.
+  - **Compiled CSS verified**: `dist/main.css` confirms `.vector-toc-panel.z-1002` has `z-index: 1002` from the utility class (separate rule), and no z-index in the `@media (max-width: 768px)` block targeting the bare `.vector-toc-panel` selector. Correct.
+  - **Worktree**: package.json verbump `20260405.23.33` → `20260406.00.13`; TODO.md completion log entries added for `991eaf1` (mobile-menu-toggle/overlay z-index utility) and `82776b2` (this same fix — redundant z-index cleanup). Both commits confirmed present in git history.
+  - **Build succeeds**: `npm run build` compiles cleanly.
+  - **No open-state evidence needed**: z-index is a stacking context property, not an interactive UI state. Consistent with prior APPROVED z-index utility refactors.
+- Implementer instructions:
+  1. Commit approved — `c05a920` is a legitimate cleanup.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
 
 ### 2026-04-05 16:14
 - Review target: clean worktree — latest commit `9ff25c5` (14:24), latest build `9262e35` (16:14)
