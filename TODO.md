@@ -12789,3 +12789,37 @@ Last updated: 2026-04-06 00:39
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable across all pages and interactive states
 
+### 2026-04-06 00:52
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured at desktop (4 states) and mobile (4 states) = 40 screenshots
+  - 0 findings in scout report (scout-1775399963045.json)
+  - Diff artifacts: 44 diff PNGs in .agent/archwiki/diffs/ — all AE=0, visually blank
+  - ArchWiki accessible — no Anubis WAF blocks this run
+  - Worktree clean — no uncommitted CSS
+- Artifact paths:
+  - .agent/archwiki/current/ (41 PNGs)
+  - .agent/archwiki/baselines/ (40 PNGs)
+  - .agent/archwiki/diffs/ (44 diff PNGs, AE=0)
+  - .agent/archwiki/reports/scout-1775399963045.json
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
