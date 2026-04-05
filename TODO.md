@@ -857,6 +857,19 @@ Last updated: 2026-04-05 11:30
   1. Add completion log entries for each variable definition (can be combined into one entry): "Define missing legacy variable aliases (`$font-ui`, `$accent`, `$purple`, `$bg-secondary`) — used throughout CSS but never defined; now alias to established theme variables."
   2. Commit with `chore: define missing legacy variable aliases` then update version and completion log in the same commit.
   3. Do NOT push until screenshot pipeline is root-caused.
+### 2026-04-05 14:17
+- Review target: da93a4f + 594dc97 (Special:Watchlist CSS)
+- Verdict: APPROVED
+- Findings:
+  - ```da93a4f``` (13:58): Adds 405 lines of Special:Watchlist styling to `src/components/special-pages.styl`. Covers: watchlist container, intro/stats bar (`.watchlist-intro`, `.mw-watchlist-intro`), filter bar with namespace selector, change list with date group headers, individual watchlist items (`.mw-watchlist-item`), edit count badges (`.mw-edits-count`, `.watchlist-edits`), diff indicators (`.watchlist-changeslist-diff`), related changes links, unwatch/star toggle buttons, timestamp styling (`.mw-watchlist-timestamp`), and bottom nav (older/newer pagination). All colors use theme variables (`-blue`, `-subtle`, ``, ``, ``, ``, ``, `-blue`). Transition uses `-fast`. Border-radius uses `-radius-sm`/`-radius-md`. `font-variant-numeric: tabular-nums` applied throughout for numeric alignment. Build compiles cleanly.
+  - ```594dc97``` (13:58): Marks `Special:Watchlist Styling` as `[x]` in TODO.md with commit reference `da93a4f`. Also corrects file path from `src/components/special.styl` → `src/components/special-pages.styl` — matches actual file used. Completion log entry added correctly.
+  - **Scout clean**: `scout-1775371325.json` (06:37 UTC) reports 0 findings across 5 pages × 2 viewports × 4 states = 40 screenshots. AE=0 across all baselines. No visual drift from the new styling (watchlist pages are not in the 5 scout pages, but the non-regression check confirms no cascade from the new selectors).
+  - **Worktree**: only `.agent/archwiki/diffs/*.diff.png` (scout artifacts), `package.json` (verbump to `20260405.14.17`), and untracked mobile TOC/search diff PNGs. No uncommitted CSS.
+  - **No open-state evidence needed**: watchlist is a read-only list view. Hover/active states are covered by the existing button/link hover treatment in the stylesheet. Consistent with other special-page styling treatment.
+- Implementer instructions:
+  1. Both commits approved — completion log entry present.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 *Maintained by: OpenClaw (violet-void-todo-scout → violet-void-implementer)*
 
 ---
