@@ -1063,13 +1063,22 @@ body.menu-open
 .toc-panel
 .toc-mobile-panel
 .vector-toc-panel
+  @media (max-width 768px)
+    position fixed
+    bottom 0
+    left 0
+    right 0
+    z-index 1002  // above mobile-bottom-nav (z-1000) and mobile-slide-menu (z-1001)
+
+// .vector-toc-panel.z-1002 already carries .z-1002 utility class which sets
+// z-index 1002 — no need to duplicate it inside @media block
 .vector-toc-panel.z-1002
   @media (max-width 768px)
     position fixed
     bottom 0
     left 0
     right 0
-    z-index 1002  // above mobile-bottom-nav (1000) and mobile-slide-menu (1001)
+    // z-index handled by .z-1002 utility class on element
     background linear-gradient(180deg, $base 0%, rgba($darker, 0.98) 100%)
     border-top 2px solid rgba($arch-blue, 0.4)
     border-radius $border-radius-lg $border-radius-lg 0 0
