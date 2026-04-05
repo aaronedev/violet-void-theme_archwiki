@@ -581,12 +581,27 @@
 | 2026-04-05 07:51 | increase TOC FAB and panel z-index to 1002 above mobile nav | Increase z-index to 1002 for .vector-sticky-pinned-container TOC FAB button and .mobile-toc-panel — above mobile-bottom-nav (1000) and mobile-slide-menu (1001) to prevent mobile nav overlay occlusion | 8d4003f |
 | 2026-04-05 08:50 | prefers-reduced-transparency override for dialog:modal and dialog.info:modal backdrops | Add @media (prefers-reduced-transparency reduce) { backdrop-filter: none } to dialog:modal and dialog.info:modal::backdrop — consistent with all other backdrop-filter transparency overrides in the codebase | bfc59df |
 | 2026-04-05 09:22 | prefers-reduced-transparency for interwiki preview, mmv overlay, and mw-overlay-loading | Add prefers-reduced-transparency for .interwiki-preview, .mw-mmv-overlay, and .mw-overlay-loading — solid backgrounds instead of backdrop-filter blur for users preferring reduced transparency | 7e1726e |
+| 2026-04-05 11:26 | Use $darker variable in button hover box-shadow | Replace hardcoded rgba(15,15,15,0.2) with rgba($darker,0.2) for .mw-ui-button:hover and .cdx-button:hover — follows established $darker variable expansion pattern (same fix appeared in 2868eda, 8351e84, a8b8b88) | fb5daf1 |
 
 ---
 
-Last updated: 2026-04-05 10:20
+Last updated: 2026-04-05 11:30
 
 ## Reviewer Findings
+
+### 2026-04-05 11:30
+- Review target: fb5daf1 (button hover box-shadow $darker variable)
+- Verdict: APPROVED
+- Findings:
+  - **`fb5daf1`** (11:26): Replaces `rgba(15, 15, 15, 0.2)` with `rgba($darker, 0.2)` for `.mw-ui-button:hover` and `.cdx-button:hover` in `animations.styl`. Follows the established `$darker` variable pattern — same issue was flagged and fixed in `2868eda`, `8351e84`, and `a8b8b88`. This particular line was apparently missed in prior sweeps.
+  - **Scout clean**: `scout-1775371325` (06:37 UTC) reports 40/40 AE=0 — no visual drift. All interactive states (menu-open, toc-open, search-active) captured successfully for desktop and mobile. 0 findings.
+  - **Build succeeds**: `dist/main.css` generated cleanly.
+  - **Worktree**: only visual artifact files dirty (diff PNGs, diff-metrics.txt) + package.json verbump. No uncommitted CSS.
+  - **No open-state evidence needed**: box-shadow is purely decorative static state; hover is a trivial CSS state not requiring before/after interactive captures.
+- Implementer instructions:
+  1. Completion log entry added above for `fb5daf1`.
+  2. No further action needed — commit is approved.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
 
 ### 2026-04-04 09:55
 - Review target: e300c1e + aa0c05c (dirty worktree at package.json 20260404.09.57)
