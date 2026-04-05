@@ -371,6 +371,7 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-04-05 | Refactor mobile.styl overlay z-index values to use .z-1000/.z-1001/.z-1002 utility classes | cc5bc5a |
 | 2026-04-04 | prefers-reduced-transparency support for glass utility classes — backdrop-filter:none and solid backgrounds for .glass variants | 2a7402c |
 | 2026-04-04 | prefers-reduced-transparency override for .gallery-caption — solid gradient background to avoid backdrop-filter blur for users with reduced transparency preference | 06a9e56 |
 | 2026-04-04 | prefers-reduced-transparency support for search suggestions dropdown | 179f28a |
@@ -12688,3 +12689,19 @@ Last updated: 2026-04-05 11:30
   - .agent/reports/scout-1775399963045.json
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
+
+### 2026-04-05 18:54
+- Review target: `6e407bb` + dirty worktree (mobile.styl + utilities.styl refactoring)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`6e407bb`** (16:58): Added `.z-100`, `.z-500`, `.z-1000`, `.z-5000`, `.z-10000` to `utilities.styl`. `.z-100` and `.z-500` duplicate the existing Codex `$cdx-z-index-*` token scale (dropdown=100, modal=400, popover=500). `mobile.styl` was NOT updated — hardcoded `z-index: 1000/1001/1002` remain on 7 selectors.
+  - **Worktree `utilities.styl`**: Removes `.z-100` and `.z-500` (correct — unused duplicate), adds `.z-1001` and `.z-1002` with contextual comments. Architecturally sound.
+  - **Worktree `mobile.styl`**: Refactors 5 hardcoded `z-index` declarations to use `.z-1000`, `.z-1001`, `.z-1002` utility classes. Correct follow-through. Commits cleanly as a logical unit with `utilities.styl`.
+  - **Scout**: `scout-1775399963045.json` (14:39 UTC) ran against pre-`6e407bb` state — 40/40 AE=0, clean. Does not validate worktree state.
+  - **Completion log issue**: Entry for `6e407bb` says utilities "without hardcoding throughout the stylesheet" — `mobile.styl` still had hardcoded values at commit time. Misleading claim. No separate completion entry for the mobile.styl refactoring.
+  - **No stacking bug identified**: Neither the commit message nor the completion log identifies a specific z-order conflict that motivated `6e407bb`.
+- Implementer instructions:
+  1. Commit `utilities.styl` first (removes `.z-100`/`.z-500`, adds `.z-1001`/`.z-1002`), then commit `mobile.styl` refactoring as one logical unit.
+  2. Add a completion log entry for the mobile.styl refactoring (separate from the `6e407bb` entry): "Refactor mobile.styl overlay z-index values to use .z-1000/.z-1001/.z-1002 utility classes"
+  3. If keeping `.z-100`/`.z-500`, confirm no other file uses them before removing; they duplicate Codex token scale.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
