@@ -1025,7 +1025,7 @@ body.menu-open
     position fixed
     bottom calc(2em + env(safe-area-inset-bottom))
     right calc(1em + env(safe-area-inset-right))
-    z-index $cdx-z-index-dropdown
+    z-index 1002  // above mobile-bottom-nav (1000) and mobile-slide-menu (1001)
     // Touch target minimum 44x44px
     min-width 48px
     min-height 48px
@@ -1073,7 +1073,7 @@ body.menu-open
     bottom 0
     left 0
     right 0
-    z-index $cdx-z-index-dropdown
+    z-index 1002  // above mobile-bottom-nav (1000) and mobile-slide-menu (1001)
     background linear-gradient(180deg, $base 0%, rgba($darker, 0.98) 100%)
     border-top 2px solid rgba($arch-blue, 0.4)
     border-radius $border-radius-lg $border-radius-lg 0 0
