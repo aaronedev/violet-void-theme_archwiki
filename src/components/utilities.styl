@@ -713,14 +713,16 @@
   z-index auto
 
 // Extended z-index scale for overlay stacking (popups, modals, tooltips, backdrops)
-.z-100
-  z-index 100
-
-.z-500
-  z-index 500
-
+// z-1000 completes the Codex scale (popover=500) for mobile nav layers
+// z-1001/z-1002 for slide menu and FAB layers above mobile-bottom-nav
 .z-1000
   z-index 1000
+
+.z-1001
+  z-index 1001
+
+.z-1002
+  z-index 1002
 
 .z-5000
   z-index 5000

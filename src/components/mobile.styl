@@ -464,7 +464,7 @@ table.mw-html-magic-mw-data-interface
 
 // Bottom Navigation Bar
 // Fixed bottom navigation for mobile devices
-.mobile-bottom-nav
+.mobile-bottom-nav.z-1000
   position fixed
   bottom 0
   left 0
@@ -477,7 +477,6 @@ table.mw-html-magic-mw-data-interface
   align-items center
   padding 0 0.5em
   padding-bottom env(safe-area-inset-bottom, 0)
-  z-index 1000
   box-shadow 0 -2px 10px rgba($darker, 0.3)
 
   // Navigation items
@@ -523,7 +522,7 @@ table.mw-html-magic-mw-data-interface
 
 // Slide-out Menu (Drawer)
 // Mobile navigation drawer from left/right
-.mobile-slide-menu
+.mobile-slide-menu.z-1001
   position fixed
   top 0
   bottom 0
@@ -531,7 +530,6 @@ table.mw-html-magic-mw-data-interface
   max-width 85vw
   background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
   border-right 1px solid rgba($arch-blue, 0.25)
-  z-index 1001
   overflow-y auto
   padding 1em 0
   padding-bottom calc(1em + env(safe-area-inset-bottom, 0))
@@ -630,7 +628,7 @@ table.mw-html-magic-mw-data-interface
 // that sits above an invisible <input type="checkbox">.  The checkbox intercepts
 // pointer events, so we style it directly.  The open state is driven by :checked.
 // Corrected selectors (was #mw-main-menu-btn which does not exist in Vector).
-#vector-main-menu-dropdown-checkbox
+#vector-main-menu-dropdown-checkbox.z-1001
   position fixed
   top 0.5em
   left 0.5em
@@ -640,7 +638,6 @@ table.mw-html-magic-mw-data-interface
   margin 0
   opacity 0  // invisible but still receives pointer events
   cursor pointer
-  z-index 1001  // below label so label can receive hover events; clicks pass through via <label for>
   // Inherit label's flex centering so icon lands in the 44×44 hit box
   background transparent
   border none
@@ -658,7 +655,7 @@ table.mw-html-magic-mw-data-interface
 
 // The visible label that wraps the hamburger icon.  Its :has(:checked) state
 // styles the icon into a ✕ when the menu is open.
-#vector-main-menu-dropdown-label
+#vector-main-menu-dropdown-label.z-1002
   position fixed
   top 0.5em
   left 0.5em
@@ -669,7 +666,6 @@ table.mw-html-magic-mw-data-interface
   border-radius $border-radius-md
   color $light
   cursor pointer
-  z-index 1002  // on top so it receives hover events; checkbox below handles clicks via <label for>
   display inline-flex
   align-items center
   justify-content center
@@ -1018,14 +1014,13 @@ body.menu-open
 
 // Floating TOC button — fixed position bottom-right on mobile
 // Tapping opens the TOC panel. Uses .toc-open checkbox hack or JS toggle.
-.toc-fab
-.toc-floating-button
-#toc-fab
+.toc-fab.z-1002,
+.toc-floating-button.z-1002,
+#toc-fab.z-1002
   @media (max-width 768px)
     position fixed
     bottom calc(2em + env(safe-area-inset-bottom))
     right calc(1em + env(safe-area-inset-right))
-    z-index 1002  // above mobile-bottom-nav (1000) and mobile-slide-menu (1001)
     // Touch target minimum 44x44px
     min-width 48px
     min-height 48px
