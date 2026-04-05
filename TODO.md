@@ -12656,3 +12656,35 @@ Last updated: 2026-04-05 11:30
   - Avoid using Stylus variables (`$darker`, `$lighter`, etc.) inside `@css{}` blocks — they do not expand
   - Use hardcoded values directly in `@css{}` blocks
   - The `@css{}` block at line 14 of animations.styl wraps the entire `@supports (@starting-style)` block which contains this rule
+
+### 2026-04-05 16:39
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured successfully at desktop (4 states) and mobile (4 states)
+  - ArchWiki accessible this run — no Anubis WAF blocks
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable — no open-state regressions detected
+  - All interactive states (menu-open, toc-open, search-active) captured successfully for both viewports
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-1775399963045.json
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
