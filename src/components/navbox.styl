@@ -21,7 +21,10 @@
   border 1px solid rgba($arch-blue, 0.25)
   border-radius $border-radius-md
   background linear-gradient(135deg, rgba($darker, 0.95), rgba($dark, 0.95))
-  box-shadow $shadow-subtle
+  // Multi-layer shadow for realistic depth: tight inner shadow + diffuse outer shadow
+  // Matches .box-accuracy/.box-expansion treatment in archwiki-templates.styl
+  // Browser support: 97%+ (same as existing usage)
+  box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
   overflow hidden
   font-size 0.9em
   clear both
