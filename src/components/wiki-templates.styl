@@ -92,7 +92,7 @@
 // =============================================================================
 
 // Navigation box at bottom of pages
-.navbox
+// NOTE: .navbox styles are in navbox.styl (authoritative); this file only handles .navigation-box
 .navigation-box
   background linear-gradient(135deg, $base, rgba($arch-blue, 0.04))
   border 1px solid $border-subtle
@@ -104,7 +104,6 @@
   // Browser support: 97%+
   box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
 
-  .navbox-title
   .navigation-box-title
     background linear-gradient(135deg, $darker, rgba($arch-blue, 0.08))
     color $lighter
@@ -113,7 +112,6 @@
     text-align center
     border-bottom 1px solid $border-subtle
 
-  .navbox-content
   .navigation-box-content
     padding 1em
 
