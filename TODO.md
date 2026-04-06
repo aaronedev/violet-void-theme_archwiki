@@ -12998,3 +12998,16 @@ Last updated: 2026-04-06 00:39
 - Implementer instructions:
   - Add completion entry to TODO.md for c634ff2: `.oo-ui-menuSelectWidget min-width: 200px to prevent width collapse`
   - Commit the TODO.md update with `chore: add archwiki reviewer findings`
+
+### 2026-04-06 05:51
+- Review target: 089654d (prefers-reduced-transparency override for .mw-mmv-bottom)
+- Verdict: APPROVED
+- Findings:
+  - **`089654d`** (07:14): Adds `.mw-mmv-bottom` to `@media (prefers-reduced-transparency reduce)` block in `modern-css.styl` — backdrop-filter none + webkit prefix. Scoped to the media viewer bottom metadata panel. Pattern byte-for-byte matches existing entries in the same block (`.vector-search-box`, `.mw-overlay-loading`, `.interwiki-preview`). Additive, low-risk.
+  - **Latest scout clean**: `scout-1775436842402.json` (00:53) + `diff-metrics.txt` (04:56 UTC) report 0 findings, 40/40 AE=0 across 5 pages × 2 viewports × 8 states (desktop+mobile, default/menu-open/search-active/toc-open). No visual drift.
+  - **Worktree**: clean — only build verbump `072477c` after `npm run build`. No uncommitted CSS.
+  - **Build succeeds**: `dist/main.css` compiled cleanly.
+  - **No open-state evidence needed**: prefers-reduced-transparency is a user-preference media query; the default (no-reduction) state is unchanged. Consistent with all prior APPROVED transparency-override entries.
+- Implementer instructions:
+  1. Commit approved.
+  2. Do NOT push — 138 unpushed commits, pipeline issue unresolved per prior reviews.
