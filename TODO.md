@@ -585,10 +585,11 @@
 | 2026-04-05 11:26 | Use $darker variable in button hover box-shadow | Replace hardcoded rgba(15,15,15,0.2) with rgba($darker,0.2) for .mw-ui-button:hover and .cdx-button:hover — follows established $darker variable expansion pattern (same fix appeared in 2868eda, 8351e84, a8b8b88) | fb5daf1 |
 | 2026-04-05 20:13 | Replace hardcoded z-index values with utility classes for mobile-menu-toggle and mobile-menu-overlay | Add .z-1002 to .mobile-menu-toggle and .z-1000 to .mobile-menu-overlay — removes inline z-index declarations in mobile.styl. Follows z-index utility class pattern established in prior refactors. | 991eaf1 |
 | 2026-04-05 22:47 | Fix redundant z-index 1002 inside @media for .vector-toc-panel.z-1002 | Split TOC panel selector group — .toc-panel/.toc-mobile-panel/.vector-toc-panel retain hardcoded z-index 1002 inside @media; .vector-toc-panel.z-1002 (which carries .z-1002 utility class) has z-index removed from @media to avoid duplication. | 82776b2 |
+| 2026-04-06 12:49 | Fix cascade nullification of two-layer box-shadow on .navbox,.mw-navbox,.tpl-navbox | Update navbox.styl to replace $shadow-subtle (0 2px 8px rgba) with two-layer shadow (0 1px 2px + 0 4px 16px rgba($darker)) for .navbox,.mw-navbox,.tpl-navbox — a10a29f changed wiki-templates.styl but navbox.styl's later rule with same specificity overrode .navbox, keeping single-layer shadow; now both files apply two-layer. Also added completion log for a10a29f. | d01ba57 |
 
 ---
 
-Last updated: 2026-04-06 11:07
+Last updated: 2026-04-06 14:51
 
 ## Reviewer Findings
 
