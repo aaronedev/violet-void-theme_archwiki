@@ -663,6 +663,70 @@ Last updated: 2026-04-06 00:39
 
 ## Visual Scout Findings
 
+### 2026-04-06 04:56
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured at both desktop (1280×800) and mobile (375×667)
+  - All 4 interactive states verified: default, menu-open, toc-open, search-active
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable — no open-state regressions detected
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
+### 2026-04-05 06:43
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured successfully at desktop (4 states) and mobile (4 states)
+  - ArchWiki accessible this run — no Anubis WAF blocks
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable — no open-state regressions detected
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-1775090514591.json
+  - diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+  - Consider updating archwiki-scout.js selectors for TOC/search active states on current ArchWiki UI
+
 ### 2026-04-02 00:41
 - Run target: visual scout
 - Verdict: CLEAN
