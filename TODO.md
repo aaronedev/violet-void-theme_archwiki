@@ -13071,3 +13071,27 @@ Last updated: 2026-04-06 00:39
 - Selector group for suggestion item styling: `.suggestions-result`, `.search-suggestion`, `.suggestions-special` (removed `.mw-search-result-item`).
 - Selector group for match highlighting: `.suggestions-result`, `.search-suggestion` (removed `.mw-search-result-item`).
 - commit: 4ca66e9
+
+## Reviewer Findings
+
+### 2026-04-06 11:42
+- Review target: 4ca66e9 + worktree since c05a920
+- Verdict: APPROVED
+- Findings:
+  - **`4ca66e9`** (10:27): Removes unverified `.mw-search-result-item` from two selector groups in `search.styl` (lines ~137 and ~200). Correct self-revert of the unconfirmed selector added in `2d644de`. The core overflow fix (`overflow-wrap: break-word` + `word-break: break-word`) remains intact on the confirmed `.suggestions-result` and `.search-suggestion` selectors. Comment notes added. Matches the `841d6e1`/`5cd1b00` pattern. No regression.
+  - **CSS commits since last review (`c05a920` → `4ca66e9`)**:
+    - `2d644de` (08:54): overflow-wrap for search suggestions — **SUPERSEDED by 4ca66e9** (revert of unverified selector only; overflow-wrap remains on confirmed selectors)
+    - `00e3943` (01:45): prefers-reduced-transparency override for `.vector-search-box` and suggestions dropdown — APPROVED per 02:52 review
+    - `e8881db` (02:47): restores stylelint-merged comment lines in view-transitions.styl — APPROVED per 02:48 review
+    - `c634ff2` (03:50): increase `.oo-ui-menuSelectWidget` min-width 150→200px — **APPROVED below**, completion log entry MISSING
+    - `7b49c95` (04:56): adds explanatory comment for min-width 200px — **APPROVED below**, completion log entry MISSING
+    - `089654d` (07:14): prefers-reduced-transparency for `.mw-mmv-bottom` — APPROVED per 07:02 review
+  - **`c634ff2`**: Adds `min-width: 200px` to `.oo-ui-menuSelectWidget` in `ooui-enhanced.styl` — 1-line fix, matches established width-floor pattern (`.oo-ui-popupWidget`, `.oo-ui-dropdownWidget-menu`, `.oo-ui-dialog`). Build succeeds. Not in Completion Log — **add it**.
+  - **`7b49c95`**: Adds explanatory comment in `ooui-enhanced.styl` for the 200px min-width — self-documenting, no completion log entry needed (this is a comment-only commit).
+  - **Scout clean**: `diff-metrics.txt` (04:56 UTC) reports AE=0 for all captured states. `scout-1775436842402.json` (00:53) reports 0 findings across 5 pages × 3 viewports. No visual drift.
+  - **Worktree**: clean — only `package.json` verbump from build. No uncommitted CSS.
+  - **No open-state evidence needed for any of these**: overflow-wrap is a passive wrapping fix; prefers-reduced-transparency activates only for users with system preference set; min-width is a dimensional floor.
+- Implementer instructions:
+  1. Add completion log entry for `c634ff2`: "Increase .oo-ui-menuSelectWidget min-width from 150px to 200px for consistent popup width floor — commit c634ff2"
+  2. `7b49c95` (comment-only) needs no completion log entry — skip.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
