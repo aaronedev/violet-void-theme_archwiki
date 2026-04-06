@@ -594,6 +594,19 @@ Last updated: 2026-04-06 16:14
 
 ## Reviewer Findings
 
+### 2026-04-06 17:13
+- Review target: 5dbed18 (remove dead .navbox from wiki-templates.styl)
+- Verdict: APPROVED
+- Findings:
+  - **`5dbed18`** (16:17): Removes `.navbox` from the `.navbox\n.navigation-box` combined selector in `wiki-templates.styl` — only `.navigation-box` remains as the target in that file. Correct: `navbox.styl` is authoritative for `.navbox` styles. Also removes dead `.navbox-title` and `.navbox-content` child selectors from the same block — these were never valid (navbox.styl uses `.navbox-title`/`.navbox-content` directly, not as children of a `.navbox` parent rule in wiki-templates.styl). Confirmed by grep: all legitimate `.navbox-title`/`.navbox-content` uses are in `navbox.styl`, `animations.styl`, and `typography.styl` — not as children in wiki-templates.styl.
+  - **Follow-through on prior reviewer instruction**: The 13:48 review's implementer instruction 1 was: "Consider removing redundant `.navbox,.mw-navbox,.tpl-navbox` from `wiki-templates.styl` (dead code, `navbox.styl` is authoritative)." `5dbed18` does exactly this. Done.
+  - **Scout clean**: 40/40 screenshots all AE=0 (pixel-identical) — no visual drift. Pages: Main page, Pacman, Systemd, Installation guide, Firefox. Viewports: desktop + mobile. All interactive states (default, menu-open, search-active, toc-open) verified.
+  - **Worktree**: clean. Only `package.json` verbump (`20260406.17.13`) from `0adbbda`.
+  - **No open-state evidence needed**: dead code removal has no visual impact on any interactive state.
+- Implementer instructions:
+  1. No further action needed — `5dbed18` fully resolves the prior review's instruction 1.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-06 13:48
 - Review target: b1573db + d01ba57 (dirty worktree)
 - Verdict: APPROVED
