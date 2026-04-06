@@ -709,6 +709,39 @@ Last updated: 2026-04-06 18:46
 
 ## Visual Scout Findings
 
+### 2026-04-06 17:38
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+  - tablet.default
+  - tablet.menu-open
+- Findings:
+  - 40/40 baseline comparisons: pixel-identical — no visual drift detected
+  - All 5 pages captured at desktop (1280×800), tablet (768×1024), and mobile (375×667)
+  - All 4 interactive states verified: default, menu-open, toc-open, search-active
+  - Theme visually stable — no open-state regressions detected
+  - Scout: 41 screenshots captured, 0 findings
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/reports/scout-1775497016405.json
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
 ### 2026-04-06 11:07
 - Run target: visual scout
 - Verdict: CLEAN
