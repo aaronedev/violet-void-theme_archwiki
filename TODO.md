@@ -13011,3 +13011,20 @@ Last updated: 2026-04-06 00:39
 - Implementer instructions:
   1. Commit approved.
   2. Do NOT push — 138 unpushed commits, pipeline issue unresolved per prior reviews.
+
+### 2026-04-06 08:56
+- Review target: 2d644de (prevent long search suggestion titles from overflowing dropdown)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`2d644de`** (08:54): Adds `.mw-search-result-item` to the `.suggestions-result` / `.search-suggestion` selector group, and adds `overflow-wrap: break-word` + `word-break: break-word` to prevent long titles from overflowing the dropdown. 6-line change, scoped.
+  - **Selector legitimacy unverified**: `.mw-search-result-item` is not confirmed to exist in real ArchWiki Vector skin markup. Prior incident (`841d6e1`, immediately reverted in `5cd1b00`) added fake redirect-indicator selectors (`.suggestion-icon.redirect`, `.suggestion-redirect-badge`, etc.) to the same search suggestions panel — those selectors were non-existent in real Vector markup and the commit was self-reverted within 27 minutes. This raises concern about `.mw-search-result-item` similarly being non-existent.
+  - **Cannot verify from current tooling**: ArchWiki is blocked by Anubis WAF for Playwright-based DOM inspection. No live markup verification possible.
+  - **Styling is harmless if selector is fake**: `overflow-wrap: break-word` and `word-break: break-word` on a non-existent element causes zero visual change. No regression risk.
+  - **Scout clean**: `scout-1775436842` (00:53 UTC) + `diff-metrics.txt` (04:56 UTC) report 0 AE findings. The fix has no visible effect on normal-length titles (by design).
+  - **No completion log entry**: `2d644de` is not in the Completion Log. The last entry is `2026-04-05 22:47` (82776b2).
+  - **Open-state evidence**: The change affects the search suggestions dropdown (interactive open state). No open/closed before-after captures exist showing the fix in action.
+- Implementer instructions:
+  1. **Verify `.mw-search-result-item` is a real MediaWiki/Vecto class** — check actual Vector skin PHP/HTML output or MediaWiki source code. If it's non-existent, either remove it from the selector group or add a comment explaining why it's included.
+  2. If the selector is confirmed real: add completion log entry "prevent long search suggestion titles from overflowing dropdown — commit 2d644de"
+  3. If the selector is non-existent: treat as a self-revert candidate (like 841d6e1/5cd1b00) and commit the revert promptly.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
