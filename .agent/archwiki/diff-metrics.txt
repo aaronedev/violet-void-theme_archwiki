@@ -1,19 +1,13 @@
-firefox.desktop.default.png: AE=0
-firefox.desktop.menu-open.png: AE=0
-firefox.desktop.search-active.png: AE=0
-firefox.desktop.toc-open.png: AE=0
-firefox.mobile.default.png: AE=0
-firefox.mobile.menu-open.png: AE=0
-firefox.mobile.search-active.png: AE=0
-firefox.mobile.toc-open.png: AE=0
-installation-guide.desktop.default.png: AE=0
-installation-guide.desktop.menu-open.png: AE=0
-installation-guide.desktop.search-active.png: AE=0
-installation-guide.desktop.toc-open.png: AE=0
-installation-guide.mobile.default.png: AE=0
-installation-guide.mobile.menu-open.png: AE=0
-installation-guide.mobile.search-active.png: AE=0
-installation-guide.mobile.toc-open.png: AE=0
+2026-04-06 21:42 UTC
+Run target: visual scout
+Comparator: ImageMagick compare -metric AE
+Results: 40 total, 0 changed, 40 identical
+
+All pages captured at 1280×800 (desktop) and 375×667 (mobile)
+All states: default, menu-open, toc-open, search-active
+Pages: main-page, systemd, pacman, installation-guide, firefox
+
+Pixel-level comparison against baselines:
 main-page.desktop.default.png: AE=0
 main-page.desktop.menu-open.png: AE=0
 main-page.desktop.search-active.png: AE=0
@@ -22,14 +16,6 @@ main-page.mobile.default.png: AE=0
 main-page.mobile.menu-open.png: AE=0
 main-page.mobile.search-active.png: AE=0
 main-page.mobile.toc-open.png: AE=0
-pacman.desktop.default.png: AE=0
-pacman.desktop.menu-open.png: AE=0
-pacman.desktop.search-active.png: AE=0
-pacman.desktop.toc-open.png: AE=0
-pacman.mobile.default.png: AE=0
-pacman.mobile.menu-open.png: AE=0
-pacman.mobile.search-active.png: AE=0
-pacman.mobile.toc-open.png: AE=0
 systemd.desktop.default.png: AE=0
 systemd.desktop.menu-open.png: AE=0
 systemd.desktop.search-active.png: AE=0
@@ -38,3 +24,29 @@ systemd.mobile.default.png: AE=0
 systemd.mobile.menu-open.png: AE=0
 systemd.mobile.search-active.png: AE=0
 systemd.mobile.toc-open.png: AE=0
+pacman.desktop.default.png: AE=0
+pacman.desktop.menu-open.png: AE=0
+pacman.desktop.search-active.png: AE=0
+pacman.desktop.toc-open.png: AE=0
+pacman.mobile.default.png: AE=0
+pacman.mobile.menu-open.png: AE=0
+pacman.mobile.search-active.png: AE=0
+pacman.mobile.toc-open.png: AE=0
+installation-guide.desktop.default.png: AE=0
+installation-guide.desktop.menu-open.png: AE=0
+installation-guide.desktop.search-active.png: AE=0
+installation-guide.desktop.toc-open.png: AE=0
+installation-guide.mobile.default.png: AE=0
+installation-guide.mobile.menu-open.png: AE=0
+installation-guide.mobile.search-active.png: AE=0
+installation-guide.mobile.toc-open.png: AE=0
+firefox.desktop.default.png: AE=0
+firefox.desktop.menu-open.png: AE=0
+firefox.desktop.search-active.png: AE=0
+firefox.desktop.toc-open.png: AE=0
+firefox.mobile.default.png: AE=0
+firefox.mobile.menu-open.png: AE=0
+firefox.mobile.search-active.png: AE=0
+firefox.mobile.toc-open.png: AE=0
+
+VERDICT: CLEAN — no visual drift detected
