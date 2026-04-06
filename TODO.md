@@ -593,6 +593,20 @@ Last updated: 2026-04-06 14:51
 
 ## Reviewer Findings
 
+### 2026-04-06 13:48
+- Review target: b1573db + d01ba57 (dirty worktree)
+- Verdict: APPROVED
+- Findings:
+  - **`d01ba57`** (14:51): Updates `navbox.styl` line 21 — replaces `$shadow-subtle` with `box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)` for `.navbox,.mw-navbox,.tpl-navbox`. This is the fix for the cascade nullification identified at 14:44 — `navbox.styl` loads after `wiki-templates.styl` (line 73 vs line ~35 in main.styl), so this rule now correctly takes precedence and applies the two-layer shadow. `.navbox` now correctly gets two-layer depth.
+  - **`b1573db`** (15:48): Updates `navbox.styl` line 411 — replaces `$shadow-subtle` with the same two-layer shadow for `.mw-sidebar`. Related follow-through extending consistent depth treatment to the sidebar container.
+  - **`wiki-templates.styl` redundancy**: Still contains `.navbox,.navigation-box` (line 95) and `.mw-navbox,.tpl-navbox` (line 123) with two-layer shadows. Per cascade order, `navbox.styl` takes precedence — this is dead code but visually harmless. Instruction 2 from 14:44 (revert wiki-templates.styl .navbox change) was not done; minor gap but non-blocking.
+  - **No completion log entry**: `d01ba57` has no entry in the completion log. Latest entry still `d01ba57` itself (14:51, self-logging). The 14:44 review's instruction 3 ("add completion log entry for a10a29f") refers to a prior commit not this one.
+  - **Build succeeds**: `dist/main.css` generated cleanly. Both two-layer shadows confirmed in compiled output.
+  - **No open-state evidence needed**: box-shadow is static decorative state; no interactive open state involved.
+- Implementer instructions:
+  1. Consider removing redundant `.navbox,.mw-navbox,.tpl-navbox` from `wiki-templates.styl` (dead code, `navbox.styl` is authoritative) — low priority cleanup.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-06 14:44
 - Review target: a10a29f (extend two-layer box-shadow to wiki-template boxes)
 - Verdict: NEEDS_FOLLOWUP
