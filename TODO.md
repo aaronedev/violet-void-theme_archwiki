@@ -8476,6 +8476,22 @@ Last updated: 2026-04-06 22:10
 
 ## Reviewer Findings
 
+### 2026-04-07 00:49
+- Review target: `a55be71` (button hover $darker fix in animations.styl)
+- Verdict: REJECTED
+- Findings:
+  - **Fix is broken**: `rgba($darker, 0.2)` inside `@css{}` block in `animations.styl` line 412 does NOT expand — Stylus passes `$darker` as a literal token to compiled CSS. Confirmed: `dist/main.css` line 893 contains `rgba($darker, 0.2)` literally (invalid CSS, browser ignores the box-shadow).
+  - **This is a documented regression**: Same failure was previously fixed by `2d0b700` and `453301b` (with explicit completion log warning). The `a55be71` change is a direct reintroduction of the known-broken pattern.
+  - **Stylus `@css{}` limitation confirmed**: `rgba($darker, 0.2)` inside `@css {}` causes `TypeError: expected rgba or hsla, but got ident:$darker` — but build script silently swallows the error, meaning this has been broken in the build for some time already.
+  - **Compiled CSS audit reveals systemic variable failure**: ALL Stylus variables (`$darker`, `$text`, `$accent`) appear as literal strings in `dist/main.css`. Build is fundamentally broken for `@css{}` blocks. The button hover is one casualty among many.
+  - **Prior reviewer explicit instruction violated**: "Do NOT change `rgba($darker, 0.2)` inside `@css{}` blocks in `animations.styl`" was ignored.
+  - **Worktree is clean** (package.json version bump auto-committed by build script). Commit `a55be71` is the regression carrier.
+- Implementer instructions:
+  1. Revert `a55be71` — the `$darker` change inside `@css{}` is invalid. Restore `rgba(15, 15, 15, 0.2)` at `animations.styl` line 412.
+  2. Add a comment above the line: `// NOTE: $darker does not expand inside @css{} blocks — use literal RGB value`
+  3. Audit all other `@css{}` blocks in `animations.styl` for the same `$darker`/`$variable` non-expansion pattern.
+  4. Investigate why the build script silently swallows the Stylus TypeError for `@css{}` blocks — it should fail loudly, not produce broken CSS.
+
 ### 2026-03-25 11:41
 - Review target: `6f127a6` (dirty worktree)
 - Verdict: NEEDS_FOLLOWUP
