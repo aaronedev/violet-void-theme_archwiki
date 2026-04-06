@@ -599,6 +599,22 @@ Last updated: 2026-04-06 22:10
 
 ## Reviewer Findings
 
+### 2026-04-06 21:17
+- Review target: dirty worktree (animations.styl: rgba($darker) in button hover box-shadow)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Duplicate button hover rule in `animations.styl`**: There are TWO instances of `.mw-ui-button:hover, .cdx-button:hover` in this file. Instance 1 (line ~412, inside `@layer base`) uses `rgba($darker, 0.2)` in the worktree. Instance 2 (line ~437, outside `@layer base`) still uses `rgba(15, 15, 15, 0.2)` in the committed version. The worktree change only fixes instance 1, leaving instance 2 unchanged.
+  - **This is a recurring oscillator**: The button hover box-shadow has cycled through `$darker` → hardcoded → `$darker` → hardcoded at least 6 times across commits `2868eda`, `8351e84`, `a8b8b88`, `453301b`, `fb5daf1`, and now this worktree. The repeated reversion to hardcoded suggests that somewhere a prior implementer or automated process is reintroducing `$darker` → `rgba(15, 15, 15, 0.2)` after each fix. The root cause is not the fix itself but why the fix keeps getting overwritten.
+  - **`$darker` compiles correctly here**: This rule is NOT inside an `@css{}` block, so `$darker` (which is `24, 24, 24`) expands correctly. Build succeeds. The fix is technically correct for instance 1.
+  - **Scout clean**: `scout-results.json` (current) shows 40/40 AE=0 across 5 pages × 2 viewports × 4 states. Diff metrics: CLEAN.
+  - **Open-state evidence**: Not applicable — button hover is a trivial CSS state, consistent with prior APPROVED treatment.
+  - **Worktree changes**: (1) `animations.styl` line 412: `rgba(15, 15, 15, 0.2)` → `rgba($darker, 0.2)` for instance 1 only. (2) `package.json` verbump `20260406.23.03` → `20260406.23.18`.
+- Implementer instructions:
+  1. Find and fix the SECOND button hover instance (line ~437, `rgba(15, 15, 15, 0.2)` → `rgba($darker, 0.2)`). Both instances should use `$darker`.
+  2. Investigate why the hardcoded `rgba(15, 15, 15, 0.2)` keeps reappearing after each fix — check if there's a linter, auto-formatter, or build script that is replacing `$darker` with its expanded value.
+  3. Consider adding a comment above the button hover rule explaining that `$darker` must NOT be replaced with its literal value (to prevent future "optimization" from reintroducing the hardcoded version).
+  4. After fixing both instances, build and verify no duplicate rules remain in compiled CSS.
+
 ### 2026-04-06 17:13
 - Review target: 5dbed18 (remove dead .navbox from wiki-templates.styl)
 - Verdict: APPROVED
