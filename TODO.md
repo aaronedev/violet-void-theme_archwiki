@@ -13063,3 +13063,11 @@ Last updated: 2026-04-06 00:39
   2. If the selector is confirmed real: add completion log entry "prevent long search suggestion titles from overflowing dropdown — commit 2d644de"
   3. If the selector is non-existent: treat as a self-revert candidate (like 841d6e1/5cd1b00) and commit the revert promptly.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+**Resolution (2026-04-06 10:27)**:
+- `.mw-search-result-item` could not be confirmed in MediaWiki Vector source or documentation — treated as unverified per reviewer guidance.
+- Removed `.mw-search-result-item` from both selector groups in `src/components/search.styl` (lines ~137, ~200).
+- The core fix (overflow-wrap: break-word + word-break: break-word) remains intact on `.suggestions-result` and `.search-suggestion`.
+- Selector group for suggestion item styling: `.suggestions-result`, `.search-suggestion`, `.suggestions-special` (removed `.mw-search-result-item`).
+- Selector group for match highlighting: `.suggestions-result`, `.search-suggestion` (removed `.mw-search-result-item`).
+- commit: 4ca66e9
