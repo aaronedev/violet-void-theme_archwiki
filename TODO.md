@@ -591,10 +591,11 @@
 | 2026-04-06 12:49 | Fix cascade nullification of two-layer box-shadow on .navbox,.mw-navbox,.tpl-navbox | Update navbox.styl to replace $shadow-subtle (0 2px 8px rgba) with two-layer shadow (0 1px 2px + 0 4px 16px rgba($darker)) for .navbox,.mw-navbox,.tpl-navbox — a10a29f changed wiki-templates.styl but navbox.styl's later rule with same specificity overrode .navbox, keeping single-layer shadow; now both files apply two-layer. Also added completion log for a10a29f. | d01ba57 |
 | 2026-04-06 16:14 | Remove dead .navbox from wiki-templates.styl | Remove .navbox selector from wiki-templates.styl (dead code — navbox.styl is authoritative); keep only .navigation-box which is only defined there. Also remove dead .navbox-title and .navbox-content child selectors from the same block. | 5dbed18 |
 | 2026-04-06 18:46 | overflow-wrap for .pkg-name to prevent long package names overflowing narrow cells | Add overflow-wrap: break-word to .pkg-name in aur-enhanced.styl — AUR package search results table cell with long package names could overflow in narrow viewports; consistent with prior overflow-wrap fixes for .module-description, .status-text, .lua-function, etc. | f17b6d1 |
+| 2026-04-06 22:10 | Replace undefined $surface and $nav-bg with $base and $darker | Fix undefined variable references in content.styl — $surface and $nav-bg are not defined anywhere in the codebase; $surface replaced with $base (card/infobox blend backgrounds), $nav-bg replaced with $darker (nav blend background). Both substituted variables are established theme variables. | 34b3e44 |
 
 ---
 
-Last updated: 2026-04-06 18:46
+Last updated: 2026-04-06 22:10
 
 ## Reviewer Findings
 
@@ -13272,3 +13273,18 @@ Last updated: 2026-04-06 18:46
   - .agent/archwiki/diff-metrics.txt
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
+
+### 2026-04-06 22:12
+- Review target: 34b3e44 (replace undefined $surface and $nav-bg with $base and $darker)
+- Verdict: APPROVED
+- Findings:
+  - **`34b3e44`** (22:07): Replaces 2 undefined Stylus variables in `content.styl`: `$surface` → `$base` (for `.card-background-blend` and `.infobox-background-blend`) and `$nav-bg` → `$darker` (for `.nav-background-blend`). Both `$surface` and `$nav-bg` are genuinely undefined — confirmed by grep across entire `src/` tree (0 matches for either variable definition or usage). `$base` and `$darker` are established theme variables. Substitutions are semantically correct: `$base` is the base dark background, `$darker` is the next-darkest shade — appropriate for blend backgrounds.
+  - **Scope**: 4 lines changed across 3 selectors in `content.styl`. Additive fix — removes undefined var references, no visual change since the same defined vars now apply.
+  - **Scout clean**: visual scout at 17:36 (`scout-1775497016405.json`) reports 0 findings across 5 pages × 3 viewports. 40/40 captures AE=0. Theme visually stable.
+  - **No remaining undefined refs**: `rg '\$surface|\$nav-bg' src/` returns 0 matches. Clean sweep.
+  - **Build**: succeeds.
+  - **Worktree**: clean — only `package.json` verbump. No uncommitted CSS.
+  - **Completion log**: entry added above at 22:10.
+  - **No open-state evidence needed**: variable name substitution with no visual change; no interactive state involved.
+- Implementer instructions:
+  1. Do NOT push — pipeline issue unresolved per prior reviews.
