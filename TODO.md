@@ -371,6 +371,9 @@
 
 | Date | Item | Commit |
 |------|------|--------|
+| 2026-03-15 | timeline-scope Property (85%+ browser support) — define named scroll timelines | 1a5ffcf |
+| 2026-03-15 | Named Scroll Timelines (85%+ browser support) — reusable scroll-timeline utilities | 1a5ffcf |
+| 2026-03-15 | Named View Timelines (85%+ browser support) — reusable view-timeline utilities | 1a5ffcf |
 | 2026-04-05 | Refactor mobile.styl overlay z-index values to use .z-1000/.z-1001/.z-1002 utility classes | cc5bc5a |
 | 2026-04-04 | prefers-reduced-transparency support for glass utility classes — backdrop-filter:none and solid backgrounds for .glass variants | 2a7402c |
 | 2026-04-04 | prefers-reduced-transparency override for .gallery-caption — solid gradient background to avoid backdrop-filter blur for users with reduced transparency preference | 06a9e56 |
@@ -2812,23 +2815,26 @@ Last updated: 2026-04-06 18:46
 
 ## ⏱️ Timeline Scope (New)
 
-- [ ] **`timeline-scope` Property** (85%+ browser support)
+- [x] **`timeline-scope` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define named scroll timelines
   - `timeline-scope: --my-timeline;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 1a5ffcf
 
-- [ ] **Named Scroll Timelines** (85%+ browser support)
+- [x] **Named Scroll Timelines** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Create reusable scroll timelines
   - `scroll-timeline: --my-timeline inline;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 1a5ffcf
 
-- [ ] **Named View Timelines** (85%+ browser support)
+- [x] **Named View Timelines** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Create reusable view timelines
   - `view-timeline: --my-timeline;`
   - Note: Wrap in `@css{}` for Stylus
+  - Commit: 1a5ffcf
 
 ## 🔧 @property Expansion (New)
 
