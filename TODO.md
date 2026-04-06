@@ -13156,3 +13156,34 @@ Last updated: 2026-04-06 16:14
   - **No open-state evidence needed**: all post-4ca66e9 changes are verbumps or documentation
 - Implementer instructions:
   1. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-06 17:35
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured at desktop (1280×800) and mobile (375×667)
+  - All 4 interactive states verified: default, menu-open, toc-open, search-active
+  - ArchWiki accessible — no Anubis WAF blocks
+  - Theme visually stable — no open-state regressions detected
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/archwiki/diff-metrics.txt
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
