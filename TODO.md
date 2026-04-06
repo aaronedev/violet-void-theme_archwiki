@@ -12922,3 +12922,15 @@ Last updated: 2026-04-06 00:39
 - Implementer instructions:
   - Ship it — patterns are consistent and build is clean
   - Consider adding a `stylelint` override in `view-transitions.styl` to suppress the `at-rule-empty-line-before` false-positive on comment blocks (same fix needed as prior cycles)
+
+### 2026-04-06 04:03
+- Review target: c634ff2
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - Commit changes `.oo-ui-menuSelectWidget` min-width 150px → 200px in `src/components/ooui-enhanced.styl` — scoped one-file change, follows established OOUI min-width floor pattern (prior: `.oo-ui-popupWidget` 200px @c05a920, `.oo-ui-dropdownWidget-menu` 200px @4b1f3c5).
+  - Scout report (scout-1775436842402.json, 2026-04-06 02:09 UTC): 0 AE findings across 5 pages × 3 viewports — clean visual pass.
+  - Open-state evidence rule does not apply: min-width is a static layout constraint, not an interactive open-state fix.
+  - **c634ff2 is NOT in the TODO.md completion log** — implementer must add it.
+- Implementer instructions:
+  - Add completion entry to TODO.md for c634ff2: `.oo-ui-menuSelectWidget min-width: 200px to prevent width collapse`
+  - Commit the TODO.md update with `chore: add archwiki reviewer findings`
