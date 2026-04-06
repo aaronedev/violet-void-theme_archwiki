@@ -398,6 +398,9 @@
   border-radius $border-radius-md
   box-shadow $shadow-elevated
   padding 0.25em
+  // Width floor for menu dropdowns — prevents collapse on short content.
+  // Matches .oo-ui-dropdownWidget-menu (line 189), .oo-ui-popupWidget (line 515),
+  // and .vector-pinned-container/navigation (200px !important).
   min-width 200px
 
   .oo-ui-menuOptionWidget
