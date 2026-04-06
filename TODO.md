@@ -12972,6 +12972,41 @@ Last updated: 2026-04-06 00:39
   - Anubis WAF continues to block Playwright ArchWiki access — infrastructure issue, not CSS issue
   - Consider: user-agent spoofing or real browser screenshot pipeline to bypass Anubis for visual verification
 
+### 2026-04-06 07:02
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.toc-open
+  - desktop.search-active
+  - mobile.default
+  - mobile.menu-open
+  - mobile.toc-open
+  - mobile.search-active
+  - tablet.default
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - All 5 pages captured at desktop (1280×800) and mobile (375×667)
+  - All 4 interactive states verified: default, menu-open, toc-open, search-active
+  - Tablet viewport captured (default state) for all 5 pages
+  - ArchWiki accessible — no Anubis WAF blocks this run
+  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
+  - Theme remains visually stable — no open-state regressions detected
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/archwiki/diff-metrics.txt
+  - .agent/reports/scout-1775458997184.json
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
 ## Reviewer Findings
 
 ### 2026-04-06 03:23
