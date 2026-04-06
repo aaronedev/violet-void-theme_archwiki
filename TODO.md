@@ -588,7 +588,7 @@
 
 ---
 
-Last updated: 2026-04-06 00:39
+Last updated: 2026-04-06 11:07
 
 ## Reviewer Findings
 
@@ -663,7 +663,7 @@ Last updated: 2026-04-06 00:39
 
 ## Visual Scout Findings
 
-### 2026-04-06 04:56
+### 2026-04-06 11:07
 - Run target: visual scout
 - Verdict: CLEAN
 - Pages checked:
@@ -683,16 +683,18 @@ Last updated: 2026-04-06 00:39
   - mobile.toc-open
 - Findings:
   - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
-  - All 5 pages captured at both desktop (1280×800) and mobile (375×667)
+  - All 5 pages captured at desktop (1280×800) and mobile (375×667)
   - All 4 interactive states verified: default, menu-open, toc-open, search-active
-  - No DOM-based issues found (overlay stacking, contrast, nav overflow, menu width)
-  - Theme remains visually stable — no open-state regressions detected
+  - Build: e803440 (20260406.13.04)
+  - Theme visually stable — no open-state regressions detected
 - Artifact paths:
   - .agent/archwiki/current/
   - .agent/archwiki/baselines/
   - .agent/archwiki/diff-metrics.txt
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
+
+### 2026-04-06 04:56
 
 ### 2026-04-05 06:43
 - Run target: visual scout
