@@ -592,6 +592,22 @@ Last updated: 2026-04-06 11:07
 
 ## Reviewer Findings
 
+### 2026-04-06 14:44
+- Review target: a10a29f (extend two-layer box-shadow to wiki-template boxes)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **Cascade nullification on `.navbox`**: `a10a29f` changes `box-shadow` in `wiki-templates.styl` for `.navbox,.navigation-box` from `$shadow-subtle` to two-layer `0 1px 2px rgba + 0 4px 16px rgba`. However, `navbox.styl` defines `.navbox,.mw-navbox,.tpl-navbox{box-shadow:0 2px 8px rgba(15,15,15,0.28)}` (single-layer) at CSS position 717752 — AFTER wiki-templates.styl's rule at position 247542. Both rules have identical specificity (1 class). The later rule wins. `.navbox` keeps the OLD single-layer shadow. `.navigation-box` (only in wiki-templates.styl) correctly gets the new two-layer shadow.
+  - **Background gradient regression on `.navbox`**: wiki-templates.styl also changes `background` on `.navbox,.navigation-box` to a lighter gradient, but navbox.styl's later rule overrides it with a different gradient — `.navbox` ends up with neither the intended two-layer shadow NOR the intended background gradient from wiki-templates.styl.
+  - **Effective fixes** (partial win): `.archwiki-template-related-articles` (CSS pos 247542) and `#mw-subcategories,#mw-pages,#mw-category-media` both correctly compile to two-layer shadow — these parts of the commit work.
+  - **Claimed scope vs actual**: Commit message says \"Affects: .navbox / .navigation-box\" — only `.navigation-box` is actually affected by this change. `.navbox` is overridden by navbox.styl.
+  - **navbox.styl not touched**: The root cause is that `navbox.styl` owns the authoritative `.navbox` styles and was not updated. Either navbox.styl needs the same box-shadow change, or wiki-templates.styl's rule must use higher specificity.
+  - **No completion log entry**: `a10a29f` has no entry in the TODO.md completion log. Latest entry remains `82776b2` (2026-04-05 22:47).
+- Implementer instructions:
+  1. Update `navbox.styl` to replace `$shadow-subtle` with the same two-layer shadow `0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)` for `.navbox,.mw-navbox,.tpl-navbox`.
+  2. Revert the `.navbox` change in `wiki-templates.styl` since it's overridden and irrelevant there (`.navigation-box` change in the same block is correct).
+  3. Add completion log entry for `a10a29f`.
+  4. Build and verify compiled CSS shows two-layer shadow on `.navbox`.
+
 ### 2026-04-06 00:39
 - Review target: c05a920 (remove redundant hardcoded z-index 1002 from .vector-toc-panel @media block)
 - Verdict: APPROVED
