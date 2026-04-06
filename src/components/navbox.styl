@@ -411,7 +411,8 @@
   border 1px solid rgba($arch-blue, 0.25)
   border-radius $border-radius-md
   padding 0.5em
-  box-shadow $shadow-subtle
+  // Two-layer shadow: tight inner + diffuse outer (matches navbox treatment)
+  box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
   font-size 0.9em
   // Related topics sidebar base
   &.sidebar-related
