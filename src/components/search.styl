@@ -196,15 +196,20 @@ em
   padding 0.1em 0.3em
   border-radius $border-radius-sm
 
-// Within suggestion items, ensure em stays styled
+// Within suggestion items, ensure em stays styled and long titles wrap
 .suggestions-result
 .search-suggestion
+.mw-search-result-item
   em
   .searchmatch
     color $orange
     font-weight 600
     font-style normal
     background-color rgba($orange, 0.12)
+
+  // Prevent long unsplittable titles from overflowing the dropdown
+  overflow-wrap break-word
+  word-break break-word
 
 // =============================================================================
 // CATEGORY BADGES WITH TABULAR-NUMS
