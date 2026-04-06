@@ -12840,3 +12840,21 @@ Last updated: 2026-04-06 00:39
   4. Commit with `chore: add archwiki reviewer findings` then add the two completion log entries.
   5. Do NOT push — pipeline issue unresolved per prior reviews.
 
+
+### 2026-04-06 01:59
+- Review target: 00e3943 (prefers-reduced-transparency override for .vector-search-box and suggestions dropdown)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`00e3943`** (2026-04-06 01:45): Adds `prefers-reduced-transparency` override for `.vector-search-box` and search suggestions dropdown inside the existing `@media (prefers-reduced-transparency: reduce)` block in `modern-css.styl`. Replaces `backdrop-filter: blur()` with solid `rgba($darker, 0.96)` gradient backgrounds for search box, and `rgba($darker, 0.98)` for suggestions dropdown.
+  - **CSS implementation is sound**: selectors are scoped to specific search components, values use existing theme variables (`$darker`, `$dark`), pattern is consistent with the established `prefers-reduced-transparency` treatment for `.vector-dropdown-content`, `.oo-ui-popupWidget-popup`, and other translucent overlays in the same `@media` block. Build compiles cleanly.
+  - **Open-state evidence ABSENT — open-state rule violated**: The change affects `.vector-search-box` and search suggestion dropdowns. These are interactive states (search focused / suggestions open). No before/after visual evidence was captured showing the open state with `prefers-reduced-transparency: reduce` active. Scout run at 00:52 used default browser settings — it cannot validate this change.
+  - **Outstanding from 01:22 review — UNADDRESSED**: All three follow-up items remain open:
+    1. `84cca14` comment regression in `src/components/view-transitions.styl` (lines 10-11): two separate comments still merged into one line. Not fixed.
+    2. Completion log entry for `0f6d0eb`: still missing.
+    3. Completion log entry for `c05a920`: still missing.
+  - **Scout clean for unaffected pages**: 40/40 AE=0 (scout-1775399963045.json, 00:52). No regressions in other areas.
+- Implementer instructions:
+  1. **Address the open items from 01:22 review first**: fix the `84cca14` comment regression in `view-transitions.styl`, add completion log entries for `0f6d0eb` and `c05a920`.
+  2. **Capture open-state evidence for `00e3943`**: browser DevTools can simulate `prefers-reduced-transparency: reduce` via the Rendering panel (or `--force-prefers-reduced-transparency` flag). Capture screenshots of search-focused and suggestions-open states with the override active. Alternatively, note that the override only activates for users with the system preference set, making it inherently un-testable in a default screenshot workflow — document this limitation explicitly in the commit message or completion log.
+  3. Commit with `chore: add archwiki reviewer findings` then the three follow-up fixes.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
