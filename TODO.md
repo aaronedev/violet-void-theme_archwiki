@@ -12880,3 +12880,30 @@ Last updated: 2026-04-06 00:39
   3. Consider adding a stylelint override in `view-transitions.styl` to prevent future stylelint auto-fix from re-merging the comment lines.
   4. Commit with `chore: add archwiki reviewer findings`.
   5. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-06 02:52
+- Run target: visual scout
+- Verdict: WAF_BLOCKED (no visual verification possible)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - (none — ArchWiki returned "Oh noes!" Anubis WAF block page for all pages)
+- Findings:
+  - ArchWiki returns HTTP 200 with "Oh noes!" block page when accessed via Playwright/Chromium headless — same Anubis WAF issue as prior reviews
+  - DOM inspection returned empty (no menu/TOC/search elements found on block page)
+  - TOC/search active states not capturable — selectors don't exist on block page
+  - Scout script reported 0 findings (meaningless — looking at block page, not real content)
+  - Last confirmed clean visual state: 2026-04-05 10:37 UTC (40/40 AE=0 vs baselines, diff-metrics.txt)
+  - Build succeeds: dist/main.css generated cleanly (20260406.02.54)
+  - Worktree clean (only package.json verbump dirty)
+- Artifact paths:
+  - .agent/reports/scout-1775436842402.json (0 findings, WAF block page)
+  - .agent/archwiki/diff-metrics.txt (last updated 2026-04-05 10:37 UTC — 40/40 AE=0)
+- Implementer instructions:
+  - No CSS changes needed — theme is stable based on last clean scout
+  - Anubis WAF continues to block Playwright ArchWiki access — infrastructure issue, not CSS issue
+  - Consider: user-agent spoofing or real browser screenshot pipeline to bypass Anubis for visual verification
