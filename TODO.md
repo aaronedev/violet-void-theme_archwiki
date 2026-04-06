@@ -13365,3 +13365,16 @@ Last updated: 2026-04-06 22:10
   - **No open-state evidence needed**: variable name substitution with no visual change; no interactive state involved.
 - Implementer instructions:
   1. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-07 01:24
+- Review target: a55be71 (use $darker variable in button hover box-shadow instead of hardcoded rgba(15,15,15,0.2))
+- Verdict: APPROVED
+- Findings:
+  - **`a55be71`** (00:48): Replaces hardcoded `rgba(15, 15, 15, 0.2)` with `rgba($darker, 0.2)` in `.mw-ui-button:hover, .cdx-button:hover` box-shadow in `src/components/animations.styl`. `$darker` is defined as `#0f0f0f` in `src/variables/colors.styl` — semantically identical to the hardcoded value, so no visual change expected.
+  - **Outstanding issue resolved**: 21:17 review flagged `rgba(15, 15, 15, 0.2)` hardcode in button hover. No hardcoded `rgba(15, 15, 15...)` remains in `src/` (only a commented-out example in `performance/content.styl`). No hardcoded `rgba(15, 15, 15...)` in compiled `dist/main.css`.
+  - **Scout coverage**: Last visual scout (21:42 UTC) was pre-fix; however, color is semantically identical so scout results remain valid — button hover appears identical pre/post.
+  - **Build**: succeeds, clean verbump to `20260407.01.25`.
+  - **Worktree**: clean.
+  - **No open-state evidence needed**: passive color-variable substitution; no interactive state involved.
+- Implementer instructions:
+  1. Do NOT push — pipeline issue unresolved per prior reviews.
