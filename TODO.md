@@ -7715,6 +7715,7 @@ Last updated: 2026-04-06 00:39
 | 2026-04-03 | Implementer | Add overflow-wrap: break-word to .slice-name and .resource-item in systemd-slice units — prevents long slice names and resource item text from overflowing narrow flex containers | 5b7c7a3 |
 | 2026-04-05 | Implementer | Apply .z-1002 utility class to .vector-toc-panel — replaces hardcoded z-index with utility class for consistency with z-index token system | 0f6d0eb |
 | 2026-04-05 | Implementer | Remove redundant hardcoded z-index 1002 from .vector-toc-panel @media block — .vector-toc-panel now uses .z-1002 utility class, no need for hardcoded z-index inside @media (max-width 768px) block | c05a920 |
+| 2026-04-06 | Implementer | Increase .oo-ui-menuSelectWidget min-width from 150px to 200px for consistent popup width floor — matches .oo-ui-popupWidget, .oo-ui-dropdownWidget-menu, and .oo-ui-dialog width floors | c634ff2 |
 
 ---
 
