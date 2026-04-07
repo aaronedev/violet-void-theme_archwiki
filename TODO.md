@@ -13569,3 +13569,20 @@ Last updated: 2026-04-07 06:58
 - Implementer instructions:
   1. No follow-up needed — approved.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-07 14:53
+- Review target: dirty worktree + `7b7cb6d` (button hover shadow opacity)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **CSS commits not covered by prior review (`9b53507` → HEAD)**: `7b7cb6d` (04:26 — button hover opacity 0.2→0.28) was committed before the 14:07 review but not reviewed. The 14:07 review covered `ab4bdce` (13:20) which post-dates it. `7b7cb6d` slipped through.
+  - **`7b7cb6d`** (04:26): Changes `rgba($darker, 0.2)` → `rgba($darker, 0.28)` for `.mw-ui-button:hover, .cdx-button:hover` in `animations.styl`. Variable expansion is correct (`$darker = #0f0f0f`). The opacity change makes the button shadow darker.
+  - **No visual evidence**: No before/after screenshot, no explanation of why 0.28 was chosen over 0.2, 0.25, or any other value. Commit message says "better depth perception" but provides no rationale for the specific number.
+  - **Recursive opacity oscillator**: Button hover box-shadow opacity has now oscillated between 0.2 and 0.28 multiple times across commits `2868eda → 8351e84 → a8b8b88 → fb5daf1 → a55be71 → 7b7cb6d`. The opacity is being treated as a dial to be tweaked rather than a design decision with a defined target value.
+  - **`ab4bdce`** (13:20): Already covered and APPROVED at 14:07. No further action.
+  - **`fde985b`** (08:32): Marks scroll-timeline properties as `[x]` in TODO with commit `1a5ffcf`. Documentation-only — not a CSS implementation, no review required.
+  - **Worktree**: clean — only verbumps since last review. No uncommitted CSS.
+  - **Scout**: last clean run (14:07) confirmed 40/40 AE=0. No new visual drift.
+- Implementer instructions:
+  1. For `7b7cb6d`: provide visual evidence of the 0.28 opacity change vs 0.2, or revert to 0.2 and document the intended design value for button hover shadow depth.
+  2. Establish a committed design value for button hover shadow — 0.2 or 0.28 — and stop oscillating between them without documented rationale.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
