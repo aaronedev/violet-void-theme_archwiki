@@ -593,10 +593,11 @@
 | 2026-04-06 18:46 | overflow-wrap for .pkg-name to prevent long package names overflowing narrow cells | Add overflow-wrap: break-word to .pkg-name in aur-enhanced.styl — AUR package search results table cell with long package names could overflow in narrow viewports; consistent with prior overflow-wrap fixes for .module-description, .status-text, .lua-function, etc. | f17b6d1 |
 | 2026-04-06 22:10 | Replace undefined $surface and $nav-bg with $base and $darker | Fix undefined variable references in content.styl — $surface and $nav-bg are not defined anywhere in the codebase; $surface replaced with $base (card/infobox blend backgrounds), $nav-bg replaced with $darker (nav blend background). Both substituted variables are established theme variables. | 34b3e44 |
 | 2026-04-07 06:58 | Add min-width: 200px to ::picker(select) dropdown container | Add min-width: 200px to ::picker(select) — matches .oo-ui-dropdownWidget-menu (4b1f3c5), .oo-ui-popupWidget (3d5e5a5), .oo-ui-dialog (3b2e06d) for consistent dropdown width floor across OOUI and native select pickers (Chrome 135+, Edge 135+) | 9b53507 |
+| 2026-04-08 00:08 | Fix literal $darker in compiled CSS (animations.styl @css block) | Replace `rgba($darker, 0.28)` with `rgba(15, 15, 15, 0.28)` for `.mw-ui-button:hover` and `.cdx-button:hover` inside `@css` block in animations.styl — `$darker` is not expanded inside `@css` blocks (Stylus limitation); literal RGB value ensures valid CSS output. Recurring regression from prior @css/$darker fixes. | 31e483f |
 
 ---
 
-Last updated: 2026-04-07 06:58
+Last updated: 2026-04-08 00:08
 
 ## Reviewer Findings
 
