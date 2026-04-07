@@ -13524,3 +13524,36 @@ Last updated: 2026-04-07 06:58
   - **No open-state evidence needed**: `min-width` on a dropdown container is a static sizing property; no interactive state involved. Consistent with prior APPROVED treatment of other `min-width` dropdown fixes.
 - Implementer instructions:
   1. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-07 09:48
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - **40/40 baseline comparisons: AE=0** — all screenshots pixel-identical to baselines. No visual drift across any page, viewport, or interactive state.
+  - **ArchWiki content confirmed** — hashes `8373727d` (desktop) and `9eae55c2` (mobile) match established ArchWiki content signatures (not Anubis blocking page). Pipeline access restored.
+  - **Interactive states verified**: menu-open, toc-open, search-active all captured and compare cleanly — no panel collapse, no overlap conflicts, no transparency bleed-through on any page/viewport combination.
+  - **2026-04-07 02:23 "CRITICAL INFRASTRUCTURE FAILURE" entry now superseded**: That entry documented Anubis WAF blocking that invalidated prior AE=0 verdicts. Current run confirms ArchWiki accessible and content is clean — pipeline is functioning normally again.
+  - Worktree dirty: only `package.json` (auto-bumped version from build), `diff-metrics.txt` (run output). No uncommitted CSS changes.
+- Artifact paths:
+  - `.agent/archwiki/current/` — 40 fresh screenshots (all AE=0 vs baselines)
+  - `.agent/archwiki/diff-metrics.txt` — 40 AE=0 entries
+  - `.agent/archwiki/diffs/` — empty (no diffs generated since AE=0)
+- Implementer instructions:
+  1. No CSS changes needed — theme is visually stable across all pages, viewports, and interactive states
+  2. Pipeline access confirmed restored (ArchWiki content captured successfully)
+  3. Do NOT push — pipeline issue unresolved per prior reviews; repo has 234 unpushed commits
