@@ -2404,7 +2404,7 @@ Last updated: 2026-04-07 06:58
   - Note: Wrap in `@supports` for Stylus
   - Added scroll-timeline-name, scroll-timeline-axis, view-timeline-name, view-timeline-inset, timeline-scope utilities
   - Added animation-range utilities for entry/exit/cross/contain animations
-  - Commit: c035cb0
+  - Commit: 1a5ffcf
 
 ## 🔤 Text Enhancements (New)
 
@@ -3800,32 +3800,37 @@ Last updated: 2026-04-07 06:58
 
 ## 📜 Scroll Timeline Animations (New)
 
-- [ ] **`scroll-timeline-name` Property** (85%+ browser support)
+- [x] **`scroll-timeline-name` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Name a scroll timeline for animation
   - Example: `scroll-timeline-name: --page-scroll;`
   - Stylus: Works directly
+  - Commit: 1a5ffcf
 
-- [ ] **`scroll-timeline-axis` Property** (85%+ browser support)
+- [x] **`scroll-timeline-axis` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define scroll axis (`block`, `inline`, `x`, `y`)
   - Stylus: Works directly
+  - Commit: 1a5ffcf
 
-- [ ] **`view-timeline-name` Property** (85%+ browser support)
+- [x] **`view-timeline-name` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Name a view timeline
   - Stylus: Works directly
+  - Commit: 1a5ffcf
 
-- [ ] **`view-timeline-inset` Property** (85%+ browser support)
+- [x] **`view-timeline-inset` Property** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Adjust view timeline inset
   - Stylus: Works directly
+  - Commit: 1a5ffcf
 
-- [ ] **`animation-range` for Timeline Control** (85%+ browser support)
+- [x] **`animation-range` for Timeline Control** (85%+ browser support)
   - File: `src/components/modern-css.styl`
   - Define animation range in timeline
   - Example: `animation-range: entry 0% cover 40%;`
   - Stylus: Works directly
+  - Commit: 1a5ffcf
 
 ## 🎬 View Transition Classes (New)
 
