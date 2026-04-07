@@ -785,6 +785,10 @@ progress
     background-color $dark
     border 1px solid $border-subtle
     border-radius $border-radius-md
+    // Prevent width collapse — picker may have short content; matches
+    // .oo-ui-dropdownWidget-menu (200px), .oo-ui-popupWidget (200px),
+    // and .vector-pinned-container (200px) for consistent dropdown sizing
+    min-width 200px
     box-shadow 0 4px 12px rgba($dark, 0.4)
     padding 0.25em
 
