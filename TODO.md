@@ -13699,3 +13699,35 @@ Last updated: 2026-04-07 06:58
   2. If you want to use utility classes for z-index, they must be applied in the HTML class attribute, not referenced inside Stylus property blocks. Stylus `.z-999` inside a rule block creates a descendant selector, not a property assignment.
   3. `8476936` and `05aef26` are approved — no revert needed for those.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-07 21:55 (archwiki-reviewer-35m)
+- Review target: c63183b (unfixed regression) + dirty worktree (verbumps only)
+- Verdict: REJECTED
+- Findings:
+  - **c63183b regression remains unfixed since 20:04 rejection**: `.mobile-quick-access` in `dist/main.css` has `position:fixed;bottom:1em;right:1em` with **no z-index**. Stylus compiled `.z-999` at property indentation as `.mobile-quick-access .z-999 {}` — a nested descendant selector, not a z-index property. FAB container has zero stacking context and will be hidden behind mobile-bottom-nav (z-index 1000) and mobile-slide-menu (z-index 1001).
+  - **No CSS commits since dd32208** (20:05): only 2 verbump commits (`b87a2aa`, `cf0da8b`). No revert, no fix.
+  - **`8476936`** (comment dividers) and **`05aef26`** (JSDoc docs): remain APPROVED in isolation — non-functional.
+  - **Latest scout** (2026-04-06 17:36, predates regression): 40/40 AE=0. No post-regression scout exists. Scout can't detect this stacking issue anyway.
+  - **`7b7cb6d` follow-up** (button hover shadow opacity 0.28): unresolved since 14:53. No visual evidence or design rationale provided.
+  - **273 unpushed commits** on main.
+- Implementer instructions:
+  1. **IMMEDIATELY revert `.z-999` in mobile.styl** — restore `z-index 999` on `.mobile-quick-access`. This is a breaking regression. Commit: `fix: restore z-index 999 on .mobile-quick-access (c63183b regression)`.
+  2. If using z-index utility classes, they must be applied in HTML class attributes, not referenced inside Stylus property blocks. Stylus indented `.z-999` creates a descendant selector.
+  3. For `7b7cb6d`: provide visual evidence for 0.28 opacity or revert to 0.2 with documented design target.
+  4. Do NOT push — pipeline issue unresolved.
+
+### 2026-04-07 22:08
+- Review target: da1c717 (fix: restore z-index 999 on .mobile-quick-access — c63183b regression)
+- Verdict: APPROVED
+- Findings:
+  - **`da1c717`** (21:59): Reverts `.z-999` nested inside `.mobile-quick-access` back to explicit `z-index 999`. Root cause: Stylus interprets nested `.z-999` as a descendant selector `.mobile-quick-access .z-999 {}` instead of applying `z-index: 999` to `.mobile-quick-access` itself. This left `.mobile-quick-access` with no z-index, causing it to be hidden behind `.mobile-bottom-nav` (z-index 1000).
+  - **`c63183b`** (19:32): The original regression. Replaced `z-index 999` with nested `.z-999` in mobile.styl. Classic Stylus nesting gotcha — class selectors nested inside a rule block create descendant selectors, not merged selectors.
+  - **Compiled CSS verified**: `.mobile-quick-access{position:fixed;bottom:1em;right:1em;z-index:999}` — correct.
+  - **`.z-999` utility class**: Still defined in `utilities.styl` and compiled CSS. Harmless dead code — available if needed elsewhere. Could be removed if unused, but not urgent.
+  - **Build succeeds**: `npm run build` compiles cleanly.
+  - **No visual scout evidence**: This fix addresses a mobile-only stacking issue (`.mobile-quick-access` FAB hidden behind mobile bottom nav). No screenshot captures were taken post-fix. Consistent with prior z-index refactor treatment — stacking context changes don't affect visual scout pixel comparisons.
+  - **Stylus utility-class pattern caveat**: This is the second instance of a Stylus nesting mistake with utility classes in this codebase (first was `.z-1002` inside `.vector-toc-panel`). The pattern `.utility-class` nested inside a parent selector **does not work** in Stylus — it creates a descendant selector. The correct approach is either: (a) use the explicit CSS property directly, or (b) use `@extend .z-999` if the utility class must be used.
+- Implementer instructions:
+  1. Commit approved — regression is fixed.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+  3. Consider adding a lint rule or code comment warning against nesting `.z-*` utility classes inside Stylus rule blocks.
