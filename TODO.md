@@ -597,9 +597,26 @@
 
 ---
 
-Last updated: 2026-04-08 00:08
+Last updated: 2026-04-08 00:49
 
 ## Reviewer Findings
+
+### 2026-04-08 00:49
+- Review target: 31e483f + dirty worktree (src/critical.styl)
+- Verdict: APPROVED (committed work) — with strong oscillator warning
+- Findings:
+  - **`31e483f`** (00:11): Replaces `rgba($darker, 0.28)` with `rgba(15, 15, 15, 0.28)` inside `@css{}` block in `animations.styl:412`. Fix is correct — `$darker` does not expand inside `@css{}` blocks. Compiled CSS confirms single `rgba(15, 15, 15, 0.28)` at line 893. No `$darker` leakage in compiled output. Build succeeds.
+  - **OSCILLATOR ALERT — 11th occurrence**: This exact line has been toggled between `$darker` and hardcoded `rgba(15, 15, 15, ...)` at least **11 times** across commits: `0738b39` → `4607e93` → `2d0b700` → `a55be71` → `8351e84` → `453301b` → `f266358` → `a8b8b88` → `9ff25c5` → `fb5daf1` → `31e483f`. Something (an automated agent, linter, or workflow) keeps "fixing" the hardcoded value back to `$darker`, which then breaks inside `@css{}` blocks. **No structural prevention exists.** Documentation alone has failed 11 times. The only durable fix is either (a) a Stylus plugin that expands `$darker` inside `@css{}` blocks, or (b) a CI check that rejects `$` inside `@css{}` blocks.
+  - **Dirty worktree: `src/critical.styl`** has uncommitted changes: `$bg-primary` → `$base`, `$bg-secondary` → `$dark`, `$text` → `$lighter`, and import path fixes. These are directionally correct (same pattern as `da37636` and `34b3e44`). However, `critical.styl` is NOT imported by `main.styl` — it is dormant. These changes are safe but cosmetic until the file enters the build pipeline.
+  - **Completion log**: `16c4f63` added entry for `31e483f`. Present and correct.
+  - **Post-commit activity**: `2601144` through `c5b209b` are verbumps + scout findings + prior reviewer findings. No new CSS.
+  - **Scout clean**: 40/40 AE=0 across 5 pages × 2 viewports × 4 states (per 2026-04-08 00:22 scout entry).
+- Implementer instructions:
+  1. Commit the `critical.styl` changes if desired, or discard them — they are dormant until `critical.styl` enters the build pipeline.
+  2. **Investigate the oscillator root cause.** Something keeps replacing the hardcoded `rgba(15, 15, 15, ...)` with `$darker`. Identify the source (agent prompt? linter rule? git hook?) and disable it for `@css{}` blocks.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+
 
 ### 2026-04-06 21:52
 - Review target: dirty worktree (no CSS implementation — only new Visual Scout entry in TODO.md)
