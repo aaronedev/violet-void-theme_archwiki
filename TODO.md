@@ -4230,7 +4230,7 @@ Last updated: 2026-04-07 06:58
   - FAQ notice styling
   - Edit notice styling
 
-- [ ] **Thread Styling** (CSS)
+- [x] **Thread Styling** (CSS) (done: 2026-04-07 13:21, commit: ab4bdce)
   - File: `src/components/talk.styl`
   - Thread indentation levels
   - Thread collapse/expand toggle
