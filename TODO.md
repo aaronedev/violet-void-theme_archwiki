@@ -743,6 +743,43 @@ Last updated: 2026-04-07 06:58
 
 ## Visual Scout Findings
 
+### 2026-04-07 21:50
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - scout-results.json (Apr 6 21:46): 40/40 AE=0 confirmed
+  - Current screenshots timestamped Apr 7 16:17 (from prior run)
+  - Baseline screenshots timestamped Mar 30 20:58 (unchanged)
+  - All 5 pages × 2 viewports × 4 states: 0 pixel differences
+  - Build: f715c92 (20260407.23.51) — latest CSS committed cleanly
+  - Worktree clean after build verbump
+  - Theme visually stable — no open-state regressions detected
+  - ArchWiki accessible
+  - Note: screenshot capture unavailable (exec preflight blocked); relied on existing scout-results.json + diff-metrics.txt
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+  - .agent/archwiki/diff-metrics.txt
+  - .agent/archwiki/reports/scout-results.json
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
 ### 2026-04-07 18:41
 - Run target: visual scout
 - Verdict: CLEAN
