@@ -13798,3 +13798,17 @@ Last updated: 2026-04-08 00:08
   2. Grep for any other undefined variables: `rg '\$[a-z]' src/ | grep -v '=' | grep -v 'var(' | grep -v '//'` — surface any remaining undefined var references.
   3. Commit the community.styl + critical.styl fixes together.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 00:13 (hostile review)
+- Review target: 31e483f (fix: replace literal $darker with RGB value in @css block)
+- Verdict: APPROVED
+- Findings:
+  - **`31e483f`**: One-line fix in `src/components/animations.styl`. Replaces `rgba($darker, 0.28)` with `rgba(15, 15, 15, 0.28)` inside `@css{}` block for `.mw-ui-button:hover` / `.cdx-button:hover` box-shadow. `$darker = #0f0f0f` = `rgb(15, 15, 15)` — hardcoded value matches exactly. Stylus does not expand variables inside `@css{}` blocks (literal passthrough), so `rgba($darker, 0.28)` would output the literal string. Commit message correctly calls this a "recurring regression from prior @css/$darker fixes." Zero remaining `rgba($darker` in animations.styl — fully cleaned.
+  - **`da37636`** (Apr 7 22:54): Replaces undefined `$bg-primary` with `$base` in community.styl (2 occurrences: avatar border + status indicator border). Already approved in prior review cycle. Zero remaining `$bg-primary` references in `src/`. Fully cleaned.
+  - **Build**: compiles cleanly (v20260408.00.13). No PostCSS errors.
+  - **Completion log**: Entry for `31e483f` present (line added in `16c4f63`).
+  - **Worktree**: clean — no uncommitted changes.
+  - **No open-state evidence needed**: box-shadow color value fix, no interactive UI state.
+- Implementer instructions:
+  1. Both commits approved — no follow-up needed.
+  2. Do NOT push — pipeline issue remains unresolved per prior findings.
