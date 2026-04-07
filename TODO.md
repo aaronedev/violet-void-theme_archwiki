@@ -592,10 +592,11 @@
 | 2026-04-06 16:14 | Remove dead .navbox from wiki-templates.styl | Remove .navbox selector from wiki-templates.styl (dead code — navbox.styl is authoritative); keep only .navigation-box which is only defined there. Also remove dead .navbox-title and .navbox-content child selectors from the same block. | 5dbed18 |
 | 2026-04-06 18:46 | overflow-wrap for .pkg-name to prevent long package names overflowing narrow cells | Add overflow-wrap: break-word to .pkg-name in aur-enhanced.styl — AUR package search results table cell with long package names could overflow in narrow viewports; consistent with prior overflow-wrap fixes for .module-description, .status-text, .lua-function, etc. | f17b6d1 |
 | 2026-04-06 22:10 | Replace undefined $surface and $nav-bg with $base and $darker | Fix undefined variable references in content.styl — $surface and $nav-bg are not defined anywhere in the codebase; $surface replaced with $base (card/infobox blend backgrounds), $nav-bg replaced with $darker (nav blend background). Both substituted variables are established theme variables. | 34b3e44 |
+| 2026-04-07 06:58 | Add min-width: 200px to ::picker(select) dropdown container | Add min-width: 200px to ::picker(select) — matches .oo-ui-dropdownWidget-menu (4b1f3c5), .oo-ui-popupWidget (3d5e5a5), .oo-ui-dialog (3b2e06d) for consistent dropdown width floor across OOUI and native select pickers (Chrome 135+, Edge 135+) | 9b53507 |
 
 ---
 
-Last updated: 2026-04-06 22:10
+Last updated: 2026-04-07 06:58
 
 ## Reviewer Findings
 
@@ -13468,5 +13469,18 @@ Last updated: 2026-04-06 22:10
   - **Scout clean**: 40/40 AE=0 across 5 pages × 2 viewports × 4 states. No visual drift from opacity change (expected — 0.08 delta is sub-threshold for perceptual AE).
   - **Worktree**: clean — `package.json` verbump only.
   - **No open-state evidence needed**: button hover is a trivial CSS state; no interactive menu/popup involved.
+- Implementer instructions:
+  1. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-07 07:35
+- Review target: 9b53507 (add min-width: 200px to ::picker(select) dropdown container)
+- Verdict: APPROVED
+- Findings:
+  - **`9b53507`** (06:58): Adds `min-width: 200px` to `::picker(select)` in `src/components/forms-enhanced.styl`. Rationale: native HTML `<select>` picker dropdown may have short content causing width collapse; the fix matches the established 200px width floor for `.oo-ui-dropdownWidget-menu` (4b1f3c5), `.oo-ui-popupWidget` (3d5e5a5), `.oo-ui-dialog` (3b2e06d), and `.oo-ui-menuSelectWidget` (c634ff2). All OOUI and native select pickers now share a consistent minimum width.
+  - **Browser support**: 60%+ (Chrome 135+, Edge 135+). Scoped addition — ArchWiki may not actively use native `<select>` pickers, but the rule is safe as a progressive enhancement with no visual impact on existing elements.
+  - **Build**: succeeds.
+  - **Scout clean**: 40/40 AE=0 across 5 pages × 2 viewports × 4 states. All diffs pixel-identical. Consistent with 03:44 and 03:18 scout runs.
+  - **Worktree**: only artifact files dirty (`.agent/archwiki/diffs/*.png` deleted for cleanup, `.agent/archwiki/diff-metrics.txt` updated). No uncommitted CSS.
+  - **No open-state evidence needed**: `min-width` on a dropdown container is a static sizing property; no interactive state involved. Consistent with prior APPROVED treatment of other `min-width` dropdown fixes.
 - Implementer instructions:
   1. Do NOT push — pipeline issue unresolved per prior reviews.
