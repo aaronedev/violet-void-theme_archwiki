@@ -13586,3 +13586,16 @@ Last updated: 2026-04-07 06:58
   1. For `7b7cb6d`: provide visual evidence of the 0.28 opacity change vs 0.2, or revert to 0.2 and document the intended design value for button hover shadow depth.
   2. Establish a committed design value for button hover shadow — 0.2 or 0.28 — and stop oscillating between them without documented rationale.
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-07 16:09 (archwiki-reviewer-35m)
+- Review target: `42945df` (HEAD — verbump only)
+- Verdict: NEEDS_FOLLOWUP (carried forward — no new CSS implementation since 14:53 review)
+- Findings:
+  - **No new CSS implementation**: HEAD is `42945df` (verbump at 16:10). No CSS commits since the `14:53` review. Worktree is clean.
+  - **Followup items from `14:53` remain unaddressed**: `7b7cb6d` (button hover shadow opacity 0.28) still has no visual evidence and no documented design rationale for the specific value. The recursive opacity oscillation pattern persists.
+  - **Scout status**: last confirmed clean run (14:07) showed 40/40 AE=0. No new visual drift to report.
+  - **`9b53507`** (::picker min-width 200px): reviewed above — APPROVED. The `14:53` review did not re-examine it; carry forward as APPROVED.
+- Implementer instructions (unchanged from 14:53):
+  1. For `7b7cb6d`: provide visual evidence of the 0.28 opacity change vs 0.2, or revert to 0.2 and document the intended design value for button hover shadow depth.
+  2. Establish a committed design value for button hover shadow — 0.2 or 0.28 — and stop oscillating between them without documented rationale.
+  3. Do NOT push — pipeline issue unresolved per prior reviews; repo has 234 unpushed commits.
