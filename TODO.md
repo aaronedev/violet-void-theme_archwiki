@@ -13683,3 +13683,19 @@ Last updated: 2026-04-07 06:58
   1. `8476936` approved — no action needed.
   2. **Outstanding `7b7cb6d` follow-up** (carried from 14:53, 16:09): provide visual evidence for 0.28 opacity change vs 0.2, or revert and document the intended design target value. Stop oscillating without rationale.
   3. Do NOT push — pipeline issue unresolved per prior reviews; repo has 257 unpushed commits.
+
+### 2026-04-07 20:04 (hostile review)
+- Review target: c63183b (refactor: replace hardcoded z-index 999 with .z-999 utility class) + 8476936 + 05aef26
+- Verdict: REJECTED
+- Findings:
+  - **`c63183b` is a BREAKING REGRESSION**: Replacing `z-index 999` with `.z-999` in `mobile.styl` does NOT set z-index on `.mobile-quick-access`. In Stylus, `.z-999` at property indentation compiles to a **nested descendant selector** `.mobile-quick-access .z-999 {}` — an empty rule matching children with class `z-999`. The `.mobile-quick-access` container now has **no z-index at all**, causing the FAB to be hidden behind other stacked elements (mobile-bottom-nav z-index 1000, mobile-slide-menu z-index 1001). Verified in compiled `dist/main.css`: `.mobile-quick-access{position:fixed;bottom:1em;right:1em}` — zero z-index.
+  - **Root cause**: `.z-999` is a CSS utility class meant for HTML `class=""` attribute, not a Stylus property. You cannot "call" a utility class from inside another Stylus rule to set a property — it creates a nested selector instead.
+  - **Incomplete refactor even if correct**: `rg 'z-index 999' src/` shows 14+ remaining hardcoded z-index values (9999, 999, 99999, 99998) across accessibility.styl, ui-components.styl, lists.styl, file-pages.styl, states.styl, pwa.styl, optimizations.styl. Only one instance in mobile.styl was touched.
+  - **`8476936`** (comment formatting in modern-css.styl): Replaces 6 empty single-line comments (`//` followed by blank line) with `// ---` section dividers. Non-functional, no cascade risk. **APPROVED** in isolation.
+  - **`05aef26`** (JSDoc-style CSS.highlights API documentation in modern-css.styl): Adds 44 lines of inline documentation for the `::highlight()` pseudo-element. No CSS output changes. Documentation-only. **APPROVED** in isolation.
+  - **Build succeeds but produces broken CSS**: `npm run build` → `dist/main.css` compiles without error, but the output is semantically wrong for `.mobile-quick-access`.
+- Implementer instructions:
+  1. **IMMEDIATELY revert the `.z-999` change in mobile.styl** — restore `z-index 999` on `.mobile-quick-access`. Commit: `fix: restore z-index 999 on .mobile-quick-access (broken by c63183b)`.
+  2. If you want to use utility classes for z-index, they must be applied in the HTML class attribute, not referenced inside Stylus property blocks. Stylus `.z-999` inside a rule block creates a descendant selector, not a property assignment.
+  3. `8476936` and `05aef26` are approved — no revert needed for those.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
