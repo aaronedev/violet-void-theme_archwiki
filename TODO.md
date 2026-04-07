@@ -13731,3 +13731,18 @@ Last updated: 2026-04-07 06:58
   1. Commit approved — regression is fixed.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
   3. Consider adding a lint rule or code comment warning against nesting `.z-*` utility classes inside Stylus rule blocks.
+
+### 2026-04-07 22:46
+- Review target: da1c717 (z-index restore) + dirty worktree (community.styl $bg-primary → $base)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`c63183b` introduced a regression, `da1c717` fixed it**. The refactor replaced `z-index 999` with `.z-999` nested inside `.mobile-quick-access` in mobile.styl. In Stylus, this creates a descendant selector `.mobile-quick-access .z-999` instead of applying z-index to the element itself. `da1c717` correctly reverts to `z-index 999`. This is the SAME Stylus nesting gotcha that burned `.z-1002` inside `.vector-toc-panel` (noted in prior review 2026-04-07 21:58). Second occurrence suggests no structural prevention exists.
+  - **Dirty worktree: `$bg-primary` → `$base` in community.styl** (2 instances, lines 1054 and 1077). `$bg-primary` is NOT defined anywhere in the codebase (`rg '$bg-primary =' src/` returns nothing). The fix replaces it with `$base`, which is the correct primary background variable. However, `$bg-primary` is ALSO used in `src/critical.styl` and remains undefined there — the implementer missed this instance.
+  - **`$bg-primary` undefined in critical.styl**: `rg '$bg-primary' src/` shows one remaining reference in critical.styl. If Stylus doesn't error on undefined variables (it silently outputs empty), this means critical.styl has been outputting `background-color ` (empty value) — a latent bug.
+  - **No post-change scout for z-index cycle**: Latest scout ran at 18:41 (CLEAN). `c63183b` landed at 19:32 and `da1c717` at 21:59. No visual validation after the regression/fix cycle.
+  - **Other commits clean**: `8476936` (comment dividers), `ab4bdce` (overflow-wrap for discussion headers), `05aef26` (documentation comments) are all scoped and low-risk. No cascade issues.
+- Implementer instructions:
+  1. Fix `$bg-primary` in `src/critical.styl` — replace with `$base` (same treatment as community.styl).
+  2. Grep for any other undefined variables: `rg '\$[a-z]' src/ | grep -v '=' | grep -v 'var(' | grep -v '//'` — surface any remaining undefined var references.
+  3. Commit the community.styl + critical.styl fixes together.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
