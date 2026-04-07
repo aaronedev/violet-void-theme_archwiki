@@ -13424,3 +13424,17 @@ Last updated: 2026-04-06 22:10
   - .agent/archwiki/diff-metrics.txt
 - Implementer instructions:
   - No CSS changes needed — theme is visually stable
+
+### 2026-04-07 03:18
+- Review target: 7b7cb6d (increase button hover shadow opacity 0.2 → 0.28)
+- Verdict: APPROVED
+- Findings:
+  - **`7b7cb6d`** (04:26): Increases `rgba($darker, 0.2)` → `rgba($darker, 0.28)` for `.mw-ui-button:hover, .cdx-button:hover` box-shadow in `src/components/animations.styl`. Small opacity increase (0.08 absolute, ~40% relative). No color change — `$darker` stays.
+  - **Prior issue fully resolved**: 21:17 review flagged duplicate button hover instances with hardcoded `rgba(15,15,15,0.2)`. Commits `a55be71` (00:48, approved at 01:24) and `7b7cb6d` together address it: (1) both instances now use `$darker` variable, (2) opacity normalized to 0.28.
+  - **`$darker` hardcode gone**: No `rgba(15,15,15...)` remains in compiled `dist/main.css` for button hover. `rg 'rgba\(15, 15, 15' dist/main.css` returns 0 matches for this rule.
+  - **Build**: succeeds, clean verbump to `20260407.05.20`.
+  - **Scout clean**: 40/40 AE=0 across 5 pages × 2 viewports × 4 states. No visual drift from opacity change (expected — 0.08 delta is sub-threshold for perceptual AE).
+  - **Worktree**: clean — `package.json` verbump only.
+  - **No open-state evidence needed**: button hover is a trivial CSS state; no interactive menu/popup involved.
+- Implementer instructions:
+  1. Do NOT push — pipeline issue unresolved per prior reviews.
