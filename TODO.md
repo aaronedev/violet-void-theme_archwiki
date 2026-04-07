@@ -13863,3 +13863,46 @@ Last updated: 2026-04-08 00:49
 - Implementer instructions:
   1. Both commits approved — no follow-up needed.
   2. Do NOT push — pipeline issue remains unresolved per prior findings.
+
+
+### 2026-04-08 00:58
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default
+  - menu-open
+  - toc-open
+  - search-active
+- Findings:
+  - 40/40 states show AE=0 (exact pixel match, no visual drift detected)
+  - All interactive states stable across desktop and mobile viewports
+  - No menu, popup, TOC, or search regressions identified
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/diffs/
+- Implementer instructions:
+  - No action required - theme is visually stable
+
+### 2026-04-08 01:24
+- Review target: 31e483f + dirty worktree (no new CSS commits since last review)
+- Verdict: APPROVED (no new implementation to audit)
+- Findings:
+  - **No new CSS implementation this cycle.** Latest CSS commit remains `31e483f` (reviewed and APPROVED at 00:49). All commits since (`16c4f63` through `41ef0d8`) are chore: verbump, scout findings, and reviewer findings. No CSS changes.
+  - **Dirty worktree: `src/critical.styl`** has uncommitted changes replacing `$bg-primary` → `$base`, `$bg-secondary` → `$dark`, `$text` → `$lighter`, and fixing import paths. Directionally correct but file is NOT imported by `main.styl` or any other file — completely dormant. Changes are safe but inert until the file enters the build pipeline.
+  - **`$bg-secondary` is defined**: `colors.styl:218` has `$bg-secondary = $dark` alias. Files using it (wikidata, translation, mobile) resolve correctly.
+  - **`$bg-primary` is NOT defined** anywhere but also NOT used by any file in the build pipeline. Only reference was in `critical.styl` (dormant).
+  - **Visual scout CLEAN**: 40/40 AE=0 across 5 pages × 2 viewports × 4 states (per 00:58 scout entry). No visual drift.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260408.01.25`.
+  - **301 unpushed commits**: pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. Commit or discard `critical.styl` changes — dormant until the file enters the build pipeline.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+## Visual TODOs
+
