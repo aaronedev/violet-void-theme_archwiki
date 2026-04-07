@@ -3276,20 +3276,20 @@ h4[id]
 // Browser support: 85%+ (Chrome 105+, Edge 105+, Safari pending)
 // Requires JavaScript API pairing. This provides native text highlighting
 // without modifying the DOM.
-//
+// ---
 // JAVASCRIPT USAGE:
 // ---------------------------------------------------------------------------
 // The CSS.highlights API is used to apply named highlights to text ranges.
 // Each highlight type (:highlight(name)) is styled via CSS below.
-//
+// ---
 // Basic Usage:
 //   const range = document.createRange();
 //   range.selectNode(document.querySelector('.some-text'));
 //   CSS.highlights.set('search-results', new StaticRange({ start: range.startContainer, end: range.endContainer, startOffset: range.startOffset, endOffset: range.endOffset }));
-//
+// ---
 // Clear a highlight:
 //   CSS.highlights.delete('search-results');
-//
+// ---
 // Highlight Types Supported:
 //   'search-results'  — found text in page search (purple theme)
 //   'search-current' — active/current match (orange theme)
@@ -3299,7 +3299,7 @@ h4[id]
 //   'error'          — validation error highlighting
 //   'warning'        — caution/warning highlighting
 //   'link-found'     — discovered links within content
-//
+// ---
 // Example: Page Search Integration:
 //   document.querySelectorAll('.search-result').forEach((el, i) => {
 //     el.addEventListener('click', () => {
@@ -3311,7 +3311,7 @@ h4[id]
 //       }));
 //     });
 //   });
-//
+// ---
 // ---------------------------------------------------------------------------
 // Fallback: data-highlight attributes work without JS (see below).
 // The .highlight-range utility class provides a CSS-only fallback.
