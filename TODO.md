@@ -14250,3 +14250,18 @@ Last updated: 2026-04-08 17:36
   1. **Fix `forms-enhanced.styl` lines 2095 and 2110**: replace `$border` with `$border-subtle` to match the `8f2ecb2` refactor intent. These are the only 2 remaining `$border` (non-`$border-subtle`, non-`$border-radius`) references in the codebase.
   2. Rebuild and verify `rg '\$border' dist/main.css` returns zero hits (no unresolved variables in compiled CSS).
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 19:21 (archwiki-reviewer-35m)
+- Review target: `8f2ecb2` (REJECTED since 17:49 — still unfixed) + 11 subsequent chore/verbump commits
+- Verdict: REJECTED (carried forward — implementer has not acted on 17:49 rejection)
+- Findings:
+  - **CSS compilation regression persists.** `$border` removed from `colors.styl` in `8f2ecb2` but 2 references in `forms-enhanced.styl` (lines ~2095, ~2110: `input:read-write`/`textarea:read-write`/`select:read-write` and `input.editable`/`textarea.editable`/`select.editable`) remain unfixed. `dist/main.css` still contains literal `border-color:$border` — invalid CSS that browsers silently ignore.
+  - **Zero implementer action since rejection.** All 11 commits since the 17:49 hostile review (`9491947`..`8462ae8`) are chore/verbump only. No `.styl` file changes.
+  - **Worktree clean** — nothing dirty, nothing staged.
+  - **378 unpushed commits** on `main` ahead of `origin/main`.
+- Implementer instructions:
+  1. Replace `$border` with `$border-subtle` in `src/components/forms-enhanced.styl` lines ~2095 and ~2110.
+  2. Rebuild: `npm run build`
+  3. Verify: `rg '\$border' dist/main.css` must return zero hits.
+  4. Commit as `fix: replace remaining $border references in forms-enhanced.styl with $border-subtle`.
+  5. Do NOT push — pipeline issue unresolved per prior reviews.
