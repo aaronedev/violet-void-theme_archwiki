@@ -14071,3 +14071,20 @@ Last updated: 2026-04-08 00:49
   1. Discard the `corner-shape` additions in `ui-components.styl` — non-shipping property, dead code.
   2. Restore two-line comments in `view-transitions.styl` — same fix as `0d4fec6`.
   3. Do NOT push — pipeline issue unresolved.
+
+### 2026-04-08 11:30
+- Review target: ae3ec2b + f6ca6c0 + 8687e1e + 853a549 (4 CSS commits since last review cycle)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`f6ca6c0` re-introduces view-transitions.styl comment merge bug** (lines 10-11, 18-19). Two separate comment lines merged into single mangled lines. This is the **exact same bug** that was fixed in `0d4fec6` (reviewed and approved 2026-04-04 04:55). Second occurrence — indicates a systematic issue with the implementer's formatter/linter rewriting multi-line comments.
+  - **`f6ca6c0` contains dead code**: `@supports not (corner-shape: cut)` block nested inside `@supports (corner-shape: cut)` — logically unreachable. If corner-shape is supported, the outer block runs but the inner `@supports not` doesn't. If corner-shape is NOT supported, the outer block doesn't run at all, so the inner block is never reached. The standalone fallback outside `@supports` (lines 76-85) is correct and sufficient.
+  - **`f6ca6c0` `corner-shape: cut` as default** for all `button/.input/select/.card/.dialog/.dropdown/.panel/.alert` will override existing `border-radius` on these elements in browsers that support corner-shape. ArchWiki Vector skin already sets `border-radius` on these elements via its own styles. The `corner-shape: cut` property changes the corner *shape* without needing a `border-radius` value — but it will produce **squared-off cut corners** on every button, card, dialog, dropdown, panel, and alert across all ArchWiki pages. This is a visible change that the scout cannot detect (no baseline comparison for corner shapes) and that was not explicitly scoped as a design decision.
+  - **`853a549`** (color-scheme dark on html): 3-line addition, scoped, correct. Signals dark theme to browser-native controls. Compiled CSS confirms `color-scheme:dark` on `html`. **APPROVED**.
+  - **`8687e1e`** (prefers-reduced-motion for :state(loading) spinner): 8-line addition, scoped to existing `:state()` block. Adds `animation: none` override for `:state(loading)::after` in reduced-motion context. Correct accessibility fix. **APPROVED**.
+  - **`ae3ec2b`** (comment for hardcoded rgba): 2-line comment explaining Stylus `$darker` limitation in `@css{}` blocks. Pure documentation, no CSS change. **APPROVED**.
+  - **Build compiles cleanly** (v20260408.11.26). No PostCSS errors.
+- Implementer instructions:
+  1. Restore view-transitions.styl multi-line comments (same fix as `0d4fec6`). This is the second time this regression appeared — investigate whether a formatter or linter rule is merging comment lines.
+  2. Remove the dead `@supports not (corner-shape: cut)` block from ui-components.styl — the standalone fallback is sufficient.
+  3. Reconsider whether `corner-shape: cut` should be the default for all `button/.input/select/.card/.dialog/.dropdown/.panel/.alert`. This changes the visual appearance of every interactive element in supporting browsers. If intentional, document the design decision. If not, make corner-shape opt-in via utility classes only (e.g., `.corner-cut`, `.corner-scoop`).
+  4. Do NOT push.
