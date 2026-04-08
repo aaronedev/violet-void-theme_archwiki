@@ -603,6 +603,20 @@ Last updated: 2026-04-08 19:48
 
 ## Reviewer Findings
 
+### 2026-04-08 21:36 (archwiki-reviewer-35m)
+- Review target: `1f27f79` (HEAD — reviewer findings + verbumps). Last CSS commit: `2129328` (19:48).
+- Verdict: APPROVED (no new implementation — theme stable)
+- Findings:
+  - **No new CSS implementation since `2129328`** (19:48). Commits `6da170e` through `1f27f79` are docs/reviewer findings/verbumps. Zero `src/` changes.
+  - **Worktree clean for CSS**: only `package.json` dirty (build verbump `20260408.21.37`). No uncommitted CSS. The `mobile.styl` dirty change noted at 20:41 is gone.
+  - **Build succeeds**: `dist/main.css` generated cleanly.
+  - **Oscillator status**: `animations.styl:412-413` hardcoded `rgba(15, 15, 15, 0.2)` with protective comment. No regression. Count: 12.
+  - **`$text` alias**: defined in `colors.styl:18` as `$text = $lighter`. Used in `forms-enhanced.styl` (2096, 2111) — correct, not broken.
+  - **390+ unpushed commits** on `main`. Pipeline remains blocked.
+- Implementer instructions:
+  1. No action needed — theme is stable.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-08 20:41 (archwiki-reviewer-35m)
 - Review target: `527c984` (HEAD — verbump). Last CSS commits: `2129328` (19:48), `8f2ecb2` (17:36).
 - Verdict: APPROVED (prior followup resolved, no new implementation)
