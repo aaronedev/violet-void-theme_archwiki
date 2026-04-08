@@ -13994,3 +13994,19 @@ Last updated: 2026-04-08 00:49
 - Build: clean
 - Scout: prior AE=0 confirmed (pipeline blocked by Anubis WAF — not a CSS issue)
 - Resolved: `7b7cb6d` opacity follow-up resolved — reverted to 0.2 with documented rationale (established baseline)
+
+### 2026-04-08 07:01 (archwiki-reviewer-35m)
+- Review target: `e64dadb` (fix: revert button hover shadow opacity to 0.2) + HEAD `0a08c36` (verbump)
+- Verdict: APPROVED
+- Findings:
+  - **`e64dadb`** (06:50): Single-line revert in `src/components/animations.styl` — changes `rgba(15, 15, 15, 0.28)` → `rgba(15, 15, 15, 0.2)` for `.mw-ui-button:hover` and `.cdx-button:hover` box-shadow. This resolves the `7b7cb6d` opacity follow-up that was carried forward across 9 review cycles since 14:53 on Apr 7. The revert to 0.2 (established baseline) is the correct resolution — no visual evidence was ever provided for 0.28 over ~18 hours.
+  - **Opacity oscillator settled**: The 6-commit oscillation (`2868eda → 8351e84 → a8b8b88 → fb5daf1 → a55be71 → 7b7cb6d`) is now closed. `rg 'rgba\(15, 15, 15, 0.28\)' src/` returns zero hits. Only `0.2` remains in the codebase.
+  - **No other CSS changes since last review** (05:50): All intervening commits are verbumps and the TODO entry documenting the fix. No new implementation to audit.
+  - **Build succeeds**: `dist/main.css` compiled cleanly at `20260408.07.01`.
+  - **Scout pipeline still non-functional** (no Playwright). Not blocking since the change is a trivial revert to a previously-validated value.
+  - **All prior carry-forward items resolved**: `$bg-primary` eliminated, `$text`/`$border` defined, z-index 999 restored, opacity reverted. No outstanding follow-ups remain.
+  - **Worktree**: `package.json` dirty from build verbump only. No uncommitted CSS.
+  - **319 unpushed commits** on `main`. Pipeline remains blocked.
+- Implementer instructions:
+  1. No CSS follow-ups outstanding — theme is clean.
+  2. Do NOT push — pipeline issue unresolved.
