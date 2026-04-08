@@ -14036,3 +14036,19 @@ Last updated: 2026-04-08 00:49
 - Implementer instructions:
   1. No further action needed — both commits are technically correct.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 08:46 (hostile review)
+- Review target: `8687e1e` (prefers-reduced-motion for loading spinner) + dirty worktree (ui-components.styl + view-transitions.styl)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`8687e1e`** (08:25): Two changes in modern-css.styl. (1) Adds `@media (prefers-reduced-motion: reduce) { :state(loading)::after { animation: none } }` — correct accessibility fix, scoped inside the `@css{}` `:state()` block. (2) Removes trailing semicolon from `--secondary-blue-rgb: 199, 184, 255;` → `--secondary-blue-rgb: 199, 184, 255`. Stylus allows both; the removal is cosmetic and harmless. **Commit is APPROVED** — but the semicolon removal is unrelated to the commit message (spinner animation). Minor: cosmetic change should be in a separate commit.
+  - **DIRTY WORKTREE — `src/components/ui-components.styl`**: 80 lines of `corner-shape` CSS. **`corner-shape` is a fictional CSS property** — it does not exist in any shipping browser as of 2026-04. It was proposed in CSS Backgrounds and Borders Level 4 but was never implemented. The `@supports (corner-shape: cut)` block will always evaluate false, making all 80 lines dead code that bloats `dist/main.css`. The nested `@supports not (corner-shape: cut)` inside `@supports (corner-shape: cut)` is logically unreachable. Additionally, `.corner-scoop`, `.corner-bevel`, `.corner-cliff`, `.corner-rounded` variants all target the same 8 element types — an extreme specificity explosion for code that will never execute. **This should not be committed.**
+  - **DIRTY WORKTREE — `src/components/view-transitions.styl`**: **Re-introduces the exact bug fixed in `0d4fec6`** (reviewed 2026-04-04 04:55). Two-line comments merged into single mangled lines with double-slash concatenation. Lines 10-11 and 18-19 are now `"// comment1  // comment2"` instead of separate lines. This is the second time this regression has appeared — the first was `304883a`, fixed in `0d4fec6`. **This must be reverted before commit.**
+  - **Build succeeds** (`dist/main.css` at 20260408.08.48). But the compiled CSS now contains dead `corner-shape` rules.
+  - **Scout pipeline non-functional** (no Playwright, Anubis WAF blocking). Not blocking for the spinner fix (non-visual accessibility override), but no visual regression data available.
+  - **`853a549` and `e64dadb`**: already reviewed and approved at 08:12. No changes.
+- Implementer instructions:
+  1. **Discard or stash the `corner-shape` additions in `ui-components.styl`** — this CSS property does not exist in any browser. It is dead code. If you want to add it as a forward-looking feature, wrap it in a feature flag or separate file that can be easily removed, and add a comment explicitly stating it targets a non-shipping spec.
+  2. **Restore the two-line comments in `view-transitions.styl`** — same fix as `0d4fec6`. This is now the second occurrence of this regression. Consider adding a stylelint rule or pre-commit hook to prevent comment merging.
+  3. **Separate cosmetic changes from functional changes** — the `--secondary-blue-rgb` semicolon removal in `8687e1e` should have been its own commit or left as-is.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
