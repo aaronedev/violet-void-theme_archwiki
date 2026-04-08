@@ -601,6 +601,22 @@ Last updated: 2026-04-08 00:49
 
 ## Reviewer Findings
 
+### 2026-04-08 16:35
+- Review target: e342b6f through 8c807da (9 CSS commits since last review)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`8687e1e` broke `--secondary-blue-rgb` for ~6 hours**: Commit removed the semicolon from `--secondary-blue-rgb: 199, 184, 255` in modern-css.styl, producing invalid CSS in `dist/main.css`. Fixed by `8c807da` at 14:50. The broken CSS was committed and built between 08:25 and 14:50 — every verbump commit in that window carried invalid CSS.
+  - **`$border` alias is redundant with `$border-subtle`**: `e342b6f` added `$border = rgba($secondary-blue, 0.08)` to colors.styl, but `$border-subtle` in layout.styl already resolves to the same value. Two names for the same color will confuse future implementers.
+  - **Corner-shape commit-add-remove churn**: `f6ca6c0` (10:32) added 80+ lines of corner-shape CSS; `7b7edd8` (12:03) removed all of it 90 minutes later because corner-shape isn't implemented in any shipping browser. This should have been caught before the first commit.
+  - **`color-scheme: dark` on `html` (`853a549`)**: Correct addition. Signals dark theme to browser-native controls (color pickers, range sliders, disclosure widgets). Compiled correctly.
+  - **Button hover opacity revert (`e64dadb`)**: Correct — reverts 0.28 → 0.2 established baseline. Protective comment added in `ae3ec2b`. Oscillator count now at 12 historical occurrences.
+  - **`:open` extraction to `interactive-states.styl` (`e121d8c`)**: Clean refactor. 54 lines extracted, 171→112 lines reduced in ui-components.styl. No behavioral change.
+  - **Build now succeeds**: `dist/main.css` is valid. `--secondary-blue-rgb` has semicolon. `color-scheme:dark` present. Worktree clean.
+- Implementer instructions:
+  1. Remove `$border` alias from `src/variables/colors.styl` — it duplicates `$border-subtle`. Replace the single usage in `src/performance/lazy.styl:160` with `$border-subtle`.
+  2. Pre-validate experimental CSS properties before committing. corner-shape was added and removed within 90 minutes — a 30-second caniuse check would have prevented the churn.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-08 02:01
 - Review target: dirty worktree (critical.styl + colors.styl) — no new CSS commits since 31e483f
 - Verdict: APPROVED (no new implementation — dormant worktree cleanup only)
