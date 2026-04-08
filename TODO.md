@@ -8547,7 +8547,7 @@ Last updated: 2026-04-08 00:49
 
 ## 🆕 CSS Interactive State Pseudo-classes (New - 2026-03-10 Scout 40)
 
-- [ ] **`:open` Pseudo-class for Details/Dialog** (CSS, 85%+ browser support)
+- [x] **`:open` Pseudo-class for Details/Dialog** (CSS, 85%+ browser support) (done: 2026-04-08 11:37, commit: e121d8c)
   - File: `src/components/interactive-states.styl`
   - Matches elements that are in "open" state
   - Apply to `<details>`, `<dialog>`, `<select>` with popover
