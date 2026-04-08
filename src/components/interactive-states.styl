@@ -1,0 +1,54 @@
+// Interactive State Pseudo-classes
+// Browser support: Chrome 120+, Firefox 124+, Safari 17.5+
+
+@import '../variables/colors'
+@import '../variables/layout'
+
+// :open PSEUDO-CLASS - Unified Open State Styling (85%+ browser support)
+// =============================================================================
+// Note: :open pseudo-class targets elements in open state
+// Supported on: <details>, <dialog>, <select> (dropdown open), popover elements
+// Browser support: Chrome 120+, Firefox 124+, Safari 17.5+
+
+// Details/summary elements when expanded
+details:open
+  > summary
+    color $secondary-blue
+    font-weight 600
+
+// Summary marker inside open details - use separate rule to ensure correct nesting
+details:open > summary::marker
+details:open > summary::-webkit-details-marker
+  color $secondary-blue
+
+details:open
+  // Optional: Add subtle animation indicator
+  summary .details-toggle-icon
+  summary .toggle-icon
+    transform rotate(90deg)
+    transition transform $transition-fast
+
+// Dialog elements when open (complements dialog[open] above)
+dialog:open
+  border-color rgba($arch-blue, 0.3)
+  box-shadow $shadow-elevated, 0 0 30px rgba($arch-blue, 0.15)
+
+// Popover elements when open
+[popover]:open
+  border-color rgba($arch-blue, 0.3)
+  box-shadow $shadow-elevated, 0 0 20px rgba($arch-blue, 0.1)
+
+// Select dropdowns when open (Chrome 135+)
+// Style the select element itself when dropdown is expanded
+select:open
+  border-color $arch-blue
+  box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
+
+// Combined open state for consistency
+details:open
+dialog:open
+[popover]:open
+  // Ensure focus-visible styling is applied when open via keyboard
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px

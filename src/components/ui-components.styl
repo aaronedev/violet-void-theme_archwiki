@@ -3,6 +3,7 @@
 
 @import '../variables/colors'
 @import '../variables/layout'
+@import 'interactive-states'
 
 // Corner shapes - experimental browser feature (87%+ support)
 // Adds custom corner shapes to complement standard border-radius
@@ -16,73 +17,73 @@
   .dropdown
   .panel
   .alert
-    /* Traditional rounded corners */
-    corner-shape: cut
+    // Traditional rounded corners 
+    corner-shape cut
 
-  button.corner-scoop,
-  .input.corner-scoop,
-  select.corner-scoop,
-  .card.corner-scoop,
-  .dialog.corner-scoop,
-  .dropdown.corner-scoop,
-  .panel.corner-scoop,
+  button.corner-scoop
+  .input.corner-scoop
+  select.corner-scoop
+  .card.corner-scoop
+  .dialog.corner-scoop
+  .dropdown.corner-scoop
+  .panel.corner-scoop
   .alert.corner-scoop
-    /* Scooped corners - softer than rounded */
-    corner-shape: scoop
+    // Scooped corners - softer than rounded 
+    corner-shape scoop
 
-  button.corner-bevel,
-  .input.corner-bevel,
-  select.corner-bevel,
-  .card.corner-bevel,
-  .dialog.corner-bevel,
-  .dropdown.corner-bevel,
-  .panel.corner-bevel,
+  button.corner-bevel
+  .input.corner-bevel
+  select.corner-bevel
+  .card.corner-bevel
+  .dialog.corner-bevel
+  .dropdown.corner-bevel
+  .panel.corner-bevel
   .alert.corner-bevel
-    /* Beveled corners - angled like furniture */
-    corner-shape: bevel
+    // Beveled corners - angled like furniture 
+    corner-shape bevel
 
-  button.corner-cliff,
-  .input.corner-cliff,
-  select.corner-cliff,
-  .card.corner-cliff,
-  .dialog.corner-cliff,
-  .dropdown.corner-cliff,
-  .panel.corner-cliff,
+  button.corner-cliff
+  .input.corner-cliff
+  select.corner-cliff
+  .card.corner-cliff
+  .dialog.corner-cliff
+  .dropdown.corner-cliff
+  .panel.corner-cliff
   .alert.corner-cliff
-    /* Cliff corners - sharp then rounded */
-    corner-shape: cliff
+    // Cliff corners - sharp then rounded 
+    corner-shape cliff
 
-  button.corner-rounded,
-  .input.corner-rounded,
-  select.corner-rounded,
-  .card.corner-rounded,
-  .dialog.corner-rounded,
-  .dropdown.corner-rounded,
-  .panel.corner-rounded,
+  button.corner-rounded
+  .input.corner-rounded
+  select.corner-rounded
+  .card.corner-rounded
+  .dialog.corner-rounded
+  .dropdown.corner-rounded
+  .panel.corner-rounded
   .alert.corner-rounded
-    /* Rounded corners - soft quarter circles */
-    corner-shape: rounded
+    // Rounded corners - soft quarter circles 
+    corner-shape rounded
 
-  /* Fallback for unsupported browsers */
+  // Fallback for unsupported browsers 
   @supports not (corner-shape: cut)
-    button,
-    .input,
-    select,
-    .card,
-    .dialog,
-    .dropdown,
-    .panel,
+    button
+    .input
+    select
+    .card
+    .dialog
+    .dropdown
+    .panel
     .alert
       border-radius $border-radius-sm
 
 // Standard fallback for browsers that don't support corner-shape
-button,
-.input,
-select,
-.card,
-.dialog,
-.dropdown,
-.panel,
+button
+.input
+select
+.card
+.dialog
+.dropdown
+.panel
 .alert
   border-radius $border-radius-sm
 
@@ -676,62 +677,6 @@ hr
     color $light
 
 // =============================================================================
-// :open PSEUDO-CLASS - Unified Open State Styling (97%+ browser support)
-// =============================================================================
-// Note: :open pseudo-class targets elements in open state
-// Supported on: <details>, <dialog>, <select> (dropdown open), popover elements
-// Browser support: Chrome 120+, Firefox 124+, Safari 17.5+
-
-// Details/summary elements when expanded
-details:open
-  > summary
-    color $secondary-blue
-    font-weight 600
-
-// Summary marker inside open details - use separate rule to ensure correct nesting
-details:open > summary::marker
-details:open > summary::-webkit-details-marker
-  color $secondary-blue
-
-details:open
-  // Optional: Add subtle animation indicator
-  summary .details-toggle-icon
-  summary .toggle-icon
-    transform rotate(90deg)
-    transition transform $transition-fast
-
-// Dialog elements when open (complements dialog[open] above)
-dialog:open
-  border-color rgba($arch-blue, 0.3)
-  box-shadow $shadow-elevated, 0 0 30px rgba($arch-blue, 0.15)
-
-// Popover elements when open
-[popover]:open
-  border-color rgba($arch-blue, 0.3)
-  box-shadow $shadow-elevated, 0 0 20px rgba($arch-blue, 0.1)
-
-// Select dropdowns when open (Chrome 135+)
-// Style the select element itself when dropdown is expanded
-select:open
-  border-color $arch-blue
-  box-shadow 0 0 0 3px rgba($arch-blue, 0.25)
-
-// Combined open state for consistency
-details:open
-dialog:open
-[popover]:open
-  // Ensure focus-visible styling is applied when open via keyboard
-  &:focus-visible
-    outline 2px solid $arch-blue
-    outline-offset 2px
-
-// ============================================
-// Anchor Positioning API (85%+ browser support)
-// Better tooltips and popover positioning
-// ============================================
-
-// Anchor reference for positioned elements
-// Usage: Add data-anchor attribute to link trigger to tooltip
 [data-anchor]
   position-anchor anchor-el
 
