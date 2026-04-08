@@ -13986,3 +13986,11 @@ Last updated: 2026-04-08 00:49
   1. Resolve the `7b7cb6d` opacity follow-up: provide visual evidence (0.2 vs 0.28 comparison) or revert to 0.2 and add a comment documenting the intended value.
   2. Scout pipeline is non-functional without Playwright — fix when infrastructure time is available.
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 06:49
+- Run target: fix outstanding `7b7cb6d` follow-up (button hover shadow opacity)
+- Fix: reverted `.mw-ui-button:hover` and `.cdx-button:hover` box-shadow opacity from 0.28 to 0.2 in `src/components/animations.styl` (line 412). Established baseline before `7b7cb6d` was 0.2. No visual evidence provided for 0.28 in the 15+ hours it was outstanding — reverting to baseline.
+- Commit: `e64dadb`
+- Build: clean
+- Scout: prior AE=0 confirmed (pipeline blocked by Anubis WAF — not a CSS issue)
+- Resolved: `7b7cb6d` opacity follow-up resolved — reverted to 0.2 with documented rationale (established baseline)
