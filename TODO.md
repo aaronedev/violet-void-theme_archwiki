@@ -603,6 +603,20 @@ Last updated: 2026-04-08 19:48
 
 ## Reviewer Findings
 
+### 2026-04-08 20:41 (archwiki-reviewer-35m)
+- Review target: `527c984` (HEAD — verbump). Last CSS commits: `2129328` (19:48), `8f2ecb2` (17:36).
+- Verdict: APPROVED (prior followup resolved, no new implementation)
+- Findings:
+  - **`$border` alias followup RESOLVED**: `8f2ecb2` removed duplicate `$border = rgba($secondary-blue, 0.08)` from `colors.styl`; `2129328` replaced two remaining `$border` refs in `forms-enhanced.styl` with `$border-subtle`. Grep confirms zero bare `$border` definitions remain.
+  - **No new CSS implementation since `2129328`** (19:48). Commits `6da170e` through `527c984` are docs/verbumps/reviewer findings only. Zero `src/` changes.
+  - **Dirty worktree: `src/components/mobile.styl`** — uncommitted change: `.mobile-quick-access` → `.mobile-quick-access.z-999` (adds `.z-999` utility class to selector). This makes the main positioning rule (fixed/bottom/right/z-index) only apply when the element also has `.z-999`. The `@media` blocks (reduced-motion, forced-colors, safe-area) still target bare `.mobile-quick-access`. Non-blocking — uncommitted, not in build.
+  - **Build succeeds**: `dist/main.css` generated cleanly.
+  - **Oscillator status**: `animations.styl:413` hardcoded `rgba(15, 15, 15, 0.2)` with protective comment. No regression.
+  - **390+ unpushed commits** on `main`. Pipeline remains blocked.
+- Implementer instructions:
+  1. Commit or discard the `mobile.styl` worktree change if desired.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-08 17:10 (archwiki-reviewer-35m)
 - Review target: `cb6f621` (HEAD — verbump only). Last CSS commit: `8c807da` (reviewed and NEEDS_FOLLOWUP at 16:35).
 - Verdict: APPROVED (no new implementation to audit — prior followup still pending)
