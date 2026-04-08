@@ -14088,3 +14088,23 @@ Last updated: 2026-04-08 00:49
   2. Remove the dead `@supports not (corner-shape: cut)` block from ui-components.styl — the standalone fallback is sufficient.
   3. Reconsider whether `corner-shape: cut` should be the default for all `button/.input/select/.card/.dialog/.dropdown/.panel/.alert`. This changes the visual appearance of every interactive element in supporting browsers. If intentional, document the design decision. If not, make corner-shape opt-in via utility classes only (e.g., `.corner-cut`, `.corner-scoop`).
   4. Do NOT push.
+
+### 2026-04-08 12:10
+- Review target: 7b7edd8 (latest CSS commit) + clean worktree
+- Verdict: APPROVED
+- Findings:
+  - **`7b7edd8`** (12:03): Removes 80+ lines of dead corner-shape CSS (`@supports (corner-shape: cut)` block) from `ui-components.styl`. Correct — `corner-shape` is not implemented in any shipping browser as of 2026-04. Replaced with standard `border-radius $border-radius-sm` fallback. Also fixes comment merging in `view-transitions.styl` (two multi-line comments concatenated on one line → properly split). Minor whitespace cleanup in `modern-css.styl`. Clean removal.
+  - **`e121d8c`** (11:37): Moves `:open` pseudo-class styling (54 lines) from `ui-components.styl` to new dedicated `interactive-states.styl`. Good separation of concerns. File is imported via `@import 'interactive-states'` in `ui-components.styl`. All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open`, `select:open`. No logic changes, pure file reorganization. Compiled CSS confirms all `:open` rules present.
+  - **`f6ca6c0`** (10:32): Initially implemented corner-shape CSS. This commit was effectively reverted by `7b7edd8` which removed all corner-shape code. Net effect: waste commit + cleanup commit. Not harmful, but indicates implementer wrote code for a non-existent CSS property without verifying browser support first.
+  - **`ae3ec2b`** (11:02): Adds protective comment above hardcoded `rgba(15, 15, 15, 0.2)` in button hover box-shadow inside `@css{}` block. Good defensive measure — documents *why* `$darker` cannot be used here. Oscillator count remains at 11 historical occurrences. This is the first structural prevention attempt (comment-based).
+  - **`e64dadb`** (06:50): Reverts button hover shadow opacity from 0.28 back to 0.2. Part of the oscillator pattern. Correct baseline value is 0.2.
+  - **`8687e1e`** (08:25): Adds `prefers-reduced-motion` override for `:state(loading)::after` spinner animation in `modern-css.styl`. Good accessibility fix. Compiled CSS confirms `animation: none` for loading state under `@media (prefers-reduced-motion: reduce)`. Also removes trailing semicolon from `--secondary-blue-rgb` declaration (cosmetic).
+  - **`853a549`** (07:56): Adds `color-scheme: dark` to `html` in `base.styl`. Signals dark theme to browser-native controls (color pickers, range sliders, disclosure widgets). Simple 3-line addition. Compiled CSS confirms `html{accent-color:#8950c7;color-scheme:dark}`.
+  - **`e342b6f`** (02:24): Defines semantic color aliases (`$text = $lighter`, `$border = rgba($secondary-blue, 0.08)`) in `colors.styl` and fixes `critical.styl` imports/variables. Both files are dormant (not imported by `main.styl`). Directionally correct, no build impact.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260408.12.10`.
+  - **Worktree**: clean after build verbump. No uncommitted CSS.
+  - **Oscillator status**: `animations.styl:412` correctly uses `rgba(15, 15, 15, 0.2)` with protective comment. No `$darker` leakage in `@css{}` blocks.
+- Implementer instructions:
+  1. No CSS action needed — all approved.
+  2. `corner-shape` waste commit (`f6ca6c0` → `7b7edd8`) — verify browser support BEFORE implementing future CSS features.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
