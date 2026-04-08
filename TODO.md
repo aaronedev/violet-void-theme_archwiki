@@ -14344,3 +14344,19 @@ Last updated: 2026-04-08 19:48
 
 
 - [x] f505412 (reverted by 148e1e0): Revert .mobile-quick-access compound selector — restore standalone .mobile-quick-access selector with explicit z-index 999 (reverted by fix commit). (done: 2026-04-08 23:44, commit: 148e1e0)
+
+### 2026-04-09 00:02 (hostile review)
+- Review target: `148e1e0` (revert .mobile-quick-access compound selector) + `2129328` ($border→$border-subtle fix) + dirty worktree (package.json only)
+- Verdict: APPROVED
+- Findings:
+  - **`148e1e0`** (23:44): Correctly reverts `f505412` compound selector `.mobile-quick-access.z-999` back to standalone `.mobile-quick-access` with explicit `z-index 999`. Addresses the NEEDS_FOLLOWUP from 22:52 review. Accessibility overrides (`prefers-reduced-motion`, `forced-colors`, `safe-area`) all reference `.mobile-quick-access` — consistent, no orphaned selectors. **APPROVED**.
+  - **`2129328`** (19:48): Replaces 2 remaining `$border` references in `forms-enhanced.styl:2095,2110` with `$border-subtle`. Compiled CSS has zero literal `$border` — clean. **APPROVED** (also reviewed at 19:57).
+  - **Zero `$border` in compiled CSS**: `rg '\$border[^-]' dist/main.css` returns 0 hits. Regression fully resolved.
+  - **`z-index:999` confirmed**: 3 occurrences in compiled CSS for `.mobile-quick-access` context. Correct.
+  - **Build compiles cleanly**: `dist/main.css` generated successfully. No PostCSS errors.
+  - **Worktree**: only `package.json` dirty (build verbump). No uncommitted CSS.
+  - **Scout pipeline non-functional** (no Playwright, Anubis WAF blocking). Not blocking — both commits are CSS correctness fixes with no visual output changes.
+  - **Compound selector waste**: `21b6df9` → `f505412` → `148e1e0` = 3 attempts to refactor one z-index value. The pattern (utility class `.z-999` compound selector) doesn't work for userstyles that can't control DOM classes. Note for future: don't use utility classes in selectors for theme-injected CSS.
+- Implementer instructions:
+  1. No further action needed — both commits approved.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
