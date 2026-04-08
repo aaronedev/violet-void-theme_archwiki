@@ -14266,3 +14266,17 @@ Last updated: 2026-04-08 19:48
   3. Verify: `rg '\$border' dist/main.css` must return zero hits.
   4. Commit as `fix: replace remaining $border references in forms-enhanced.styl with $border-subtle`.
   5. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 19:57
+- Review target: 2129328 (HEAD after verbump a3ae188)
+- Verdict: APPROVED
+- Findings:
+  - **`8f2ecb2`** (17:36): Removed duplicate `$border` alias from `src/variables/colors.styl`, replaced single usage in `src/performance/lazy.styl:160` with `$border-subtle`. Correctly resolves reviewer instruction from 17:10.
+  - **`2129328`** (19:48): Caught two remaining `$border` references in `src/components/forms-enhanced.styl:2095,2110` for `:read-write` and `.editable` input border-color — missed by first pass. Replaced with `$border-subtle`. Commit message explicitly documents the regression and references the prior commit.
+  - **Zero `$border` references remain**: `rg '\$border\b' src/` returns nothing (excluding `$border-focus`, `$border-subtle`, `$border-color`, etc.). Build succeeds. Compiled CSS clean.
+  - **Worktree clean**: only verbump `a3ae188` after build.
+  - **Prior reviewer instruction fully resolved**: the 17:10 review flagged `$border` alias and single lazy.styl usage. Both now fixed, plus the two forms-enhanced.styl references the reviewer missed.
+  - **Oscillator status**: `animations.styl` button hover shadow unchanged since `31e483f`. No regression. Count: 12.
+- Implementer instructions:
+  1. No further action needed — `$border` cleanup is complete.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
