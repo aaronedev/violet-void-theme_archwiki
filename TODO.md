@@ -13920,3 +13920,25 @@ Last updated: 2026-04-08 00:49
 
 ## Visual TODOs
 
+
+### 2026-04-08 02:38 (archwiki-reviewer-35m)
+- Review target: `e342b6f` (define semantic color aliases and fix critical.styl imports/variables)
+- Verdict: APPROVED with caveat
+- Findings:
+  - **`e342b6f`** adds two new variable definitions to `src/variables/colors.styl`: `$text = $lighter` and `$border = rgba($secondary-blue, 0.08)`. These are **not merely "semantic aliases"** — they fix previously undefined variable references in at least 5 live files that are in the build pipeline:
+    - `interwiki.styl`: `color $text` (1 occurrence)
+    - `translation.styl`: `color $text` (4 occurrences)
+    - `modern-css.styl`: `color $text` (2 occurrences)
+    - `forms-enhanced.styl`: `color $text` (2 occurrences), `border-color $border` (2 occurrences)
+    - `lazy.styl`: `border 1px dashed rgba($border, 0.5)` (1 occurrence)
+  - **Commit message undersells the fix.** "Semantic aliases for theme consistency" implies optional refactoring. In reality, these were undefined Stylus variables being silently resolved to empty values in compiled CSS. This is a bug fix.
+  - **`critical.styl` changes are dormant.** Import path fix (`../variables/` → `variables/`) and variable substitutions (`$bg-primary` → `$base`, `$bg-secondary` → `$dark`, `$text` → `$lighter`) are correct but the file is NOT imported by `main.styl` or any other file. Changes are inert until the file enters the build pipeline.
+  - **No visual scout evidence for the `$text`/`$border` fix.** Before this commit, `$text` resolved to empty, so `color: ` was output for 9+ selectors across interwiki, translation, modern-css, and forms-enhanced. This means text in those selectors was falling through to cascade/inheritance rather than being explicitly colored. The fix adds `color: #e7e7e7` (`$lighter`) — a visible change if those selectors actually match ArchWiki DOM elements. No before/after screenshots were provided.
+  - **Build succeeds.** `dist/main.css` compiled cleanly.
+  - **Worktree clean.** No uncommitted CSS changes.
+  - **`7b7cb6d` follow-up** (button hover shadow opacity 0.28): still unresolved since 14:53. No visual evidence or documented design rationale provided.
+- Implementer instructions:
+  1. Commit message should have been `fix: define $text and $border variables (previously undefined, causing empty color output)` — the "semantic alias" framing masks the real impact.
+  2. Run a visual scout after this commit to verify that the `color: #e7e7e7` now applied to interwiki, translation, modern-css, and forms-enhanced selectors does not cause visual regressions on pages that use those components.
+  3. **Outstanding `7b7cb6d` follow-up** (carried from 14:53, 16:09, 17:54, 20:04, 21:55, 22:08, 22:46, 01:24): provide visual evidence for 0.28 opacity or revert to 0.2 with documented design target. This is now 12+ hours old.
+  4. Do NOT push — pipeline issue unresolved per prior reviews; repo has 306 unpushed commits.
