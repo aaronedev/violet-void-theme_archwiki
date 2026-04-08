@@ -14324,3 +14324,20 @@ Last updated: 2026-04-08 19:48
 - Implementer instructions:
   1. No further action needed — `$border` cleanup is complete.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 22:52 (hostile review)
+- Review target: f505412 (fix: use .z-999 utility class for .mobile-quick-access z-index)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`f505412` changes `.mobile-quick-access` to `.mobile-quick-access.z-999`** and removes `z-index 999`. This is a compound selector that requires the DOM element to have BOTH `.mobile-quick-access` AND `.z-999` classes. Since this is a Stylus userstyle (CSS-only injection), the theme cannot add `.z-999` to ArchWiki's DOM elements.
+  - **This is the same refactor attempted twice before**: `c63183b` (nested `.z-999` creating descendant selector — reverted by `da1c717`), then `21b6df9` (included unrelated files — not pushed), now `f505412` (compound selector). Each attempt has a different bug.
+  - **Selector split creates inconsistency**: Compiled CSS has base styles under `.mobile-quick-access.z-999` (position fixed, bottom, right, all FAB button styles) but accessibility overrides under `.mobile-quick-access` without `.z-999` (prefers-reduced-motion, forced-colors, safe-area). The overrides reference a selector whose base rules no longer apply — they're dead code.
+  - **If `.mobile-quick-access` ever matches real DOM** (wiki editors add this class, or it's injected by userscript), ALL styling breaks — no position, no z-index, no FAB styles.
+  - **If `.mobile-quick-access` was already dead code** (no matching DOM element), the change is technically harmless but makes dead code harder to detect and reuse.
+  - **Duplicate commits** (`21b6df9` + `f505412` with identical messages) suggest implementer uncertainty.
+  - **Worktree clean**: only `package.json` dirty (version bump). No other uncommitted CSS.
+  - **No visual scout evidence**: expected — selector change on a theme-defined class, but no evidence that the compiled CSS actually works for its intended purpose.
+- Implementer instructions:
+  1. **Revert `f505412`**: restore `.mobile-quick-access` as the primary selector with explicit `z-index 999`. The z-index utility class pattern (`.z-999`) cannot work for userstyles where the theme doesn't control the DOM.
+  2. If the goal is to document the z-index value, add a comment: `z-index 999 // see .z-999 utility class`.
+  3. Do NOT push — 397 unpushed commits ahead of origin/main.
