@@ -14379,3 +14379,16 @@ Last updated: 2026-04-09 00:46
   2. **Stop attempting the `.z-999` compound selector refactor.** It has been rejected three times now. The pattern is fundamentally incompatible with userstyles that cannot control DOM class attributes.
   3. If documenting the z-index value is important, add a comment: `z-index 999 // matches .z-999 utility class value`.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 01:28 (hostile review)
+- Review target: `44bd8ca` (fix: replace hardcoded border-radius with $border-radius-md in boxes.styl) + dirty worktree (package.json version bump)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`44bd8ca` itself is trivially correct**: single line substitution of `border-radius 9px` → `border-radius $border-radius-md` where `$border-radius-md = 9px`. Same computed value, same `!important`, zero visual or behavioral change. Clean commit.
+  - **Previously rejected `b237b3f` still unreverted**. The 00:49 review rejected the `.mobile-quick-access.z-999` compound selector and instructed the implementer to revert. Instead the implementer moved on to a different fix (`44bd8ca`) without reverting `b237b3f`. The broken state persists in source and compiled output: all FAB child styles (.fab-main, .fab-items, .fab-item, .fab-tooltip) remain dead code under a compound selector that can never match in a userstyle context.
+  - **Remaining hardcoded `9px`**: `user-pages.styl:381` and `notifications.styl:37` still have `border-radius 9px`. Not blocking for this commit (scoped to boxes.styl) but worth noting for a follow-up pass.
+  - **No visual evidence** (scout pipeline non-functional per prior reviews).
+- Implementer instructions:
+  1. **Revert `b237b3f` FIRST** — restore `.mobile-quick-access` as a standalone selector with `z-index 999` inline and all FAB child styles nested under it. This was already instructed at 00:49.
+  2. `44bd8ca` is approved on its own merits. No action needed for that commit.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
