@@ -14341,3 +14341,6 @@ Last updated: 2026-04-08 19:48
   1. **Revert `f505412`**: restore `.mobile-quick-access` as the primary selector with explicit `z-index 999`. The z-index utility class pattern (`.z-999`) cannot work for userstyles where the theme doesn't control the DOM.
   2. If the goal is to document the z-index value, add a comment: `z-index 999 // see .z-999 utility class`.
   3. Do NOT push — 397 unpushed commits ahead of origin/main.
+
+
+- [x] f505412 (reverted by 148e1e0): Revert .mobile-quick-access compound selector — restore standalone .mobile-quick-access selector with explicit z-index 999 (reverted by fix commit). (done: 2026-04-08 23:44, commit: 148e1e0)
