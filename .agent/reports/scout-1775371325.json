@@ -1,22 +1,8 @@
 {
   "timestamp": "2026-04-05 06:37",
-  "pages": [
-    "main-page",
-    "systemd",
-    "pacman",
-    "installation-guide",
-    "firefox"
-  ],
-  "viewports": [
-    "desktop",
-    "mobile"
-  ],
-  "states": [
-    "default",
-    "menu-open",
-    "toc-open",
-    "search-active"
-  ],
+  "pages": ["main-page", "systemd", "pacman", "installation-guide", "firefox"],
+  "viewports": ["desktop", "mobile"],
+  "states": ["default", "menu-open", "toc-open", "search-active"],
   "findings": [],
   "summary": {
     "total": 0,

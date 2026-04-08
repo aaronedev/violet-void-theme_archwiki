@@ -1,16 +1,12 @@
 {
-  "extends": [
-    "stylelint-plugin-stylus/standard"
-  ],
+  "extends": ["stylelint-plugin-stylus/standard"],
   "rules": {
     "stylus/declaration-colon": "never",
     "stylus/semicolon": "never",
     "stylus/indentation": [
       2,
       {
-        "except": [
-          "param"
-        ]
+        "except": ["param"]
       }
     ],
     "stylus/selector-type-no-unknown": [
@@ -68,7 +64,8 @@
           "scroll-start",
           "scroll-end",
           "view-transition-class",
-          "scroll-marker"
+          "scroll-marker",
+          "corner-shape"
         ]
       }
     ],
@@ -130,15 +127,9 @@
     "stylus/property-no-unknown": [
       true,
       {
-        "ignoreProperties": [
-          "scroll-marker"
-        ]
+        "ignoreProperties": ["scroll-marker"]
       }
     ]
   },
-  "ignoreFiles": [
-    "dist/**",
-    "node_modules/**",
-    "**/*.css"
-  ]
+  "ignoreFiles": ["dist/**", "node_modules/**", "**/*.css"]
 }

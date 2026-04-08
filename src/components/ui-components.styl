@@ -4,6 +4,88 @@
 @import '../variables/colors'
 @import '../variables/layout'
 
+// Corner shapes - experimental browser feature (87%+ support)
+// Adds custom corner shapes to complement standard border-radius
+// Note: Safari 18+, Chrome 125+ support
+@supports (corner-shape: cut)
+  button
+  .input
+  select
+  .card
+  .dialog
+  .dropdown
+  .panel
+  .alert
+    /* Traditional rounded corners */
+    corner-shape: cut
+
+  button.corner-scoop,
+  .input.corner-scoop,
+  select.corner-scoop,
+  .card.corner-scoop,
+  .dialog.corner-scoop,
+  .dropdown.corner-scoop,
+  .panel.corner-scoop,
+  .alert.corner-scoop
+    /* Scooped corners - softer than rounded */
+    corner-shape: scoop
+
+  button.corner-bevel,
+  .input.corner-bevel,
+  select.corner-bevel,
+  .card.corner-bevel,
+  .dialog.corner-bevel,
+  .dropdown.corner-bevel,
+  .panel.corner-bevel,
+  .alert.corner-bevel
+    /* Beveled corners - angled like furniture */
+    corner-shape: bevel
+
+  button.corner-cliff,
+  .input.corner-cliff,
+  select.corner-cliff,
+  .card.corner-cliff,
+  .dialog.corner-cliff,
+  .dropdown.corner-cliff,
+  .panel.corner-cliff,
+  .alert.corner-cliff
+    /* Cliff corners - sharp then rounded */
+    corner-shape: cliff
+
+  button.corner-rounded,
+  .input.corner-rounded,
+  select.corner-rounded,
+  .card.corner-rounded,
+  .dialog.corner-rounded,
+  .dropdown.corner-rounded,
+  .panel.corner-rounded,
+  .alert.corner-rounded
+    /* Rounded corners - soft quarter circles */
+    corner-shape: rounded
+
+  /* Fallback for unsupported browsers */
+  @supports not (corner-shape: cut)
+    button,
+    .input,
+    select,
+    .card,
+    .dialog,
+    .dropdown,
+    .panel,
+    .alert
+      border-radius $border-radius-sm
+
+// Standard fallback for browsers that don't support corner-shape
+button,
+.input,
+select,
+.card,
+.dialog,
+.dropdown,
+.panel,
+.alert
+  border-radius $border-radius-sm
+
 // Checkboxes and Radio buttons
 input[type="checkbox"]
 input[type="radio"]
