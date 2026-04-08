@@ -62,6 +62,9 @@
 // Note: Most form controls have custom styling, but this provides fallback
 html
   accent-color $arch-blue
+  // Signal dark theme to browser-native controls (color pickers, range sliders,
+  // details disclosure widgets) so they render in dark variants
+  color-scheme dark
 
 // Prevent mobile browsers from adjusting text size (Chrome/Safari only)
 @supports (-webkit-text-size-adjust: 100%)
