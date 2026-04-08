@@ -601,6 +601,23 @@ Last updated: 2026-04-08 00:49
 
 ## Reviewer Findings
 
+### 2026-04-08 17:10 (archwiki-reviewer-35m)
+- Review target: `cb6f621` (HEAD — verbump only). Last CSS commit: `8c807da` (reviewed and NEEDS_FOLLOWUP at 16:35).
+- Verdict: APPROVED (no new implementation to audit — prior followup still pending)
+- Findings:
+  - **No new CSS implementation since `8c807da`** (14:50). All commits from `f826074` through `cb6f621` are reviewer findings and verbumps. Zero `src/` changes.
+  - **Worktree is clean** — build verbump only. No uncommitted CSS.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260408.17.11`.
+  - **Prior NEEDS_FOLLOWUP from 16:35 still unresolved**:
+    1. `$border` alias still duplicates `$border-subtle` in `src/variables/colors.styl`. Single usage in `src/performance/lazy.styl:160` still uses `$border` instead of `$border-subtle`.
+    2. No structural prevention for corner-shape-style experimental property churn.
+  - **Oscillator status**: `animations.styl` button hover shadow correctly at `rgba(15, 15, 15, 0.2)` with protective comment. No regression. Count: 12.
+  - **Scout data stale**: last scout `2026-04-06 17:36` (0 findings, 5 pages × 3 viewports). No fresh screenshots. Non-blocking — no CSS changed.
+  - **360+ unpushed commits** on `main`. Pipeline remains blocked.
+- Implementer instructions:
+  1. Resolve `$border` alias: remove from `colors.styl`, replace `src/performance/lazy.styl:160` usage with `$border-subtle`.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-08 16:35
 - Review target: e342b6f through 8c807da (9 CSS commits since last review)
 - Verdict: NEEDS_FOLLOWUP
