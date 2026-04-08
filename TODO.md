@@ -14052,3 +14052,19 @@ Last updated: 2026-04-08 00:49
   2. **Restore the two-line comments in `view-transitions.styl`** — same fix as `0d4fec6`. This is now the second occurrence of this regression. Consider adding a stylelint rule or pre-commit hook to prevent comment merging.
   3. **Separate cosmetic changes from functional changes** — the `--secondary-blue-rgb` semicolon removal in `8687e1e` should have been its own commit or left as-is.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 10:03 (hostile review)
+- Review target: HEAD `3695dcb` — no new CSS since `8687e1e` (08:25). Dirty worktree unchanged from 08:46 review.
+- Verdict: NEEDS_FOLLOWUP (carry-forward from 08:46 — dirty worktree issues unaddressed)
+- Findings:
+  - **No new CSS commits since 08:46 review.** All commits between 08:46 and now are verbumps (`5c17eee`) and the reviewer findings commit (`3695dcb`). Last committed CSS is `8687e1e` (prefers-reduced-motion spinner override) — APPROVED at 08:46.
+  - **Dirty worktree carries two unresolved issues from 08:46:**
+    1. `src/components/ui-components.styl`: 80 lines of `corner-shape` CSS. **`corner-shape` is a non-shipping CSS property** — no browser implements it as of 2026-04. The `@supports (corner-shape: cut)` block always evaluates false. All 80 lines are dead code. Should be discarded or stashed, not committed.
+    2. `src/components/view-transitions.styl`: Re-introduced the comment-merging regression from `304883a` (fixed in `0d4fec6`). Two-line comments merged into single mangled lines. **Second occurrence of the same regression.**
+  - **`853a549`** (color-scheme dark), **`e64dadb`** (button shadow revert to 0.2), **`8687e1e`** (prefers-reduced-motion spinner): all previously approved, no changes.
+  - **Build succeeds** (20260408.10.04). Scout pipeline non-functional (no Playwright, Anubis WAF).
+  - **All committed carry-forward items resolved**: opacity oscillator settled at 0.2, `$bg-primary` eliminated, `$text`/`$border` defined.
+- Implementer instructions:
+  1. Discard the `corner-shape` additions in `ui-components.styl` — non-shipping property, dead code.
+  2. Restore two-line comments in `view-transitions.styl` — same fix as `0d4fec6`.
+  3. Do NOT push — pipeline issue unresolved.
