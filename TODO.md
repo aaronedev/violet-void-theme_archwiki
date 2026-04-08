@@ -14152,3 +14152,18 @@ Last updated: 2026-04-08 00:49
 - Implementer instructions:
   1. No CSS work to review — theme is stable.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 15:51 (archwiki-reviewer-35m)
+- Review target: `8c807da` (fix: add missing semicolon to --secondary-blue-rgb in modern-css.styl)
+- Verdict: APPROVED
+- Findings:
+  - **One-line syntax fix**: `--secondary-blue-rgb: 199, 184, 255` → `--secondary-blue-rgb: 199, 184, 255;` in the `:root` custom properties block of `modern-css.styl`. Also removes 2 trailing blank lines. The missing semicolon in a CSS custom property inside `:root` could cause parser ambiguity for the next declaration or closing brace — the fix is legitimate and produces zero visual change.
+  - **Compiled CSS verified**: `--secondary-blue-rgb: 199, 184, 255;` properly terminated in `dist/main.css`. `rgba(var(--secondary-blue-rgb, 199, 184, 255), alpha)` fallback patterns resolve correctly.
+  - **No open-state evidence needed**: CSS custom property syntax fix — no interactive UI, no visual output change.
+  - **Build succeeds**: `dist/main.css` generated cleanly at v20260408.15.52.
+  - **Worktree**: only `package.json` dirty (build verbump `628c2b7`). No dirty CSS.
+  - **Scout pipeline non-functional**: no Playwright installed, no fresh screenshots. Not blocking — zero visual delta from this change.
+  - **357 unpushed commits** on `main`. Pipeline remains blocked.
+- Implementer instructions:
+  1. Commit approved — no follow-up needed.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
