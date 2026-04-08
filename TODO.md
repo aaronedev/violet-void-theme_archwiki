@@ -809,6 +809,39 @@ Last updated: 2026-04-08 17:36
 
 ## Visual Scout Findings
 
+### 2026-04-08 16:36
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: AE=0 (pixel-identical) — no visual drift detected
+  - Desktop hashes consistent (8373727d) across all pages and states
+  - Mobile hashes consistent (9eae55c2) across all pages and states
+  - Interactive state triggers fired successfully (menu-open, toc-open, search-active)
+  - Theme visually stable — no open-state regressions detected
+  - ArchWiki accessible
+  - Build succeeds: 77871dc (20260408.18.37)
+  - Worktree clean after build verbump
+  - No CSS src/ changes since last scout (last CSS: 8f2ecb2)
+- Artifact paths:
+  - (in-memory capture, no new artifacts needed — baselines unchanged)
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
 ### 2026-04-08 00:22
 - Run target: visual scout
 - Verdict: CLEAN
