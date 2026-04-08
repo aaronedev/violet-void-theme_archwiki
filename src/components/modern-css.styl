@@ -1146,7 +1146,7 @@ h4[id]
   --base-rgb: 24, 24, 24;
 
   /* RGB decomposition of $secondary-blue (#c7b8ff = rgb(199, 184, 255)) for use in rgba() */
-  --secondary-blue-rgb: 199, 184, 255;
+  --secondary-blue-rgb: 199, 184, 255
 }
 
 // Apply custom properties to root
@@ -2251,6 +2251,13 @@ h4[id]
       border-top-color: transparent;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
+    }
+
+    /* Remove spinner animation for users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      :state(loading)::after {
+        animation: none;
+      }
     }
 
     /* Generic error state */
