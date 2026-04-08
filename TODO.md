@@ -14023,3 +14023,16 @@ Last updated: 2026-04-08 00:49
 - Implementer instructions:
   1. No CSS follow-ups outstanding — theme is clean.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 08:12
+- Review target: 853a549 + e64dadb
+- Verdict: APPROVED
+- Findings:
+  - **`853a549`** (07:56): Adds `color-scheme dark` to `html` in `base.styl`. Correct — signals dark theme to browser-native controls (color pickers, range sliders, `<details>` disclosure widgets, scrollbars). 3 lines, scoped, standard dark-theme best practice. Some redundancy with existing `@media (prefers-color-scheme:light) { body,html { color-scheme:dark } }` override in `accessibility.styl`, but the unconditional declaration is more correct (applies to all users, not just those with light OS preference). Build succeeds. `dist/main.css` confirms 6 instances of `color-scheme` in compiled output — all consistent.
+  - **`e64dadb`** (06:50): Reverts button hover `box-shadow` opacity from `rgba(15, 15, 15, 0.28)` to `rgba(15, 15, 15, 0.2)` inside `@css{}` block in `animations.styl:412`. Correct — hardcoded literal value (no `$darker` leakage). Compiled CSS line 893 confirms single `box-shadow: 0 2px 4px rgba(15, 15, 15, 0.2)`. Commit message claims 0.2 is "established baseline."
+  - **OSCILLATOR COUNT: 12+**. This button hover value has now been toggled at least 12 times. No structural prevention exists. Same warning as all prior reviews.
+  - **Worktree**: clean. Only `package.json` verbump (`20260408.08.12`) from build.
+  - **Build succeeds**: `dist/main.css` generated cleanly.
+- Implementer instructions:
+  1. No further action needed — both commits are technically correct.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
