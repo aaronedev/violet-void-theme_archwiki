@@ -3014,7 +3014,7 @@ Last updated: 2026-04-08 00:49
 - [x] **`corner-shape` for Corners** (87%+ browser support)
   - Custom corner shapes: cut, scoop, bevel, cliff, rounded with fallbacks
   - Applied to buttons, inputs, selects, cards, dialogs, dropdowns, panels, alerts
-  - Commit: pending
+  - Commit: f6ca6c0
   - File: `src/components/ui-components.styl`
   - Custom corner shapes
   - `corner-shape: scoop;`
