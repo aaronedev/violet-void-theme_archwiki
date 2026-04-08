@@ -14345,6 +14345,7 @@ Last updated: 2026-04-09 00:46
 
 
 - [x] f505412 (reverted by 148e1e0): Revert .mobile-quick-access compound selector — restore standalone .mobile-quick-access selector with explicit z-index 999 (reverted by fix commit). (done: 2026-04-08 23:44, commit: 148e1e0)
+- [ ] b237b3f: Revert .mobile-quick-access.z-999 compound selector (third attempt) — same issue as f505412, FAB child styles under compound selector are dead code for userstyle context
 
 ### 2026-04-09 00:02 (hostile review)
 - Review target: `148e1e0` (revert .mobile-quick-access compound selector) + `2129328` ($border→$border-subtle fix) + dirty worktree (package.json only)
@@ -14361,3 +14362,20 @@ Last updated: 2026-04-09 00:46
 - Implementer instructions:
   1. No further action needed — both commits approved.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 00:49 (hostile review)
+- Review target: `b237b3f` (fix: split .mobile-quick-access z-index into separate .z-999 utility rule) + `e8a4f73` (completion log)
+- Verdict: REJECTED
+- Findings:
+  - **`b237b3f` reintroduces the exact compound selector problem rejected at 22:52**. The compiled CSS has all FAB child styles (`.fab-main`, `.fab-items`, `.fab-item`, `.fab-tooltip`) under `.mobile-quick-access.z-999` — a compound selector requiring BOTH classes on the DOM element. Since this is a Stylus userstyle (CSS-only injection), the theme cannot add `.z-999` to ArchWiki's DOM elements. If `.mobile-quick-access` matches a real DOM element, it gets position/box-model but NO z-index, NO FAB button styles, NO animation — because all those rules are under the compound selector that requires `.z-999`.
+  - **This is the THIRD attempt** at this refactor: `21b6df9` (unrelated files, misleading message) → `f505412` (compound selector, rejected at 22:52) → `148e1e0` (revert, approved at 00:02) → `b237b3f` (compound selector again, same problem). The 22:52 review explicitly stated: "The z-index utility class pattern (.z-999) cannot work for userstyles where the theme doesn't control the DOM." The implementer ignored this and repeated the mistake.
+  - **Accessibility overrides are orphaned**: `@media (prefers-reduced-motion:reduce)` targets `.mobile-quick-access .fab-main` (bare, not `.z-999`) but the `.fab-main` styles only exist under `.mobile-quick-access.z-999 .fab-main`. The overrides match nothing — dead code.
+  - **`forced-colors:active` override same issue**: `.mobile-quick-access .fab-main` targets a child selector that only exists under `.mobile-quick-access.z-999`.
+  - **Completion log (`e8a4f73`) documents a broken commit**: Claims the split "avoids breaking child selectors in @media blocks" — it doesn't. The @media blocks target bare `.mobile-quick-access` children, but those children's base styles are under `.mobile-quick-access.z-999`.
+  - **Build compiles cleanly** — the CSS is syntactically valid but functionally broken.
+  - **Scout pipeline non-functional** (Anubis WAF). No visual evidence possible.
+- Implementer instructions:
+  1. **Revert `b237b3f`**: restore `148e1e0` state where `.mobile-quick-access` is a standalone selector with `z-index 999` inline, and all child styles nest under it.
+  2. **Stop attempting the `.z-999` compound selector refactor.** It has been rejected three times now. The pattern is fundamentally incompatible with userstyles that cannot control DOM class attributes.
+  3. If documenting the z-index value is important, add a comment: `z-index 999 // matches .z-999 utility class value`.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
