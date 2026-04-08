@@ -14201,3 +14201,19 @@ Last updated: 2026-04-08 17:36
 - Implementer instructions:
   1. Commit approved — no follow-up needed.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-08 17:49 (hostile review)
+- Review target: `8f2ecb2` (fix: remove duplicate $border alias) + `8c807da` (fix: add missing semicolon to --secondary-blue-rgb) + `ff13992` (completion log)
+- Verdict: REJECTED
+- Findings:
+  - **`8f2ecb2` introduces a CSS compilation regression.** The commit removes `$border` from `colors.styl` (replacing with a comment saying "use $border-subtle") and updates the single reference in `lazy.styl`. However, **two `$border` references in `forms-enhanced.styl` (lines 2095, 2110) were missed**. These now resolve to the literal string `$border` in the compiled CSS instead of a color value.
+  - **Compiled CSS contains literal `$border` strings**: `dist/main.css` outputs `border-color:$border` for `input:read-write`, `textarea:read-write`, `select:read-write`, and `input.editable`, `textarea.editable`, `select.editable` selectors. This is invalid CSS — border-color will be ignored by browsers, falling through to the cascade (likely `rgba(199,184,255,0.08)` from the `:read-only` rule above, or whatever the browser default is).
+  - **Verification**: `rg '\$border' dist/main.css` confirms literal `$border` in compiled output. `rg '\$border\b' src/ -g '*.styl' | rg -v '\$border-' | rg -v '//' | rg -v 'border-radius'` shows exactly 2 remaining hits, both in `forms-enhanced.styl`.
+  - **`8c807da`** is clean: adds missing trailing semicolon to `--secondary-blue-rgb: 199, 184, 255;` in modern-css.styl and removes 2 blank lines. Correct cosmetic fix, no functional change. **APPROVED**.
+  - **`ff13992`** is a completion log update only — no CSS. **APPROVED**.
+  - **Worktree clean** (aside from TODO.md and verbump). Build succeeds (but with the `$border` regression).
+  - **Scout pipeline non-functional** (no Playwright, Anubis WAF blocking). No visual regression data available.
+- Implementer instructions:
+  1. **Fix `forms-enhanced.styl` lines 2095 and 2110**: replace `$border` with `$border-subtle` to match the `8f2ecb2` refactor intent. These are the only 2 remaining `$border` (non-`$border-subtle`, non-`$border-radius`) references in the codebase.
+  2. Rebuild and verify `rg '\$border' dist/main.css` returns zero hits (no unresolved variables in compiled CSS).
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
