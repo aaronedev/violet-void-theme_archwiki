@@ -624,3 +624,22 @@
 
     &:hover
       background-color rgba($arch-blue, 0.1)
+
+// =============================================================================
+// PREFERS REDUCED TRANSPARENCY
+// =============================================================================
+// Remove backdrop-filter blur and use solid backgrounds for users who
+// prefer reduced transparency (Windows 10+, macOS, etc.). Follows the
+// established pattern from modern-css.styl, glass.styl, and search.styl.
+
+@media (prefers-reduced-transparency reduce)
+  .oo-ui-windowManager
+    &.oo-ui-windowManager-modal
+      > .oo-ui-dialog
+        background-color $darker
+
+  .oo-ui-dropdownWidget-menu,
+  .oo-ui-menuSelectWidget
+    background-color $darker
+    backdrop-filter none
+    -webkit-backdrop-filter none
