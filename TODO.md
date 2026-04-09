@@ -14671,3 +14671,31 @@ Last updated: 2026-04-09 16:41
 - Implementer instructions:
   1. No action needed — commit is approved.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 17:49 (archwiki-visual-scout-2h)
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION (BLOCKED)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop + mobile)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - CRITICAL: ArchWiki is returning "Access Denied" error page (Techaro/Anubis firewall) on ALL page loads from this host. Every capture (current AND baseline) is the same error page screenshot — AE=0 is coincidental matching of identical error pages, not correctness verification.
+  - File sizes match baseline (76277 bytes desktop, 69444 bytes mobile), confirming all captures are the same corrupted/error content.
+  - All 40 expected screenshots captured successfully with correct filenames, but all depict the Anubis block page instead of actual wiki content.
+  - Cannot perform meaningful visual regression check — theme correctness unverifiable while firewall block persists.
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.default.png
+  - .agent/archwiki/current/systemd.mobile.menu-open.png
+  - (all 40 captures present but all show Access Denied page)
+- Implementer instructions:
+  1. Investigate ArchWiki firewall block (Techaro/Anubis error code 4d1dbaddfcc0f385). Theme visual regression cannot be verified until unblocked.
+  2. Consider running captures from a different network/exit node if possible.
+  3. All 40 baseline files are identical error-page screenshots — true baseline coverage is compromised.
