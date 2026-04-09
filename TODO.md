@@ -78,6 +78,11 @@
 
 ## ♿ Accessibility
 
+- [x] **`prefers-reduced-motion` for Scroll-snap and View Animations**
+  - Disables scroll-snap, snap indicators, and view-based animation timelines
+  - File: `src/components/navigation.styl`
+  - Commit: d36d041
+
 - [x] **`prefers-reduced-transparency` Media Query**
   - Solid backgrounds for transparency-sensitive users
   - Commit: dd881f5
