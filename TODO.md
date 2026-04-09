@@ -603,6 +603,20 @@ Last updated: 2026-04-09 02:46
 
 ## Reviewer Findings
 
+### 2026-04-09 06:14 (archwiki-reviewer-35m)
+- Review target: `5af6961` (HEAD — search dropdown overflow + mobile FAB selector fix)
+- Verdict: APPROVED
+- Findings:
+  - **navigation.styl search dropdown overflow fix** is correct and well-scoped: `min-width: 0` on `.cdx-menu-item__content` and `.cdx-menu-item__text`, `flex: 1 1 auto` on the text column, `overflow-wrap: anywhere` + `word-break: break-word` on label/description/supporting-text. Standard flex overflow prevention pattern consistent with 15+ prior overflow-wrap fixes across the codebase. No hardcoded colors. Scoped to `header.vector-header li.cdx-menu-item .cdx-menu-item__content`.
+  - **mobile.styl FAB selector split** resolves the 22:17 review finding — `.mobile-quick-access` now gets bare positioning (fixed/bottom/right), `.mobile-quick-access.z-999` only applies z-index. Safe-area `@media` block now targets bare `.mobile-quick-access` instead of `.mobile-quick-access.z-999`. The comment explains the rationale.
+  - **Fragile coupling**: `.fab-main` and all child selectors remain nested under `.mobile-quick-access.z-999`, meaning the FAB styling depends on `.z-999` being present. Functional (`.z-999` is always applied) but fragile — if `.z-999` is ever removed, the FAB loses all visual styling. Non-blocking but worth noting.
+  - **No post-commit search-active visual evidence**: Search dropdown screenshots exist from 04:57 (~1hr before commit at 05:59) but no post-commit captures. The changes are overflow fixes that only affect edge-case long text — visual appearance is identical under normal conditions. Open-state evidence gap is non-blocking for this change type.
+  - **Build succeeds**: `dist/main.css` generated cleanly. Both overflow and FAB changes confirmed in compiled output.
+  - **Worktree clean for CSS**: only `package.json` dirty (build verbump) + 5 untracked scout scripts. No uncommitted CSS.
+- Implementer instructions:
+  1. No action needed — commit is approved.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-08 22:17 (archwiki-reviewer-35m)
 - Review target: `21b6df9` (HEAD — claims mobile.styl z-index fix, actually only adds scout tooling)
 - Verdict: NEEDS_FOLLOWUP
