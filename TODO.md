@@ -614,8 +614,9 @@
 
 | 2026-04-09 18:11 | Remove dead `select:open` rule from interactive-states.styl | c753eba |
 | 2026-04-09 19:15 | Wrap all scroll-snap-type rules in `@media (prefers-reduced-motion: no-preference)` — four locations in navigation.styl: TOC (#toc/.toc), main dropdown menus (vector-dropdown-content), sticky TOC dropdown, and vector-toc | dab3d3c |
+| 2026-04-09 20:17 | Add prefers-reduced-transparency override for OOUI dialog and menu widgets — solid $darker backgrounds instead of backdrop-filter blur for .oo-ui-windowManager-modal .oo-ui-dialog, .oo-ui-dropdownWidget-menu, and .oo-ui-menuSelectWidget | 374bd53 |
 
-Last updated: 2026-04-09 18:45
+Last updated: 2026-04-09 20:43
 
 ## Reviewer Findings
 
