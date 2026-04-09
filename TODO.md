@@ -596,10 +596,12 @@
 | 2026-04-08 00:08 | Fix literal $darker in compiled CSS (animations.styl @css block) | Replace `rgba($darker, 0.28)` with `rgba(15, 15, 15, 0.28)` for `.mw-ui-button:hover` and `.cdx-button:hover` inside `@css` block in animations.styl — `$darker` is not expanded inside `@css` blocks (Stylus limitation); literal RGB value ensures valid CSS output. Recurring regression from prior @css/$darker fixes. | 31e483f |
 | 2026-04-08 17:36 | Remove duplicate $border alias — use $border-subtle instead | Remove `$border = rgba($secondary-blue, 0.08)` from colors.styl (duplicate of $border-subtle in layout.styl); replace single usage in lazy.styl:160 with `$border-subtle` | 8f2ecb2 |
 | 2026-04-08 19:48 | Fix undefined $border in forms-enhanced.styl read-write/editable border-color | `$border` removed in 8f2ecb2 but two references remained in forms-enhanced.styl for :read-write and :editable input border-color; replaced with `$border-subtle` which is the correct established alias (rgba($secondary-blue, 0.4)) | 2129328 |
+| 2026-04-09 07:24 | Add prefers-reduced-motion override for cargo query interface | Add @media (prefers-reduced-motion: reduce) block disabling transitions and animations for cargo interactive elements (.field-chip, .remove-condition, .add-condition, .cargo-run-btn, th.sortable, tr, .page-button, .cargo-export-btn, .map-btn for transitions; .loading-spinner for animation); pattern matches established prefers-reduced-motion treatment in badges.styl, forms-enhanced.styl | fcf77e6 |
+| 2026-04-09 07:52 | Prevent overflow in .suggestions-special dropdown items | Add overflow-wrap: break-word and word-break: break-word to .suggestions-special container in search.styl — prevents long query text in "Special actions" dropdown items from overflowing the container; follows established overflow-wrap pattern across 15+ prior fixes | e9a4f30 |
 
 ---
 
-Last updated: 2026-04-09 07:13
+Last updated: 2026-04-09 09:02
 
 ## Reviewer Findings
 
@@ -14466,3 +14468,18 @@ Last updated: 2026-04-09 07:13
   1. Add completion log entries for `44bd8ca` (boxes.styl border-radius), `9dc16be` (notifications.styl border-radius — note 11px→12px and 7px→6px semantic rounding), and `3a00799` (user-pages.styl border-radius). This was already instructed at 02:38 and remains undone.
   2. `c49b729` approved — no further action needed for the z-index change.
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 09:02 (archwiki-reviewer-35m)
+- Review target: `e9a4f30` (HEAD) + `fcf77e6` — two new CSS commits since last review at 07:13
+- Verdict: APPROVED
+- Findings:
+  - **`fcf77e6`** (07:24): Adds `@media (prefers-reduced-motion: reduce)` block in `cargo.styl` for cargo interactive elements. Targets 8 selectors for `transition: none` and `.loading-spinner` for `animation: none`. Pattern matches established treatment across badges.styl, forms-enhanced.styl, and other component files. Vestibular hazard flag in commit message is accurate — `.loading-spinner` uses `animation: spin 1s linear infinite` which would otherwise play indefinitely for reduced-motion users. Build succeeds.
+  - **`e9a4f30`** (07:52): Adds `overflow-wrap: break-word` + `word-break: break-word` to `.suggestions-special` container in `search.styl`. Standard flex overflow prevention pattern — identical to 15+ prior overflow-wrap fixes across the codebase. No hardcoded colors. Scoped to `header.vector-header li.cdx-menu-item .cdx-menu-item__content`. Build succeeds.
+  - **Both commits are pre-commit state**: not yet in the completion log before this review. Completion log entries added by this review.
+  - **No open-state evidence needed**: Neither change is an interactive UI state fix — prefers-reduced-motion is a system-preference activation (invisible unless preference is set), and overflow-wrap is a passive wrapping fix that only manifests under edge-case long text.
+  - **Worktree clean**: only `package.json` verbump (`20260409.09.04`) + 5 untracked scout scripts. No uncommitted CSS.
+  - **Build succeeds**: `dist/main.css` generated cleanly.
+  - **418+ unpushed commits**: pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. No further action needed — both commits approved.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
