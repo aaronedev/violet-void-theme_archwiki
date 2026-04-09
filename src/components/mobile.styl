@@ -759,11 +759,6 @@ table.mw-html-magic-mw-data-interface
   bottom 1em
   right 1em
 
-// z-index via utility class — z-index applied separately to avoid breaking
-// child selectors in @media blocks that target .mobile-quick-access .fab-main
-.mobile-quick-access.z-999
-  z-index 999
-
   // Main FAB button
   .fab-main
     width 56px
@@ -859,6 +854,12 @@ table.mw-html-magic-mw-data-interface
       &:hover .fab-tooltip
         opacity 1
         visibility visible
+
+// z-index via utility class — decoupled from FAB visual styling so that
+// @media blocks targeting .mobile-quick-access .fab-main (forced-colors,
+// reduced-motion, safe-area) match regardless of which z-index class is applied.
+.mobile-quick-access.z-999
+  z-index 999
 
 // Ensure body doesn't scroll when menu is open
 body.menu-open
