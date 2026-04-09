@@ -14780,3 +14780,19 @@ Last updated: 2026-04-09 20:43
 - Implementer instructions:
   1. No action needed — theme is stable.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 19:25 (archwiki-reviewer-35m)
+- Review target: `374bd53` + `dab3d3c` (last CSS review: `c753eba` at 18:11)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`374bd53`** (20:17): Add `prefers-reduced-transparency` override for OOUI `.oo-ui-windowManager-modal > .oo-ui-dialog`, `.oo-ui-dropdownWidget-menu`, `.oo-ui-menuSelectWidget` — solid `$darker` backgrounds, `backdrop-filter: none`. Follows established pattern from 15+ prior transparency-override commits. Correct, well-scoped, no regressions. **APPROVED sub-verdict.**
+  - **`dab3d3c`** (17:16 UTC / 19:16 local): Wrap 4 `scroll-snap-type` rules in `navigation.styl` with `@media (prefers-reduced-motion: no-preference)` — TOC (#toc/.toc), main dropdown menus, sticky TOC dropdown, vector-toc. Pattern correctly mirrors `d36d041`'s `@media (prefers-reduced-motion: reduce)` block for utility classes. Together they provide complete reduced-motion coverage for scroll-snap.
+  - **`modern-css.styl` scroll-snap NOT wrapped**: Two instances of `scroll-snap-type` in `modern-css.styl` (`.mw-parser-output` line 102, `.vector-menu-content` line 225) are NOT inside `@media (prefers-reduced-motion: no-preference)`. These will still apply scroll-snap for users with `prefers-reduced-motion: no-preference`, creating inconsistent behavior — built-in components get the media query but content-area selectors don't. Not a regression (they were always unwrapped), but an incomplete fix.
+  - **Completion log accuracy**: `dab3d3c` entry correctly states "four locations in navigation.styl" — commit only touched `navigation.styl`. `modern-css.styl` is not mentioned, so no inaccuracy. `374bd53` entry complete.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260409.21.23`.
+  - **Visual evidence**: Both are CSS behavior changes, not visual appearance changes. Scroll-snap is a motion feature; transparency override is a background/blur change. No open-state screenshots needed. Scout clean from 15:42 run (40/40 AE=0).
+  - **Worktree**: `package.json` dirty (verbump `20260409.21.23`) + untracked scout scripts. No uncommitted CSS.
+  - **451 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. Wrap the 2 `scroll-snap-type` instances in `modern-css.styl` (`.mw-parser-output` and `.vector-menu-content`) in `@media (prefers-reduced-motion: no-preference)` to match the `navigation.styl` treatment — ensures consistent reduced-motion behavior across all scroll-snap usage.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
