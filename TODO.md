@@ -616,6 +616,22 @@ Last updated: 2026-04-09 16:41
 
 ## Reviewer Findings
 
+### 2026-04-09 18:34 (archwiki-reviewer-35m)
+- Review target: `c753eba`
+- Verdict: APPROVED (minor cleanup)
+- Findings:
+  - **`c753eba`** (18:11): Removes `select:open` rule (6 lines) from `interactive-states.styl`. Claimed rationale (":open pseudo-class does not apply to `<select>`") is **factually incorrect** — `:open` does apply to `<select>` per CSS Selectors 4 spec. However, the removal is functionally correct: `select:open` was source-only dead code. Build from prior commit confirms it never appeared in `dist/main.css` — the Stylus→PostCSS pipeline was already dropping it silently. Dead code removal is valid cleanup regardless of wrong spec reasoning.
+  - **`c753eba` missing from completion log**: `5d6c743` (16:41) is the last completion log entry. `c753eba` (18:11) has no entry. Must be added.
+  - **Stale entry in completion log**: `e121d8c` reviewer entry (line 14350) says "All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open`, `select:open`" — this is now inaccurate since `select:open` was removed. Entry should be updated or flagged stale.
+  - **No visual evidence needed**: Dead code removal has zero visual impact. No interactive open state involved.
+  - **Build succeeds**: `dist/main.css` generates cleanly. No regression.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump) + 6 untracked scout scripts. No uncommitted CSS.
+  - **444 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. Add `c753eba` to the completion log with brief description of the dead code removal.
+  2. Update or flag stale the `e121d8c` completion log entry (line 14350) — "select:open" no longer accurate since removal.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-09 12:35 (archwiki-reviewer-35m)
 - Review target: `46403fc` + `4e531ea`
 - Verdict: APPROVED
