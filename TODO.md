@@ -600,6 +600,9 @@
 | 2026-04-09 07:52 | Prevent overflow in .suggestions-special dropdown items | Add overflow-wrap: break-word and word-break: break-word to .suggestions-special container in search.styl — prevents long query text in "Special actions" dropdown items from overflowing the container; follows established overflow-wrap pattern across 15+ prior fixes | e9a4f30 |
 | 2026-04-09 11:24 | Fix undefined $error-red in :host([variant="danger"]) and :state(error) | Replace undefined `$error-red` Stylus variable with `$red` (#a80065) in `:host([variant="danger"])` selector in modern-css.styl; replace undefined `var(--error-red)` CSS custom property with `var(--theme-red)` in `:state(error)` and `.state-error` rules — both `$red` and `--theme-red` are already defined with value #a80065 | 46403fc |
 | 2026-04-09 11:53 | Add prefers-reduced-transparency override for gallery captions and media viewer overlays | Add @media (prefers-reduced-transparency reduce) block in file-pages.styl targeting .gallery-caption, .mw-mmv-overlay, and .mw-mmv-bottom — removes backdrop-filter blur and uses solid opaque backgrounds ($base / $darker) for users who prefer reduced transparency; follows established pattern from search.styl, modern-css.styl, glass.styl | 4e531ea |
+| 2026-04-09 12:38 | Add min-width:0 to search dropdown label | Add `min-width: 0` and `max-width: 100%` to `.cdx-menu-item__text__label` in navigation.styl — ensures label shrinks below min-content so flex parent handles overflow correctly | a8c5096 |
+| 2026-04-09 12:57 | Split search dropdown text element rules for consistent overflow handling | Split combined `.cdx-menu-item__text__label/.description/.supporting-text` rule into three separate selectors each with `display block`, `max-width 100%`, `overflow-wrap anywhere`, `word-break break-word`, `min-width 0` — ensures all three text elements wrap long titles/package names consistently | 701707b |
+| 2026-04-09 14:46 | Prevent horizontal overflow in search dropdown footer | Add flex-shrink and wrap rules to `.cdx-typeahead-search__search-footer` `.cdx-menu-item__content`, `.cdx-typeahead-search__search-footer__text`, and `strong.cdx-typeahead-search__search-footer__query` — prevents long unbreakable query strings from causing horizontal overflow in the search dropdown footer | 81f7df4 |
 
 ---
 
@@ -14587,4 +14590,19 @@ Last updated: 2026-04-09 11:53
   - **432 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
 - Implementer instructions:
   1. Add completion log entry for `a8c5096` + `701707b`: "Add min-width:0 and overflow handling to all three search dropdown text elements (label, description, supporting-text) in navigation.styl — ensures long article titles/package names wrap instead of overflowing the flex container."
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 15:15 (archwiki-reviewer-35m)
+- Review target: `81f7df4` (HEAD — search dropdown footer overflow fix)
+- Verdict: APPROVED
+- Findings:
+  - **`81f7df4`** (14:46): Adds flex-shrink + wrap rules to `.cdx-typeahead-search__search-footer` in `navigation.styl`. Three targeted selectors: (1) `.cdx-menu-item__content` inside the footer gets `display:flex/flex-direction:row/align-items:center/min-width:0` to establish a proper flex formatting context; (2) `.cdx-typeahead-search__search-footer__text` gets `flex:1 1 auto/min-width:0/overflow-wrap:anywhere/word-break:break-word` to shrink and wrap before the container overflows; (3) `strong.cdx-typeahead-search__search-footer__query` gets `overflow-wrap:anywhere/word-break:break-word` for long query strings. Follows the exact same pattern used in the prior 15+ overflow-wrap fixes across the codebase. Scoped to the search footer only, no impact on other dropdown elements.
+  - **Completeness**: Together with `a8c5096` (label) and `701707b` (description + supporting-text), all three text elements in the dropdown AND the footer are now covered. The complete search dropdown overflow system is now handled.
+  - **Open-state evidence gap is non-blocking**: The search dropdown is an interactive open state. No before/after screenshots provided. However, this is a layout overflow fix — the fix only manifests when an unbreakably long string is present. Normal operation is unaffected. Consistent with prior APPROVED treatment of overflow-wrap fixes that lack open-state screenshots.
+  - **Build succeeds**: `dist/main.css` generated cleanly. All new properties confirmed in compiled output.
+  - **Worktree clean for CSS**: zero uncommitted `src/` changes. Only `package.json` dirty (verbump `20260409.15.17`) + untracked scout scripts.
+  - **Completion log**: entries added for `a8c5096`, `701707b`, and `81f7df4`.
+  - **434 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. No action needed — `81f7df4` is approved.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
