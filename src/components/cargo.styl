@@ -470,6 +470,25 @@
     font-size 0.85rem
 
 // =============================================================================
+// PREFERS-REDUCED-MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion reduce)
+  .field-chip
+  .remove-condition
+  .add-condition
+  .cargo-run-btn
+  th.sortable
+  tr
+  .page-button
+  .cargo-export-btn
+  .map-btn
+    transition none
+
+  .loading-spinner
+    animation none
+
+// =============================================================================
 // RESPONSIVE ADJUSTMENTS
 // =============================================================================
 
