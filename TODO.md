@@ -598,10 +598,11 @@
 | 2026-04-08 19:48 | Fix undefined $border in forms-enhanced.styl read-write/editable border-color | `$border` removed in 8f2ecb2 but two references remained in forms-enhanced.styl for :read-write and :editable input border-color; replaced with `$border-subtle` which is the correct established alias (rgba($secondary-blue, 0.4)) | 2129328 |
 | 2026-04-09 07:24 | Add prefers-reduced-motion override for cargo query interface | Add @media (prefers-reduced-motion: reduce) block disabling transitions and animations for cargo interactive elements (.field-chip, .remove-condition, .add-condition, .cargo-run-btn, th.sortable, tr, .page-button, .cargo-export-btn, .map-btn for transitions; .loading-spinner for animation); pattern matches established prefers-reduced-motion treatment in badges.styl, forms-enhanced.styl | fcf77e6 |
 | 2026-04-09 07:52 | Prevent overflow in .suggestions-special dropdown items | Add overflow-wrap: break-word and word-break: break-word to .suggestions-special container in search.styl — prevents long query text in "Special actions" dropdown items from overflowing the container; follows established overflow-wrap pattern across 15+ prior fixes | e9a4f30 |
+| 2026-04-09 11:24 | Fix undefined $error-red in :host([variant="danger"]) and :state(error) | Replace undefined `$error-red` Stylus variable with `$red` (#a80065) in `:host([variant="danger"])` selector in modern-css.styl; replace undefined `var(--error-red)` CSS custom property with `var(--theme-red)` in `:state(error)` and `.state-error` rules — both `$red` and `--theme-red` are already defined with value #a80065 | 46403fc |
 
 ---
 
-Last updated: 2026-04-09 10:18
+Last updated: 2026-04-09 11:24
 
 ## Reviewer Findings
 
