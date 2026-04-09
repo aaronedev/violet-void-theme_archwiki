@@ -599,7 +599,7 @@
 
 ---
 
-Last updated: 2026-04-09 00:46
+Last updated: 2026-04-09 02:46
 
 ## Reviewer Findings
 
@@ -8846,7 +8846,7 @@ Last updated: 2026-04-09 00:46
 | 2026-04-03 | overflow-wrap for systemd unit name fields | Added overflow-wrap: break-word to .device-name, .timer-name, .socket-name, .path-name, .device-device-path, .mount-name, .automount-name, and .service-description — prevents long unit names from overflowing narrow containers | 7ef2426 |
 | 2026-04-03 | overflow-wrap for systemd-slice unit name fields | Added overflow-wrap: break-word to .slice-name and .resource-item in .systemd-slice — prevents long slice names and resource item text from overflowing narrow flex containers | 5b7c7a3 |
 | 2026-04-03 | overflow-wrap for .scope-name | Added overflow-wrap: break-word to .scope-name in .systemd-scope — prevents long scope names from overflowing narrow containers (consistent with other unit name fields) | e81e1b6 |
-| 2026-04-09 | Split .mobile-quick-access z-index into .z-999 utility rule | Split .mobile-quick-access into base rule (position/box-model) and .mobile-quick-access.z-999 utility rule — avoids breaking @media blocks targeting bare .mobile-quick-access for safe-area, reduced-motion, and forced-colors | b237b3f |
+| 2026-04-09 02:46 | Apply z-index 999 directly on .mobile-quick-access base selector | Inline z-index into base selector — avoids HTML dependency from compound .z-999 class approach; @media blocks targeting bare .mobile-quick-access still work correctly | 098f8bd |
 | 2026-04-09 | Replace hardcoded border-radius with $border-radius variables in notifications.styl | 9px → $border-radius-md, 11px → $border-radius-lg, 7px → $border-radius-sm for notification badge variants | 9dc16be |
 | 2026-04-09 02:17 | Replace hardcoded border-radius 9px with $border-radius-md in user-pages.styl | Notification badge (.notification-badge) border-radius — consistent with 44bd8ca (boxes.styl) and 9dc16be (notifications.styl) pattern | 3a00799 |
 
