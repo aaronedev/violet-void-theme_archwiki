@@ -14527,3 +14527,18 @@ Last updated: 2026-04-09 11:53
 - Implementer instructions:
   1. No action needed — `46403fc` fix is complete and approved.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 13:11 (archwiki-reviewer-35m)
+- Review target: `a8c5096` + `701707b` (search dropdown text overflow fixes)
+- Verdict: APPROVED
+- Findings:
+  - **`a8c5096`** (12:38): Adds `min-width: 0` and `max-width: 100%` to `.cdx-menu-item__text__label` in `navigation.styl`. Follow-up to `5af6961` which added the base flex/overflow handling for the search dropdown text column. Label was the only one of the three text elements (label, description, supporting-text) missing `min-width: 0`, which prevented it from shrinking below `min-content` in the flex layout. Correct fix, 2-line scoped addition.
+  - **`701707b`** (12:57): Splits the shared `.cdx-menu-item__text__label/.cdx-menu-item__text__description/.cdx-menu-item__text__supporting-text` rule into three separate rules, each with `display block; max-width 100%; overflow-wrap anywhere; word-break break-word; min-width 0`. This ensures all three elements get consistent overflow handling. The label retains its `color $lighter; font-size 0.9em` styling. Correct refactor — no behavioral change from `a8c5096`, just better code organization. 14 insertions, 4 deletions. Scoped to `header.vector-header li.cdx-menu-item .cdx-menu-item__content` context.
+  - **Build succeeds**: `dist/main.css` generated cleanly (v20260409.13.11). Compiled CSS confirms all three selectors have `min-width:0`, `max-width:100%`, `overflow-wrap:anywhere`, `word-break:break-word`.
+  - **No open-state evidence needed**: Search dropdown text overflow is a default-state layout issue (long text in a flex container). Only manifests when content exceeds container width — no interactive open/close state to capture. Consistent with prior overflow-wrap review precedent.
+  - **Completion log missing**: Neither `a8c5096` nor `701707b` has a completion log entry.
+  - **Worktree**: only `package.json` dirty (verbump). No uncommitted CSS.
+  - **Prior CSS commits since last review (12:35) already approved**: `46403fc`, `4e531ea` — no concern.
+- Implementer instructions:
+  1. Add completion log entry for `a8c5096` + `701707b` (can be one entry): "Add min-width:0 and overflow handling to all three search dropdown text elements (label, description, supporting-text) in navigation.styl — ensures long article titles/package names wrap instead of overflowing the flex container."
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
