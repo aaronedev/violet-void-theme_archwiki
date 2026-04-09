@@ -2080,6 +2080,50 @@ h6:hover .mw-editsection
 
 
 // =============================================================================
+// =============================================================================
+// REDUCED MOTION FOR SCROLL-SNAP AND ANIMATIONS
+// =============================================================================
+// Disable scroll-snap, snap indicators, and view-based animations
+// for users who prefer reduced motion. Follows established pattern
+// from accessibility.styl, ui-components.styl, and other files.
+// Browser support: 97%+
+@media (prefers-reduced-motion reduce)
+  // Scroll snap utility classes
+  .scroll-snap-start
+  .scroll-snap-boundaries
+  .scroll-snap-proximity
+  .scroll-snap-item-snapped
+    scroll-snap-type none
+    transition none
+
+  .scroll-snap-item-snapped
+    &.snapped
+      background-color transparent
+      transition none
+
+    &.snapped-x
+    &.snapped-y
+      transition none
+
+  // Snap indicator animations
+  .snap-indicator
+    transition none
+
+    &.snap-x
+      transform none
+
+    &.snap-y
+      transform none
+
+  // View-based animation timelines
+  .animate-on-entry
+  .animate-on-exit
+  .animate-on-cross
+    animation none
+    animation-timeline auto
+    animation-range auto
+
+// =============================================================================
 // MOBILE STICKY HEADER OVERFLOW FIX
 // =============================================================================
 // On small mobile screens (< 768px), the sticky header shows navigation links
