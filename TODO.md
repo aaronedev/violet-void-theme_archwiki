@@ -603,10 +603,11 @@
 | 2026-04-09 12:38 | Add min-width:0 to search dropdown label | Add `min-width: 0` and `max-width: 100%` to `.cdx-menu-item__text__label` in navigation.styl — ensures label shrinks below min-content so flex parent handles overflow correctly | a8c5096 |
 | 2026-04-09 12:57 | Split search dropdown text element rules for consistent overflow handling | Split combined `.cdx-menu-item__text__label/.description/.supporting-text` rule into three separate selectors each with `display block`, `max-width 100%`, `overflow-wrap anywhere`, `word-break break-word`, `min-width 0` — ensures all three text elements wrap long titles/package names consistently | 701707b |
 | 2026-04-09 14:46 | Prevent horizontal overflow in search dropdown footer | Add flex-shrink and wrap rules to `.cdx-typeahead-search__search-footer` `.cdx-menu-item__content`, `.cdx-typeahead-search__search-footer__text`, and `strong.cdx-typeahead-search__search-footer__query` — prevents long unbreakable query strings from causing horizontal overflow in the search dropdown footer | 81f7df4 |
+| 2026-04-09 16:41 | Add overflow-wrap: break-word to .mw-search-result-heading a and .search-result-title a in search.styl — prevents long article titles in search result links from overflowing narrow containers; follows established overflow-wrap pattern from 15+ prior fixes | 5d6c743 |
 
 ---
 
-Last updated: 2026-04-09 11:53
+Last updated: 2026-04-09 16:41
 
 ## Reviewer Findings
 
