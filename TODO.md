@@ -14416,3 +14416,19 @@ Last updated: 2026-04-09 02:46
   2. For `9dc16be`: the 11px→12px and 7px→6px substitutions are intentional semantic rounding — document this in the completion log entry explicitly so future reviewers don't flag it as drift.
   3. For `b237b3f`: verify the `.z-999` class is actually applied in the HTML (or document that it's a utility class that must be applied manually). If z-index 999 is critical for FAB visibility, consider inlining it back into `.mobile-quick-access` to avoid the HTML dependency.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 03:14 (hostile review)
+- Review target: c49b729 + 098f8bd (dirty worktree: package.json version bump)
+- Verdict: APPROVED
+- Findings:
+  - **`c49b729`** (03:14): Merges `.mobile-quick-access` position rule and `.mobile-quick-access.z-999` z-index rule into single `.mobile-quick-access.z-999` compound selector. Removes the split that `b237b3f` introduced. The compound selector pattern is now consistent with ALL other z-index elements in `mobile.styl` (`.mobile-bottom-nav.z-1000`, `.mobile-slide-menu.z-1001`, `.mobile-menu-toggle.z-1002`, `.toc-fab.z-1002`, etc.). 2 insertions, 3 deletions. Scoped, no cascade risk.
+  - **`098f8bd`** (02:45): Intermediate attempt that moved z-index back to bare `.mobile-quick-access` base selector. Immediately superseded by `c49b729`. Dead commit — no concern.
+  - **`@media` blocks unaffected**: Bare `.mobile-quick-access` at lines 876 (prefers-reduced-motion) and 889 (forced-colors) target child elements (`.fab-main`, `.fab-items`, `.fab-item`), not parent position/z-index. The compound selector change doesn't affect them.
+  - **HTML dependency**: `.mobile-quick-access.z-999` requires both classes in markup. This is the same dependency shared by all other mobile z-index selectors. Consistent with established pattern.
+  - **Scout**: Last run `scout-1775497016405.json` (2026-04-06 17:36) — 0 findings. Predates all recent commits. No post-change visual evidence. Acceptable for these changes: border-radius substitutions produce identical visual output (9px→9px, etc.), and z-index compound selectors don't change visual appearance.
+  - **Build**: succeeds cleanly. `dist/main.css` generated without errors.
+  - **Prior NEEDS_FOLLOWUP status**: The 02:38 review flagged missing completion log entries for `44bd8ca`, `9dc16be`, `3a00799`. These remain unresolved — completion log entries still not added.
+- Implementer instructions:
+  1. Add completion log entries for `44bd8ca` (boxes.styl border-radius), `9dc16be` (notifications.styl border-radius — note 11px→12px and 7px→6px semantic rounding), and `3a00799` (user-pages.styl border-radius). This was already instructed at 02:38 and remains undone.
+  2. `c49b729` approved — no further action needed for the z-index change.
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
