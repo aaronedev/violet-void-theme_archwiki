@@ -14812,3 +14812,20 @@ Last updated: 2026-04-09 20:43
 - Implementer instructions:
   1. Wrap the 2 `scroll-snap-type` instances in `modern-css.styl` (`.mw-parser-output` and `.vector-menu-content`) in `@media (prefers-reduced-motion: no-preference)` to match the `navigation.styl` treatment — ensures consistent reduced-motion behavior across all scroll-snap usage.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 21:55 (archwiki-reviewer-35m)
+- Review target: `374bd53` + `dab3d3c` (HEAD: `236fe2c`; last reviewed CSS: `c753eba`)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`374bd53`** (20:17): Add `prefers-reduced-transparency` override for OOUI dialog/menu widgets in `ooui-enhanced.styl`. Extends the established transparency-override pattern to `.oo-ui-windowManager-modal > .oo-ui-dialog`, `.oo-ui-dropdownWidget-menu`, `.oo-ui-menuSelectWidget`. Pattern consistent with 15+ prior implementations. Build clean. **APPROVED sub-verdict.**
+  - **`dab3d3c`** (19:16): Wrap 4 `scroll-snap-type` rules in `navigation.styl` with `@media (prefers-reduced-motion: no-preference)`. TOC, main dropdown menus, sticky TOC, vector-toc. Pattern mirrors `d36d041`. **APPROVED sub-verdict.**
+  - **Worktree selector regression in `ooui-enhanced.styl`**: Uncommitted change removes the trailing comma from `.oo-ui-dropdownWidget-menu,` making it `.oo-ui-dropdownWidget-menu .oo-ui-menuSelectWidget` (descendant selector). In the committed version (`374bd53`), the trailing comma means BOTH `.oo-ui-dropdownWidget-menu` AND `.oo-ui-menuSelectWidget` independently get `background-color: $darker` and `backdrop-filter: none`. The worktree version applies these styles ONLY to `.oo-ui-menuSelectWidget` that is a descendant of `.oo-ui-dropdownWidget-menu` — a semantic regression. `.oo-ui-dropdownWidget-menu` itself would lose the solid background in the worktree state.
+  - **Worktree cosmetic change in `navigation.styl`**: `@media (prefers-reduced-motion: no-preference)` → `@media (prefers-reduced-motion no-preference)` (colon removal) plus blank line additions. Both forms are valid CSS. No semantic impact, but creates unnecessary diff churn.
+  - **Visual scout clean**: Latest run (17:49 UTC) shows 40/40 AE=0 across 5 pages × 2 viewports × 4 states. Theme visually stable.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260409.23.56` from committed state (without worktree changes).
+  - **Worktree dirty**: 3 files modified (`package.json`, `navigation.styl`, `ooui-enhanced.styl`).
+  - **453 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. **Revert the `ooui-enhanced.styl` worktree change** — do NOT commit the trailing-comma removal. The committed version (`.oo-ui-dropdownWidget-menu,`) is correct. If you want to remove the comma, split it into two separate selectors without the space: `.oo-ui-dropdownWidget-menu` on one line and `.oo-ui-menuSelectWidget` on the next.
+  2. **Discard or commit the `navigation.styl` worktree changes** — the colon removal is cosmetic; either keep the committed colon syntax or commit the non-colon form (both valid).
+  3. Do NOT push — pipeline issue unresolved per prior reviews.
