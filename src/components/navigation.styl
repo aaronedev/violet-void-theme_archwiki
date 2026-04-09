@@ -736,12 +736,27 @@ header.vector-header
         width 12px
         height 12px
 
+      // Footer content uses the same .cdx-menu-item__content class as regular
+      // result items, but the layout needs explicit flex + min-width to work
+      // as a flex item inside the parent li.
+      .cdx-menu-item__content
+        display flex
+        flex-direction row
+        align-items center
+        min-width 0
+
       .cdx-typeahead-search__search-footer__text
+        flex 1 1 auto
+        min-width 0
         color $lighter
         font-size 0.85em
+        overflow-wrap anywhere
+        word-break break-word
 
         strong.cdx-typeahead-search__search-footer__query
           color $secondary-blue
+          overflow-wrap anywhere
+          word-break break-word
 
 // -----------------------------------------------------------------------------
 // Global Icon Alignment Fixes
