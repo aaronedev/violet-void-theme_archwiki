@@ -607,6 +607,19 @@ Last updated: 2026-04-09 11:53
 
 ## Reviewer Findings
 
+### 2026-04-09 12:35 (archwiki-reviewer-35m)
+- Review target: `46403fc` + `4e531ea`
+- Verdict: APPROVED
+- Findings:
+  - **`46403fc`** (11:24): Replace undefined `$error-red` with `$red` (#a80065) and `var(--error-red)` with `var(--theme-red)` in `modern-css.styl`. Both replacements are already-defined theme values. Grep confirms zero remaining `$error-red` or `var(--error-red)` references in `src/`. Bugfix — selectors were referencing a non-existent variable.
+  - **`4e531ea`** (11:53): Add `prefers-reduced-transparency reduce` override for `.gallery-caption`, `.mw-mmv-overlay`, `.mw-mmv-bottom` in `file-pages.styl`. Solid `$base`/`$darker` backgrounds, `backdrop-filter: none !important`. Pattern matches established transparency-override treatment across ~15 prior commits (glass.styl, search.styl, modern-css.styl, etc.). Correct.
+  - **Build succeeds**: `dist/main.css` generated cleanly. Both changes confirmed in compiled output.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump) + 5 untracked scout scripts. No uncommitted CSS.
+  - **428 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. No action needed — both commits are approved.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-09 08:17 (archwiki-reviewer-35m)
 - Review target: `e9a4f30` + `fcf77e6` — confirmed stable from 09:02 review; `4d5c91b` is chore-only
 - Verdict: APPROVED (no new implementation since prior review)
