@@ -702,18 +702,28 @@ header.vector-header
       // the search dropdown. Allow the text column to shrink and wrap inside
       // the menu instead of forcing horizontal overflow.
       .cdx-menu-item__text__label
+        display block
+        max-width 100%
+        overflow-wrap anywhere
+        word-break break-word
+        min-width 0
+        max-width 100%
+        color $lighter
+        font-size 0.9em
+
       .cdx-menu-item__text__description
+        display block
+        max-width 100%
+        overflow-wrap anywhere
+        word-break break-word
+        min-width 0
+
       .cdx-menu-item__text__supporting-text
         display block
         max-width 100%
         overflow-wrap anywhere
         word-break break-word
-
-      .cdx-menu-item__text__label
-        color $lighter
-        font-size 0.9em
         min-width 0
-        max-width 100%
 
     // Footer item (search for full text)
     &.cdx-typeahead-search__search-footer
