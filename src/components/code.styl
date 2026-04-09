@@ -71,7 +71,8 @@
 
 // Code block horizontal scroll snap
 #content pre:not([class*="codemirror"])
-  scroll-snap-type x mandatory
+  @media (prefers-reduced-motion no-preference)
+    scroll-snap-type x mandatory
   // Smooth scrolling behavior
   scroll-behavior smooth
 
