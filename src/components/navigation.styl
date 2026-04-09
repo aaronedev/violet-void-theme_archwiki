@@ -672,6 +672,7 @@ header.vector-header
       display flex
       flex-direction row
       align-items center
+      min-width 0
       color $light
       padding 0.3em 0.5em
       border-radius $border-radius-sm
@@ -693,7 +694,21 @@ header.vector-header
           width 14px
           height 14px
 
-      // Label text
+      .cdx-menu-item__text
+        flex 1 1 auto
+        min-width 0
+
+      // Long article titles or package names can exceed the available width in
+      // the search dropdown. Allow the text column to shrink and wrap inside
+      // the menu instead of forcing horizontal overflow.
+      .cdx-menu-item__text__label
+      .cdx-menu-item__text__description
+      .cdx-menu-item__text__supporting-text
+        display block
+        max-width 100%
+        overflow-wrap anywhere
+        word-break break-word
+
       .cdx-menu-item__text__label
         color $lighter
         font-size 0.9em

@@ -754,10 +754,15 @@ table.mw-html-magic-mw-data-interface
 
 // Quick Access Shortcuts
 // Floating action button with quick actions
-.mobile-quick-access.z-999
+.mobile-quick-access
   position fixed
   bottom 1em
   right 1em
+
+// z-index via utility class — z-index applied separately to avoid breaking
+// child selectors in @media blocks that target .mobile-quick-access .fab-main
+.mobile-quick-access.z-999
+  z-index 999
 
   // Main FAB button
   .fab-main
@@ -959,7 +964,7 @@ body.menu-open
     padding-bottom calc(1em + env(safe-area-inset-bottom))
 
   // Quick access FAB - above home indicator
-  .mobile-quick-access.z-999
+  .mobile-quick-access
     bottom calc(1em + env(safe-area-inset-bottom))
     right calc(1em + env(safe-area-inset-right))
 
