@@ -14829,3 +14829,18 @@ Last updated: 2026-04-09 20:43
   1. **Revert the `ooui-enhanced.styl` worktree change** — do NOT commit the trailing-comma removal. The committed version (`.oo-ui-dropdownWidget-menu,`) is correct. If you want to remove the comma, split it into two separate selectors without the space: `.oo-ui-dropdownWidget-menu` on one line and `.oo-ui-menuSelectWidget` on the next.
   2. **Discard or commit the `navigation.styl` worktree changes** — the colon removal is cosmetic; either keep the committed colon syntax or commit the non-colon form (both valid).
   3. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 22:53 (archwiki-reviewer-35m)
+- Review target: dirty worktree — `modern-css.styl`
+- Verdict: APPROVED
+- Findings:
+  - **`modern-css.styl` worktree: wraps scroll-snap in `@media (prefers-reduced-motion no-preference)`** — two instances: (1) `.mw-parser-output`'s `scroll-snap-type: y proximity` (CSS-block syntax, line 99), (2) `.vector-menu-content`'s `scroll-snap-type y proximity` + nested `li` rule (Stylus syntax, line 223). Both now gated behind the same `@media (prefers-reduced-motion: no-preference)` guard that `dab3d3c` applied to `navigation.styl`. Pattern is consistent. Scoped, no cascade risk.
+  - **Follow-through on prior review instruction**: The 19:25 review's implementer instruction 1 explicitly asked to "Wrap the 2 `scroll-snap-type` instances in `modern-css.styl` (...) in `@media (prefers-reduced-motion: no-preference)`". This worktree does exactly that. Done.
+  - **`code.styl` horizontal scroll-snap NOT wrapped**: `src/components/code.styl:74` has `scroll-snap-type x mandatory` for `pre:not([class*="codemirror"])`. Not wrapped. Out-of-scope for this worktree but still present. Non-blocking — code blocks are a lower-priority motion surface than navigation/content areas.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260410.00.54`.
+  - **Worktree**: `package.json` dirty (verbump `20260408.23.13` → `20260410.00.54`). `modern-css.styl` dirty (6-line change). 7 untracked scout scripts. No uncommitted CSS in `src/`.
+  - **No open-state evidence needed**: scroll-snap is a motion UX feature; no interactive open-state screenshot needed. Consistent with prior APPROVED treatment of `dab3d3c`.
+  - **455 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. Optionally wrap `code.styl:74`'s `scroll-snap-type x mandatory` in the same `@media` guard to complete the sweep — low priority, code blocks are low-sensitivity motion surface.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
