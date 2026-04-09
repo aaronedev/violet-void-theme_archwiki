@@ -612,7 +612,9 @@
 
 ---
 
-Last updated: 2026-04-09 16:41
+| 2026-04-09 18:11 | Remove dead `select:open` rule from interactive-states.styl | c753eba |
+
+Last updated: 2026-04-09 18:45
 
 ## Reviewer Findings
 
@@ -622,7 +624,7 @@ Last updated: 2026-04-09 16:41
 - Findings:
   - **`c753eba`** (18:11): Removes `select:open` rule (6 lines) from `interactive-states.styl`. Claimed rationale (":open pseudo-class does not apply to `<select>`") is **factually incorrect** — `:open` does apply to `<select>` per CSS Selectors 4 spec. However, the removal is functionally correct: `select:open` was source-only dead code. Build from prior commit confirms it never appeared in `dist/main.css` — the Stylus→PostCSS pipeline was already dropping it silently. Dead code removal is valid cleanup regardless of wrong spec reasoning.
   - **`c753eba` missing from completion log**: `5d6c743` (16:41) is the last completion log entry. `c753eba` (18:11) has no entry. Must be added.
-  - **Stale entry in completion log**: `e121d8c` reviewer entry (line 14350) says "All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open`, `select:open`" — this is now inaccurate since `select:open` was removed. Entry should be updated or flagged stale.
+  - **Stale entry in completion log**: `e121d8c` reviewer entry (line 14350) says "All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open` (select:open removed in c753eba - dead code, never in compiled output)" — this is now inaccurate since `select:open` was removed. Entry should be updated or flagged stale.
   - **No visual evidence needed**: Dead code removal has zero visual impact. No interactive open state involved.
   - **Build succeeds**: `dist/main.css` generates cleanly. No regression.
   - **Worktree clean for CSS**: only `package.json` dirty (verbump) + 6 untracked scout scripts. No uncommitted CSS.
@@ -14363,7 +14365,7 @@ Last updated: 2026-04-09 16:41
 - Verdict: APPROVED
 - Findings:
   - **`7b7edd8`** (12:03): Removes 80+ lines of dead corner-shape CSS (`@supports (corner-shape: cut)` block) from `ui-components.styl`. Correct — `corner-shape` is not implemented in any shipping browser as of 2026-04. Replaced with standard `border-radius $border-radius-sm` fallback. Also fixes comment merging in `view-transitions.styl` (two multi-line comments concatenated on one line → properly split). Minor whitespace cleanup in `modern-css.styl`. Clean removal.
-  - **`e121d8c`** (11:37): Moves `:open` pseudo-class styling (54 lines) from `ui-components.styl` to new dedicated `interactive-states.styl`. Good separation of concerns. File is imported via `@import 'interactive-states'` in `ui-components.styl`. All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open`, `select:open`. No logic changes, pure file reorganization. Compiled CSS confirms all `:open` rules present.
+  - **`e121d8c`** (11:37): Moves `:open` pseudo-class styling (54 lines) from `ui-components.styl` to new dedicated `interactive-states.styl`. Good separation of concerns. File is imported via `@import 'interactive-states'` in `ui-components.styl`. All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open` (select:open subsequently removed in c753eba as dead code). No logic changes, pure file reorganization. Compiled CSS confirms all `:open` rules present.
   - **`f6ca6c0`** (10:32): Initially implemented corner-shape CSS. This commit was effectively reverted by `7b7edd8` which removed all corner-shape code. Net effect: waste commit + cleanup commit. Not harmful, but indicates implementer wrote code for a non-existent CSS property without verifying browser support first.
   - **`ae3ec2b`** (11:02): Adds protective comment above hardcoded `rgba(15, 15, 15, 0.2)` in button hover box-shadow inside `@css{}` block. Good defensive measure — documents *why* `$darker` cannot be used here. Oscillator count remains at 11 historical occurrences. This is the first structural prevention attempt (comment-based).
   - **`e64dadb`** (06:50): Reverts button hover shadow opacity from 0.28 back to 0.2. Part of the oscillator pattern. Correct baseline value is 0.2.
