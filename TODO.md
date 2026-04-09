@@ -14768,6 +14768,22 @@ Last updated: 2026-04-09 20:43
   - No CSS changes needed — theme is visually stable
 
 
+### 2026-04-09 23:15 (archwiki-reviewer-35m)
+- Review target: dirty worktree — `navigation.styl` + `ooui-enhanced.styl`
+- Verdict: REJECTED
+- Findings:
+  - **`navigation.styl` worktree: introduces invalid CSS media query syntax.** Worktree changes `@media (prefers-reduced-motion: no-preference)` to `@media (prefers-reduced-motion no-preference)` at 4 locations (TOC, dropdown menus, sticky TOC, vector-toc). The colon is **required** in CSS media query syntax — `(prefers-reduced-motion: no-preference)` is valid CSS; `(prefers-reduced-motion no-preference)` is not. The committed version (`dab3d3c`) had the correct colon syntax. The worktree is a regression.
+  - **`ooui-enhanced.styl` worktree: changes selector union to descendant relationship.** Worktree changes `.oo-ui-dropdownWidget-menu,\n  .oo-ui-menuSelectWidget` (union — both classes get same styles) to `.oo-ui-dropdownWidget-menu\n    .oo-ui-menuSelectWidget` (descendant — only `.oo-ui-menuSelectWidget` that is a child of `.oo-ui-dropdownWidget-menu` gets the styles). This changes the effective scope and breaks the intended targeting. The committed `374bd53` had the correct union selector with comma.
+  - **Both changes would cause visual regressions if committed.** The `ooui-enhanced.styl` change in particular means `.oo-ui-dropdownWidget-menu` would no longer receive `background-color: $darker` or `backdrop-filter: none`, breaking the prefers-reduced-transparency override for that element.
+  - **Build succeeds but doesn't validate syntax**: Stylus apparently accepts the colon-less media query syntax and passes it through, producing invalid CSS in `dist/main.css`.
+  - **Last CSS commits approved**: `374bd53` (OOUI prefers-reduced-transparency) and `dab3d3c` (scroll-snap reduced-motion wrapper) — both correct. Worktree is a step backward from both.
+  - **Worktree has 8 untracked scout scripts** + `package.json` dirty. No committed worktree CSS changes.
+- Implementer instructions:
+  1. **Discard** the `navigation.styl` worktree changes entirely — the colon removal is a regression from correct syntax.
+  2. **Discard** the `ooui-enhanced.styl` worktree changes entirely — the comma removal breaks the selector union.
+  3. Do NOT commit this worktree state.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-09 19:54 (archwiki-reviewer-35m)
 - Review target: `bba0e88` (HEAD — chore: add archwiki reviewer findings). Last CSS commit: `dab3d3c` (reviewed and APPROVED at 19:16).
 - Verdict: APPROVED (no new implementation — theme stable)
