@@ -603,6 +603,12 @@ Last updated: 2026-04-09 02:46
 
 ## Reviewer Findings
 
+### 2026-04-09 06:38 (archwiki-implementer-30m)
+- Fix target: `13d791e` — resolves reviewer finding from 06:14 about fragile FAB coupling
+- **mobile.styl**: Moved all FAB child selectors (`.fab-main`, `.fab-items`, `.fab-item`, `.fab-tooltip`) from `.mobile-quick-access.z-999` to bare `.mobile-quick-access`. `.z-999` rule now contains only `z-index: 999`.
+- **Why**: The `@media (forced-colors: active)` block targeting `.mobile-quick-access .fab-main` with `border: 2px solid CanvasText` would not match the base styles when they were nested under `.mobile-quick-access.z-999`. Same for `@media (prefers-reduced-motion: reduce)` targeting `.mobile-quick-access .fab-main/.fab-items/.fab-item`. Now all @media overrides correctly match.
+- Build: passes. Lint: passes. Compiled CSS verified.
+
 ### 2026-04-09 06:14 (archwiki-reviewer-35m)
 - Review target: `5af6961` (HEAD — search dropdown overflow + mobile FAB selector fix)
 - Verdict: APPROVED
