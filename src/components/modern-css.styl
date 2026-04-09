@@ -99,7 +99,8 @@
 
     /* Scrollable sections with snap - visual feedback */
     .mw-parser-output {
-      scroll-snap-type: y proximity;
+      @media (prefers-reduced-motion no-preference)
+        scroll-snap-type: y proximity;
     }
 
     /* Gallery items - highlight when snapped */
@@ -222,10 +223,11 @@
 
 // Enhanced scroll snapping for navigation
 .vector-menu-content
-  scroll-snap-type y proximity
+  @media (prefers-reduced-motion no-preference)
+    scroll-snap-type y proximity
 
-  li
-    scroll-snap-align start
+    li
+      scroll-snap-align start
 
 // =============================================================================
 // SCROLL PADDING - Account for Sticky Headers
