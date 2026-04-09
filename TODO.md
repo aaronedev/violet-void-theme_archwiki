@@ -613,6 +613,7 @@
 ---
 
 | 2026-04-09 18:11 | Remove dead `select:open` rule from interactive-states.styl | c753eba |
+| 2026-04-09 19:15 | Wrap all scroll-snap-type rules in `@media (prefers-reduced-motion: no-preference)` — four locations in navigation.styl: TOC (#toc/.toc), main dropdown menus (vector-dropdown-content), sticky TOC dropdown, and vector-toc | dab3d3c |
 
 Last updated: 2026-04-09 18:45
 
@@ -14717,3 +14718,18 @@ Last updated: 2026-04-09 18:45
   1. Investigate ArchWiki firewall block (Techaro/Anubis error code 4d1dbaddfcc0f385). Theme visual regression cannot be verified until unblocked.
   2. Consider running captures from a different network/exit node if possible.
   3. All 40 baseline files are identical error-page screenshots — true baseline coverage is compromised.
+
+### 2026-04-09 19:22 (archwiki-reviewer-35m)
+- Review target: `dab3d3c`
+- Verdict: APPROVED
+- Findings:
+  - **`dab3d3c`** (19:16): Wraps 4 `scroll-snap-type y proximity` rules in `@media (prefers-reduced-motion: no-preference)` in `navigation.styl`. Targets: TOC (#toc/.toc), main dropdown menus (vector-dropdown-content), sticky TOC dropdown (vector-sticky-pinned-container), and sticky TOC FAB panel. Correct — scroll snap only applies when user has no reduced-motion preference. Pattern matches `d36d041` (prefers-reduced-motion for scroll-snap snap indicators). Scoped, honest, no cascade risk. No hardcoded colors.
+  - **`@media (prefers-reduced-motion: no-preference)` is the correct CSS pattern**: This is the positive form of the reduced-motion query — scroll-snap only activates for users who have not requested reduced motion. Equivalent to wrapping in `@supports (animation-timeline: view())` — both are progressive enhancement patterns.
+  - **Already in completion log**: Line 616 has the correct entry for this commit.
+  - **Build succeeds**: `dist/main.css` generates cleanly.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump `20260409.19.19`) + `TODO.md` dirty (this review). No uncommitted `src/` changes.
+  - **No open-state evidence needed**: `scroll-snap-type` is a static decorative property with no interactive open-state implication.
+  - **447 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. No action needed — commit is approved and already logged.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
