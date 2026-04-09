@@ -1546,6 +1546,25 @@ audio:buffering:not(:muted)
     border-color rgba($arch-blue, 0.5)
     border-top-color transparent
 
+// Reduced transparency - gallery captions and media viewer overlays
+// For users who prefer reduced transparency, remove the blur effect
+// and use solid opaque backgrounds instead of semi-transparent ones
+@media (prefers-reduced-transparency reduce)
+  .gallery-caption
+    background $base !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .mw-mmv-overlay
+    background-color $darker !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+  .mw-mmv-bottom
+    background $darker !important
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
 // Keyframe animations
 @keyframes fade-in
   from
