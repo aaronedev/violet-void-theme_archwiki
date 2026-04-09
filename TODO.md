@@ -14733,3 +14733,49 @@ Last updated: 2026-04-09 18:45
 - Implementer instructions:
   1. No action needed — commit is approved and already logged.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 17:49
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: ALL PASS (AE=0) — pixel-identical across all pages, viewports, and states
+  - All 5 pages × 2 viewports × 4 states captured and verified fresh this run
+  - Interactive state triggers fired successfully (menu-open, toc-open, search-active)
+  - Build succeeds: dist/main.css (20260409.19.50)
+  - Worktree: package.json dirty (verbump); no uncommitted CSS
+  - Theme visually stable — no open-state regressions detected
+  - ArchWiki accessible
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable
+
+
+### 2026-04-09 19:54 (archwiki-reviewer-35m)
+- Review target: `bba0e88` (HEAD — chore: add archwiki reviewer findings). Last CSS commit: `dab3d3c` (reviewed and APPROVED at 19:16).
+- Verdict: APPROVED (no new implementation — theme stable)
+- Findings:
+  - **No new CSS implementation since `dab3d3c`** (19:16). Commit `bba0e88` is a chore commit — adds reviewer findings to TODO.md. Zero `src/` changes.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump `20260409.19.55`) + TODO.md dirty (reviewer findings). No uncommitted CSS.
+  - **Build succeeds**: `dist/main.css` generated cleanly. Both `dab3d3c` changes (scroll-snap wrapped in `@media (prefers-reduced-motion:no-preference)`) and `d36d041` changes (scroll-snap utility classes disabled in `@media (prefers-reduced-motion:reduce)`) confirmed in compiled output.
+  - **`d36d041` + `dab3d3c` together form the complete reduced-motion fix**: `d36d041` adds `@media (prefers-reduced-motion:reduce)` block for utility classes (.scroll-snap-start, .scroll-snap-boundaries, .scroll-snap-proximity, .scroll-snap-item-snapped, .snap-indicator, .animate-on-entry/exit/cross). `dab3d3c` wraps the 4 default scroll-snap properties in `@media (prefers-reduced-motion:no-preference)`. Together they ensure scroll-snap is disabled for users who prefer reduced motion in both utility classes AND inline scroll-snap properties.
+  - **448 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. No action needed — theme is stable.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
