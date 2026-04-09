@@ -66,8 +66,8 @@
   padding 0.4em 0.75em
   box-shadow $shadow-subtle
   transition all $transition-medium
-  // Scroll snap for better mobile UX
-  scroll-snap-type y proximity
+  @media (prefers-reduced-motion: no-preference)
+    scroll-snap-type y proximity
   overflow-y auto
   scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll and box-shadow changes
@@ -141,8 +141,8 @@ body #vector-main-menu-dropdown .vector-dropdown-content
   // floor that even a higher-specificity explicit width cannot shrink below.
   width 200px !important
   min-width 200px !important
-  // Scroll snap for smooth navigation menus on mobile
-  scroll-snap-type y proximity
+  @media (prefers-reduced-motion: no-preference)
+    scroll-snap-type y proximity
   overflow-y auto
   scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll and transform changes
@@ -388,8 +388,8 @@ header.vector-header
   // floor that even a higher-specificity explicit width cannot shrink below.
   min-width 200px !important
   width 200px !important  // Prevent narrow collapse: was 32px
-  // Scroll snap for sticky TOC dropdown
-  scroll-snap-type y proximity
+  @media (prefers-reduced-motion: no-preference)
+    scroll-snap-type y proximity
   overflow-y auto
   scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll and visibility changes
@@ -450,8 +450,8 @@ header.vector-header
   border-radius $border-radius-md
   padding 0.4em 0.75em
   box-shadow $shadow-subtle
-  // Scroll snap for better mobile UX
-  scroll-snap-type y proximity
+  @media (prefers-reduced-motion: no-preference)
+    scroll-snap-type y proximity
   overflow-y auto
   scrollbar-gutter stable // Prevent layout shift when scrollbar appears
   // Performance: hint browser about scroll changes
