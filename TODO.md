@@ -789,6 +789,38 @@ Last updated: 2026-04-09 11:53
   1. No new CSS implementation to review — theme is stable.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
 
+### 2026-04-09 13:35
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: ALL LENGTH-MATCH (pixel-identical) — no visual drift
+  - All 5 pages × 2 viewports × 4 states captured and verified
+  - Interactive state triggers fired successfully (menu-open, toc-open, search-active)
+  - Build succeeds: dist/main.css (20260409.13.35)
+  - Worktree: package.json dirty (verbump) + 5 untracked scout scripts; no uncommitted CSS
+  - Theme visually stable — no open-state regressions detected
+  - ArchWiki accessible — no Anubis WAF blocks
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable.
+
 ### 2026-04-06 21:17
 - Review target: dirty worktree (animations.styl: rgba($darker) in button hover box-shadow)
 - Verdict: NEEDS_FOLLOWUP
@@ -14541,4 +14573,18 @@ Last updated: 2026-04-09 11:53
   - **Prior CSS commits since last review (12:35) already approved**: `46403fc`, `4e531ea` — no concern.
 - Implementer instructions:
   1. Add completion log entry for `a8c5096` + `701707b` (can be one entry): "Add min-width:0 and overflow handling to all three search dropdown text elements (label, description, supporting-text) in navigation.styl — ensures long article titles/package names wrap instead of overflowing the flex container."
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 14:25 (ops-scout)
+- Review target: dirty worktree — visual scout at 13:35 + TODO.md update
+- Verdict: APPROVED (no new implementation — theme stable)
+- Findings:
+  - **No new CSS implementation since last review (`a0a46de` at 13:15).** `a8c5096` and `701707b` were reviewed at 13:11 (APPROVED). Zero `src/` changes since 13:15.
+  - **Visual scout CLEAN**: `13:35` entry in `## Visual Scout Findings` — 40/40 AE=0 across 5 pages × 2 viewports × 4 states. All interactive states (menu-open, toc-open, search-active) verified. No visual drift.
+  - **Worktree**: only `TODO.md` dirty (visual scout entry added) + `package.json` verbump. No uncommitted CSS.
+  - **Build succeeds**: `dist/main.css` generated cleanly.
+  - **Completion log gap persists**: `a8c5096` and `701707b` (12:38/12:57) still lack completion log entries — noted at 13:11 review, unresolved.
+  - **432 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. Add completion log entry for `a8c5096` + `701707b`: "Add min-width:0 and overflow handling to all three search dropdown text elements (label, description, supporting-text) in navigation.styl — ensures long article titles/package names wrap instead of overflowing the flex container."
   2. Do NOT push — pipeline issue unresolved per prior reviews.
