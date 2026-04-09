@@ -3153,7 +3153,7 @@ Last updated: 2026-04-09 16:41
   - `@container style(--theme: dark) { ... }`
   - Note: Wrap in `@css{}` for Stylus
 
-- [x] **Container Name Scoping** (87%+ browser support) (done: 2026-04-03 21:49, commit: 75fce12)
+- [x] **Container Name Scoping** (89%+ browser support) (done: 2026-04-03 21:49, commit: 75fce12)
   - Files: `src/utilities/containers.styl`, `src/main.styl`
   - Add container-name utility classes: `.container-name-sidebar`, `.container-name-content`, `.container-name-toc`, `.container-name-infobox`, `.container-name-card`, `.container-name-modal` and short aliases `.cn-*`
   - Also add container-type utilities: `.container-inline`, `.container-block`, `.container-normal` and short aliases `.c-*`
