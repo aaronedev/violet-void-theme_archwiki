@@ -792,6 +792,38 @@ Last updated: 2026-04-09 11:53
   1. No new CSS implementation to review — theme is stable.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
 
+### 2026-04-09 15:42
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: ALL PASS (RMS=0.00) — pixel-identical across all pages, viewports, and states
+  - All 5 pages × 2 viewports × 4 states captured and verified fresh this run
+  - Interactive state triggers fired successfully (menu-open, toc-open, search-active) for all pages
+  - Build succeeds: dist/main.css (20260409.15.42)
+  - Worktree: package.json dirty (verbump); no uncommitted CSS
+  - Theme visually stable — no open-state regressions detected
+  - ArchWiki accessible
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+- Implementer instructions:
+  - No CSS changes needed — theme is visually stable.
+
 ### 2026-04-09 13:35
 - Run target: visual scout
 - Verdict: CLEAN
@@ -14605,4 +14637,17 @@ Last updated: 2026-04-09 11:53
   - **434 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
 - Implementer instructions:
   1. No action needed — `81f7df4` is approved.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-09 16:05 (archwiki-reviewer-35m)
+- Review target: `605beca` (HEAD — chore: add archwiki reviewer findings). Last CSS commit: `81f7df4` (14:46, APPROVED at 15:15).
+- Verdict: APPROVED (no new implementation — theme stable)
+- Findings:
+  - **No new CSS implementation since `81f7df4`** (14:46). `605beca` is a chore commit — reviewer findings only. Zero `src/` changes.
+  - **Worktree clean for CSS**: only `package.json` dirty (build verbump `20260409.16.06`) + untracked scout scripts. No uncommitted CSS.
+  - **Build succeeds**: `dist/main.css` generated cleanly at `20260409.16.06`.
+  - **TODO.md updated**: completion log entries present and correct for `81f7df4`, `701707b`, `a8c5096`. Last update confirmed.
+  - **434 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. No action needed — theme is stable.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
