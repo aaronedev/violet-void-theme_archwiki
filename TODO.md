@@ -9008,6 +9008,7 @@ Last updated: 2026-04-10 01:17
 | 2026-04-09 02:46 | Apply z-index 999 directly on .mobile-quick-access base selector | Inline z-index into base selector — avoids HTML dependency from compound .z-999 class approach; @media blocks targeting bare .mobile-quick-access still work correctly | 098f8bd |
 | 2026-04-09 | Replace hardcoded border-radius with $border-radius variables in notifications.styl | 9px → $border-radius-md, 11px → $border-radius-lg, 7px → $border-radius-sm for notification badge variants | 9dc16be |
 | 2026-04-09 02:17 | Replace hardcoded border-radius 9px with $border-radius-md in user-pages.styl | Notification badge (.notification-badge) border-radius — consistent with 44bd8ca (boxes.styl) and 9dc16be (notifications.styl) pattern | 3a00799 |
+| 2026-04-09 01:50 | Wrap code block scroll-snap in prefers-reduced-motion no-preference media query | Wraps `scroll-snap-type x mandatory` in `code.styl` in `@media (prefers-reduced-motion: no-preference)` — completes scroll-snap PRM sweep across navigation.styl (TOC, dropdowns, sticky TOC), modern-css.styl (.mw-parser-output, .vector-menu-content), and code.styl (horizontal code block snap) | 63eac8a |
 
 ---
 
