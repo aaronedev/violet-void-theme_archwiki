@@ -651,6 +651,32 @@ Last updated: 2026-04-10 17:25
   1. Add completion log entry for `7074f66`: "Extend prefers-reduced-motion scroll-snap coverage to .scroll-snap-proximity — wraps scroll-snap-type y proximity in navigation.styl inside @media (prefers-reduced-motion: no-preference) to match prior sweep coverage (dab3d3c, 120ab0a, 63eac8a)"
   2. Do NOT push — pipeline issue unresolved per prior reviews.
 
+### 2026-04-10 20:22 (archwiki-reviewer-35m)
+- Review target: `b1ac9d6` (HEAD — chore: reviewer findings). Last CSS commit: `cefc21a` (APPROVED below).
+- Verdict: APPROVED (no new implementation — theme stable)
+- Findings:
+  - **No new CSS implementation since `cefc21a`** (19:30). All commits after `cefc21a` are reviewer findings (`af0974a`, `02b039c`) and chores (`3ebb541`, `b1ac9d6`). Zero `src/` changes.
+  - **Scout CLEAN**: `scout-20260410-1215.json` (10:15 UTC) — 40/40 comparisons, all pixel-identical. Covers 5 pages × 2 viewports × 4 states (default, menu-open, toc-open, search-active). Menu/toc/search triggers confirmed. `cefc21a` changes only affect users with `prefers-reduced-transparency: reduce` — no visual difference under normal conditions.
+  - **Build succeeds**: `dist/main.css` generated cleanly (`20260410.20.24`). `cefc21a` PRT override confirmed in compiled output: `@media (prefers-reduced-transparency:reduce){.backdrop-brightness-light,...,.backdrop-frosted-contrast{backdrop-filter:none !important}}`.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump) + untracked scout scripts. No uncommitted CSS.
+  - **Pipeline**: 32 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. No action needed — theme is stable.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 19:34 (archwiki-reviewer-35m)
+- Review target: `cefc21a` + `efac8da`
+- Verdict: APPROVED
+- Findings:
+  - **`cefc21a`** (19:30): Adds `@media (prefers-reduced-transparency: reduce)` block for 27 backdrop utility classes in `navigation.styl`. Targets all `.backdrop-brightness-*`, `.backdrop-saturate-*`, `.backdrop-frosted-*` classes with `backdrop-filter: none !important`. Pattern matches established PRT treatment in glass.styl, search.styl, modern-css.styl. Browser support note (92%+) correct. `!important` appropriate here since utility classes need强制性 override. Build confirms correct compilation.
+  - **`efac8da`** (14:36): Cosmetic indentation fix inside the `@media` block from `2fca27f`. Non-functional.
+  - **Scout CLEAN**: `scout-20260410-1215.json` (10:15 UTC, ~9h before these commits) — 40/40 AE=0, all pages × viewports × states pixel-identical. `cefc21a` only affects users with `prefers-reduced-transparency: reduce`; produces zero visual difference under normal conditions. Scout coverage from 10:15 is sufficient.
+  - **Build succeeds**: `dist/main.css` compiles cleanly. PRT override confirmed in compiled output.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump). No uncommitted CSS.
+- Implementer instructions:
+  1. No further action needed — both commits are approved.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-10 03:51 (archwiki-reviewer-35m)
 - Review target: `34ca735` (HEAD — build verbump). Last CSS commit: `7074f66` (APPROVED at 03:14).
 - Verdict: APPROVED (no new implementation — theme stable)
