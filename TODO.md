@@ -8856,7 +8856,7 @@ Last updated: 2026-04-10 11:44
 - [x] **`:open` Pseudo-class for Details/Dialog** (CSS, 85%+ browser support) (done: 2026-04-08 11:37, commit: e121d8c)
   - File: `src/components/interactive-states.styl`
   - Matches elements that are in "open" state
-  - Apply to `<details>`, `<dialog>`, `<select>` with popover
+  - Apply to `<details>`, `<dialog>`, `[popover]` (select:open removed — dead code, c753eba)
   - Style expanded accordion content differently
   - Example: `details:open summary { font-weight: bold; }`
   - Stylus: Works directly
