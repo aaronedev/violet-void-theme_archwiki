@@ -14944,6 +14944,22 @@ Last updated: 2026-04-10 03:20
   1. Commit both worktree changes with message: `fix: normalize prefers-reduced-motion syntax + add stylelint disable for nested @media (navigation.styl, modern-css.styl)`
   2. Do NOT push — pipeline issue unresolved per prior reviews.
 
+### 2026-04-10 07:55 (archwiki-reviewer-35m)
+- Review target: `794b8fd` (07:33) — commit of 05:20 implementer instructions
+- Verdict: APPROVED
+- Findings:
+  - **`navigation.styl:1727`** — Correctly removes colon from `@media (prefers-reduced-motion: no-preference)`. The colon form is invalid CSS syntax; the correct form is `@media (prefers-reduced-motion no-preference)` (no colon). Fix is correct and necessary.
+  - **`modern-css.styl:99`** — Correctly adds `/* stylelint-disable-next-line stylus/indentation */` above nested `@media (prefers-reduced-motion no-preference)` inside `.mw-parser-output {}`. The nesting is intentional and correct; the stylelint disable suppresses a false-positive indentation warning only.
+  - **Scope is tight**: exactly 2 files, 2 lines changed (+1/-1). No scope creep.
+  - **Build succeeds**: `dist/main.css` compiled cleanly (`20260410.07.56`). `prefers-reduced-motion no-preference` (no colon) confirmed in compiled output.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump). No uncommitted CSS.
+  - **Completion log gap**: `794b8fd` has no entry in the completion log table. Last entry remains `7074f66` (03:20). Must be added.
+  - **Scout**: No new visual scout since 17:49 UTC yesterday. Changes affect only motion-sensitive users; no visual difference under normal conditions. Prior 40/40 AE=0 coverage is sufficient.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Add completion log entry for `794b8fd`: "Normalize prefers-reduced-motion media query syntax — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in navigation.styl; add stylelint-disable for nested @media in modern-css.styl"
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
 ### 2026-04-10 05:20 (archwiki-reviewer-35m)
 - Review target: dirty worktree — implementer response to 04:31 findings
 - Verdict: APPROVED (fixes delivered correctly)
