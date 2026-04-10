@@ -472,9 +472,15 @@ dialog.animated-backdrop:modal::backdrop
     background-color rgba($darker, 0.5)
     backdrop-filter blur(4px)
 
+    @media (prefers-reduced-transparency reduce)
+      backdrop-filter none
+
   dialog:not(:modal)::backdrop
     background-color rgba($darker, 0.3)
     backdrop-filter blur(4px)
+
+    @media (prefers-reduced-transparency reduce)
+      backdrop-filter none
 
 // Backdrop focus trap indicator (accessibility)
 dialog:modal::backdrop:focus-within
