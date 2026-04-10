@@ -608,7 +608,13 @@
 | 2026-04-09 12:38 | Add min-width:0 to search dropdown label | Add `min-width: 0` and `max-width: 100%` to `.cdx-menu-item__text__label` in navigation.styl — ensures label shrinks below min-content so flex parent handles overflow correctly | a8c5096 |
 | 2026-04-09 12:57 | Split search dropdown text element rules for consistent overflow handling | Split combined `.cdx-menu-item__text__label/.description/.supporting-text` rule into three separate selectors each with `display block`, `max-width 100%`, `overflow-wrap anywhere`, `word-break break-word`, `min-width 0` — ensures all three text elements wrap long titles/package names consistently | 701707b |
 | 2026-04-09 14:46 | Prevent horizontal overflow in search dropdown footer | Add flex-shrink and wrap rules to `.cdx-typeahead-search__search-footer` `.cdx-menu-item__content`, `.cdx-typeahead-search__search-footer__text`, and `strong.cdx-typeahead-search__search-footer__query` — prevents long unbreakable query strings from causing horizontal overflow in the search dropdown footer | 81f7df4 |
-| 2026-04-09 16:41 | Add overflow-wrap: break-word to .mw-search-result-heading a and .search-result-title a in search.styl — prevents long article titles in search result links from overflowing narrow containers; follows established overflow-wrap pattern from 15+ prior fixes | 5d6c743 |
+| 2026-04-09 16:41 | Add overflow-wrap: break-word to .mw-search-result-heading a and .search-result-title a in search.styl | 5d6c743 |
+| 2026-04-09 18:11 | Remove dead `select:open` rule from interactive-states.styl | c753eba |
+| 2026-04-09 19:15 | Wrap all scroll-snap-type rules in `@media (prefers-reduced-motion: no-preference)` in navigation.styl | dab3d3c |
+| 2026-04-09 20:17 | Add prefers-reduced-transparency override for OOUI dialog and menu widgets | 374bd53 |
+| 2026-04-10 01:17 | Extend prefers-reduced-motion scroll-snap coverage to modern-css.styl | 120ab0a |
+| 2026-04-10 01:50 | Wrap code block scroll-snap in prefers-reduced-motion no-preference media query (code.styl) | 63eac8a |
+| 2026-04-10 03:20 | Extend prefers-reduced-motion scroll-snap coverage to .scroll-snap-proximity (navigation.styl) | 7074f66 |
 
 ---
 
@@ -623,8 +629,9 @@
 | 2026-04-10 08:12 | Normalize prefers-reduced-motion media query syntax in animations.styl and modern-css.styl — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in both files | c51a935 |
 | 2026-04-10 13:54 | Add braces to @media block in .mw-parser-output scroll-snap rule (modern-css.styl) — fixes Stylus syntax error for @media inside selector block without braces | 2fca27f |
 | 2026-04-10 14:36 | Correct indentation for scroll-snap-type inside .mw-parser-output @media block (modern-css.styl) — cosmetic fix inside the braced @media from 2fca27f | efac8da |
+| 2026-04-10 17:25 | Add prefers-reduced-transparency override for backdrop brightness/saturate utilities — 27 utility classes (.backdrop-brightness-*, .backdrop-saturate-*, .backdrop-frosted-*) in navigation.styl get solid backgrounds and backdrop-filter:none for users who prefer reduced transparency; pattern matches established treatment in glass.styl, search.styl, modern-css.styl | cefc21a |
 
-Last updated: 2026-04-10 15:23
+Last updated: 2026-04-10 17:25
 
 ## Reviewer Findings
 
@@ -14406,7 +14413,7 @@ Last updated: 2026-04-10 15:23
 - Verdict: APPROVED
 - Findings:
   - **`7b7edd8`** (12:03): Removes 80+ lines of dead corner-shape CSS (`@supports (corner-shape: cut)` block) from `ui-components.styl`. Correct — `corner-shape` is not implemented in any shipping browser as of 2026-04. Replaced with standard `border-radius $border-radius-sm` fallback. Also fixes comment merging in `view-transitions.styl` (two multi-line comments concatenated on one line → properly split). Minor whitespace cleanup in `modern-css.styl`. Clean removal.
-  - **`e121d8c`** (11:37): Moves `:open` pseudo-class styling (54 lines) from `ui-components.styl` to new dedicated `interactive-states.styl`. Good separation of concerns. File is imported via `@import 'interactive-states'` in `ui-components.styl`. Preserves `:open` styles for `details:open`, `dialog:open`, `[popover]:open`. `select:open` was not part of this extraction; it was separately identified as dead code and removed in `c753eba`. No logic changes, pure file reorganization. Compiled CSS confirms all `:open` rules present.
+  - **`e121d8c`** (11:37): Moves `:open` pseudo-class styling (54 lines) from `ui-components.styl` to new dedicated `interactive-states.styl`. Good separation of concerns. File is imported via `@import 'interactive-states'` in `ui-components.styl`. Preserves `:open` styles for `details:open`, `dialog:open`, `[popover]:open`. Note: `select:open` was later identified as dead code and removed in `c753eba`. No logic changes, pure file reorganization. Compiled CSS confirms all `:open` rules present.
   - **`f6ca6c0`** (10:32): Initially implemented corner-shape CSS. This commit was effectively reverted by `7b7edd8` which removed all corner-shape code. Net effect: waste commit + cleanup commit. Not harmful, but indicates implementer wrote code for a non-existent CSS property without verifying browser support first.
   - **`ae3ec2b`** (11:02): Adds protective comment above hardcoded `rgba(15, 15, 15, 0.2)` in button hover box-shadow inside `@css{}` block. Good defensive measure — documents *why* `$darker` cannot be used here. Oscillator count remains at 11 historical occurrences. This is the first structural prevention attempt (comment-based).
   - **`e64dadb`** (06:50): Reverts button hover shadow opacity from 0.28 back to 0.2. Part of the oscillator pattern. Correct baseline value is 0.2.
