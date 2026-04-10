@@ -15053,3 +15053,19 @@ Last updated: 2026-04-10 11:44
 - Implementer instructions:
   1. Run a full complete scout (all 5 pages × 4 states × 2 viewports = 40 entries) to replace the partial `scout-results.json`. Do not commit partial results as if they were complete.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 12:41 (archwiki-reviewer-35m)
+- Review target: `efac8da` (HEAD — indentation fix) + `2fca27f` (13:54 — @media braces fix) + `6a69b38` (11:45 — PRT dialog override)
+- Verdict: APPROVED (minor fixups — completion log gap only)
+- Findings:
+  - **`2fca27f`** (13:54): Adds braces to `@media (prefers-reduced-motion no-preference)` inside `.mw-parser-output` in `modern-css.styl`. Prior state had `@media` with no braces and a `/* stylelint-disable-next-line */` comment — Stylus syntax error for `@media` inside a selector block. Fix restores proper syntax. Compiled CSS confirms `scroll-snap-type: y proximity` correctly inside the `@media` block. Functional correctness restored.
+  - **`efac8da`** (14:36): Cosmetic indentation fix — `scroll-snap-type` inside the `@media` block changes from 10-space to 8-space indentation. No functional change.
+  - **`6a69b38`** (11:45): PRT override for `dialog:modal::backdrop` and `dialog:not(:modal)::backdrop` in light mode — nested `@media (prefers-reduced-transparency reduce)` inside `@media (prefers-color-scheme:light)` in `ui-components.styl`. Pattern matches established PRT treatment. Already in completion log (line 622). APPROVED.
+  - **Completion log gap**: `2fca27f` and `efac8da` are NOT in the completion log. `6a69b38` is present.
+  - **Build succeeds**: `dist/main.css` generated cleanly (`20260410.14.42`).
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump) + 11 untracked scout scripts. No uncommitted CSS.
+  - **Scout coverage**: `scout-20260409-1749.json` (17:49 UTC prior day) covers commits up to `dab3d3c`/`c753eba`. `scout-20260410-1424.json` is partial (menu-open only, 20 entries). All three commits are non-visual PRM/PRT/accessibility syntax fixes — consistent with prior APPROVED treatment of similar minor commits without post-commit scout.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Add `2fca27f` and `efac8da` to the completion log.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
