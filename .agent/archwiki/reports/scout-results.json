@@ -2,321 +2,125 @@
   {
     "page": "main-page",
     "state": "default",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/main-page.desktop.default.png"
   },
   {
     "page": "main-page",
     "state": "menu-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/main-page.desktop.menu-open.png"
   },
   {
     "page": "main-page",
     "state": "toc-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/main-page.desktop.toc-open.png"
   },
   {
     "page": "main-page",
     "state": "search-active",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/main-page.desktop.search-active.png"
-  },
-  {
-    "page": "main-page",
-    "state": "default",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/main-page.mobile.default.png"
-  },
-  {
-    "page": "main-page",
-    "state": "menu-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/main-page.mobile.menu-open.png"
-  },
-  {
-    "page": "main-page",
-    "state": "toc-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/main-page.mobile.toc-open.png"
-  },
-  {
-    "page": "main-page",
-    "state": "search-active",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/main-page.mobile.search-active.png"
   },
   {
     "page": "systemd",
     "state": "default",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/systemd.desktop.default.png"
   },
   {
     "page": "systemd",
     "state": "menu-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/systemd.desktop.menu-open.png"
   },
   {
     "page": "systemd",
     "state": "toc-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/systemd.desktop.toc-open.png"
   },
   {
     "page": "systemd",
     "state": "search-active",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/systemd.desktop.search-active.png"
-  },
-  {
-    "page": "systemd",
-    "state": "default",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/systemd.mobile.default.png"
-  },
-  {
-    "page": "systemd",
-    "state": "menu-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/systemd.mobile.menu-open.png"
-  },
-  {
-    "page": "systemd",
-    "state": "toc-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/systemd.mobile.toc-open.png"
-  },
-  {
-    "page": "systemd",
-    "state": "search-active",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/systemd.mobile.search-active.png"
   },
   {
     "page": "pacman",
     "state": "default",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/pacman.desktop.default.png"
   },
   {
     "page": "pacman",
     "state": "menu-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/pacman.desktop.menu-open.png"
   },
   {
     "page": "pacman",
     "state": "toc-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/pacman.desktop.toc-open.png"
   },
   {
     "page": "pacman",
     "state": "search-active",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/pacman.desktop.search-active.png"
-  },
-  {
-    "page": "pacman",
-    "state": "default",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/pacman.mobile.default.png"
-  },
-  {
-    "page": "pacman",
-    "state": "menu-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/pacman.mobile.menu-open.png"
-  },
-  {
-    "page": "pacman",
-    "state": "toc-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/pacman.mobile.toc-open.png"
-  },
-  {
-    "page": "pacman",
-    "state": "search-active",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/pacman.mobile.search-active.png"
   },
   {
     "page": "installation-guide",
     "state": "default",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/installation-guide.desktop.default.png"
   },
   {
     "page": "installation-guide",
     "state": "menu-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/installation-guide.desktop.menu-open.png"
   },
   {
     "page": "installation-guide",
     "state": "toc-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/installation-guide.desktop.toc-open.png"
   },
   {
     "page": "installation-guide",
     "state": "search-active",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
     "path": ".agent/archwiki/current/installation-guide.desktop.search-active.png"
   },
   {
-    "page": "installation-guide",
+    "page": "main-page",
     "state": "default",
-    "viewport": "mobile",
     "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/installation-guide.mobile.default.png"
+    "path": ".agent/archwiki/current/main-page.mobile.default.png",
+    "mobile": true
   },
   {
-    "page": "installation-guide",
+    "page": "main-page",
     "state": "menu-open",
-    "viewport": "mobile",
     "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/installation-guide.mobile.menu-open.png"
+    "path": ".agent/archwiki/current/main-page.mobile.menu-open.png",
+    "mobile": true
   },
   {
-    "page": "installation-guide",
-    "state": "toc-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/installation-guide.mobile.toc-open.png"
-  },
-  {
-    "page": "installation-guide",
-    "state": "search-active",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/installation-guide.mobile.search-active.png"
-  },
-  {
-    "page": "firefox",
+    "page": "systemd",
     "state": "default",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.desktop.default.png"
+    "path": ".agent/archwiki/current/systemd.mobile.default.png",
+    "mobile": true
   },
   {
-    "page": "firefox",
+    "page": "systemd",
     "state": "menu-open",
-    "viewport": "desktop",
     "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.desktop.menu-open.png"
-  },
-  {
-    "page": "firefox",
-    "state": "toc-open",
-    "viewport": "desktop",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.desktop.toc-open.png"
-  },
-  {
-    "page": "firefox",
-    "state": "search-active",
-    "viewport": "desktop",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.desktop.search-active.png"
-  },
-  {
-    "page": "firefox",
-    "state": "default",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.mobile.default.png"
-  },
-  {
-    "page": "firefox",
-    "state": "menu-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.mobile.menu-open.png"
-  },
-  {
-    "page": "firefox",
-    "state": "toc-open",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.mobile.toc-open.png"
-  },
-  {
-    "page": "firefox",
-    "state": "search-active",
-    "viewport": "mobile",
-    "status": "ok",
-    "ae": 0,
-    "path": ".agent/archwiki/current/firefox.mobile.search-active.png"
+    "path": ".agent/archwiki/current/systemd.mobile.menu-open.png",
+    "mobile": true
   }
 ]
