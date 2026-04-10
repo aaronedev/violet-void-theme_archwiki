@@ -618,8 +618,10 @@
 | 2026-04-10 01:17 | Extend prefers-reduced-motion scroll-snap coverage to modern-css.styl — wraps .mw-parser-output and .vector-menu-content scroll-snap-type rules in @media (prefers-reduced-motion: no-preference) to match navigation.styl treatment (dab3d3c) | 120ab0a |
 
 | 2026-04-10 03:20 | Extend prefers-reduced-motion scroll-snap coverage to .scroll-snap-proximity — wraps scroll-snap-type y proximity in navigation.styl inside @media (prefers-reduced-motion: no-preference) to match prior sweep coverage (dab3d3c, 120ab0a, 63eac8a) | 7074f66 |
+| 2026-04-10 07:33 | Normalize prefers-reduced-motion media query syntax — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in navigation.styl; add stylelint-disable comment for nested @media in modern-css.styl | 794b8fd |
+| 2026-04-10 08:12 | Normalize prefers-reduced-motion media query syntax in animations.styl and modern-css.styl — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in both files | c51a935 |
 
-Last updated: 2026-04-10 03:20
+Last updated: 2026-04-10 08:35
 
 ## Reviewer Findings
 
@@ -14974,4 +14976,21 @@ Last updated: 2026-04-10 03:20
   - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
 - Implementer instructions:
   1. Commit the worktree (CSS fixes + TODO.md update) with message: `fix: normalize prefers-reduced-motion syntax + add stylelint disable for nested @media`
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 07:13 (archwiki-reviewer-35m)
+- Review target: `c51a935` + `794b8fd` (committed after 05:20 review)
+- Verdict: APPROVED
+- Findings:
+  - **`c51a935`** (08:12): Normalizes `@media (prefers-reduced-motion: reduce)` → `@media (prefers-reduced-motion reduce)` in `animations.styl:1016` and `modern-css.styl:2260`. Removes invalid colon — same fix as `794b8fd` but targets the `reduce` form in different files. Correct CSS syntax. No visual impact.
+  - **`794b8fd`** (07:33): Already reviewed as worktree in 05:20 review — committed as `794b8fd`. Normalizes `@media (prefers-reduced-motion: no-preference)` → `@media (prefers-reduced-motion no-preference)` in `navigation.styl:1727`. Adds stylelint-disable comment for nested @media in `modern-css.styl:102`. Both correct.
+  - **Both are syntax fixes, not behavior changes**: Invalid colon syntax would be silently ignored or cause parse errors. Corrected syntax is what browsers implement. No visual difference for motion-tolerant users. Only affects motion-sensitive users who prefer reduced motion.
+  - **No remaining invalid PRM colon syntax**: `rg 'prefers-reduced-motion\s*:\s*(reduce|no-preference)' src/` → no matches. Sweep complete across all files.
+  - **Completion log**: Neither `794b8fd` nor `c51a935` has a completion log entry. 05:20 review instruction 1 listed `794b8fd` but it was not added.
+  - **Scout CLEAN**: `scout-20260409-1749.json` (17:49 UTC) — 40/40 AE=0. Coverage sufficient: changes affect motion-sensitive users only.
+  - **Build succeeds**: `dist/main.css` (20260410.09.14) generated cleanly.
+  - **Worktree**: only `TODO.md` (this entry) + `package.json` dirty. No uncommitted `src/` CSS.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Add completion log entries for `794b8fd` and `c51a935` (both normalize PRM media query syntax — remove invalid colon from `@media (prefers-reduced-motion: ...)` forms)
   2. Do NOT push — pipeline issue unresolved per prior reviews.
