@@ -1724,7 +1724,8 @@ h6:hover .mw-editsection
 
   // Element that should snap to start when scrolling forward
   .scroll-snap-proximity
-    scroll-snap-type y proximity
+    @media (prefers-reduced-motion: no-preference)
+      scroll-snap-type y proximity
 
   // Force scroll to start on load
   .scroll-to-start
