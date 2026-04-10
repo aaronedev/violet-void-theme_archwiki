@@ -617,7 +617,9 @@
 | 2026-04-09 20:17 | Add prefers-reduced-transparency override for OOUI dialog and menu widgets — solid $darker backgrounds instead of backdrop-filter blur for .oo-ui-windowManager-modal .oo-ui-dialog, .oo-ui-dropdownWidget-menu, and .oo-ui-menuSelectWidget | 374bd53 |
 | 2026-04-10 01:17 | Extend prefers-reduced-motion scroll-snap coverage to modern-css.styl — wraps .mw-parser-output and .vector-menu-content scroll-snap-type rules in @media (prefers-reduced-motion: no-preference) to match navigation.styl treatment (dab3d3c) | 120ab0a |
 
-Last updated: 2026-04-10 03:14
+| 2026-04-10 03:20 | Extend prefers-reduced-motion scroll-snap coverage to .scroll-snap-proximity — wraps scroll-snap-type y proximity in navigation.styl inside @media (prefers-reduced-motion: no-preference) to match prior sweep coverage (dab3d3c, 120ab0a, 63eac8a) | 7074f66 |
+
+Last updated: 2026-04-10 03:20
 
 ## Reviewer Findings
 
