@@ -14895,3 +14895,36 @@ Last updated: 2026-04-10 03:20
   2. Add completion log entry for `63eac8a` (code block scroll-snap prefers-reduced-motion wrap).
   3. Flag or update the `e121d8c` completion log entry — reference to "select:open removed in c753eba" makes it stale since c753eba's action is now historical.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 01:55 (archwiki-visual-scout-2h)
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop 1280×800 + mobile 375×667)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - **40/40 pixel-perfect matches**: All 5 pages × 2 viewports × 4 states verified identical to baselines via PIL pixel comparison (0 pixel differences across all captures).
+  - **ArchWiki firewall block resolved**: Previous run (17:49) was blocked by Anubis/Techaro "Access Denied" page. Current captures show actual wiki content — ArchWiki is accessible again from this host.
+  - **Menu open, TOC panel, and search active states all render correctly** — no overlay stacking conflicts, no transparency bleed-through, no label clipping in open states.
+  - **Mobile narrow-width (375px) layout stable** — all four interactive states render without collapse or overflow issues.
+- Artifact paths:
+  - .agent/archwiki/current/main-page.desktop.default.png
+  - .agent/archwiki/current/main-page.desktop.menu-open.png
+  - .agent/archwiki/current/main-page.desktop.toc-open.png
+  - .agent/archwiki/current/main-page.desktop.search-active.png
+  - .agent/archwiki/current/main-page.mobile.default.png
+  - .agent/archwiki/current/main-page.mobile.menu-open.png
+  - .agent/archwiki/current/main-page.mobile.toc-open.png
+  - .agent/archwiki/current/main-page.mobile.search-active.png
+  - (40 total captures in .agent/archwiki/current/)
+- Implementer instructions:
+  1. No immediate action needed — theme is visually stable across all interactive states.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
