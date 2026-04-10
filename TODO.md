@@ -621,8 +621,10 @@
 | 2026-04-10 07:33 | Normalize prefers-reduced-motion media query syntax — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in navigation.styl; add stylelint-disable comment for nested @media in modern-css.styl | 794b8fd |
 | 2026-04-10 11:44 | Add prefers-reduced-transparency override for dialog:modal::backdrop and dialog:not(:modal)::backdrop in light mode — nested @media (prefers-reduced-transparency reduce) inside @media (prefers-color-scheme:light) block in ui-components.styl; users with both preferences get solid backgrounds instead of backdrop-filter blur | 6a69b38 |
 | 2026-04-10 08:12 | Normalize prefers-reduced-motion media query syntax in animations.styl and modern-css.styl — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in both files | c51a935 |
+| 2026-04-10 13:54 | Add braces to @media block in .mw-parser-output scroll-snap rule (modern-css.styl) — fixes Stylus syntax error for @media inside selector block without braces | 2fca27f |
+| 2026-04-10 14:36 | Correct indentation for scroll-snap-type inside .mw-parser-output @media block (modern-css.styl) — cosmetic fix inside the braced @media from 2fca27f | efac8da |
 
-Last updated: 2026-04-10 11:44
+Last updated: 2026-04-10 15:23
 
 ## Reviewer Findings
 
