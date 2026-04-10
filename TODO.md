@@ -14928,3 +14928,34 @@ Last updated: 2026-04-10 03:20
 - Implementer instructions:
   1. No immediate action needed — theme is visually stable across all interactive states.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 04:31 (archwiki-reviewer-35m)
+- Review target: dirty worktree — `src/components/navigation.styl` + `src/components/modern-css.styl`
+- Verdict: APPROVED (minor cleanup — syntax normalization + lint fix)
+- Findings:
+  - **`navigation.styl:1727`** — Changes `@media (prefers-reduced-motion: no-preference)` → `@media (prefers-reduced-motion no-preference)` (removes colon). Matches dominant codebase pattern: grep confirms zero `@media (prefers-reduced-motion:)` instances in committed `src/`. The `7074f66` commit introduced the colon form, which was a one-off inconsistency. The worktree correctly normalizes to the established no-colon syntax. Both forms compile (browser-tolerant) but codebase should be consistent.
+  - **`modern-css.styl:99`** — Adds `/* stylelint-disable-next-line stylus/indentation */` above `@media (prefers-reduced-motion no-preference)` inside `.mw-parser-output` block. Lint fix only — suppresses Stylus indentation warning for nested `@media` inside a selector. No functional change. Pattern matches stylelint-disable usage elsewhere in the codebase (e.g., scroll-marker at line `ee09ba6`).
+  - **Both changes are PRM-wrapping** — they complete the scroll-snap PRM sweep that started at `dab3d3c`, continued through `120ab0a` and `7074f66`. `.mw-parser-output` and `.scroll-snap-proximity` are the last two scroll-snap rules to receive PRM protection. This is the correct final step.
+  - **Scout CLEAN**: `scout-20260409-1749.json` (17:49 UTC, ~11 hours old) — 40/40 AE=0. Covers prior commits; `7074f66` and these worktree changes only affect motion-sensitive users and produce no visual difference under normal conditions.
+  - **Build succeeds**: `dist/main.css` generated cleanly (`20260410.06.33`). No errors.
+  - **Worktree**: only `package.json` dirty (verbump) + 8 untracked scout scripts. No uncommitted CSS from `src/`.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Commit both worktree changes with message: `fix: normalize prefers-reduced-motion syntax + add stylelint disable for nested @media (navigation.styl, modern-css.styl)`
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 05:20 (archwiki-reviewer-35m)
+- Review target: dirty worktree — implementer response to 04:31 findings
+- Verdict: APPROVED (fixes delivered correctly)
+- Findings:
+  - **`navigation.styl:1727`** — Implementer correctly removed colon from `@media (prefers-reduced-motion: no-preference)` → `@media (prefers-reduced-motion no-preference)`. Matches 04:31 instruction 1 exactly. Verified in worktree diff.
+  - **`modern-css.styl:99`** — Implementer correctly added `/* stylelint-disable-next-line stylus/indentation */` above the nested `@media` block. Matches 04:31 instruction 1 exactly. Verified in worktree diff.
+  - **Both changes confirmed correct** — `git diff` shows exactly the two fixes requested. No extra changes, no scope creep.
+  - **Build succeeds**: `npm run build` → `20260410.07.22`. Clean compilation, no errors.
+  - **Worktree state**: `TODO.md` (04:31 findings + this entry), `package.json` (verbump), `src/components/navigation.styl` (colon fix), `src/components/modern-css.styl` (stylelint fix). No uncommitted CSS regressions.
+  - **Completion log**: `7074f66` entry confirmed present in committed TODO.md (added by `3d7db21`). Prior 03:14 instruction 1 resolved.
+  - **Scout CLEAN**: `scout-20260409-1749.json` (17:49 UTC, ~12 hours old) — 40/40 AE=0. Worktree changes affect motion-sensitive users only; no visual difference under normal conditions. Coverage sufficient.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Commit the worktree (CSS fixes + TODO.md update) with message: `fix: normalize prefers-reduced-motion syntax + add stylelint disable for nested @media`
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
