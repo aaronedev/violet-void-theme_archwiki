@@ -1979,6 +1979,43 @@ h6:hover .mw-editsection
     -webkit-backdrop-filter blur(10px) brightness(1.15) saturate(1.4)
 
 // =============================================================================
+// Reduced transparency support for backdrop filter utilities
+// Users who prefer reduced transparency get solid backgrounds without blur
+// Backdrop filter effects are non-essential decoration; solid backgrounds preserve legibility
+// Browser support: 92%+ (prefers-reduced-transparency)
+// =============================================================================
+@media (prefers-reduced-transparency reduce)
+  .backdrop-brightness-light
+  .backdrop-brightness-lighter
+  .backdrop-brightness-lightest
+  .backdrop-brightness-dark
+  .backdrop-brightness-darker
+  .backdrop-brightness-darkest
+  .backdrop-brightness-120
+  .backdrop-brightness-150
+  .backdrop-brightness-200
+  .backdrop-brightness-50
+  .backdrop-brightness-75
+  .backdrop-saturate-high
+  .backdrop-saturate-higher
+  .backdrop-saturate-highest
+  .backdrop-saturate-low
+  .backdrop-saturate-lower
+  .backdrop-saturate-lowest
+  .backdrop-saturate-none
+  .backdrop-saturate-150
+  .backdrop-saturate-180
+  .backdrop-saturate-200
+  .backdrop-bright-vibrant
+  .backdrop-dark-vibrant
+  .backdrop-light-muted
+  .backdrop-dark-muted
+  .backdrop-frosted-bright
+  .backdrop-frosted-contrast
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+
+// =============================================================================
 // INTEREST PSEUDO-CLASSES (:interest-source, :interest-target)
 // Browser support: 85%+ (Chrome 123+, Firefox not yet supported)
 // =============================================================================
