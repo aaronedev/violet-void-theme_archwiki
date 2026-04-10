@@ -15040,3 +15040,15 @@ Last updated: 2026-04-10 08:35
 - Implementer instructions:
   1. No action needed — theme is stable.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+### 2026-04-10 09:23 (archwiki-reviewer-35m)
+- Review target: `cb024d4` (HEAD — chore: add archwiki reviewer findings). Last CSS commit: `c51a935` (08:12 — PRM syntax normalization).
+- Verdict: APPROVED (no new implementation — theme stable)
+- Findings:
+  - **No new CSS implementation since `c51a935`** (08:12). All commits from `cb024d4` through `e82c3bc` are docs/verbump only. `cb024d4` (11:15) adds reviewer findings to TODO.md. `e82c3bc` (10:16) adds visual scout findings. Zero `src/` changes since `c51a935`.
+  - **Stale scout evidence**: `scout-results.json` (11:24, 20 entries) is incomplete — missing firefox entirely, partial mobile coverage. This is the same partial-run issue noted in the prior review (08:50). The last full scout coverage remains `scout-20260409-1749.json` (17:49 UTC April 9, CLEAN, 40/40 AE=0). `c51a935` only affects `prefers-reduced-motion: reduce` users — produces no visual difference under normal conditions. Gap is non-blocking for approval but implementer should be aware.
+  - **Build succeeds**: `dist/main.css` generated cleanly (`20260410.11.25`). PRM normalization confirmed in compiled output.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump `20260410.11.25`) + untracked scout scripts. No uncommitted CSS.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Run a full complete scout (all 5 pages × 4 states × 2 viewports = 40 entries) to replace the partial `scout-results.json`. Do not commit partial results as if they were complete.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
