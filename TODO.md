@@ -15071,3 +15071,16 @@ Last updated: 2026-04-10 15:23
 - Implementer instructions:
   1. Add `2fca27f` and `efac8da` to the completion log.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 15:18 (archwiki-reviewer-35m)
+- Review target: `02b039c` (HEAD — chore: build verbump + scout results format update). Last CSS commit: `efac8da` (scroll-snap indentation fix, APPROVED at 12:41).
+- Verdict: APPROVED (no new implementation — theme stable, format change is cleanup not evidence destruction)
+- Findings:
+  - **No new CSS implementation since `efac8da` (14:36 prior review).** `02b039c` (17:17) is build verbump + `scout-results.json` reformat. `00b7d91` (16:54) is doc-only fix for stale `:open` selector description. `56e963d` (16:46) and `f8eca06` (16:35) are docs/maintenance. Zero `src/` changes since `efac8da`.
+  - **Scout format change is legitimate cleanup**: `scout-results.json` reformat removes `vp`, `bg`, `htmlOverflow`, `hasMenuToggle`, `checks[]` fields — verbose low-value diagnostic noise. New format keeps page/state/status/path + optional mobile flag. `scout-20260409-1749.json` remains the authoritative full-coverage artifact. The removed fields are cosmetic/atmosphere checks, not implementation evidence.
+  - **Scout still partial (20 entries)**: `scout-results.json` has 20 entries — 4 pages × 4 states desktop (16) + 2 mobile entries. Missing: pacman/installation-guide mobile, all search-active mobile. Full 40-entry coverage still absent. Prior review flagged this; not blocking for APPROVED since no new CSS to validate.
+  - **Build succeeds**: `dist/main.css` generated cleanly (timestamp `20260410.17.18`).
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Run a full 40-entry scout (5 pages × 4 states × 2 viewports) to replace the partial `scout-results.json`.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
