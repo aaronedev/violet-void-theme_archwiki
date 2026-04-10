@@ -617,9 +617,25 @@
 | 2026-04-09 20:17 | Add prefers-reduced-transparency override for OOUI dialog and menu widgets — solid $darker backgrounds instead of backdrop-filter blur for .oo-ui-windowManager-modal .oo-ui-dialog, .oo-ui-dropdownWidget-menu, and .oo-ui-menuSelectWidget | 374bd53 |
 | 2026-04-10 01:17 | Extend prefers-reduced-motion scroll-snap coverage to modern-css.styl — wraps .mw-parser-output and .vector-menu-content scroll-snap-type rules in @media (prefers-reduced-motion: no-preference) to match navigation.styl treatment (dab3d3c) | 120ab0a |
 
-Last updated: 2026-04-10 01:17
+Last updated: 2026-04-10 03:14
 
 ## Reviewer Findings
+
+### 2026-04-10 03:14 (archwiki-reviewer-35m)
+- Review target: `7074f66` (HEAD — .scroll-snap-proximity PRM wrap) + `63eac8a` (01:50 — code block scroll-snap PRM wrap, already reviewed)
+- Verdict: APPROVED
+- Findings:
+  - **`7074f66`** (02:50): Wraps `.scroll-snap-proximity scroll-snap-type y proximity` in `@media (prefers-reduced-motion: no-preference)` in `navigation.styl:1728`. Completes PRM coverage for all `scroll-snap-type y proximity` rules in navigation.styl — the 5 instances at lines 71, 147, 395, 458 (each already wrapped) and this final one at `.scroll-snap-proximity` (line 1728). Pattern matches `dab3d3c` and `120ab0a`. Correct.
+  - **`63eac8a`** (01:50): Already reviewed and logged above — wraps `pre:not([class*="codemirror"]) scroll-snap-type x mandatory` in `@media (prefers-reduced-motion no-preference)` in `code.styl`. Completes the scroll-snap PRM sweep. Completion log entry present (line 620). Verified correct.
+  - **All scroll-snap-type rules now PRM-wrapped**: grep confirms 9 `scroll-snap-type` matches across navigation.styl, modern-css.styl, code.styl — all 6 enabling rules (`proximity`/`mandatory`) are inside `@media (prefers-reduced-motion: no-preference)`; the 2 `scroll-snap-type none` rules are inside `@media (prefers-reduced-motion reduce)` (correct — disabling when reduced is preferred).
+  - **Completion log**: `7074f66` has no completion log entry. Must be added.
+  - **Build succeeds**: `dist/main.css` generated cleanly (`20260410.03.14`).
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump) + 8 untracked scout scripts. No uncommitted CSS.
+  - **Scout CLEAN**: `scout-20260409-1749.json` (17:49 UTC) — 40/40 AE=0, all pages × viewports × states pixel-identical, menu-open/toc-open/search-active triggers confirmed. Covers `120ab0a` and `63eac8a`. `7074f66` (02:50) was committed before scout run and changes only disable scroll-snap for motion-sensitive users — no visual difference under normal conditions.
+  - **Pipeline**: 444 unpushed commits on `main`. Still blocked per prior reviews.
+- Implementer instructions:
+  1. Add completion log entry for `7074f66`: "Extend prefers-reduced-motion scroll-snap coverage to .scroll-snap-proximity — wraps scroll-snap-type y proximity in navigation.styl inside @media (prefers-reduced-motion: no-preference) to match prior sweep coverage (dab3d3c, 120ab0a, 63eac8a)"
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
 
 ### 2026-04-09 18:34 (archwiki-reviewer-35m)
 - Review target: `c753eba`
