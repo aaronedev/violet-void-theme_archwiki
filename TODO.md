@@ -619,9 +619,10 @@
 
 | 2026-04-10 03:20 | Extend prefers-reduced-motion scroll-snap coverage to .scroll-snap-proximity — wraps scroll-snap-type y proximity in navigation.styl inside @media (prefers-reduced-motion: no-preference) to match prior sweep coverage (dab3d3c, 120ab0a, 63eac8a) | 7074f66 |
 | 2026-04-10 07:33 | Normalize prefers-reduced-motion media query syntax — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in navigation.styl; add stylelint-disable comment for nested @media in modern-css.styl | 794b8fd |
+| 2026-04-10 11:44 | Add prefers-reduced-transparency override for dialog:modal::backdrop and dialog:not(:modal)::backdrop in light mode — nested @media (prefers-reduced-transparency reduce) inside @media (prefers-color-scheme:light) block in ui-components.styl; users with both preferences get solid backgrounds instead of backdrop-filter blur | 6a69b38 |
 | 2026-04-10 08:12 | Normalize prefers-reduced-motion media query syntax in animations.styl and modern-css.styl — remove invalid colon from `@media (prefers-reduced-motion: no-preference)` in both files | c51a935 |
 
-Last updated: 2026-04-10 08:35
+Last updated: 2026-04-10 11:44
 
 ## Reviewer Findings
 
