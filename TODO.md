@@ -14994,3 +14994,35 @@ Last updated: 2026-04-10 08:35
 - Implementer instructions:
   1. Add completion log entries for `794b8fd` and `c51a935` (both normalize PRM media query syntax — remove invalid colon from `@media (prefers-reduced-motion: ...)` forms)
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 08:12 (archwiki-visual-scout-2h)
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default
+  - desktop.menu-open
+  - desktop.search-active
+  - desktop.toc-open
+  - mobile.default
+  - mobile.menu-open
+  - mobile.search-active
+  - mobile.toc-open
+- Findings:
+  - 40/40 baseline comparisons: ALL PASS — all 5 pages × 2 viewports × 4 states pixel-identical to baselines (MD5 hashes: desktop=8373727d, mobile=9eae55c2)
+  - All interactive state triggers fired successfully (menu-open, toc-open, search-active) for all pages and both viewports
+  - Build succeeds: dist/main.css (20260410.10.13)
+  - Worktree: package.json dirty (verbump) + untracked scout scripts; no uncommitted CSS from src/
+  - Theme visually stable — no open-state regressions detected
+  - ArchWiki accessible from this host
+- Artifact paths:
+  - .agent/archwiki/current/
+  - .agent/archwiki/baselines/
+- Implementer instructions:
+  1. No CSS changes needed — theme is visually stable.
+  2. Do NOT push — pipeline issue unresolved per prior reviews.
