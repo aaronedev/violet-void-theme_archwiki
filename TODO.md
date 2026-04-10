@@ -14845,3 +14845,20 @@ Last updated: 2026-04-10 01:17
 - Implementer instructions:
   1. Optionally wrap `code.styl:74`'s `scroll-snap-type x mandatory` in the same `@media` guard to complete the sweep — low priority, code blocks are low-sensitivity motion surface.
   2. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-10 02:02 (archwiki-reviewer-35m)
+- Review target: `63eac8a`
+- Verdict: APPROVED
+- Findings:
+  - **`63eac8a`** (01:50): Wraps `scroll-snap-type x mandatory` in `code.styl:74` in `@media (prefers-reduced-motion: no-preference)`. Completes the scroll-snap PRM sweep across all three targeted locations — `navigation.styl` (TOC, dropdowns, sticky TOC), `modern-css.styl` (`.mw-parser-output`, `.vector-menu-content`), and now `code.styl` (horizontal code block snap). Pattern is byte-for-byte consistent with prior commits `dab3d3c` and `120ab0a`. Correct.
+  - **Compiled CSS verified**: `dist/main.css` confirms `@media (prefers-reduced-motion:no-preference){#content pre:not([class*="codemirror"]){scroll-snap-type:x mandatory}}` — rule is correctly scoped to non-codemirror code blocks.
+  - **Missing completion log entries**: `c753eba` (remove dead `select:open` from `interactive-states.styl`, approved at 18:34 2026-04-09) still has no entry in the completion log. `63eac8a` also has no entry. Both must be added.
+  - **Stale completion log entry**: The `e121d8c` completion log entry (line ~14350) says "All `:open` selectors preserved: `details:open`, `dialog:open`, `[popover]:open` (select:open removed in c753eba - dead code, never in compiled output)" — `select:open` removal was approved but this entry implies `:open` preservation across the board, which is now partially inaccurate. Flag or update.
+  - **Build succeeds**: `npm run build` compiles cleanly at `20260410.02.04`.
+  - **Worktree clean for CSS**: only `package.json` dirty (verbump) + 8 untracked scout scripts. No uncommitted CSS.
+  - **455 unpushed commits** on `main`. Pipeline still blocked per prior reviews.
+- Implementer instructions:
+  1. Add completion log entry for `c753eba` (dead `select:open` removal from `interactive-states.styl`).
+  2. Add completion log entry for `63eac8a` (code block scroll-snap prefers-reduced-motion wrap).
+  3. Flag or update the `e121d8c` completion log entry — reference to "select:open removed in c753eba" makes it stale since c753eba's action is now historical.
+  4. Do NOT push — pipeline issue unresolved per prior reviews.
