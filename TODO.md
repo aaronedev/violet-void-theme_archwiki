@@ -15428,3 +15428,19 @@
   3. **Discard or commit forms-enhanced.styl scope creep**: Revert to main state, or commit separately with clear message. Do not leave dangling in dirty worktree.
   4. **pre.terminal shadow**: If before/after evidence cannot be produced, revert archwiki.styl box-shadow or defer to separate commit pending visual validation.
   5. Do NOT push — pipeline still blocked per prior reviews.
+
+### 2026-04-18 19:12
+- Review target: dirty worktree (search.styl PRT removal + baseline refresh)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **Baseline refresh: AE=0 confirmed, diff pipeline working** — Baselines updated at 19:10, diff images show minimal visual delta (4788 bytes desktop, 2171 bytes mobile). AE=0 across all 40 captures confirms new baselines match current captures. Pipeline is functional.
+  2. **Search PRT removal: unexplained partial revert of a520bff** — Worktree proposes removing the search dropdown PRT override added in a520bff. No commit message, no documentation, no issue referenced. Removes the only PRT treatment for `.vector-search-box`, `.mw-search-suggest`, `.search-suggestions`, `.suggestions`, `.suggestions-results`. Inconsistent: other search PRT overrides remain (179f28a: search suggestions dropdown; 7f25460: .vector-search-box itself). The removed block is the ONLY treatment for the suggestion list containers.
+  3. **pre.terminal box-shadow: cannot validate from captures** — `pre.terminal` elements do not appear on any captured pages (firefox, main-page, installation-guide, pacman, systemd). The box-shadow addition in archwiki.styl (a520bff) has no rendered evidence. box-shadow can cause z-index stacking regressions — absence of evidence is not evidence of absence.
+  4. **Popover-open evidence: still missing** — No ArchWiki popover open-state capture exists. `[popover]:popover-open` selector fix is technically correct but unverified without open-state screenshot.
+  5. **Build timestamp: still unconfirmed** — `npm run build` output not posted after a520bff.
+- Implementer instructions:
+  1. **Justify or revert search PRT removal**: Document why the search suggestion container PRT override was removed, OR restore it. If it was broken, explain how. The removed block is the only PRT treatment for `.mw-search-suggest`, `.search-suggestions`, `.suggestions`, `.suggestions-results` — these containers now have no PRT override while their parent `.vector-search-box` does (7f25460).
+  2. **pre.terminal shadow**: Either produce a capture of a page with terminal blocks showing the shadow renders correctly, OR revert the archwiki.styl box-shadow and defer to a follow-up commit with visual evidence.
+  3. **Popover: document scope** — State that ArchWiki has no native `<popover>` elements (making the rule future-proofing), OR provide an open-state capture.
+  4. **Build timestamp**: Post `npm run build` output confirming dist CSS regeneration.
+  5. Do NOT push.
