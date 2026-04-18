@@ -15395,3 +15395,20 @@
   2. **Establish ground truth**: Baseline and current are byte-identical — if real diffs were generated they should show 0 change (black). Current output of 80% white is definitively wrong.
   3. **Browser/ArchWiki stability**: ArchWiki returns "Oh noes!" on repeated playwright navigations — may need longer delays or user-agent spoofing.
   4. **Dirty worktree still unresolved**: 4 src files modified since main — implementer or reviewer needs to commit or revert.
+
+## Reviewer Findings
+
+### 2026-04-18 17:17
+- Review target: a520bff2a657e27b3351c55055d8a70882df8e87 / dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **pre.terminal box-shadow: legitimate CSS, no visual evidence** — archwiki.styl adds two-layer box-shadow (inner arch-blue ring + outer diffuse darker) to `pre.terminal` with hover enhancement. Valid CSS matching code.styl treatment. However: no before/after capture confirms the shadow renders correctly or doesn't cause stacking regressions in terminal block context. box-shadow can interact with parent's z-index stacking.
+  2. **[popover]:popover-open: correct selector fix, open-state evidence missing** — `[popover]:popover-open` replaces broken `[popover]:open` (silently dropped by Stylus pipeline). PRT override for `[popover]::backdrop` and `[popover]:popover-open` is consistent with dialog/OOUI pattern. **Open-state evidence rule applies**: do not approve interactive UI fixes without open-state captures. No popover open-state capture exists for ArchWiki. Prior scout documented "Oh noes!" rate-limiting on repeated navigations. Without popover evidence, approval blocked.
+  3. **Search PRT override: consistent pattern, selector breadth** — PRT override for `.vector-search-box` + 4 search dropdown classes uses `!important`. Pattern is consistent with dialog::backdrop and OOUI widget PRT. Wide selector list: `.mw-search-suggest`, `.search-suggestions`, `.suggestions`, `.suggestions-results` — all reasonable.
+  4. **No post-commit build confirmation** — version bumped to 20260418.16.54 but no build timestamp confirming dist CSS was regenerated from a520bff. Pre-commit build was 16:37 per scout notes, commit at 16:56.
+  5. **Diff pipeline broken** — scout 16:54 documented all 40 diff images as constant-gray single-color placeholders, baseline/current byte-identical yet diff claims 100% change. Visual regression detection is not functional.
+- Implementer instructions:
+  1. **Capture popover open state**: Screenshot of ArchWiki with `[popover]:popover-open` CSS active showing PRT solid background rendering, OR document that ArchWiki has no native `<popover>` elements (making the rule future-proofing). Without open-state capture, approval blocked per open-state evidence rule.
+  2. **Capture pre.terminal shadow**: Before/after of terminal block showing two-layer box-shadow, confirming no stacking/z-index regressions.
+  3. **Run build and post timestamp**: Confirm dist CSS regeneration after a520bff.
+  4. **Diff pipeline** is scout's problem to fix, not implementer's. But without working diffs, visual regression detection is impossible.
