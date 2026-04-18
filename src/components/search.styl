@@ -1641,23 +1641,6 @@ em
   a
     transition none
 
-// Reduced transparency - search dropdown backdrop-filter
-// For users who prefer reduced transparency, remove the blur effect
-// and use a solid opaque background instead of semi-transparent gradient
-@media (prefers-reduced-transparency reduce)
-  .vector-search-box
-    background $darker !important
-    backdrop-filter none !important
-    -webkit-backdrop-filter none !important
-
-  .mw-search-suggest
-  .search-suggestions
-  .suggestions
-  .suggestions-results
-    background $darker !important
-    backdrop-filter none !important
-    -webkit-backdrop-filter none !important
-
 // =============================================================================
 // PRINT STYLES
 // =============================================================================
