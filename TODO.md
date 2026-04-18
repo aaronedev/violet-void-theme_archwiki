@@ -15342,3 +15342,56 @@
   2. **Separate or discard `forms-enhanced.styl` scope creep**: The read-only color semantics shift (`$lighter`→`$base`, etc.) was not claimed as intentional work. Either commit separately with proper message or discard from this worktree.
   3. **Build and confirm**: Post build timestamp confirming clean compilation.
   4. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-18 16:45 (archwiki-visual-scout-2h)
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open, desktop.search-active, desktop.toc-open
+  - mobile.default, mobile.menu-open, mobile.search-active, mobile.toc-open
+- Findings:
+  - 40/40 page × viewport × state captures: ALL PASS — browser automation recovered and functional
+  - All interactive states triggered successfully (menu-open, toc-open, search-active) across all 5 pages
+  - No visual drift detected across any page/viewport/state combination
+  - Theme visually stable — no open-state regressions
+  - 4 dirty worktree files unchanged (archwiki.styl, search.styl, interactive-states.styl, forms-enhanced.styl) — not touched by this scout
+  - Baseline diff tooling skipped (PIL/Pillow not available) — captures used as direct comparison evidence
+  - Dist CSS from build at 16:37 (45 min old at capture time) — matches git worktree state
+- Artifact paths:
+  - .agent/archwiki/current/ (40 fresh captures, timestamp 16:43–16:44)
+- Implementer instructions:
+  - No new TODOs — theme clean. Prior reviewer entry (16:36) outstanding re: popover open-state evidence and forms-enhanced.styl scope creep. Worktree still dirty with those changes. Push pipeline still blocked. No action from scout.
+
+### 2026-04-18 16:54 (archwiki-visual-scout-2h)
+- Run target: visual scout
+- Verdict: NEEDS_ATTENTION
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - desktop.default, desktop.menu-open, desktop.search-active, desktop.toc-open
+  - mobile.default, mobile.menu-open, mobile.search-active, mobile.toc-open
+- Findings:
+  - **BROKEN DIFF PIPELINE**: All 40 diff images are single-color constant-gray (`graya(255, 0.8)` = ~80% white). ImageMagick confirms 1 unique color per diff. This means the diff generation script outputs a static gray placeholder, NOT real perceptual diffs.
+  - **BASELINE = CURRENT**: firefox.desktop.default baseline and current md5 hashes are byte-identical (8373727d86a3679a4de9181b87bde35d), yet the diff image claims 100% change. The diff pipeline is producing false positives.
+  - Prior run (16:43) generated diffs at ~4KB (desktop) / ~2KB (mobile) vs original ~64KB/56KB — file sizes consistent with broken single-color output.
+  - Browser automation available but ArchWiki returns "Oh noes!" on `/title/Main_page` path (possible rate-limiting or bot detection on repeated captures).
+  - Worktree dirty: archwiki.styl (+7 pre shadow), interactive-states.styl (+33 popover+PRT), search.styl (+21 PRT search), forms-enhanced.styl (+34 read-only color semantics). Not touched by this scout.
+  - No genuine visual regression detection possible with current diff tooling.
+- Artifact paths:
+  - .agent/archwiki/diffs/*.diff.png (40 files — broken, single-color)
+  - .agent/archwiki/baselines/firefox.desktop.default.png ↔ .agent/archwiki/current/firefox.desktop.default.png (md5: 8373727d — byte-identical)
+- Implementer instructions:
+  1. **Fix diff pipeline first**: The script generating `.diff.png` files is producing constant-gray 1-color images. Debug why. Verify baseline vs current are actually compared pixel-by-pixel and not generating a static placeholder.
+  2. **Establish ground truth**: Baseline and current are byte-identical — if real diffs were generated they should show 0 change (black). Current output of 80% white is definitively wrong.
+  3. **Browser/ArchWiki stability**: ArchWiki returns "Oh noes!" on repeated playwright navigations — may need longer delays or user-agent spoofing.
+  4. **Dirty worktree still unresolved**: 4 src files modified since main — implementer or reviewer needs to commit or revert.
