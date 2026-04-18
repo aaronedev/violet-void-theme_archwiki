@@ -15528,3 +15528,20 @@
   3. **Popover: still no open-state evidence** — document that ArchWiki has no `<popover>` elements (forward-proofing), or provide capture.
   4. **Search PRT removal: still dangling** — suggestion-container PRT block removal from a520bff still unresolved.
   5. Do NOT push.
+
+
+### 2026-04-19 00:52
+- Review target: dirty worktree (1 commit ahead of origin/main: 79d4ede — only adds reviewer notes to TODO.md)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **No implementation work since last review** — 79d4ede only adds reviewer notes. Zero CSS files modified. Worktree has uncommitted artifacts: updated baselines/diffs (PNG), updated diff-metrics.txt, package.json version bump. No source code changes.
+  2. **Visual scout re-ran and confirmed same capture pipeline failure** — All current/*.png screenshots show cream background (#E8DFC3), not Violet Void dark theme. Capture automation is still not applying the theme. AE=250125 for mobile default/menu-open reflects baseline-to-cream difference, not a CSS fix.
+  3. **Mobile baselines updated but still untrustworthy** — Baselines refreshed with different PNG data (desktop ~60-90KB, mobile ~16-20KB vs prior ~69KB solid-dark), but current captures still show cream. Broken capture pipeline taints all metrics.
+  4. **Desktop AE=1 confirms neutral CSS impact** — All desktop states show AE=1 (lossless compression noise). CSS changes since baseline are visually nil on desktop. No regression detected, but also no confirmed fix.
+  5. **test-check.png artifact persists** (AE=71453) — Still unexplained.
+- Implementer instructions:
+  1. Fix capture pipeline first — without themed screenshots there is nothing to verify. Screenshot automation must apply Violet Void CSS before baselines/diffs mean anything.
+  2. Confirm theme loads in Playwright: check that userStyle CSS is actually injected or the browser profile has the stylesheet active.
+  3. Do NOT commit artifact PNGs or diff-metrics.txt until capture pipeline is verified working.
+  4. Document or revert: pre.terminal shadow, popover scope, search PRT dangling removal — flagged in prior reviews, remain unresolved.
+  5. Do NOT push.
