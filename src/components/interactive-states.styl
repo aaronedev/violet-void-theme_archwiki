@@ -7,7 +7,8 @@
 // :open PSEUDO-CLASS - Unified Open State Styling (85%+ browser support)
 // =============================================================================
 // Note: :open pseudo-class targets elements in open state
-// Supported on: <details>, <dialog>, <select> (dropdown open), popover elements
+// Supported on: <details>, <dialog>, <select> (dropdown open)
+// For <popover> elements use :popover-open (not :open) — see note in popover block
 // Browser support: Chrome 120+, Firefox 124+, Safari 17.5+
 
 // Details/summary elements when expanded
@@ -34,15 +35,39 @@ dialog:open
   box-shadow $shadow-elevated, 0 0 30px rgba($arch-blue, 0.15)
 
 // Popover elements when open
-[popover]:open
+// Note: use :popover-open (not :open) for popover elements — :open is not
+// recognized by the Stylus→PostCSS pipeline for [popover] selectors and would
+// be silently dropped from compiled output. :popover-open is the canonical
+// pseudo-class for popover open state (Chrome 120+, Firefox 124+, Safari 17.5+).
+[popover]:popover-open
   border-color rgba($arch-blue, 0.3)
   box-shadow $shadow-elevated, 0 0 20px rgba($arch-blue, 0.1)
 
 // Combined open state for consistency
 details:open
 dialog:open
-[popover]:open
+[popover]:popover-open
   // Ensure focus-visible styling is applied when open via keyboard
   &:focus-visible
     outline 2px solid $arch-blue
     outline-offset 2px
+
+// Reduced transparency support for [popover] backdrops
+// Users who prefer reduced transparency get solid backgrounds instead of blur
+// Consistent with dialog::backdrop, glass-*, search dropdowns, and OOUI widgets
+@media (prefers-reduced-transparency reduce)
+  [popover]::backdrop
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background-color rgba($darker, 0.95)
+
+  // Solid backgrounds for popover open state when user prefers reduced transparency
+  // Replaces translucent backdrop-filter blur with opaque background
+  // Note: border-radius is intentionally preserved — reduced transparency affects
+  // backdrop blur only, not corner rounding (which is a separate aesthetic choice)
+  [popover]:popover-open
+    background-color rgba($base, 0.98)
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    border-color rgba($arch-blue, 0.4)
+    box-shadow 0 4px 24px rgba($darker, 0.4)

@@ -123,6 +123,13 @@ pre.terminal
   white-space pre-wrap
   word-break break-all
   overflow-wrap break-word
+  // Subtle depth shadow matching code.styl treatment for pre:not([class*="codemirror"])
+  // Two-layer shadow: tight inner edge + diffuse outer for elevated feel
+  // Browser support: 97%+
+  box-shadow 0 0 0 1px rgba($arch-blue, 0.12), 0 4px 12px rgba($darker, 0.4)
+
+  &:hover
+    box-shadow 0 0 0 1px rgba($arch-blue, 0.18), 0 6px 16px rgba($darker, 0.5)
 
 // Terminal output blocks (styled differently from input)
 // Note: matches pre.terminal/.terminal-block overflow handling for long unbroken lines

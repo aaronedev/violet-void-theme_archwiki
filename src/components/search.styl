@@ -131,6 +131,27 @@ input.mw-searchButton:hover
   -webkit-backdrop-filter blur(4px)
 
 // =============================================================================
+// Reduced transparency support for search dropdowns
+// Users who prefer reduced transparency get solid backgrounds without blur
+// Backdrop blur is non-essential decoration; the 98%-opaque gradient background
+// already provides sufficient backdrop obscuring without blur.
+// Browser support: 92%+ (prefers-reduced-transparency)
+// =============================================================================
+@media (prefers-reduced-transparency reduce)
+  .vector-search-box
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+    background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98)) !important
+
+  .mw-search-suggest
+  .search-suggestions
+  .suggestions
+  .suggestions-results
+    backdrop-filter none !important
+    -webkit-backdrop-filter none !important
+    background linear-gradient(135deg, rgba($darker, 0.98), rgba($dark, 0.98))
+
+// =============================================================================
 // SUGGESTION ITEM STYLING
 // =============================================================================
 // Note: .mw-search-result-item removed — selector unverified in real Vector markup
