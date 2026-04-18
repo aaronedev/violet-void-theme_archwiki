@@ -15476,3 +15476,55 @@
   3. **Popover: document scope** — add a comment confirming ArchWiki has no native `<popover>` elements, making `[popover]:popover-open` forward-proofing only, OR capture the open state if elements exist.
   4. **Search PRT: justify or restore** — the suggestion-container PRT block removal is still dangling. Either document why it was removed or restore it.
   5. Do NOT push.
+
+## Visual Scout Findings
+
+### 2026-04-18 22:57
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: NEEDS_ATTENTION (mobile capture + theme-loading issues)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archwiki.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop + mobile)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - **All current/ screenshots show identical cream background (#E8DFC3) regardless of page/state** — same issue persists across all 45 screenshots. This is NOT Violet Void dark theme — this is default ArchWiki HTML render.
+  - **Desktop: theme appears to apply** — desktop baselines are dark (#2A2C2D to #37393B) and current are cream (#F4EFD2 range). AE=1 confirms pixel-identical renders. The capture is showing consistent output, but whether Violet Void CSS is actually loading is unconfirmed.
+  - **Mobile: full-page AE=250125** — entire frame differs between baselines (near-black #181B1D) and current (cream #E8DFC3). Prior 20:49 review documented mobile baselines were blank/broken at that time. Current captures are cream — likely the page itself renders this way in the capture context.
+  - **Mobile search-active diffs are all-white** (AE=0) — diff generation script produces empty diffs for search-active state, not a real signal.
+  - **Mobile toc-open inconsistent** — main-page shows AE=250125, others AE=0. Capture process is non-deterministic.
+  - **No evidence of menu drawer collapse, label clipping, or overlay conflicts** — theme isn't rendering in a verifiable way to evaluate these.
+  - **Prior 20:49 review documented**: mobile baseline captures were blank dark images (capture pipeline broken). Current run shows the same cream background across all pages, suggesting the capture pipeline consistently produces un-themed output.
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — 45 screenshots, all showing cream/sepia background (#E8DFC3)
+  - `.agent/archwiki/diffs/` — diff renders captured
+  - `.agent/archwiki/baselines/` — dark near-black baselines (likely broken capture from prior run)
+  - `.agent/archwiki/diff-metrics.txt` — AE=250125 for mobile default/menu, AE=1 for desktop, AE=0 for mobile search-active
+  - `.agent/archwiki/reports/scout-20260418-2257.md` — detailed report with pixel analysis
+- Implementer instructions:
+  1. **Root cause**: Screenshot automation is capturing default ArchWiki HTML, not Violet Void CSS. Verify the stylesheet URL in the capture script loads correctly, or the browser profile has the theme installed.
+  2. **Mobile baselines**: Prior review (20:49) noted mobile baselines were blank dark images — current baselines may be stale/broken references from that broken capture run. Re-baselining needed.
+  3. **Mobile search-active diffs**: Fix diff generation script (produces all-white outputs, AE=0)
+  4. **No CSS action needed** — no implementation work to do until capture pipeline is fixed and actual themed content can be verified.
+
+### 2026-04-18 20:49
+- Review target: dirty worktree (baseline refresh ~20:49)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **Mobile capture pipeline broken: baselines are blank dark images** — Worktree mobile `default` and `menu-open` baselines (all 5 pages) are near-solid #181818 ($base) with no content. Dominant pixel: (24,24,24) across 150-170k of 250k pixels. This is NOT CSS causing visual change — the capture process is outputting blank/error-state images. AE=250125 = entire frame difference (content to blank), not CSS impact. Previous review at 20:21 showed AE=0, confirming CSS was visually neutral then.
+  2. **Desktop captures are clean (AE=1)** — Desktop baseline refresh working normally; AE=1 is lossless compression noise. Issue is mobile-specific capture failure.
+  3. **Mobile search-active/toc-open not refreshed** — Still reference old committed baselines (69444 bytes) with AE=0. Partial capture run, leaving 2 of 4 mobile states stale.
+  4. **Source CSS unchanged from HEAD** — All CSS work already committed. Outstanding items from prior reviews remain unresolved.
+  5. **test-check.png artifact** — New unknown artifact in diff-metrics (AE=71453). Unclear origin; investigate before committing diff-metrics.
+- Implementer instructions:
+  1. **Re-run mobile captures and verify output** — Before next review, manually confirm that mobile baseline PNGs contain actual page content (varied pixels, text visible) not solid dark backgrounds. If Playwright mobile capture is failing, fix the capture script.
+  2. **pre.terminal shadow: still no visual evidence** — archwiki.styl box-shadow unvalidated since AE=0 at 20:21 review. Document scope or revert.
+  3. **Popover: still no open-state evidence** — document that ArchWiki has no `<popover>` elements (forward-proofing), or provide capture.
+  4. **Search PRT removal: still dangling** — suggestion-container PRT block removal from a520bff still unresolved.
+  5. Do NOT push.
