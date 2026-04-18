@@ -15444,3 +15444,35 @@
   3. **Popover: document scope** — State that ArchWiki has no native `<popover>` elements (making the rule future-proofing), OR provide an open-state capture.
   4. **Build timestamp**: Post `npm run build` output confirming dist CSS regeneration.
   5. Do NOT push.
+
+### 2026-04-18 19:44
+- Review target: dirty worktree (baseline refresh ~19:10, version bump to 20260418.19.38)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **AE=0 confirmed across all 40 captures: CSS changes produced zero visible difference** — diff-metrics.txt shows AE=0 for every page-state combination (desktop+mobile × 4 states × 5 pages). This is the definitive visual evidence: a520bff CSS changes are visually identical to prior state on all tested pages. The CSS may be correct but has zero rendered effect in the test suite.
+  2. **pre.terminal box-shadow: still no visual evidence** — archwiki.styl added two-layer box-shadow to `pre.terminal`. AE=0 confirms terminal blocks on ArchWiki test pages either don't use `pre.terminal` class, or the shadow blends into dark background without measurable difference. Cannot validate correct rendering or stacking behavior.
+  3. **popover-open: still no open-state capture** — `[popover]:popover-open` selector fix in interactive-states.styl is technically correct but has zero rendered evidence. Either ArchWiki has no native `<popover>` elements (document this as scope), or the open state was never captured.
+  4. **Search PRT removal: still unresolved from 19:12 review** — worktree search.styl has the PRT block for suggestion containers removed (from a520bff). No justification, no commit. This partial revert is still dangling.
+  5. **package.json version bump uncommitted** — worktree has version 20260418.19.38, committed HEAD has 20260418.16.54. No CSS source changes in worktree. Looks like an abandoned build attempt.
+- Implementer instructions:
+  1. **pre.terminal shadow: document or revert** — If terminal blocks don't appear on ArchWiki article pages, state that explicitly. Do not leave unvalidated box-shadow in dark-themed CSS without visual confirmation.
+  2. **Search PRT removal: justify or restore** — The removed block removed the ONLY PRT treatment for suggestion list containers. Either explain why it was removed, or restore it.
+  3. **Popover: document scope** — Confirm whether ArchWiki has `<popover>` elements. If no, document it and keep as forward-proofing. If yes, capture the open state.
+  4. **Build: confirm dist regeneration** — Run `npm run build` and post timestamp confirming dist CSS includes a520bff changes.
+  5. Do NOT push.
+
+### 2026-04-18 20:21
+- Review target: dirty worktree (baseline refresh ~20:21, version bump to 20260418.20.06)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **Zero source changes since 19:44 review** — worktree has no CSS/stylus modifications after the 19:44 review. Only changes: baselines refreshed at 20:21, package.json version bumped to 20260418.20.06. No CSS work was done to address any of the 5 outstanding items.
+  2. **AE=0 still confirmed across all 40 captures** — diff-metrics.txt unchanged from prior review. 40/40 page-state combinations show zero visual difference. The AE=0 finding is definitive and still unaddressed.
+  3. **pre.terminal box-shadow: no evidence, no action** — AE=0 means terminal blocks on ArchWiki pages either don't use `pre.terminal` or the shadow is invisible against the dark background. No scope documentation or revert was added.
+  4. **popover-open: no evidence, no action** — no open-state capture produced, no scope documentation added, no CSS changes to address.
+  5. **Search PRT removal: still unresolved** — the dangling partial revert from a520bff remains in the worktree, still unaddressed.
+- Implementer instructions:
+  1. **Address AE=0 root cause** — the CSS changes produce zero visual difference. Identify why: either the targeted elements don't exist on ArchWiki pages, or CSS specificity is insufficient to override existing styles. Run `npm run build` and verify dist CSS actually contains the expected selectors.
+  2. **pre.terminal shadow: scope or revert** — add a comment in archwiki.styl explaining that `pre.terminal` box-shadow is future-proofing since ArchWiki pages don't contain terminal blocks with that class, OR remove the shadow rule if it cannot be validated.
+  3. **Popover: document scope** — add a comment confirming ArchWiki has no native `<popover>` elements, making `[popover]:popover-open` forward-proofing only, OR capture the open state if elements exist.
+  4. **Search PRT: justify or restore** — the suggestion-container PRT block removal is still dangling. Either document why it was removed or restore it.
+  5. Do NOT push.
