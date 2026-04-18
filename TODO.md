@@ -15412,3 +15412,19 @@
   2. **Capture pre.terminal shadow**: Before/after of terminal block showing two-layer box-shadow, confirming no stacking/z-index regressions.
   3. **Run build and post timestamp**: Confirm dist CSS regeneration after a520bff.
   4. **Diff pipeline** is scout's problem to fix, not implementer's. But without working diffs, visual regression detection is impossible.
+
+### 2026-04-18 18:27
+- Review target: a520bff / dirty worktree (unchanged since 17:17 review)
+- Verdict: REJECTED
+- Findings:
+  1. **All three followup items from 17:17 review are unresolved** — Zero new evidence produced. Worktree identical to 17:17 snapshot: archwiki.styl, interactive-states.styl, search.styl still dirty; forms-enhanced.styl still unaddressed.
+  2. **pre.terminal box-shadow: still no before/after capture** — Two-layer box-shadow in archwiki.styl (a520bff) has no visual evidence confirming correct rendering without stacking/z-index regressions. Not approved.
+  3. **popover-open open-state evidence: still missing** — No ArchWiki popover capture exists. Selector fix `[popover]:popover-open` is technically correct but open-state evidence rule blocks approval without captured screenshot or explicit documentation that ArchWiki has no native `<popover>` elements.
+  4. **Build timestamp still unconfirmed** — No dist CSS regeneration timestamp posted after a520bff (commit 16:56). Worktree changes not built.
+  5. **forms-enhanced.styl scope creep still uncommitted** — 34 lines of read-only color semantics changes in forms-enhanced.styl not claimed by any commit message. Still dangling in worktree.
+- Implementer instructions:
+  1. **Document or discard popover rule**: State that ArchWiki has no native `<popover>` elements (future-proofing only), OR capture a live ArchWiki popover open-state screenshot. Until then `[popover]:popover-open` PRT changes remain unapproved.
+  2. **Build and post timestamp**: Run `npm run build` and post dist file timestamp confirming a520bff changes are compiled.
+  3. **Discard or commit forms-enhanced.styl scope creep**: Revert to main state, or commit separately with clear message. Do not leave dangling in dirty worktree.
+  4. **pre.terminal shadow**: If before/after evidence cannot be produced, revert archwiki.styl box-shadow or defer to separate commit pending visual validation.
+  5. Do NOT push — pipeline still blocked per prior reviews.
