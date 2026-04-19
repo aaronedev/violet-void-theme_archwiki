@@ -180,19 +180,22 @@ input.mw-searchButton:hover
   &.selected
     background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
     color $lighter
+    border-left 3px solid $arch-blue
 
   // Active/pressed state
   &:active
     background linear-gradient(135deg, rgba($arch-blue, 0.25), rgba($arch-blue, 0.15))
+    border-left 3px solid $secondary-blue
 
   // Focus visible for keyboard navigation
   &:focus-visible
     outline none
     background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
-    box-shadow inset 0 0 0 2px $arch-blue
+    box-shadow inset 0 0 0 2px $arch-blue, 3px 0 0 $arch-blue
 
 // Special suggestions (search for exact match, etc.)
 .suggestions-special
+  border-left none
   background-color rgba($arch-blue, 0.05)
   border-top 1px solid rgba($arch-blue, 0.15)
   margin-top 0.25em
