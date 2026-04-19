@@ -180,22 +180,19 @@ input.mw-searchButton:hover
   &.selected
     background linear-gradient(135deg, rgba($arch-blue, 0.15), rgba($arch-blue, 0.08))
     color $lighter
-    border-left 3px solid $arch-blue
 
   // Active/pressed state
   &:active
     background linear-gradient(135deg, rgba($arch-blue, 0.25), rgba($arch-blue, 0.15))
-    border-left 3px solid $secondary-blue
 
   // Focus visible for keyboard navigation
   &:focus-visible
     outline none
     background linear-gradient(135deg, rgba($arch-blue, 0.2), rgba($arch-blue, 0.1))
-    box-shadow inset 0 0 0 2px $arch-blue, 3px 0 0 $arch-blue
+    box-shadow inset 0 0 0 2px $arch-blue
 
 // Special suggestions (search for exact match, etc.)
 .suggestions-special
-  border-left none
   background-color rgba($arch-blue, 0.05)
   border-top 1px solid rgba($arch-blue, 0.15)
   margin-top 0.25em
@@ -421,43 +418,6 @@ em
 .suggestion-icon.special
 .search-type-icon.special
   color $light
-
-// =============================================================================
-// REDIRECT INDICATORS IN SEARCH SUGGESTIONS
-// ArchWiki redirect pages appear in autocomplete suggestions.
-// Styled with a distinct ↯ arrow and muted yellow to distinguish from
-// canonical page links. Uses term-yellow palette consistent with links.styl
-// redirect styling (↯) while the interwiki style uses ↪ for cross-wiki links.
-// =============================================================================
-
-// Redirect suggestion items — whole-item redirect modifier
-.suggestions-result.mw-redirect
-.search-suggestion.mw-redirect
-  opacity 0.85
-
-  &::before
-    content "↯ "
-    color $term-yellow
-    font-size 0.75em
-    opacity 0.7
-    flex-shrink 0
-
-// Redirect links within suggestion items
-.suggestions-result a.mw-redirect
-.search-suggestion a.mw-redirect
-.suggestion-title.mw-redirect
-  color $term-yellow
-  font-style italic
-
-  // Redirect arrow indicator matching links.styl
-  &::after
-    content " ↯"
-    font-size 0.7em
-    opacity 0.6
-    color $term-yellow
-
-  &:hover
-    color $term-bright-yellow
 
 // =============================================================================
 // SEARCH SUGGESTION META INFO
