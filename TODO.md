@@ -15787,3 +15787,17 @@
   3. **Remove stale test artifacts** — `rm .agent/archwiki/diffs/test-*.png`
   4. **Commit findings** — `chore: add archwiki reviewer findings`
   5. Do NOT push — pipeline issue unresolved.
+
+### 2026-04-19 12:39 (archwiki-reviewer-35m)
+- Review target: `ea6e944` (HEAD — chore: add archwiki reviewer findings). Last CSS commit: `93a4ce3` (11:20, REVERTED).
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **No new CSS implementation since the Search Suggestions Panel reverts.** `93a4ce3` correctly removed active-state indicators and redirect indicators from `search.styl`. Theme source is clean — zero uncommitted CSS changes.
+  2. **3 completion log entries from 06:08 still missing and unacknowledged.** The implementer instructions from `2026-04-19 06:08` listed 3 items requiring completion log entries: (a) pre.terminal box-shadow forward-proofing, (b) popover-open forward-proofing, (c) search PRT. These were re-listed in `2026-04-19 08:51` instruction 2, and again in `2026-04-19 11:01` instruction 2. Still not done. This is the 4th consecutive review noting the same missing work.
+  3. **Rejected Search Suggestions Panel completion log entry also missing.** `2026-04-19 11:01` instruction 1 explicitly provided the exact completion log line for the rejection — never added.
+  4. **Worktree modifications are artifact-only**: `diff-metrics.txt` (42→1 lines, pipeline degraded), `firefox.desktop.default.png` (baseline update, AE=1), `firefox.mobile.search-active.diff.png` (56KB diff, isolated font/AA variance, not a CSS regression). No CSS files touched.
+  5. **Theme visually stable**: 39/40 diff PNGs pixel-identical. Scout reports from 09:17 confirm CLEAN.
+- Implementer instructions:
+  1. **Add 4 completion log entries** — pre.terminal box-shadow, popover-open, search PRT (per 06:08), and rejected Search Suggestions Panel (per 11:01).
+  2. **Commit the completion log entries** — `chore: add archwiki reviewer findings`
+  3. Do NOT push — pipeline issue unresolved.
