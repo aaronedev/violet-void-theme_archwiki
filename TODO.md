@@ -15481,6 +15481,39 @@
 
 ## Visual Scout Findings
 
+### 2026-04-19 05:04
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: NEEDS_ATTENTION (capture pipeline working — theme injection still failing)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop + mobile)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - **All 40 screenshots captured successfully** — new capture script executed without error. 5 pages × 4 states × 2 viewports = 40 current PNGs generated. Capture automation functional.
+  - **Desktop: baselines = dark themed (#2A2C2D center), current = cream unthemed (#F4EFD2 center)** — confirmed via pixel sampling across all 5 pages. Baseline center: (42-66,44-69,45-71) dark. Current center: (244-249,239-245,210-215) cream. AE=1 for all desktop states (stable broken state).
+  - **Mobile: baselines = dark (#181B1D center), current = cream (#E8DFC3 center)** — same pattern. AE=250125 for mobile default/menu. Baseline center: (24,27,29) dark. Current center: (232,223,195) cream.
+  - **Violet Void CSS not applying in current captures** — dist/main.css correctly built (3343 lines, @-moz-document rules). CSS injection via <style> tag in page.evaluate() loses specificity battle against ArchWiki default styles.
+  - **Baseline images show actual themed content** — baseline desktop PNGs (53KB) with dark pixels. Not blank/broken. Baselines were captured WITH theme applied. Current captures show cream.
+  - **No CSS changes to evaluate** — no source CSS modifications this run. Worktree diff is artifact-only.
+  - **Cleaned up orphaned debug scripts** — removed scout-mini-run.mjs, compare-mini.mjs, compare-bash.sh, scout-run*.mjs, capture.js, debug-inject*.mjs, quick-cap*.mjs, test-check.png, stale report JSONs.
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — 40 new captures (cream/sepia)
+  - `.agent/archwiki/baselines/*.png` — confirmed dark-themed reference images
+  - `.agent/archwiki/diffs/*.diff.png` — 40 diff renders (magenta highlights on differences)
+  - `.agent/archwiki/diff-metrics.txt` — updated (AE=1 desktop, AE=250125 mobile default/menu, AE=0 mobile search/toc)
+- Implementer instructions:
+  1. **Root cause**: Violet Void CSS injected as <style> tag via page.evaluate() loses specificity battle against ArchWiki default CSS. Prior "test-inject.png" that showed dark theme used a different injection method.
+  2. **Fix CSS injection priority**: Try (a) page.addStyleTag() instead of evaluate(), (b) inject after domcontentloaded, (c) browser context with theme as active stylesheet.
+  3. **Re-baseline once injection is fixed** — current baselines ARE correctly themed (dark). Only after fix should new current captures be compared.
+  4. **No CSS implementation to review** — worktree changes are artifact-only. Nothing to push until capture pipeline is verified.
+
 ### 2026-04-18 22:57
 - Run target: visual scout (archwiki-visual-scout-2h)
 - Verdict: NEEDS_ATTENTION (mobile capture + theme-loading issues)
