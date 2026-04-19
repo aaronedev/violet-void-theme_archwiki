@@ -409,9 +409,7 @@
     .mw-ui-button:hover,
     .cdx-button:hover {
       transform: translateY(-1px);
-      /* NOTE: Using hardcoded rgba(15, 15, 15, 0.2) instead of rgba($darker, 0.2) because
-         $darker variable does not expand inside @css blocks in Stylus */
-      box-shadow: 0 2px 4px rgba(15, 15, 15, 0.2);
+      box-shadow: 0 2px 4px rgba($darker, 0.2);
     }
 
     @starting-style {
