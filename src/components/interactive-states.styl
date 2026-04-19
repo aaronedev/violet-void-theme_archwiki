@@ -35,6 +35,10 @@ dialog:open
   box-shadow $shadow-elevated, 0 0 30px rgba($arch-blue, 0.15)
 
 // Popover elements when open
+// NOTE: No popover elements observed across 5 pages × 4 states × 2 viewports.
+// ArchWiki has no native <popover> elements in captured content.
+// Forward-proofing only — :popover-open never triggers on current ArchWiki.
+// See note in header block re: :open vs :popover-open pipeline handling.
 // Note: use :popover-open (not :open) for popover elements — :open is not
 // recognized by the Stylus→PostCSS pipeline for [popover] selectors and would
 // be silently dropped from compiled output. :popover-open is the canonical
