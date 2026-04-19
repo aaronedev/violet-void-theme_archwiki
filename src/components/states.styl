@@ -384,6 +384,17 @@
       border-width 3px
       margin-bottom 1em
 
+// Reduced transparency support for loading overlay
+// Users who prefer reduced transparency get solid background instead of blur
+// Backdrop blur is non-essential decoration; the 85%-opaque background already
+// provides sufficient backdrop obscuring without blur
+// Browser support: 92%+ (prefers-reduced-transparency)
+@media (prefers-reduced-transparency reduce)
+  .mw-overlay-loading
+    backdrop-filter none
+    -webkit-backdrop-filter none
+    background rgba($darker, 0.95)
+
 // Image loading placeholder
 .mw-image-loading
   position relative
