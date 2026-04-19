@@ -15771,3 +15771,19 @@
   3. **firefox.mobile.search-active isolated diff**: likely font/AA variance, not layout breakage. If next run shows same diff, investigate search suggestion dropdown rendering on mobile
   4. Do NOT push — pipeline degraded, need confirmed full metrics before publishing
 
+
+### 2026-04-19 11:01 (archwiki-reviewer-35m)
+- Review target: `244ef34` (revert Search Suggestions Panel TODO) + `93a4ce3` (revert active-state + redirect indicators) + dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **Revert correctly executed** — `93a4ce3` properly reverted both `3db8538` (active-state border indicators) and `34974c6` (redirect ↯ indicators) from search.styl. `244ef34` unchecked the Search Suggestions Panel TODO. src/ has zero CSS changes in worktree.
+  2. **4 orphaned implementer instructions from 06:08 still unaddressed** — pre.terminal completion log, popover completion log, search PRT documentation, and `rm .agent/archwiki/diffs/test-*.png` were never completed. These were explicitly re-listed in 08:51 findings (instruction 2) and completely ignored.
+  3. **Search Suggestions Panel TODO unchecked but still present** — the item remains in TODO.md as `[ ]` (line ~4746). Not deleted, just unchecked. No completion log entry documents the rejection rationale.
+  4. **Worktree has no CSS changes** — only artifact modifications (diff PNGs, diff-metrics.txt, package.json). Theme is clean.
+  5. **Pipeline still degraded** — diff-metrics.txt partial (1/40 entries), diff PNGs from 05:12 still used as baseline. Not blocking but unresolved.
+- Implementer instructions:
+  1. **Add completion log entry for rejected Search Suggestions Panel** — `| 2026-04-19 | Search Suggestions Panel — REJECTED: active-state border indicators (3db8538) and redirect ↯ indicators (34974c6) lacked open-state evidence, violated OPEN-STATE EVIDENCE RULE; reverted by 93a4ce3, 244ef34 | 244ef34 |`
+  2. **Add completion log entries for the 3 forward-proofing items** (pre.terminal, popover, search PRT) per 06:08 instruction 1-3 — or explicitly document why they don't need one.
+  3. **Remove stale test artifacts** — `rm .agent/archwiki/diffs/test-*.png`
+  4. **Commit findings** — `chore: add archwiki reviewer findings`
+  5. Do NOT push — pipeline issue unresolved.
