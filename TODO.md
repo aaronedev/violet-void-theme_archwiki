@@ -15673,3 +15673,24 @@
   2. Do NOT update baselines until capture pipeline verified — refreshing cream-colored captures into baselines would permanently record broken state.
   3. pre.terminal box-shadow and popover-open: add scoped evidence notes in the relevant source files documenting that these target elements not currently present on ArchWiki. Or revert if not needed.
   4. Do NOT push — 4 unpushed commits on main, capture pipeline unresolved.
+
+### 2026-04-19 06:08 (archwiki-reviewer-35m)
+- Review target: `ac3e97f` + `0db6925` (HEAD) / dirty worktree
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  - **`ac3e97f`** (07:34): Documentation-only — source comments added to `archwiki.styl` and `interactive-states.styl` explaining `pre.terminal` box-shadow and `:popover-open` selector have no visible effect on current ArchWiki (no terminal tutorials, no native popover elements). No functional CSS changes. Clears prior review's open-state evidence requirements with documentation rather than proof.
+  - **`0db6925`** (07:58): Build artifact cleanup only (package.json). No implementation value.
+  - **No new implementation since `a520bff`** (Apr 18, 16:56) — all 5 commits after `a520bff` are chore/verbump/documentation. The pre.terminal/popover/search PRT changes from `a520bff` are still in the codebase and still unverified.
+  - **pre.terminal box-shadow: documentation replaces evidence, still unverified on actual render** — `ac3e97f` added comment "ArchWiki rarely uses pre.terminal/terminal-block in captured states. box-shadow has AE=1 in desktop captures (no visible effect). Forward-proofing only." This is honest but does not satisfy the open-state evidence rule. No terminal page has been captured. `a520bff` box-shadow rules remain unverified.
+  - **Popover open-state: self-documented as forward-proofing, closing the gap** — `interactive-states.styl` comment now explicitly states "No popover elements observed across 5 pages × 4 states × 2 viewports. ArchWiki has no native `<popover>` elements." Documentation is sufficient to close the open-state evidence requirement — the selector has no valid targets on current ArchWiki.
+  - **Search PRT override: still present, not verified** — search.styl PRT block for `.vector-search-box` + 4 dropdown selectors from `a520bff` was NOT reverted. Still no open-state capture showing the solid gradient background rendering correctly.
+  - **Diff pipeline status: UNKNOWN** — 3 test PNGs in diffs/ (`test-ae.png`, `test-compare.png`, `test-compare2.png`) are untracked artifacts from unknown tooling. Cannot confirm if baseline comparison system is working for this cycle.
+  - **Worktree clean for CSS**: only untracked test artifacts + package.json verbump.
+  - **Scout coverage**: `scout-results.json` shows 20 entries, all "ok" — covers desktop+mobile × 5 pages × 4 states. AE=0 vs baselines (per diff-metrics.txt).
+  - **Pipeline still blocked**: 13 unpushed commits on main. No indication upstream issue is resolved.
+- Implementer instructions:
+  1. **pre.terminal box-shadow**: Add completion log entry noting it's forward-proofing only: `| 2026-04-19 | Add two-layer box-shadow to pre.terminal matching code.styl treatment — documented as forward-proofing (ArchWiki has no terminal tutorial pages in captured states); AE=1 confirmed | a520bff |`
+  2. **Popover**: Documentation in `interactive-states.styl` is sufficient to close the open-state evidence gap. Add completion log entry: `| 2026-04-19 | :popover-open selector fix (corrects [popover]:open silently dropped by Stylus) + PRT overrides for popover backdrops — documented as forward-proofing, ArchWiki has no native popover elements | a520bff |`
+  3. **Search PRT**: Document that `.vector-search-box` and suggestion dropdowns are only visible during active search interaction that cannot be captured in static screenshots. Add completion log noting this is a PRT-only feature.
+  4. Clean up untracked test artifacts: `rm .agent/archwiki/diffs/test-*.png`
+  5. Do NOT push — pipeline issue unresolved per prior reviews.
