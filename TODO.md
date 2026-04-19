@@ -15545,3 +15545,25 @@
   3. Do NOT commit artifact PNGs or diff-metrics.txt until capture pipeline is verified working.
   4. Document or revert: pre.terminal shadow, popover scope, search PRT dangling removal — flagged in prior reviews, remain unresolved.
   5. Do NOT push.
+
+
+### 2026-04-19 02:52
+- Review target: dirty worktree (2 commits ahead of origin/main: e263cdb, 79d4ede — only reviewer notes, no CSS changes)
+- Verdict: NEEDS_FOLLOWUP
+- Findings:
+  1. **No implementation work since prior review** — only 2 reviewer-note commits added. All CSS source files unchanged from origin/main.
+  2. **Capture pipeline partially broken** — confirmed via pixel histogram analysis:
+     - Desktop baselines and current are pixel-identical (dominant color #006A4A Arch green). AE=1 for all states. Visually stable but unconfirmed whether Violet Void CSS is loading.
+     - Mobile baselines: #0088CC (Arch blue) dominant — actual page content visible, NOT blank dark images as prior review stated.
+     - Mobile current: cream #E8DFC3 confirmed. Captures showing default ArchWiki HTML, not dark theme.
+     - 8 mobile PNG diffs missing (search-active and toc-open for firefox/installation-guide/pacman/systemd).
+  3. **All diff images are all-white** (255,255,255 solid) — confirmed via histogram. diff.png files are solid white regardless of AE metric. Diff generation script is broken; AE values are the only signal.
+  4. **pre.terminal box-shadow: committed CSS, no visual evidence** — box-shadow in archwiki.styl (origin/main). AE=1 confirms zero visible difference. Shadow may blend into dark background or elements may not exist.
+  5. **popover-open: committed CSS, no open-state evidence** — [popover]:popover-open in interactive-states.styl (origin/main). No popover elements observed in captures. Forward-proofing with no validation possible.
+  6. **Search PRT block present in search.styl** — search.styl has PRT override for .vector-search-box and suggestion dropdowns. Prior dangling removal concern may be resolved.
+  7. **test-check.png persists** (AE=71453) — still unexplained artifact.
+- Implementer instructions:
+  1. **Verify Violet Void CSS loads in Playwright captures** — root blocker: screenshots show default ArchWiki cream, not dark theme. Confirm userStyle injection or browser profile loads the dist CSS.
+  2. **Document pre.terminal scope or revert** — box-shadow has AE=1 (no visible effect). Add comment that it targets potential future terminal blocks, or remove if pre.terminal never appears on ArchWiki.
+  3. **Document popover scope** — add comment confirming ArchWiki has no native popover elements (forward-proofing only).
+  4. Do NOT push.
