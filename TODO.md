@@ -15601,3 +15601,42 @@
   2. **Fix diff PNG generation**: compare.mjs produces all-white diffs even when AE metrics show 99%+ difference. Debug the PIL resize-and-compare logic — dimension mismatch may be causing silent failures that result in all-white output.
   3. **Do NOT re-baseline** with untitled screenshots — would permanently record broken capture state.
   4. **No CSS work required** — no Violet Void implementation to verify until capture pipeline is fixed.
+
+### 2026-04-19 02:34
+- Review target: dirty worktree (last CSS commit: , 2026-04-18 16:56 — already reviewed; last commit  is reviewer-notes-only)
+- Verdict: REJECTED (capture pipeline non-functional — no reliable visual evidence available)
+- Findings:
+  1. **No new CSS implementation since ** —  is a chore committing scout findings to TODO.md. All  files unchanged. No CSS to verify.
+  2. **Worktree is dirty with artifact-only updates** — 113 files changed (33 insertions/32 deletions), all in  + . Baselines and diff PNGs refreshed but without working CSS injection — captures show cream/ArchWiki default, not Violet Void dark theme.
+  3. **Desktop AE=1 is misleading** — pixel-identical desktop captures are consistent failure, not correct rendering. Both baseline and current show the same cream color (#E8DFC3 range). AE=1 means the broken state is stable, not that the theme is working.
+  4. **Mobile AE=250125 confirms full-page drift** — 375×667=250125 pixels, meaning 100% of pixels differ between mobile baseline and current. Confirmed in diff-metrics.txt. Cannot distinguish CSS change from capture automation variance.
+  5. **pre.terminal box-shadow: no open-state evidence** —  added two-layer box-shadow to  in archwiki.styl. AE=1 for desktop means zero visible difference. No evidence  elements appear on ArchWiki pages in the captured states.
+  6. **:popover-open: no popover elements observed** —  changed  to  in interactive-states.styl. No popover elements captured across 5 pages × 4 states × 2 viewports. Forward-proofing without validation.
+  7. **prefers-reduced-transparency for search: PRT-only, no visual diff expected** — search.styl PRT block only affects users with . AE=1 is expected. Cannot verify in normal captures.
+  8. **diff PNGs still all-white** — all  files in worktree remain solid 255,255,255 regardless of AE value. compare.mjs remains broken. AE metrics are the only signal.
+  9. **open-state evidence rule violated for interactive UI fixes** — cannot approve  changes without before/after evidence of a popover in open state. Rule explicitly requires open-state evidence for menu/popup/TOC/search fixes.
+- Implementer instructions:
+  1. **Fix capture pipeline before any more artifact refreshes** — test-inject.png (April 18 scout) proves dark theme IS achievable with proper injection. Compare scout-full.mjs inject() with test-inject.mjs approach. Without working capture, all baselines/diffs are untrustworthy.
+  2. **Do NOT update baselines until capture pipeline verified** — refreshing cream-colored captures into baselines would permanently record broken state.
+  3. **pre.terminal box-shadow and popover-open**: add scoped evidence notes in the relevant source files documenting that these target elements not currently present on ArchWiki. Or revert if not needed.
+  4. **Do NOT push** — 4 unpushed commits on main, capture pipeline unresolved.
+
+
+### 2026-04-19 02:34
+- Review target: dirty worktree (last CSS commit: a520bff, 2026-04-18 16:56 — already reviewed; last commit 9dc8f90 is reviewer-notes-only)
+- Verdict: REJECTED (capture pipeline non-functional — no reliable visual evidence available)
+- Findings:
+  1. No new CSS implementation since a520bff — 9dc8f90 is a chore committing scout findings to TODO.md. All src/ files unchanged. No CSS to verify.
+  2. Worktree is dirty with artifact-only updates — 113 files changed (33 insertions/32 deletions), all in .agent/archwiki/ + package.json. Baselines and diff PNGs refreshed but without working CSS injection — captures show cream/ArchWiki default, not Violet Void dark theme.
+  3. Desktop AE=1 is misleading — pixel-identical desktop captures are consistent failure, not correct rendering. Both baseline and current show the same cream color (#E8DFC3 range). AE=1 means the broken state is stable, not that the theme is working.
+  4. Mobile AE=250125 confirms full-page drift — 375x667=250125 pixels, meaning 100% of pixels differ between mobile baseline and current. Confirmed in diff-metrics.txt. Cannot distinguish CSS change from capture automation variance.
+  5. pre.terminal box-shadow: no open-state evidence — a520bff added two-layer box-shadow to pre.terminal in archwiki.styl. AE=1 for desktop means zero visible difference. No evidence pre.terminal elements appear on ArchWiki pages in the captured states.
+  6. :popover-open: no popover elements observed — a520bff changed [popover]:open to [popover]:popover-open in interactive-states.styl. No popover elements captured across 5 pages x 4 states x 2 viewports. Forward-proofing without validation.
+  7. prefers-reduced-transparency for search: PRT-only, no visual diff expected — search.styl PRT block only affects users with prefers-reduced-transparency: reduce. AE=1 is expected under normal conditions.
+  8. Diff PNGs still all-white — all .diff.png files in worktree remain solid 255,255,255 regardless of AE value. compare.mjs remains broken. AE metrics are the only signal.
+  9. OPEN-STATE EVIDENCE RULE violated for interactive UI fixes — cannot approve :popover-open changes without before/after evidence of a popover in open state. Rule explicitly requires open-state evidence for menu/popup/TOC/search fixes.
+- Implementer instructions:
+  1. Fix capture pipeline before any more artifact refreshes — test-inject.png (April 18 scout) proves dark theme IS achievable with proper injection. Compare scout-full.mjs inject() with test-inject.mjs approach. Without working capture, all baselines/diffs are untrustworthy.
+  2. Do NOT update baselines until capture pipeline verified — refreshing cream-colored captures into baselines would permanently record broken state.
+  3. pre.terminal box-shadow and popover-open: add scoped evidence notes in the relevant source files documenting that these target elements not currently present on ArchWiki. Or revert if not needed.
+  4. Do NOT push — 4 unpushed commits on main, capture pipeline unresolved.
