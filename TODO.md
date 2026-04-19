@@ -15481,6 +15481,34 @@
 
 ## Visual Scout Findings
 
+### 2026-04-19 09:04
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: WAF_BLOCKED (no visual verification possible)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - (none — ArchWiki returns Anubis WAF block page for all automated requests)
+- Findings:
+  - **ArchWiki returns HTTP 200 "Oh noes!" Anubis WAF block page** — confirmed via Playwright headless capture. Body BG: `rgb(249, 245, 215)` (cream/wheat). Title: "Oh noes!". Error code: `4d1dbaddfcc0f385`. CSS injection succeeds (VV style tag present in DOM) but there is no real content to style.
+  - **AE=1,024,000 between current/ and baselines** — `compare -metric AE` on main-page.desktop.default.png shows ~1M pixel differences (essentially the full 1280×800 frame). Current screenshots are the blocking page; baselines are the actual themed content. This confirms all 05:07 current captures are the WAF block page, not real ArchWiki content.
+  - **CSS changes since last review are all accessibility-only**: `c7f4c34` (prefers-reduced-motion for ::picker/::checkmark), `ac3e97f` (comments only), `8b38994` (duplicate PRT block removal), `a520bff` (box-shadow + PRT for popover/search), `ac2140e` (scroll-behavior inside PRM media query). Zero default-rendering impact.
+  - **No visual drift assessable**: Can't compare themed content because no themed content is capturable. Theme CSS itself is unchanged in its default rendering behavior.
+  - **Worktree clean for CSS**: only `package.json` (auto-bump from `npm run build`). No uncommitted src/ changes. Build succeeds (`dist/main.css` at v20260419.09.07).
+  - **Last confirmed clean visual state**: 2026-04-07 09:48 UTC (40/40 AE=0 across all pages × viewports × states). Desktop hash `8373727d`, mobile hash `9eae55c2` confirmed as ArchWiki content signatures.
+  - **Scout pipeline broken since ~05:07 UTC** — Anubis WAF started blocking ArchWiki automated access. Infrastructure issue, not CSS issue.
+- Artifact paths:
+  - `.agent/archwiki/current/firefox-live-test.png` (WAF block page confirmation)
+  - `.agent/archwiki/diff-metrics.txt` (AE values — current state is blocking page, not usable for regression detection)
+- Implementer instructions:
+  1. No CSS changes needed — all recent commits are accessibility-only with no default rendering impact
+  2. **Anubis WAF blocking is an infrastructure issue** — consider: (a) user-agent spoofing in Playwright, (b) using a real browser capture pipeline, (c) accepting periodic WAF gaps as operational reality
+  3. Scout verdicts are WAF_BLOCKED, not CSS regressions — theme is assumed stable until next confirmed accessible run
+  4. Do NOT push — pipeline issue unresolved per prior reviews
+
 ### 2026-04-19 05:04
 - Run target: visual scout (archwiki-visual-scout-2h)
 - Verdict: NEEDS_ATTENTION (capture pipeline working — theme injection still failing)
