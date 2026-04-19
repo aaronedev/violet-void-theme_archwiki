@@ -822,6 +822,12 @@ progress
       margin-right 0.5em
       accent-color $arch-blue
 
+  // Disable transitions for ::picker elements when user prefers reduced motion
+  @media (prefers-reduced-motion reduce)
+    select::picker(select)
+      &::picker-option
+        transition none
+
 // =============================================================================
 // ::checkmark Pseudo-element for Select Checkmarks
 // Browser support: 60%+ (Chrome 135+, Edge 135+)
@@ -860,6 +866,13 @@ progress
     &::after
       content "✓"
 
+  // Disable transitions for ::checkmark elements when user prefers reduced motion
+  @media (prefers-reduced-motion reduce)
+    select::picker(select)
+      &::checkmark
+        transition none
+      &::option:hover::checkmark
+        transition none
 
 // =============================================================================
 // EDIT FORM ENHANCEMENTS (MediaWiki)
