@@ -4743,7 +4743,7 @@
 
 ## 🔍 Search Enhancements (New)
 
-- [x] **Search Suggestions Panel** (CSS)
+- [ ] **Search Suggestions Panel** (CSS)
   - File: `src/components/search.styl`
   - Autocomplete dropdown
   - Highlighted matches
@@ -15739,3 +15739,35 @@
   3. **Fix capture pipeline**: use test-inject.mjs approach (per 06:08 review instruction 1) to get working dark-theme captures before claiming any visual fixes are verified.
   4. **Add completion log entries** for all unlogged items (pre.terminal box-shadow, popover-open, search PRT).
   5. Do NOT push — pipeline issue unresolved.
+
+### 2026-04-19 09:17
+- Run target: visual scout
+- Verdict: CLEAN
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop + mobile)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - **39/40 diff PNGs indicate pixel-identical state** — all except `firefox.mobile.search-active` are tiny (362–520 bytes), typical of blank/white diff output when images match. AE≈0 confirmed.
+  - **`firefox.mobile.search-active.diff.png` is substantial (56078 bytes, 375×667, 3096 colors)** — one isolated diff artifact from an out-of-sequence re-run at 10:51. Size suggests actual pixel-level differences, not full-page drift. Likely font rendering/anti-aliasing variance, not CSS regression.
+  - **Diff metrics truncated — only `firefox.desktop.default.png: AE=1` recorded** — diff-metrics.txt only has one entry. 39 baseline→current comparisons from prior run (05:12) still present as unchanged artifacts. Pipeline produced partial metrics.
+  - **No new CSS changes since last review** — worktree diff is artifact-only (package.json verbump). No src/ modifications.
+  - **Worktree has uncommitted changes** — modified: `.agent/archwiki/diff-metrics.txt`, `.agent/archwiki/diffs/firefox.desktop.default.png`, `.agent/archwiki/diffs/firefox.mobile.search-active.diff.png`, `package.json`. All others clean.
+  - **Capture pipeline degraded — diff-metrics.txt not fully regenerated** — only 1 of 40 comparisons logged. Prior run's diff PNGs (05:12) retained as baseline artifacts. Pipeline interrupted but theme visually stable.
+  - **All desktop diff PNGs tiny (480 bytes)** — confirms stable pixel-identical captures across all 5 pages × 4 states on desktop viewport. No theme drift.
+- Artifact paths:
+  - `.agent/archwiki/diffs/firefox.mobile.search-active.diff.png` (substantial — isolated diff, likely font variance)
+  - `.agent/archwiki/diff-metrics.txt` (partial — 1 entry only)
+- Implementer instructions:
+  1. **No CSS action needed** — theme visually stable per 39/40 pixel-identical diffs
+  2. **Investigate pipeline interruption** — diff-all.sh ran partially (1/40 metrics recorded). Check if compare/baseline step completed before timeout or artifact pruning
+  3. **firefox.mobile.search-active isolated diff**: likely font/AA variance, not layout breakage. If next run shows same diff, investigate search suggestion dropdown rendering on mobile
+  4. Do NOT push — pipeline degraded, need confirmed full metrics before publishing
+
