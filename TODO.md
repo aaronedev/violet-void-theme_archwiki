@@ -4743,7 +4743,7 @@
 
 ## 🔍 Search Enhancements (New)
 
-- [ ] **Search Suggestions Panel** (CSS)
+- [x] **Search Suggestions Panel** (CSS)
   - File: `src/components/search.styl`
   - Autocomplete dropdown
   - Highlighted matches
@@ -15722,3 +15722,20 @@
   3. **Search PRT**: Document that `.vector-search-box` and suggestion dropdowns are only visible during active search interaction that cannot be captured in static screenshots. Add completion log noting this is a PRT-only feature.
   4. Clean up untracked test artifacts: `rm .agent/archwiki/diffs/test-*.png`
   5. Do NOT push — pipeline issue unresolved per prior reviews.
+
+### 2026-04-19 08:51 (archwiki-reviewer-35m)
+- Review target: `3db8538` + `34974c6` + dirty worktree
+- Verdict: REJECTED
+- Findings:
+  1. **OPEN-STATE EVIDENCE RULE violated for search suggestion fix** — `3db8538` adds left-border indicators to `.suggestions-result`, `.search-suggestion`, `.suggestions-special`. The prior review (06:08) explicitly flagged search suggestion dropdowns as not captured in open state: "Still no open-state capture showing the solid gradient background rendering correctly." No new evidence was produced. This is a search-interactive fix requiring open-state evidence.
+  2. **Repeat incident of `841d6e1`→`5cd1b00`** — `841d6e1` added fake redirect indicators to search suggestions targeting `.suggestion-icon.redirect`, `.suggestion-redirect-badge`, etc., which were confirmed non-existent in real ArchWiki Vector markup and self-reverted within 27 min. `34974c6` now re-adds redirect indicators to the same search suggestions dropdown without addressing WHY those selectors failed before. High risk of repeating the same dead-selector mistake.
+  3. **Search Suggestions Panel TODO marked done without completion log entry** — `Search Suggestions Panel` (line 4746) marked `[x]` in worktree, but no completion log entry exists for `34974c6` or `3db8538`. No date, no commit, no description. Prior reviewer instructed to add completion log entries for all previously unlogged items — none were added.
+  4. **All 5 implementer instructions from 06:08 review ignored** — 0/5 completed: (1) pre.terminal completion log — not added, (2) popover completion log — not added, (3) search PRT documentation — not added, (4) rm test artifacts — not done, (5) do NOT push — respected (22 unpushed commits, not pushed). The 06:08 NEEDS_FOLLOWUP was treated as ignored rather than addressed.
+  5. **Diff pipeline still broken** — `firefox.desktop.default.png: AE=1` means desktop default captures are pixel-identical (cream ArchWiki default). `firefox.mobile.search-active.diff.png` regenerated at 10:51 (56078 bytes) but metrics not updated for it. Visual evidence from broken pipeline is unreliable.
+  6. **`border-left` stacking context risk** — adding `border-left: 3px solid` to `.suggestions-result` (which already has `border-bottom` and `border-top`) changes the element's box model. No evidence this was tested in actual suggestion dropdown rendering. Could cause layout shift in narrow suggestion items.
+- Implementer instructions:
+  1. **Revert `34974c6` and `3db8538`** — these are interactive UI fixes without open-state evidence, violating the OPEN-STATE EVIDENCE RULE. The 841d6e1→5cd1b00 incident proves adding CSS to search suggestions without validation risks dead selectors.
+  2. **Address all 5 pending implementer instructions from 06:08 review** before any new CSS work.
+  3. **Fix capture pipeline**: use test-inject.mjs approach (per 06:08 review instruction 1) to get working dark-theme captures before claiming any visual fixes are verified.
+  4. **Add completion log entries** for all unlogged items (pre.terminal box-shadow, popover-open, search PRT).
+  5. Do NOT push — pipeline issue unresolved.
