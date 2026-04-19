@@ -14660,6 +14660,8 @@
 
 - [x] f505412 (reverted by 148e1e0): Revert .mobile-quick-access compound selector — restore standalone .mobile-quick-access selector with explicit z-index 999 (reverted by fix commit). (done: 2026-04-08 23:44, commit: 148e1e0)
 - [ ] b237b3f: Revert .mobile-quick-access.z-999 compound selector (third attempt) — same issue as f505412, FAB child styles under compound selector are dead code for userstyle context
+- [ ] Fix CSS injection in scout-full.mjs (reported: 2026-04-19 03:04, source: visual-scout) — Violet Void CSS not applying in automated captures; desktop shows cream (#F9F5D7) instead of dark theme; test-inject.png proves direct injection works; compare inject() approach with test-inject.mjs
+- [ ] Fix compare.mjs diff PNG generation (reported: 2026-04-19 03:04, source: visual-scout) — all diff PNGs are solid white (unique_colors=1) even when AE metrics show 99%+ pixel differences; PIL resize-and-compare logic produces incorrect output
 
 ### 2026-04-09 00:02 (hostile review)
 - Review target: `148e1e0` (revert .mobile-quick-access compound selector) + `2129328` ($border→$border-subtle fix) + dirty worktree (package.json only)
@@ -15567,3 +15569,35 @@
   2. **Document pre.terminal scope or revert** — box-shadow has AE=1 (no visible effect). Add comment that it targets potential future terminal blocks, or remove if pre.terminal never appears on ArchWiki.
   3. **Document popover scope** — add comment confirming ArchWiki has no native popover elements (forward-proofing only).
   4. Do NOT push.
+
+### 2026-04-19 03:04
+- Run target: visual scout (archwiki-visual-scout-2h)
+- Verdict: NEEDS_ATTENTION (capture pipeline broken — no themed screenshots)
+- Pages checked:
+  - https://wiki.archlinux.org/title/Main_page
+  - https://wiki.archlinux.org/title/Systemd
+  - https://wiki.archlinux.org/title/Pacman
+  - https://wiki.archlinux.org/title/Installation_guide
+  - https://wiki.archlinux.org/title/Firefox
+- States checked:
+  - default (desktop + mobile)
+  - menu-open (desktop + mobile)
+  - toc-open (desktop + mobile)
+  - search-active (desktop + mobile)
+- Findings:
+  - **Desktop: CSS injection failing — current captures show cream (#F9F5D7), baselines show near-black (#1B1D1F)** — scout-full.mjs inject() injects dist/main.css as <style> tag, but ArchWiki default styles are winning. Verified via direct pixel compare: firefox.desktop.default 99.85% diff pixels (base_center=(5,10,16) vs curr_center=(249,245,215)). Theme NOT applying.
+  - **Mobile: current shows dark brown (#221812), baselines near-black (#181818)** — mobile current is darker than desktop current but still not the Violet Void dark theme. firefox.mobile.default: 99.68% diff pixels (base_center=(24,24,24) vs curr_center=(34,24,18)). Theme partially rendering on mobile but BROKEN on desktop where it matters most.
+  - **All diff.png artifacts are solid white** (unique_colors=1, center=(255,255,255)) — compare.mjs generates incorrect diffs showing no differences even when 99%+ of pixels differ. The threshold=10 should catch RGB diffs of 200+, but diffs are all-white. Bug in PIL diff generation or dimension mismatch masking actual diffs.
+  - **compare.mjs correctly detects drift**: firefox.mobile.default 249322/250125 px (99.68%), firefox.mobile.menu-open 249161/250125 px (99.61%) — but desktop diffs also detected in metrics. The raw AE numbers are correct; the diff PNGs are broken.
+  - **test-inject.png shows dark theme (27,29,32)** — one debug capture with direct theme injection produces correct dark theme. Normal scout-full.mjs inject() not working.
+  - **Confirmed root cause from prior runs**: inject() in scout-full.mjs not reliably applying Violet Void CSS before screenshot. test-inject.png proves the dark theme IS achievable with proper injection.
+  - **No CSS visual regressions to report** — cannot evaluate actual theme appearance until capture pipeline applies the CSS correctly. All observed differences are pipeline failures, not CSS changes.
+- Artifact paths:
+  - `.agent/archwiki/current/*.png` — 45 screenshots (all untitled)
+  - `.agent/archwiki/diffs/*.diff.png` — all solid white (broken diff gen)
+  - `.agent/archwiki/diff-metrics.txt` — shows AE values but diff PNGs are broken
+- Implementer instructions:
+  1. **Fix CSS injection in scout-full.mjs**: test-inject.png proves direct injection works. Compare inject() implementation with the successful test-inject.mjs approach. Likely issue: CSS specificity — ArchWiki default styles overriding injected CSS. Try `!important` flags or ensure injected <style> has highest specificity.
+  2. **Fix diff PNG generation**: compare.mjs produces all-white diffs even when AE metrics show 99%+ difference. Debug the PIL resize-and-compare logic — dimension mismatch may be causing silent failures that result in all-white output.
+  3. **Do NOT re-baseline** with untitled screenshots — would permanently record broken capture state.
+  4. **No CSS work required** — no Violet Void implementation to verify until capture pipeline is fixed.
