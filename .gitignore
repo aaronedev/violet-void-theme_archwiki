@@ -38,3 +38,5 @@ tests/integration/stylus/*
 !tests/integration/stylus/.gitkeep
 /.code/agents
 /.agent/archwiki/current
+/.agents/skills/web-design-guidelines
+/docs/superpowers/plans
