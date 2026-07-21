@@ -1,0 +1,40 @@
+version = 1
+name = "violet-void-theme-archwiki"
+
+[setup]
+script = '''
+set -euo pipefail
+cd "${CODEX_WORKTREE_PATH:-$PWD}"
+npm ci
+npm run build
+npm run setup:stylus
+'''
+
+[setup.linux]
+script = '''
+set -euo pipefail
+cd "${CODEX_WORKTREE_PATH:-$PWD}"
+npm ci
+npm run build
+npm run setup:stylus
+'''
+
+[[actions]]
+name = "Build"
+icon = "run"
+command = "npm run build"
+
+[[actions]]
+name = "Build tests"
+icon = "test"
+command = "npm run test:build"
+
+[[actions]]
+name = "Visual Chromium"
+icon = "browser"
+command = "npm run test:visual"
+
+[[actions]]
+name = "Visual all browsers"
+icon = "browser"
+command = "npm run test:visual:all"
