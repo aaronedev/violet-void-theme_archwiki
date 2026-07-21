@@ -1,0 +1,30 @@
+tests/build-contract.test.js
+  s_56be106250dc1d::t_02af2f64f3fd6d 364,368,372
+  s_56be106250dc1d::t_5f320a42184afa 375-418
+src/components/content.styl
+  s_305d323d2ed22c::t_7d3b2696389836 213,218-219,227-228
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "1ad2536d8d422387e77385ff7f47d6f9093d57ba",
+  "prompts": {},
+  "sessions": {
+    "s_305d323d2ed22c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f83e5-59e3-7ec2-91e2-e7e31312c2f1",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "aaronedev <mail@aaronsamuel.de>"
+    },
+    "s_56be106250dc1d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f83d3-4efd-77e3-8a03-45f1ec1482b6",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "aaronedev <mail@aaronsamuel.de>"
+    }
+  }
+}
