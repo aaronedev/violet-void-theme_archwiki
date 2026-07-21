@@ -303,6 +303,40 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
       css,
       /html\.client-nojs \.vector-page-titlebar-toc \.vector-dropdown-content\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-height:\s*min\(60vh,\s*28rem\);[^}]*overflow-y:\s*auto;/s
     )
+    assert.equal(
+      rulesContaining(root, '.vector-page-titlebar-toc').some(
+        (rule) => declarationValue(rule, 'display') === 'flex'
+      ),
+      false,
+      'titlebar TOC must preserve Vector display behavior'
+    )
+    assert.match(
+      css,
+      /html\.vector-feature-toc-pinned-clientpref-1 \.vector-page-titlebar-toc\s*\{[^}]*display:\s*none;?/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-toggle\s*\{[^}]*background:\s*transparent;[^}]*border:\s*0;[^}]*width:\s*24px;[^}]*height:\s*24px;/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-toggle \.vector-icon\s*\{[^}]*display:\s*none;?/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-toggle::before\s*\{[^}]*content:\s*["']▸["']/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc-list-item-expanded\s*>\s*\.vector-toc-toggle::before\s*\{[^}]*transform:\s*rotate\(90deg\)/s
+    )
+    assert.match(
+      css,
+      /html\.client-nojs #vector-toc-pinned-container\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-width:\s*calc\(100vw - 2rem\)\s*!important;[^}]*max-height:\s*12rem;[^}]*overflow-y:\s*auto;/s
+    )
+    assert.doesNotMatch(css, /\.mw-parser-output a\.external::after\s*\{[^}]*content:\s*attr\(title\)/s)
+    assert.doesNotMatch(css, /\.mw-parser-output a\.external\s*,\s*\.mw-parser-output \.link\s*\{[^}]*position:\s*relative/s)
+    assert.doesNotMatch(css, /\.mw-footer\s*\{[^}]*position:\s*fixed/s)
     assert.match(
       css,
       /html body \.mw-parser-output a\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
