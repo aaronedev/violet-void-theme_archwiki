@@ -934,7 +934,7 @@ h6:hover .mw-editsection
 // Note: Wrap in @css{} for Stylus compatibility
 
 @css {
-  // Collapsible sections can now animate to/from auto
+  /* Collapsible sections can now animate to/from auto */
   .mw-collapsible-content,
   .vector-toc ul,
   .toc ul,
@@ -995,143 +995,141 @@ h6:hover .mw-editsection
 // Note: Wrap in @css{} for Stylus compatibility
 
 @css {
-  @supports (@starting-style) {
-    /* TOC collapsible sections */
+  /* TOC collapsible sections */
+  .toc > ul,
+  .vector-toc > ul {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  @starting-style {
     .toc > ul,
     .vector-toc > ul {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0;
+      transform: translateY(-10px);
     }
+  }
 
-    @starting-style {
-      .toc > ul,
-      .vector-toc > ul {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
+  /* Vector menu collapsible content */
+  .vector-menu-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* Vector menu collapsible content */
+  @starting-style {
     .vector-menu-content {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-5px);
     }
+  }
 
-    @starting-style {
-      .vector-menu-content {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-    }
+  /* Sidebar panel content */
+  .mw-sidebar .vector-menu-content {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
 
-    /* Sidebar panel content */
+  @starting-style {
     .mw-sidebar .vector-menu-content {
-      opacity: 1;
-      transition: opacity 0.25s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .mw-sidebar .vector-menu-content {
-        opacity: 0;
-      }
-    }
+  /* Dropdown menu content */
+  .vector-dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* Dropdown menu content */
+  @starting-style {
     .vector-dropdown-content {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-10px);
     }
+  }
 
-    @starting-style {
-      .vector-dropdown-content {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
+  /* Sticky header TOC dropdown */
+  .vector-sticky-header-toc .vector-dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* Sticky header TOC dropdown */
+  @starting-style {
     .vector-sticky-header-toc .vector-dropdown-content {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-5px);
     }
+  }
 
-    @starting-style {
-      .vector-sticky-header-toc .vector-dropdown-content {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-    }
+  /* Category tree collapsible children */
+  .CategoryTreeChildren,
+  .mw-categorytree-children {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
 
-    /* Category tree collapsible children */
+  @starting-style {
     .CategoryTreeChildren,
     .mw-categorytree-children {
-      opacity: 1;
-      transition: opacity 0.25s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .CategoryTreeChildren,
-      .mw-categorytree-children {
-        opacity: 0;
-      }
-    }
+  /* Navigation list items - staggered fade in */
+  .vector-menu-content li {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
 
-    /* Navigation list items - staggered fade in */
+  @starting-style {
     .vector-menu-content li {
-      opacity: 1;
-      transition: opacity 0.2s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .vector-menu-content li {
-        opacity: 0;
-      }
-    }
+  /* TOC list items */
+  .toc li,
+  .vector-toc li {
+    opacity: 1;
+    transition: opacity 0.15s ease;
+  }
 
-    /* TOC list items */
+  @starting-style {
     .toc li,
     .vector-toc li {
-      opacity: 1;
-      transition: opacity 0.15s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .toc li,
-      .vector-toc li {
-        opacity: 0;
-      }
-    }
+  /* Related pages panel */
+  .related-pages {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 
-    /* Related pages panel */
+  @starting-style {
     .related-pages {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(10px);
     }
+  }
 
-    @starting-style {
-      .related-pages {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-    }
+  /* Breadcrumbs */
+  .breadcrumbs,
+  .mw-category-breadcrumb {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
 
-    /* Breadcrumbs */
+  @starting-style {
     .breadcrumbs,
     .mw-category-breadcrumb {
-      opacity: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    @starting-style {
-      .breadcrumbs,
-      .mw-category-breadcrumb {
-        opacity: 0;
-      }
+      opacity: 0;
     }
   }
 }
