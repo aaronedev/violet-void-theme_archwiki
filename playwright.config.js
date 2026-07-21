@@ -1,4 +1,23 @@
+const fs = require('node:fs')
 const { defineConfig, devices } = require('@playwright/test')
+
+function resolveChromiumExecutablePath() {
+  if (process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH) {
+    return process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+  }
+  if (process.env.PLAYWRIGHT_MCP_EXECUTABLE_PATH) {
+    return process.env.PLAYWRIGHT_MCP_EXECUTABLE_PATH
+  }
+
+  return ['/usr/bin/chromium', '/usr/sbin/chromium'].find((candidate) =>
+    fs.existsSync(candidate),
+  )
+}
+
+const chromiumExecutablePath = resolveChromiumExecutablePath()
+const chromiumLaunchOptions = chromiumExecutablePath
+  ? { launchOptions: { executablePath: chromiumExecutablePath } }
+  : {}
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -21,7 +40,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], ...chromiumLaunchOptions },
     },
     {
       name: 'firefox',
@@ -33,7 +52,7 @@ module.exports = defineConfig({
     },
     {
       name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
+      use: { ...devices['Pixel 5'], ...chromiumLaunchOptions },
     },
     {
       name: 'Mobile Safari',
