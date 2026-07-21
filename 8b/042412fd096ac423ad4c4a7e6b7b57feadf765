@@ -1,0 +1,19 @@
+skills-lock.json
+  s_92a715264a166c::t_43587dbadc005e 4-9,15-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "8b042412fd096ac423ad4c4a7e6b7b57feadf765",
+  "prompts": {},
+  "sessions": {
+    "s_92a715264a166c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8388-0c34-7003-9cc4-5e1018d5db93",
+        "model": "unknown"
+      },
+      "human_author": "aaronedev <mail@aaronsamuel.de>"
+    }
+  }
+}
