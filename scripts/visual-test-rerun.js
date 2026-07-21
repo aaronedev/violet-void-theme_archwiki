@@ -1,7 +1,7 @@
 const { firefox } = require('@playwright/test')
-const fs = require('fs')
-const path = require('path')
-const css = fs.readFileSync(path.join(__dirname, '../dist/main.css'), 'utf-8')
+const { readScopedUserStyle } = require('./lib/userstyle-test-css')
+
+const css = readScopedUserStyle()
 
 ;(async () => {
   const browser = await firefox.launch({ headless: true })

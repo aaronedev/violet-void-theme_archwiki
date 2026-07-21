@@ -1,16 +1,11 @@
 const { firefox } = require('playwright')
-const fs = require('fs')
-const css = fs.readFileSync(
-  '/home/d2/dev/violet-void-monorepo/themes/archwiki/dist/main.css',
-  'utf-8'
-)
+const { readScopedUserStyle } = require('./lib/userstyle-test-css')
+
+const css = readScopedUserStyle()
 
 ;(async () => {
   const browser = await firefox.launch({ headless: true })
   const page = await browser.newPage({ viewport: { width: 1400, height: 900 } })
-
-  // Inject theme CSS
-  await page.addStyleTag({ content: css })
 
   const pages = [
     { name: 'archwiki-main', url: 'https://wiki.archlinux.org/', dark: false },
@@ -39,6 +34,7 @@ const css = fs.readFileSync(
   for (const p of pages) {
     console.log(`Screenshot: ${p.name}`)
     await page.goto(p.url, { waitUntil: 'networkidle', timeout: 30000 })
+    await page.addStyleTag({ content: css })
     await page.screenshot({
       path: `screenshots/${p.name}-${Date.now()}.png`,
       fullPage: false,

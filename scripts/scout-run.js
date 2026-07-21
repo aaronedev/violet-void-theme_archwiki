@@ -1,4 +1,7 @@
 const { chromium } = require('playwright')
+const { readScopedUserStyle } = require('./lib/userstyle-test-css')
+
+const css = readScopedUserStyle()
 
 ;(async () => {
   const browser = await chromium.launch({ headless: true })
@@ -10,10 +13,6 @@ const { chromium } = require('playwright')
   })
 
   const desktopPage = await desktopContext.newPage()
-
-  // Load theme CSS
-  await desktopPage.goto('about:blank')
-  await desktopPage.addStyleTag({ path: './dist/main.css' })
 
   const pages = [
     { name: 'main-page', url: 'https://wiki.archlinux.org/title/Main_page' },
@@ -77,6 +76,7 @@ const { chromium } = require('playwright')
           waitUntil: 'domcontentloaded',
           timeout: 15000,
         })
+        await desktopPage.addStyleTag({ content: css })
         await desktopPage.waitForTimeout(800)
 
         await s.fn(desktopPage)
@@ -119,7 +119,6 @@ const { chromium } = require('playwright')
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)',
   })
   const mobilePage = await mobileContext.newPage()
-  await mobilePage.addStyleTag({ path: './dist/main.css' })
 
   const mobileStates = [
     { name: 'default', fn: async () => {} },
@@ -153,6 +152,7 @@ const { chromium } = require('playwright')
           waitUntil: 'domcontentloaded',
           timeout: 15000,
         })
+        await mobilePage.addStyleTag({ content: css })
         await mobilePage.waitForTimeout(800)
 
         await s.fn(mobilePage)

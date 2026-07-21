@@ -69,9 +69,7 @@ function runBuild(rootDir, { observeGit = false } = {}) {
 }
 
 function readProducedCss(rootDir) {
-  const canonicalPath = path.join(rootDir, 'dist', canonicalFilename)
-  const legacyPath = path.join(rootDir, 'dist', 'main.css')
-  const outputPath = fs.existsSync(canonicalPath) ? canonicalPath : legacyPath
+  const outputPath = path.join(rootDir, 'dist', canonicalFilename)
 
   assert.ok(fs.existsSync(outputPath), 'build did not produce a CSS artifact')
   return { css: fs.readFileSync(outputPath, 'utf8'), outputPath }
@@ -80,6 +78,51 @@ function readProducedCss(rootDir) {
 function removeFixture(rootDir) {
   fs.rmSync(rootDir, { recursive: true, force: true })
 }
+
+test('scoped UserCSS extraction returns only ordered inner CSS', () => {
+  const { extractScopedCss } = require('../scripts/lib/userstyle-test-css')
+  const userCss = `/* ==UserStyle==
+@name Example
+==/UserStyle== */
+
+@-moz-document domain("archlinux.org") {
+  body { color: red; }
+  a { color: blue; }
+}`
+
+  const css = extractScopedCss(userCss)
+
+  assert.doesNotMatch(css, /UserStyle|-moz-document/)
+  assert.match(css, /^\s*body \{ color: red; \}/)
+  assert.ok(css.indexOf('body') < css.indexOf('a {'))
+})
+
+test('scoped UserCSS extraction requires exactly one document scope', () => {
+  const { extractScopedCss } = require('../scripts/lib/userstyle-test-css')
+
+  assert.throws(
+    () => extractScopedCss('body { color: red; }'),
+    /exactly one top-level @-moz-document/
+  )
+  assert.throws(
+    () =>
+      extractScopedCss(
+        '@-moz-document domain("archlinux.org") {}\n@-moz-document domain("example.com") {}'
+      ),
+    /exactly one top-level @-moz-document/
+  )
+})
+
+test('scoped UserCSS extraction rejects non-comment top-level content', () => {
+  const { extractScopedCss } = require('../scripts/lib/userstyle-test-css')
+  const userCss =
+    '/* metadata */\n@-moz-document domain("archlinux.org") { body { color: red; } }\nhtml { color: blue; }'
+
+  assert.throws(
+    () => extractScopedCss(userCss),
+    /top-level rule outside @-moz-document/
+  )
+})
 
 test('scope normalizer rejects top-level ordinary rules', () => {
   const { scopeBubbledAtRules } = require('../scripts/lib/userstyle-build')
@@ -280,6 +323,39 @@ test('release updates userStyle.version and builds the canonical artifact', () =
       fs.readFileSync(artifactPath, 'utf8'),
       /^@version\s+2099\.07\.21$/m
     )
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
+test('release compilation failure preserves package and existing artifact bytes', () => {
+  const rootDir = createFixture()
+
+  try {
+    const packagePath = path.join(rootDir, 'package.json')
+    const artifactPath = path.join(rootDir, 'dist', canonicalFilename)
+    const artifactBefore = Buffer.from([0, 255, 1, 254, 2, 253])
+    const packageBefore = fs.readFileSync(packagePath)
+
+    fs.mkdirSync(path.dirname(artifactPath), { recursive: true })
+    fs.writeFileSync(artifactPath, artifactBefore)
+    fs.writeFileSync(
+      path.join(rootDir, 'src', 'main.styl'),
+      'body\n  color rgba(\n'
+    )
+
+    const result = spawnSync(
+      process.execPath,
+      ['scripts/release.js', '2099.07.22'],
+      {
+        cwd: rootDir,
+        encoding: 'utf8',
+      }
+    )
+
+    assert.notEqual(result.status, 0, 'release unexpectedly succeeded')
+    assert.deepEqual(fs.readFileSync(packagePath), packageBefore)
+    assert.deepEqual(fs.readFileSync(artifactPath), artifactBefore)
   } finally {
     removeFixture(rootDir)
   }

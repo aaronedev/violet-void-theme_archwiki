@@ -1,8 +1,8 @@
 const { firefox } = require('playwright')
-const fs = require('fs')
 const path = require('path')
+const { readScopedUserStyle } = require('./lib/userstyle-test-css')
 
-const css = fs.readFileSync(path.join(__dirname, '../dist/main.css'), 'utf-8')
+const css = readScopedUserStyle()
 
 ;(async () => {
   const browser = await firefox.launch({ headless: true })
@@ -10,8 +10,6 @@ const css = fs.readFileSync(path.join(__dirname, '../dist/main.css'), 'utf-8')
     viewport: { width: 1400, height: 900 },
   })
   const page = await context.newPage()
-
-  await page.addStyleTag({ content: css })
 
   const pages = [
     { name: 'main', url: 'https://wiki.archlinux.org/' },
@@ -29,6 +27,7 @@ const css = fs.readFileSync(path.join(__dirname, '../dist/main.css'), 'utf-8')
   for (const p of pages) {
     console.log(`Screenshot: ${p.name}...`)
     await page.goto(p.url, { waitUntil: 'networkidle', timeout: 30000 })
+    await page.addStyleTag({ content: css })
     await page.screenshot({
       path: `${screenshotDir}/cron-${p.name}.png`,
       fullPage: false,

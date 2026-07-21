@@ -31,6 +31,7 @@ npm run test:report
 ## Test Coverage
 
 ### Sites Tested
+
 - ✅ ArchWiki (wiki.archlinux.org)
 - ✅ AUR (aur.archlinux.org)
 - ✅ Forums (bbs.archlinux.org)
@@ -38,6 +39,7 @@ npm run test:report
 ### What Tests Check
 
 #### Visual Regression
+
 - Homepage rendering
 - Article pages
 - Tables (complex with rowspan/colspan)
@@ -48,21 +50,25 @@ npm run test:report
 - Forum posts
 
 #### Responsive Design
+
 - Mobile (375px)
 - Tablet (768px)
 - Desktop (1920px)
 
 #### Accessibility
+
 - Focus states
 - Contrast ratios
 - Keyboard navigation
 
 #### Interactions
+
 - Button hover states
 - Link hover states
 - Form inputs
 
 #### Quirk Detection
+
 - Horizontal overflow
 - Z-index issues
 - Font size problems
@@ -71,16 +77,21 @@ npm run test:report
 ## Test Categories
 
 ### 1. Visual Regression Tests
+
 Capture screenshots and compare against baseline.
 
 ### 2. Accessibility Tests
+
 Check focus states, contrast, keyboard navigation.
 
 ### 3. Responsive Tests
+
 Test at different viewport sizes.
 
 ### 4. Quirk Detection Tests
+
 Find visual bugs automatically:
+
 - Overflows
 - Z-index conflicts
 - Tiny fonts
@@ -89,6 +100,7 @@ Find visual bugs automatically:
 ## Screenshots
 
 Screenshots are saved to `screenshots/` directory:
+
 ```
 screenshots/
 ├── wiki-homepage.png
@@ -102,6 +114,7 @@ screenshots/
 ## Test Results
 
 Results are saved to:
+
 - `test-results/` - Screenshots, videos, traces
 - `playwright-report/` - HTML report
 - `test-results.json` - JSON report
@@ -135,22 +148,26 @@ jobs:
 ## Writing New Tests
 
 ```javascript
+const { readScopedUserStyle } = require('../scripts/lib/userstyle-test-css')
+
+const scopedCss = readScopedUserStyle()
+
 test('New visual test', async ({ page }) => {
   // Navigate
-  await page.goto('https://wiki.archlinux.org/title/Page');
+  await page.goto('https://wiki.archlinux.org/title/Page')
 
-  // Inject theme CSS
-  await page.addStyleTag({ path: './dist/main.css' });
+  // Inject only the canonical UserCSS artifact's scoped inner CSS.
+  await page.addStyleTag({ content: scopedCss })
 
   // Check element
-  const element = await page.locator('.my-element');
-  const style = await element.evaluate(el => getComputedStyle(el));
+  const element = await page.locator('.my-element')
+  const style = await element.evaluate((el) => getComputedStyle(el))
 
-  console.log('Element style:', style);
+  console.log('Element style:', style)
 
   // Take screenshot
-  await page.screenshot({ path: 'screenshots/my-test.png' });
-});
+  await page.screenshot({ path: 'screenshots/my-test.png' })
+})
 ```
 
 ## Debugging Failed Tests
@@ -169,18 +186,25 @@ npx playwright show-trace trace.zip
 ## Common Issues
 
 ### Theme Not Applied
-Make sure `dist/main.css` exists and is built:
+
+Make sure `dist/violet-void-theme-archwiki.user.css` exists and is built. Direct
+Playwright injection must use `readScopedUserStyle()` so the UserCSS metadata
+and `@-moz-document` wrapper are removed before calling `page.addStyleTag()`:
+
 ```bash
 npm run build
 ```
 
 ### Browser Not Installed
+
 ```bash
 npx playwright install
 ```
 
 ### Screenshots Don't Match
+
 Update baseline:
+
 ```bash
 npx playwright test --update-snapshots
 ```
@@ -197,6 +221,7 @@ npx playwright test --update-snapshots
 ## Integration with Skills
 
 These tests work with:
+
 - **violet-void-review** - Code quality checks
 - **violet-void-testing** - Manual testing guide
 - **Automated cron** - Continuous improvement

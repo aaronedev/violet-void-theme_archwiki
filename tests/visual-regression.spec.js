@@ -2,6 +2,9 @@
 // Run with: npx playwright test
 
 const { test, expect } = require('@playwright/test')
+const { readScopedUserStyle } = require('../scripts/lib/userstyle-test-css')
+
+const scopedCss = readScopedUserStyle()
 
 const BASE_URLS = {
   wiki: 'https://wiki.archlinux.org',
@@ -10,20 +13,19 @@ const BASE_URLS = {
   packages: 'https://archlinux.org/packages',
 }
 
-test.describe('Violet Void Theme - Visual Regression', () => {
-  test.beforeEach(async ({ page }) => {
-    // Inject the theme CSS before testing
-    await page.addStyleTag({
-      path: './dist/violet-void-theme-archwiki.user.css',
-    })
-  })
+async function gotoWithTheme(page, url) {
+  const response = await page.goto(url)
+  await page.addStyleTag({ content: scopedCss })
+  return response
+}
 
+test.describe('Violet Void Theme - Visual Regression', () => {
   // ============================================================================
   // ARCHWIKI TESTS
   // ============================================================================
 
   test('ArchWiki - Homepage', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Check background color
@@ -31,7 +33,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
     const bgColor = await body.evaluate(
       (el) => getComputedStyle(el).backgroundColor
     )
-    expect(bgColor).toBeTruthy()
+    expect(bgColor).toBe('rgb(24, 24, 24)')
 
     // Take screenshot
     await page.screenshot({
@@ -41,7 +43,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('ArchWiki - Installation Guide', async ({ page }) => {
-    await page.goto(`${BASE_URLS.wiki}/title/Installation_guide`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Installation_guide`)
     await page.waitForLoadState('networkidle')
 
     // Check content area styling
@@ -73,7 +75,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('ArchWiki - Table Rendering', async ({ page }) => {
-    await page.goto(`${BASE_URLS.wiki}/title/WireGuard`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/WireGuard`)
     await page.waitForLoadState('networkidle')
 
     // Check for complex tables (rowspan/colspan)
@@ -104,7 +106,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('ArchWiki - Search Functionality', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Check search input
@@ -135,7 +137,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('ArchWiki - Code Block with Copy Button', async ({ page }) => {
-    await page.goto(`${BASE_URLS.wiki}/title/Bash`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Bash`)
     await page.waitForLoadState('networkidle')
 
     const codeBlock = await page.locator('pre').first()
@@ -158,7 +160,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('ArchWiki - Sidebar Navigation', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     const sidebar = await page.locator('.mw-sidebar, #mw-sidebar').first()
@@ -185,7 +187,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   // ============================================================================
 
   test('AUR - Homepage', async ({ page }) => {
-    await page.goto(BASE_URLS.aur)
+    await gotoWithTheme(page, BASE_URLS.aur)
     await page.waitForLoadState('networkidle')
 
     // Check search input
@@ -206,7 +208,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('AUR - Package Search Results', async ({ page }) => {
-    await page.goto(`${BASE_URLS.aur}/packages/?K=nvidia`)
+    await gotoWithTheme(page, `${BASE_URLS.aur}/packages/?K=nvidia`)
     await page.waitForLoadState('networkidle')
 
     // Check results table
@@ -238,7 +240,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('AUR - Package Details', async ({ page }) => {
-    await page.goto(`${BASE_URLS.aur}/packages/nvidia`)
+    await gotoWithTheme(page, `${BASE_URLS.aur}/packages/nvidia`)
     await page.waitForLoadState('networkidle')
 
     // Check package info
@@ -258,7 +260,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   // ============================================================================
 
   test('Forums - Homepage', async ({ page }) => {
-    await page.goto(BASE_URLS.forums)
+    await gotoWithTheme(page, BASE_URLS.forums)
     await page.waitForLoadState('networkidle')
 
     // Check forum listing
@@ -277,7 +279,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('Forums - Topic View', async ({ page }) => {
-    await page.goto(`${BASE_URLS.forums}/viewtopic.php?id=270000`)
+    await gotoWithTheme(page, `${BASE_URLS.forums}/viewtopic.php?id=270000`)
     await page.waitForLoadState('networkidle')
 
     // Check posts
@@ -315,7 +317,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
 
   test('Responsive - Mobile View (375px)', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
-    await page.goto(`${BASE_URLS.wiki}/title/Installation_guide`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Installation_guide`)
     await page.waitForLoadState('networkidle')
 
     // Check if content is readable
@@ -333,7 +335,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
 
   test('Responsive - Tablet View (768px)', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 })
-    await page.goto(`${BASE_URLS.wiki}/title/Installation_guide`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Installation_guide`)
     await page.waitForLoadState('networkidle')
 
     // Check sidebar
@@ -354,7 +356,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   // ============================================================================
 
   test('Accessibility - Focus States', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Tab through links
@@ -376,7 +378,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('Accessibility - Contrast Ratios', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Check text contrast
@@ -398,7 +400,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   // ============================================================================
 
   test('Interaction - Button Hover States', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Find all buttons
@@ -424,7 +426,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('Interaction - Link Hover States', async ({ page }) => {
-    await page.goto(`${BASE_URLS.wiki}/title/Installation_guide`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Installation_guide`)
     await page.waitForLoadState('networkidle')
 
     // Find first link in content
@@ -448,7 +450,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   // ============================================================================
 
   test('Quirk Detection - Overflows', async ({ page }) => {
-    await page.goto(`${BASE_URLS.wiki}/title/Installation_guide`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Installation_guide`)
     await page.waitForLoadState('networkidle')
 
     // Check for horizontal overflow
@@ -472,7 +474,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('Quirk Detection - Z-index Issues', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Check for overlapping elements
@@ -502,7 +504,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('Quirk Detection - Font Size Issues', async ({ page }) => {
-    await page.goto(`${BASE_URLS.wiki}/title/Installation_guide`)
+    await gotoWithTheme(page, `${BASE_URLS.wiki}/title/Installation_guide`)
     await page.waitForLoadState('networkidle')
 
     // Check for very small text
@@ -534,7 +536,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   })
 
   test('Quirk Detection - Color Consistency', async ({ page }) => {
-    await page.goto(BASE_URLS.wiki)
+    await gotoWithTheme(page, BASE_URLS.wiki)
     await page.waitForLoadState('networkidle')
 
     // Sample color usage

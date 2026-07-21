@@ -1,4 +1,7 @@
 const { chromium } = require('playwright')
+const { readScopedUserStyle } = require('./lib/userstyle-test-css')
+
+const css = readScopedUserStyle()
 
 ;(async () => {
   const browser = await chromium.launch()
@@ -12,7 +15,7 @@ const { chromium } = require('playwright')
   // Load the theme on initial page
   await page.goto('https://wiki.archlinux.org')
   await page.waitForLoadState('networkidle')
-  await page.addStyleTag({ path: './dist/main.css' })
+  await page.addStyleTag({ content: css })
   await page.waitForTimeout(500)
 
   const pages = [
@@ -100,7 +103,7 @@ const { chromium } = require('playwright')
         await resetStates()
         await page.goto(p.url, { waitUntil: 'networkidle', timeout: 30000 })
         // Re-add style tag after navigation (style may not persist across navigations)
-        await page.addStyleTag({ path: './dist/main.css' })
+        await page.addStyleTag({ content: css })
         await page.waitForTimeout(300)
         await s.fn()
         await page.waitForTimeout(300)
@@ -127,7 +130,7 @@ const { chromium } = require('playwright')
       'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
   })
   const mobilePage = await mobileContext.newPage()
-  await mobilePage.addStyleTag({ path: './dist/main.css' })
+  await mobilePage.addStyleTag({ content: css })
 
   // Mobile states (no search-active on mobile in this simple set)
   const mobileStates = states.slice(0, 3) // default, menu-open, toc-open
@@ -139,7 +142,7 @@ const { chromium } = require('playwright')
           waitUntil: 'networkidle',
           timeout: 30000,
         })
-        await mobilePage.addStyleTag({ path: './dist/main.css' })
+        await mobilePage.addStyleTag({ content: css })
         await mobilePage.waitForTimeout(300)
         await s.fn()
         await mobilePage.waitForTimeout(300)

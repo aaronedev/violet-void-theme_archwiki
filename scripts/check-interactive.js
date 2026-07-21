@@ -1,4 +1,5 @@
 const { chromium } = require('playwright')
+const { injectUserStyle } = require('./lib/userstyle-test-css')
 
 ;(async () => {
   const browser = await chromium.launch()
@@ -10,7 +11,7 @@ const { chromium } = require('playwright')
   await page.goto('https://wiki.archlinux.org/title/Installation_guide', {
     waitUntil: 'networkidle',
   })
-  await page.addStyleTag({ path: './dist/main.css' })
+  await injectUserStyle(page)
   await page.waitForTimeout(500)
 
   const checks = await page.evaluate(() => {

@@ -13,8 +13,8 @@ const { chromium, firefox } = require('playwright')
 const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
+const { readScopedUserStyle } = require('./lib/userstyle-test-css')
 
-const THEME_PATH = path.join(__dirname, '..', 'dist', 'main.css')
 const SRC_DIR = path.join(__dirname, '..', 'src')
 const EXTENSIONS_DIR = path.join(__dirname, '..', '.browser-extensions')
 
@@ -134,7 +134,7 @@ class ConsoleFixer {
   }
 
   async injectTheme(page) {
-    const css = fs.readFileSync(THEME_PATH, 'utf-8')
+    const css = readScopedUserStyle()
 
     // Wait for Stylus to be ready
     await page.waitForTimeout(2000)

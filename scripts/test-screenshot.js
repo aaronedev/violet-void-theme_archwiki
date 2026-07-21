@@ -1,4 +1,5 @@
 const { chromium } = require('playwright')
+const { injectUserStyle } = require('./lib/userstyle-test-css')
 
 ;(async () => {
   const browser = await chromium.launch()
@@ -17,7 +18,7 @@ const { chromium } = require('playwright')
     timeout: 15000,
   })
   await page.waitForTimeout(2000)
-  await page.addStyleTag({ path: './dist/main.css' })
+  await injectUserStyle(page)
   await page.waitForTimeout(1000)
 
   const title = await page.title()
