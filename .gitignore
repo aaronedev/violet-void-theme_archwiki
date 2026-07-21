@@ -40,3 +40,4 @@ tests/integration/stylus/*
 /.agent/archwiki/current
 /.agents/skills/web-design-guidelines
 /docs/superpowers/plans
+/.agents/skills
