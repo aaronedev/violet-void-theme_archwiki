@@ -309,6 +309,10 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
+      /html body #content \.mw-parser-output a(?:\s*,\s*html body \.mw-parser-output a)?\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
+    )
+    assert.match(
+      css,
       /html body \.mw-parser-output \.archwiki-template-(?:man|pkg) a[^}]*color:\s*#42ff97\s*!important/s
     )
 
