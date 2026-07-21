@@ -76,11 +76,18 @@ function readProducedCss(rootDir) {
 }
 
 function rulesContaining(root, selectorFragment) {
-  return root.nodes
-    .flatMap((node) => (node.type === 'atrule' ? node.nodes || [] : [node]))
-    .filter(
-      (node) => node.type === 'rule' && node.selector.includes(selectorFragment)
-    )
+  const matchingRules = []
+
+  function visit(node) {
+    if (node.type === 'rule' && node.selector.includes(selectorFragment)) {
+      matchingRules.push(node)
+    }
+
+    for (const child of node.nodes || []) visit(child)
+  }
+
+  for (const node of root.nodes || []) visit(node)
+  return matchingRules
 }
 
 function declarationValue(rule, property) {
@@ -88,6 +95,14 @@ function declarationValue(rule, property) {
     (node) => node.type === 'decl' && node.prop === property
   )?.value
 }
+
+test('rulesContaining finds rules nested in multiple at-rule levels', () => {
+  const root = postcss.parse(
+    '@media (min-width: 1px) { @supports (display: grid) { .nested-contract { color: red } } }'
+  )
+
+  assert.equal(rulesContaining(root, '.nested-contract').length, 1)
+})
 
 function removeFixture(rootDir) {
   fs.rmSync(rootDir, { recursive: true, force: true })
@@ -278,6 +293,7 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     const scope = documentRoot.nodes.find(
       (node) => node.type === 'atrule' && node.name === '-moz-document'
     )
+    assert.ok(scope, 'canonical CSS must include @-moz-document scope')
     const root = { nodes: scope.nodes }
 
     assert.equal(
