@@ -12,10 +12,11 @@
 // Types: serious (delete/speedy), content (issues), style (cleanup), notice, move
 
 .ambox
-  background linear-gradient(135deg, rgba($arch-blue, 0.08), rgba($secondary-blue, 0.04))
+  background-color rgba($arch-blue, 0.07)
+  background-image none
   border 1px solid rgba($arch-blue, 0.25)
   border-left 5px solid $arch-blue
-  border-radius $border-radius-md
+  border-radius 0
   margin 0.5em 0
   padding 0.75em 1em
   font-size 0.9em
@@ -23,10 +24,7 @@
   display table
   width 100%
   box-sizing border-box
-  // Multi-layer shadow for realistic depth: tight inner shadow + diffuse outer shadow
-  // Matches .warningbox/.errorbox treatment in boxes.styl
-  // Browser support: 97%+
-  box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
+  box-shadow none
 
   // Ambox inner structure
   .ambox-image
@@ -59,7 +57,8 @@
   &.ambox-serious
   &.ambox-delete
   &.ambox-speedy
-    background linear-gradient(135deg, rgba($secondary-red, 0.15), rgba($secondary-red, 0.08))
+    background-color rgba($secondary-red, 0.15)
+    background-image none
     border-color rgba($secondary-red, 0.3)
     border-left-color $secondary-red
 
@@ -70,7 +69,8 @@
   &.ambox-content
   &.ambox-accuracy
   &.ambox-disputed
-    background linear-gradient(135deg, rgba($orange, 0.12), rgba($orange, 0.06))
+    background-color rgba($orange, 0.12)
+    background-image none
     border-color rgba($orange, 0.3)
     border-left-color $orange
 
@@ -81,7 +81,8 @@
   &.ambox-style
   &.ambox-cleanup
   &.ambox-copyedit
-    background linear-gradient(135deg, rgba($term-yellow, 0.1), rgba($term-yellow, 0.05))
+    background-color rgba($term-yellow, 0.1)
+    background-image none
     border-color rgba($term-yellow, 0.3)
     border-left-color $term-yellow
 
@@ -91,7 +92,8 @@
   // Notice/information
   &.ambox-notice
   &.ambox-info
-    background linear-gradient(135deg, rgba($secondary-blue, 0.1), rgba($secondary-blue, 0.05))
+    background-color rgba($secondary-blue, 0.1)
+    background-image none
     border-color rgba($secondary-blue, 0.25)
     border-left-color $secondary-blue
 
@@ -101,7 +103,8 @@
   // Move/merge proposals
   &.ambox-move
   &.ambox-merge
-    background linear-gradient(135deg, rgba($term-cyan, 0.1), rgba($term-cyan, 0.05))
+    background-color rgba($term-cyan, 0.1)
+    background-image none
     border-color rgba($term-cyan, 0.3)
     border-left-color $term-cyan
 
@@ -110,7 +113,8 @@
 
   // Protection
   &.ambox-protection
-    background linear-gradient(135deg, rgba($muted, 0.15), rgba($muted, 0.08))
+    background-color rgba($muted, 0.15)
+    background-image none
     border-color rgba($muted, 0.3)
     border-left-color $muted
 
@@ -144,38 +148,41 @@
 // Used on non-article pages (templates, categories, etc.)
 
 .ombox
-  background linear-gradient(135deg, rgba($arch-blue, 0.06), rgba($secondary-blue, 0.03))
+  background-color rgba($arch-blue, 0.06)
+  background-image none
   border 1px solid rgba($arch-blue, 0.2)
-  border-radius $border-radius-md
+  border-radius 0
   margin 0.5em 0
   padding 0.75em 1em
   font-size 0.9em
   color $light
-  // Multi-layer shadow for realistic depth: tight inner shadow + diffuse outer shadow
-  // Matches .warningbox/.errorbox treatment in boxes.styl
-  // Browser support: 97%+
-  box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
+  box-shadow none
 
   // Type-specific styling (similar to ambox)
   &.ombox-serious
   &.ombox-delete
-    background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06))
+    background-color rgba($secondary-red, 0.12)
+    background-image none
     border-color rgba($secondary-red, 0.25)
 
   &.ombox-content
-    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    background-color rgba($orange, 0.1)
+    background-image none
     border-color rgba($orange, 0.25)
 
   &.ombox-style
-    background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.04))
+    background-color rgba($term-yellow, 0.08)
+    background-image none
     border-color rgba($term-yellow, 0.25)
 
   &.ombox-notice
-    background linear-gradient(135deg, rgba($secondary-blue, 0.08), rgba($secondary-blue, 0.04))
+    background-color rgba($secondary-blue, 0.08)
+    background-image none
     border-color rgba($secondary-blue, 0.2)
 
   &.ombox-protection
-    background linear-gradient(135deg, rgba($muted, 0.12), rgba($muted, 0.06))
+    background-color rgba($muted, 0.12)
+    background-image none
     border-color rgba($muted, 0.25)
 
   a
@@ -190,34 +197,36 @@
 // Used on file/image description pages
 
 .imbox
-  background linear-gradient(135deg, rgba($term-cyan, 0.08), rgba($term-cyan, 0.04))
+  background-color rgba($term-cyan, 0.06)
+  background-image none
   border 1px solid rgba($term-cyan, 0.25)
-  border-radius $border-radius-md
+  border-radius 0
   margin 0.5em 0
   padding 0.75em 1em
   font-size 0.9em
   color $light
-  // Multi-layer shadow for realistic depth: tight inner shadow + diffuse outer shadow
-  // Matches .warningbox/.errorbox treatment in boxes.styl
-  // Browser support: 97%+
-  box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
+  box-shadow none
 
   // Type-specific styling
   &.imbox-serious
   &.imbox-delete
-    background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06))
+    background-color rgba($secondary-red, 0.12)
+    background-image none
     border-color rgba($secondary-red, 0.25)
 
   &.imbox-content
-    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    background-color rgba($orange, 0.1)
+    background-image none
     border-color rgba($orange, 0.25)
 
   &.imbox-notice
-    background linear-gradient(135deg, rgba($secondary-blue, 0.08), rgba($secondary-blue, 0.04))
+    background-color rgba($secondary-blue, 0.08)
+    background-image none
     border-color rgba($secondary-blue, 0.2)
 
   &.imbox-license
-    background linear-gradient(135deg, rgba($green, 0.1), rgba($green, 0.05))
+    background-color rgba($green, 0.1)
+    background-image none
     border-color rgba($green, 0.25)
 
   a
@@ -232,30 +241,31 @@
 // Used on discussion/talk pages
 
 .tmbox
-  background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.04))
+  background-color rgba($term-yellow, 0.06)
+  background-image none
   border 1px solid rgba($term-yellow, 0.25)
-  border-radius $border-radius-md
+  border-radius 0
   margin 0.5em 0
   padding 0.75em 1em
   font-size 0.9em
   color $light
-  // Multi-layer shadow for realistic depth: tight inner shadow + diffuse outer shadow
-  // Matches .warningbox/.errorbox treatment in boxes.styl
-  // Browser support: 97%+
-  box-shadow 0 1px 2px rgba($darker, 0.15), 0 4px 16px rgba($darker, 0.25)
+  box-shadow none
 
   // Type-specific styling
   &.tmbox-serious
   &.tmbox-delete
-    background linear-gradient(135deg, rgba($secondary-red, 0.12), rgba($secondary-red, 0.06))
+    background-color rgba($secondary-red, 0.12)
+    background-image none
     border-color rgba($secondary-red, 0.25)
 
   &.tmbox-content
-    background linear-gradient(135deg, rgba($orange, 0.1), rgba($orange, 0.05))
+    background-color rgba($orange, 0.1)
+    background-image none
     border-color rgba($orange, 0.25)
 
   &.tmbox-notice
-    background linear-gradient(135deg, rgba($term-yellow, 0.08), rgba($term-yellow, 0.04))
+    background-color rgba($term-yellow, 0.08)
+    background-image none
     border-color rgba($term-yellow, 0.2)
 
   a

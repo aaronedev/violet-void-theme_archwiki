@@ -128,8 +128,8 @@ body .mw-body table tr:hover td
   background-color var(--vv-table-bg) !important
   color var(--vv-table-text) !important
   margin 1em 0
-  border none
-  border-radius $border-radius-md
+  border 1px solid var(--vv-table-border)
+  border-radius 0
 
   th
     background-color var(--vv-table-header-bg) !important
@@ -142,7 +142,7 @@ body .mw-body table tr:hover td
   tr:hover td
     background-color rgba($arch-blue, 0.08) !important
   overflow hidden
-  box-shadow $shadow-subtle
+  box-shadow none
   border-collapse separate
   border-spacing 0
   width 100% // Ensure full width responsiveness
@@ -150,7 +150,8 @@ body .mw-body table tr:hover td
 
   > tr > th
   > * > tr > th
-    background linear-gradient(135deg, $darker, rgba($arch-blue, 0.04))
+    background-color var(--vv-table-header-bg) !important
+    background-image none !important
     text-align left // Better readability
     font-weight 600
     font-size 0.9em
@@ -1224,4 +1225,3 @@ table
     &.spacing-responsive
       border-spacing 0.5rem
       border-collapse separate
-

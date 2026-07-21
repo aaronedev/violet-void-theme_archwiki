@@ -293,7 +293,7 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
-      /\.vector-toc \.vector-toc-text\s*\{[^}]*word-break:\s*normal\s*!important;[^}]*overflow-wrap:\s*normal\s*!important;/s
+      /\.vector-toc \.vector-toc-text\s*\{[^}]*word-break:\s*normal\s*!important;?[^}]*overflow-wrap:\s*normal\s*!important;?/s
     )
     assert.match(
       css,
@@ -301,11 +301,11 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
-      /html\.client-nojs \.vector-page-titlebar-toc \.vector-dropdown-content\s*\{[^}]*width:\s*min\(22rem,calc\(100vw - 2rem\)\)\s*!important;[^}]*max-height:\s*min\(60vh,28rem\);[^}]*overflow-y:\s*auto;/s
+      /html\.client-nojs \.vector-page-titlebar-toc \.vector-dropdown-content\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-height:\s*min\(60vh,\s*28rem\);[^}]*overflow-y:\s*auto;/s
     )
     assert.match(
       css,
-      /html body \.mw-parser-output a\s*\{[^}]*color:\s*#b3a7d8\s*!important;/s
+      /html body \.mw-parser-output a\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
     )
     assert.match(
       css,

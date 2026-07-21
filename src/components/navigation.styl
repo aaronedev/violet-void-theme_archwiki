@@ -472,8 +472,8 @@ header.vector-header
 .vector-toc .vector-toc-link
   color $lighter
   display block
-  // FIX: Ensure space for the absolute toggle button on the left
-  padding 0.15em 0.5em 0.15em 2em
+  padding 0.15em 0.5em
+  min-height 24px
   border-radius $border-radius-sm
   text-decoration none
   line-height 1.4
@@ -484,6 +484,9 @@ header.vector-header
     background-color rgba($arch-blue, 0.15)
     color $white
     font-weight 500
+
+.vector-toc .vector-toc-list-item:has(> .vector-toc-toggle) > .vector-toc-link
+  padding-inline-start 2em
 
 // Highlight active section links in the TOC
 .vector-toc .vector-toc-list-item-active > .vector-toc-link
@@ -496,6 +499,16 @@ header.vector-header
 .vector-toc .vector-toc-text
   color $lighter
   padding 0.1em 0
+  word-break normal !important
+  overflow-wrap normal !important
+
+@media (max-width $breakpoint-sm)
+  html.client-nojs .vector-page-titlebar-toc .vector-dropdown-content
+    width unquote('min(22rem, calc(100vw - 2rem))') !important
+    max-width calc(100vw - 2rem)
+    max-height unquote('min(60vh, 28rem)')
+    overflow-y auto
+    overscroll-behavior contain
 
 // Position the table‑of‑contents toggle buttons relative to the list item so
 // their icons align vertically with the menu text.  Use a 50% offset and

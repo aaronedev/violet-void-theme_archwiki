@@ -2730,26 +2730,6 @@ h4[id]
 /* stylelint-disable stylus/at-rule-no-unknown, selector-pseudo-class-no-unknown, stylus/single-line-comment */
 @css {
   @supports (animation-timeline: scroll()) {
-    /* Reading progress bar - animates as user scrolls through article */
-    .mw-parser-output {
-      animation-timeline: scroll();
-      animation-name: reading-progress;
-      animation-fill-mode: both;
-      animation-timing-function: linear;
-    }
-
-    /* Reading progress bar keyframes */
-    @keyframes reading-progress {
-      from {
-        transform: scaleX(0);
-        transform-origin: left;
-      }
-      to {
-        transform: scaleX(1);
-        transform-origin: left;
-      }
-    }
-
     /* TOC section indicator - highlights current section while scrolling */
     #toc,
     .toc {
