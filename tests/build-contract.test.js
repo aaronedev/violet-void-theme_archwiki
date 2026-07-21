@@ -316,7 +316,7 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
-      /\.vector-toc \.vector-toc-toggle\s*\{[^}]*background:\s*transparent;[^}]*border:\s*0;[^}]*width:\s*24px;[^}]*height:\s*24px;/s
+      /\.vector-toc \.vector-toc-toggle\s*\{[^}]*background:\s*transparent;[^}]*border:\s*0;[^}]*box-shadow:\s*none;[^}]*width:\s*24px;[^}]*height:\s*24px;/s
     )
     assert.match(
       css,
