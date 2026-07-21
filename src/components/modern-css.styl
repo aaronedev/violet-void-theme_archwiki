@@ -144,49 +144,47 @@
 
 /* stylelint-disable stylus/single-line-comment, selector-type-no-unknown */
 @css {
-  @supports (@starting-style) {
-    /* Dialogs and modals */
+  /* Dialogs and modals */
+  dialog {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  @starting-style {
     dialog {
-      opacity: 1;
-      transform: scale(1);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: scale(0.95);
     }
+  }
 
-    @starting-style {
-      dialog {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-    }
+  /* Dropdowns */
+  .vector-dropdown-content,
+  .oo-ui-popupWidget-popup {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* Dropdowns */
+  @starting-style {
     .vector-dropdown-content,
     .oo-ui-popupWidget-popup {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-10px);
     }
+  }
 
-    @starting-style {
-      .vector-dropdown-content,
-      .oo-ui-popupWidget-popup {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
+  /* Notifications */
+  .mw-notification {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 
-    /* Notifications */
+  @starting-style {
     .mw-notification {
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    @starting-style {
-      .mw-notification {
-        opacity: 0;
-        transform: translateX(100%);
-      }
+      opacity: 0;
+      transform: translateX(100%);
     }
   }
 }
