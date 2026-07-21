@@ -342,6 +342,23 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     assert.doesNotMatch(css, /\.mw-parser-output a\.external::after\s*\{[^}]*content:\s*attr\(title\)/s)
     assert.doesNotMatch(css, /\.mw-parser-output a\.external\s*,\s*\.mw-parser-output \.link\s*\{[^}]*position:\s*relative/s)
     assert.doesNotMatch(css, /\.mw-footer\s*\{[^}]*position:\s*fixed/s)
+    const currentRelatedArticlesRule = rulesContaining(
+      root,
+      '.archwiki-template-meta-related-articles'
+    ).find((rule) => declarationValue(rule, 'background')?.includes('#181818'))
+    const currentRelatedArticlesBackground = currentRelatedArticlesRule?.nodes.find(
+      (node) => node.type === 'decl' && node.prop === 'background-color'
+    )
+    assert.equal(
+      currentRelatedArticlesBackground?.value,
+      '#181818',
+      'current related-articles template must keep the dark Void surface'
+    )
+    assert.equal(
+      currentRelatedArticlesBackground?.important,
+      true,
+      'current related-articles template must beat the mobile upstream surface'
+    )
     assert.match(
       css,
       /html body \.mw-parser-output a\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
