@@ -210,13 +210,13 @@ a:visited
     background-size 100% 1px
 
 html body #content .mw-parser-output a:not([role="button"]):not(.new)
-html body .mw-parser-output a
+html body .mw-parser-output a:not([role="button"]):not(.new)
   color $muted-link !important
 
 html body #content .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)
 html body #content .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)
-html body .mw-parser-output .archwiki-template-man a
-html body .mw-parser-output .archwiki-template-pkg a
+html body .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)
+html body .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)
   color $term-green !important
   background-image linear-gradient(to right, $term-bright-green, $term-bright-green) !important
 
@@ -224,8 +224,8 @@ html body .mw-parser-output .archwiki-template-pkg a
     color $term-bright-green !important
 
 // Man page links and other specific template links
-.archwiki-template-man a
-.archwiki-template-pkg a
+.archwiki-template-man a:not([role="button"]):not(.new)
+.archwiki-template-pkg a:not([role="button"]):not(.new)
   color $term-green !important
   background-image linear-gradient(to right, $term-bright-green, $term-bright-green) !important
 

@@ -361,16 +361,60 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
-      /html body \.mw-parser-output a\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
+      /html body \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
     )
     assert.match(
       css,
-      /html body #content \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)(?:\s*,\s*html body \.mw-parser-output a)?\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
+      /html body #content \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)(?:\s*,\s*html body \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\))?\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
     )
     assert.match(
       css,
-      /html body \.mw-parser-output \.archwiki-template-(?:man|pkg) a[^}]*color:\s*#42ff97\s*!important/s
+      /html body \.mw-parser-output \.archwiki-template-(?:man|pkg) a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)[^}]*color:\s*#42ff97\s*!important/s
     )
+
+    const articleLinkSelectors = [
+      'html body #content .mw-parser-output a:not([role="button"]):not(.new)',
+      'html body .mw-parser-output a:not([role="button"]):not(.new)',
+    ]
+    for (const selector of articleLinkSelectors) {
+      assert.ok(
+        rulesContaining(root, selector).some(
+          (rule) =>
+            declarationValue(rule, 'color') === '#b3a7d8' &&
+            rule.nodes.some(
+              (node) =>
+                node.type === 'decl' &&
+                node.prop === 'color' &&
+                node.important === true
+            )
+        ),
+        `${selector} must preserve excluded link states`
+      )
+    }
+
+    const terminalLinkSelectors = [
+      'html body #content .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)',
+      'html body #content .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)',
+      'html body .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)',
+      'html body .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)',
+      '.archwiki-template-man a:not([role="button"]):not(.new)',
+      '.archwiki-template-pkg a:not([role="button"]):not(.new)',
+    ]
+    for (const selector of terminalLinkSelectors) {
+      assert.ok(
+        rulesContaining(root, selector).some(
+          (rule) =>
+            declarationValue(rule, 'color') === '#42ff97' &&
+            rule.nodes.some(
+              (node) =>
+                node.type === 'decl' &&
+                node.prop === 'color' &&
+                node.important === true
+            )
+        ),
+        `${selector} must preserve excluded terminal-link states`
+      )
+    }
 
     assert.ok(
       rulesContaining(root, '.wikitable').some(
