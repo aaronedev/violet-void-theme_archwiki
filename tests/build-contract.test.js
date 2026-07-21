@@ -75,6 +75,58 @@ function readProducedCss(rootDir) {
   return { css: fs.readFileSync(outputPath, 'utf8'), outputPath }
 }
 
+function rulesContaining(root, selectorFragment) {
+  const matchingRules = []
+
+  function visit(node) {
+    if (node.type === 'rule' && node.selector.includes(selectorFragment)) {
+      matchingRules.push(node)
+    }
+
+    for (const child of node.nodes || []) visit(child)
+  }
+
+  for (const node of root.nodes || []) visit(node)
+  return matchingRules
+}
+
+function rulesWithSelector(root, selector) {
+  const matchingRules = []
+
+  function visit(node) {
+    if (node.type === 'rule' && node.selectors.includes(selector)) {
+      matchingRules.push(node)
+    }
+
+    for (const child of node.nodes || []) visit(child)
+  }
+
+  for (const node of root.nodes || []) visit(node)
+  return matchingRules
+}
+
+function declarationValue(rule, property) {
+  return rule.nodes.find(
+    (node) => node.type === 'decl' && node.prop === property
+  )?.value
+}
+
+test('rulesContaining finds rules nested in multiple at-rule levels', () => {
+  const root = postcss.parse(
+    '@media (min-width: 1px) { @supports (display: grid) { .nested-contract { color: red } } }'
+  )
+
+  assert.equal(rulesContaining(root, '.nested-contract').length, 1)
+})
+
+test('selector lookup excludes pseudo-state variants', () => {
+  const root = postcss.parse(
+    '@media (min-width: 1px) { .exact-contract { color: red } .exact-contract:active { color: green } .exact-contract:hover { color: blue } }'
+  )
+
+  assert.equal(rulesWithSelector(root, '.exact-contract').length, 1)
+})
+
 function removeFixture(rootDir) {
   fs.rmSync(rootDir, { recursive: true, force: true })
 }
@@ -249,6 +301,188 @@ test('viewport height utilities are emitted exactly once each', () => {
         `expected .${selector} once, found ${matches.length}`
       )
     }
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
+test('void reading surface contracts are emitted in canonical CSS', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+    const documentRoot = postcss.parse(css)
+    const scope = documentRoot.nodes.find(
+      (node) => node.type === 'atrule' && node.name === '-moz-document'
+    )
+    assert.ok(scope, 'canonical CSS must include @-moz-document scope')
+    const root = { nodes: scope.nodes }
+
+    assert.equal(
+      rulesContaining(root, '.mw-parser-output').some(
+        (rule) => declarationValue(rule, 'animation-name') === 'reading-progress'
+      ),
+      false,
+      'article content must not be the reading-progress target'
+    )
+    assert.match(
+      css,
+      /input\[type=["']checkbox["']\]:not\(\.vector-dropdown-checkbox\)/
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-text\s*\{[^}]*word-break:\s*normal\s*!important;?[^}]*overflow-wrap:\s*normal\s*!important;?/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc-list-item:has\(> \.vector-toc-toggle\)\s*>\s*\.vector-toc-link/
+    )
+    assert.match(
+      css,
+      /html\.client-nojs \.vector-page-titlebar-toc \.vector-dropdown-content\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-height:\s*min\(60vh,\s*28rem\);[^}]*overflow-y:\s*auto;/s
+    )
+    assert.equal(
+      rulesContaining(root, '.vector-page-titlebar-toc').some(
+        (rule) => declarationValue(rule, 'display') === 'flex'
+      ),
+      false,
+      'titlebar TOC must preserve Vector display behavior'
+    )
+    assert.match(
+      css,
+      /html\.vector-feature-toc-pinned-clientpref-1 \.vector-page-titlebar-toc\s*\{[^}]*display:\s*none;?/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-toggle\s*\{[^}]*background:\s*transparent;[^}]*border:\s*0;[^}]*box-shadow:\s*none;[^}]*width:\s*24px;[^}]*height:\s*24px;/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-toggle \.vector-icon\s*\{[^}]*display:\s*none;?/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-toggle::before\s*\{[^}]*content:\s*["']▸["']/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc-list-item-expanded\s*>\s*\.vector-toc-toggle::before\s*\{[^}]*transform:\s*rotate\(90deg\)/s
+    )
+    assert.match(
+      css,
+      /html\.client-nojs #vector-toc-pinned-container\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-width:\s*calc\(100vw - 2rem\)\s*!important;[^}]*max-height:\s*12rem\s*!important;[^}]*box-sizing:\s*border-box;[^}]*overflow-y:\s*auto;/s
+    )
+    assert.match(css, /@media \(max-width:768px\)\{[^}]*html\.client-nojs/s)
+    assert.doesNotMatch(
+      css,
+      /@media \(max-width:\$breakpoint-sm\)\{html\.client-nojs/s
+    )
+    assert.doesNotMatch(css, /\.mw-parser-output a\.external::after\s*\{[^}]*content:\s*attr\(title\)/s)
+    assert.doesNotMatch(css, /\.mw-parser-output a\.external\s*,\s*\.mw-parser-output \.link\s*\{[^}]*position:\s*relative/s)
+    assert.doesNotMatch(css, /\.mw-footer\s*\{[^}]*position:\s*fixed/s)
+    const currentRelatedArticlesRule = rulesContaining(
+      root,
+      '.archwiki-template-meta-related-articles'
+    ).find((rule) => declarationValue(rule, 'background')?.includes('#181818'))
+    const currentRelatedArticlesBackground = currentRelatedArticlesRule?.nodes.find(
+      (node) => node.type === 'decl' && node.prop === 'background-color'
+    )
+    assert.equal(
+      currentRelatedArticlesBackground?.value,
+      '#181818',
+      'current related-articles template must keep the dark Void surface'
+    )
+    assert.equal(
+      currentRelatedArticlesBackground?.important,
+      true,
+      'current related-articles template must beat the mobile upstream surface'
+    )
+    assert.match(
+      css,
+      /html body \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
+    )
+    assert.match(
+      css,
+      /html body #content \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)(?:\s*,\s*html body \.mw-parser-output a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\))?\s*\{[^}]*color:\s*#b3a7d8\s*!important;?/s
+    )
+    assert.match(
+      css,
+      /html body \.mw-parser-output \.archwiki-template-(?:man|pkg) a:not\(\[role=(?:"|')?button(?:"|')?\]\):not\(\.new\)[^}]*color:\s*#42ff97\s*!important/s
+    )
+
+    const articleLinkSelectors = [
+      'html body #content .mw-parser-output a:not([role="button"]):not(.new)',
+      'html body .mw-parser-output a:not([role="button"]):not(.new)',
+    ]
+    for (const selector of articleLinkSelectors) {
+      assert.ok(
+        rulesWithSelector(root, selector).some(
+          (rule) =>
+            declarationValue(rule, 'color') === '#b3a7d8' &&
+            rule.nodes.some(
+              (node) =>
+                node.type === 'decl' &&
+                node.prop === 'color' &&
+                node.important === true
+            )
+        ),
+        `${selector} must preserve excluded link states`
+      )
+    }
+
+    const terminalLinkSelectors = [
+      'html body #content .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)',
+      'html body #content .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)',
+      'html body .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)',
+      'html body .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)',
+      '.archwiki-template-man a:not([role="button"]):not(.new)',
+      '.archwiki-template-pkg a:not([role="button"]):not(.new)',
+    ]
+    for (const selector of terminalLinkSelectors) {
+      assert.ok(
+        rulesWithSelector(root, selector).some(
+          (rule) =>
+            declarationValue(rule, 'color') === '#42ff97' &&
+            rule.nodes.some(
+              (node) =>
+                node.type === 'decl' &&
+                node.prop === 'color' &&
+                node.important === true
+            )
+        ),
+        `${selector} must preserve excluded terminal-link states`
+      )
+    }
+
+    assert.ok(
+      rulesContaining(root, '.wikitable').some(
+        (rule) =>
+          declarationValue(rule, 'box-shadow') === 'none' &&
+          declarationValue(rule, 'border-radius') === '0'
+      ),
+      'primary wikitable must be flat'
+    )
+    for (const selector of ['.ambox', '.ombox', '.imbox', '.tmbox']) {
+      assert.ok(
+        rulesContaining(root, selector).some(
+          (rule) => declarationValue(rule, 'box-shadow') === 'none'
+        ),
+        `${selector} must be flat`
+      )
+    }
+    assert.ok(
+      rulesContaining(root, 'h1::after').some(
+        (rule) => declarationValue(rule, 'background') === '#8950c7'
+      )
+    )
+    assert.ok(
+      rulesContaining(root, 'h2').some(
+        (rule) =>
+          declarationValue(rule, 'border-bottom') ===
+          '1px solid rgba(137,80,199,0.35)'
+      )
+    )
   } finally {
     removeFixture(rootDir)
   }

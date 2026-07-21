@@ -90,7 +90,6 @@
   align-items center
 
 .vector-page-titlebar-toc
-  display flex
   align-items center
   margin 0
 
@@ -104,6 +103,9 @@
     .vector-icon
       margin 0
       vertical-align middle
+
+html.vector-feature-toc-pinned-clientpref-1 .vector-page-titlebar-toc
+  display none
 
 .tocnumber
   color $secondary-blue
@@ -472,8 +474,8 @@ header.vector-header
 .vector-toc .vector-toc-link
   color $lighter
   display block
-  // FIX: Ensure space for the absolute toggle button on the left
-  padding 0.15em 0.5em 0.15em 2em
+  padding 0.15em 0.5em
+  min-height 24px
   border-radius $border-radius-sm
   text-decoration none
   line-height 1.4
@@ -484,6 +486,9 @@ header.vector-header
     background-color rgba($arch-blue, 0.15)
     color $white
     font-weight 500
+
+.vector-toc .vector-toc-list-item:has(> .vector-toc-toggle) > .vector-toc-link
+  padding-inline-start 2em
 
 // Highlight active section links in the TOC
 .vector-toc .vector-toc-list-item-active > .vector-toc-link
@@ -496,6 +501,25 @@ header.vector-header
 .vector-toc .vector-toc-text
   color $lighter
   padding 0.1em 0
+  word-break normal !important
+  overflow-wrap normal !important
+
+@media (max-width 768px)
+  html.client-nojs .vector-page-titlebar-toc .vector-dropdown-content
+    width unquote('min(22rem, calc(100vw - 2rem))') !important
+    max-width calc(100vw - 2rem)
+    max-height unquote('min(60vh, 28rem)')
+    overflow-y auto
+    overscroll-behavior contain
+
+  html.client-nojs #vector-toc-pinned-container
+    min-width 0 !important
+    width unquote('min(22rem, calc(100vw - 2rem))') !important
+    max-width calc(100vw - 2rem) !important
+    max-height 12rem !important
+    box-sizing border-box
+    overflow-y auto
+    overscroll-behavior contain
 
 // Position the table‑of‑contents toggle buttons relative to the list item so
 // their icons align vertically with the menu text.  Use a 50% offset and
@@ -505,15 +529,15 @@ header.vector-header
   left 0.5em
   top 50%
   transform translateY(-50%)
-  // Match menu panel styling
-  background linear-gradient(135deg, $base, rgba($arch-blue, 0.06))
-  border 1px solid $border-subtle
+  background transparent
+  border 0
+  box-shadow none
   color $lighter
-  border-radius $border-radius-sm
-  min-width 18px
-  min-height 18px
-  width 18px
-  height 18px
+  border-radius 0
+  min-width 24px
+  min-height 24px
+  width 24px
+  height 24px
   display flex
   align-items center
   justify-content center
@@ -521,21 +545,28 @@ header.vector-header
   padding 0
   margin 0
   flex-shrink 0
-  // Performance: hint browser for transform and hover transitions
-  will-change transform, background-color, border-color
+  will-change transform
 
   &:hover
-    background linear-gradient(135deg, $base, rgba($arch-blue, 0.12))
-    border-color rgba($arch-blue, 0.3)
+    background transparent
+    box-shadow none
     color $secondary-blue
 
+  &:focus-visible
+    outline 2px solid $arch-blue
+    outline-offset 2px
+
   .vector-icon
-    width 12px
-    height 12px
-    fill $lighter
-    margin 0
-    vertical-align middle
-    flex-shrink 0
+    display none
+
+  &::before
+    content '▸'
+    display block
+    line-height 1
+    transition transform 150ms ease
+
+.vector-toc-list-item-expanded > .vector-toc-toggle::before
+  transform rotate(90deg)
 
 // -----------------------------------------------------------------------------
 // Site-wide search box and autocomplete results styling
@@ -2042,37 +2073,6 @@ h6:hover .mw-editsection
 
     .vector-menu-content li:interest-source {
       background: oklch(from var(--theme-arch-blue) l c h / 0.15);
-    }
-
-    .mw-parser-output a.external,
-    .mw-parser-output .link {
-      position: relative;
-    }
-
-    .mw-parser-output a.external::after,
-    .mw-parser-output .link::after {
-      content: attr(title);
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 0.5em 0.75em;
-      background: var(--theme-dark);
-      border: 1px solid oklch(from var(--theme-secondary-blue) l c h / 0.3);
-      border-radius: 4px;
-      font-size: 0.875em;
-      white-space: nowrap;
-      z-index: 1000;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s ease;
-    }
-
-    .mw-parser-output a.external:interest-source::after,
-    .mw-parser-output .link:interest-source::after,
-    .mw-parser-output a.external:interest-target::after,
-    .mw-parser-output .link:interest-target::after {
-      opacity: 1;
     }
 
     .mw-collapsible .mw-collapsible-content {

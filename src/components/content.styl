@@ -209,9 +209,23 @@ a:visited
     color $secondary-red
     background-size 100% 1px
 
+html body #content .mw-parser-output a:not([role="button"]):not(.new)
+html body .mw-parser-output a:not([role="button"]):not(.new)
+  color $muted-link !important
+
+html body #content .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)
+html body #content .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)
+html body .mw-parser-output .archwiki-template-man a:not([role="button"]):not(.new)
+html body .mw-parser-output .archwiki-template-pkg a:not([role="button"]):not(.new)
+  color $term-green !important
+  background-image linear-gradient(to right, $term-bright-green, $term-bright-green) !important
+
+  &:hover
+    color $term-bright-green !important
+
 // Man page links and other specific template links
-.archwiki-template-man a
-.archwiki-template-pkg a
+.archwiki-template-man a:not([role="button"]):not(.new)
+.archwiki-template-pkg a:not([role="button"]):not(.new)
   color $term-green !important
   background-image linear-gradient(to right, $term-bright-green, $term-bright-green) !important
 
@@ -221,7 +235,7 @@ a:visited
   &:active
     color $term-green !important
 
-// Headings with gradient underlines
+// Headings with a single Violet Void signal rule
 h1
 h2
 h3
@@ -235,9 +249,8 @@ h6
   margin-bottom 0.75em
 
 h1
-h2
   position relative
-  padding-bottom 0.5em
+  padding-bottom 0.55em
   margin-bottom 1em
 
 h1::after
@@ -246,20 +259,14 @@ h1::after
   bottom 0
   left 0
   right 0
-  height 3px
-  gradient-primary()
-
-  border-radius 2px
-
-h2::after
-  content ""
-  position absolute
-  bottom 0
-  left 0
-  right 0
   height 2px
-  background linear-gradient(90deg, $arch-blue, transparent)
-  border-radius 1px
+  background $arch-blue
+
+h2
+  padding-bottom 0.35em
+  margin-top 1.75em
+  margin-bottom 0.8em
+  border-bottom 1px solid rgba($arch-blue, 0.35)
 
 // =============================================================================
 // LEAD SECTION STYLING
