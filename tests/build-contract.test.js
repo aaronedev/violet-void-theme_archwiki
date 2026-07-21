@@ -75,6 +75,20 @@ function readProducedCss(rootDir) {
   return { css: fs.readFileSync(outputPath, 'utf8'), outputPath }
 }
 
+function rulesContaining(root, selectorFragment) {
+  return root.nodes
+    .flatMap((node) => (node.type === 'atrule' ? node.nodes || [] : [node]))
+    .filter(
+      (node) => node.type === 'rule' && node.selector.includes(selectorFragment)
+    )
+}
+
+function declarationValue(rule, property) {
+  return rule.nodes.find(
+    (node) => node.type === 'decl' && node.prop === property
+  )?.value
+}
+
 function removeFixture(rootDir) {
   fs.rmSync(rootDir, { recursive: true, force: true })
 }
@@ -249,6 +263,83 @@ test('viewport height utilities are emitted exactly once each', () => {
         `expected .${selector} once, found ${matches.length}`
       )
     }
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
+test('void reading surface contracts are emitted in canonical CSS', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+    const documentRoot = postcss.parse(css)
+    const scope = documentRoot.nodes.find(
+      (node) => node.type === 'atrule' && node.name === '-moz-document'
+    )
+    const root = { nodes: scope.nodes }
+
+    assert.equal(
+      rulesContaining(root, '.mw-parser-output').some(
+        (rule) => declarationValue(rule, 'animation-name') === 'reading-progress'
+      ),
+      false,
+      'article content must not be the reading-progress target'
+    )
+    assert.match(
+      css,
+      /input\[type=["']checkbox["']\]:not\(\.vector-dropdown-checkbox\)/
+    )
+    assert.match(
+      css,
+      /\.vector-toc \.vector-toc-text\s*\{[^}]*word-break:\s*normal\s*!important;[^}]*overflow-wrap:\s*normal\s*!important;/s
+    )
+    assert.match(
+      css,
+      /\.vector-toc-list-item:has\(> \.vector-toc-toggle\)\s*>\s*\.vector-toc-link/
+    )
+    assert.match(
+      css,
+      /html\.client-nojs \.vector-page-titlebar-toc \.vector-dropdown-content\s*\{[^}]*width:\s*min\(22rem,calc\(100vw - 2rem\)\)\s*!important;[^}]*max-height:\s*min\(60vh,28rem\);[^}]*overflow-y:\s*auto;/s
+    )
+    assert.match(
+      css,
+      /html body \.mw-parser-output a\s*\{[^}]*color:\s*#b3a7d8\s*!important;/s
+    )
+    assert.match(
+      css,
+      /html body \.mw-parser-output \.archwiki-template-(?:man|pkg) a[^}]*color:\s*#42ff97\s*!important/s
+    )
+
+    assert.ok(
+      rulesContaining(root, '.wikitable').some(
+        (rule) =>
+          declarationValue(rule, 'box-shadow') === 'none' &&
+          declarationValue(rule, 'border-radius') === '0'
+      ),
+      'primary wikitable must be flat'
+    )
+    for (const selector of ['.ambox', '.ombox', '.imbox', '.tmbox']) {
+      assert.ok(
+        rulesContaining(root, selector).some(
+          (rule) => declarationValue(rule, 'box-shadow') === 'none'
+        ),
+        `${selector} must be flat`
+      )
+    }
+    assert.ok(
+      rulesContaining(root, 'h1::after').some(
+        (rule) => declarationValue(rule, 'background') === '#8950c7'
+      )
+    )
+    assert.ok(
+      rulesContaining(root, 'h2').some(
+        (rule) =>
+          declarationValue(rule, 'border-bottom') ===
+          '1px solid rgba(137,80,199,0.35)'
+      )
+    )
   } finally {
     removeFixture(rootDir)
   }
