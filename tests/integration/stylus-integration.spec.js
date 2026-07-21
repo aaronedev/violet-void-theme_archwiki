@@ -189,12 +189,15 @@ test.describe('Stylus Extension Integration', () => {
   const host = '127.0.0.1'
 
   test.beforeAll(async ({}, testInfo) => {
-    const cssPath = path.join(__dirname, '../../dist/main.css')
+    const cssPath = path.join(
+      __dirname,
+      '../../dist/violet-void-theme-archwiki.user.css'
+    )
 
     server = http.createServer((req, res) => {
       console.log(`[SERVER] Request: ${req.url}`)
 
-      if (req.url === '/main.user.css') {
+      if (req.url === '/violet-void-theme-archwiki.user.css') {
         const css = fs.readFileSync(cssPath, 'utf8')
         res.writeHead(200, {
           'Content-Type': 'text/css; charset=utf-8',
@@ -202,7 +205,20 @@ test.describe('Stylus Extension Integration', () => {
           'Cache-Control': 'no-store',
         })
         res.end(css)
-        console.log('[SERVER] Served main.user.css')
+        console.log('[SERVER] Served violet-void-theme-archwiki.user.css')
+        return
+      }
+
+      if (req.url === '/neutral.html') {
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'no-store',
+        })
+        res.end(`<!doctype html>
+<html>
+  <head><style>body { background: rgb(250, 250, 250); }</style></head>
+  <body><main>Neutral non-Arch page</main></body>
+</html>`)
         return
       }
 
@@ -212,7 +228,9 @@ test.describe('Stylus Extension Integration', () => {
 
     await new Promise((resolve) => server.listen(0, host, resolve))
     port = server.address().port
-    console.log(`[SERVER] Running at http://${host}:${port}/main.user.css`)
+    console.log(
+      `[SERVER] Running at http://${host}:${port}/violet-void-theme-archwiki.user.css`
+    )
   })
 
   test.afterAll(async () => {
@@ -224,7 +242,7 @@ test.describe('Stylus Extension Integration', () => {
   test('Install theme into Stylus and verify ArchWiki', async ({
     context: { context },
   }) => {
-    const themeUrl = `http://${host}:${port}/main.user.css`
+    const themeUrl = `http://${host}:${port}/violet-void-theme-archwiki.user.css`
 
     console.log('[TEST] Finding Stylus Extension ID...')
     let [background] = context.serviceWorkers()
@@ -301,6 +319,22 @@ test.describe('Stylus Extension Integration', () => {
     expect(persistedStyle.enabled).toBe(true)
     expect(persistedStyle.hasUsercss).toBe(true)
     console.log('[TEST] Theme installed in Stylus')
+
+    const neutralPage = await context.newPage()
+    await neutralPage.goto(`http://${host}:${port}/neutral.html`, {
+      waitUntil: 'domcontentloaded',
+    })
+    await expect(neutralPage.locator('main')).toHaveText(
+      'Neutral non-Arch page'
+    )
+    await expect
+      .poll(() =>
+        neutralPage.evaluate(
+          () => getComputedStyle(document.body).backgroundColor
+        )
+      )
+      .toBe('rgb(250, 250, 250)')
+    await neutralPage.close()
 
     const manageLink = page.locator('a[href="manage.html"]')
     await manageLink.evaluate((link) => link.click())

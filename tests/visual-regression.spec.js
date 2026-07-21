@@ -14,7 +14,7 @@ test.describe('Violet Void Theme - Visual Regression', () => {
   test.beforeEach(async ({ page }) => {
     // Inject the theme CSS before testing
     await page.addStyleTag({
-      path: './dist/main.css',
+      path: './dist/violet-void-theme-archwiki.user.css',
     })
   })
 

@@ -7,15 +7,22 @@
   "homepage": "https://github.com/aaronedev/violet-void-theme_archwiki",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aaronedev/violet-void-theme.git"
+    "url": "https://github.com/aaronedev/violet-void-theme_archwiki.git"
   },
   "userStyle": {
     "namespace": "github.com/aaronedev/violet-void-theme",
-    "version": "20260721.04.12"
+    "version": "20260721.04.12",
+    "homepageURL": "https://github.com/aaronedev/violet-void-theme_archwiki",
+    "supportURL": "https://github.com/aaronedev/violet-void-theme_archwiki/issues",
+    "updateURL": "https://raw.githubusercontent.com/aaronedev/violet-void-theme_archwiki/main/dist/violet-void-theme-archwiki.user.css"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "watch": "stylus -u autoprefixer-stylus src/main.styl -o dist/main.css --watch",
+    "watch": "node scripts/watch.js",
+    "release": "node scripts/release.js",
     "lint": "stylelint \"src/**/*.styl\"",
     "lint:fix": "stylelint \"src/**/*.styl\" --fix",
     "format": "prettier --write \"**/*.{js,json}\" && stylelint --fix \"src/**/*.styl\"",
@@ -26,6 +33,7 @@
     "test:report": "playwright show-report",
     "setup:stylus": "node scripts/setup-stylus.js",
     "test:integration": "playwright test tests/integration/stylus-integration.spec.js --project=chromium",
+    "test:build": "node --test tests/build-contract.test.js",
     "console-check": "node scripts/console-fixer.js --browser=firefox --dry-run",
     "console-fix": "node scripts/console-fixer.js --browser=firefox --fix"
   },
@@ -39,6 +47,7 @@
     "@playwright/test": "^1.50.0",
     "autoprefixer-stylus": "^1.0.0",
     "playwright": "^1.58.2",
+    "postcss": "^8.5.8",
     "prettier": "^3.6.2",
     "stylelint": "^16.0.0",
     "stylelint-config-recommended": "^14.0.0",

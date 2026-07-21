@@ -1,93 +1,82 @@
-# violet-void-theme
+# Violet Void for the Arch Linux ecosystem
 
-A dark Violet-Void theme for ArchWiki that applies a consistent, handcrafted color palette.
-
-![Screenshot Placeholder](https://via.placeholder.com/800x400?text=Violet+Void+Theme+Preview)
-
-## Description
-
-This theme replaces the default ArchWiki appearance with a dark, violet-themed interface designed for readability and aesthetics. It includes:
-- A consistent color palette.
-- Customized syntax highlighting for code blocks.
-- Modernized UI elements (buttons, inputs, tables).
-- Responsive design adjustments.
-- Accessibility features (focus indicators, reduced motion support).
-- Comprehensive coverage across all Arch Linux sites.
+A dark Violet Void UserCSS theme with a consistent handcrafted palette for the ArchWiki and the supported Arch Linux sites.
 
 ## Features
 
-- **Full Arch Linux Ecosystem Support**: Works on wiki.archlinux.org, bbs.archlinux.org, aur.archlinux.org, and more
-- **Accessibility First**: Proper focus indicators, reduced motion support, screen reader optimizations
-- **Responsive Design**: Adapts to all screen sizes from desktop to mobile
-- **Print-Friendly**: Optimized print styles for paper and PDF exports
-- **Performance Optimized**: Minimal CSS footprint with efficient selectors
-- **Regular Updates**: Actively maintained with continuous improvements
+- Arch Linux ecosystem coverage, including the wiki, forums, AUR, bugs, GitLab, repositories, security, lists, and manual pages
+- Accessible focus indicators and reduced-motion support
+- Responsive desktop and mobile layouts
+- Print styles and syntax highlighting
+- A single site-scoped, installable UserCSS artifact
 
-## Changelog
+## Install
 
-See [CHANGELOG.md](./CHANGELOG.md) for a complete history of changes.
+1. Install the [Stylus browser extension](https://add0n.com/stylus.html).
+2. Open the [raw Violet Void UserCSS file](https://raw.githubusercontent.com/aaronedev/violet-void-theme_archwiki/main/dist/violet-void-theme-archwiki.user.css).
+3. Confirm the installation in Stylus. Future updates use the same canonical URL.
 
-## Installation
+## Develop
 
-### Using Stylus Extension
+Requirements:
 
-1.  Install the **Stylus** browser extension ([Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/)).
-2.  Click on the extension icon and select "Manage".
-3.  Create a new style.
-4.  Copy the contents of `dist/main.css` (or build it yourself) into the editor.
-5.  Set the domain to `wiki.archlinux.org`.
-6.  Save and enjoy!
+- Node.js 20 or newer
+- npm
 
-## Development
+Clone and install dependencies:
 
-### Prerequisites
+```bash
+git clone https://github.com/aaronedev/violet-void-theme_archwiki.git
+cd violet-void-theme_archwiki
+npm install
+```
 
-- [Node.js](https://nodejs.org/) (v14 or later recommended)
-- [npm](https://www.npmjs.com/)
-
-### Setup
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/aaronedev/violet-void-theme.git
-    cd violet-void-theme
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-
-### Build
-
-To compile the Stylus files into CSS:
+Build the canonical artifact:
 
 ```bash
 npm run build
 ```
 
-The output file will be located at `dist/main.css`.
+The output is `dist/violet-void-theme-archwiki.user.css`. A normal build uses `userStyle.version` from `package.json` as-is and does not change package metadata or Git state.
 
-### Watch
-
-To automatically recompile changes during development:
+Watch the Stylus source and rebuild once on startup and after changes:
 
 ```bash
 npm run watch
 ```
 
-### Lint & Format
-
-Check for style issues:
+For a local Stylus live-reload loop, keep the watcher running and serve the repository from another terminal:
 
 ```bash
+python3 -m http.server 8000
+```
+
+Open `http://127.0.0.1:8000/dist/violet-void-theme-archwiki.user.css` to reach the Stylus installer, then enable its **Live reload** checkbox and keep that installer tab open. Source saves rebuild the same URL, which Stylus reloads while the server, watcher, and installer tab remain open.
+
+Run the build contracts and lint checks:
+
+```bash
+npm run test:build
 npm run lint
 ```
 
-Format code:
+## Release
+
+Set a dot-separated numeric UserCSS version and regenerate the canonical artifact explicitly:
 
 ```bash
-npm run format
+npm run release -- 20260721.09.30
 ```
+
+The release command validates the version, updates only `package.json#userStyle.version`, and builds the canonical artifact. It does not stage, commit, push, or publish anything; review those two file changes and use the normal repository workflow afterward.
+
+## Source layout
+
+`src/main.styl` is the distribution entrypoint. See [`src/README.md`](src/README.md) for the shipped import graph and the intentionally dormant modules.
+
+## Changelog
+
+See [`CHANGELOG.md`](CHANGELOG.md) for project history.
 
 ## License
 
