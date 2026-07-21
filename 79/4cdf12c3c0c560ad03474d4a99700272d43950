@@ -1,0 +1,25 @@
+.codex/environments/environment.toml
+  s_56be106250dc1d::t_7a7b99e2be1cdb 2,5-40
+playwright.config.js
+  s_56be106250dc1d::t_7a7b99e2be1cdb 1,4-21,43,55
+package.json
+  s_56be106250dc1d::t_7a7b99e2be1cdb 32-33,38
+tests/tooling-contract.test.js
+  s_56be106250dc1d::t_7a7b99e2be1cdb 1-135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "794cdf12c3c0c560ad03474d4a99700272d43950",
+  "prompts": {},
+  "sessions": {
+    "s_56be106250dc1d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f83d3-4efd-77e3-8a03-45f1ec1482b6",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "aaronedev <mail@aaronsamuel.de>"
+    }
+  }
+}
