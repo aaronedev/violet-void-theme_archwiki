@@ -332,7 +332,7 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
-      /html\.client-nojs #vector-toc-pinned-container\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-width:\s*calc\(100vw - 2rem\)\s*!important;[^}]*max-height:\s*12rem;[^}]*box-sizing:\s*border-box;[^}]*overflow-y:\s*auto;/s
+      /html\.client-nojs #vector-toc-pinned-container\s*\{[^}]*width:\s*min\(22rem,\s*calc\(100vw - 2rem\)\)\s*!important;[^}]*max-width:\s*calc\(100vw - 2rem\)\s*!important;[^}]*max-height:\s*12rem\s*!important;[^}]*box-sizing:\s*border-box;[^}]*overflow-y:\s*auto;/s
     )
     assert.match(css, /@media \(max-width:768px\)\{[^}]*html\.client-nojs/s)
     assert.doesNotMatch(
