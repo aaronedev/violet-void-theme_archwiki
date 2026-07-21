@@ -1,0 +1,20 @@
+tests/build-contract.test.js
+  s_56be106250dc1d::t_a71e990529e642 99-106
+  s_56be106250dc1d::t_10ca132ceae197 79-90,296
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "b21faa44604464b535d342e5c185bf223e957d54",
+  "prompts": {},
+  "sessions": {
+    "s_56be106250dc1d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f83d3-4efd-77e3-8a03-45f1ec1482b6",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "aaronedev <mail@aaronsamuel.de>"
+    }
+  }
+}
