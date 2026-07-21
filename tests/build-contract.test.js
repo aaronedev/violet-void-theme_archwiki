@@ -286,6 +286,87 @@ test('canonical artifact has complete installable UserCSS metadata', () => {
   }
 })
 
+test('canonical artifact terminates the cascade layer order', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+
+    assert.match(
+      css,
+      /^@layer base, components, utilities, overrides;$/m
+    )
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
+test('canonical artifact emits only valid CSS comments', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+
+    assert.doesNotMatch(css, /^\s*\/\//m)
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
+test('starting-style rules are not hidden behind invalid feature queries', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+    const root = postcss.parse(css)
+    const supportsRules = []
+    const startingStyleRules = []
+
+    root.walkAtRules('supports', (rule) => supportsRules.push(rule))
+    root.walkAtRules('starting-style', (rule) => startingStyleRules.push(rule))
+
+    assert.ok(startingStyleRules.length > 0, 'expected @starting-style rules')
+    assert.equal(
+      supportsRules.some((rule) => rule.params.includes('@starting-style')),
+      false,
+      '@starting-style cannot be tested as an @supports condition'
+    )
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
+test('advanced table row filtering uses valid nth-child selector lists', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+    const root = postcss.parse(css)
+
+    assert.doesNotMatch(css, /:nth-child\(of\s/)
+
+    for (const selector of [
+      'table tr:nth-child(n of :not(.header-row):not(.mw-empty-elt))',
+      '.wikitable tr:nth-child(n of :not(.highlight):not(.mw-empty-elt)):hover',
+      'table tbody tr:nth-child(n of :not(.header):not(.footer))',
+      '.mw-parser-output table tr:nth-child(n of :not(.mw-empty-elt):not([style*="display: none"])).alternate',
+      'table.striped tr:nth-child(odd of :not(.header-row):not(.mw-empty-elt))',
+      'table.striped tr:nth-child(even of :not(.header-row):not(.mw-empty-elt))',
+    ]) {
+      assert.ok(
+        rulesWithSelector(root, selector).length > 0,
+        `missing valid filtered table selector ${selector}`
+      )
+    }
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
 test('viewport height utilities are emitted exactly once each', () => {
   const rootDir = createFixture()
 

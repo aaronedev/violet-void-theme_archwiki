@@ -14,410 +14,408 @@
 // Using @css for @starting-style since Stylus doesn't support it
 
 @css {
-  @supports (@starting-style) {
-    /* ==========================================================================
+  /* ==========================================================================
        DIALOGS & MODALS - Smooth Entry/Exit
        ========================================================================== */
 
-    /* HTML5 dialog element */
+  /* HTML5 dialog element */
+  dialog {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  @starting-style {
     dialog {
-      opacity: 1;
-      transform: scale(1);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: scale(0.95);
     }
+  }
 
-    @starting-style {
-      dialog {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-    }
+  /* OOUI modal dialogs */
+  .oo-ui-window-frame {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 
-    /* OOUI modal dialogs */
+  @starting-style {
     .oo-ui-window-frame {
-      opacity: 1;
-      transform: scale(1);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: scale(0.9);
     }
+  }
 
-    @starting-style {
-      .oo-ui-window-frame {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        DROPDOWNS & POPOVERS - Smooth Show/Hide
        ========================================================================== */
 
-    /* Vector dropdown menus */
+  /* Vector dropdown menus */
+  .vector-dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @starting-style {
     .vector-dropdown-content {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-10px);
     }
+  }
 
-    @starting-style {
-      .vector-dropdown-content {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
+  /* OOUI popup widgets */
+  .oo-ui-popupWidget-popup {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* OOUI popup widgets */
+  @starting-style {
     .oo-ui-popupWidget-popup {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-5px);
     }
+  }
 
-    @starting-style {
-      .oo-ui-popupWidget-popup {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-    }
+  /* Native popovers */
+  [popover] {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
 
-    /* Native popovers */
+  @starting-style {
     [popover] {
-      opacity: 1;
-      transform: scale(1);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0;
+      transform: scale(0.95);
     }
+  }
 
-    @starting-style {
-      [popover] {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        NOTIFICATIONS & TOASTS - Slide Animations
        ========================================================================== */
 
-    /* MediaWiki notifications */
+  /* MediaWiki notifications */
+  .mw-notification {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  @starting-style {
     .mw-notification {
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateX(100%);
     }
+  }
 
-    @starting-style {
-      .mw-notification {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-    }
+  /* Echo notifications */
+  .mw-echo-notification {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
 
-    /* Echo notifications */
+  @starting-style {
     .mw-echo-notification {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0;
+      transform: translateY(-10px);
     }
+  }
 
-    @starting-style {
-      .mw-echo-notification {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        COLLAPSIBLE SECTIONS - Smooth Expand/Collapse
        ========================================================================== */
 
-    /* MediaWiki collapsible content */
+  /* MediaWiki collapsible content */
+  .mw-collapsible-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  @starting-style {
     .mw-collapsible-content {
-      opacity: 1;
-      transition: opacity 0.3s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .mw-collapsible-content {
-        opacity: 0;
-      }
-    }
+  /* Details/summary elements */
+  details > *:not(summary) {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 
-    /* Details/summary elements */
+  @starting-style {
     details > *:not(summary) {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
     }
+  }
 
-    @starting-style {
-      details > *:not(summary) {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
+  /* TOC collapsible sections */
+  .toc > ul,
+  .vector-toc > ul {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
 
-    /* TOC collapsible sections */
+  @starting-style {
     .toc > ul,
     .vector-toc > ul {
-      opacity: 1;
-      transition: opacity 0.25s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .toc > ul,
-      .vector-toc > ul {
-        opacity: 0;
-      }
-    }
+  /* Sidebar collapsible sections */
+  .vector-menu-content {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
 
-    /* Sidebar collapsible sections */
+  @starting-style {
     .vector-menu-content {
-      opacity: 1;
-      transition: opacity 0.25s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .vector-menu-content {
-        opacity: 0;
-      }
-    }
+  /* Navbox collapsible sections */
+  .navbox-content,
+  .mw-navbox-content {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
 
-    /* Navbox collapsible sections */
+  @starting-style {
     .navbox-content,
     .mw-navbox-content {
-      opacity: 1;
-      transition: opacity 0.25s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .navbox-content,
-      .mw-navbox-content {
-        opacity: 0;
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        MESSAGE BOXES - Dismissible Animations
        ========================================================================== */
 
-    /* Dismissible message boxes */
+  /* Dismissible message boxes */
+  .mw-message-box {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  @starting-style {
     .mw-message-box {
-      opacity: 1;
-      transform: scale(1);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: scale(0.98);
     }
+  }
 
-    @starting-style {
-      .mw-message-box {
-        opacity: 0;
-        transform: scale(0.98);
-      }
-    }
+  /* Ambox (article message boxes) */
+  .ambox {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
 
-    /* Ambox (article message boxes) */
+  @starting-style {
     .ambox {
-      opacity: 1;
-      transition: opacity 0.3s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .ambox {
-        opacity: 0;
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        TOOLTIPS & HOVERCARDS - Fade In
        ========================================================================== */
 
-    /* Reference tooltips */
+  /* Reference tooltips */
+  .mw-ref-tooltip,
+  .reference-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @starting-style {
     .mw-ref-tooltip,
     .reference-tooltip {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(5px);
     }
+  }
 
-    @starting-style {
-      .mw-ref-tooltip,
-      .reference-tooltip {
-        opacity: 0;
-        transform: translateY(5px);
-      }
-    }
+  /* Page preview hovercards */
+  .mwe-popups {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* Page preview hovercards */
+  @starting-style {
     .mwe-popups {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(10px);
     }
+  }
 
-    @starting-style {
-      .mwe-popups {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        SEARCH AUTOCOMPLETE - Dropdown Animation
        ========================================================================== */
 
-    /* Search suggestions dropdown */
+  /* Search suggestions dropdown */
+  .cdx-menu,
+  .cdx-typeahead-search__menu {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @starting-style {
     .cdx-menu,
     .cdx-typeahead-search__menu {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-5px);
     }
+  }
 
-    @starting-style {
-      .cdx-menu,
-      .cdx-typeahead-search__menu {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        TABS - Content Transitions
        ========================================================================== */
 
-    /* Tab panel content */
+  /* Tab panel content */
+  .mw-ui-tab-panel {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  @starting-style {
     .mw-ui-tab-panel {
-      opacity: 1;
-      transition: opacity 0.2s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .mw-ui-tab-panel {
-        opacity: 0;
-      }
-    }
+  /* OOUI tab panels */
+  .oo-ui-tabPanelLayout {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
 
-    /* OOUI tab panels */
+  @starting-style {
     .oo-ui-tabPanelLayout {
-      opacity: 1;
-      transition: opacity 0.2s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .oo-ui-tabPanelLayout {
-        opacity: 0;
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        ACCORDIONS - Section Animations
        ========================================================================== */
 
-    /* Accordion content */
+  /* Accordion content */
+  .mw-accordion-content {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+
+  @starting-style {
     .mw-accordion-content {
-      opacity: 1;
-      transition: opacity 0.25s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .mw-accordion-content {
-        opacity: 0;
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        FORM VALIDATION - Feedback Animations
        ========================================================================== */
 
-    /* Form error messages */
+  /* Form error messages */
+  .mw-htmlform-error,
+  .oo-ui-fieldLayout-messages-error {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @starting-style {
     .mw-htmlform-error,
     .oo-ui-fieldLayout-messages-error {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-5px);
     }
+  }
 
-    @starting-style {
-      .mw-htmlform-error,
-      .oo-ui-fieldLayout-messages-error {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-    }
+  /* Form success messages */
+  .mw-htmlform-success,
+  .oo-ui-fieldLayout-messages-success {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
 
-    /* Form success messages */
+  @starting-style {
     .mw-htmlform-success,
     .oo-ui-fieldLayout-messages-success {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-5px);
     }
+  }
 
-    @starting-style {
-      .mw-htmlform-success,
-      .oo-ui-fieldLayout-messages-success {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        IMAGE GALLERIES - Load Animations
        ========================================================================== */
 
-    /* Gallery items */
+  /* Gallery items */
+  .mw-gallery-item,
+  .gallerybox {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  @starting-style {
     .mw-gallery-item,
     .gallerybox {
-      opacity: 1;
-      transform: scale(1);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: scale(0.95);
     }
+  }
 
-    @starting-style {
-      .mw-gallery-item,
-      .gallerybox {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        CATEGORY TAGS - Tag Animations
        ========================================================================== */
 
-    /* Category links */
+  /* Category links */
+  .mw-normal-catlinks li {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  @starting-style {
     .mw-normal-catlinks li {
-      opacity: 1;
-      transition: opacity 0.2s ease;
+      opacity: 0;
     }
+  }
 
-    @starting-style {
-      .mw-normal-catlinks li {
-        opacity: 0;
-      }
-    }
-
-    /* ==========================================================================
+  /* ==========================================================================
        USER INTERFACE - Button Effects
        ========================================================================== */
 
-    /* Button press effect */
-    .mw-ui-button,
-    .cdx-button {
-      transition: transform 0.1s ease, box-shadow 0.2s ease;
-    }
+  /* Button press effect */
+  .mw-ui-button,
+  .cdx-button {
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+  }
 
-    /* Button hover state entry */
+  /* Button hover state entry */
+  .mw-ui-button:hover,
+  .cdx-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba($darker, 0.2);
+  }
+
+  @starting-style {
     .mw-ui-button:hover,
     .cdx-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba($darker, 0.2);
-    }
-
-    @starting-style {
-      .mw-ui-button:hover,
-      .cdx-button:hover {
-        transform: translateY(0);
-        box-shadow: none;
-      }
+      transform: translateY(0);
+      box-shadow: none;
     }
   }
 }
