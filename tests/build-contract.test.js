@@ -90,6 +90,21 @@ function rulesContaining(root, selectorFragment) {
   return matchingRules
 }
 
+function rulesWithSelector(root, selector) {
+  const matchingRules = []
+
+  function visit(node) {
+    if (node.type === 'rule' && node.selectors.includes(selector)) {
+      matchingRules.push(node)
+    }
+
+    for (const child of node.nodes || []) visit(child)
+  }
+
+  for (const node of root.nodes || []) visit(node)
+  return matchingRules
+}
+
 function declarationValue(rule, property) {
   return rule.nodes.find(
     (node) => node.type === 'decl' && node.prop === property
@@ -102,6 +117,14 @@ test('rulesContaining finds rules nested in multiple at-rule levels', () => {
   )
 
   assert.equal(rulesContaining(root, '.nested-contract').length, 1)
+})
+
+test('selector lookup excludes pseudo-state variants', () => {
+  const root = postcss.parse(
+    '@media (min-width: 1px) { .exact-contract { color: red } .exact-contract:active { color: green } .exact-contract:hover { color: blue } }'
+  )
+
+  assert.equal(rulesWithSelector(root, '.exact-contract').length, 1)
 })
 
 function removeFixture(rootDir) {
@@ -394,7 +417,7 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     ]
     for (const selector of articleLinkSelectors) {
       assert.ok(
-        rulesContaining(root, selector).some(
+        rulesWithSelector(root, selector).some(
           (rule) =>
             declarationValue(rule, 'color') === '#b3a7d8' &&
             rule.nodes.some(
@@ -418,7 +441,7 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     ]
     for (const selector of terminalLinkSelectors) {
       assert.ok(
-        rulesContaining(root, selector).some(
+        rulesWithSelector(root, selector).some(
           (rule) =>
             declarationValue(rule, 'color') === '#42ff97' &&
             rule.nodes.some(
