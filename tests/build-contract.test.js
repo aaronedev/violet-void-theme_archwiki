@@ -405,6 +405,9 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
       'line-gap-override',
     ])
     const descriptorsInOrdinaryRules = []
+    const lengthOnlyTransforms = []
+    const percentageIntrinsicSizes = []
+    const percentageColumnWidths = []
 
     root.walk((node) => {
       if (
@@ -439,12 +442,42 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
           `${node.parent.selector} { ${node.prop}:${node.value} }`
         )
       }
+      if (
+        node.type === 'decl' &&
+        node.prop === 'transform' &&
+        /^-?(?:\d+\.?\d*|\.\d+)(?:px|rem|em|vw|vh|vmin|vmax|cm|mm|in|pt|pc|q)$/.test(
+          node.value
+        )
+      ) {
+        lengthOnlyTransforms.push(`${node.parent.selector}:${node.value}`)
+      }
+      if (
+        node.type === 'decl' &&
+        [
+          'contain-intrinsic-size',
+          'contain-intrinsic-inline-size',
+          'contain-intrinsic-block-size',
+        ].includes(node.prop) &&
+        node.value.includes('%')
+      ) {
+        percentageIntrinsicSizes.push(`${node.prop}:${node.value}`)
+      }
+      if (
+        node.type === 'decl' &&
+        node.prop === 'column-width' &&
+        node.value.includes('%')
+      ) {
+        percentageColumnWidths.push(node.value)
+      }
     })
 
     assert.deepEqual(unresolvedStylusTokens, [])
     assert.deepEqual(emptyRules, [])
     assert.deepEqual(unscopedCustomProperties, [])
     assert.deepEqual(descriptorsInOrdinaryRules, [])
+    assert.deepEqual(lengthOnlyTransforms, [])
+    assert.deepEqual(percentageIntrinsicSizes, [])
+    assert.deepEqual(percentageColumnWidths, [])
     assert.doesNotMatch(css, /inset-block-autoinset-inline-automax-width/)
 
     const modalDialog = rulesWithSelector(root, '.modal-logical dialog')[0]
@@ -562,6 +595,48 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
       assert.ok(blockSvgRule, `missing block SVG rule for ${selector}`)
       assert.equal(declarationValue(blockSvgRule, 'vertical-align'), undefined)
     }
+
+    const activeToggle = rulesWithSelector(
+      root,
+      '.notification-types .notification-type .toggle-switch.active::after'
+    )[0]
+    assert.equal(
+      declarationValue(activeToggle, 'transform'),
+      'translateX(1.25rem)'
+    )
+    for (const [selector, expected] of [
+      ['.navbox', '0 50px'],
+      ['.references', '0 30px'],
+      ['h1', '0 1em'],
+      ['.mw-parser-output > p', '0 1.5em'],
+      ['li', '0 1.5em'],
+      ['tr', '0 1.5em'],
+    ]) {
+      assert.ok(
+        rulesWithSelector(root, selector).some(
+          (rule) => declarationValue(rule, 'contain-intrinsic-size') === expected
+        ),
+        `${selector} must emit contain-intrinsic-size:${expected}`
+      )
+    }
+    assert.ok(
+      rulesWithSelector(root, '.content-visibility-inline-full').some(
+        (rule) =>
+          declarationValue(rule, 'contain-intrinsic-inline-size') === '100vw'
+      ),
+      'full-inline content visibility utility must use a valid length'
+    )
+    assert.ok(
+      rulesWithSelector(root, '.mw-gallery-masonry').some(
+        (rule) =>
+          rule.parent.type === 'atrule' &&
+          rule.parent.name === 'media' &&
+          rule.parent.params === '(max-width:480px)' &&
+          declarationValue(rule, 'column-width') === 'auto' &&
+          declarationValue(rule, 'grid-template-columns') === '1fr'
+      ),
+      'mobile masonry must retain a one-column grid with valid column width'
+    )
   } finally {
     removeFixture(rootDir)
   }
