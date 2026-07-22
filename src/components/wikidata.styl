@@ -126,7 +126,7 @@
 
   select
     padding 0.35em 0.75em
-    background $bg-tertiary
+    background $darker
     border 1px solid $border-subtle
     border-radius $border-radius-sm
     color $light
@@ -165,13 +165,13 @@
 // STATEMENT RANK INDICATORS
 // =============================================================================
 .rank-preferred
-  color $success
+  color $green
 
 .rank-normal
   color $muted
 
 .rank-deprecated
-  color $warning
+  color $orange
   text-decoration line-through
 
 // SNAK TYPE STYLING
@@ -184,7 +184,7 @@
     color $accent
 
   &.value-coordinate
-    color $info
+    color $secondary-blue
 
   &.value-time
     color $muted
@@ -195,7 +195,7 @@
     word-break break-all
 
   &.value-entity
-    color $success
+    color $green
 
 // QUANTITY Styling
 // =============================================================================
@@ -258,7 +258,7 @@ table.wikidata-table
   margin 1em 0
 
   th
-    background $bg-tertiary
+    background $darker
     padding 0.75em
     text-align left
     font-weight 600

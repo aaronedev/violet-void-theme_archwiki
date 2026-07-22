@@ -57,7 +57,7 @@
   > .gradient-content
   .gradient-content
     background $base
-    border-radius calc($border-radius-md - 2px)
+    border-radius ($border-radius-md - 2px)
     padding 1em
 
 // Animated gradient border
@@ -88,7 +88,7 @@
 
   > .gradient-content
     background $base
-    border-radius calc($border-radius-md - 3px)
+    border-radius ($border-radius-md - 3px)
     padding 1em
 
 @keyframes gradient-shift
@@ -305,7 +305,7 @@
 // RESPONSIVE GRADIENT BORDERS
 // =============================================================================
 
-@media (max-width $breakpoint-sm)
+@media (max-width 480px)
   .gradient-border
   .gradient-border-custom
   .gradient-border-arch
