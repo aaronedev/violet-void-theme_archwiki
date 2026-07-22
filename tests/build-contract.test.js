@@ -508,12 +508,22 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
     assert.ok(bufferingRule, 'missing video:buffering rule')
     assert.equal(declarationValue(bufferingRule, 'opacity'), '.8')
     assert.ok(
-      rulesContaining(root, 'video:buffering .video-play-overlay').some(
+      rulesWithSelector(root, '.video-play-overlay').some(
         (rule) =>
           declarationValue(rule, 'background-color') ===
           'rgba(24,24,24,0.5)'
       ),
-      'buffering overlay lost its themed background'
+      'base video overlay lost its themed background'
+    )
+    assert.equal(
+      rulesWithSelector(root, 'video:buffering .video-play-overlay').length,
+      0,
+      'impossible buffering video descendant rule remains'
+    )
+    assert.equal(
+      rulesWithSelector(root, 'audio:buffering .video-play-overlay').length,
+      0,
+      'impossible buffering audio descendant rule remains'
     )
     const pausedIndicator = rulesWithSelector(root, 'video:paused::after').find(
       (rule) => declarationValue(rule, 'border-style') === 'solid'
@@ -573,6 +583,32 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
     ]) {
       assert.ok(rulesWithSelector(root, selector).length > 0, `${selector} missing`)
     }
+    assert.ok(
+      rulesWithSelector(root, '.infobox th').some(
+        (rule) =>
+          declarationValue(rule, 'background-color') ===
+          'color-mix(in srgb, var(--theme-darker), var(--theme-arch-blue) 20%)'
+      ),
+      'supported color-mix infobox header rule was removed'
+    )
+    assert.equal(
+      rulesWithSelector(root, '.infobox th').some(
+        (rule) =>
+          declarationValue(rule, 'background') ===
+          'rgba(var(--arch-blue-rgb,137,80,199),0.1)'
+      ),
+      false,
+      'late infobox shorthand still resets the color-mix background image'
+    )
+    assert.equal(
+      rulesWithSelector(root, '.wikitable th').some(
+        (rule) =>
+          declarationValue(rule, 'background') ===
+          'rgba(var(--arch-blue-rgb,137,80,199),0.08)'
+      ),
+      false,
+      'redundant late wikitable header background remains'
+    )
     assert.doesNotMatch(css, /@supports\s*\(\s*@scope\s*\)/)
 
     const searchLabel = rulesContaining(
@@ -619,12 +655,10 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
         `${selector} must emit contain-intrinsic-size:${expected}`
       )
     }
-    assert.ok(
-      rulesWithSelector(root, '.content-visibility-inline-full').some(
-        (rule) =>
-          declarationValue(rule, 'contain-intrinsic-inline-size') === '100vw'
-      ),
-      'full-inline content visibility utility must use a valid length'
+    assert.equal(
+      rulesWithSelector(root, '.content-visibility-inline-full').length,
+      0,
+      'unused full-inline content visibility utility remains'
     )
     assert.ok(
       rulesWithSelector(root, '.mw-gallery-masonry').some(
