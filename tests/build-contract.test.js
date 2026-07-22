@@ -642,6 +642,34 @@ test('canonical CSS contains no discarded or malformed theme declarations', () =
   }
 })
 
+test('reduced-data complex gradients use the Void base surface', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+    const root = postcss.parse(css)
+    const reducedDataGradient = rulesWithSelector(root, '.complex-gradient').find(
+      (rule) =>
+        rule.parent.type === 'atrule' &&
+        rule.parent.name === 'media' &&
+        rule.parent.params === '(prefers-reduced-data:reduce)'
+    )
+
+    assert.ok(
+      reducedDataGradient,
+      'missing reduced-data .complex-gradient rule'
+    )
+    assert.equal(
+      declarationValue(reducedDataGradient, 'background'),
+      '#181818'
+    )
+    assert.doesNotMatch(css, /background:\s*simple(?:[;}])/)
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
 test('void reading surface contracts are emitted in canonical CSS', () => {
   const rootDir = createFixture()
 
