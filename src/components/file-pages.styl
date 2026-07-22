@@ -735,6 +735,12 @@ audio:seeking
 // :buffering - Video/audio currently buffering/loading
 video:buffering
 audio:buffering
+  // Reduced opacity and themed overlay while buffering
+  opacity 0.8
+
+  .video-play-overlay
+    background-color rgba($base, 0.5)
+
   // Loading indicator overlay
   &::before
     content ""
@@ -752,13 +758,6 @@ audio:buffering
 @keyframes spin
   to
     transform rotate(360deg)
-
-  // Semi-transparent overlay
-  .video-play-overlay
-    background-color rgba($base, 0.5)
-
-  // Reduced opacity during buffering
-  opacity 0.8
 
 // :stalled - Video/audio stalled (waiting for data)
 video:stalled
@@ -965,7 +964,6 @@ audio:paused
     border-style solid
     border-width 20px 0 20px 35px
     border-color transparent transparent transparent $arch-blue
-    opacity 0.8
     pointer-events none
     // Only show on hover
     opacity 0

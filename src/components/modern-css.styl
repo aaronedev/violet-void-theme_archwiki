@@ -1140,14 +1140,16 @@ h4[id]
     initial-value: oklch(55% 0.18 240);
   }
 
-  /* RGB decomposition of $arch-blue (#8950c7 = rgb(137, 80, 199)) for use in rgba() */
-  --arch-blue-rgb: 137, 80, 199;
+  :root {
+    /* RGB decomposition of $arch-blue (#8950c7 = rgb(137, 80, 199)) for use in rgba() */
+    --arch-blue-rgb: 137, 80, 199;
 
-  /* RGB decomposition of $base (#181818 = rgb(24, 24, 24)) for use in rgba() */
-  --base-rgb: 24, 24, 24;
+    /* RGB decomposition of $base (#181818 = rgb(24, 24, 24)) for use in rgba() */
+    --base-rgb: 24, 24, 24;
 
-  /* RGB decomposition of $secondary-blue (#c7b8ff = rgb(199, 184, 255)) for use in rgba() */
-  --secondary-blue-rgb: 199, 184, 255;
+    /* RGB decomposition of $secondary-blue (#c7b8ff = rgb(199, 184, 255)) for use in rgba() */
+    --secondary-blue-rgb: 199, 184, 255;
+  }
 }
 
 
@@ -1443,31 +1445,16 @@ h4[id]
     scrollbar-gutter stable
 
 // =============================================================================
-// @SCOPE - Component Isolation (88%+ browser support)
+// COMPONENT DESCENDANT STYLES
 // =============================================================================
 
-// Note: @scope support is good (88%+ as of 2024)
-// Allows scoped styles that only apply within specific components
-// Using @css for @scope since Stylus doesn't support it
+// These selectors apply only to descendants of their component containers.
 
 @css {
-  @supports (@scope) {
-    /* Infobox scoped styles */
-    @scope (.infobox) {
-      th { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.1); }
-      td { border-color: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.2); }
-    }
-
-    /* Wikitable scoped styles */
-    @scope (.wikitable) {
-      th { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.08); }
-    }
-
-    /* Navigation scoped styles */
-    @scope (.vector-menu) {
-      li:hover { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.05); }
-    }
-  }
+  .infobox th { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.1); }
+  .infobox td { border-color: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.2); }
+  .wikitable th { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.08); }
+  .vector-menu li:hover { background: rgba(var(--arch-blue-rgb, 137, 80, 199), 0.05); }
 }
 
 // =============================================================================

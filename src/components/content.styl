@@ -669,7 +669,6 @@ h2
   /* Expanded content - browsers optimize rendering automatically */
   .mw-collapsible:not(.mw-collapsed) .mw-collapsible-content {
     content-visibility: visible;
-    contain-intrinsic-size: auto;
   }
 }
 
@@ -721,12 +720,6 @@ h2
   .hidden-until-found {
     content-visibility: hidden;
     contain-intrinsic-size: 0 150px;
-  }
-
-  /* When found via browser search, reveal content */
-  .mw-collapsible-content[hidden="until-found"]:has(+ *),
-  .hidden-until-found:has(+ *) {
-    /* Browser handles reveal automatically */
   }
 
   /* Details/summary with hidden=until-found */

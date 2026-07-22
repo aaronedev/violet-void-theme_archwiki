@@ -387,6 +387,186 @@ test('viewport height utilities are emitted exactly once each', () => {
   }
 })
 
+test('canonical CSS contains no discarded or malformed theme declarations', () => {
+  const rootDir = createFixture()
+
+  try {
+    runBuild(rootDir)
+    const { css } = readProducedCss(rootDir)
+    const root = postcss.parse(css)
+    const unresolvedStylusTokens = []
+    const emptyRules = []
+    const unscopedCustomProperties = []
+    const descriptorOnlyProperties = new Set([
+      'font-display',
+      'size-adjust',
+      'ascent-override',
+      'descent-override',
+      'line-gap-override',
+    ])
+    const descriptorsInOrdinaryRules = []
+
+    root.walk((node) => {
+      if (
+        node.type === 'decl' &&
+        /\$[A-Za-z][\w-]*/.test(`${node.prop}:${node.value}`)
+      ) {
+        unresolvedStylusTokens.push(`${node.prop}:${node.value}`)
+      }
+      if (node.type === 'atrule' && /\$[A-Za-z][\w-]*/.test(node.params)) {
+        unresolvedStylusTokens.push(`@${node.name} ${node.params}`)
+      }
+      if (
+        node.type === 'rule' &&
+        !node.nodes.some((child) => child.type !== 'comment')
+      ) {
+        emptyRules.push(node.selector)
+      }
+      if (
+        node.type === 'decl' &&
+        node.prop.startsWith('--') &&
+        node.parent.type === 'atrule' &&
+        node.parent.name === '-moz-document'
+      ) {
+        unscopedCustomProperties.push(node.prop)
+      }
+      if (
+        node.type === 'decl' &&
+        descriptorOnlyProperties.has(node.prop) &&
+        node.parent.type === 'rule'
+      ) {
+        descriptorsInOrdinaryRules.push(
+          `${node.parent.selector} { ${node.prop}:${node.value} }`
+        )
+      }
+    })
+
+    assert.deepEqual(unresolvedStylusTokens, [])
+    assert.deepEqual(emptyRules, [])
+    assert.deepEqual(unscopedCustomProperties, [])
+    assert.deepEqual(descriptorsInOrdinaryRules, [])
+    assert.doesNotMatch(css, /inset-block-autoinset-inline-automax-width/)
+
+    const modalDialog = rulesWithSelector(root, '.modal-logical dialog')[0]
+    assert.ok(modalDialog, 'missing .modal-logical dialog rule')
+    assert.equal(declarationValue(modalDialog, 'inset-block'), 'auto')
+    assert.equal(declarationValue(modalDialog, 'inset-inline'), 'auto')
+    assert.equal(declarationValue(modalDialog, 'max-width'), '90vw')
+    assert.equal(declarationValue(modalDialog, 'max-height'), '90vh')
+
+    const spinKeyframes = []
+    root.walkAtRules('keyframes', (atRule) => {
+      if (atRule.params === 'spin') spinKeyframes.push(atRule)
+    })
+    assert.ok(spinKeyframes.length > 0, 'missing spin keyframes')
+    for (const keyframes of spinKeyframes) {
+      assert.ok(
+        keyframes.nodes.every(
+          (node) =>
+            node.type === 'rule' &&
+            node.selectors.every((selector) =>
+              /^(?:from|to|(?:\d+(?:\.\d+)?%))$/.test(selector)
+            )
+        ),
+        '@keyframes spin contains declarations or non-keyframe selectors'
+      )
+    }
+    const bufferingRule = rulesWithSelector(root, 'video:buffering')[0]
+    assert.ok(bufferingRule, 'missing video:buffering rule')
+    assert.equal(declarationValue(bufferingRule, 'opacity'), '.8')
+    assert.ok(
+      rulesContaining(root, 'video:buffering .video-play-overlay').some(
+        (rule) =>
+          declarationValue(rule, 'background-color') ===
+          'rgba(24,24,24,0.5)'
+      ),
+      'buffering overlay lost its themed background'
+    )
+    const pausedIndicator = rulesWithSelector(root, 'video:paused::after').find(
+      (rule) => declarationValue(rule, 'border-style') === 'solid'
+    )
+    assert.ok(pausedIndicator, 'missing paused media indicator')
+    assert.deepEqual(
+      pausedIndicator.nodes
+        .filter((node) => node.type === 'decl' && node.prop === 'opacity')
+        .map((node) => node.value),
+      ['0']
+    )
+    assert.ok(
+      rulesWithSelector(root, 'video:paused:hover::after').some(
+        (rule) => declarationValue(rule, 'opacity') === '.8'
+      ),
+      'paused media hover does not reveal the indicator'
+    )
+
+    for (const invalidKeyword of [
+      'auto',
+      'alphabetic',
+      'hanging',
+      'ideographic',
+    ]) {
+      assert.equal(
+        root.nodes.length > 0 &&
+          rulesContaining(root, `.initial-letter-${invalidKeyword}`).length,
+        0,
+        `invalid initial-letter keyword utility remains: ${invalidKeyword}`
+      )
+    }
+    assert.ok(
+      rulesWithSelector(root, '.initial-letter-3-2').some(
+        (rule) => declarationValue(rule, 'initial-letter') === '3 2'
+      ),
+      'numeric initial-letter utility was removed'
+    )
+
+    const expandedCollapsible = rulesWithSelector(
+      root,
+      '.mw-collapsible:not(.mw-collapsed) .mw-collapsible-content'
+    )[0]
+    assert.equal(
+      declarationValue(expandedCollapsible, 'content-visibility'),
+      'visible'
+    )
+    assert.equal(
+      declarationValue(expandedCollapsible, 'contain-intrinsic-size'),
+      undefined
+    )
+
+    for (const selector of [
+      '.infobox th',
+      '.infobox td',
+      '.wikitable th',
+      '.vector-menu li:hover',
+    ]) {
+      assert.ok(rulesWithSelector(root, selector).length > 0, `${selector} missing`)
+    }
+    assert.doesNotMatch(css, /@supports\s*\(\s*@scope\s*\)/)
+
+    const searchLabel = rulesContaining(
+      root,
+      '.cdx-menu-item__text__label'
+    ).find((rule) => declarationValue(rule, 'display') === 'block')
+    assert.equal(
+      searchLabel.nodes.filter(
+        (node) => node.type === 'decl' && node.prop === 'max-width'
+      ).length,
+      1
+    )
+    for (const selector of [
+      '.cdx-text-input__icon-vue.cdx-text-input__start-icon svg',
+      '.vector-icon svg',
+    ]) {
+      const blockSvgRule = rulesContaining(root, selector).find(
+        (rule) => declarationValue(rule, 'display') === 'block'
+      )
+      assert.ok(blockSvgRule, `missing block SVG rule for ${selector}`)
+      assert.equal(declarationValue(blockSvgRule, 'vertical-align'), undefined)
+    }
+  } finally {
+    removeFixture(rootDir)
+  }
+})
+
 test('void reading surface contracts are emitted in canonical CSS', () => {
   const rootDir = createFixture()
 
