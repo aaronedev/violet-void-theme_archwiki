@@ -16,25 +16,21 @@
 .mw-sidebar
   menu-panel()
 
-// Global main menu (Vector menu shown when the hamburger button is opened)
-// This styles the left-hand site navigation so it fits the dark, violet-toned header.
-#vector-main-menu-dropdown
+// Keep the hamburger wrapper at Vector's native size. Only the opened
+// dropdown or pinned container owns the panel surface and spacing.
 #vector-main-menu
 .vector-main-menu
-  // Subtle gradient from the base colour towards a hint of Arch blue
-  menu-panel()
-  // Width forces expansion at ArchWiki's 32px default; min-width alone is
-  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
-  // in the cascade. !important needed because ArchWiki's stylesheet also uses
-  // !important on its width declaration.
-  width 200px !important
-  min-width 200px !important
+  width auto !important
+  min-width 0 !important
+  padding 0
+  background transparent !important
+  border 0
+  border-radius 0
+  box-shadow none
 
-  // Section headings within the main menu
   .vector-menu-heading
     menu-heading()
 
-  // Individual menu items
   .vector-menu-content li
     menu-list-item()
 
@@ -86,7 +82,6 @@
 
 // Page title bar table of contents button alignment
 .vector-toc-landmark
-  display flex
   align-items center
 
 .vector-page-titlebar-toc
@@ -137,13 +132,12 @@ html.vector-feature-toc-pinned-clientpref-1 .vector-page-titlebar-toc
 body #vector-main-menu-dropdown .vector-dropdown-content
 .vector-dropdown-content
   menu-panel()
-  // Width forces expansion at ArchWiki's 32px default; min-width alone is
-  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
-  // in the cascade. !important needed because ArchWiki's stylesheet also uses
-  // !important on its width declaration.  min-width creates a non-overridable
-  // floor that even a higher-specificity explicit width cannot shrink below.
-  width 200px !important
-  min-width 200px !important
+  box-sizing border-box
+  width unquote('min(22rem, calc(100vw - 2rem))') !important
+  min-width 0 !important
+  max-width calc(100vw - 2rem)
+  max-height calc(100vh - 6rem)
+  overscroll-behavior contain
 
   @media (prefers-reduced-motion no-preference)
     scroll-snap-type y proximity
@@ -197,13 +191,24 @@ body #vector-main-menu-dropdown .vector-dropdown-content
 // Apply dark gradient, border and shadow to pinned containers
 .vector-pinned-container
   menu-panel()
-  // Width forces expansion at ArchWiki's 32px default; min-width alone is
-  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
-  // in the cascade. !important needed because ArchWiki's stylesheet also uses
-  // !important on its width declaration.  min-width creates a non-overridable
-  // floor that even a higher-specificity explicit width cannot shrink below.
-  width 200px !important
-  min-width 200px !important
+  box-sizing border-box
+  width 100% !important
+  min-width 0 !important
+
+// The panel has one surface, even when Vector moves its contents between
+// a dropdown and a sidebar. Nested elements must not add another card.
+.vector-dropdown-content .vector-pinnable-element
+.vector-pinned-container .vector-pinnable-element
+  background transparent !important
+  border 0
+  border-radius 0
+  box-shadow none
+  padding 0
+  width 100% !important
+  min-width 0 !important
+  max-width none
+  overflow visible
+  scrollbar-gutter auto
 
 // Keep the sticky wrapper neutral so empty containers do not render a panel
 .vector-sticky-pinned-container
@@ -382,53 +387,11 @@ header.vector-header
     border-color rgba($arch-blue, 0.3)
     color $secondary-blue
 
-// Sticky header table of contents dropdown styling
+// Bound the TOC dropdown independently of the site navigation menu.
+.vector-page-titlebar-toc .vector-dropdown-content
 .vector-sticky-header-toc .vector-dropdown-content
-  menu-panel()
-  // Width forces expansion at ArchWiki's 32px default; min-width alone is
-  // insufficient since ArchWiki sets explicit width:32px which overrides min-width
-  // in the cascade. !important needed because ArchWiki's stylesheet also uses
-  // !important on its width declaration.  min-width creates a non-overridable
-  // floor that even a higher-specificity explicit width cannot shrink below.
-  min-width 200px !important
-  width 200px !important  // Prevent narrow collapse: was 32px
-
-  @media (prefers-reduced-motion no-preference)
-    scroll-snap-type y proximity
-  overflow-y auto
-  scrollbar-gutter stable // Prevent layout shift when scrollbar appears
-  // Performance: hint browser about scroll and visibility changes
-  will-change scroll-position, transform, opacity
-
-  // Transparent backgrounds for nested elements
-  > *
-  .vector-pinnable-element
-  .vector-unpinned-container
-  .mw-portlet
-  .vector-pinnable-header
-  .vector-menu-content
-    background-color transparent
-    border 0
-    box-shadow none
-
-  // Pinned header inside sticky TOC
-  .vector-pinnable-header
-    pinnable-header()
-
-  // Headings within the sticky TOC dropdown
-  .vector-menu-heading
-    menu-heading()
-
-  // Menu items within the sticky TOC dropdown
-  .vector-menu-content li
-    menu-list-item(true)
-    // Scroll snap alignment for sticky TOC items
-    scroll-snap-align start
-    scroll-snap-stop always
-
-    a
-      padding 0.25em 0.5em
-      line-height 1.4
+  width unquote('min(26rem, calc(100vw - 2rem))') !important
+  min-width 0 !important
 
 // -----------------------------------------------------------------------------
 // Sticky table of contents and context bar enhancements
@@ -466,6 +429,8 @@ header.vector-header
 // List items within the TOC
 .vector-toc .vector-toc-list-item
   position relative
+  padding 0
+  margin 0
   // Scroll snap alignment for smooth navigation
   scroll-snap-align start
   scroll-snap-stop always
@@ -474,8 +439,9 @@ header.vector-header
 .vector-toc .vector-toc-link
   color $lighter
   display block
-  padding 0.15em 0.5em
-  min-height 24px
+  box-sizing border-box
+  padding 0.3em 0.4em 0.3em 1.75em
+  min-height 32px
   border-radius $border-radius-sm
   text-decoration none
   line-height 1.4
@@ -488,7 +454,7 @@ header.vector-header
     font-weight 500
 
 .vector-toc .vector-toc-list-item:has(> .vector-toc-toggle) > .vector-toc-link
-  padding-inline-start 2em
+  padding-inline-start 1.75em
 
 // Highlight active section links in the TOC
 .vector-toc .vector-toc-list-item-active > .vector-toc-link
@@ -500,9 +466,35 @@ header.vector-header
 // Text within TOC entries
 .vector-toc .vector-toc-text
   color $lighter
-  padding 0.1em 0
+  display flex
+  align-items baseline
+  gap 0.5em
+  width auto !important
+  min-width 0
+  padding 0
   word-break normal !important
-  overflow-wrap normal !important
+  overflow-wrap anywhere !important
+
+  .vector-toc-numb
+    flex-shrink 0
+
+  > span:not(.vector-toc-numb)
+    min-width 0
+
+// Reset article list indentation inside the navigation tree. Wrapped labels
+// remain in the text column; nested sections get one consistent indent.
+.vector-toc .vector-toc-contents
+.vector-toc .vector-toc-list
+  list-style none
+  margin 0
+  padding 0
+  border 0
+
+.vector-toc .vector-toc-list
+  margin-inline-start 1em
+
+.vector-toc .vector-pinnable-header
+  margin-inline-start 0
 
 @media (max-width 768px)
   html.client-nojs .vector-page-titlebar-toc .vector-dropdown-content
@@ -522,13 +514,14 @@ header.vector-header
     overscroll-behavior contain
 
 // Position the table‑of‑contents toggle buttons relative to the list item so
-// their icons align vertically with the menu text.  Use a 50% offset and
-// negative translation to achieve perfect centering regardless of line height.
+// their icons align with the first line, even when the section is expanded.
+// Vector rotates the button in its JS styles; rotate only our chevron instead.
 .vector-toc .vector-toc-toggle
   position absolute
-  left 0.5em
-  top 50%
-  transform translateY(-50%)
+  left auto
+  inset-inline-start 0.15em
+  top 0.3em
+  transform none !important
   background transparent
   border 0
   box-shadow none
@@ -538,14 +531,13 @@ header.vector-header
   min-height 24px
   width 24px
   height 24px
-  display flex
+  // Preserve Vector's no-JS visibility rules.
   align-items center
   justify-content center
   cursor pointer
   padding 0
   margin 0
   flex-shrink 0
-  will-change transform
 
   &:hover
     background transparent
@@ -559,11 +551,22 @@ header.vector-header
   .vector-icon
     display none
 
+  > span:not(.vector-icon)
+    position absolute
+    width 1px
+    height 1px
+    overflow hidden
+    clip-path inset(50%)
+    white-space nowrap
+
   &::before
     content '▸'
     display block
     line-height 1
     transition transform 150ms ease
+
+.client-js .vector-toc .vector-toc-toggle
+  display flex
 
 .vector-toc-list-item-expanded > .vector-toc-toggle::before
   transform rotate(90deg)
@@ -820,7 +823,6 @@ header.vector-header
 
 // Fix icons in menu items
 .vector-menu-content li a
-.vector-toc-link
   display flex
   align-items center
   gap 0.3em
@@ -870,8 +872,7 @@ header.vector-header
 // Creates new stacking contexts for z-index isolation
 // Browser support: 97%+
 
-// Dropdown menus need isolated stacking
-.vector-dropdown
+// Isolate menu items without trapping popup z-index below article content.
 .vector-menu-content
   isolation isolate
 
@@ -2053,19 +2054,8 @@ h6:hover .mw-editsection
 // stylelint-disable stylus/at-rule-no-unknown,selector-pseudo-class-no-unknown
 @css {
   @supports selector(:interest-source) {
-    .vector-dropdown-content .vector-menu-content {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-8px);
-      transition: opacity 0.2s ease, visibility 0.2s, transform 0.2s ease;
-    }
-
-    .vector-dropdown-content:interest-source .vector-menu-content {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
+    /* Vector already owns open/closed state through its checkbox. Menu
+       contents must not require the experimental interestfor API. */
     .vector-menu-content li:interest-source {
       background: oklch(from var(--theme-arch-blue) l c h / 0.15);
     }

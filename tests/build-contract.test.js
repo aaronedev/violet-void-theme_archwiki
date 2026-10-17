@@ -730,7 +730,12 @@ test('void reading surface contracts are emitted in canonical CSS', () => {
     )
     assert.match(
       css,
-      /\.vector-toc \.vector-toc-text\s*\{[^}]*word-break:\s*normal\s*!important;?[^}]*overflow-wrap:\s*normal\s*!important;?/s
+      /\.vector-toc \.vector-toc-text\s*\{[^}]*word-break:\s*normal\s*!important;?[^}]*overflow-wrap:\s*anywhere\s*!important;?/s
+    )
+    assert.doesNotMatch(
+      css,
+      /\.vector-dropdown-content \.vector-menu-content\s*\{[^}]*visibility:\s*hidden/s,
+      'opening a Vector menu must not require the interestfor API'
     )
     assert.match(
       css,
