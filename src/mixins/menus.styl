@@ -39,7 +39,10 @@ menu-list-item($with-card = false)
 pinnable-header()
   display flex
   align-items center
-  justify-content space-between
+  justify-content flex-start
+  flex-wrap wrap
+  gap 0.4em
+  line-height 1.4
   color $lighter
   font-weight 600
   font-size 0.8em
@@ -49,13 +52,23 @@ pinnable-header()
 
   .vector-pinnable-header-label
     color inherit
+    font-size 1rem
+    line-height inherit
+    padding 0
+    border 0
+    flex 1 0 auto
+    background none
+    text-decoration none
 
   .vector-pinnable-header-toggle-button
     background-color transparent
     border none
     color $secondary-blue
     padding 0.1em 0.3em
-    font-size 0.85em
+    font-size 0.75rem
+    line-height inherit
+    white-space nowrap
+    flex-shrink 0
     cursor pointer
 
     &:hover
