@@ -1,5 +1,11 @@
 # Playwright Visual Regression Tests
 
+## TL;DR
+
+> Run the Playwright suite for browser checks, or use the focused Vector menu test below.
+
+## Overview
+
 Automated testing suite for violet-void-theme_archwiki to detect visual quirks and issues.
 
 ## Setup
@@ -27,6 +33,16 @@ npm run test:debug
 # View report
 npm run test:report
 ```
+
+For the local Vector menu fixture, build first and run Chromium:
+
+```bash
+npm run build
+npx playwright test tests/vector-menu.spec.js --project=chromium
+```
+
+The fixture checks panel sizing, TOC alignment, and checkbox state at four viewport widths. It uses
+representative markup and does not verify the live ArchWiki or other browsers.
 
 ## Test Coverage
 
