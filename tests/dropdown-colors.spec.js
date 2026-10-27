@@ -22,9 +22,24 @@ test('dropdown surfaces and links stay readable and language menu fits mobile', 
   await expect(panel).toBeVisible()
   await expect(panel).toHaveCSS('background-color', 'rgb(32, 32, 32)')
   await expect(panel.locator('a')).toHaveCSS('color', 'rgb(231, 231, 231)')
-  const rect = await panel.boundingBox()
-  expect(rect.x).toBeGreaterThanOrEqual(0)
-  expect(rect.x + rect.width).toBeLessThanOrEqual(390)
+  for (const width of [320, 390, 768]) {
+    await page.setViewportSize({ width, height: 800 })
+    await page.locator('#p-lang-btn').evaluate((element) => {
+      element.style.marginLeft = '0px'
+    })
+    const original = await page.locator('#p-lang-btn').boundingBox()
+    const available = width - original.x - original.width
+    for (const offset of [0, available / 2, available]) {
+      await page.locator('#p-lang-btn').evaluate((element, x) => {
+        element.style.marginLeft = `${x}px`
+      }, offset)
+      const button = await page.locator('#p-lang-btn').boundingBox()
+      const rect = await panel.boundingBox()
+      expect(button.x + button.width).toBeLessThanOrEqual(width)
+      expect(rect.x).toBeGreaterThanOrEqual(0)
+      expect(rect.x + rect.width).toBeLessThanOrEqual(width)
+    }
+  }
   await page.locator('#language').uncheck()
   await expect(panel).toBeHidden()
 })
