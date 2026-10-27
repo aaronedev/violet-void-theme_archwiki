@@ -37,4 +37,27 @@
 .vector-toc .vector-toc-text > span:not(.vector-toc-numb) { min-width: 0; }
 .vector-toc .vector-toc-toggle { left: auto; inset-inline-start: .15em; top: .3em; transform: none !important; }
 .client-nojs .vector-toc .vector-toc-toggle { display: none; }
+
+/* Keep Vector's light-site defaults from overriding the backup palette. */
+@media screen {
+#firstHeading, #content .mw-heading h2, #content .mw-heading h3,
+#content .mw-heading h4, #content .mw-heading h5, #content .mw-heading h6 {
+  color: #e7e7e7;
+}
+#content .mw-parser-output a:not(.new) { color: #c7b8ff !important; }
+#content .mw-parser-output a:not(.new):hover { color: #fd7cff !important; }
+#content .mw-parser-output .archwiki-template-man a,
+#content .mw-parser-output .archwiki-template-pkg a { color: #42ff97 !important; }
+#content .mw-parser-output .archwiki-template-man a:hover,
+#content .mw-parser-output .archwiki-template-pkg a:hover { color: #42ffad !important; }
+.vector-header-container, .vector-header, header.vector-header { background-color: #181818 !important; }
+.vector-header .vector-icon, .vector-toc-toggle .vector-icon { background-color: #e7e7e7 !important; }
+#content .mw-heading h2::before, #content .mw-heading h3::before,
+#content .mw-heading h4::before, #content .mw-heading h5::before,
+#content .mw-heading h6::before { color: #c7b8ff !important; }
+@media (max-width: 768px) {
+  #archnavbarmenu { min-width: 0; overflow-x: auto; }
+  #archnavbarlist { overflow: visible !important; }
+}
+}
 }
