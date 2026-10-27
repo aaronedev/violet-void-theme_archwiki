@@ -1,29 +1,10 @@
 const fs = require('node:fs/promises')
 const path = require('node:path')
-const autoprefixer = require('autoprefixer-stylus')
 const postcss = require('postcss')
-const stylus = require('stylus')
 
 const CANONICAL_FILENAME = 'violet-void-theme-archwiki.user.css'
 const MAX_ARTIFACT_BYTES = 1_000_000
 const DEFAULT_ROOT_DIR = path.resolve(__dirname, '../..')
-
-function renderStylus(source, inputFile) {
-  return new Promise((resolve, reject) => {
-    stylus(source)
-      .set('filename', inputFile)
-      .set('compress', true)
-      .use(autoprefixer())
-      .render((error, css) => {
-        if (error) {
-          reject(error)
-          return
-        }
-
-        resolve(css)
-      })
-  })
-}
 
 function metadataHeader(pkg) {
   const metadata = [
@@ -82,13 +63,22 @@ function scopeBubbledAtRules(css) {
 
 async function buildUserStyle({ rootDir = DEFAULT_ROOT_DIR } = {}) {
   const packageFile = path.join(rootDir, 'package.json')
-  const inputFile = path.join(rootDir, 'src', 'main.styl')
-  const [packageSource, stylusSource] = await Promise.all([
+  const inputFile = path.join(rootDir, 'src', 'main.css')
+  const [packageSource, cssSource] = await Promise.all([
     fs.readFile(packageFile, 'utf8'),
     fs.readFile(inputFile, 'utf8'),
   ])
   const pkg = JSON.parse(packageSource)
-  const css = scopeBubbledAtRules(await renderStylus(stylusSource, inputFile))
+  const root = postcss.parse(cssSource)
+  const sections = root.nodes.filter(
+    (node) => node.type === 'atrule' && node.name === '-moz-document'
+  )
+  if (sections.length !== 1 || root.nodes.some(
+    (node) => node.type !== 'comment' && node !== sections[0]
+  )) {
+    throw new Error('Expected exactly one scoped @-moz-document section')
+  }
+  const css = cssSource
   const output = metadataHeader(pkg) + css
   const bytes = Buffer.byteLength(output)
 

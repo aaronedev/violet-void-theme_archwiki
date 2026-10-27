@@ -11,7 +11,7 @@
   },
   "userStyle": {
     "namespace": "github.com/aaronedev/violet-void-theme",
-    "version": "20260721.04.12",
+    "version": "20261027.01.00",
     "homepageURL": "https://github.com/aaronedev/violet-void-theme_archwiki",
     "supportURL": "https://github.com/aaronedev/violet-void-theme_archwiki/issues",
     "updateURL": "https://raw.githubusercontent.com/aaronedev/violet-void-theme_archwiki/main/dist/violet-void-theme-archwiki.user.css"
@@ -23,8 +23,8 @@
     "build": "node scripts/build.js",
     "watch": "node scripts/watch.js",
     "release": "node scripts/release.js",
-    "lint": "stylelint \"src/**/*.styl\"",
-    "lint:fix": "stylelint \"src/**/*.styl\" --fix",
+    "lint": "stylelint \"src/**/*.styl\" && node scripts/lint-userstyle.js",
+    "lint:fix": "stylelint \"src/**/*.styl\" --fix && node scripts/lint-userstyle.js",
     "format": "prettier --write \"**/*.{js,json}\" && stylelint --fix \"src/**/*.styl\"",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
