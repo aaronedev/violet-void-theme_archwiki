@@ -53,9 +53,35 @@ test('article headings, links, header, and mobile navigation remain readable', a
   const menu = page.locator('#archnavbarmenu')
   expect(await menu.evaluate((e) => e.scrollWidth > e.clientWidth)).toBe(true)
   const download = menu.getByRole('link', { name: 'Download' })
-  await download.focus()
+  for (const name of [
+    'Home',
+    'Packages',
+    'Forums',
+    'Wiki',
+    'AUR',
+    'Download',
+  ]) {
+    await page.keyboard.press('Tab')
+    await expect(menu.getByRole('link', { name })).toBeFocused()
+  }
   await expect(download).toBeFocused()
   await expect(download).toBeVisible()
+  const opacity = () =>
+    download.evaluate((link) => {
+      let value = 1
+      for (let node = link; node; node = node.parentElement) {
+        value *= Number(getComputedStyle(node).opacity)
+      }
+      return value
+    })
+  expect(await opacity()).toBeGreaterThan(0)
+  await menu.evaluate((element) => {
+    element.style.opacity = '0'
+  })
+  expect(await opacity()).toBe(0)
+  await menu.evaluate((element) => {
+    element.style.removeProperty('opacity')
+  })
   const visibility = await download.evaluate((link) => {
     const item = link.getBoundingClientRect()
     const viewport = link.closest('#archnavbarmenu').getBoundingClientRect()
