@@ -38,11 +38,11 @@ For the local Vector menu fixture, build first and run Chromium:
 
 ```bash
 npm run build
-npx playwright test tests/vector-menu.spec.js --project=chromium
+npx playwright test tests/vector-menu.spec.js tests/live-theme.spec.js --project=chromium
 ```
 
-The fixture checks panel sizing, TOC alignment, and checkbox state at four viewport widths. It uses
-representative markup and does not verify the live ArchWiki or other browsers.
+The fixtures check menu layout, checkbox state, theme contrast, and mobile navigation against
+representative markup. They do not verify the live ArchWiki or other browsers.
 
 ## Test Coverage
 
