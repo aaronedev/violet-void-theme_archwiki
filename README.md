@@ -1,5 +1,11 @@
 # Violet Void for the Arch Linux ecosystem
 
+## TL;DR
+
+> Install the Violet Void UserCSS in Stylus for a dark theme across the Arch Linux ecosystem.
+
+## Overview
+
 A dark Violet Void UserCSS theme with a consistent handcrafted palette for the ArchWiki and the supported Arch Linux sites.
 
 ## Features
@@ -72,7 +78,7 @@ The release command validates the version, updates only `package.json#userStyle.
 
 ## Source layout
 
-`src/main.styl` is the distribution entrypoint. See [`src/README.md`](src/README.md) for the shipped import graph and the intentionally dormant modules.
+`src/main.css` is the distribution entrypoint. See [`src/README.md`](src/README.md) for details.
 
 ## Changelog
 

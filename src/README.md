@@ -1,28 +1,9 @@
-# Stylus source reachability
+# Stylus source
 
-`main.styl` is the only distribution entrypoint. Its imports, including their transitive imports, are compiled inside the single Arch Linux `@-moz-document` scope. Variable and mixin modules may be imported repeatedly because they emit no selectors; `utilities/viewport-height.styl` is imported directly once because it emits utility classes.
+## TL;DR
 
-The current entrypoint reaches the component, performance, theme, utility, mixin, and variable modules needed by the shipped theme. The following modules exist in the repository but are currently dormant (not reachable from `main.styl`):
+> `main.css` contains the supplied UserStyle CSS and is the distribution entrypoint.
 
-- `components/accessibility.styl`
-- `components/admin.styl`
-- `components/advisory.styl`
-- `components/diff.styl`
-- `components/discussion.styl`
-- `components/gadgets.styl`
-- `components/glass.styl`
-- `components/history.styl`
-- `components/infobox.styl`
-- `components/interwiki.styl`
-- `components/preferences.styl`
-- `components/pwa.styl`
-- `components/scrollbars.styl`
-- `components/states.styl`
-- `components/templates.styl`
-- `components/translation.styl`
-- `critical.styl`
-- `performance/lazy.styl`
-- `performance/viewport.styl`
-- `variables/_fonts.styl`
+## Overview
 
-Dormant modules are retained as source material. Add one to `main.styl` only when its behavior is intentionally made part of the distributed theme and covered by the relevant tests; do not import modules merely to make them reachable.
+The build validates the scope of `main.css` and adds the installation metadata from `package.json`. The other source modules are retained for reference and are not part of the distributed theme.
