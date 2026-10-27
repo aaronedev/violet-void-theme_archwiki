@@ -11,7 +11,7 @@
   },
   "userStyle": {
     "namespace": "github.com/aaronedev/violet-void-theme",
-    "version": "20261027.02.00",
+    "version": "20261027.03.00",
     "homepageURL": "https://github.com/aaronedev/violet-void-theme_archwiki",
     "supportURL": "https://github.com/aaronedev/violet-void-theme_archwiki/issues",
     "updateURL": "https://raw.githubusercontent.com/aaronedev/violet-void-theme_archwiki/main/dist/violet-void-theme-archwiki.user.css"

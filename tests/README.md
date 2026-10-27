@@ -38,7 +38,7 @@ For the local Vector menu fixture, build first and run Chromium:
 
 ```bash
 npm run build
-npx playwright test tests/vector-menu.spec.js tests/live-theme.spec.js --project=chromium
+npx playwright test tests/vector-menu.spec.js tests/live-theme.spec.js tests/dropdown-colors.spec.js --project=chromium
 ```
 
 The fixtures check menu layout, checkbox state, theme contrast, and mobile navigation against

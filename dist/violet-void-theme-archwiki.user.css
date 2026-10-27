@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         violet-void-theme_archwiki
 @namespace    github.com/aaronedev/violet-void-theme
-@version      20261027.02.00
+@version      20261027.03.00
 @description  Dark Violet-Void theme that applies a consistent handcrafted color palette to the ArchWiki.
 @author       aaronedev
 @homepageURL  https://github.com/aaronedev/violet-void-theme_archwiki
@@ -70,6 +70,16 @@
 @media (max-width: 768px) {
   #archnavbarmenu { min-width: 0; overflow-x: auto; }
   #archnavbarlist { overflow: visible !important; }
+}
+}
+
+/* Keep dropdowns readable and within the viewport. */
+@media screen {
+.vector-dropdown-content { background-color: #202020 !important; }
+:is(#vector-main-menu-dropdown, #p-lang-btn, #vector-page-tools-dropdown, #vector-user-links-dropdown) .vector-dropdown-content .vector-menu-content li a { color: #e7e7e7 !important; }
+:is(#vector-main-menu-dropdown, #p-lang-btn, #vector-page-tools-dropdown, #vector-user-links-dropdown) .vector-dropdown-content .vector-menu-content li a:hover { color: #fff !important; }
+@media (max-width: 768px) {
+  #p-lang-btn .vector-dropdown-content { position: fixed; left: 1rem !important; right: 1rem !important; width: auto !important; }
 }
 }
 }

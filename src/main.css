@@ -60,4 +60,14 @@
   #archnavbarlist { overflow: visible !important; }
 }
 }
+
+/* Keep dropdowns readable and within the viewport. */
+@media screen {
+.vector-dropdown-content { background-color: #202020 !important; }
+:is(#vector-main-menu-dropdown, #p-lang-btn, #vector-page-tools-dropdown, #vector-user-links-dropdown) .vector-dropdown-content .vector-menu-content li a { color: #e7e7e7 !important; }
+:is(#vector-main-menu-dropdown, #p-lang-btn, #vector-page-tools-dropdown, #vector-user-links-dropdown) .vector-dropdown-content .vector-menu-content li a:hover { color: #fff !important; }
+@media (max-width: 768px) {
+  #p-lang-btn .vector-dropdown-content { position: fixed; left: 1rem !important; right: 1rem !important; width: auto !important; }
+}
+}
 }
