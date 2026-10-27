@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict')
 const fs = require('node:fs')
 const path = require('node:path')
+const os = require('node:os')
+const { spawnSync } = require('node:child_process')
 const test = require('node:test')
 
 const root = path.resolve(__dirname, '..')
@@ -57,17 +59,17 @@ test('MCP Chromium executable is the compatibility fallback for both projects', 
 
 test('visual scripts separate the reliable Chromium run from the full matrix', () => {
   const packageJson = JSON.parse(
-    fs.readFileSync(path.join(root, 'package.json'), 'utf8'),
+    fs.readFileSync(path.join(root, 'package.json'), 'utf8')
   )
 
   assert.match(packageJson.scripts['test:visual'], /--project=chromium(?:\s|$)/)
   assert.equal(
     packageJson.scripts['test:visual:all'],
-    'playwright test visual-regression',
+    'playwright test visual-regression'
   )
   assert.equal(
     packageJson.scripts['test:tooling'],
-    'node --test tests/tooling-contract.test.js',
+    'node --test tests/tooling-contract.test.js'
   )
 })
 
@@ -76,13 +78,16 @@ test('Codex worktree environment installs, builds, and exposes core actions', ()
     root,
     '.codex',
     'environments',
-    'environment.toml',
+    'environment.toml'
   )
   assert.ok(fs.existsSync(environmentPath), 'missing Codex environment config')
 
   const environment = fs.readFileSync(environmentPath, 'utf8')
   assert.match(environment, /^version\s*=\s*1\s*$/m)
-  assert.match(environment, /^name\s*=\s*["']violet-void-theme-archwiki["']\s*$/m)
+  assert.match(
+    environment,
+    /^name\s*=\s*["']violet-void-theme-archwiki["']\s*$/m
+  )
   assert.match(environment, /\[setup\]/)
   assert.match(environment, /\[setup\.linux\]/)
 
@@ -90,8 +95,8 @@ test('Codex worktree environment installs, builds, and exposes core actions', ()
     const escapedSection = section.replace('.', '\\.')
     const match = environment.match(
       new RegExp(
-        `\\[${escapedSection}\\][\\s\\S]*?script\\s*=\\s*(?:'''|\"\"\")([\\s\\S]*?)(?:'''|\"\"\")`,
-      ),
+        `\\[${escapedSection}\\][\\s\\S]*?script\\s*=\\s*(?:'''|\"\"\")([\\s\\S]*?)(?:'''|\"\"\")`
+      )
     )
     assert.ok(match, `missing ${section} script`)
     return match[1]
@@ -121,7 +126,7 @@ test('Codex worktree environment installs, builds, and exposes core actions', ()
     assert.match(
       environment,
       new RegExp(`name\\s*=\\s*["']${action}["']`),
-      `missing ${action} action`,
+      `missing ${action} action`
     )
   }
   for (const command of [
@@ -131,5 +136,52 @@ test('Codex worktree environment installs, builds, and exposes core actions', ()
     'npm run test:visual:all',
   ]) {
     assert.match(environment, new RegExp(command.replaceAll(' ', '\\s+')))
+  }
+})
+
+test('npm lint checks the shipped CSS for unknown properties', () => {
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'violet-lint-'))
+  try {
+    fs.mkdirSync(path.join(fixture, 'src'))
+    fs.cpSync(path.join(root, 'scripts'), path.join(fixture, 'scripts'), {
+      recursive: true,
+    })
+    for (const name of ['package.json', '.stylelintrc.json']) {
+      fs.copyFileSync(path.join(root, name), path.join(fixture, name))
+    }
+    fs.copyFileSync(
+      path.join(root, '.stylelintrc.css.json'),
+      path.join(fixture, '.stylelintrc.css.json')
+    )
+    fs.symlinkSync(
+      path.join(root, 'node_modules'),
+      path.join(fixture, 'node_modules'),
+      'dir'
+    )
+    fs.writeFileSync(
+      path.join(fixture, 'src', 'example.styl'),
+      'body\n  color red\n'
+    )
+    const css = path.join(fixture, 'src', 'main.css')
+    const lint = () =>
+      spawnSync('npm', ['run', 'lint'], { cwd: fixture, encoding: 'utf8' })
+    fs.writeFileSync(
+      css,
+      '@-moz-document domain("archlinux.org") { body { color: red; } }'
+    )
+    assert.equal(lint().status, 0, 'valid CSS should pass lint')
+    fs.writeFileSync(
+      css,
+      '@-moz-document domain("archlinux.org") { body { color: red; colour-typo: red; } }'
+    )
+    const invalid = lint()
+    assert.notEqual(
+      invalid.status,
+      0,
+      'unknown CSS property must fail npm lint'
+    )
+    assert.match(invalid.stdout + invalid.stderr, /colour-typo/)
+  } finally {
+    fs.rmSync(fixture, { recursive: true, force: true })
   }
 })
